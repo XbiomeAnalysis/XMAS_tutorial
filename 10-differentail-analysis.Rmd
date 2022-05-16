@@ -1,0 +1,1860 @@
+# Differential analysis
+
+Identifying the significant taxa between case and control group is necessary. There are too many differential analysis (DA) approaches to choose [@nearing2022microbiome], we provide some of them which focusing on microbial data, including: 
+
+
+| **Tool(version)**       | **Input**                  | **Normalization**                        | **Transformation**        | **Distribution**                 | **MicrobialData** |
+| ----------------------- | -------------------------- | ---------------------------------------- | ------------------------- | -------------------------------- | ----------------- |
+| ALDEx2  (1.26.0)        | Counts                     | None                                     | CLR                       | Dirichlet-multinormial           | 16s               |
+| limma  voom (3.50.1)    | Counts/Relative            | None/TMM                                 | Log;  Precision weighting | Normal                           | 16s/MGS           |
+| mbzinb  (0.2)           | Counts                     | RLE                                      | None                      | zero-inflated  negative binomial | 16s               |
+| omnibus  (0.2)          | Counts                     | GMPR(Geometric  Mean of Pairwise Ratios) | None                      | zero-inflated  negative binomial | 16s               |
+| RAIDA  (1.0)            | Counts                     | None                                     | Log                       | modified  t-test                 | 16s               |
+| Wilcox(rare/CLR)        | Counts/Relative            | None                                     | None/CLR                  | Non-parametric                   | 16s/MGS           |
+| LEfSe                   | Rarefied  Counts//Relative | TSS                                      | None                      | Non-parametric                   | 16s/MGS           |
+| t-test  (rare)          | Counts//Relative           | None                                     | None                      | Normal                           | 16s/MGS           |
+| metagenomeSeq  (1.36.0) | Counts                     | CSS                                      | Log                       | Zero-inflated  (log) Normal      | 16s               |
+| DESeq2  (1.34.0)        | Counts                     | RLE                                      | None                      | Negative  binomial               | 16s               |
+| edgeR  (3.36.0)         | Counts                     | RLE/TMM                                  | None                      | Negative  binomial               | 16s               |
+| ANCOM-II  (2.1)         | Counts/Relative            | None                                     | ALR                       | Non-parametric                   | 16s/MGS           |
+| Corncob  (0.2.0)        | Counts                     | None                                     | None                      | Beta-binomial                    | 16s               |
+| MaAslin2  (1.8.0)       | Counts/Relative  abundance | None/TSS                                 | AST                       | Normal                           | 16s/MGS           |
+
+
+**Loading packages**
+```R
+library(XMAS)
+library(dplyr)
+library(tibble)
+library(phyloseq)
+library(ggplot2)
+```
+
+## Amplicon sequencing microbial data (16s) 
+
+We use the same strategy to filter phyloseq object.
+```{r, warning=FALSE, message=FALSE}
+data("dada2_ps")
+
+# step1: Removing samples of specific group in phyloseq-class object
+dada2_ps_without_QC <- get_GroupPhyloseq(
+                     ps = dada2_ps,
+                     group = "Group",
+                     group_names = "QC",
+                     discard = TRUE)
+
+# step2: Extracting specific taxa phyloseq-class object 
+dada2_ps_genus <- summarize_taxa(dada2_ps_without_QC, taxa_level = "Genus", absolute = TRUE)
+
+# step3: Aggregating low relative abundance or unclassified taxa into others
+#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+
+# step4: Filtering the low relative abundance or unclassified taxa by the threshold
+dada2_ps_genus_filter <- run_filter(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+
+# step5: Trimming the taxa with low occurrence less than threshold
+dada2_ps_genus_filter_trim <- run_trim(dada2_ps_genus_filter, cutoff = 0.2, trim = "feature")
+dada2_ps_genus_filter_trim
+```
+
+
+### ALDEx2
+
+**ALDEx2** package is from *Unifying the analysis of high-throughput sequencing datasets: characterizing RNA-seq, 16S rRNA gene sequencing and selective growth experiments by compositional data analysis* [@fernandes2014unifying], and its principle is using log-ratio transformation and statistical testing to find the significant Taxa. (Caution: the **otu_table** must be integers).
+
+`run_aldex` provides 11 parameters. For instance, _norm_ and _transform_ are used to normalization and transformation input data. More details to see `help(run_aldex)`.
+```{r, warning=FALSE, message=FALSE}
+DA_ALDEx2 <- run_aldex(
+                     dada2_ps_genus_filter_trim,
+                     group = "Group",
+                     group_names = c("AA", "BB"),
+                     norm = "none",
+                     transform = "identity",
+                     method = "t.test",
+                     p_adjust = "none",
+                     pvalue_cutoff = 0.05)
+colnames(DA_ALDEx2)
+DT::datatable(DA_ALDEx2)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size of taxa by **ALDEx2**;
+
+5. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue by **ALDEx2**;
+
+6. **Median CLR (All)/(group AA)/(group BB)**: Median CLR (normalization by **ALDEx2**) in all, group AA and group BB, respectively;
+
+7. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+8. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+9. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+10. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+11. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+12. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+
+Please open the below buttons, if you want to see other options for differential analysis in **ALDEx2**.
+
+<details>
+<summary>**run_da() pattern**</summary>
+
+We also provide another function `run_da` to run ALDEx2 differential analysis.
+
+```{r, warning=FALSE, message=FALSE}
+DA_ALDEx2 <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "aldex",
+                    norm = "none",
+                    transform = "identity",
+                    method = "t.test",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+colnames(DA_ALDEx2)
+```
+</details>
+
+
+<details>
+<summary>**otu_table or sample_table as inputdata**</summary>
+
+We also provide _data\_otu_ and _data\_sam_ as input data to run `run_aldex`.
+
+```{r, warning=FALSE, message=FALSE}
+DA_ALDEx2 <- run_aldex(
+                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                     group = "Group",
+                     group_names = c("AA", "BB"),
+                     norm = "none",
+                     transform = "identity",
+                     method = "t.test",
+                     p_adjust = "none",
+                     pvalue_cutoff = 0.05
+                     )
+
+colnames(DA_ALDEx2)
+```
+</details>
+
+<details>
+<summary>**taxa_level option**</summary>
+
+We also provide _taxa\_level_ for choosing the specific taxonomic level to run `run_aldex`.
+```{r, warning=FALSE, message=FALSE}
+DA_ALDEx2 <- run_aldex(
+                     ps = dada2_ps,
+                     taxa_level = "Genus",
+                     group = "Group",
+                     group_names = c("AA", "BB"),
+                     norm = "none",
+                     transform = "identity",
+                     method = "t.test",
+                     p_adjust = "none",
+                     pvalue_cutoff = 0.05)
+colnames(DA_ALDEx2)
+```
+</details>
+
+
+### limma_voom
+
+**limma** package is from *voom: Precision weights unlock linear model analysis tools for RNA-seq read counts* [@law2014voom]. Firstly, transforming count data to log2-counts per million (logCPM), estimate the mean-variance relationship and use this to compute appropriate observation-level weights. Secondly, fitting multiple linear models by weighted or generalized least squares. Finally, performing empirical bayes statistics for differential expression.
+
+`run_limma_voom` provides 11 parameters. For instance, _norm_ and _transform_ are used to normalization and transformation input data. More details to see `help(run_limma_voom)`.
+
+```{r, warning=FALSE, message=FALSE}
+DA_limma_voom <- run_limma_voom(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    voom_span = 0.5,
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_limma_voom)
+DT::datatable(DA_limma_voom)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size of taxa by **limma**;
+
+5. **logFC**: LogFC from groups' coefficient by **limma**;
+
+6. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue by **limma**;
+
+7. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+8. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+9. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+10. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+11. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+12. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+
+Please open the below buttons, if you want to see other options for differential analysis in **limma**.
+
+<details>
+<summary>**other options for limma-voom**</summary>
+```{r, warning=FALSE, message=FALSE}
+if(0) {
+DA_limma_voom <- run_limma_voom(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    voom_span = 0.5,
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05)
+
+DA_limma_voom <- run_limma_voom(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    voom_span = 0.5,
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_limma_voom <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "limma_voom",
+                    transform = "identity",
+                    norm = "none",
+                    voom_span = 0.5,
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_limma_voom)
+}
+```
+</details>
+
+
+### mbzinb
+
+**mbzinb** package is from *An omnibus test for differential distribution analysis of microbiome sequencing data* [@chen2018omnibus]. It uses zeroinflated negative binomial model to investigate the significant taxa. (Caution: the **otu_table** must be integers).
+
+```{r, warning=FALSE, message=FALSE}
+DA_mbzinb <- run_mbzinb(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05)
+colnames(DA_mbzinb)
+DT::datatable(DA_mbzinb)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size of taxa by **mbzinb**;
+
+5. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue by **mbzinb**;
+
+6. **base.mean**: fitted mean abundance parameter times the fitted prevalence in baseline group;
+
+7. **mean.LFC**: log2-fold change in fitted mean between other group and baseline;
+
+8. **base.abund**: fitted mean abundance parameter in baseline group;
+
+9. **abund.LFC**: log2-fold change in fitted mean abundance parameter between other group and baseline;
+
+10. **base.prev**: fitted prevalence in baseline group;
+
+11. **prev.change**: (linear) difference in prevalence between baseline group and other group (other-baseline);
+
+12. **base.disp**: fitted dispersion parameter in baseline group;
+
+13. **disp.LFC**: log2-fold change in fitted dispersion parameter between other group and baseline;
+
+14. **statistic**: value of likelihood ratio test statistic;
+
+15. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+16. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+17. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+18. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+19. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+20. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+
+Please open the below buttons, if you want to see other options for differential analysis in **mbzinb**.
+
+
+<details>
+<summary>**other options for mbzinb**</summary>
+```{r, warning=FALSE, message=FALSE}
+if(0) {
+DA_mbzinb <- run_mbzinb(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_mbzinb <- run_mbzinb(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_mbzinb <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "mbzinb",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_mbzinb)
+}
+```
+</details>
+
+
+### omnibus
+
+This approach is also from **mbzinb**  [@chen2018omnibus] package. it uses GMPR (Geometric Mean of Pairwise Ratios) [@chen2018gmpr] to get the size factors. 
+
+>where we specify models for count (abundance), zero (prevalence) and dispersion part. We also provide likelihood ratio test (zinb.lrt) for different models. 
+
+(Caution: the **otu_table** must be integers).
+
+```{r, warning=FALSE, message=FALSE}
+DA_omnibus <- run_omnibus(
+                     dada2_ps_genus_filter_trim,
+                     group = "Group",
+                     group_names = c("AA", "BB"),
+                     transform = "identity",
+                     norm = "none",
+                     method = "omnibus",
+                     p_adjust = "none",
+                     pvalue_cutoff = 0.05)
+
+colnames(DA_omnibus)
+DT::datatable(DA_omnibus)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size of taxa by *glm* function to assess the pvalue effect;
+
+5. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue by **omnibus**;
+
+6. **chi.stat**: chisquare statistics;
+
+7. **df**: degree freedom;
+
+8. **abund.baseline**: mean abundance in baseline group;
+
+9. **prev.baseline**: prevalence in baseline group;
+
+10. **dispersion.baseline**: dispersion in baseline group;
+
+11. **abund.LFC.CompvarBB.est**: log2-fold change in abundance between group BB and other group;
+
+12. **abund.LFC.CompvarBB.se**: log2-fold change of standard errors in abundance between group BB and other group;
+
+13. **prev.LOD.CompvarBB.est**: prevalence of low of detect value in group BB;
+
+14. **prev.LOD.CompvarBB.se**: prevalence's standard errors of low of detect value in group BB;
+
+15. **dispersion.LFC.CompvarBB.est**: log2-fold change in dispersion in group BB;
+
+16. **dispersion.LFC.CompvarBB.se**: log2-fold change in dispersion's standard errors in group BB;
+
+17. **method**: methods of test;
+
+18. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+19. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+20. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+21. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+22. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+23. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+Please open the below buttons, if you want to see other options for differential analysis in **omnibus**.
+
+<details>
+<summary>**other options for omnibus**</summary>
+```{r, warning=FALSE, message=FALSE}
+if(0) {
+DA_omnibus <- run_omnibus(
+                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                     group = "Group",
+                     group_names = c("AA", "BB"),
+                     transform = "identity",
+                     norm = "none",
+                     method = "omnibus",
+                     p_adjust = "none",
+                     pvalue_cutoff = 0.05
+                     )
+
+
+DA_omnibus <- run_omnibus(
+                     dada2_ps,
+                     taxa_level = "Genus",
+                     group = "Group",
+                     group_names = c("AA", "BB"),
+                     transform = "identity",
+                     norm = "none",
+                     method = "omnibus",
+                     p_adjust = "none",
+                     pvalue_cutoff = 0.05
+                     )
+
+DA_omnibus <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "omnibus",
+                    transform = "identity",
+                    norm = "none",
+                    method = "omnibus",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_omnibus)
+}
+```
+</details>
+
+
+### RAIDA
+
+**RAIDA** package is from *A robust approach for identifying differentially abundant features in metagenomic samples* [@sohn2015robust]. It uses Ratio Approach for Identifying Differential Abundance (RAIDA). (Caution: the **otu_table** must be integers).
+
+```{r, warning=FALSE, message=FALSE}
+DA_RAIDA <- run_raida(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_RAIDA)
+DT::datatable(DA_RAIDA)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size of taxa by *glm* function to assess the pvalue effect;
+
+5. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue by **RAIDA**;
+
+6. **eta_AA**: vector containing estimated probabilities of the false zero state for group AA;
+
+7. **mean_AA**: vector containing estimated means of log ratios for group AA;
+
+8. **sd_AA**: vector containing estimated standard deviations of log ratios for group AA;
+
+9. **eta_BB**: vector containing estimated probabilities of the false zero state for group BB;
+
+10. **mean_BB**: vector containing estimated means of log ratios for group BB;
+
+11. **sd_BB**: vector containing estimated standard deviations of log ratios for group BB;
+
+12. **mod.pool.var**: vector containing estimated posterior variances of log ratios;
+
+13. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+14. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+15. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+16. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+17. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+18. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+Please open the below buttons, if you want to see other options for differential analysis in **RAIDA**.
+
+<details>
+<summary>**other options for RAIDA**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_RAIDA <- run_raida(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_RAIDA <- run_raida(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_RAIDA <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "raida",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_RAIDA)
+}
+```
+</details>
+
+
+### Wilcoxon Rank Sum and Signed Rank Tests
+
+Wilcoxon Rank Sum and Signed Rank Tests, which are nonparametric test methods, use the rank of taxa abundance to find the significant taxa.
+
+
+* Ordinary pattern
+```{r, warning=FALSE, message=FALSE}
+DA_wilcox <- run_wilcox(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_wilcox)
+DT::datatable(DA_wilcox)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size of taxa by *glm* function to assess the pvalue effect;
+
+5. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue;
+
+6. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+7. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+8. **Log2FoldChange (Mean Rank)\nAA_vs_BB**: Log2FoldChange (Mean Rank Abundance) between group AA and group BB;
+
+9. **Mean Rank Abundance (All)/(group AA)/(group BB)**: Mean Rank Abundance in all, group AA and group BB, respectively;
+
+10. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+11. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+12. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+13. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+
+<details>
+<summary>**other options for wilcox**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_wilcox <- run_wilcox(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_wilcox <- run_wilcox(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_wilcox <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "wilcox",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_wilcox)
+}
+```
+</details>
+
+
+* **wilcox_rarefy**: random subsampling counts to the smallest library size in the data set.
+```{r, warning=FALSE, message=FALSE}
+# summary
+summarize_phyloseq(dada2_ps_genus_filter_trim)
+
+# run
+DA_wilcox_rarefy <- run_wilcox(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "rarefy",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+colnames(DA_wilcox_rarefy)
+```
+
+The output is the same as the previous results of ordinary pattern.
+
+<details>
+<summary>**other options for wilcox_rarefy**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_wilcox_rarefy <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "wilcox",
+                    transform = "identity",
+                    norm = "rarefy",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_wilcox_rarefy)
+}
+```
+</details>
+
+
+* **wilcox_CLR**: centered log-ratio normalization.
+```{r, warning=FALSE, message=FALSE}
+DA_wilcox_CLR <- run_wilcox(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "CLR",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_wilcox_CLR)
+```
+
+The output is the same as the previous results of ordinary pattern.
+
+<details>
+<summary>**other options for wilcox_CLR**</summary>
+```{r, warning=FALSE, message=FALSE}
+if(0) {
+DA_wilcox_CLR <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "wilcox",
+                    transform = "identity",
+                    norm = "CLR",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_wilcox_CLR)
+}
+```
+</details>
+
+
+### Liner discriminant analysis (LDA) effect size (LEfSe)
+
+**LEfSe** method is from *Metagenomic biomarker discovery and explanation* [@segata2011metagenomic]. It uses Liner discriminant analysis model to identify Differential Taxa.
+
+```{r, warning=FALSE, message=FALSE}
+DA_lefse <- run_lefse(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "rarefy",
+                    kw.p = 0.05,
+                    wl.p = 0.05,
+                    Lda = 0)
+colnames(DA_lefse)
+DT::datatable(DA_lefse)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size of taxa by *lefse*;
+
+5. **LDA_Score**: significant level of Pvalue and Adjusted-pvalue;
+
+6. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+7. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+8. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+9. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+10. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+11. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+<details>
+<summary>**other options for lefse**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_lefse <- run_lefse(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "rarefy",
+                    kw.p = 0.05,
+                    wl.p = 0.05,
+                    Lda = 0
+                    )
+
+DA_lefse <- run_lefse(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "rarefy",
+                    kw.p = 0.05,
+                    wl.p = 0.05,
+                    Lda = 0
+                    )
+
+DA_lefse <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "lefse",
+                    transform = "identity",
+                    norm = "rarefy",
+                    kw.p = 0.05,
+                    wl.p = 0.05,
+                    Lda = 0
+                    )
+
+DT::datatable(DA_lefse)
+}
+```
+</details>
+
+
+### t-test
+
+T test, a parametric test method, identifies the significant taxa.
+
+* Ordinary pattern
+```{r, warning=FALSE, message=FALSE}
+DA_ttest <- run_ttest(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_ttest)
+DT::datatable(DA_ttest)
+```
+
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size of taxa by *glm* function to assess the pvalue effect;
+
+5. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue;
+
+6. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+7. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+8. **Log2FoldChange (GeometricMean)\nAA_vs_BB**: Log2FoldChange (GeometricMean Abundance) between group AA and group BB;
+
+9. **GeometricMean Abundance (All)/(group AA)/(group BB)**: GeometricMean Abundance in all, group AA and group BB, respectively;
+
+10. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+11. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+12. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+13. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+<details>
+<summary>**other options for t-test**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_ttest <- run_ttest(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_ttest <- run_ttest(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_ttest <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "ttest",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_ttest)
+}
+```
+</details>
+
+
+* **t-test_rarefy**: random subsampling counts to the smallest library size in the data set.
+```{r, warning=FALSE, message=FALSE}
+DA_ttest_rarefy <- run_ttest(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "rarefy",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05)
+colnames(DA_ttest_rarefy)
+```
+
+The output is the same as the previous results of ordinary pattern.
+
+<details>
+<summary>**other options for ttest_rarefy**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_ttest_rarefy <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "ttest",
+                    transform = "identity",
+                    norm = "rarefy",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_ttest_rarefy)
+}
+```
+</details>
+
+
+### MetagenomeSeq
+
+**MetagenomeSeq** package is from *Differential abundance analysis for microbial marker-gene surveys* [@paulson2013differential]. It uses zero-inflated Log-Normal mixture model or Zero-inflated Gaussian mixture model to identify the significant taxa between groups. (Caution: the **otu_table** should be integers).
+
+```{r, warning=FALSE, message=FALSE}
+DA_metagenomeseq <- run_metagenomeseq(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "CSS",
+                    method = "ZILN",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_metagenomeseq)
+DT::datatable(DA_metagenomeseq)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **logFC**: fitted coefficient represents the fold-change for group AA and group BB;
+
+5. **se**: standard error;
+
+6. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue;
+
+7. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+8. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+9. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+10. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+11. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+12. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+
+<details>
+<summary>**other options for metagenomeseq**</summary>
+```{r}
+if (0) {
+DA_metagenomeseq <- run_metagenomeseq(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "CSS",
+                    method = "ZILN",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_metagenomeseq <- run_metagenomeseq(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "CSS",
+                    method = "ZILN",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_metagenomeseq<- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "metagenomeseq",
+                    transform = "identity",
+                    norm = "CSS",
+                    method = "ZILN",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_metagenomeseq)
+}
+```
+</details>
+
+
+### DESeq2
+
+**DESeq2** package is from *Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2* [@love2014moderated]. Differential expression analysis based on the Negative Binomial (a.k.a. Gamma-Poisson) distribution.(Caution: the **otu_table** must be integers).
+
+```{r, warning=FALSE, message=FALSE}
+DA_deseq2 <- run_deseq2(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_deseq2)
+DT::datatable(DA_deseq2)
+```
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **logFC**: fitted coefficient represents the fold-change for group AA and group BB;
+
+5. **Statistic**: test statistic (negative binomial model);
+
+6. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue;
+
+7. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+8. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+9. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+10. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+11. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+12. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+
+<details>
+<summary>**other options for deseq2**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_deseq2 <- run_deseq2(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_deseq2 <- run_deseq2(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_deseq2 <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "deseq2",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_deseq2)
+}
+```
+</details>
+
+
+### EdgeR
+
+**EdgeR** package is from *A scaling normalization method for differential expression analysis of RNA-seq data* [@robinson2010scaling]. Differential expression analysis based on the Negative Binomial (a.k.a. Gamma-Poisson) distribution. (Caution: the **otu_table** must be integers).
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=5, fig.height=4, fig.cap="EdgeR (BVC distance)"}
+DA_edger <- run_edger(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_edger)
+DT::datatable(DA_edger)
+```
+
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **logFC**: fitted coefficient represents the fold-change for group AA and group BB;
+
+5. **logCPM**: is the average expression of all samples for that particular gene across all samples on the log-scale expressed in counts per million (cpm, as calculated by edgeR after normalization);
+
+6. **LR**: the signed likelihood ratio test statistic;
+
+7. **Pvalue and AdjustedPvalue**: significant level of Pvalue and Adjusted-pvalue;
+
+8. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+9. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+10. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+11. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+12. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+13. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+<details>
+<summary>**other options for EdgeR**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_edger <- run_edger(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_edger <- run_edger(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_edger <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "edger",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_edger)
+}
+```
+</details>
+
+### ANCOM
+
+**ANCOM** (Analysis of composition of microbiomes) is from *Analysis of composition of microbiomes: a novel method for studying microbial composition", Microbial Ecology in Health* [@mandal2015analysis]. ANCOM makes no distributional assumptions and can be implemented in a linear model framework. (Caution: the **otu_table** must be integers).
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=5, fig.height=4, fig.cap="ANCOM (Structure Zero)"}
+DA_ancom <- run_ancom(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_ancom)
+DT::datatable(DA_ancom)
+```
+
+
+**Results**: 
+
+The results comprises more than 10 columns, and the details as follow:
+
+1. **TaxaID**: taxa name;
+
+2. **Block**: groups' names and numbers;
+
+3. **Enrichment**: enriched direction based on *Median Abundance* and *AdjustedPvalue*;
+
+4. **EffectSize**: effect size by **ANCOM**;
+
+5. **(W)q-values < alpha**: q-values less than alpha;
+
+6. **W_ratio**: the ratio of W values;
+
+7. **detected_0.7**: W_ratio more than 0.7;
+
+8. **Log2FoldChange (Median)\nAA_vs_BB**: Log2FoldChange (Median Abundance) between group AA and group BB;
+
+9. **Median Abundance (All)/(group AA)/(group BB)**: Median Abundance in all, group AA and group BB, respectively;
+
+10. **Log2FoldChange (Mean)\nAA_vs_BB**: Log2FoldChange (Mean Abundance) between group AA and group BB;
+
+11. **Mean Abundance (All)/(group AA)/(group BB)**: Mean Abundance in all, group AA and group BB, respectively;
+
+12. **Occurrence (All)/(group AA)/(group BB)**: Occurrence in all, group AA and group BB, respectively;
+
+13. **Odds Ratio (95% CI)**: 95% confidence interval odds ratio between group AA and group BB.
+
+
+<details>
+<summary>**other options for ANCOM**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_ancom <- run_ancom(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_ancom <- run_ancom(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_ancom <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "ancom",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_ancom)
+}
+```
+</details>
+
+
+### Corncob
+
+**Corncob** package is from *Modeling microbial abundances and dysbiosis with beta-binomial regression", Microbial Ecology in Health* [@martin2020modeling]. Corncob is based on beta-binomial regression. (Caution: the **otu_table** must be integers).
+
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_corncob <- run_corncob(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    method = "Wald",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_ancom)
+DT::datatable(DA_ancom)
+}
+```
+
+
+<details>
+<summary>**other options for Corncob**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_corncob <- run_corncob(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    method = "Wald",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_corncob <- run_corncob(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    method = "Wald",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DA_corncob <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "corncob",
+                    transform = "identity",
+                    norm = "none",
+                    method = "Wald",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+
+DT::datatable(DA_corncob)
+}
+```
+</details>
+
+### Maaslin2 (Microbiome Multivariable Association with Linear Models)
+
+**Maaslin2** package is from *Multivariable association discovery in population-scale meta-omics studies* [@mallick2021multivariable]. Maaslin2 relies on general linear models to accommodate most modern epidemiological study designs, including cross-sectional and longitudinal, along with a variety of filtering, normalization, and transform methods.
+
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_maaslin2 <- run_maaslin2(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "LOG",
+                    norm = "TMM",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+
+DA_maaslin2 <- run_maaslin2(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "LOG",
+                    norm = "TMM",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+
+DA_maaslin2 <- run_maaslin2(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "LOG",
+                    norm = "TMM",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+
+DA_maaslin2 <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "maaslin2",
+                    transform = "LOG",
+                    norm = "TMM",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+
+DT::datatable(DA_maaslin2)
+}
+```
+
+
+<details>
+<summary>**other options for RAIDA**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_maaslin2 <- run_maaslin2(
+                    dada2_ps,
+                    taxa_level = "Genus",
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "LOG",
+                    norm = "TMM",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+
+DA_maaslin2 <- run_maaslin2(
+                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
+                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "LOG",
+                    norm = "TMM",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+
+DA_maaslin2 <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "maaslin2",
+                    transform = "LOG",
+                    norm = "TMM",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+
+DT::datatable(DA_maaslin2)
+}
+```
+</details>
+
+
+## Metagenomic sequencing microbial data (metaphlan2/3) 
+
+```{r, warning=FALSE, message=FALSE}
+data("metaphlan2_ps")
+ps_genus_mgs <- summarize_taxa(metaphlan2_ps, taxa_level = "Genus")
+ps_genus_mgs
+```
+
+### limma_voom
+
+**limma** package is from *voom: Precision weights unlock linear model analysis tools for RNA-seq read counts* [@law2014voom]. Firstly, transforming count data to log2-counts per million (logCPM), estimate the mean-variance relationship and use this to compute appropriate observation-level weights. Secondly, fitting multiple linear models by weighted or generalized least squares. Finally, performing empirical bayes statistics for differential expression.
+
+```{r, warning=FALSE, message=FALSE}
+DA_limma_voom_mgs <- run_limma_voom(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    voom_span = 0.5,
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+colnames(DA_limma_voom_mgs)
+DT::datatable(DA_limma_voom_mgs)
+```
+
+<details>
+<summary>**limma_voom Metagenomic sequencing in run_da**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_limma_voom_mgs <- run_da(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "limma_voom",
+                    transform = "identity",
+                    norm = "none",
+                    voom_span = 0.5,
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+}
+```
+</details>
+
+
+### Wilcoxon Rank Sum and Signed Rank Tests
+
+Wilcoxon Rank Sum and Signed Rank Tests, which are nonparameter test methods, use the rank of taxa abundance to find the significant taxa.
+
+```{r, warning=FALSE, message=FALSE}
+DA_wilcox_mgs <- run_wilcox(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+colnames(DA_wilcox_mgs)
+DT::datatable(DA_wilcox_mgs)
+```
+
+
+<details>
+<summary>**wilcox Metagenomic sequencing in run_da**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_wilcox_mgs <- run_da(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "wilcox",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05
+                    )
+
+}
+```
+</details>
+
+### Liner discriminant analysis (LDA) effect size (LEfSe)
+
+**LEfSe** method is from *Metagenomic biomarker discovery and explanation* [@segata2011metagenomic]. It uses Liner discriminant analysis model to identify Differential Taxa.
+
+```{r, warning=FALSE, message=FALSE}
+DA_lefse_mgs <- run_lefse(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    kw.p = 0.05,
+                    wl.p = 0.05,
+                    Lda = 0)  
+
+colnames(DA_lefse_mgs)
+DT::datatable(DA_lefse_mgs)
+```
+
+
+<details>
+<summary>**lefse Metagenomic sequencing in run_da**</summary>
+```{r, warning=FALSE, message=FALSE}
+if(0) {
+DA_lefse_mgs <- run_da(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "lefse",
+                    transform = "identity",
+                    norm = "none",
+                    kw.p = 0.05,
+                    wl.p = 0.05,
+                    Lda = 0
+                    )
+}
+```
+</details>
+
+
+### t-test
+
+T test, a parametric test method, identifies the significant taxa.
+
+```{r, warning=FALSE, message=FALSE}
+DA_ttest_mgs <- run_ttest(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+colnames(DA_ttest_mgs)
+DT::datatable(DA_ttest_mgs)
+```
+
+
+<details>
+<summary>**ttest Metagenomic sequencing in run_da**</summary>
+```{r, warning=FALSE, message=FALSE}
+if(0) {
+DA_ttest_mgs <- run_da(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "ttest",
+                    transform = "identity",
+                    norm = "none",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05
+                    )
+}
+```
+</details>
+
+### Maaslin2 (Microbiome Multivariable Association with Linear Models)
+
+**Maaslin2** package is from *Multivariable association discovery in population-scale meta-omics studies* [@mallick2021multivariable]. Maaslin2 relies on general linear models to accommodate most modern epidemiological study designs, including cross-sectional and longitudinal, along with a variety of filtering, normalization, and transform methods.
+
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_maaslin2_mgs <- run_maaslin2(
+                    ps_genus_mgs,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "NONE",
+                    norm = "NONE",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+
+DT::datatable(DA_maaslin2_mgs)
+}
+```
+
+<details>
+<summary>**maaslin2 Metagenomic sequencing in run_da**</summary>
+```{r, warning=FALSE, message=FALSE}
+if (0) {
+DA_maaslin2_mgs <- run_da(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    da_method = "maaslin2",
+                    transform = "NONE",
+                    norm = "NONE",
+                    method = "LM",
+                    p_adjust = "BH",
+                    pvalue_cutoff = 0.05,
+                    outdir = "./demo_output"
+                    )
+}
+```
+</details>
+
+
+## Visualization
+
+The Volcano plot is used to display differential analysis. `plot_volcano` provides multiple parameters for plotting volcano. More details to see `help(plot_volcano)`. 
+
+The barplot is used to display the lefse results.
+
+### Volcano plot 
+
+The X and Y coordinate axis are flexible to choose for Volcano. Here, we choose _logFC_ and _AdjustedPvalue_ to visualize the results
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="Volcano (limma-voom: logFC and AdjustedPvalue)"}
+DA_limma_voom <- run_limma_voom(
+                    dada2_ps_genus_filter_trim,
+                    group = "Group",
+                    group_names = c("AA", "BB"),
+                    transform = "identity",
+                    norm = "none",
+                    voom_span = 0.5,
+                    p_adjust = "none",
+                    pvalue_cutoff = 0.05)
+
+colnames(DA_limma_voom)
+
+DA_limma_voom_volcano <- plot_volcano(
+    DA_limma_voom,
+    group_names = c("AA", "BB"),
+    x_index = "logFC",
+    x_index_cutoff = 0.5,
+    y_index = "AdjustedPvalue",
+    y_index_cutoff = 0.05,
+    group_color = c("red", "grey", "blue"),
+    topN = 5,
+    taxa_name = NULL
+   )
+
+DA_limma_voom_volcano
+```
+
+<details>
+<summary>**DA_limma_voom_volcano effectsize**</summary>
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="Volcano (limma-voom: EffectSize and Pvalue)"}
+DA_limma_voom_volcano_efs <- plot_volcano(
+    DA_limma_voom,
+    group_names = c("AA", "BB"),
+    x_index = "EffectSize",
+    x_index_cutoff = 1,
+    y_index = "Pvalue",
+    y_index_cutoff = 0.05,
+    group_color = c("red", "grey", "blue"),
+    topN = 8,
+    taxa_name = NULL
+   )
+
+DA_limma_voom_volcano_efs
+```
+
+The logFC and EffectSize are the same values in limma-voom.
+
+</details>
+
+
+
+### barplot in lefse
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Barplot (Lefse)"}
+DA_lefse <- run_lefse(
+    dada2_ps_genus_filter_trim,
+    group = "Group",
+    group_names = c("AA", "BB"),
+    transform = "identity",
+    norm = "rarefy",
+    kw.p = 0.05,
+    wl.p = 0.05,
+    Lda = 0)
+
+plot_lefse(
+  da_res = DA_lefse,
+  x_index = "LDA_Score",
+  x_index_cutoff = 0,
+  group_color = c("green", "red")) 
+```
+
+
+## Dominant taxa
+
+Display the significant taxa with selection using boxplot.
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=3, fig.cap="Dominant Taxa"}
+DA_wilcox <- run_wilcox(
+   metaphlan2_ps,
+   group = "Group",
+   group_names = c("AA", "BB"),
+   transform = "identity",
+   norm = "none",
+   p_adjust = "BH",
+   pvalue_cutoff = 0.05)
+
+plot_topN_boxplot(
+    ps = metaphlan2_ps,
+    da_res = DA_wilcox,
+    x_index = "Log2FoldChange (Median)\nAA_vs_BB",
+    x_index_cutoff = 0.2,
+    y_index = "Pvalue",
+    y_index_cutoff = 0.3,
+    prevalence = TRUE,
+    topN = 3,
+    taxa_name = "s__Ruminococcus_torques",
+    group = "Group")
+```
+
+
+## Systematic Information
+```{r}
+sessionInfo()
+```

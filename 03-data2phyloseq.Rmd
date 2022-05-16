@@ -1,0 +1,119 @@
+# Convert inputdata into phyloseq object
+
+*r Biocpkg("phyloseq")* [@mcmurdie2013phyloseq] is the most popular [Biocondcutor](https://bioconductor.org/) package used by the microbiome research field, and `phyloseq-class` objects are a great data-standard for microbiota data in R. Therefore, the core functions in  `XMAS` take `phyloseq-class` object as input. In the phyloseq object, information on OTU abundances, taxonomy of OTUs, the phylogenetic tree and metadata is stored.
+
+
+This tutorial will introduce you the basic steps to convert results from the in-house pipeline into *phyloseq-class object*. More importantly on how to look at your data and filter appropriately. We will use the inputs from **/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/**.
+
+
+## loading packages
+
+Loading the `XMAS` into the R session:
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE, fig.align="center"}
+library(XMAS)
+library(dplyr)
+library(tibble)
+library(phyloseq)
+library(ggplot2)
+library(ggpubr)
+library(picante)
+```
+
+
+## DADA2 
+
+**dada2** results from standardized_analytics_workflow_R_function:
+
+1. /home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/process/xdada2/dada2_res.rds
+
+2. /home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/process/fasta2tree/tree.nwk
+
+3. /home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/metadata.txt
+
+```{r, warning=FALSE, message=FALSE}
+dada2_res <- readRDS(
+  system.file(
+    "extdata", "dada2_res.rds",
+    package = "XMAS"    
+    )
+)
+
+sam_tab <- read.table(
+    system.file(
+        "extdata", "dada2_metadata.tsv",
+        package = "XMAS"
+    ),
+    sep = "\t",
+    header = TRUE,
+    stringsAsFactors = FALSE
+)
+
+tree <- read_tree(
+  system.file(
+    "extdata", "tree.nwk",
+    package = "XMAS"    
+    )
+)
+
+tax_tab <- import_dada2_taxa(dada2_res$tax_tab)
+otu_tab <- dada2_res$seq_tab
+sam_tab <- sam_tab %>% tibble::column_to_rownames("seqID")
+
+# Shouldn't use the Total Number as SampleID (wrong: 123456; right: X123456)
+rownames(otu_tab) <- paste0("S", rownames(otu_tab))
+rownames(sam_tab) <- paste0("S", rownames(sam_tab))
+
+
+dada2_ps <- import_dada2(seq_tab = otu_tab, 
+                   tax_tab = tax_tab, 
+                   sam_tab = sam_tab, 
+                   phy_tree = tree)
+dada2_ps
+```
+
+we obtain the **phyloseq-class object** and then use it to perform data analysis.
+
+
+## Metaphlan2/3
+
+The result of the in-house **[Metaphlan2/3](https://huttenhower.sph.harvard.edu/metaphlan2)** pipeline:
+
+1. /home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/MGS/metaphlan2_merged.tsv
+
+2. /home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/MGS/metadata.txt
+
+```{r, warning=FALSE, message=FALSE}
+metaphlan2_res <- read.table(
+    system.file(
+        "extdata", "metaphlan2_merged.tsv",
+        package = "XMAS"
+    ),
+    header = TRUE, 
+    stringsAsFactors = FALSE
+)
+metaphlan2_sam <- read.table(
+    system.file(
+        "extdata", "metaphlan2_metadata.tsv",
+        package = "XMAS"
+    ),
+    sep = "\t",
+    header = TRUE,
+    stringsAsFactors = FALSE
+)
+
+metaphlan2_res_list <- import_metaphlan_taxa(metaphlan2_res, taxa_level = "Species")
+otu_tab <- metaphlan2_res_list$abu_tab
+tax_tab <- metaphlan2_res_list$tax_tab
+sam_tab <- metaphlan2_sam %>% tibble::column_to_rownames("SampleID")
+
+metaphlan2_ps <- import_metaphlan2(otu_tab = otu_tab, 
+                                   sam_tab = sam_tab,
+                                   tax_tab = tax_tab)
+metaphlan2_ps
+```
+
+
+## Systematic Information
+```{r}
+sessionInfo()
+```

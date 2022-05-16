@@ -1,0 +1,113 @@
+# Aplha diversity
+
+Alpha diversity is a measure of microbiome diversity applicable to a single sample.  The commonly used metrics/indices are Shannon, Chao1, Observed, Simpson, Gini and Inverse Simpson. The reference of this part is [@Sudarshan2020Microbial].
+
+> **It is important to note that, alpha diversity indices are sensitive to noise that is inherent to application of polymerase chain reaction and the sequencing errors.** 
+
+**Cautions**: *Shannon, Simpson and InvSimpson* measures are both for relative or absolute abundance.
+
+As defined by Shannon, the index of Shannon index is given as follow:
+
+$$H^{'} = \sum_{i=1}^{S}p_{i}\,\ln\,p_{i}$$
+where $p_{i}$ is the proportion of individuals (or relative abundance) of species $i$ in the community and $S$ is the total number of species present so that $\sum_{i=1}^{S}p_{i} = 1$.
+
+**Loading packages**
+
+```R
+library(XMAS)
+library(dplyr)
+library(tibble)
+library(phyloseq)
+library(ggplot2)
+library(ggpubr)
+library(picante)
+```
+
+## Equal sample sums
+
+The previous result from *Rarefaction Curves* had demonstrated that the sequence depth of each sample has a larger significance and normalizing the samples' depth into equal sampling depth is necessary.
+```{r, warning=FALSE}
+data("amplicon_ps")
+summary(sample_sums(amplicon_ps))
+```
+
+As is evident there is a large difference in the number of reads. Minimum is _1114_ and maximum is _11449_!! There is a **~10X** difference!
+
+```{r, warning=FALSE, message=FALSE}
+amplicon_ps_rarefy <- norm_rarefy(amplicon_ps, size = 1114, rng_seed = 123)
+summary(sample_sums(amplicon_ps))
+```
+
+Quickly check taxa prevalence
+```{r, warning=FALSE, fig.width=7, fig.height=7, fig.align="center", fig.cap="Taxa prevalence after rarefying"}
+plot_taxa_prevalence(amplicon_ps_rarefy, "Phylum")
+```
+
+
+
+## Diversities 
+
+*. Calculation
+```{r, warning=FALSE, message=FALSE}
+dat_alpha <- run_alpha_diversity(ps=amplicon_ps, measures = c("Shannon", "Chao1", "Observed")) 
+head(dat_alpha)
+```
+
+
+* **Visualization**
+
+1. single measure
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Alpha diversity from XMAS(one measure)"}
+plot_boxplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             method = "wilcox.test",
+  )
+```
+
+2. multiple measures
+```{r, warning=FALSE, fig.width=9, fig.height=5, fig.align="center", fig.cap="Alpha diversity from XMAS(multiple measures)"}
+plot_boxplot(data=dat_alpha,
+             y_index = c("Shannon", "Chao1", "Observed"),
+             group = "SampleType",
+             group_names = c("gut", "right palm", "tongue"),
+             group_color = c("red", "green", "blue"),
+             ref_group = "gut",
+             method = "wilcox.test")
+```
+
+
+**Cautions**:
+
+> There are arguments both for and against the use of rarefying to equal library size.
+The application of normalization method will depend on the type of research question. It is always good to check if there is a correlation between increasing library sizes and richness. Observed ASVs and Phylogenetic diversity can be affected by library sizes. It is always good to check for this before making a choice.
+
+## Rank Abundance
+
+A rank abundance curve is a chart used by ecologists to display relative species abundance, a component of biodiversity. It can also be used to visualize species richness and species evenness. It overcomes the shortcomings of biodiversity indices that cannot display the relative role different variables played in their calculation.
+The curve is a 2D chart with relative abundance on the Y-axis and the abundance rank on the X-axis.
+
+* X-axis: The abundance rank. The most abundant species is given rank 1, the second most abundant is 2 and so on.
+* Y-axis: The relative abundance. Usually measured on a log scale, this is a measure of a species abundance (e.g., the number of individuals) relative to the abundance of other species.
+
+```{r, warning=FALSE, fig.width=5, fig.height=4, fig.align="center", fig.cap="Rank Abundance"}
+plot_RankAbundance(
+        ps=dada2_ps,
+        taxa_level="Family",
+        group="Group",
+        group_names=c("AA", "BB")
+)
+```
+
+**Results**:
+
+1. From the horizontal level (Family rank), the higher degree of width means the higher degree of **Family richness**; 
+
+2. From the vertical level (Relative abundance), the slope of the line reflects the **Family evenness**.
+
+
+## Systematic Information
+```{r}
+sessionInfo()
+```
+

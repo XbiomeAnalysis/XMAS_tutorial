@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Material in this tutorial | Data analysis based on XMAS 2.0 package in microbiota data</title>
+  <meta name="description" content="A tutorial of XMAS 2.0 package for in-house training" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Material in this tutorial | Data analysis based on XMAS 2.0 package in microbiota data" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A tutorial of XMAS 2.0 package for in-house training" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Material in this tutorial | Data analysis based on XMAS 2.0 package in microbiota data" />
+  
+  <meta name="twitter:description" content="A tutorial of XMAS 2.0 package for in-house training" />
+  
+
+<meta name="author" content="Hua Zou" />
+
+
+<meta name="date" content="2022-05-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="convert-inputdata-into-phyloseq-object.html"/>
+<script src="libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.21/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data analysis based on XMAS 2.0 package</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#preparing-for-the-tutorial"><i class="fa fa-check"></i><b>1.1</b> Preparing for the tutorial<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#microbiome"><i class="fa fa-check"></i><b>2.1</b> Microbiome<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#sequencing-technology"><i class="fa fa-check"></i><b>2.2</b> Sequencing technology<span></span></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#amplicon-sequencing"><i class="fa fa-check"></i><b>2.2.1</b> Amplicon sequencing<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction.html"><a href="introduction.html#whole-genome-shotgun-sequencing"><i class="fa fa-check"></i><b>2.2.2</b> Whole genome shotgun sequencing<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#the-gut-microbiome-relationships-with-disease-and-opportunities-for-therapy"><i class="fa fa-check"></i><b>2.3</b> The gut microbiome: Relationships with disease and opportunities for therapy<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#data-analysis-apply-for-discovering-the-potential-microbial-biomarkers"><i class="fa fa-check"></i><b>2.4</b> Data Analysis apply for discovering the potential microbial biomarkers<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#book"><i class="fa fa-check"></i><b>2.5</b> Book<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html"><i class="fa fa-check"></i><b>3</b> Material in this tutorial<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#resources"><i class="fa fa-check"></i><b>3.1</b> Resources<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#dada2"><i class="fa fa-check"></i><b>3.1.1</b> DADA2<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#metaphlan2"><i class="fa fa-check"></i><b>3.1.2</b> Metaphlan2<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#overview-of-the-design-of-xmas-package"><i class="fa fa-check"></i><b>3.2</b> Overview of the design of <strong>XMAS</strong> package<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#description"><i class="fa fa-check"></i><b>3.2.1</b> Description<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#installation-of-dependent-packages"><i class="fa fa-check"></i><b>3.2.2</b> Installation of dependent packages<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#installation"><i class="fa fa-check"></i><b>3.2.3</b> Installation<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#vignette"><i class="fa fa-check"></i><b>3.2.4</b> Vignette<span></span></a></li>
+<li class="chapter" data-level="3.2.5" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#authors"><i class="fa fa-check"></i><b>3.2.5</b> Authors<span></span></a></li>
+<li class="chapter" data-level="3.2.6" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#library-package"><i class="fa fa-check"></i><b>3.2.6</b> library package<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#future-plan"><i class="fa fa-check"></i><b>3.3</b> Future plan<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#systematic-information"><i class="fa fa-check"></i><b>3.4</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html"><i class="fa fa-check"></i><b>4</b> Convert inputdata into phyloseq object<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#loading-packages"><i class="fa fa-check"></i><b>4.1</b> loading packages<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#dada2-1"><i class="fa fa-check"></i><b>4.2</b> DADA2<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metaphlan23"><i class="fa fa-check"></i><b>4.3</b> Metaphlan2/3<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#systematic-information-1"><i class="fa fa-check"></i><b>4.4</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="quality-evaluation.html"><a href="quality-evaluation.html"><i class="fa fa-check"></i><b>5</b> Quality Evaluation<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#reads-track"><i class="fa fa-check"></i><b>5.1</b> Reads’ track<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#spike-in-brs-sample-assessment"><i class="fa fa-check"></i><b>5.2</b> Spike-in (BRS) sample assessment<span></span></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#s-data"><i class="fa fa-check"></i><b>5.2.1</b> 16s data<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#metagenomic-data"><i class="fa fa-check"></i><b>5.2.2</b> Metagenomic data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="quality-evaluation.html"><a href="quality-evaluation.html#rarefaction-curves"><i class="fa fa-check"></i><b>5.3</b> Rarefaction Curves<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="quality-evaluation.html"><a href="quality-evaluation.html#summarize-phyloseq-class-object"><i class="fa fa-check"></i><b>5.4</b> Summarize phyloseq-class object<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.5</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>6</b> Pre-processing<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="pre-processing.html"><a href="pre-processing.html#transformation"><i class="fa fa-check"></i><b>6.1</b> Transformation<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="pre-processing.html"><a href="pre-processing.html#normalization"><i class="fa fa-check"></i><b>6.2</b> Normalization<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="pre-processing.html"><a href="pre-processing.html#filtering"><i class="fa fa-check"></i><b>6.3</b> Filtering<span></span></a></li>
+<li class="chapter" data-level="6.4" data-path="pre-processing.html"><a href="pre-processing.html#trimming"><i class="fa fa-check"></i><b>6.4</b> Trimming<span></span></a></li>
+<li class="chapter" data-level="6.5" data-path="pre-processing.html"><a href="pre-processing.html#imputation"><i class="fa fa-check"></i><b>6.5</b> Imputation<span></span></a></li>
+<li class="chapter" data-level="6.6" data-path="pre-processing.html"><a href="pre-processing.html#extracting-specific-taxa-phyloseq-class-object"><i class="fa fa-check"></i><b>6.6</b> Extracting specific taxa phyloseq-class object<span></span></a></li>
+<li class="chapter" data-level="6.7" data-path="pre-processing.html"><a href="pre-processing.html#aggregating-low-relative-abundance-or-unclassified-taxa-into-others"><i class="fa fa-check"></i><b>6.7</b> Aggregating low relative abundance or unclassified taxa into others<span></span></a></li>
+<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#removing-samples-of-specific-group-in-phyloseq-class-object"><i class="fa fa-check"></i><b>6.8</b> Removing samples of specific group in phyloseq-class object<span></span></a></li>
+<li class="chapter" data-level="6.9" data-path="pre-processing.html"><a href="pre-processing.html#checking-samples-name-whether-start-with-character"><i class="fa fa-check"></i><b>6.9</b> Checking samples’ name whether start with character<span></span></a></li>
+<li class="chapter" data-level="6.10" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.10</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="aplha-diversity.html"><a href="aplha-diversity.html"><i class="fa fa-check"></i><b>7</b> Aplha diversity<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#equal-sample-sums"><i class="fa fa-check"></i><b>7.1</b> Equal sample sums<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="aplha-diversity.html"><a href="aplha-diversity.html#rank-abundance"><i class="fa fa-check"></i><b>7.3</b> Rank Abundance<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="aplha-diversity.html"><a href="aplha-diversity.html#systematic-information-4"><i class="fa fa-check"></i><b>7.4</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="beta-diversity.html"><a href="beta-diversity.html"><i class="fa fa-check"></i><b>8</b> Beta diversity<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="beta-diversity.html"><a href="beta-diversity.html#phylogenetic-beta-diversity-metrics"><i class="fa fa-check"></i><b>8.1</b> Phylogenetic beta-diversity metrics<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="beta-diversity.html"><a href="beta-diversity.html#unweighted-unifrac"><i class="fa fa-check"></i><b>8.1.1</b> Unweighted Unifrac<span></span></a></li>
+<li class="chapter" data-level="8.1.2" data-path="beta-diversity.html"><a href="beta-diversity.html#weighted-unifrac"><i class="fa fa-check"></i><b>8.1.2</b> Weighted Unifrac<span></span></a></li>
+<li class="chapter" data-level="8.1.3" data-path="beta-diversity.html"><a href="beta-diversity.html#generalized-unifrac-distance-metrics"><i class="fa fa-check"></i><b>8.1.3</b> Generalized UniFrac Distance Metrics<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="beta-diversity.html"><a href="beta-diversity.html#distance-dissimilarity-coefficients-bray-curtis-index"><i class="fa fa-check"></i><b>8.2</b> Distance (Dissimilarity) Coefficients: Bray-Curtis Index<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="beta-diversity.html"><a href="beta-diversity.html#checking-the-homogeneity-condition"><i class="fa fa-check"></i><b>8.3</b> Checking the homogeneity condition<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="beta-diversity.html"><a href="beta-diversity.html#permutational-multivariate-analysis-of-variance-permanova"><i class="fa fa-check"></i><b>8.4</b> Permutational Multivariate Analysis of Variance (PERMANOVA)<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.5</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.6</b> Ordination<span></span></a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.6.1</b> Principal Component Analysis (PCA)<span></span></a></li>
+<li class="chapter" data-level="8.6.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.6.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
+<li class="chapter" data-level="8.6.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.6.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
+<li class="chapter" data-level="8.6.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.6.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.7</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="composition.html"><a href="composition.html"><i class="fa fa-check"></i><b>9</b> Composition<span></span></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="composition.html"><a href="composition.html#loading-precessing-phyloseq-object"><i class="fa fa-check"></i><b>9.1</b> Loading &amp; precessing phyloseq object<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="composition.html"><a href="composition.html#stacked-barplot"><i class="fa fa-check"></i><b>9.2</b> Stacked barplot<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="composition.html"><a href="composition.html#heatmaps"><i class="fa fa-check"></i><b>9.3</b> Heatmaps<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="composition.html"><a href="composition.html#systematic-information-6"><i class="fa fa-check"></i><b>9.4</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="core-microbiota.html"><a href="core-microbiota.html"><i class="fa fa-check"></i><b>10</b> Core microbiota<span></span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="core-microbiota.html"><a href="core-microbiota.html#core-microbiota-anlaysis"><i class="fa fa-check"></i><b>10.1</b> Core microbiota anlaysis<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="core-microbiota.html"><a href="core-microbiota.html#core-abundance-and-diversity"><i class="fa fa-check"></i><b>10.2</b> Core abundance and diversity<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="core-microbiota.html"><a href="core-microbiota.html#core-visualization"><i class="fa fa-check"></i><b>10.3</b> Core visualization<span></span></a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="core-microbiota.html"><a href="core-microbiota.html#heatmap"><i class="fa fa-check"></i><b>10.3.1</b> heatmap<span></span></a></li>
+<li class="chapter" data-level="10.3.2" data-path="core-microbiota.html"><a href="core-microbiota.html#linechart"><i class="fa fa-check"></i><b>10.3.2</b> linechart<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="core-microbiota.html"><a href="core-microbiota.html#systematic-information-7"><i class="fa fa-check"></i><b>10.4</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="differential-analysis.html"><a href="differential-analysis.html"><i class="fa fa-check"></i><b>11</b> Differential analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="differential-analysis.html"><a href="differential-analysis.html#amplicon-sequencing-microbial-data-16s"><i class="fa fa-check"></i><b>11.1</b> Amplicon sequencing microbial data (16s)<span></span></a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="differential-analysis.html"><a href="differential-analysis.html#aldex2"><i class="fa fa-check"></i><b>11.1.1</b> ALDEx2<span></span></a></li>
+<li class="chapter" data-level="11.1.2" data-path="differential-analysis.html"><a href="differential-analysis.html#limma_voom"><i class="fa fa-check"></i><b>11.1.2</b> limma_voom<span></span></a></li>
+<li class="chapter" data-level="11.1.3" data-path="differential-analysis.html"><a href="differential-analysis.html#mbzinb"><i class="fa fa-check"></i><b>11.1.3</b> mbzinb<span></span></a></li>
+<li class="chapter" data-level="11.1.4" data-path="differential-analysis.html"><a href="differential-analysis.html#omnibus"><i class="fa fa-check"></i><b>11.1.4</b> omnibus<span></span></a></li>
+<li class="chapter" data-level="11.1.5" data-path="differential-analysis.html"><a href="differential-analysis.html#raida"><i class="fa fa-check"></i><b>11.1.5</b> RAIDA<span></span></a></li>
+<li class="chapter" data-level="11.1.6" data-path="differential-analysis.html"><a href="differential-analysis.html#wilcoxon-rank-sum-and-signed-rank-tests"><i class="fa fa-check"></i><b>11.1.6</b> Wilcoxon Rank Sum and Signed Rank Tests<span></span></a></li>
+<li class="chapter" data-level="11.1.7" data-path="differential-analysis.html"><a href="differential-analysis.html#liner-discriminant-analysis-lda-effect-size-lefse"><i class="fa fa-check"></i><b>11.1.7</b> Liner discriminant analysis (LDA) effect size (LEfSe)<span></span></a></li>
+<li class="chapter" data-level="11.1.8" data-path="differential-analysis.html"><a href="differential-analysis.html#t-test"><i class="fa fa-check"></i><b>11.1.8</b> t-test<span></span></a></li>
+<li class="chapter" data-level="11.1.9" data-path="differential-analysis.html"><a href="differential-analysis.html#metagenomeseq"><i class="fa fa-check"></i><b>11.1.9</b> MetagenomeSeq<span></span></a></li>
+<li class="chapter" data-level="11.1.10" data-path="differential-analysis.html"><a href="differential-analysis.html#deseq2"><i class="fa fa-check"></i><b>11.1.10</b> DESeq2<span></span></a></li>
+<li class="chapter" data-level="11.1.11" data-path="differential-analysis.html"><a href="differential-analysis.html#edger"><i class="fa fa-check"></i><b>11.1.11</b> EdgeR<span></span></a></li>
+<li class="chapter" data-level="11.1.12" data-path="differential-analysis.html"><a href="differential-analysis.html#ancom"><i class="fa fa-check"></i><b>11.1.12</b> ANCOM<span></span></a></li>
+<li class="chapter" data-level="11.1.13" data-path="differential-analysis.html"><a href="differential-analysis.html#corncob"><i class="fa fa-check"></i><b>11.1.13</b> Corncob<span></span></a></li>
+<li class="chapter" data-level="11.1.14" data-path="differential-analysis.html"><a href="differential-analysis.html#maaslin2-microbiome-multivariable-association-with-linear-models"><i class="fa fa-check"></i><b>11.1.14</b> Maaslin2 (Microbiome Multivariable Association with Linear Models)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="differential-analysis.html"><a href="differential-analysis.html#metagenomic-sequencing-microbial-data-metaphlan23"><i class="fa fa-check"></i><b>11.2</b> Metagenomic sequencing microbial data (metaphlan2/3)<span></span></a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="differential-analysis.html"><a href="differential-analysis.html#limma_voom-1"><i class="fa fa-check"></i><b>11.2.1</b> limma_voom<span></span></a></li>
+<li class="chapter" data-level="11.2.2" data-path="differential-analysis.html"><a href="differential-analysis.html#wilcoxon-rank-sum-and-signed-rank-tests-1"><i class="fa fa-check"></i><b>11.2.2</b> Wilcoxon Rank Sum and Signed Rank Tests<span></span></a></li>
+<li class="chapter" data-level="11.2.3" data-path="differential-analysis.html"><a href="differential-analysis.html#liner-discriminant-analysis-lda-effect-size-lefse-1"><i class="fa fa-check"></i><b>11.2.3</b> Liner discriminant analysis (LDA) effect size (LEfSe)<span></span></a></li>
+<li class="chapter" data-level="11.2.4" data-path="differential-analysis.html"><a href="differential-analysis.html#t-test-1"><i class="fa fa-check"></i><b>11.2.4</b> t-test<span></span></a></li>
+<li class="chapter" data-level="11.2.5" data-path="differential-analysis.html"><a href="differential-analysis.html#maaslin2-microbiome-multivariable-association-with-linear-models-1"><i class="fa fa-check"></i><b>11.2.5</b> Maaslin2 (Microbiome Multivariable Association with Linear Models)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="differential-analysis.html"><a href="differential-analysis.html#visualization-4"><i class="fa fa-check"></i><b>11.3</b> Visualization<span></span></a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="differential-analysis.html"><a href="differential-analysis.html#volcano-plot"><i class="fa fa-check"></i><b>11.3.1</b> Volcano plot<span></span></a></li>
+<li class="chapter" data-level="11.3.2" data-path="differential-analysis.html"><a href="differential-analysis.html#barplot-in-lefse"><i class="fa fa-check"></i><b>11.3.2</b> barplot in lefse<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="differential-analysis.html"><a href="differential-analysis.html#dominant-taxa"><i class="fa fa-check"></i><b>11.4</b> Dominant taxa<span></span></a></li>
+<li class="chapter" data-level="11.5" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-8"><i class="fa fa-check"></i><b>11.5</b> Systematic Information<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>12</b> Examples<span></span></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="examples.html"><a href="examples.html#workflow-description"><i class="fa fa-check"></i><b>12.1</b> Workflow description<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="examples.html"><a href="examples.html#amplicon-sequencing-16s"><i class="fa fa-check"></i><b>12.2</b> Amplicon sequencing (16s)<span></span></a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="examples.html"><a href="examples.html#converting-inputs-into-phyloseq-class-object"><i class="fa fa-check"></i><b>12.2.1</b> Converting inputs into phyloseq-class object<span></span></a></li>
+<li class="chapter" data-level="12.2.2" data-path="examples.html"><a href="examples.html#quality-control"><i class="fa fa-check"></i><b>12.2.2</b> Quality Control<span></span></a></li>
+<li class="chapter" data-level="12.2.3" data-path="examples.html"><a href="examples.html#data-processing"><i class="fa fa-check"></i><b>12.2.3</b> Data processing<span></span></a></li>
+<li class="chapter" data-level="12.2.4" data-path="examples.html"><a href="examples.html#diversity-analysis"><i class="fa fa-check"></i><b>12.2.4</b> Diversity analysis<span></span></a></li>
+<li class="chapter" data-level="12.2.5" data-path="examples.html"><a href="examples.html#permanova-ordination"><i class="fa fa-check"></i><b>12.2.5</b> PERMANOVA + Ordination<span></span></a></li>
+<li class="chapter" data-level="12.2.6" data-path="examples.html"><a href="examples.html#microbial-composition"><i class="fa fa-check"></i><b>12.2.6</b> Microbial composition<span></span></a></li>
+<li class="chapter" data-level="12.2.7" data-path="examples.html"><a href="examples.html#differential-analysis-1"><i class="fa fa-check"></i><b>12.2.7</b> Differential Analysis<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="examples.html"><a href="examples.html#metagenomics"><i class="fa fa-check"></i><b>12.3</b> Metagenomics<span></span></a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="examples.html"><a href="examples.html#converting-inputs-into-phyloseq-class-object-1"><i class="fa fa-check"></i><b>12.3.1</b> Converting inputs into phyloseq-class object<span></span></a></li>
+<li class="chapter" data-level="12.3.2" data-path="examples.html"><a href="examples.html#quality-control-1"><i class="fa fa-check"></i><b>12.3.2</b> Quality Control<span></span></a></li>
+<li class="chapter" data-level="12.3.3" data-path="examples.html"><a href="examples.html#data-processing-1"><i class="fa fa-check"></i><b>12.3.3</b> Data processing<span></span></a></li>
+<li class="chapter" data-level="12.3.4" data-path="examples.html"><a href="examples.html#diversity-analysis-1"><i class="fa fa-check"></i><b>12.3.4</b> Diversity analysis<span></span></a></li>
+<li class="chapter" data-level="12.3.5" data-path="examples.html"><a href="examples.html#permanova-ordination-1"><i class="fa fa-check"></i><b>12.3.5</b> PERMANOVA + Ordination<span></span></a></li>
+<li class="chapter" data-level="12.3.6" data-path="examples.html"><a href="examples.html#microbial-composition-1"><i class="fa fa-check"></i><b>12.3.6</b> Microbial composition<span></span></a></li>
+<li class="chapter" data-level="12.3.7" data-path="examples.html"><a href="examples.html#differential-analysis-2"><i class="fa fa-check"></i><b>12.3.7</b> Differential Analysis<span></span></a></li>
+</ul></li>
+</ul></li>
+<li><a href="references.html#references">References<span></span></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data analysis based on XMAS 2.0 package in microbiota data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="material-in-this-tutorial" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Material in this tutorial<a href="material-in-this-tutorial.html#material-in-this-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="resources" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Resources<a href="material-in-this-tutorial.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are two resources in this tutorial. One is from in-house 16s standard pipeline and the other is from metaphlan2 workflow. All these data have been stored into <strong>XMAS 2.0</strong>.</p>
+<div id="dada2" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> DADA2<a href="material-in-this-tutorial.html#dada2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>dada2</strong> result from standardized_analytics_workflow_R_function.</p>
+<ol style="list-style-type: decimal">
+<li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/process/xdada2/dada2_res.rds</p></li>
+<li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/process/fasta2tree/tree.nwk</p></li>
+<li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/metadata.txt</p></li>
+</ol>
+</div>
+<div id="metaphlan2" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Metaphlan2<a href="material-in-this-tutorial.html#metaphlan2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The result of the in-house <strong><a href="https://huttenhower.sph.harvard.edu/metaphlan2">Metaphlan2/3</a></strong> pipeline.</p>
+<ol style="list-style-type: decimal">
+<li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/MGS/metaphlan2_merged.tsv</p></li>
+<li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/MGS/metadata.txt</p></li>
+</ol>
+</div>
+</div>
+<div id="overview-of-the-design-of-xmas-package" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Overview of the design of <strong>XMAS</strong> package<a href="material-in-this-tutorial.html#overview-of-the-design-of-xmas-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="figures/SchematicFigure.png" alt="The Overview of the design of XMAS package" width="100%" height="100%" />
+<p class="caption">
+Figure 3.1: The Overview of the design of XMAS package
+</p>
+</div>
+<p><strong>XMAS 2.0</strong> contains several modules, such as <em>preprocessing</em>, <em>actions</em>, <em>methods</em> and <em>visualization</em>. Furthermore, the extended parts of actions module give this package more flexible ability to add new parts. We also separate scripts into calculation and visualization parts by their names. The functions’ prefix with <em>run</em> is used for calculation, and the functions’ prefix with <em>plot</em> is used for visualization.</p>
+<div id="description" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Description<a href="material-in-this-tutorial.html#description" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>XMAS 2.0</strong> is comprised of R functions for in-house use, including functions for <em>statistical</em>, <em>functional</em>, and <em>visual</em> analysis of microbiol data, and is still underdevelopment.</p>
+</div>
+<div id="installation-of-dependent-packages" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Installation of dependent packages<a href="material-in-this-tutorial.html#installation-of-dependent-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Requiring the R-base version more than <strong>3.6.3</strong>. Some of the dependencies are uploaded to CRAN or bioconductor website, but others, which are underdevelopment are only obtained from github website. Dependencies version (optional but not required):</p>
+<ul>
+<li>Biostrings (&gt;= 2.22.0)</li>
+<li>BiocGenerics (&gt;= 0.32.0)</li>
+<li>phyloseq (&gt;= 1.30.0)</li>
+<li>forcats (&gt;= 0.5.1)</li>
+<li>stringr (&gt;= 1.4.0)</li>
+<li>ggplot2 (&gt;= 3.3.5)</li>
+<li>readr (&gt;= 1.4.0)</li>
+<li>ALDEx2 (&gt;= 1.18.0)</li>
+<li>dplyr (&gt;= 1.0.8)</li>
+<li>tibble (&gt;= 3.1.6)</li>
+<li>DT (&gt;= 0.18)</li>
+<li>purrr (&gt;= 0.3.4)</li>
+<li>metagenomeSeq (&gt;= 1.28.0)</li>
+<li>edgeR (&gt;= 3.28.1)</li>
+<li>DESeq2 (&gt;= 1.26.0)</li>
+<li>limma (&gt;= 3.42.2)</li>
+<li>mbzinb (&gt;= 0.2)</li>
+<li>pscl (&gt;= 1.5.5)</li>
+<li>methods (&gt;= 3.6.3)</li>
+<li>matrixStats (&gt;= 0.58.0)</li>
+<li>RAIDA (&gt;= 1.0)</li>
+<li>compositions (&gt;= 2.0-4)</li>
+<li>vegan (&gt;= 2.5-7)</li>
+<li>coin (&gt;= 1.4-2)</li>
+<li>SummarizedExperiment (&gt;= 1.16.1)</li>
+<li>MASS (&gt;= 7.3-53.1)</li>
+<li>Biobase (&gt;= 2.46.0)</li>
+<li>nlme (&gt;= 3.1-152)</li>
+<li>tidyr (&gt;= 1.1.3)</li>
+<li>corncob (&gt;= 0.2.0)</li>
+<li>Maaslin2 (&gt;= 1.7.3)</li>
+<li>ggrepel (&gt;= 0.9.1)</li>
+<li>ggpubr (&gt;= 0.4.0)</li>
+<li>ggalluvial (&gt;= 0.12.3)</li>
+<li>Hmisc (&gt;= 4.5-0)</li>
+<li>RColorBrewer (&gt;= 1.1-2)</li>
+<li>umap (&gt;= 0.2.8.0)</li>
+<li>ape (&gt;= 5.6-2)</li>
+<li>cowplot (&gt;= 1.1.1)</li>
+<li>Rtsne (&gt;= 0.15)</li>
+</ul>
+<p>There are two methods to install the aforementioned packages.</p>
+<div id="packages-in-cran-bioconductor" class="section level4 hasAnchor" number="3.2.2.1">
+<h4><span class="header-section-number">3.2.2.1</span> Packages in CRAN &amp; Bioconductor<a href="material-in-this-tutorial.html#packages-in-cran-bioconductor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="material-in-this-tutorial.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1-2"><a href="material-in-this-tutorial.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="material-in-this-tutorial.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-4"><a href="material-in-this-tutorial.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="material-in-this-tutorial.html#cb1-5" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(Biostrings, BiocGenerics, phyloseq, forcats, stringr, ggplot2, </span>
+<span id="cb1-6"><a href="material-in-this-tutorial.html#cb1-6" aria-hidden="true" tabindex="-1"></a>        readr, ALDEx2, dplyr, tibble, DT, purrr, metagenomeSeq, stats, edgeR, </span>
+<span id="cb1-7"><a href="material-in-this-tutorial.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        DESeq2, methods, limma, pscl, matrixStats, compositions, vegan, coin,</span>
+<span id="cb1-8"><a href="material-in-this-tutorial.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        SummarizedExperiment, MASS, Biobase, nlme, tidyr, Maaslin2, ggrepel,</span>
+<span id="cb1-9"><a href="material-in-this-tutorial.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        ggpubr, ggalluvial, Hmisc, umap, Rtsne, ape, cowplot, scales)</span></code></pre></div>
+</div>
+<div id="packages-in-github" class="section level4 hasAnchor" number="3.2.2.2">
+<h4><span class="header-section-number">3.2.2.2</span> Packages in github<a href="material-in-this-tutorial.html#packages-in-github" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="material-in-this-tutorial.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Install devtools</span></span>
+<span id="cb2-2"><a href="material-in-this-tutorial.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="fu">c</span>(<span class="st">&quot;remotes&quot;</span>, <span class="st">&quot;devtools&quot;</span>), <span class="at">quietly=</span><span class="cn">TRUE</span>)) {</span>
+<span id="cb2-3"><a href="material-in-this-tutorial.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;remotes&quot;</span>))</span>
+<span id="cb2-4"><a href="material-in-this-tutorial.html#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="material-in-this-tutorial.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb2-6"><a href="material-in-this-tutorial.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#library(remotes)</span></span>
+<span id="cb2-7"><a href="material-in-this-tutorial.html#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="material-in-this-tutorial.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: install corncob package</span></span>
+<span id="cb2-9"><a href="material-in-this-tutorial.html#cb2-9" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bryandmartin/corncob&quot;</span>)</span>
+<span id="cb2-10"><a href="material-in-this-tutorial.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_github(&quot;bryandmartin/corncob&quot;)</span></span></code></pre></div>
+</div>
+<div id="packages-from-website" class="section level4 hasAnchor" number="3.2.2.3">
+<h4><span class="header-section-number">3.2.2.3</span> Packages from website<a href="material-in-this-tutorial.html#packages-from-website" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Manual download of RAIDA_1.0.tar.gz from <a href="http://cals.arizona.edu/~anling/software/RAIDA_1.0.tar.gz">here</a> and install locally</p>
+<pre class="shell"><code>R CMD INSTALL RAIDA_*.tar.gz
+</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="material-in-this-tutorial.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RAIDA_1.0.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
+<p>Manual download of mbzinb_0.2.tar.gz from <a href="https://github.com/jchen1981/MicrobiomeDDA/blob/master/mbzinb_0.2.tar.gz">here</a> and install locally</p>
+<pre class="shell"><code>R CMD INSTALL mbzinb_*.tar.gz
+</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="material-in-this-tutorial.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;mbzinb_0.2.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="installation" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Installation<a href="material-in-this-tutorial.html#installation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Get the <strong>XMAS</strong> released version from <a href="https://gitlab.com/BangzhuoTong/xmas/-/releases">Release version</a>:</p>
+<div id="installation-in-linux-or-mac-os-through-command-line" class="section level4 hasAnchor" number="3.2.3.1">
+<h4><span class="header-section-number">3.2.3.1</span> Installation in linux or Mac os through command line<a href="material-in-this-tutorial.html#installation-in-linux-or-mac-os-through-command-line" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Using git command to download the whole repository and then install this package by linux command line.</p>
+<pre class="shell"><code>git clone git@gitlab.com:BangzhuoTong/xmas.git
+R CMD build xmas
+R CMD INSTALL XMAS_*.tar.gz</code></pre>
+</div>
+<div id="installation-by-r-from-gitlab" class="section level4 hasAnchor" number="3.2.3.2">
+<h4><span class="header-section-number">3.2.3.2</span> Installation by R from gitlab<a href="material-in-this-tutorial.html#installation-by-r-from-gitlab" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="material-in-this-tutorial.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Install devtools</span></span>
+<span id="cb8-2"><a href="material-in-this-tutorial.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;remotes&quot;</span>))</span>
+<span id="cb8-3"><a href="material-in-this-tutorial.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb8-4"><a href="material-in-this-tutorial.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#library(remotes)</span></span>
+<span id="cb8-5"><a href="material-in-this-tutorial.html#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="material-in-this-tutorial.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: install xmas package</span></span>
+<span id="cb8-7"><a href="material-in-this-tutorial.html#cb8-7" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_gitlab</span>(<span class="st">&quot;BangzhuoTong/xmas&quot;</span>) <span class="co"># remotes::install_github(&quot;BangzhuoTong/xmas&quot;)</span></span></code></pre></div>
+</div>
+<div id="installation-by-r-from-local-xmas.tar.gz-file" class="section level4 hasAnchor" number="3.2.3.3">
+<h4><span class="header-section-number">3.2.3.3</span> Installation by R from local XMAS*.tar.gz file<a href="material-in-this-tutorial.html#installation-by-r-from-local-xmas.tar.gz-file" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Downloading the tar.gz file from the gitlab website, and then use the following command to install it.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="material-in-this-tutorial.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;XMAS*.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="vignette" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Vignette<a href="material-in-this-tutorial.html#vignette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For detailed tutorials on how to use <strong>XMAS</strong>, please refer to the R package vignettes. Choosing the <code>html</code> format to do a practice. Hope you have fun with <strong>XMAS</strong>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="material-in-this-tutorial.html#cb10-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">browseVignettes</span>(<span class="at">package=</span><span class="st">&quot;XMAS&quot;</span>)</span></code></pre></div>
+</div>
+<div id="authors" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Authors<a href="material-in-this-tutorial.html#authors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><a href="tongbangzhuo@xbiome.com">Bangzhuo Tong</a></li>
+<li><a href="zouhua@xbiome.com">Hua Zou</a></li>
+</ol>
+</div>
+<div id="library-package" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> library package<a href="material-in-this-tutorial.html#library-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="material-in-this-tutorial.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS)</span></code></pre></div>
+</div>
+</div>
+<div id="future-plan" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Future plan<a href="material-in-this-tutorial.html#future-plan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>XMAS 2.0</strong>, which developed for data analysis, is part of the X-therapia platform and we will update it with more and more data analysis module and also add new functions according to the in-house requirements to support the company.</p>
+<p>We welcome any comments and requirements and hope users give issues on the gitlab issues module.</p>
+</div>
+<div id="systematic-information" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Systematic Information<a href="material-in-this-tutorial.html#systematic-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="material-in-this-tutorial.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.1.2 (2021-11-01)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Big Sur 10.16
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] C/UTF-8/C/C/C/C
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] bookdown_0.24   digest_0.6.29   R6_2.5.1        jsonlite_1.8.0 
+##  [5] magrittr_2.0.2  evaluate_0.15   highr_0.9       stringi_1.7.6  
+##  [9] rlang_1.0.2     cli_3.2.0       rstudioapi_0.13 jquerylib_0.1.4
+## [13] bslib_0.3.1     rmarkdown_2.13  tools_4.1.2     stringr_1.4.0  
+## [17] xfun_0.30       yaml_2.3.5      fastmap_1.1.0   compiler_4.1.2 
+## [21] htmltools_0.5.2 knitr_1.37      sass_0.4.0</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="convert-inputdata-into-phyloseq-object.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XbiomeAnalysis/XMAS_tutorial/blob/main/02-material.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Data analysis based on XMAS package.pdf", "Data analysis based on XMAS package.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

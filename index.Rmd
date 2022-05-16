@@ -1,0 +1,29 @@
+--- 
+title: "Data analysis based on XMAS 2.0 package in microbiota data"
+author: "Hua Zou"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+always_allow_html: true
+description: "A tutorial of XMAS 2.0 package for in-house training"
+---
+
+# Prerequisites
+
+We provide the universal data analysis framework on microbial data for in-house use when you use **XMAS 2.0**, and some specific data analysis modules should be performed by yourself in a different way.
+
+
+## Preparing for the tutorial
+
+**If you have no any background, please go to the example of Chapter 12  to get familiar with the SOP of data analysis.**
+This tutorial requires that the users should have basic knowledge on R language and traditional statistical background. If you are new to microbial research, we recommend the **Statistical Analysis of Microbiome Data with R** [@xia2018statistical] as guide book. 
+
+We recommend users using local laptop because our own server have not deployed **XMAS 2.0** package yet. In addition, installing the following software before using **XMAS 2.0**.
+
+* R 3.6.3 or later release [Download link](https://mirrors.tuna.tsinghua.edu.cn/CRAN/).
+
+* Rstudio Desktop [Download link](https://www.rstudio.com/products/rstudio/download/#download).

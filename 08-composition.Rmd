@@ -1,0 +1,106 @@
+# Composition
+
+Stacked barplot is often used as a visualization way to display the microbial composition per sample.  
+
+**Loading packages**
+
+```R
+library(XMAS)
+library(dplyr)
+library(tibble)
+library(phyloseq)
+library(ggplot2)
+```
+
+
+## Loading & precessing phyloseq object
+
+Removing the spike-in sample
+```{r, warning=FALSE, message=FALSE}
+data("dada2_ps")
+dada2_ps_without_QC <- get_GroupPhyloseq(
+    ps = dada2_ps,
+    group = "Group",
+    group_names = "QC",
+    discard = TRUE)
+dada2_ps_without_QC
+```
+
+
+## Stacked barplot 
+
+`plot_StackBarPlot` provides too many parameters for users to display the Stacked barplot of microbial composition by using ggplot2 format. Here is the ordinary pattern. More details to see `help(plot_StackBarPlot)`.
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Stacked barplot Ordinary pattern"}
+plot_StackBarPlot(
+        ps=dada2_ps_without_QC,
+        taxa_level="Phylum")
+```
+
+
+Please open the below buttons, if you want to see other options for stacked barplot.
+
+<details>
+<summary>**genus level in stacked barplot**</summary>
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=8, fig.cap="Stacked barplot otu_tab and sample_table as input"}
+dada2_ps_without_QC_genus <- summarize_taxa(dada2_ps_without_QC, taxa_level = "Genus")
+otu_tab <- phyloseq::otu_table(dada2_ps_without_QC_genus)
+sam_tab <- phyloseq::sample_data(dada2_ps_without_QC_genus)
+plot_StackBarPlot(
+      data_otu=otu_tab,
+      data_sam=sam_tab,
+      taxa_level="Genus")
+```
+</details>
+
+
+<details>
+<summary>**Metadata with `Group` phenotype**</summary>
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6.5, fig.height=7, fig.cap="Stacked barplot Metadata with group"}
+plot_StackBarPlot(
+        ps=dada2_ps_without_QC,
+        taxa_level="Phylum",
+        group = "Group")
+```
+</details>
+
+
+<details>
+<summary>**Metadata with `Group` phenotype in cluster mode**</summary>
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6.5, fig.height=7, fig.cap="Stacked barplot Metadata with group in cluster mode"}
+plot_StackBarPlot(
+        ps=dada2_ps_without_QC,
+        taxa_level="Phylum",
+        group = "Group",
+        cluster = TRUE)
+```
+</details>
+
+
+<details>
+<summary>**Metadata with `Group` phenotype in facet**</summary>
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="Stacked barplot Metadata with group in facet"}
+plot_StackBarPlot(
+        ps=dada2_ps_without_QC,
+        taxa_level="Phylum",
+        group = "Group",
+        facet = TRUE)
+```
+</details>
+
+
+## Heatmaps
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="Heatmaps"}
+plot_taxa_heatmap(dada2_ps_without_QC, 
+                  taxa_level = "Phylum", 
+                  cutoff = 1e-4, 
+                  colors = c("black", "yellow"))
+```
+
+
+## Systematic Information
+```{r}
+sessionInfo()
+```
+

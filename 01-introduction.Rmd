@@ -1,0 +1,81 @@
+# Introduction 
+
+
+## Microbiome
+
+> Microbiota are the range of microorganisms that may be commensal, symbiotic, or pathogenic found in and on all multicellular organisms, including plants. Microbiota include bacteria, archaea, protists, fungi, and viruses, and have been found to be crucial for immunologic, hormonal, and metabolic homeostasis of their host.
+
+> The term microbiome describes either the collective genomes of the microbes that reside in an ecological niche or within the microbes themselves.
+
+## Sequencing technology 
+
+The **next generation sequencing (NGS)** technology have flourished the microbial research. More and more uncultured microbiota have been sequenced and identified, and their roles on host also have been investigated. According to the sequenced DNA parts, there are several methods to obtain the bacteria.
+
+### Amplicon sequencing
+
+It also named 16s sequencing, uses the V3/V4 of bacteria 16s rRNA to sequence the bacteria. The in-house 16s sequencing pipeline uses QIIME2 platform wrapped DADA2 algorithm to acquire the amplicon sequence variants which is the same meaning of OTUs (operational taxonomic units).
+
+### Whole genome shotgun sequencing
+
+It is also short for metagenomic sequencing, could detect the whole DNA of the microbial community. The in-house metagenomic sequencing pipeline uses the metaphlan2 or metaphlan3 algorithm which is based on marker genes of microbiome to obtain the microbial profiles.
+
+
+**CAUTIONS: Both of two workflow have advantages and disadvantages, one of the disadvantages is that we can only detect or identify the annotated taxonomy by the reference database.**
+
+## The gut microbiome: Relationships with disease and opportunities for therapy
+
+Here, we cited this article [@durack2019gut] to give users an abstract.
+
+> Over the past decade, our view of human-associated microbes has expanded beyond that of a few species toward an appreciation of the diverse and niche-specialized microbial communities that develop in the human host with chronological age. The largest reservoir of microbes exists in the distal gastrointestinal tract, both in the lumen, where microbes facilitate primary and secondary metabolism, and on mucosal surfaces, where they interact with host immune cell populations. While local microbial-driven immunomodulation in the gut is well described, more recent studies have demonstrated a role for the gut microbiome in influencing remote organs and mucosal and hematopoietic immune function. Unsurprisingly, therefore, perturbation to the composition and function of the gut microbiota has been associated with chronic diseases ranging from gastrointestinal inflammatory and metabolic conditions to neurological, cardiovascular, and respiratory illnesses. Considerable effort is currently focused on understanding the natural history of microbiome development in humans in the context of health outcomes, in parallel with improving our knowledge of microbiome–host molecular interactions. These efforts ultimately aim to develop effective approaches to rehabilitate perturbed human microbial ecosystems as a means to restore health or prevent disease. This review details the role of the gut microbiome in modulating host health with a focus on immunomodulation and discusses strategies for manipulating the gut microbiome for the management or prevention of chronic inflammatory conditions.
+
+
+## Data Analysis apply for discovering the potential microbial biomarkers 
+
+
+In this tutorial, we focus on differential analysis with the step-by-step procedures by using the R programming language. We also briefly introduce the concepts and principals of the statistical methods before the applications and give conclusions on the results.
+
+The following table shows more than 10 differential analysis methods:
+
+| **Tool(version)**       | **Input**                  | **Normalization**                        | **Transformation**        | **Distribution**                 | **MicrobialData** |
+| ----------------------- | -------------------------- | ---------------------------------------- | ------------------------- | -------------------------------- | ----------------- |
+| ALDEx2  (1.26.0)        | Counts                     | None                                     | CLR                       | Dirichlet-multinormial           | 16s               |
+| limma  voom (3.50.1)    | Counts/Relative            | None/TMM                                 | Log;  Precision weighting | Normal                           | 16s/MGS           |
+| mbzinb  (0.2)           | Counts                     | RLE                                      | None                      | zero-inflated  negative binomial | 16s               |
+| omnibus  (0.2)          | Counts                     | GMPR(Geometric  Mean of Pairwise Ratios) | None                      | zero-inflated  negative binomial | 16s               |
+| RAIDA  (1.0)            | Counts                     | None                                     | Log                       | modified  t-test                 | 16s               |
+| Wilcox(rare/CLR)        | Counts/Relative            | None                                     | None/CLR                  | Non-parametric                   | 16s/MGS           |
+| LEfSe                   | Rarefied  Counts//Relative | TSS                                      | None                      | Non-parametric                   | 16s/MGS           |
+| t-test  (rare)          | Counts//Relative           | None                                     | None                      | Normal                           | 16s/MGS           |
+| metagenomeSeq  (1.36.0) | Counts                     | CSS                                      | Log                       | Zero-inflated  (log) Normal      | 16s               |
+| DESeq2  (1.34.0)        | Counts                     | RLE                                      | None                      | Negative  binomial               | 16s               |
+| edgeR  (3.36.0)         | Counts                     | RLE/TMM                                  | None                      | Negative  binomial               | 16s               |
+| ANCOM-II  (2.1)         | Counts/Relative            | None                                     | ALR                       | Non-parametric                   | 16s/MGS           |
+| Corncob  (0.2.0)        | Counts                     | None                                     | None                      | Beta-binomial                    | 16s               |
+| MaAslin2  (1.8.0)       | Counts/Relative  abundance | None/TSS                                 | AST                       | Normal                           | 16s/MGS           |
+
+We suggest you using the reasonable method to fit your own microbiota data.
+
+
+## Book
+
+This tutorial was organized according to the **XMAS 2.0** functions. 
+
+* In the beginning three chapters, we specially provided the basic requirements of bioinformatics and overview on microbiota, and the installation of XMAS. 
+
+* In **Chapter 4**, we convert the results from in-house pipeline into phyloseq-class object for downstream data analysis. 
+
+* In **Chapter 5** provided the functions to evaluate the data quality.
+
+* In **Chapter 6**, we introduced the preprocessing methods on microbiota data before differential analysis.
+
+* In **Chapter 7** provided the alpha diversity analysis.
+
+* In **Chapter 8** provided the beta diversity analysis.
+
+* In **Chapter 9** provided the microbiota composition analysis.
+
+* In **Chapter 10** provided the core microbiota analysis.
+
+* In **Chapter 11** provided the differential analysis.
+
+* In **Chapter 12** provided the examples by using XMAS 2.0 on microbiota data.

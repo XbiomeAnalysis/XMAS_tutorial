@@ -1,0 +1,411 @@
+# Beta diversity
+
+Beta-diversity: Measures for differences between samples from different groups to identify if there are differences in the overall community composition and structure.
+
+
+**Loading packages**
+```R
+library(XMAS)
+library(dplyr)
+library(tibble)
+library(phyloseq)
+library(ggplot2)
+```
+
+
+## Phylogenetic beta-diversity metrics 
+
+
+### Unweighted Unifrac 
+
+Unweighted Unifrac is based on presence/absence of different taxa and abundance is not important.
+
+> The UniFrac distance, also known as unweighted UniFrac distance, was introduced by Lozupone et al. The goal of the UniFrac distance metric was to enable objective comparison between microbiome samples from different conditions.
+
+$$d^{u} = \sum^{n}_{i=1}\frac{b_{i}|I(p_{i}^{A} > 0) - I(p_{i}^{B} > 0)|}{\sum_{i=1}^{n}b_{i}}$$
+
+where, 
+
+* $d^{u}$ = unweighted UniFrac distance; 
+
+* $A$, $B$ = microbiome community A and B, respectively; 
+
+* $n$ = rooted phylogenetic tree’s branches; 
+
+* $b_{i}$ =length of the branch $i$; 
+
+* $p_{i}^{A}$ and $p_{i}^{A}$ = taxa proportions descending from the branch $i$ for community A and B, respectively.
+
+* Calculation
+```{r, warning=FALSE, message=FALSE}
+beta_df <- run_beta_diversity(ps=dada2_ps, method = "unifrac", group = "Group")
+```
+
+The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity condition** of two groups were significant.
+
+
+* Visualization
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Unweighted Unifrac Distance"}
+plot_corrplot(beta_df$BetaDistance, 
+              method = "color",
+              type = "lower",
+              order = "original")
+```
+
+Try repeating the above ordination using filtered phyloseq object (**discarding singletons/OTUs with very low reads**).
+
+### Weighted Unifrac
+
+Weighted Unifrac will consider the abundances of different taxa.
+
+> In 2007, Lozupone et al. added a proportional weighting to the original unweighted method, hence called this new UniFrac measure as weighted UniFrac.
+
+The weighted UniFrac distance is defined as:
+
+$$d^{W} = \frac{\sum_{i=1}^{n}b_{i}|p_{i}^{A}-p_{i}^{B}|}{\sum_{i=1}^{n}b_{i}(p_{i}^{A}+p_{i}^{B})}$$
+
+where, 
+
+* $d^{W}$ = (normalized) weighted UniFrac distance; 
+
+* $A$, $B$ = microbiome community A and B, respectively; 
+
+* $n$ = rooted phylogenetic tree’s branches; 
+
+* $b_{i}$ = length of the branch $i$.
+
+> By adding a proportional weighting to UniFrac distance, weighted UniFrac distance reduces the problem of low abundance taxa being represented as a 0 or by a low count depending on sampling depth.
+
+* **Calculation**
+```{r, warning=FALSE, message=FALSE}
+beta_df <- run_beta_diversity(ps=dada2_ps, method = "wunifrac", group = "Group")
+```
+
+The result of dispersion test (`Pr(>F) > 0.05`) showed that the **homogeneity condition** of two groups were not significant.
+
+* **Visualization**
+```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Weighted Unifrac Distance"}
+plot_corrplot(beta_df$BetaDistance, 
+              method = "color",
+              type = "lower",
+              order = "original")
+```
+
+### Generalized UniFrac Distance Metrics
+
+However, either unweighted or weighted UniFrac distances may not be very powerful in detecting change in moderately abundant lineages [@chen2012associating] because they assign too much weight either to rare lineages or to most abundant lineages. Thus, Chen et al. proposed the following generalized UniFrac distances to unify weighted UniFrac and unweighted UniFrac distances. 
+
+The Generalized UniFrac Distance Metrics is defined as:
+
+$$d^{\alpha} = \frac{\sum_{i=1}^{n}b_{i}(p_{i}^{A}+p_{i}^{B})^{\alpha}|\frac{p_{i}^{A}-p_{i}^{B}}{p_{i}^{A}+p_{i}^{B}}|}{\sum_{i=1}^{n}b_{i}(p_{i}^{A}+p_{i}^{B})}$$
+
+where, 
+
+* $d^{\alpha}$ = generalized UniFrac distances;
+
+* $\alpha\in [0, 1]$ is used to controls the contribution from high-abundance branches;
+
+
+* **Calculation**
+```{r, warning=FALSE, message=FALSE}
+beta_df <- run_beta_diversity(ps=dada2_ps, method = "GUniFrac", group = "Group", GUniFrac_alpha = 0.5)
+```
+
+
+
+* **Visualization**: GUniFrac with alpha 0.5
+```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Generalized UniFrac Distance (alpha=0.5)"}
+plot_corrplot(beta_df$BetaDistance, 
+              method = "color",
+              type = "lower",
+              order = "original")
+```
+
+
+## Distance (Dissimilarity) Coefficients: Bray-Curtis Index
+
+For microbiome abundance data, the measures of distance coefficients are not really distances. They actually measure "dissimilarity".
+
+Measures of dissimilarity include Euclidian distance, Manhattan, and Bray-Curtis measures. Here, we take Bray-Curtis distance as an example.
+
+As defined by Bray and Curtis, the index of dissimilarity is given as follow:
+
+$$BC = \frac{\sum_{i=1}^{n}|X_{ij}-X_{ik}|}{\sum_{i=1}^{n}|X_{ij}+X_{ik}|}$$
+where, 
+
+* $BC$ Bray-Curtis measure of dissimilarity;
+
+* $X_{ij}$, $X_{ik}$ Number of individuals in species;
+
+* $i$ in each $sample (j, k)$;
+
+* $n$ Total number of species in samples.
+
+```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Bray Curtis Distance"}
+beta_df <- run_beta_diversity(ps=dada2_ps, method = "bray", group = "Group")
+plot_corrplot(beta_df$BetaDistance, 
+              method = "color",
+              type = "lower",
+              order = "original")
+```
+
+
+## Checking the homogeneity condition 
+```{r, warning=FALSE, message=FALSE}
+beta_df <- run_beta_diversity(ps=dada2_ps, method = "jsd", group = "Group")
+```
+
+The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity condition** of two groups were significant.
+
+
+## Permutational Multivariate Analysis of Variance (PERMANOVA)
+
+**Permutational Multivariate Analysis of Variance (PERMANOVA)** test [@anderson2014permutational] is to investigate the associations between the environmental factors including discrete or continuous variables (treatments or populations representatives, age, gender etc) and the whole microbial community. 
+
+```{r, warning=FALSE, message=FALSE}
+data("amplicon_ps")
+run_permanova(amplicon_ps, method = "bray")
+```
+
+**Results:**
+
+1. The PERMANOVA result of the *SampleType* (AdjustedPvalue < 0.05) revealed that different groups of SampleType had the distinct patterns of microbial community. From the previous metadata, *SampleType* had four groups (*gut*, *right palm*, *left palm*, *tongue*) which are different body sites.
+
+2. The other continuous variables such as Year, Day and Month didn't show any significant association with microbial community.
+
+3. We suggest you performing the PERMANOVA test before you do correlation analysis between individual taxa and environmental factors. If the whole microbial community had related to one environmental factor, we could find more associations between individual taxa and environmental factors.
+
+4. Ordination analysis is usually utilized for dimensionality reduction and then we decipher their results by using scatterplot. In fact, we should combine the statistical results, for example PERMANOVA, ANOSIM or others and dimension reduction results to provide stronger evidences to display the association and difference.
+
+
+## Analysis of Similarity (ANOSIM)
+
+**Analysis of Similarity (ANOSIM)** is simply a modified version of the Mantel Test based on a standardized *rank* correlation between two distance matrices.
+
+> It is a nonparametric procedure for testing the hypothesis of no difference between two or more groups of samples based on permutation test of among-and within-group similarities.
+
+The *ANOSIM test statistic(R)* is based on the difference of mean ranks between groups and within groups. It is given below:
+
+$$R = \frac{\bar{r}_{B} - \bar{r}_{W}}{M/2}$$
+where, 
+
+* $R$ test statistic, is an index of relative within-group dissimilarity;
+
+* $M = N(N − 1)/2$ number of sample pairs;
+
+* $N$ is the total number of samples (subjects);
+
+* $r_{B}$ is the mean of the ranked similarity between groups;
+
+* $r_{W}$ is the mean of the ranked similarity within groups.
+
+```{r, warning=FALSE, message=FALSE}
+data("amplicon_ps")
+run_ANOSIM(amplicon_ps, method = "bray", group = "SampleType")
+```
+
+The p-value of 0.001 is less than 0.05, which indicates that within-group similarity is greater than between-group similarity at 0.05 significant level. We can conclude that there is strong evidence that the within-group samples are more different than would be expected by random chance.
+
+
+## Ordination 
+
+Ordination is one of the main multivariate methods to reduce the dimensions of taxa--for instance, the whole microbial community often contains too much taxa which makes the microbial profile have too large dimensions. Utilizing ordination to convert the data into two or three dimensions could have more interpretable visualization. Compared to clustering methods, ordination focuses on the dimension reduction and has explanation loss (variation).
+
+We also use a distance method to calculate the distance matrix among samples and then do ordination analysis. Here, we give five universal ordination methods. There is no *one-fit-all* method for all microbiota data, so please pay attention to your own ordination analysis.
+
+### Principal Component Analysis (PCA)
+
+**Principal Component Analysis (PCA)** uses a linear combination algorithm to obtain the principal components (PC) (the number of PCs according to the samples). The results have been effected by the normalization methods because different count numbers would affect the PCs. We recommend you using filtering or normalization before performing PCA.
+
+#### Preprocessing phyloseq object
+```{r, warning=FALSE, message=FALSE}
+data("dada2_ps")
+
+# step1: Removing samples of specific group in phyloseq-class object
+dada2_ps_without_QC <- get_GroupPhyloseq(
+                     ps = dada2_ps,
+                     group = "Group",
+                     group_names = "QC",
+                     discard = TRUE)
+
+# step2: Extracting specific taxa phyloseq-class object 
+dada2_ps_genus <- summarize_taxa(dada2_ps_without_QC, taxa_level = "Genus", absolute = TRUE)
+
+# step3: Aggregating low relative abundance or unclassified taxa into others
+#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+
+# step4: Filtering the low relative abundance or unclassified taxa by the threshold
+dada2_ps_genus_filter <- run_filter(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+
+# step5: Trimming the taxa with low occurrence less than threshold
+dada2_ps_genus_filter_trim <- run_trim(dada2_ps_genus_filter, cutoff = 0.2, trim = "feature")
+dada2_ps_genus_filter_trim
+```
+
+
+#### Running PCA
+```{r, warning=FALSE, message=FALSE}
+ordination_PCA <- run_ordination(
+                       ps = dada2_ps_genus_filter_trim,
+                       group = "Group",
+                       method = "PCA")
+
+names(ordination_PCA)
+```
+
+The object of `run_ordination` is comprising of several results which could be used for visualization. 
+
+* *fit*: the result of PCA functions from `stats::prcomp`;
+
+* *dat*: the combination of PCs score and metadata group information;
+
+* *explains*: the 1st and 2nd PCs' explains;
+
+* *eigvalue*: the eigvalues of all the PCs;
+
+* *PERMANOVA*: the result of PERMANOVA between the whole microbial community and group;
+
+* *axis_taxa_cor*: inherit from the `XVIZ` package for visualization (only for PCoA analysis).
+
+#### Visualization
+
+`plot_Ordination` provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=5, fig.height=4, fig.cap="Principal Component Analysis (PCA): Ordinary pattern"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group",
+                circle_type = "ellipse",
+                sideboxplot = TRUE)
+```
+
+**Results:**
+
+1. Scatterplot showed the distribution of samples in the two groups;
+
+2. PERMANOVA results revealed that there was no association between the groups and the genus microbial community;
+
+3. Sideboxplot of PC1 and PC2 also demonstrated that there were no significant differences between the groups.
+
+
+* plot with SampleID and setting group colors
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=5, fig.height=4, fig.cap="Principal Component Analysis (PCA): Ordinary pattern with SampleID"}
+
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse",
+                sideboxplot = TRUE,
+                sample = TRUE)
+```
+
+
+* biplot with topN dominant taxa
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="Principal Component Analysis (PCA): biplot"}
+plot_ggbiplot(ResultList = ordination_PCA,
+              group = "Group",
+              group_color = c("blue", "red"),
+              topN = 5,
+              ellipse = TRUE,
+              labels = "SampleID")
+```
+
+**biplot** not only shows the distribution of samples, but also displays correlation among the dominant taxa. We chose top 5 dominant taxa. 
+
+> The length of vector approximates standard deviation of variables (bacteria); the angles between variables (bacteria in this case) reflect their correlations: the cosine of angle approximates correlation between variables (bacteria).
+
+
+### Principal Coordinate Analysis (PCoA)
+
+**Principal Coordinate Analysis (PCoA)** could use different distance measures (e.g., Jaccard, Bray-Curtis, Euclidean, etc.) as input for ordination, but pay attention to the data matrix with negative values (not suitable for Bray-Curtis distance).
+
+> As PCA, PCoA uses eigenvalues to measure the importance of a set of returned orthogonal axes. The dimensionality of matrix is reduced by determining each eigenvector and eigenvalue. The principal coordinates are obtained by scaling each eigenvector.
+
+#### Running PCoA
+
+Different distance measures could be affected by different factors (eg, low abundance taxa for Bary Curtis distance), so we recommend users taking care for whether performing the preprocess before calculating the distance. Here, we coincided to the tactics of the PCA analysis.
+
+```{r, warning=FALSE, message=FALSE}
+ordination_PCoA <- run_ordination(
+                       ps = dada2_ps_genus_filter_trim,
+                       group = "Group",
+                       method = "PCoA")
+names(ordination_PCoA)
+```
+
+
+#### Visualization
+
+* side linechart of XVIZ package
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Principal Coordinate Analysis (PCoA): XVIZ package"}
+plot_Ordination(ordination_PCoA, 
+                group = "Group", 
+                circle_type = "ellipse",
+                sidelinechart = TRUE)
+```
+
+
+### t-distributed stochastic neighbor embedding (t-SNE)
+
+> t-distributed stochastic neighbor embedding (t-SNE) is a statistical method for visualizing high-dimensional data by giving each datapoint a location in a two or three-dimensional map. It is based on Stochastic Neighbor Embedding originally developed by Sam Roweis and Geoffrey Hinton, where Laurens van der Maaten proposed the t-distributed variant. It is a nonlinear dimensionality reduction technique well-suited for embedding high-dimensional data for visualization in a low-dimensional space of two or three dimensions. Specifically, it models each high-dimensional object by a two- or three-dimensional point in such a way that similar objects are modeled by nearby points and dissimilar objects are modeled by distant points with high probability.
+
+#### Running tSNE
+
+*Perplexity* parameter is for how many neighbors to be chosen.
+
+```{r, warning=FALSE, message=FALSE}
+ordination_tSNE <- run_ordination(
+                       ps = dada2_ps_genus_filter_trim,
+                       group = "Group",
+                       method = "tSNE",
+                       para =list(Perplexity=2))
+
+names(ordination_tSNE)
+```
+
+
+#### Visualization
+
+`plot_Ordination` provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=5, fig.height=4, fig.cap="t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern"}
+plot_Ordination(ResultList = ordination_tSNE, 
+                group = "Group",
+                circle_type = "ellipse",
+                sideboxplot = TRUE)
+```
+
+
+### Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)
+
+> Uniform Manifold Approximation and Projection (UMAP) [@mcinnes2022uniform] is a dimension reduction technique that can be used for visualisation similarly to t-SNE, but also for general non-linear dimension reduction. The algorithm is founded on three assumptions about the data.
+
+
+#### Running UMAP
+```{r, warning=FALSE, message=FALSE}
+ordination_UMAP <- run_ordination(
+                       ps = dada2_ps_genus_filter_trim,
+                       group = "Group",
+                       method = "UMAP")
+
+names(ordination_UMAP)
+```
+
+
+
+#### Visualization
+
+`plot_Ordination` provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=5, fig.height=4, fig.cap="Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern"}
+plot_Ordination(ResultList = ordination_UMAP, 
+                group = "Group",
+                circle_type = "ellipse",
+                sideboxplot = TRUE)
+```
+
+
+## Systematic Information
+```{r}
+sessionInfo()
+```
