@@ -82,7 +82,7 @@ head(ps_transform_mgs@otu_table@.Data, 3)
 
 Normalizing the OTU_table in phyloseq-class object. It is critical to normalize the feature table to eliminate any bias due to differences in the sampling sequencing depth. This function implements 7 widely-used normalization methods for microbial compositional data.
 
-* **rarefy**: random subsampling counts to the smallest library size in the data set. 
+* **rarefy**: random subsampling counts to the smallest library size in the data set. **Caution: the default library size is 25000 according to our own results(Rarefaction Curves)**.
 ```{r, warning=FALSE, message=FALSE}
 normalize(dada2_ps_genus, method = "rarefy")
 ```
