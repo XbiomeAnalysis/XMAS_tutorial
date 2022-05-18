@@ -15,6 +15,27 @@ library(ggplot2)
 
 ## Phylogenetic beta-diversity metrics 
 
+## Removing BRS
+
+Using `get_GroupPhyloseq` to remove some samples. For instance, removing the spike-in sample QC in Group column.
+
+```{r, warning=FALSE, message=FALSE}
+dada2_ps_remove_BRS <- get_GroupPhyloseq(
+                     ps = dada2_ps,
+                     group = "Group",
+                     group_names = "QC",
+                     discard = TRUE
+                     )
+dada2_ps_remove_BRS
+
+metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
+                     ps = metaphlan2_ps,
+                     group = "Group",
+                     group_names = "QC",
+                     discard = TRUE
+                     )
+metaphlan2_ps_remove_BRS
+```
 
 ### Unweighted Unifrac 
 
@@ -38,7 +59,7 @@ where,
 
 * Calculation
 ```{r, warning=FALSE, message=FALSE}
-beta_df <- run_beta_diversity(ps=dada2_ps, method = "unifrac", group = "Group")
+beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "unifrac", group = "Group")
 ```
 
 The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity condition** of two groups were significant.
@@ -46,7 +67,7 @@ The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity co
 
 * Visualization
 ```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Unweighted Unifrac Distance"}
-plot_corrplot(beta_df$BetaDistance, 
+plot_distance_corrplot(beta_df$BetaDistance, 
               method = "color",
               type = "lower",
               order = "original")
@@ -78,14 +99,14 @@ where,
 
 * **Calculation**
 ```{r, warning=FALSE, message=FALSE}
-beta_df <- run_beta_diversity(ps=dada2_ps, method = "wunifrac", group = "Group")
+beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "wunifrac", group = "Group")
 ```
 
 The result of dispersion test (`Pr(>F) > 0.05`) showed that the **homogeneity condition** of two groups were not significant.
 
 * **Visualization**
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Weighted Unifrac Distance"}
-plot_corrplot(beta_df$BetaDistance, 
+plot_distance_corrplot(beta_df$BetaDistance, 
               method = "color",
               type = "lower",
               order = "original")
@@ -108,14 +129,14 @@ where,
 
 * **Calculation**
 ```{r, warning=FALSE, message=FALSE}
-beta_df <- run_beta_diversity(ps=dada2_ps, method = "GUniFrac", group = "Group", GUniFrac_alpha = 0.5)
+beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "GUniFrac", group = "Group", GUniFrac_alpha = 0.5)
 ```
 
 
 
 * **Visualization**: GUniFrac with alpha 0.5
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Generalized UniFrac Distance (alpha=0.5)"}
-plot_corrplot(beta_df$BetaDistance, 
+plot_distance_corrplot(beta_df$BetaDistance, 
               method = "color",
               type = "lower",
               order = "original")
@@ -142,8 +163,8 @@ where,
 * $n$ Total number of species in samples.
 
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Bray Curtis Distance"}
-beta_df <- run_beta_diversity(ps=dada2_ps, method = "bray", group = "Group")
-plot_corrplot(beta_df$BetaDistance, 
+beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "bray", group = "Group")
+plot_distance_corrplot(beta_df$BetaDistance, 
               method = "color",
               type = "lower",
               order = "original")
@@ -152,7 +173,7 @@ plot_corrplot(beta_df$BetaDistance,
 
 ## Checking the homogeneity condition 
 ```{r, warning=FALSE, message=FALSE}
-beta_df <- run_beta_diversity(ps=dada2_ps, method = "jsd", group = "Group")
+beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "jsd", group = "Group")
 ```
 
 The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity condition** of two groups were significant.
@@ -222,14 +243,16 @@ We also use a distance method to calculate the distance matrix among samples and
 data("dada2_ps")
 
 # step1: Removing samples of specific group in phyloseq-class object
-dada2_ps_without_QC <- get_GroupPhyloseq(
+dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
                      group_names = "QC",
-                     discard = TRUE)
+                     discard = TRUE
+                     )
+dada2_ps_remove_BRS
 
 # step2: Extracting specific taxa phyloseq-class object 
-dada2_ps_genus <- summarize_taxa(dada2_ps_without_QC, taxa_level = "Genus", absolute = TRUE)
+dada2_ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus", absolute = TRUE)
 
 # step3: Aggregating low relative abundance or unclassified taxa into others
 #dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
@@ -275,7 +298,8 @@ The object of `run_ordination` is comprising of several results which could be u
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group",
                 circle_type = "ellipse",
-                sideboxplot = TRUE)
+                sideboxplot = TRUE,
+                sidelinechart = FALSE)
 ```
 
 **Results:**
@@ -288,14 +312,13 @@ plot_Ordination(ResultList = ordination_PCA,
 
 
 * plot with SampleID and setting group colors
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=5, fig.height=4, fig.cap="Principal Component Analysis (PCA): Ordinary pattern with SampleID"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Principal Component Analysis (PCA): Ordinary pattern with SampleID"}
 
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group", 
                 group_names = c("AA", "BB"),
                 group_color = c("blue", "red"),
-                circle_type = "ellipse",
-                sideboxplot = TRUE,
+                circle_type = "ellipse_groups",
                 sample = TRUE)
 ```
 

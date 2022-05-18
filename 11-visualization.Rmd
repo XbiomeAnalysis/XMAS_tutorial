@@ -1,0 +1,238 @@
+# Visualization
+
+**XMAS 2.0** provides functions for visualization.
+
+## plot_boxplot
+
+```{r, warning=FALSE}
+data("amplicon_ps")
+dat_alpha <- run_alpha_diversity(ps=amplicon_ps, measures = c("Shannon", "Chao1", "Observed"))
+head(dat_alpha)
+```
+
+`plot_boxplot` has many parameters, and help you enjoy it.
+
+* single measure
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="boxplot(single measure with group number)"}
+plot_boxplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             group_names = NULL,
+             group_color = NULL,
+             do_test = TRUE,
+             ref_group = NULL,
+             method = "wilcox.test",
+             outlier = TRUE
+  )
+```
+
+* multiple measures
+```{r, warning=FALSE, fig.width=9, fig.height=5, fig.align="center", fig.cap="boxplot(multiple measure with group number)"}
+plot_boxplot(data=dat_alpha,
+             y_index = c("Shannon", "Chao1", "Observed"),
+             group = "SampleType",
+             group_names = c("gut", "right palm", "tongue"),
+             group_color = c("red", "green", "blue"),
+             do_test = TRUE,
+             ref_group = "gut",
+             method = "wilcox.test",
+             outlier = TRUE
+  )
+```
+
+## plot_barplot
+
+`plot_barplot` has many parameters, and help you enjoy it.
+
+* single index
+```{r, warning=FALSE, fig.width=4, fig.height=3, fig.align="center", fig.cap="barplot(single index)"}
+plot_barplot(data=dat_alpha,
+              y_index="Shannon",
+              group="SampleType",
+              do_test=TRUE,
+              ref_group = "gut",
+              method="wilcox.test"
+              )
+```
+
+* multiple index
+```{r, warning=FALSE, fig.width=8, fig.height=4, fig.align="center", fig.cap="barplot(multiple index)"}
+plot_barplot(data=dat_alpha,
+              y_index=c("Shannon", "Chao1", "Observed"),
+              group="SampleType",
+              do_test=TRUE,
+              method="wilcox.test"
+              )
+```
+
+## plot_dotplot
+
+`plot_dotplot` has many parameters, and help you enjoy it.
+
+* single index
+```{r, warning=FALSE, fig.width=4, fig.height=3, fig.align="center", fig.cap="dotplot(single index)"}
+plot_dotplot(data=dat_alpha,
+              y_index="Shannon",
+              group="SampleType",
+              do_test=TRUE,
+              method="wilcox.test")
+```
+
+* multiple index
+```{r, warning=FALSE, fig.width=8, fig.height=4, fig.align="center", fig.cap="dotplot(multiple index)"}
+plot_dotplot(data=dat_alpha,
+              y_index=c("Shannon", "Chao1", "Observed"),
+              group="SampleType",
+              do_test=TRUE,
+              method="wilcox.test")
+```
+
+
+* multiple index with errorbar
+```{r, warning=FALSE, fig.width=8, fig.height=4, fig.align="center", fig.cap="dotplot(multiple index errorbar)"}
+plot_dotplot(data=dat_alpha,
+              y_index=c("Shannon", "Chao1", "Observed"),
+              group="SampleType",
+              do_test=TRUE,
+              show_type="errorbar",
+              method="wilcox.test")
+```
+
+
+## plot_correlation_boxplot
+
+Help you enjoy `plot_correlation_boxplot`.
+```{r, warning=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="correlation with boxplot"}
+plot_correlation_boxplot(data=dat_alpha,
+             x_index="Chao1",
+             y_index="Shannon",
+             group="SampleType")
+```
+
+
+## plot_correlation_density
+
+Help you enjoy `plot_correlation_density`.
+```{r, warning=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="correlation with density"}
+plot_correlation_density(data=dat_alpha,
+             x_index="Chao1",
+             y_index="Shannon",
+             group="SampleType")
+```
+
+
+## plot_Ordination
+
+`plot_Ordination` provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.
+
+```{r, warning=FALSE, message=FALSE}
+data("dada2_ps")
+
+# step1: Removing samples of specific group in phyloseq-class object
+dada2_ps_without_QC <- get_GroupPhyloseq(
+                     ps = dada2_ps,
+                     group = "Group",
+                     group_names = "QC",
+                     discard = TRUE)
+
+# step2: Extracting specific taxa phyloseq-class object 
+dada2_ps_genus <- summarize_taxa(dada2_ps_without_QC, taxa_level = "Genus", absolute = TRUE)
+
+# step3: Aggregating low relative abundance or unclassified taxa into others
+#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+
+# step4: Filtering the low relative abundance or unclassified taxa by the threshold
+dada2_ps_genus_filter <- run_filter(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+
+# step5: Trimming the taxa with low occurrence less than threshold
+dada2_ps_genus_filter_trim <- run_trim(dada2_ps_genus_filter, cutoff = 0.2, trim = "feature")
+dada2_ps_genus_filter_trim
+
+ordination_PCA <- run_ordination(
+                       ps = dada2_ps_genus_filter_trim,
+                       group = "Group",
+                       method = "PCA")
+
+names(ordination_PCA)
+```
+
+* Ordinary pattern
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination: Ordinary pattern"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group")
+```
+
+
+* plot with SampleID and setting group colors
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination: Ordinary pattern with SampleID"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse",
+                sample = TRUE)
+```
+
+
+* ellipse with 95% confidence interval
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination ellipse with 95% confidence interval"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse_CI",
+                sample = TRUE)
+```
+
+
+* ellipse with groups
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination: ellipse with groups"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse_groups",
+                sample = TRUE)
+```
+
+
+* ellipse with border line
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination: ellipse with border line"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse_line",
+                sample = TRUE)
+```
+
+
+* plot with SampleID and sideboxplot and setting group colors
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_Ordination: Ordinary pattern with SampleID sideboxplot"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse",
+                sidelinechart = FALSE,
+                sideboxplot = TRUE,
+                sample = TRUE)
+```
+
+## plot_ggbiplot
+
+* biplot with topN dominant taxa
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_ggbiplot: biplot"}
+plot_ggbiplot(ResultList = ordination_PCA,
+              group = "Group",
+              group_color = c("blue", "red"),
+              topN = 5,
+              ellipse = TRUE,
+              labels = "SampleID")
+```
+
+
+## Systematic Information
+```{r}
+sessionInfo()
+```

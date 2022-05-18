@@ -16,8 +16,14 @@ library(ggplot2)
 
 * Genus data are from previous chapter and we will use this object
 ```{r, warning=FALSE, message=FALSE}
-data("dada2_ps_genus")
-dada2_ps_genus
+data("dada2_ps")
+dada2_ps_remove_BRS <- get_GroupPhyloseq(
+                     ps = dada2_ps,
+                     group = "Group",
+                     group_names = "QC",
+                     discard = TRUE
+                     )
+dada2_ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus")
 ```
 
 * Normalization: See the Chapter 6 Pre-processing

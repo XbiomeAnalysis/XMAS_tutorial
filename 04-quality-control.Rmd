@@ -48,10 +48,11 @@ To see more details to use `?run_RefCheck`.
 ```{r, warning=FALSE, collapse=TRUE}
 dada2_ps_genus <- summarize_taxa(dada2_ps, taxa_level = "Genus")
 
+dada2_ps_genus@sam_data
+
 RefCheck_16s <- run_RefCheck(
     ps=dada2_ps_genus,
-    group="Group",
-    group_names="QC",
+    BRS_ID="S8005",
     Reference=NULL,
     Ref_type="16s",
     Save=NULL
@@ -78,11 +79,11 @@ The taxonomic levels of spike-in sample's bacteria is species. Firstly, using th
 <summary>**Quality Control by spike-in sample in metagenomic**</summary>
 ```{r, warning=FALSE, message=FALSE, collapse=TRUE}
 metaphlan2_ps_species <- summarize_taxa(metaphlan2_ps, taxa_level = "Species")
+metaphlan2_ps_species@sam_data
 
 RefCheck_MGS <- run_RefCheck(
     ps=metaphlan2_ps_species,
-    group="Group",
-    group_names="QC",
+    BRS_ID="refE",
     Reference=NULL,
     Ref_type="MGS",
     Save=NULL

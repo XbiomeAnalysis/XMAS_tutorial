@@ -43,11 +43,12 @@ tab13 [label = '@@13']
  
 tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7 -> tab8 -> tab9 -> tab10 -> tab11 -> tab12 -> tab13;  
 }  
+
   
 [1]: paste0('Importing data: import_dada2()/summarize_phyloseq()')
-[2]: paste0('Quality Control(Rarefaction curves): plot_RarefCure()')  
-[3]: paste0('Quality Control(Reads Track): plot_Dada2Track()')  
-[4]: paste0('Quality Control(RefCheck/Remove): summarize_taxa()/run_RefCheck()/get_GroupPhyloseq()')
+[2]: paste0('Quality Control(RefCheck/Remove): summarize_taxa()/run_RefCheck()/get_GroupPhyloseq()')
+[3]: paste0('Quality Control(Rarefaction curves): plot_RarefCure()')  
+[4]: paste0('Quality Control(Reads Track): plot_Dada2Track()')  
 [5]: paste0('Quality Control(Variability): plot_taxa_cv()/plot_read_distribution()')  
 [6]: paste0('Data processing(Rarefy): normalize()') 
 [7]: paste0('Data processing(Extract specific taxonomic level): summarize_taxa()') 
@@ -145,19 +146,6 @@ Notice the **Sparsity (0.865)**, indicating the data has many zeros and pay atte
 
 Quality control of DADA2 results will help us have more rational determinations on the further data analysis. 
 
-#### Rarefaction curves
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Rarefaction curves (16s example)"}
-plot_RarefCure(ps = dada2_ps,
-               taxa_level = "OTU",
-               step = 100,
-               label = "Group",
-               color = "Group",
-               parallel = TRUE,
-               se = TRUE)
-```
-
-The result showed that all the samples had **different sequence depth** but had the full sample richness.
-
 #### Reads' track by DADA2
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Reads' track by DADA2 (16s example)"}
 plot_Dada2Track(
@@ -170,16 +158,15 @@ plot_Dada2Track(
 
 The percentage of the final remained read counts approximate **70%**, indicating that we should consider the sequence depth for analysis when we build the sequence library.
 
-
 #### Spike-in sample (BRS) assessment
 ```{r, warning=FALSE, collapse=TRUE}
 # extracting the genus level phyloseq  
 dada2_ps_genus <- summarize_taxa(ps = dada2_ps, taxa_level = "Genus")
+sample_data(dada2_ps_genus)
 
 RefCheck_16s <- run_RefCheck(
     ps=dada2_ps_genus,
-    group="Group",
-    group_names="QC",
+    BRS_ID="S8005",
     Reference=NULL,
     Ref_type="16s",
     Save=NULL)
@@ -196,6 +183,20 @@ dada2_ps_NoQC <- get_GroupPhyloseq(
                      )
 dada2_ps_NoQC
 ```
+
+
+#### Rarefaction curves
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Rarefaction curves (16s example)"}
+plot_RarefCure(ps = dada2_ps_NoQC,
+               taxa_level = "OTU",
+               step = 100,
+               label = "Group",
+               color = "Group",
+               parallel = TRUE,
+               se = TRUE)
+```
+
+The result showed that all the samples had **different sequence depth** but had the full sample richness.
 
 
 ### Data processing
@@ -243,7 +244,7 @@ Finally, we obtained the final phyloseq-class object _dada2\_ps\_rare\_genus\_fi
 **Notes:** the otu table must be counts matrix (*rarefied but not trim counts matrix*) when you choose *Observed* etc measures. 
 ```{r, warning=FALSE, message=FALSE}
 dada_ps_rare_genus_alpha <- run_alpha_diversity(ps=dada2_ps_rare_genus, measures = c("Shannon", "Chao1", "Observed"))
-DT::datatable(dada_ps_rare_genus_alpha)
+print(dada_ps_rare_genus_alpha)
 ```
 
 * visualization
@@ -272,7 +273,7 @@ dada2_ps_beta$BetaDispersion
 #### PERMANOVA
 ```{r, warning=FALSE, message=FALSE}
 dada2_ps_per <- run_permanova(ps=dada2_ps_final, method = "bray")
-DT::datatable(dada2_ps_per)
+print(dada2_ps_per)
 ```
 
 The PERMANOVA result of the Group (AdjustedPvalue > 0.05) revealed that the two groups had not the distinct patterns of microbial community.
@@ -281,7 +282,7 @@ The PERMANOVA result of the Group (AdjustedPvalue > 0.05) revealed that the two 
 #### Ordination
 
 We performed ordination by using Principal Coordinate Analysis (PCoA). If you want to try other methods please go to see **Chapter 8** for more details.
-```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=6, fig.align="center", fig.cap="PCoA (16s example)"}
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=8, fig.align="center", fig.cap="PCoA (16s example)"}
 dada2_ps_ordination <- run_ordination(
                        ps = dada2_ps_final,
                        group = "Group",
@@ -290,10 +291,7 @@ dada2_ps_ordination <- run_ordination(
 plot_Ordination(ResultList = dada2_ps_ordination, 
                 group = "Group", 
                 group_names = c("AA", "BB"),
-                group_color = c("blue", "red"),
-                circle_type = "ellipse_line",
-                sideboxplot = TRUE,
-                sample = TRUE)
+                group_color = c("blue", "red"))
 ```
 
 
@@ -302,12 +300,22 @@ plot_Ordination(ResultList = dada2_ps_ordination,
 A whole picture of the microbial composition.
 
 #### Stacked barplot 
+
+* **XMAS** package
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=7, fig.align="center", fig.cap="Microbial composition (16s example)"}
 plot_StackBarPlot(
-        ps=dada2_ps_final,
+        ps=dada2_ps_rare,
         taxa_level="Phylum",
         group = "Group",
         cluster = TRUE)
+```
+
+* **XVIZ** package
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=9, fig.align="center", fig.cap="Microbial composition (16s example) XVIZ"}
+plot_stacked_bar(
+        phyloseq = dada2_ps_rare,
+        level = "Phylum",
+        feature = "Group")
 ```
 
 #### Core microbiota
@@ -360,19 +368,19 @@ dada2_ps_lefse <- run_lefse(
                     group_names = c("AA", "BB"),
                     transform = "identity",
                     norm = "none",
-                    kw.p = 0.05,
                     wl.p = 0.05,
                     Lda = 0)
-colnames(dada2_ps_lefse)
-DT::datatable(dada2_ps_lefse)
+head(dada2_ps_lefse)
 ```
 
 * Visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align="center", fig.cap="Lefse analysis (16s example)"}
+# in order to show barplot (don't run it in reality)
+dada2_ps_lefse$LDA_Score <- dada2_ps_lefse$LDA_Score * 1000
 plot_lefse(
   da_res = dada2_ps_lefse,
   x_index = "LDA_Score",
-  x_index_cutoff = 1,
+  x_index_cutoff = 2,
   group_color = c("green", "red"))
 ```
 
@@ -390,8 +398,7 @@ dada2_ps_wilcox <- run_wilcox(
                     p_adjust = "BH",
                     pvalue_cutoff = 0.05)
 
-colnames(dada2_ps_wilcox)
-DT::datatable(dada2_ps_wilcox)
+head(dada2_ps_wilcox)
 ```
 
 
@@ -405,9 +412,7 @@ plot_volcano(
     y_index = "Pvalue",
     y_index_cutoff = 0.05,
     group_color = c("red", "grey", "blue"),
-    topN = 5,
-    taxa_name = NULL
-   )
+    topN = 5)
 ```
 
 
@@ -482,11 +487,11 @@ Notice the **Sparsity (0.713)**, indicating the data has many zeros and pay atte
 ```{r, warning=FALSE, collapse=TRUE}
 # extracting the genus level phyloseq  
 metaphlan2_ps_species <- summarize_taxa(metaphlan2_ps, taxa_level = "Species")
+metaphlan2_ps_species@sam_data
 
 RefCheck_MGS <- run_RefCheck(
     ps=metaphlan2_ps_species,
-    group="Group",
-    group_names="QC",
+    BRS_ID="refE",
     Reference=NULL,
     Ref_type="MGS",
     Save=NULL
@@ -505,26 +510,6 @@ metaphlan2_ps_NoQC <- get_GroupPhyloseq(
                      )
 metaphlan2_ps_NoQC
 ```
-
-#### Variability 
-
-* **Coefficient of variation (C.V)**, i.e. sd(x)/mean(x) is a widely used approach to measure heterogeneity in OTU/ASV abundance data. 
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Density of the Taxa Mean abundance (MGS example)"}
-pl <- plot_taxa_cv(metaphlan2_ps_NoQC, plot.type = "scatter")
-```
-
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Coefficient of variation (MGS example)"}
-pl + scale_x_log10()
-```
-
-From the above two plots, we see that there are several species which have high C.V. and low mean.
-
-* Checking for distribution of number of sequences 
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Distribution of number of sequences (MGS example)"}
-plot_read_distribution(metaphlan2_ps_NoQC, group="Group", plot.type = "density")
-```
-
-Different distribution of number of sequences between group *AA* and *BB*.
 
 ### Data processing
 
@@ -616,12 +601,22 @@ plot_Ordination(ResultList = metaphlan2_ps_ordination,
 ### Microbial composition
 
 #### Stacked barplot 
+
+* **XMAS** package
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=7, fig.align="center", fig.cap="Microbial composition (MGS example)"}
 plot_StackBarPlot(
-        ps=metaphlan2_ps_final,
-        taxa_level="Phylum",
+        ps=metaphlan2_ps_NoQC,
+        taxa_level="Genus",
         group = "Group",
         cluster = TRUE)
+```
+
+* **XVIZ** package
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=9, fig.align="center", fig.cap="Microbial composition (MGS) XVIZ"}
+plot_stacked_bar(
+        phyloseq = metaphlan2_ps_NoQC,
+        level = "Phylum",
+        feature = "Group")
 ```
 
 #### Core microbiota
@@ -669,15 +664,16 @@ metaphlan2_ps_lefse <- run_lefse(
                     group_names = c("AA", "BB"),
                     transform = "identity",
                     norm = "none",
-                    kw.p = 0.05,
                     wl.p = 0.05,
                     Lda = 0)
-colnames(metaphlan2_ps_lefse)
-DT::datatable(metaphlan2_ps_lefse)
+head(metaphlan2_ps_lefse)
 ```
 
 * Visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="Lefse analysis (MGS example)"}
+# in order to show barplot (don't run it in reality)
+metaphlan2_ps_lefse$LDA_Score <- metaphlan2_ps_lefse$LDA_Score * 1000
+
 plot_lefse(
   da_res = metaphlan2_ps_lefse,
   x_index = "LDA_Score",
@@ -699,8 +695,7 @@ metaphlan2_ps_wilcox <- run_wilcox(
                     p_adjust = "BH",
                     pvalue_cutoff = 0.05)
 
-colnames(metaphlan2_ps_wilcox)
-DT::datatable(metaphlan2_ps_wilcox)
+head(metaphlan2_ps_wilcox)
 ```
 
 

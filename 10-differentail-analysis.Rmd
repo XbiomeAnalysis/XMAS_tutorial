@@ -37,14 +37,15 @@ We use the same strategy to filter phyloseq object.
 data("dada2_ps")
 
 # step1: Removing samples of specific group in phyloseq-class object
-dada2_ps_without_QC <- get_GroupPhyloseq(
+dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
                      group_names = "QC",
-                     discard = TRUE)
+                     discard = TRUE
+                     )
 
 # step2: Extracting specific taxa phyloseq-class object 
-dada2_ps_genus <- summarize_taxa(dada2_ps_without_QC, taxa_level = "Genus", absolute = TRUE)
+dada2_ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus")
 
 # step3: Aggregating low relative abundance or unclassified taxa into others
 #dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
@@ -785,7 +786,6 @@ DA_lefse <- run_lefse(
                     group_names = c("AA", "BB"),
                     transform = "identity",
                     norm = "rarefy",
-                    kw.p = 0.05,
                     wl.p = 0.05,
                     Lda = 0)
 colnames(DA_lefse)
@@ -829,7 +829,6 @@ DA_lefse <- run_lefse(
                     group_names = c("AA", "BB"),
                     transform = "identity",
                     norm = "rarefy",
-                    kw.p = 0.05,
                     wl.p = 0.05,
                     Lda = 0
                     )
@@ -841,7 +840,6 @@ DA_lefse <- run_lefse(
                     group_names = c("AA", "BB"),
                     transform = "identity",
                     norm = "rarefy",
-                    kw.p = 0.05,
                     wl.p = 0.05,
                     Lda = 0
                     )
@@ -853,7 +851,6 @@ DA_lefse <- run_da(
                     da_method = "lefse",
                     transform = "identity",
                     norm = "rarefy",
-                    kw.p = 0.05,
                     wl.p = 0.05,
                     Lda = 0
                     )
@@ -1541,10 +1538,30 @@ DT::datatable(DA_maaslin2)
 
 ## Metagenomic sequencing microbial data (metaphlan2/3) 
 
+We use the same strategy to filter phyloseq object.
 ```{r, warning=FALSE, message=FALSE}
 data("metaphlan2_ps")
-ps_genus_mgs <- summarize_taxa(metaphlan2_ps, taxa_level = "Genus")
-ps_genus_mgs
+
+# step1: Removing samples of specific group in phyloseq-class object
+metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
+                     ps = metaphlan2_ps,
+                     group = "Group",
+                     group_names = "QC",
+                     discard = TRUE
+                     )
+
+# step2: Extracting specific taxa phyloseq-class object 
+metaphlan2_ps_genus <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Genus")
+
+# step3: Aggregating low relative abundance or unclassified taxa into others
+#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+
+# step4: Filtering the low relative abundance or unclassified taxa by the threshold
+metaphlan2_ps_genus_filter <- run_filter(metaphlan2_ps_genus, cutoff = 1e-4, unclass = TRUE)
+
+# step5: Trimming the taxa with low occurrence less than threshold
+metaphlan2_ps_genus_filter_trim <- run_trim(metaphlan2_ps_genus_filter, cutoff = 0.2, trim = "feature")
+metaphlan2_ps_genus_filter_trim
 ```
 
 ### limma_voom
@@ -1553,7 +1570,7 @@ ps_genus_mgs
 
 ```{r, warning=FALSE, message=FALSE}
 DA_limma_voom_mgs <- run_limma_voom(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     transform = "identity",
@@ -1571,7 +1588,7 @@ DT::datatable(DA_limma_voom_mgs)
 ```{r, warning=FALSE, message=FALSE}
 if (0) {
 DA_limma_voom_mgs <- run_da(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "limma_voom",
@@ -1592,7 +1609,7 @@ Wilcoxon Rank Sum and Signed Rank Tests, which are nonparameter test methods, us
 
 ```{r, warning=FALSE, message=FALSE}
 DA_wilcox_mgs <- run_wilcox(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     transform = "identity",
@@ -1610,7 +1627,7 @@ DT::datatable(DA_wilcox_mgs)
 ```{r, warning=FALSE, message=FALSE}
 if (0) {
 DA_wilcox_mgs <- run_da(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "wilcox",
@@ -1630,12 +1647,11 @@ DA_wilcox_mgs <- run_da(
 
 ```{r, warning=FALSE, message=FALSE}
 DA_lefse_mgs <- run_lefse(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     transform = "identity",
                     norm = "none",
-                    kw.p = 0.05,
                     wl.p = 0.05,
                     Lda = 0)  
 
@@ -1649,13 +1665,12 @@ DT::datatable(DA_lefse_mgs)
 ```{r, warning=FALSE, message=FALSE}
 if(0) {
 DA_lefse_mgs <- run_da(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "lefse",
                     transform = "identity",
                     norm = "none",
-                    kw.p = 0.05,
                     wl.p = 0.05,
                     Lda = 0
                     )
@@ -1670,7 +1685,7 @@ T test, a parametric test method, identifies the significant taxa.
 
 ```{r, warning=FALSE, message=FALSE}
 DA_ttest_mgs <- run_ttest(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     transform = "identity",
@@ -1688,7 +1703,7 @@ DT::datatable(DA_ttest_mgs)
 ```{r, warning=FALSE, message=FALSE}
 if(0) {
 DA_ttest_mgs <- run_da(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "ttest",
@@ -1708,7 +1723,7 @@ DA_ttest_mgs <- run_da(
 ```{r, warning=FALSE, message=FALSE}
 if (0) {
 DA_maaslin2_mgs <- run_maaslin2(
-                    ps_genus_mgs,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     transform = "NONE",
@@ -1728,7 +1743,7 @@ DT::datatable(DA_maaslin2_mgs)
 ```{r, warning=FALSE, message=FALSE}
 if (0) {
 DA_maaslin2_mgs <- run_da(
-                    dada2_ps_genus_filter_trim,
+                    metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "maaslin2",
@@ -1814,7 +1829,6 @@ DA_lefse <- run_lefse(
     group_names = c("AA", "BB"),
     transform = "identity",
     norm = "rarefy",
-    kw.p = 0.05,
     wl.p = 0.05,
     Lda = 0)
 
@@ -1832,7 +1846,7 @@ Display the significant taxa with selection using boxplot.
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=3, fig.cap="Dominant Taxa"}
 DA_wilcox <- run_wilcox(
-   metaphlan2_ps,
+   metaphlan2_ps_genus_filter_trim,
    group = "Group",
    group_names = c("AA", "BB"),
    transform = "identity",
@@ -1841,7 +1855,7 @@ DA_wilcox <- run_wilcox(
    pvalue_cutoff = 0.05)
 
 plot_topN_boxplot(
-    ps = metaphlan2_ps,
+    ps = metaphlan2_ps_genus_filter_trim,
     da_res = DA_wilcox,
     x_index = "Log2FoldChange (Median)\nAA_vs_BB",
     x_index_cutoff = 0.2,
@@ -1851,6 +1865,37 @@ plot_topN_boxplot(
     topN = 3,
     taxa_name = "s__Ruminococcus_torques",
     group = "Group")
+```
+
+
+## Multiple differential analysis by one function
+
+here, we provide the `run_multiple_da` for obtaining the results list from multiple differential analysis methods.
+
+```{r, warning=FALSE, message=FALSE}
+multiple_res <- run_multiple_da(
+       dada2_ps_genus_filter_trim,
+       group = "Group",
+       group_names = c("AA", "BB"),
+       da_method = c("aldex", "limma_voom", "mbzinb", "omnibus"),
+       norm = "none",
+       transform = "identity",
+       p_adjust = "none",
+       pvalue_cutoff = 0.05)
+
+names(multiple_res)
+```
+
+
+* plot  results
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=13, fig.cap="Multiple DA results"}
+plot_multiple_DA(
+  Multip_DA_res = multiple_res,
+  y_index = "AdjustedPvalue",
+  y_index_cutoff = 0.5,
+  cellwidth = 35,
+  cellheight = 10,
+  fontsize_number = 15)
 ```
 
 

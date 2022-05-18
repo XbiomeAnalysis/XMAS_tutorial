@@ -16,7 +16,6 @@ library(tibble)
 library(phyloseq)
 library(ggplot2)
 library(ggpubr)
-library(picante)
 ```
 
 

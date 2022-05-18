@@ -18,12 +18,13 @@ library(ggplot2)
 Removing the spike-in sample
 ```{r, warning=FALSE, message=FALSE}
 data("dada2_ps")
-dada2_ps_without_QC <- get_GroupPhyloseq(
-    ps = dada2_ps,
-    group = "Group",
-    group_names = "QC",
-    discard = TRUE)
-dada2_ps_without_QC
+dada2_ps_remove_BRS <- get_GroupPhyloseq(
+                     ps = dada2_ps,
+                     group = "Group",
+                     group_names = "QC",
+                     discard = TRUE
+                     )
+dada2_ps_remove_BRS
 ```
 
 
@@ -33,7 +34,7 @@ dada2_ps_without_QC
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Stacked barplot Ordinary pattern"}
 plot_StackBarPlot(
-        ps=dada2_ps_without_QC,
+        ps=dada2_ps_remove_BRS,
         taxa_level="Phylum")
 ```
 
@@ -43,12 +44,13 @@ Please open the below buttons, if you want to see other options for stacked barp
 <details>
 <summary>**genus level in stacked barplot**</summary>
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=8, fig.cap="Stacked barplot otu_tab and sample_table as input"}
-dada2_ps_without_QC_genus <- summarize_taxa(dada2_ps_without_QC, taxa_level = "Genus")
-otu_tab <- phyloseq::otu_table(dada2_ps_without_QC_genus)
-sam_tab <- phyloseq::sample_data(dada2_ps_without_QC_genus)
+dada2_ps_remove_BRS_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus")
+otu_tab <- phyloseq::otu_table(dada2_ps_remove_BRS_genus)
+sam_tab <- phyloseq::sample_data(dada2_ps_remove_BRS_genus)
 plot_StackBarPlot(
       data_otu=otu_tab,
       data_sam=sam_tab,
+      cutoff = 0.01,
       taxa_level="Genus")
 ```
 </details>
@@ -58,7 +60,7 @@ plot_StackBarPlot(
 <summary>**Metadata with `Group` phenotype**</summary>
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6.5, fig.height=7, fig.cap="Stacked barplot Metadata with group"}
 plot_StackBarPlot(
-        ps=dada2_ps_without_QC,
+        ps=dada2_ps_remove_BRS,
         taxa_level="Phylum",
         group = "Group")
 ```
@@ -69,7 +71,7 @@ plot_StackBarPlot(
 <summary>**Metadata with `Group` phenotype in cluster mode**</summary>
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6.5, fig.height=7, fig.cap="Stacked barplot Metadata with group in cluster mode"}
 plot_StackBarPlot(
-        ps=dada2_ps_without_QC,
+        ps=dada2_ps_remove_BRS,
         taxa_level="Phylum",
         group = "Group",
         cluster = TRUE)
@@ -81,7 +83,7 @@ plot_StackBarPlot(
 <summary>**Metadata with `Group` phenotype in facet**</summary>
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="Stacked barplot Metadata with group in facet"}
 plot_StackBarPlot(
-        ps=dada2_ps_without_QC,
+        ps=dada2_ps_remove_BRS,
         taxa_level="Phylum",
         group = "Group",
         facet = TRUE)
@@ -89,10 +91,20 @@ plot_StackBarPlot(
 </details>
 
 
+## XVIZ `plot_stacked_bar`
+
+`plot_stacked_bar` from XVIZ.
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Stacked barplot XVIZ"}
+plot_stacked_bar(
+        phyloseq=dada2_ps_remove_BRS,
+        level="Phylum")
+```
+
 ## Heatmaps
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="Heatmaps"}
-plot_taxa_heatmap(dada2_ps_without_QC, 
+plot_taxa_heatmap(dada2_ps_remove_BRS, 
                   taxa_level = "Phylum", 
                   cutoff = 1e-4, 
                   colors = c("black", "yellow"))
