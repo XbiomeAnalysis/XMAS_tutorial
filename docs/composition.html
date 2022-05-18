@@ -246,8 +246,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="beta-diversity.html"><a href="beta-diversity.html"><i class="fa fa-check"></i><b>8</b> Beta diversity<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="beta-diversity.html"><a href="beta-diversity.html#phylogenetic-beta-diversity-metrics"><i class="fa fa-check"></i><b>8.1</b> Phylogenetic beta-diversity metrics<span></span></a></li>
-<li class="chapter" data-level="8.2" data-path="beta-diversity.html"><a href="beta-diversity.html#removing-brs-1"><i class="fa fa-check"></i><b>8.2</b> Removing BRS<span></span></a>
+<li class="chapter" data-level="8.1" data-path="beta-diversity.html"><a href="beta-diversity.html#loading-data-and-removing-brs"><i class="fa fa-check"></i><b>8.1</b> Loading data and Removing BRS<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="beta-diversity.html"><a href="beta-diversity.html#phylogenetic-beta-diversity-metrics"><i class="fa fa-check"></i><b>8.2</b> Phylogenetic beta-diversity metrics<span></span></a>
 <ul>
 <li class="chapter" data-level="8.2.1" data-path="beta-diversity.html"><a href="beta-diversity.html#unweighted-unifrac"><i class="fa fa-check"></i><b>8.2.1</b> Unweighted Unifrac<span></span></a></li>
 <li class="chapter" data-level="8.2.2" data-path="beta-diversity.html"><a href="beta-diversity.html#weighted-unifrac"><i class="fa fa-check"></i><b>8.2.2</b> Weighted Unifrac<span></span></a></li>
@@ -409,8 +409,8 @@ div.csl-indent {
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="composition.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
 <span id="cb152-2"><a href="composition.html#cb152-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_remove_BRS,</span>
 <span id="cb152-3"><a href="composition.html#cb152-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-82"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-82-1.png" alt="Stacked barplot Ordinary pattern" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-71-1.png" alt="Stacked barplot Ordinary pattern" width="576" />
 <p class="caption">
 Figure 9.1: Stacked barplot Ordinary pattern
 </p>
@@ -428,8 +428,8 @@ Figure 9.1: Stacked barplot Ordinary pattern
 <span id="cb153-6"><a href="composition.html#cb153-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_sam=</span>sam_tab,</span>
 <span id="cb153-7"><a href="composition.html#cb153-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cutoff =</span> <span class="fl">0.01</span>,</span>
 <span id="cb153-8"><a href="composition.html#cb153-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">taxa_level=</span><span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-83"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-83-1.png" alt="Stacked barplot otu_tab and sample_table as input" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-72-1.png" alt="Stacked barplot otu_tab and sample_table as input" width="672" />
 <p class="caption">
 Figure 9.2: Stacked barplot otu_tab and sample_table as input
 </p>
@@ -443,8 +443,8 @@ Figure 9.2: Stacked barplot otu_tab and sample_table as input
 <span id="cb154-2"><a href="composition.html#cb154-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_remove_BRS,</span>
 <span id="cb154-3"><a href="composition.html#cb154-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
 <span id="cb154-4"><a href="composition.html#cb154-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-84"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-84-1.png" alt="Stacked barplot Metadata with group" width="624" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-73-1.png" alt="Stacked barplot Metadata with group" width="624" />
 <p class="caption">
 Figure 9.3: Stacked barplot Metadata with group
 </p>
@@ -459,8 +459,8 @@ Figure 9.3: Stacked barplot Metadata with group
 <span id="cb155-3"><a href="composition.html#cb155-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
 <span id="cb155-4"><a href="composition.html#cb155-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb155-5"><a href="composition.html#cb155-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-85"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-85-1.png" alt="Stacked barplot Metadata with group in cluster mode" width="624" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-74"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-74-1.png" alt="Stacked barplot Metadata with group in cluster mode" width="624" />
 <p class="caption">
 Figure 9.4: Stacked barplot Metadata with group in cluster mode
 </p>
@@ -475,8 +475,8 @@ Figure 9.4: Stacked barplot Metadata with group in cluster mode
 <span id="cb156-3"><a href="composition.html#cb156-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
 <span id="cb156-4"><a href="composition.html#cb156-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb156-5"><a href="composition.html#cb156-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">facet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-86"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-86-1.png" alt="Stacked barplot Metadata with group in facet" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-75-1.png" alt="Stacked barplot Metadata with group in facet" width="672" />
 <p class="caption">
 Figure 9.5: Stacked barplot Metadata with group in facet
 </p>
@@ -489,8 +489,8 @@ Figure 9.5: Stacked barplot Metadata with group in facet
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="composition.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar</span>(</span>
 <span id="cb157-2"><a href="composition.html#cb157-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">phyloseq=</span>dada2_ps_remove_BRS,</span>
 <span id="cb157-3"><a href="composition.html#cb157-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-87"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-87-1.png" alt="Stacked barplot XVIZ" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-76"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-76-1.png" alt="Stacked barplot XVIZ" width="768" />
 <p class="caption">
 Figure 9.6: Stacked barplot XVIZ
 </p>
@@ -502,8 +502,8 @@ Figure 9.6: Stacked barplot XVIZ
 <span id="cb158-2"><a href="composition.html#cb158-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>, </span>
 <span id="cb158-3"><a href="composition.html#cb158-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">cutoff =</span> <span class="fl">1e-4</span>, </span>
 <span id="cb158-4"><a href="composition.html#cb158-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-88"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-88-1.png" alt="Heatmaps" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-77"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-77-1.png" alt="Heatmaps" width="672" />
 <p class="caption">
 Figure 9.7: Heatmaps
 </p>
@@ -526,53 +526,56 @@ Figure 9.7: Heatmaps
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] ggpubr_0.4.0    ggplot2_3.3.5   phyloseq_1.38.0 tibble_3.1.6    dplyr_1.0.8     XMAS_2.1.0     
+## [1] RColorBrewer_1.1-2 viridis_0.6.2      viridisLite_0.4.0  ggpubr_0.4.0       ggplot2_3.3.5      phyloseq_1.38.0   
+## [7] tibble_3.1.6       dplyr_1.0.8        XMAS_2.1.0        
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] utf8_1.2.2                  reticulate_1.24             tidyselect_1.1.2            RSQLite_2.2.10             
 ##   [5] AnnotationDbi_1.56.2        htmlwidgets_1.5.4           grid_4.1.2                  BiocParallel_1.28.3        
 ##   [9] Rtsne_0.15                  munsell_0.5.0               codetools_0.2-18            umap_0.2.8.0               
 ##  [13] DT_0.21                     withr_2.5.0                 colorspace_2.0-3            Biobase_2.54.0             
-##  [17] highr_0.9                   knitr_1.37                  rstudioapi_0.13             stats4_4.1.2               
-##  [21] robustbase_0.93-9           bayesm_3.1-4                ggsignif_0.6.3              MatrixGenerics_1.6.0       
-##  [25] labeling_0.4.2              optparse_1.7.1              GenomeInfoDbData_1.2.7      lpsymphony_1.22.0          
-##  [29] bit64_4.0.5                 farver_2.1.0                rhdf5_2.38.1                vctrs_0.3.8                
-##  [33] generics_0.1.2              TH.data_1.1-0               xfun_0.30                   Maaslin2_1.8.0             
-##  [37] R6_2.5.1                    GenomeInfoDb_1.30.1         locfit_1.5-9.5              bitops_1.0-7               
-##  [41] rhdf5filters_1.6.0          cachem_1.0.6                DelayedArray_0.20.0         assertthat_0.2.1           
-##  [45] scales_1.1.1                multcomp_1.4-18             nnet_7.3-17                 gtable_0.3.0               
-##  [49] sandwich_3.0-1              rlang_1.0.2                 genefilter_1.76.0           splines_4.1.2              
-##  [53] protoclust_1.6.3            rstatix_0.7.0               broom_0.7.12                checkmate_2.0.0            
-##  [57] yaml_2.3.5                  reshape2_1.4.4              abind_1.4-5                 crosstalk_1.2.0            
-##  [61] backports_1.4.1             qvalue_2.26.0               Hmisc_4.6-0                 DiagrammeR_1.0.9           
-##  [65] tensorA_0.36.2              tools_4.1.2                 bookdown_0.24               ellipsis_0.3.2             
-##  [69] gplots_3.1.1                jquerylib_0.1.4             biomformat_1.22.0           RColorBrewer_1.1-2         
-##  [73] BiocGenerics_0.40.0         Rcpp_1.0.8.2                plyr_1.8.6                  base64enc_0.1-3            
-##  [77] visNetwork_2.1.0            zlibbioc_1.40.0             purrr_0.3.4                 RCurl_1.98-1.6             
-##  [81] openssl_2.0.0               rpart_4.1.16                Wrench_1.12.0               cowplot_1.1.1              
-##  [85] S4Vectors_0.32.3            zoo_1.8-9                   SummarizedExperiment_1.24.0 ggrepel_0.9.1              
-##  [89] cluster_2.1.2               magrittr_2.0.2              RSpectra_0.16-0             data.table_1.14.2          
-##  [93] mvtnorm_1.1-3               matrixStats_0.61.0          corncob_0.2.0               RAIDA_1.0                  
-##  [97] evaluate_0.15               xtable_1.8-4                XML_3.99-0.9                jpeg_0.1-9                 
-## [101] IRanges_2.28.0              gridExtra_2.3               shape_1.4.6                 compiler_4.1.2             
-## [105] KernSmooth_2.23-20          crayon_1.5.0                htmltools_0.5.2             mgcv_1.8-39                
-## [109] pcaPP_1.9-74                Formula_1.2-4               tidyr_1.2.0                 geneplotter_1.72.0         
-## [113] libcoin_1.0-9               DBI_1.1.2                   corrplot_0.92               biglm_0.9-2.1              
-## [117] MASS_7.3-55                 compositions_2.0-4          Matrix_1.4-0                ade4_1.7-18                
-## [121] getopt_1.20.3               car_3.0-12                  permute_0.9-7               cli_3.2.0                  
-## [125] parallel_4.1.2              igraph_1.2.11               GenomicRanges_1.46.1        pkgconfig_2.0.3            
-## [129] coin_1.4-2                  foreign_0.8-82              foreach_1.5.2               annotate_1.72.0            
-## [133] bslib_0.3.1                 multtest_2.50.0             XVector_0.34.0              stringr_1.4.0              
-## [137] digest_0.6.29               vegan_2.5-7                 Biostrings_2.62.0           rmarkdown_2.13             
-## [141] htmlTable_2.4.0             edgeR_3.36.0                gtools_3.9.2                modeltools_0.2-23          
-## [145] lifecycle_1.0.1             nlme_3.1-155                jsonlite_1.8.0              Rhdf5lib_1.16.0            
-## [149] carData_3.0-5               askpass_1.1                 limma_3.50.1                fansi_1.0.2                
-## [153] pillar_1.7.0                lattice_0.20-45             KEGGREST_1.34.0             fastmap_1.1.0              
-## [157] httr_1.4.2                  DEoptimR_1.0-10             survival_3.3-1              glue_1.6.2                 
-## [161] png_0.1-7                   iterators_1.0.14            glmnet_4.1-3                bit_4.0.4                  
-## [165] stringi_1.7.6               sass_0.4.0                  metagenomeSeq_1.36.0        blob_1.2.2                 
-## [169] DESeq2_1.34.0               latticeExtra_0.6-29         caTools_1.18.2              memoise_2.0.1              
-## [173] ape_5.6-2</code></pre>
+##  [17] highr_0.9                   knitr_1.37                  rstudioapi_0.13             pscl_1.5.5                 
+##  [21] stats4_4.1.2                robustbase_0.93-9           bayesm_3.1-4                ggsignif_0.6.3             
+##  [25] MatrixGenerics_1.6.0        labeling_0.4.2              optparse_1.7.1              mbzinb_0.2                 
+##  [29] GenomeInfoDbData_1.2.7      lpsymphony_1.22.0           pheatmap_1.0.12             bit64_4.0.5                
+##  [33] farver_2.1.0                rhdf5_2.38.1                vctrs_0.3.8                 generics_0.1.2             
+##  [37] TH.data_1.1-0               xfun_0.30                   Maaslin2_1.8.0              R6_2.5.1                   
+##  [41] GenomeInfoDb_1.30.1         locfit_1.5-9.5              RcppZiggurat_0.1.6          bitops_1.0-7               
+##  [45] rhdf5filters_1.6.0          cachem_1.0.6                DelayedArray_0.20.0         assertthat_0.2.1           
+##  [49] scales_1.1.1                multcomp_1.4-18             nnet_7.3-17                 gtable_0.3.0               
+##  [53] sandwich_3.0-1              rlang_1.0.2                 genefilter_1.76.0           splines_4.1.2              
+##  [57] protoclust_1.6.3            rstatix_0.7.0               broom_0.7.12                checkmate_2.0.0            
+##  [61] yaml_2.3.5                  reshape2_1.4.4              abind_1.4-5                 crosstalk_1.2.0            
+##  [65] backports_1.4.1             Rfast_2.0.6                 qvalue_2.26.0               Hmisc_4.6-0                
+##  [69] DiagrammeR_1.0.9            tensorA_0.36.2              tools_4.1.2                 bookdown_0.24              
+##  [73] zCompositions_1.4.0         ellipsis_0.3.2              gplots_3.1.1                jquerylib_0.1.4            
+##  [77] biomformat_1.22.0           BiocGenerics_0.40.0         Rcpp_1.0.8.2                plyr_1.8.6                 
+##  [81] base64enc_0.1-3             visNetwork_2.1.0            zlibbioc_1.40.0             purrr_0.3.4                
+##  [85] RCurl_1.98-1.6              openssl_2.0.0               rpart_4.1.16                Wrench_1.12.0              
+##  [89] cowplot_1.1.1               S4Vectors_0.32.3            zoo_1.8-9                   SummarizedExperiment_1.24.0
+##  [93] ggrepel_0.9.1               cluster_2.1.2               magrittr_2.0.2              RSpectra_0.16-0            
+##  [97] data.table_1.14.2           truncnorm_1.0-8             mvtnorm_1.1-3               matrixStats_0.61.0         
+## [101] ALDEx2_1.26.0               corncob_0.2.0               RAIDA_1.0                   evaluate_0.15              
+## [105] xtable_1.8-4                XML_3.99-0.9                jpeg_0.1-9                  IRanges_2.28.0             
+## [109] gridExtra_2.3               shape_1.4.6                 compiler_4.1.2              KernSmooth_2.23-20         
+## [113] crayon_1.5.0                htmltools_0.5.2             mgcv_1.8-39                 pcaPP_1.9-74               
+## [117] Formula_1.2-4               tidyr_1.2.0                 geneplotter_1.72.0          libcoin_1.0-9              
+## [121] DBI_1.1.2                   corrplot_0.92               biglm_0.9-2.1               MASS_7.3-55                
+## [125] compositions_2.0-4          Matrix_1.4-0                ade4_1.7-18                 getopt_1.20.3              
+## [129] car_3.0-12                  permute_0.9-7               cli_3.2.0                   parallel_4.1.2             
+## [133] igraph_1.2.11               GenomicRanges_1.46.1        pkgconfig_2.0.3             coin_1.4-2                 
+## [137] foreign_0.8-82              foreach_1.5.2               annotate_1.72.0             bslib_0.3.1                
+## [141] multtest_2.50.0             XVector_0.34.0              NADA_1.6-1.1                stringr_1.4.0              
+## [145] digest_0.6.29               vegan_2.5-7                 Biostrings_2.62.0           rmarkdown_2.13             
+## [149] htmlTable_2.4.0             edgeR_3.36.0                gtools_3.9.2                modeltools_0.2-23          
+## [153] lifecycle_1.0.1             nlme_3.1-155                jsonlite_1.8.0              Rhdf5lib_1.16.0            
+## [157] carData_3.0-5               askpass_1.1                 limma_3.50.1                fansi_1.0.2                
+## [161] pillar_1.7.0                lattice_0.20-45             KEGGREST_1.34.0             fastmap_1.1.0              
+## [165] httr_1.4.2                  DEoptimR_1.0-10             survival_3.3-1              glue_1.6.2                 
+## [169] png_0.1-7                   iterators_1.0.14            glmnet_4.1-3                bit_4.0.4                  
+## [173] stringi_1.7.6               sass_0.4.0                  metagenomeSeq_1.36.0        blob_1.2.2                 
+## [177] DESeq2_1.34.0               latticeExtra_0.6-29         caTools_1.18.2              memoise_2.0.1              
+## [181] ape_5.6-2</code></pre>
 
 </div>
 </div>

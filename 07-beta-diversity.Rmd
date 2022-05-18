@@ -12,10 +12,7 @@ library(phyloseq)
 library(ggplot2)
 ```
 
-
-## Phylogenetic beta-diversity metrics 
-
-## Removing BRS
+## Loading data and Removing BRS
 
 Using `get_GroupPhyloseq` to remove some samples. For instance, removing the spike-in sample QC in Group column.
 
@@ -36,6 +33,9 @@ metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
                      )
 metaphlan2_ps_remove_BRS
 ```
+
+
+## Phylogenetic beta-diversity metrics 
 
 ### Unweighted Unifrac 
 
