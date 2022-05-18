@@ -78,4 +78,6 @@ This tutorial was organized according to the **XMAS 2.0** functions.
 
 * In **Chapter 11** provided the differential analysis.
 
-* In **Chapter 12** provided the examples by using XMAS 2.0 on microbiota data.
+* In **Chapter 12** showed some functions for visualization.
+
+* In **Chapter 13** provided the examples by using XMAS 2.0 on microbiota data.
