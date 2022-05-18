@@ -142,7 +142,7 @@ install.packages("mbzinb_0.2.tar.gz", repos = NULL, type = "source")
 
 ### Installation
 
-Get the **XMAS** released version from [Release version](https://gitlab.com/BangzhuoTong/xmas/-/releases):
+Get the **XMAS** released version from [Release version](https://gitlab.com/BangzhuoTong/xmas/-/releases)
 
 #### Installation in linux or Mac os through command line
 
