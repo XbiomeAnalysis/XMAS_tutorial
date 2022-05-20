@@ -17,7 +17,7 @@ library(ggpubr)
 ## Workflow description
 
 The standard data analysis of 16S and MGS data by **XMAS 2.0**.
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=8, fig.align="center", fig.cap="Functions of XMAS 2.0 in 16s"}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=8, fig.align="center", fig.cap="Functions of XMAS 2.0 in 16s and MGS"}
 DiagrammeR::grViz(diagram = "digraph flowchart { 
 
 # initiate graph

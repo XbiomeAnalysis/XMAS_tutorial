@@ -25,9 +25,9 @@ We provide the universal data analysis framework on microbial data for in-house 
 
 * [MGS DataAnalysis template by XMAS 2.0](https://xbiomeanalysis.github.io/MGS_DataAnalysis_template/)
 
-This tutorial requires that the users should have basic knowledge on R language and traditional statistical background. If you are new to microbial research, we recommend the **Statistical Analysis of Microbiome Data with R** [@xia2018statistical] as guide book. 
+This tutorial requires that the users should have basic knowledge on R language and statistics. If you are new to microbial research, we recommend the **Statistical Analysis of Microbiome Data with R** [@xia2018statistical] as guide book. 
 
-We recommend users using local laptop because our own server have not deployed **XMAS 2.0** package yet. In addition, installing the following software before using **XMAS 2.0**.
+We suggest users using local laptop because our own server have not deployed **XMAS 2.0** package yet. In addition, installing the following software before using **XMAS 2.0**.
 
 * R 3.6.3 or later release [Download link](https://mirrors.tuna.tsinghua.edu.cn/CRAN/).
 
