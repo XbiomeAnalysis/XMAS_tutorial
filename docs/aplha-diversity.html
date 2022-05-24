@@ -209,8 +209,22 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html"><i class="fa fa-check"></i><b>4</b> Convert inputdata into phyloseq object<span></span></a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#loading-packages"><i class="fa fa-check"></i><b>4.1</b> loading packages<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#dada2-1"><i class="fa fa-check"></i><b>4.2</b> DADA2<span></span></a></li>
-<li class="chapter" data-level="4.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metaphlan23"><i class="fa fa-check"></i><b>4.3</b> Metaphlan2/3<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#dada2-1"><i class="fa fa-check"></i><b>4.2</b> DADA2<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#importing-results-from-dada2-pipeline"><i class="fa fa-check"></i><b>4.2.1</b> Importing results from dada2 pipeline<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#taxa-table"><i class="fa fa-check"></i><b>4.2.2</b> taxa table<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#otu-table"><i class="fa fa-check"></i><b>4.2.3</b> otu table<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metadata-table"><i class="fa fa-check"></i><b>4.2.4</b> metadata table<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object"><i class="fa fa-check"></i><b>4.2.5</b> phyloseq object<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metaphlan23"><i class="fa fa-check"></i><b>4.3</b> Metaphlan2/3<span></span></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#importing-results"><i class="fa fa-check"></i><b>4.3.1</b> Importing results<span></span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#taxa-table-1"><i class="fa fa-check"></i><b>4.3.2</b> taxa table<span></span></a></li>
+<li class="chapter" data-level="4.3.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#otu-table-1"><i class="fa fa-check"></i><b>4.3.3</b> otu table<span></span></a></li>
+<li class="chapter" data-level="4.3.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metadata-table-1"><i class="fa fa-check"></i><b>4.3.4</b> metadata table<span></span></a></li>
+<li class="chapter" data-level="4.3.5" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object-1"><i class="fa fa-check"></i><b>4.3.5</b> phyloseq object<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="4.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#systematic-information-1"><i class="fa fa-check"></i><b>4.4</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="quality-evaluation.html"><a href="quality-evaluation.html"><i class="fa fa-check"></i><b>5</b> Quality Evaluation<span></span></a>
@@ -393,23 +407,23 @@ div.csl-indent {
 <p><span class="math display">\[H^{&#39;} = \sum_{i=1}^{S}p_{i}\,\ln\,p_{i}\]</span>
 where <span class="math inline">\(p_{i}\)</span> is the proportion of individuals (or relative abundance) of species <span class="math inline">\(i\)</span> in the community and <span class="math inline">\(S\)</span> is the total number of species present so that <span class="math inline">\(\sum_{i=1}^{S}p_{i} = 1\)</span>.</p>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="aplha-diversity.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS)</span>
-<span id="cb97-2"><a href="aplha-diversity.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb97-3"><a href="aplha-diversity.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb97-4"><a href="aplha-diversity.html#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb97-5"><a href="aplha-diversity.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb97-6"><a href="aplha-diversity.html#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="aplha-diversity.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS)</span>
+<span id="cb111-2"><a href="aplha-diversity.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb111-3"><a href="aplha-diversity.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb111-4"><a href="aplha-diversity.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb111-5"><a href="aplha-diversity.html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb111-6"><a href="aplha-diversity.html#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
 <div id="equal-sample-sums" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Equal sample sums<a href="aplha-diversity.html#equal-sample-sums" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Remove BRS</li>
 </ul>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="aplha-diversity.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dada2_ps&quot;</span>)</span>
-<span id="cb98-2"><a href="aplha-diversity.html#cb98-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb98-3"><a href="aplha-diversity.html#cb98-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb98-4"><a href="aplha-diversity.html#cb98-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb98-5"><a href="aplha-diversity.html#cb98-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
-<span id="cb98-6"><a href="aplha-diversity.html#cb98-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="aplha-diversity.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dada2_ps&quot;</span>)</span>
+<span id="cb112-2"><a href="aplha-diversity.html#cb112-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb112-3"><a href="aplha-diversity.html#cb112-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb112-4"><a href="aplha-diversity.html#cb112-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb112-5"><a href="aplha-diversity.html#cb112-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
+<span id="cb112-6"><a href="aplha-diversity.html#cb112-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 896 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -419,18 +433,18 @@ where <span class="math inline">\(p_{i}\)</span> is the proportion of individual
 <li>Summary counts</li>
 </ul>
 <p>The previous result from <em>Rarefaction Curves</em> had demonstrated that the sequence depth of each sample has a larger significance and normalizing the samples’ depth into equal sampling depth is necessary.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="aplha-diversity.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sample_sums</span>(dada2_ps_remove_BRS))</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="aplha-diversity.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sample_sums</span>(dada2_ps_remove_BRS))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   51181   58608   61435   61257   64283   71667</code></pre>
 <p>As is evident there is a large difference in the number of reads. Minimum is <em>51181</em> and maximum is <em>71667</em>!! There is a <strong>~1.4X</strong> difference.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="aplha-diversity.html#cb102-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
-<span id="cb102-2"><a href="aplha-diversity.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sample_sums</span>(dada2_ps_rarefy))</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="aplha-diversity.html#cb116-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
+<span id="cb116-2"><a href="aplha-diversity.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">sample_sums</span>(dada2_ps_rarefy))</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   51181   51181   51181   51181   51181   51181</code></pre>
 <p>Quickly check taxa prevalence</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="aplha-diversity.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_taxa_prevalence</span>(dada2_ps_rarefy, <span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-44"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-44-1.png" alt="Taxa prevalence after rarefying" width="672" />
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="aplha-diversity.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_taxa_prevalence</span>(dada2_ps_rarefy, <span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-65"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-65-1.png" alt="Taxa prevalence after rarefying" width="672" />
 <p class="caption">
 Figure 7.1: Taxa prevalence after rarefying
 </p>
@@ -439,8 +453,8 @@ Figure 7.1: Taxa prevalence after rarefying
 <div id="diversities" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Diversities<a href="aplha-diversity.html#diversities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>*. Calculation</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="aplha-diversity.html#cb105-1" aria-hidden="true" tabindex="-1"></a>dada2_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps =</span> dada2_ps_rarefy, <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>)) </span>
-<span id="cb105-2"><a href="aplha-diversity.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_alpha)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="aplha-diversity.html#cb119-1" aria-hidden="true" tabindex="-1"></a>dada2_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps =</span> dada2_ps_rarefy, <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>)) </span>
+<span id="cb119-2"><a href="aplha-diversity.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_alpha)</span></code></pre></div>
 <pre><code>##   SampleID Group Observed Chao1   se.chao1  Shannon
 ## 1    S6030    BB      145   145 0.09965458 3.521750
 ## 2    S6032    BB       60    60 0.00000000 2.317354
@@ -454,12 +468,12 @@ Figure 7.1: Taxa prevalence after rarefying
 <ol style="list-style-type: decimal">
 <li>single measure</li>
 </ol>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="aplha-diversity.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_boxplot</span>(<span class="at">data=</span>dada2_alpha,</span>
-<span id="cb107-2"><a href="aplha-diversity.html#cb107-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="st">&quot;Shannon&quot;</span>,</span>
-<span id="cb107-3"><a href="aplha-diversity.html#cb107-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb107-4"><a href="aplha-diversity.html#cb107-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-46"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-46-1.png" alt="Alpha diversity from XMAS(one measure)" width="576" />
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="aplha-diversity.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_boxplot</span>(<span class="at">data=</span>dada2_alpha,</span>
+<span id="cb121-2"><a href="aplha-diversity.html#cb121-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="st">&quot;Shannon&quot;</span>,</span>
+<span id="cb121-3"><a href="aplha-diversity.html#cb121-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb121-4"><a href="aplha-diversity.html#cb121-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-67"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-67-1.png" alt="Alpha diversity from XMAS(one measure)" width="576" />
 <p class="caption">
 Figure 7.2: Alpha diversity from XMAS(one measure)
 </p>
@@ -467,14 +481,14 @@ Figure 7.2: Alpha diversity from XMAS(one measure)
 <ol start="2" style="list-style-type: decimal">
 <li>multiple measures</li>
 </ol>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="aplha-diversity.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_boxplot</span>(<span class="at">data=</span>dada2_alpha,</span>
-<span id="cb108-2"><a href="aplha-diversity.html#cb108-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>),</span>
-<span id="cb108-3"><a href="aplha-diversity.html#cb108-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb108-4"><a href="aplha-diversity.html#cb108-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb108-5"><a href="aplha-diversity.html#cb108-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb108-6"><a href="aplha-diversity.html#cb108-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-47"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-47-1.png" alt="Alpha diversity from XMAS(multiple measures)" width="864" />
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="aplha-diversity.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_boxplot</span>(<span class="at">data=</span>dada2_alpha,</span>
+<span id="cb122-2"><a href="aplha-diversity.html#cb122-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>),</span>
+<span id="cb122-3"><a href="aplha-diversity.html#cb122-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb122-4"><a href="aplha-diversity.html#cb122-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb122-5"><a href="aplha-diversity.html#cb122-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb122-6"><a href="aplha-diversity.html#cb122-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-68"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-68-1.png" alt="Alpha diversity from XMAS(multiple measures)" width="864" />
 <p class="caption">
 Figure 7.3: Alpha diversity from XMAS(multiple measures)
 </p>
@@ -493,13 +507,13 @@ The curve is a 2D chart with relative abundance on the Y-axis and the abundance 
 <li>X-axis: The abundance rank. The most abundant species is given rank 1, the second most abundant is 2 and so on.</li>
 <li>Y-axis: The relative abundance. Usually measured on a log scale, this is a measure of a species abundance (e.g., the number of individuals) relative to the abundance of other species.</li>
 </ul>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="aplha-diversity.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_RankAbundance</span>(</span>
-<span id="cb109-2"><a href="aplha-diversity.html#cb109-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
-<span id="cb109-3"><a href="aplha-diversity.html#cb109-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Family&quot;</span>,</span>
-<span id="cb109-4"><a href="aplha-diversity.html#cb109-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group=</span><span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb109-5"><a href="aplha-diversity.html#cb109-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">group_names=</span><span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-48"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-48-1.png" alt="Rank Abundance" width="480" />
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="aplha-diversity.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_RankAbundance</span>(</span>
+<span id="cb123-2"><a href="aplha-diversity.html#cb123-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
+<span id="cb123-3"><a href="aplha-diversity.html#cb123-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Family&quot;</span>,</span>
+<span id="cb123-4"><a href="aplha-diversity.html#cb123-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group=</span><span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb123-5"><a href="aplha-diversity.html#cb123-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">group_names=</span><span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-69"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-69-1.png" alt="Rank Abundance" width="480" />
 <p class="caption">
 Figure 7.4: Rank Abundance
 </p>
@@ -512,7 +526,7 @@ Figure 7.4: Rank Abundance
 </div>
 <div id="systematic-information-4" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Systematic Information<a href="aplha-diversity.html#systematic-information-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="aplha-diversity.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="aplha-diversity.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.1.2 (2021-11-01)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
 ## Running under: macOS Monterey 12.2.1
@@ -527,8 +541,8 @@ Figure 7.4: Rank Abundance
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] RColorBrewer_1.1-2 viridis_0.6.2      viridisLite_0.4.0  ggpubr_0.4.0       ggplot2_3.3.5      phyloseq_1.38.0   
-## [7] tibble_3.1.6       dplyr_1.0.8        XMAS_2.1.1        
+## [1] RColorBrewer_1.1-2 viridis_0.6.2      viridisLite_0.4.0  ggpubr_0.4.0       ggplot2_3.3.5      phyloseq_1.38.0    tibble_3.1.6      
+## [8] dplyr_1.0.8        XMAS_2.1.1        
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] utf8_1.2.2                  reticulate_1.24             tidyselect_1.1.2            RSQLite_2.2.10             

@@ -209,8 +209,22 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html"><i class="fa fa-check"></i><b>4</b> Convert inputdata into phyloseq object<span></span></a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#loading-packages"><i class="fa fa-check"></i><b>4.1</b> loading packages<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#dada2-1"><i class="fa fa-check"></i><b>4.2</b> DADA2<span></span></a></li>
-<li class="chapter" data-level="4.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metaphlan23"><i class="fa fa-check"></i><b>4.3</b> Metaphlan2/3<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#dada2-1"><i class="fa fa-check"></i><b>4.2</b> DADA2<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#importing-results-from-dada2-pipeline"><i class="fa fa-check"></i><b>4.2.1</b> Importing results from dada2 pipeline<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#taxa-table"><i class="fa fa-check"></i><b>4.2.2</b> taxa table<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#otu-table"><i class="fa fa-check"></i><b>4.2.3</b> otu table<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metadata-table"><i class="fa fa-check"></i><b>4.2.4</b> metadata table<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object"><i class="fa fa-check"></i><b>4.2.5</b> phyloseq object<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metaphlan23"><i class="fa fa-check"></i><b>4.3</b> Metaphlan2/3<span></span></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#importing-results"><i class="fa fa-check"></i><b>4.3.1</b> Importing results<span></span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#taxa-table-1"><i class="fa fa-check"></i><b>4.3.2</b> taxa table<span></span></a></li>
+<li class="chapter" data-level="4.3.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#otu-table-1"><i class="fa fa-check"></i><b>4.3.3</b> otu table<span></span></a></li>
+<li class="chapter" data-level="4.3.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metadata-table-1"><i class="fa fa-check"></i><b>4.3.4</b> metadata table<span></span></a></li>
+<li class="chapter" data-level="4.3.5" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object-1"><i class="fa fa-check"></i><b>4.3.5</b> phyloseq object<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="4.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#systematic-information-1"><i class="fa fa-check"></i><b>4.4</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="quality-evaluation.html"><a href="quality-evaluation.html"><i class="fa fa-check"></i><b>5</b> Quality Evaluation<span></span></a>
@@ -386,23 +400,23 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 8</span> Beta diversity<a href="beta-diversity.html#beta-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Beta-diversity: Measures for differences between samples from different groups to identify if there are differences in the overall community composition and structure.</p>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="beta-diversity.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS)</span>
-<span id="cb112-2"><a href="beta-diversity.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb112-3"><a href="beta-diversity.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb112-4"><a href="beta-diversity.html#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb112-5"><a href="beta-diversity.html#cb112-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="beta-diversity.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS)</span>
+<span id="cb126-2"><a href="beta-diversity.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb126-3"><a href="beta-diversity.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb126-4"><a href="beta-diversity.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb126-5"><a href="beta-diversity.html#cb126-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <div id="loading-data-and-removing-brs" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Loading data and Removing BRS<a href="beta-diversity.html#loading-data-and-removing-brs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Using <code>get_GroupPhyloseq</code> to remove some samples. For instance, removing the spike-in sample QC in Group column.</p></li>
 <li><p>Rarefying counts</p></li>
 </ul>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="beta-diversity.html#cb113-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb113-2"><a href="beta-diversity.html#cb113-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb113-3"><a href="beta-diversity.html#cb113-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb113-4"><a href="beta-diversity.html#cb113-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
-<span id="cb113-5"><a href="beta-diversity.html#cb113-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
-<span id="cb113-6"><a href="beta-diversity.html#cb113-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="beta-diversity.html#cb127-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb127-2"><a href="beta-diversity.html#cb127-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb127-3"><a href="beta-diversity.html#cb127-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb127-4"><a href="beta-diversity.html#cb127-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
+<span id="cb127-5"><a href="beta-diversity.html#cb127-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
+<span id="cb127-6"><a href="beta-diversity.html#cb127-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 892 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -427,13 +441,13 @@ div.csl-indent {
 <li><p><span class="math inline">\(p_{i}^{A}\)</span> and <span class="math inline">\(p_{i}^{A}\)</span> = taxa proportions descending from the branch <span class="math inline">\(i\)</span> for community A and B, respectively.</p></li>
 <li><p>Calculation</p></li>
 </ul>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="beta-diversity.html#cb115-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;unifrac&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="beta-diversity.html#cb129-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;unifrac&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Visualization</li>
 </ul>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="beta-diversity.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-52"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-52-1.png" alt="Unweighted Unifrac Distance" width="576" />
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="beta-diversity.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-73-1.png" alt="Unweighted Unifrac Distance" width="576" />
 <p class="caption">
 Figure 8.1: Unweighted Unifrac Distance
 </p>
@@ -461,14 +475,14 @@ Figure 8.1: Unweighted Unifrac Distance
 <ul>
 <li><strong>Calculation</strong></li>
 </ul>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="beta-diversity.html#cb117-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;wunifrac&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="beta-diversity.html#cb131-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;wunifrac&quot;</span>)</span></code></pre></div>
 <p>The result of dispersion test (<code>Pr(&gt;F) &gt; 0.05</code>) showed that the <strong>homogeneity condition</strong> of two groups were not significant.</p>
 <ul>
 <li><strong>Visualization</strong></li>
 </ul>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="beta-diversity.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-54"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-54-1.png" alt="Weighted Unifrac Distance" width="576" />
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="beta-diversity.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-75-1.png" alt="Weighted Unifrac Distance" width="576" />
 <p class="caption">
 Figure 8.2: Weighted Unifrac Distance
 </p>
@@ -485,13 +499,13 @@ Figure 8.2: Weighted Unifrac Distance
 <li><p><span class="math inline">\(\alpha\in [0, 1]\)</span> is used to controls the contribution from high-abundance branches;</p></li>
 <li><p><strong>Calculation</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="beta-diversity.html#cb119-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;GUniFrac&quot;</span>, <span class="at">GUniFrac_alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="beta-diversity.html#cb133-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;GUniFrac&quot;</span>, <span class="at">GUniFrac_alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <ul>
 <li><strong>Visualization</strong>: GUniFrac with alpha 0.5</li>
 </ul>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="beta-diversity.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-56"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-56-1.png" alt="Generalized UniFrac Distance (alpha=0.5)" width="576" />
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="beta-diversity.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-77"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-77-1.png" alt="Generalized UniFrac Distance (alpha=0.5)" width="576" />
 <p class="caption">
 Figure 8.3: Generalized UniFrac Distance (alpha=0.5)
 </p>
@@ -511,10 +525,10 @@ where,</p>
 <li><p><span class="math inline">\(i\)</span> in each <span class="math inline">\(sample (j, k)\)</span>;</p></li>
 <li><p><span class="math inline">\(n\)</span> Total number of species in samples.</p></li>
 </ul>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="beta-diversity.html#cb121-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span>
-<span id="cb121-2"><a href="beta-diversity.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-57"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-57-1.png" alt="Bray Curtis Distance" width="576" />
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="beta-diversity.html#cb135-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span>
+<span id="cb135-2"><a href="beta-diversity.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-78"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-78-1.png" alt="Bray Curtis Distance" width="576" />
 <p class="caption">
 Figure 8.4: Bray Curtis Distance
 </p>
@@ -522,7 +536,7 @@ Figure 8.4: Bray Curtis Distance
 </div>
 <div id="checking-the-homogeneity-condition" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Checking the homogeneity condition<a href="beta-diversity.html#checking-the-homogeneity-condition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="beta-diversity.html#cb122-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;jsd&quot;</span>, <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="beta-diversity.html#cb136-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;jsd&quot;</span>, <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Permutation test for homogeneity of multivariate dispersions
 ## Permutation: free
@@ -543,10 +557,10 @@ Figure 8.4: Bray Curtis Distance
 <div id="permutational-multivariate-analysis-of-variance-permanova" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> Permutational Multivariate Analysis of Variance (PERMANOVA)<a href="beta-diversity.html#permutational-multivariate-analysis-of-variance-permanova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Permutational Multivariate Analysis of Variance (PERMANOVA)</strong> test <span class="citation">(<a href="#ref-anderson2014permutational" role="doc-biblioref">Anderson 2014</a>)</span> is to investigate the associations between the environmental factors including discrete or continuous variables (treatments or populations representatives, age, gender etc) and the whole microbial community.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="beta-diversity.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_permanova</span>(dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">columns =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="beta-diversity.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_permanova</span>(dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">columns =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <pre><code>##       SumsOfSample Df SumsOfSqs   MeanSqs  F.Model         R2 Pr(&gt;F) AdjustedPvalue
 ## Group           23  1 0.3141388 0.3141388 1.008455 0.04582123   0.44           0.44</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="beta-diversity.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_permanova</span>(amplicon_ps, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="beta-diversity.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_permanova</span>(amplicon_ps, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span></code></pre></div>
 <pre><code>##                          SumsOfSample Df  SumsOfSqs   MeanSqs   F.Model         R2 Pr(&gt;F) AdjustedPvalue
 ## SampleID                           34 33 12.4906568 0.3785048 0.0000000 1.00000000  1.000      1.0000000
 ## SampleType                         34  3  5.5551059 1.8517020 8.0096101 0.44474090  0.001      0.0090000
@@ -581,7 +595,7 @@ where,</p>
 <li><p><span class="math inline">\(r_{B}\)</span> is the mean of the ranked similarity between groups;</p></li>
 <li><p><span class="math inline">\(r_{W}\)</span> is the mean of the ranked similarity within groups.</p></li>
 </ul>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="beta-diversity.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_ANOSIM</span>(<span class="at">ps =</span> dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="beta-diversity.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_ANOSIM</span>(<span class="at">ps =</span> dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## vegan::anosim(x = dis, grouping = datphe, permutations = 999) 
@@ -603,29 +617,29 @@ where,</p>
 <p><strong>Principal Component Analysis (PCA)</strong> uses a linear combination algorithm to obtain the principal components (PC) (the number of PCs according to the samples). The results have been effected by the normalization methods because different count numbers would affect the PCs. We recommend you using filtering or normalization before performing PCA.</p>
 <div id="preprocessing-phyloseq-object" class="section level4 hasAnchor" number="8.7.1.1">
 <h4><span class="header-section-number">8.7.1.1</span> Preprocessing phyloseq object<a href="beta-diversity.html#preprocessing-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="beta-diversity.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dada2_ps&quot;</span>)</span>
-<span id="cb130-2"><a href="beta-diversity.html#cb130-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-3"><a href="beta-diversity.html#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: Removing samples of specific group in phyloseq-class object</span></span>
-<span id="cb130-4"><a href="beta-diversity.html#cb130-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb130-5"><a href="beta-diversity.html#cb130-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb130-6"><a href="beta-diversity.html#cb130-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb130-7"><a href="beta-diversity.html#cb130-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
-<span id="cb130-8"><a href="beta-diversity.html#cb130-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-9"><a href="beta-diversity.html#cb130-9" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: Rarefying counts in phyloseq-class object</span></span>
-<span id="cb130-10"><a href="beta-diversity.html#cb130-10" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
-<span id="cb130-11"><a href="beta-diversity.html#cb130-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-12"><a href="beta-diversity.html#cb130-12" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: Extracting specific taxa phyloseq-class object </span></span>
-<span id="cb130-13"><a href="beta-diversity.html#cb130-13" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_rarefy, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>, <span class="at">absolute =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb130-14"><a href="beta-diversity.html#cb130-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-15"><a href="beta-diversity.html#cb130-15" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: Aggregating low relative abundance or unclassified taxa into others</span></span>
-<span id="cb130-16"><a href="beta-diversity.html#cb130-16" aria-hidden="true" tabindex="-1"></a><span class="co">#dada2_ps_genus_LRA &lt;- summarize_LowAbundance_taxa(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)</span></span>
-<span id="cb130-17"><a href="beta-diversity.html#cb130-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-18"><a href="beta-diversity.html#cb130-18" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: Filtering the low relative abundance or unclassified taxa by the threshold</span></span>
-<span id="cb130-19"><a href="beta-diversity.html#cb130-19" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_filter <span class="ot">&lt;-</span> <span class="fu">run_filter</span>(dada2_ps_rare_genus, <span class="at">cutoff =</span> <span class="dv">10</span>, <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb130-20"><a href="beta-diversity.html#cb130-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-21"><a href="beta-diversity.html#cb130-21" aria-hidden="true" tabindex="-1"></a><span class="co"># step5: Trimming the taxa with low occurrence less than threshold</span></span>
-<span id="cb130-22"><a href="beta-diversity.html#cb130-22" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_filter_trim <span class="ot">&lt;-</span> <span class="fu">run_trim</span>(dada2_ps_genus_filter, <span class="at">cutoff =</span> <span class="fl">0.2</span>, <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span>
-<span id="cb130-23"><a href="beta-diversity.html#cb130-23" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_filter_trim</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="beta-diversity.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dada2_ps&quot;</span>)</span>
+<span id="cb144-2"><a href="beta-diversity.html#cb144-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="beta-diversity.html#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: Removing samples of specific group in phyloseq-class object</span></span>
+<span id="cb144-4"><a href="beta-diversity.html#cb144-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb144-5"><a href="beta-diversity.html#cb144-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb144-6"><a href="beta-diversity.html#cb144-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb144-7"><a href="beta-diversity.html#cb144-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
+<span id="cb144-8"><a href="beta-diversity.html#cb144-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-9"><a href="beta-diversity.html#cb144-9" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: Rarefying counts in phyloseq-class object</span></span>
+<span id="cb144-10"><a href="beta-diversity.html#cb144-10" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
+<span id="cb144-11"><a href="beta-diversity.html#cb144-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-12"><a href="beta-diversity.html#cb144-12" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: Extracting specific taxa phyloseq-class object </span></span>
+<span id="cb144-13"><a href="beta-diversity.html#cb144-13" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_rarefy, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>, <span class="at">absolute =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb144-14"><a href="beta-diversity.html#cb144-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-15"><a href="beta-diversity.html#cb144-15" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: Aggregating low relative abundance or unclassified taxa into others</span></span>
+<span id="cb144-16"><a href="beta-diversity.html#cb144-16" aria-hidden="true" tabindex="-1"></a><span class="co">#dada2_ps_genus_LRA &lt;- summarize_LowAbundance_taxa(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)</span></span>
+<span id="cb144-17"><a href="beta-diversity.html#cb144-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-18"><a href="beta-diversity.html#cb144-18" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: Filtering the low relative abundance or unclassified taxa by the threshold</span></span>
+<span id="cb144-19"><a href="beta-diversity.html#cb144-19" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_filter <span class="ot">&lt;-</span> <span class="fu">run_filter</span>(dada2_ps_rare_genus, <span class="at">cutoff =</span> <span class="dv">10</span>, <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb144-20"><a href="beta-diversity.html#cb144-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-21"><a href="beta-diversity.html#cb144-21" aria-hidden="true" tabindex="-1"></a><span class="co"># step5: Trimming the taxa with low occurrence less than threshold</span></span>
+<span id="cb144-22"><a href="beta-diversity.html#cb144-22" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_filter_trim <span class="ot">&lt;-</span> <span class="fu">run_trim</span>(dada2_ps_genus_filter, <span class="at">cutoff =</span> <span class="fl">0.2</span>, <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span>
+<span id="cb144-23"><a href="beta-diversity.html#cb144-23" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_filter_trim</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 99 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -633,12 +647,12 @@ where,</p>
 </div>
 <div id="running-pca" class="section level4 hasAnchor" number="8.7.1.2">
 <h4><span class="header-section-number">8.7.1.2</span> Running PCA<a href="beta-diversity.html#running-pca" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="beta-diversity.html#cb132-1" aria-hidden="true" tabindex="-1"></a>ordination_PCA <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
-<span id="cb132-2"><a href="beta-diversity.html#cb132-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> dada2_ps_genus_filter_trim,</span>
-<span id="cb132-3"><a href="beta-diversity.html#cb132-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb132-4"><a href="beta-diversity.html#cb132-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb132-5"><a href="beta-diversity.html#cb132-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-6"><a href="beta-diversity.html#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_PCA)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="beta-diversity.html#cb146-1" aria-hidden="true" tabindex="-1"></a>ordination_PCA <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
+<span id="cb146-2"><a href="beta-diversity.html#cb146-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> dada2_ps_genus_filter_trim,</span>
+<span id="cb146-3"><a href="beta-diversity.html#cb146-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb146-4"><a href="beta-diversity.html#cb146-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb146-5"><a href="beta-diversity.html#cb146-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-6"><a href="beta-diversity.html#cb146-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_PCA)</span></code></pre></div>
 <pre><code>## [1] &quot;fit&quot;           &quot;dat&quot;           &quot;explains&quot;      &quot;eigvalue&quot;      &quot;PERMANOVA&quot;     &quot;axis_taxa_cor&quot;</code></pre>
 <p>The object of <code>run_ordination</code> is comprising of several results which could be used for visualization.</p>
 <ul>
@@ -653,10 +667,10 @@ where,</p>
 <div id="visualization" class="section level4 hasAnchor" number="8.7.1.3">
 <h4><span class="header-section-number">8.7.1.3</span> Visualization<a href="beta-diversity.html#visualization" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="beta-diversity.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCA, </span>
-<span id="cb134-2"><a href="beta-diversity.html#cb134-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-64"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-64-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern" width="768" />
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="beta-diversity.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCA, </span>
+<span id="cb148-2"><a href="beta-diversity.html#cb148-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-85"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-85-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.5: Principal Component Analysis (PCA): Ordinary pattern
 </p>
@@ -670,13 +684,13 @@ Figure 8.5: Principal Component Analysis (PCA): Ordinary pattern
 <ul>
 <li>plot with SampleID and setting group colors</li>
 </ul>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="beta-diversity.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCA, </span>
-<span id="cb135-2"><a href="beta-diversity.html#cb135-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>, </span>
-<span id="cb135-3"><a href="beta-diversity.html#cb135-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb135-4"><a href="beta-diversity.html#cb135-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb135-5"><a href="beta-diversity.html#cb135-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-65"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-65-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern with SampleID" width="768" />
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="beta-diversity.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCA, </span>
+<span id="cb149-2"><a href="beta-diversity.html#cb149-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>, </span>
+<span id="cb149-3"><a href="beta-diversity.html#cb149-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb149-4"><a href="beta-diversity.html#cb149-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb149-5"><a href="beta-diversity.html#cb149-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-86"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-86-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern with SampleID" width="768" />
 <p class="caption">
 Figure 8.6: Principal Component Analysis (PCA): Ordinary pattern with SampleID
 </p>
@@ -684,14 +698,14 @@ Figure 8.6: Principal Component Analysis (PCA): Ordinary pattern with SampleID
 <ul>
 <li>biplot with topN dominant taxa</li>
 </ul>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="beta-diversity.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ggbiplot</span>(<span class="at">ResultList =</span> ordination_PCA,</span>
-<span id="cb136-2"><a href="beta-diversity.html#cb136-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb136-3"><a href="beta-diversity.html#cb136-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb136-4"><a href="beta-diversity.html#cb136-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">topN =</span> <span class="dv">5</span>,</span>
-<span id="cb136-5"><a href="beta-diversity.html#cb136-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">ellipse =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb136-6"><a href="beta-diversity.html#cb136-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">labels =</span> <span class="st">&quot;SampleID&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-66"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-66-1.png" alt="Principal Component Analysis (PCA): biplot" width="576" />
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="beta-diversity.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ggbiplot</span>(<span class="at">ResultList =</span> ordination_PCA,</span>
+<span id="cb150-2"><a href="beta-diversity.html#cb150-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb150-3"><a href="beta-diversity.html#cb150-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb150-4"><a href="beta-diversity.html#cb150-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">topN =</span> <span class="dv">5</span>,</span>
+<span id="cb150-5"><a href="beta-diversity.html#cb150-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">ellipse =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb150-6"><a href="beta-diversity.html#cb150-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">labels =</span> <span class="st">&quot;SampleID&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-87"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-87-1.png" alt="Principal Component Analysis (PCA): biplot" width="576" />
 <p class="caption">
 Figure 8.7: Principal Component Analysis (PCA): biplot
 </p>
@@ -711,19 +725,19 @@ Figure 8.7: Principal Component Analysis (PCA): biplot
 <div id="running-pcoa" class="section level4 hasAnchor" number="8.7.2.1">
 <h4><span class="header-section-number">8.7.2.1</span> Running PCoA<a href="beta-diversity.html#running-pcoa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Different distance measures could be affected by different factors (eg, low abundance taxa for Bary Curtis distance), so we recommend users taking care for whether performing the preprocess before calculating the distance. Here, we coincided to the tactics of the PCA analysis.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="beta-diversity.html#cb137-1" aria-hidden="true" tabindex="-1"></a>ordination_PCoA <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
-<span id="cb137-2"><a href="beta-diversity.html#cb137-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> dada2_ps_genus_filter_trim,</span>
-<span id="cb137-3"><a href="beta-diversity.html#cb137-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb137-4"><a href="beta-diversity.html#cb137-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;PCoA&quot;</span>)</span>
-<span id="cb137-5"><a href="beta-diversity.html#cb137-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_PCoA)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="beta-diversity.html#cb151-1" aria-hidden="true" tabindex="-1"></a>ordination_PCoA <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
+<span id="cb151-2"><a href="beta-diversity.html#cb151-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> dada2_ps_genus_filter_trim,</span>
+<span id="cb151-3"><a href="beta-diversity.html#cb151-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb151-4"><a href="beta-diversity.html#cb151-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;PCoA&quot;</span>)</span>
+<span id="cb151-5"><a href="beta-diversity.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_PCoA)</span></code></pre></div>
 <pre><code>## [1] &quot;fit&quot;           &quot;dat&quot;           &quot;explains&quot;      &quot;eigvalue&quot;      &quot;PERMANOVA&quot;     &quot;axis_taxa_cor&quot;</code></pre>
 </div>
 <div id="visualization-1" class="section level4 hasAnchor" number="8.7.2.2">
 <h4><span class="header-section-number">8.7.2.2</span> Visualization<a href="beta-diversity.html#visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="beta-diversity.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(ordination_PCoA, </span>
-<span id="cb139-2"><a href="beta-diversity.html#cb139-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-68"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-68-1.png" alt="Principal Coordinate Analysis (PCoA)" width="768" />
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="beta-diversity.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(ordination_PCoA, </span>
+<span id="cb153-2"><a href="beta-diversity.html#cb153-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-89"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-89-1.png" alt="Principal Coordinate Analysis (PCoA)" width="768" />
 <p class="caption">
 Figure 8.8: Principal Coordinate Analysis (PCoA)
 </p>
@@ -738,22 +752,22 @@ Figure 8.8: Principal Coordinate Analysis (PCoA)
 <div id="running-tsne" class="section level4 hasAnchor" number="8.7.3.1">
 <h4><span class="header-section-number">8.7.3.1</span> Running tSNE<a href="beta-diversity.html#running-tsne" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><em>Perplexity</em> parameter is for how many neighbors to be chosen.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="beta-diversity.html#cb140-1" aria-hidden="true" tabindex="-1"></a>ordination_tSNE <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
-<span id="cb140-2"><a href="beta-diversity.html#cb140-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> dada2_ps_genus_filter_trim,</span>
-<span id="cb140-3"><a href="beta-diversity.html#cb140-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb140-4"><a href="beta-diversity.html#cb140-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;tSNE&quot;</span>,</span>
-<span id="cb140-5"><a href="beta-diversity.html#cb140-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">para =</span><span class="fu">list</span>(<span class="at">Perplexity=</span><span class="dv">2</span>))</span>
-<span id="cb140-6"><a href="beta-diversity.html#cb140-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-7"><a href="beta-diversity.html#cb140-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_tSNE)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="beta-diversity.html#cb154-1" aria-hidden="true" tabindex="-1"></a>ordination_tSNE <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
+<span id="cb154-2"><a href="beta-diversity.html#cb154-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> dada2_ps_genus_filter_trim,</span>
+<span id="cb154-3"><a href="beta-diversity.html#cb154-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb154-4"><a href="beta-diversity.html#cb154-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;tSNE&quot;</span>,</span>
+<span id="cb154-5"><a href="beta-diversity.html#cb154-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">para =</span><span class="fu">list</span>(<span class="at">Perplexity=</span><span class="dv">2</span>))</span>
+<span id="cb154-6"><a href="beta-diversity.html#cb154-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-7"><a href="beta-diversity.html#cb154-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_tSNE)</span></code></pre></div>
 <pre><code>## [1] &quot;fit&quot;           &quot;dat&quot;           &quot;explains&quot;      &quot;eigvalue&quot;      &quot;PERMANOVA&quot;     &quot;axis_taxa_cor&quot;</code></pre>
 </div>
 <div id="visualization-2" class="section level4 hasAnchor" number="8.7.3.2">
 <h4><span class="header-section-number">8.7.3.2</span> Visualization<a href="beta-diversity.html#visualization-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="beta-diversity.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_tSNE, </span>
-<span id="cb142-2"><a href="beta-diversity.html#cb142-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-70"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-70-1.png" alt="t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern" width="768" />
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="beta-diversity.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_tSNE, </span>
+<span id="cb156-2"><a href="beta-diversity.html#cb156-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-91"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-91-1.png" alt="t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.9: t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern
 </p>
@@ -767,21 +781,21 @@ Figure 8.9: t-distributed stochastic neighbor embedding (t-SNE): Ordinary patter
 </blockquote>
 <div id="running-umap" class="section level4 hasAnchor" number="8.7.4.1">
 <h4><span class="header-section-number">8.7.4.1</span> Running UMAP<a href="beta-diversity.html#running-umap" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="beta-diversity.html#cb143-1" aria-hidden="true" tabindex="-1"></a>ordination_UMAP <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
-<span id="cb143-2"><a href="beta-diversity.html#cb143-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> dada2_ps_genus_filter_trim,</span>
-<span id="cb143-3"><a href="beta-diversity.html#cb143-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb143-4"><a href="beta-diversity.html#cb143-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;UMAP&quot;</span>)</span>
-<span id="cb143-5"><a href="beta-diversity.html#cb143-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-6"><a href="beta-diversity.html#cb143-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_UMAP)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="beta-diversity.html#cb157-1" aria-hidden="true" tabindex="-1"></a>ordination_UMAP <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
+<span id="cb157-2"><a href="beta-diversity.html#cb157-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> dada2_ps_genus_filter_trim,</span>
+<span id="cb157-3"><a href="beta-diversity.html#cb157-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb157-4"><a href="beta-diversity.html#cb157-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;UMAP&quot;</span>)</span>
+<span id="cb157-5"><a href="beta-diversity.html#cb157-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-6"><a href="beta-diversity.html#cb157-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_UMAP)</span></code></pre></div>
 <pre><code>## [1] &quot;fit&quot;           &quot;dat&quot;           &quot;explains&quot;      &quot;eigvalue&quot;      &quot;PERMANOVA&quot;     &quot;axis_taxa_cor&quot;</code></pre>
 </div>
 <div id="visualization-3" class="section level4 hasAnchor" number="8.7.4.2">
 <h4><span class="header-section-number">8.7.4.2</span> Visualization<a href="beta-diversity.html#visualization-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="beta-diversity.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_UMAP, </span>
-<span id="cb145-2"><a href="beta-diversity.html#cb145-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-72-1.png" alt="Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern" width="768" />
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="beta-diversity.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_UMAP, </span>
+<span id="cb159-2"><a href="beta-diversity.html#cb159-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-93"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-93-1.png" alt="Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern
 </p>
@@ -791,7 +805,7 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 </div>
 <div id="systematic-information-5" class="section level2 hasAnchor" number="8.8">
 <h2><span class="header-section-number">8.8</span> Systematic Information<a href="beta-diversity.html#systematic-information-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="beta-diversity.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="beta-diversity.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.1.2 (2021-11-01)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
 ## Running under: macOS Monterey 12.2.1
@@ -806,8 +820,8 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] RColorBrewer_1.1-2 viridis_0.6.2      viridisLite_0.4.0  ggpubr_0.4.0       ggplot2_3.3.5      phyloseq_1.38.0   
-## [7] tibble_3.1.6       dplyr_1.0.8        XMAS_2.1.1        
+## [1] RColorBrewer_1.1-2 viridis_0.6.2      viridisLite_0.4.0  ggpubr_0.4.0       ggplot2_3.3.5      phyloseq_1.38.0    tibble_3.1.6      
+## [8] dplyr_1.0.8        XMAS_2.1.1        
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] utf8_1.2.2                  reticulate_1.24             tidyselect_1.1.2            RSQLite_2.2.10             
