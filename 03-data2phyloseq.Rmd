@@ -64,7 +64,7 @@ We use `import_dada2_taxa` to convert dada2_res$tax_tab into our own taxa table
 ```{r, warning=FALSE, message=FALSE}
 tax_tab <- import_dada2_taxa(dada2_res$tax_tab)
 
-head(tax_tab)
+head(tax_tab, 1)
 ```
 
 
@@ -74,7 +74,7 @@ otu_tab <- dada2_res$seq_tab
 # Shouldn't use the Total Number as SampleID (wrong: 123456; right: X123456)
 rownames(otu_tab) <- paste0("S", rownames(otu_tab))
 
-head(otu_tab)
+head(otu_tab[, 1, F])
 ```
 
 
@@ -100,6 +100,20 @@ dada2_ps
 we obtain the **phyloseq-class object** and then use it to perform data analysis.
 
 
+* otu_table
+```{r, warning=FALSE, message=FALSE}
+dada2_ps@otu_table %>% data.frame() %>% head()
+```
+
+* tax_table
+```{r, warning=FALSE, message=FALSE}
+dada2_ps@tax_table %>% data.frame() %>% head()
+```
+
+* sample_table
+```{r, warning=FALSE, message=FALSE}
+dada2_ps@sam_data %>% data.frame() %>% head()
+```
 
 
 ## Metaphlan2/3
