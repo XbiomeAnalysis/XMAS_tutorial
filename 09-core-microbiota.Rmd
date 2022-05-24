@@ -14,22 +14,25 @@ library(ggplot2)
 
 ## Core microbiota anlaysis
 
+* Using `get_GroupPhyloseq` to remove some samples. For instance, removing the spike-in sample QC in Group column.
+
+* Rarefying counts
+
 * Genus data are from previous chapter and we will use this object
 ```{r, warning=FALSE, message=FALSE}
-data("dada2_ps")
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC",
-                     discard = TRUE
-                     )
-dada2_ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus")
+                     group_names = "QC")
+dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
+
+dada2_ps_rarefy_genus <- summarize_taxa(dada2_ps_rarefy, taxa_level = "Genus")
 ```
 
 * Normalization: See the Chapter 6 Pre-processing
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_genus_rb <- normalize(dada2_ps_genus, method = "TSS")
-dada2_ps_genus_rb
+dada2_ps_rarefy_genus_rb <- normalize(dada2_ps_rarefy_genus, method = "TSS")
+dada2_ps_rarefy_genus_rb
 ```
 
 
@@ -37,7 +40,7 @@ dada2_ps_genus_rb
 
 Use `core_members` to obtain the core taxa. _detection_ for abundance and _prevalence_ for occurrence.
 ```{r, warning=FALSE, message=FALSE}
-core_taxa_name <- core_members(dada2_ps_genus_rb, detection = 0.01, prevalence = 0.8)
+core_taxa_name <- core_members(dada2_ps_rarefy_genus_rb, detection = 0.01, prevalence = 0.8)
 print(core_taxa_name)
 ```
 
@@ -51,7 +54,7 @@ Only **three** genera (g__Bifidobacterium, g__Blautia and g__Lachnospiraceae_unc
 Total core abundance in each sample (sum of abundances of the core members):
 
 ```{r, warning=FALSE, message=FALSE}
-core_abundance <- sample_sums(phyloseq_core_taxa(dada2_ps_genus_rb, detection = 0.01, prevalence = 0.8))
+core_abundance <- sample_sums(phyloseq_core_taxa(dada2_ps_rarefy_genus_rb, detection = 0.01, prevalence = 0.8))
 
 DT::datatable(data.frame(core_abundance))
 ```
@@ -68,7 +71,7 @@ We display the taxa based on the prevalence and detection via two ways (heatmap 
 prevalences <- seq(0.05, 1, 0.05)
 detections <- 10^seq(log10(1e-3), log10(.2), length = 10)
 
-pl_core <- plot_core_taxa(dada2_ps_genus_rb, 
+pl_core <- plot_core_taxa(dada2_ps_rarefy_genus_rb, 
                     plot.type = "heatmap", 
                     colours = gray(seq(0, 1, length=5)),
                     prevalences = prevalences, 
@@ -95,7 +98,7 @@ library(RColorBrewer)
 prevalences <- seq(0.05, 1, 0.05)
 detections <- 10^seq(log10(1e-3), log10(.2), length = 10)
 
-pl_core <- plot_core_taxa(dada2_ps_genus_rb, 
+pl_core <- plot_core_taxa(dada2_ps_rarefy_genus_rb, 
                     plot.type = "heatmap", 
                     colours = rev(brewer.pal(5, "Spectral")),
                     prevalences = prevalences, 
@@ -116,7 +119,7 @@ This plot show the relationship between Detection and Prevalence in a linear mod
 prevalences <- seq(0.05, 1, 0.05)
 detections <- 10^seq(log10(1e-3), log10(.2), length = 10)
 
-pl_core <- plot_core_taxa(dada2_ps_genus_rb, 
+pl_core <- plot_core_taxa(dada2_ps_rarefy_genus_rb, 
                     plot.type = "lineplot", 
                     prevalences = prevalences, 
                     detections = detections, 

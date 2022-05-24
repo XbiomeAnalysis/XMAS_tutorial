@@ -12,18 +12,48 @@ head(dat_alpha)
 
 `plot_boxplot` has many parameters, and help you enjoy it.
 
-* single measure
-```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="boxplot(single measure with group number)"}
+* single measure 
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="boxplot(single measure)"}
 plot_boxplot(data=dat_alpha,
              y_index = "Shannon",
              group = "SampleType",
-             group_names = NULL,
-             group_color = NULL,
+             do_test = FALSE)
+```
+
+* single measure with significant results
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="boxplot(single measure with significant results)"}
+plot_boxplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE)
+```
+
+* single measure with significant results of pairwises
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="boxplot(single measure with significant results of pairwises)"}
+plot_boxplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
              do_test = TRUE,
-             ref_group = NULL,
-             method = "wilcox.test",
-             outlier = TRUE
-  )
+             cmp_list = list(c("gut", "right palm"), c("gut", "tongue")))
+```
+
+* single measure with significant results of pairwises and outlier
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="boxplot(single measure with significant results of pairwises and outlier)"}
+plot_boxplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE,
+             cmp_list = list(c("gut", "right palm"), c("gut", "tongue")),
+             outlier = TRUE)
+```
+
+* single measure with significant results of ref_group
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="boxplot(single measure with significant results of ref_group)"}
+plot_boxplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE,
+             ref_group = "gut")
 ```
 
 * multiple measures
@@ -33,26 +63,50 @@ plot_boxplot(data=dat_alpha,
              group = "SampleType",
              group_names = c("gut", "right palm", "tongue"),
              group_color = c("red", "green", "blue"),
-             do_test = TRUE,
              ref_group = "gut",
              method = "wilcox.test",
-             outlier = TRUE
-  )
+             outlier = TRUE)
 ```
+
+
 
 ## plot_barplot
 
 `plot_barplot` has many parameters, and help you enjoy it.
 
-* single index
-```{r, warning=FALSE, fig.width=4, fig.height=3, fig.align="center", fig.cap="barplot(single index)"}
+
+* single measure 
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="barplot(single measure)"}
 plot_barplot(data=dat_alpha,
-              y_index="Shannon",
-              group="SampleType",
-              do_test=TRUE,
-              ref_group = "gut",
-              method="wilcox.test"
-              )
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = FALSE)
+```
+
+* single measure with significant results
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="barplot(single measure with significant results)"}
+plot_barplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE)
+```
+
+* single measure with significant results of pairwises
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="barplot(single measure with significant results of pairwises)"}
+plot_barplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE,
+             cmp_list = list(c("gut", "right palm"), c("gut", "tongue")))
+```
+
+* single measure with significant results of ref_group
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="barplot(single measure with significant results of ref_group)"}
+plot_barplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE,
+             ref_group = "gut")
 ```
 
 * multiple index
@@ -61,21 +115,60 @@ plot_barplot(data=dat_alpha,
               y_index=c("Shannon", "Chao1", "Observed"),
               group="SampleType",
               do_test=TRUE,
-              method="wilcox.test"
-              )
+              method="wilcox.test")
 ```
+
+
 
 ## plot_dotplot
 
 `plot_dotplot` has many parameters, and help you enjoy it.
 
-* single index
-```{r, warning=FALSE, fig.width=4, fig.height=3, fig.align="center", fig.cap="dotplot(single index)"}
+* single measure 
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="dotplot(single measure)"}
 plot_dotplot(data=dat_alpha,
-              y_index="Shannon",
-              group="SampleType",
-              do_test=TRUE,
-              method="wilcox.test")
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = FALSE)
+```
+
+* single measure with significant results
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="dotplot(single measure with significant results)"}
+plot_dotplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE)
+```
+
+* single measure with significant results of pairwises
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="dotplot(single measure with significant results of pairwises)"}
+plot_dotplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE,
+             cmp_list = list(c("gut", "right palm"), c("gut", "tongue")))
+```
+
+
+* single measure with significant results of ref_group
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="dotplot(single measure with significant results of ref_group)"}
+plot_dotplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE,
+             ref_group = "gut")
+```
+
+
+* dot size and median size
+```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="dotplot(dot size and median size)"}
+plot_dotplot(data=dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE,
+             ref_group = "gut",
+             dotsize = 0.5,
+             mediansize = 2)
 ```
 
 * multiple index
@@ -97,6 +190,7 @@ plot_dotplot(data=dat_alpha,
               show_type="errorbar",
               method="wilcox.test")
 ```
+
 
 
 ## plot_correlation_boxplot
@@ -129,20 +223,22 @@ plot_correlation_density(data=dat_alpha,
 data("dada2_ps")
 
 # step1: Removing samples of specific group in phyloseq-class object
-dada2_ps_without_QC <- get_GroupPhyloseq(
+dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC",
-                     discard = TRUE)
+                     group_names = "QC")
 
-# step2: Extracting specific taxa phyloseq-class object 
-dada2_ps_genus <- summarize_taxa(dada2_ps_without_QC, taxa_level = "Genus", absolute = TRUE)
+# step2: Rarefying counts in phyloseq-class object
+dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
 
-# step3: Aggregating low relative abundance or unclassified taxa into others
-#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+# step3: Extracting specific taxa phyloseq-class object 
+dada2_ps_rare_genus <- summarize_taxa(dada2_ps_rarefy, taxa_level = "Genus", absolute = TRUE)
+
+# step4: Aggregating low relative abundance or unclassified taxa into others
+#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
 
 # step4: Filtering the low relative abundance or unclassified taxa by the threshold
-dada2_ps_genus_filter <- run_filter(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+dada2_ps_genus_filter <- run_filter(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
 
 # step5: Trimming the taxa with low occurrence less than threshold
 dada2_ps_genus_filter_trim <- run_trim(dada2_ps_genus_filter, cutoff = 0.2, trim = "feature")
@@ -157,14 +253,14 @@ names(ordination_PCA)
 ```
 
 * Ordinary pattern
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination: Ordinary pattern"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination (Ordinary pattern)"}
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group")
 ```
 
 
 * plot with SampleID and setting group colors
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination: Ordinary pattern with SampleID"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination (Ordinary pattern with SampleID)"}
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group", 
                 group_names = c("AA", "BB"),
@@ -175,7 +271,7 @@ plot_Ordination(ResultList = ordination_PCA,
 
 
 * ellipse with 95% confidence interval
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination ellipse with 95% confidence interval"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination (ellipse with 95% confidence interval)"}
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group", 
                 group_names = c("AA", "BB"),
@@ -186,7 +282,7 @@ plot_Ordination(ResultList = ordination_PCA,
 
 
 * ellipse with groups
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination: ellipse with groups"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination (ellipse with groups)"}
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group", 
                 group_names = c("AA", "BB"),
@@ -197,7 +293,7 @@ plot_Ordination(ResultList = ordination_PCA,
 
 
 * ellipse with border line
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination: ellipse with border line"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_Ordination (ellipse with border line)"}
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group", 
                 group_names = c("AA", "BB"),
@@ -208,7 +304,7 @@ plot_Ordination(ResultList = ordination_PCA,
 
 
 * plot with SampleID and sideboxplot and setting group colors
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_Ordination: Ordinary pattern with SampleID sideboxplot"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_Ordination (Ordinary pattern with SampleID sideboxplot)"}
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group", 
                 group_names = c("AA", "BB"),
@@ -219,10 +315,69 @@ plot_Ordination(ResultList = ordination_PCA,
                 sample = TRUE)
 ```
 
+
+* plot with SampleID and sideboxplot and setting group colors 2
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_Ordination (ellipse_CI with SampleID sideboxplot)"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse_CI",
+                sidelinechart = FALSE,
+                sideboxplot = TRUE,
+                sample = TRUE)
+```
+
+
+* plot with SampleID and sideboxplot and setting group colors 3
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_Ordination (ellipse_groups with SampleID sideboxplot)"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse_groups",
+                sidelinechart = FALSE,
+                sideboxplot = TRUE,
+                sample = TRUE)
+```
+
+
+* plot with SampleID and sideboxplot and setting group colors 4
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_Ordination (ellipse_line with SampleID sideboxplot)"}
+plot_Ordination(ResultList = ordination_PCA, 
+                group = "Group", 
+                group_names = c("AA", "BB"),
+                group_color = c("blue", "red"),
+                circle_type = "ellipse_line",
+                sidelinechart = FALSE,
+                sideboxplot = TRUE,
+                sample = TRUE)
+```
+
+
+* plot with SampleID and sideboxplot and setting group colors and shape
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_Ordination (ellipse_line with SampleID sideboxplot)"}
+data("amplicon_ps")
+amplicon_ps_genus <- summarize_taxa(amplicon_ps, taxa_level = "Genus")
+amplicon_res_ordination <- run_ordination(
+                      ps = amplicon_ps_genus,
+                      group = "SampleType",
+                      method = "PCoA")
+
+plot_Ordination(ResultList = amplicon_res_ordination, 
+                group = "SampleType",
+                shape_column = "ReportedAntibioticUsage",
+                shape_values = c(16, 17),
+                circle_type = "ellipse_line",
+                sidelinechart = FALSE,
+                sideboxplot = TRUE,
+                sample = TRUE)
+```
+
 ## plot_ggbiplot
 
 * biplot with topN dominant taxa
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_ggbiplot: biplot"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=5, fig.cap="plot_ggbiplot (biplot)"}
 plot_ggbiplot(ResultList = ordination_PCA,
               group = "Group",
               group_color = c("blue", "red"),
@@ -231,6 +386,111 @@ plot_ggbiplot(ResultList = ordination_PCA,
               labels = "SampleID")
 ```
 
+
+## plot_corrplot
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=6, fig.cap="plot_corrplot (distance)"}
+dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "bray")
+plot_distance_corrplot(dada2_beta$BetaDistance)
+```
+
+
+## plot_2DA_venn
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=6, fig.cap="plot_2DA_venn (wilcox vs t_test)"}
+da_wilcox <- run_wilcox(dada2_ps_genus_filter_trim,
+                     group = "Group",
+                     group_names = c("AA", "BB"))
+
+da_ttest <- run_ttest(dada2_ps_genus_filter_trim,
+                     group = "Group",
+                     group_names = c("AA", "BB"))
+
+DA_venn_res <- plot_2DA_venn(
+         daTest1 = da_wilcox,
+         daTest2 = da_ttest,
+         datType1 = "AA vs BB(wilcox)",
+         datType2 = "AA vs BB(t-test)",
+         group_names = c("AA", "BB"),
+         Pvalue_name = "Pvalue",
+         logFc_name1 = "Log2FoldChange (Rank)\nAA_vs_BB",
+         logFc_name2 = "Log2FoldChange (geometricmean)\nAA_vs_BB",
+         Pvalue_cutoff = 0.8,
+         logFC_cutoff = 0.2)
+DA_venn_res$pl
+```
+
+
+## plot_stacked_bar_XIVZ
+
+* Minimum usage: plot in relative abundance
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_stacked_bar_XIVZ (test1)"}
+plot_stacked_bar_XIVZ(phyloseq = dada2_ps_rarefy, level = "Family")
+```
+
+
+* Set feature parameter to show feature information
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test2)"}
+plot_stacked_bar_XIVZ(phyloseq = dada2_ps_rarefy, 
+                 level = "Family",
+                 feature = "Group")
+```
+
+* Pass ordered sample names to order parameter to plot in specific order
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test3)"}
+metadata <- phyloseq::sample_data(dada2_ps_rarefy) %>% 
+  data.frame() %>%
+  dplyr::arrange(Group)
+plot_stacked_bar_XIVZ(phyloseq = dada2_ps_rarefy, 
+                 level = "Family",
+                 feature = "Group",
+                 order = rownames(metadata))
+```
+
+
+* Use facet_wrap(vars(), scale="free") funciton to facet stacked barplot
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test4)"}
+plot_stacked_bar_XIVZ(phyloseq = dada2_ps_rarefy, 
+                 level = "Family", 
+                 relative_abundance = TRUE, 
+                 order = rownames(metadata)) + 
+  facet_wrap(vars(Group), scale="free")
+```
+
+
+## plot_StackBarPlot 
+
+`plot_StackBarPlot` provides too many parameters for users to display the Stacked barplot of microbial composition by using ggplot2 format. Here is the ordinary pattern. More details to see `help(plot_StackBarPlot)`.
+
+* Ordinary pattern
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="plot_StackBarPlot(Ordinary pattern)"}
+plot_StackBarPlot(ps=dada2_ps_rarefy, taxa_level="Phylum")
+```
+
+* Metadata with `Group` phenotype
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6.5, fig.height=7, fig.cap="plot_StackBarPlot (Metadata with group)"}
+plot_StackBarPlot(
+        ps=dada2_ps_rarefy,
+        taxa_level="Phylum",
+        group = "Group")
+```
+
+
+* Metadata with `Group` phenotype in cluster mode
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6.5, fig.height=7, fig.cap="plot_StackBarPlot (Metadata with group in cluster mode)"}
+plot_StackBarPlot(
+        ps=dada2_ps_rarefy,
+        taxa_level="Phylum",
+        group = "Group",
+        cluster = TRUE)
+```
+
+* Metadata with `Group` phenotype in facet
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="plot_StackBarPlot (Metadata with group in facet)"}
+plot_StackBarPlot(
+        ps=dada2_ps_rarefy,
+        taxa_level="Phylum",
+        group = "Group",
+        facet = TRUE)
+```
 
 ## Systematic Information
 ```{r}

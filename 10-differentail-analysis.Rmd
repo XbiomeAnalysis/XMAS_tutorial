@@ -40,18 +40,19 @@ data("dada2_ps")
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC",
-                     discard = TRUE
-                     )
+                     group_names = "QC")
 
-# step2: Extracting specific taxa phyloseq-class object 
-dada2_ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus")
+# step2: Rarefying counts in phyloseq-class object
+dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
 
-# step3: Aggregating low relative abundance or unclassified taxa into others
-#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+# step3: Extracting specific taxa phyloseq-class object 
+dada2_ps_rare_genus <- summarize_taxa(dada2_ps_rarefy, taxa_level = "Genus", absolute = TRUE)
+
+# step4: Aggregating low relative abundance or unclassified taxa into others
+#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
 
 # step4: Filtering the low relative abundance or unclassified taxa by the threshold
-dada2_ps_genus_filter <- run_filter(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+dada2_ps_genus_filter <- run_filter(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
 
 # step5: Trimming the taxa with low occurrence less than threshold
 dada2_ps_genus_filter_trim <- run_trim(dada2_ps_genus_filter, cutoff = 0.2, trim = "feature")
@@ -69,13 +70,9 @@ DA_ALDEx2 <- run_aldex(
                      dada2_ps_genus_filter_trim,
                      group = "Group",
                      group_names = c("AA", "BB"),
-                     norm = "none",
-                     transform = "identity",
-                     method = "t.test",
-                     p_adjust = "none",
-                     pvalue_cutoff = 0.05)
+                     method = "t.test")
 colnames(DA_ALDEx2)
-DT::datatable(DA_ALDEx2)
+head(DA_ALDEx2)
 ```
 
 **Results**: 
@@ -120,12 +117,7 @@ DA_ALDEx2 <- run_da(
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "aldex",
-                    norm = "none",
-                    transform = "identity",
-                    method = "t.test",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    method = "t.test")
 colnames(DA_ALDEx2)
 ```
 </details>
@@ -142,12 +134,7 @@ DA_ALDEx2 <- run_aldex(
                      data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                      group = "Group",
                      group_names = c("AA", "BB"),
-                     norm = "none",
-                     transform = "identity",
-                     method = "t.test",
-                     p_adjust = "none",
-                     pvalue_cutoff = 0.05
-                     )
+                     method = "t.test")
 
 colnames(DA_ALDEx2)
 ```
@@ -163,11 +150,7 @@ DA_ALDEx2 <- run_aldex(
                      taxa_level = "Genus",
                      group = "Group",
                      group_names = c("AA", "BB"),
-                     norm = "none",
-                     transform = "identity",
-                     method = "t.test",
-                     p_adjust = "none",
-                     pvalue_cutoff = 0.05)
+                     method = "t.test")
 colnames(DA_ALDEx2)
 ```
 </details>
@@ -183,15 +166,10 @@ colnames(DA_ALDEx2)
 DA_limma_voom <- run_limma_voom(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    voom_span = 0.5,
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 colnames(DA_limma_voom)
-DT::datatable(DA_limma_voom)
+head(DA_limma_voom)
 ```
 
 **Results**: 
@@ -233,38 +211,20 @@ DA_limma_voom <- run_limma_voom(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    voom_span = 0.5,
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 DA_limma_voom <- run_limma_voom(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    voom_span = 0.5,
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_limma_voom <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    da_method = "limma_voom",
-                    transform = "identity",
-                    norm = "none",
-                    voom_span = 0.5,
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
-DT::datatable(DA_limma_voom)
+head(DA_limma_voom)
 }
 ```
 </details>
@@ -278,13 +238,9 @@ DT::datatable(DA_limma_voom)
 DA_mbzinb <- run_mbzinb(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 colnames(DA_mbzinb)
-DT::datatable(DA_mbzinb)
+head(DA_mbzinb)
 ```
 
 **Results**: 
@@ -343,36 +299,20 @@ DA_mbzinb <- run_mbzinb(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_mbzinb <- run_mbzinb(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_mbzinb <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    da_method = "mbzinb",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
-DT::datatable(DA_mbzinb)
+head(DA_mbzinb)
 }
 ```
 </details>
@@ -391,14 +331,10 @@ DA_omnibus <- run_omnibus(
                      dada2_ps_genus_filter_trim,
                      group = "Group",
                      group_names = c("AA", "BB"),
-                     transform = "identity",
-                     norm = "none",
-                     method = "omnibus",
-                     p_adjust = "none",
-                     pvalue_cutoff = 0.05)
+                     method = "omnibus")
 
 colnames(DA_omnibus)
-DT::datatable(DA_omnibus)
+head(DA_omnibus)
 ```
 
 **Results**: 
@@ -462,12 +398,7 @@ DA_omnibus <- run_omnibus(
                      data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                      group = "Group",
                      group_names = c("AA", "BB"),
-                     transform = "identity",
-                     norm = "none",
-                     method = "omnibus",
-                     p_adjust = "none",
-                     pvalue_cutoff = 0.05
-                     )
+                     method = "omnibus")
 
 
 DA_omnibus <- run_omnibus(
@@ -475,26 +406,16 @@ DA_omnibus <- run_omnibus(
                      taxa_level = "Genus",
                      group = "Group",
                      group_names = c("AA", "BB"),
-                     transform = "identity",
-                     norm = "none",
-                     method = "omnibus",
-                     p_adjust = "none",
-                     pvalue_cutoff = 0.05
-                     )
+                     method = "omnibus")
 
 DA_omnibus <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "omnibus",
-                    transform = "identity",
-                    norm = "none",
-                    method = "omnibus",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    method = "omnibus")
 
-DT::datatable(DA_omnibus)
+head(DA_omnibus)
 }
 ```
 </details>
@@ -508,14 +429,10 @@ DT::datatable(DA_omnibus)
 DA_RAIDA <- run_raida(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 colnames(DA_RAIDA)
-DT::datatable(DA_RAIDA)
+head(DA_RAIDA)
 ```
 
 **Results**: 
@@ -568,36 +485,21 @@ DA_RAIDA <- run_raida(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_RAIDA <- run_raida(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_RAIDA <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "raida",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "raida")
 
-DT::datatable(DA_RAIDA)
+head(DA_RAIDA)
 }
 ```
 </details>
@@ -613,14 +515,10 @@ Wilcoxon Rank Sum and Signed Rank Tests, which are nonparametric test methods, u
 DA_wilcox <- run_wilcox(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 colnames(DA_wilcox)
-DT::datatable(DA_wilcox)
+head(DA_wilcox)
 ```
 
 **Results**: 
@@ -662,36 +560,21 @@ DA_wilcox <- run_wilcox(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_wilcox <- run_wilcox(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_wilcox <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "wilcox",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "wilcox")
 
-DT::datatable(DA_wilcox)
+head(DA_wilcox)
 }
 ```
 </details>
@@ -707,11 +590,7 @@ DA_wilcox_rarefy <- run_wilcox(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "rarefy",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    norm = "rarefy")
 colnames(DA_wilcox_rarefy)
 ```
 
@@ -726,13 +605,9 @@ DA_wilcox_rarefy <- run_da(
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "wilcox",
-                    transform = "identity",
-                    norm = "rarefy",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    norm = "rarefy")
 
-DT::datatable(DA_wilcox_rarefy)
+head(DA_wilcox_rarefy)
 }
 ```
 </details>
@@ -744,10 +619,7 @@ DA_wilcox_CLR <- run_wilcox(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "CLR",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05)
+                    norm = "CLR")
 
 colnames(DA_wilcox_CLR)
 ```
@@ -763,13 +635,9 @@ DA_wilcox_CLR <- run_da(
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "wilcox",
-                    transform = "identity",
-                    norm = "CLR",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    norm = "CLR")
 
-DT::datatable(DA_wilcox_CLR)
+head(DA_wilcox_CLR)
 }
 ```
 </details>
@@ -784,12 +652,9 @@ DA_lefse <- run_lefse(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "rarefy",
-                    wl.p = 0.05,
                     Lda = 0)
 colnames(DA_lefse)
-DT::datatable(DA_lefse)
+head(DA_lefse)
 ```
 
 **Results**: 
@@ -827,35 +692,23 @@ DA_lefse <- run_lefse(
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "rarefy",
-                    wl.p = 0.05,
-                    Lda = 0
-                    )
+                    Lda = 0)
 
 DA_lefse <- run_lefse(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "rarefy",
-                    wl.p = 0.05,
-                    Lda = 0
-                    )
+                    Lda = 0)
 
 DA_lefse <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "lefse",
-                    transform = "identity",
-                    norm = "rarefy",
-                    wl.p = 0.05,
-                    Lda = 0
-                    )
+                    Lda = 0)
 
-DT::datatable(DA_lefse)
+head(DA_lefse)
 }
 ```
 </details>
@@ -870,14 +723,10 @@ T test, a parametric test method, identifies the significant taxa.
 DA_ttest <- run_ttest(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 colnames(DA_ttest)
-DT::datatable(DA_ttest)
+head(DA_ttest)
 ```
 
 
@@ -919,36 +768,21 @@ DA_ttest <- run_ttest(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_ttest <- run_ttest(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_ttest <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "ttest",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "ttest")
 
-DT::datatable(DA_ttest)
+head(DA_ttest)
 }
 ```
 </details>
@@ -960,10 +794,7 @@ DA_ttest_rarefy <- run_ttest(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "rarefy",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05)
+                    norm = "rarefy")
 colnames(DA_ttest_rarefy)
 ```
 
@@ -978,13 +809,9 @@ DA_ttest_rarefy <- run_da(
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "ttest",
-                    transform = "identity",
-                    norm = "rarefy",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    norm = "rarefy")
 
-DT::datatable(DA_ttest_rarefy)
+head(DA_ttest_rarefy)
 }
 ```
 </details>
@@ -999,14 +826,11 @@ DA_metagenomeseq <- run_metagenomeseq(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
                     norm = "CSS",
-                    method = "ZILN",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05)
+                    method = "ZILN")
 
 colnames(DA_metagenomeseq)
-DT::datatable(DA_metagenomeseq)
+head(DA_metagenomeseq)
 ```
 
 **Results**: 
@@ -1047,38 +871,26 @@ DA_metagenomeseq <- run_metagenomeseq(
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
                     norm = "CSS",
-                    method = "ZILN",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    method = "ZILN")
 
 DA_metagenomeseq <- run_metagenomeseq(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
                     norm = "CSS",
-                    method = "ZILN",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    method = "ZILN")
 
 DA_metagenomeseq<- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "metagenomeseq",
-                    transform = "identity",
                     norm = "CSS",
-                    method = "ZILN",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    method = "ZILN")
 
-DT::datatable(DA_metagenomeseq)
+head(DA_metagenomeseq)
 }
 ```
 </details>
@@ -1092,14 +904,10 @@ DT::datatable(DA_metagenomeseq)
 DA_deseq2 <- run_deseq2(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 colnames(DA_deseq2)
-DT::datatable(DA_deseq2)
+head(DA_deseq2)
 ```
 
 **Results**: 
@@ -1139,36 +947,21 @@ DA_deseq2 <- run_deseq2(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_deseq2 <- run_deseq2(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_deseq2 <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "deseq2",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "deseq2")
 
-DT::datatable(DA_deseq2)
+head(DA_deseq2)
 }
 ```
 </details>
@@ -1182,14 +975,10 @@ DT::datatable(DA_deseq2)
 DA_edger <- run_edger(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 colnames(DA_edger)
-DT::datatable(DA_edger)
+head(DA_edger)
 ```
 
 
@@ -1231,36 +1020,21 @@ DA_edger <- run_edger(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_edger <- run_edger(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_edger <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "edger",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "edger")
 
-DT::datatable(DA_edger)
+head(DA_edger)
 }
 ```
 </details>
@@ -1273,14 +1047,10 @@ DT::datatable(DA_edger)
 DA_ancom <- run_ancom(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 colnames(DA_ancom)
-DT::datatable(DA_ancom)
+head(DA_ancom)
 ```
 
 
@@ -1323,36 +1093,21 @@ DA_ancom <- run_ancom(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_ancom <- run_ancom(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 
 DA_ancom <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "ancom",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "ancom")
 
-DT::datatable(DA_ancom)
+head(DA_ancom)
 }
 ```
 </details>
@@ -1368,14 +1123,10 @@ DA_corncob <- run_corncob(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    method = "Wald",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05)
+                    method = "Wald")
 
 colnames(DA_ancom)
-DT::datatable(DA_ancom)
+head(DA_ancom)
 }
 ```
 
@@ -1389,38 +1140,23 @@ DA_corncob <- run_corncob(
                     data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    method = "Wald",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    method = "Wald")
 
 DA_corncob <- run_corncob(
                     dada2_ps,
                     taxa_level = "Genus",
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    method = "Wald",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    method = "Wald")
 
 DA_corncob <- run_da(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "corncob",
-                    transform = "identity",
-                    norm = "none",
-                    method = "Wald",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    method = "Wald")
 
-DT::datatable(DA_corncob)
+head(DA_corncob)
 }
 ```
 </details>
@@ -1438,10 +1174,7 @@ DA_maaslin2 <- run_maaslin2(
                     transform = "LOG",
                     norm = "TMM",
                     method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
+                    outdir = "./demo_output")
 
 DA_maaslin2 <- run_maaslin2(
                     dada2_ps,
@@ -1451,10 +1184,7 @@ DA_maaslin2 <- run_maaslin2(
                     transform = "LOG",
                     norm = "TMM",
                     method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
+                    outdir = "./demo_output")
 
 DA_maaslin2 <- run_maaslin2(
                     data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
@@ -1464,10 +1194,7 @@ DA_maaslin2 <- run_maaslin2(
                     transform = "LOG",
                     norm = "TMM",
                     method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
+                    outdir = "./demo_output")
 
 DA_maaslin2 <- run_da(
                     dada2_ps_genus_filter_trim,
@@ -1477,63 +1204,11 @@ DA_maaslin2 <- run_da(
                     transform = "LOG",
                     norm = "TMM",
                     method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
+                    outdir = "./demo_output")
 
-DT::datatable(DA_maaslin2)
+head(DA_maaslin2)
 }
 ```
-
-
-<details>
-<summary>**other options for RAIDA**</summary>
-```{r, warning=FALSE, message=FALSE}
-if (0) {
-DA_maaslin2 <- run_maaslin2(
-                    dada2_ps,
-                    taxa_level = "Genus",
-                    group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "LOG",
-                    norm = "TMM",
-                    method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
-
-DA_maaslin2 <- run_maaslin2(
-                    data_otu = phyloseq::otu_table(dada2_ps_genus_filter_trim),
-                    data_sam = phyloseq::sample_data(dada2_ps_genus_filter_trim),
-                    group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "LOG",
-                    norm = "TMM",
-                    method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
-
-DA_maaslin2 <- run_da(
-                    dada2_ps_genus_filter_trim,
-                    group = "Group",
-                    group_names = c("AA", "BB"),
-                    da_method = "maaslin2",
-                    transform = "LOG",
-                    norm = "TMM",
-                    method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
-
-DT::datatable(DA_maaslin2)
-}
-```
-</details>
 
 
 ## Metagenomic sequencing microbial data (metaphlan2/3) 
@@ -1546,9 +1221,7 @@ data("metaphlan2_ps")
 metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = metaphlan2_ps,
                      group = "Group",
-                     group_names = "QC",
-                     discard = TRUE
-                     )
+                     group_names = "QC")
 
 # step2: Extracting specific taxa phyloseq-class object 
 metaphlan2_ps_genus <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Genus")
@@ -1572,15 +1245,9 @@ metaphlan2_ps_genus_filter_trim
 DA_limma_voom_mgs <- run_limma_voom(
                     metaphlan2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    voom_span = 0.5,
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 colnames(DA_limma_voom_mgs)
-DT::datatable(DA_limma_voom_mgs)
+head(DA_limma_voom_mgs)
 ```
 
 <details>
@@ -1591,13 +1258,7 @@ DA_limma_voom_mgs <- run_da(
                     metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "limma_voom",
-                    transform = "identity",
-                    norm = "none",
-                    voom_span = 0.5,
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "limma_voom")
 }
 ```
 </details>
@@ -1611,14 +1272,9 @@ Wilcoxon Rank Sum and Signed Rank Tests, which are nonparameter test methods, us
 DA_wilcox_mgs <- run_wilcox(
                     metaphlan2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 colnames(DA_wilcox_mgs)
-DT::datatable(DA_wilcox_mgs)
+head(DA_wilcox_mgs)
 ```
 
 
@@ -1630,12 +1286,7 @@ DA_wilcox_mgs <- run_da(
                     metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "wilcox",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "wilcox")
 
 }
 ```
@@ -1650,13 +1301,10 @@ DA_lefse_mgs <- run_lefse(
                     metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    wl.p = 0.05,
                     Lda = 0)  
 
 colnames(DA_lefse_mgs)
-DT::datatable(DA_lefse_mgs)
+head(DA_lefse_mgs)
 ```
 
 
@@ -1669,11 +1317,7 @@ DA_lefse_mgs <- run_da(
                     group = "Group",
                     group_names = c("AA", "BB"),
                     da_method = "lefse",
-                    transform = "identity",
-                    norm = "none",
-                    wl.p = 0.05,
-                    Lda = 0
-                    )
+                    Lda = 0)
 }
 ```
 </details>
@@ -1687,14 +1331,9 @@ T test, a parametric test method, identifies the significant taxa.
 DA_ttest_mgs <- run_ttest(
                     metaphlan2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    group_names = c("AA", "BB"))
 colnames(DA_ttest_mgs)
-DT::datatable(DA_ttest_mgs)
+head(DA_ttest_mgs)
 ```
 
 
@@ -1706,12 +1345,7 @@ DA_ttest_mgs <- run_da(
                     metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    da_method = "ttest",
-                    transform = "identity",
-                    norm = "none",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05
-                    )
+                    da_method = "ttest")
 }
 ```
 </details>
@@ -1729,12 +1363,9 @@ DA_maaslin2_mgs <- run_maaslin2(
                     transform = "NONE",
                     norm = "NONE",
                     method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
+                    outdir = "./demo_output")
 
-DT::datatable(DA_maaslin2_mgs)
+head(DA_maaslin2_mgs)
 }
 ```
 
@@ -1750,10 +1381,7 @@ DA_maaslin2_mgs <- run_da(
                     transform = "NONE",
                     norm = "NONE",
                     method = "LM",
-                    p_adjust = "BH",
-                    pvalue_cutoff = 0.05,
-                    outdir = "./demo_output"
-                    )
+                    outdir = "./demo_output")
 }
 ```
 </details>
@@ -1773,12 +1401,7 @@ The X and Y coordinate axis are flexible to choose for Volcano. Here, we choose 
 DA_limma_voom <- run_limma_voom(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
-                    group_names = c("AA", "BB"),
-                    transform = "identity",
-                    norm = "none",
-                    voom_span = 0.5,
-                    p_adjust = "none",
-                    pvalue_cutoff = 0.05)
+                    group_names = c("AA", "BB"))
 
 colnames(DA_limma_voom)
 
@@ -1787,12 +1410,10 @@ DA_limma_voom_volcano <- plot_volcano(
     group_names = c("AA", "BB"),
     x_index = "logFC",
     x_index_cutoff = 0.5,
-    y_index = "AdjustedPvalue",
+    y_index = "Pvalue",
     y_index_cutoff = 0.05,
     group_color = c("red", "grey", "blue"),
-    topN = 5,
-    taxa_name = NULL
-   )
+    topN = 5)
 
 DA_limma_voom_volcano
 ```
@@ -1800,7 +1421,7 @@ DA_limma_voom_volcano
 <details>
 <summary>**DA_limma_voom_volcano effectsize**</summary>
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="Volcano (limma-voom: EffectSize and Pvalue)"}
-DA_limma_voom_volcano_efs <- plot_volcano(
+plot_volcano(
     DA_limma_voom,
     group_names = c("AA", "BB"),
     x_index = "EffectSize",
@@ -1808,17 +1429,12 @@ DA_limma_voom_volcano_efs <- plot_volcano(
     y_index = "Pvalue",
     y_index_cutoff = 0.05,
     group_color = c("red", "grey", "blue"),
-    topN = 8,
-    taxa_name = NULL
-   )
-
-DA_limma_voom_volcano_efs
+    topN = 8)
 ```
 
 The logFC and EffectSize are the same values in limma-voom.
 
 </details>
-
 
 
 ### barplot in lefse
@@ -1827,15 +1443,12 @@ DA_lefse <- run_lefse(
     dada2_ps_genus_filter_trim,
     group = "Group",
     group_names = c("AA", "BB"),
-    transform = "identity",
-    norm = "rarefy",
-    wl.p = 0.05,
     Lda = 0)
 
 plot_lefse(
   da_res = DA_lefse,
   x_index = "LDA_Score",
-  x_index_cutoff = 0,
+  x_index_cutoff = 1,
   group_color = c("green", "red")) 
 ```
 
@@ -1848,11 +1461,7 @@ Display the significant taxa with selection using boxplot.
 DA_wilcox <- run_wilcox(
    metaphlan2_ps_genus_filter_trim,
    group = "Group",
-   group_names = c("AA", "BB"),
-   transform = "identity",
-   norm = "none",
-   p_adjust = "BH",
-   pvalue_cutoff = 0.05)
+   group_names = c("AA", "BB"))
 
 plot_topN_boxplot(
     ps = metaphlan2_ps_genus_filter_trim,
@@ -1861,7 +1470,6 @@ plot_topN_boxplot(
     x_index_cutoff = 0.2,
     y_index = "Pvalue",
     y_index_cutoff = 0.3,
-    prevalence = TRUE,
     topN = 3,
     taxa_name = "s__Ruminococcus_torques",
     group = "Group")
@@ -1878,10 +1486,7 @@ multiple_res <- run_multiple_da(
        group = "Group",
        group_names = c("AA", "BB"),
        da_method = c("aldex", "limma_voom", "mbzinb", "omnibus"),
-       norm = "none",
-       transform = "identity",
-       p_adjust = "none",
-       pvalue_cutoff = 0.05)
+       p_adjust = "none")
 
 names(multiple_res)
 ```
@@ -1891,11 +1496,12 @@ names(multiple_res)
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=13, fig.cap="Multiple DA results"}
 plot_multiple_DA(
   Multip_DA_res = multiple_res,
+  x_index_list = c("EffectSize", "logFC", "mean.LFC", "abund.LFC.CompvarBB.est"),
+  x_index_cutoff = 0,
   y_index = "AdjustedPvalue",
   y_index_cutoff = 0.5,
-  cellwidth = 35,
-  cellheight = 10,
-  fontsize_number = 15)
+  cellwidth = 50,
+  cellheight = 10)
 ```
 
 

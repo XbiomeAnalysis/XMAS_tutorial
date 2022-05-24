@@ -12,43 +12,30 @@ library(phyloseq)
 library(ggplot2)
 ```
 
+
+Using `get_GroupPhyloseq` to remove some samples. For instance, removing the spike-in sample QC in Group column.
+
 * amplicon sequencing (16s)
-```{r, warning=FALSE}
-data("dada2_ps_genus")
-dada2_ps_genus
+```{r, warning=FALSE, message=FALSE}
+data("dada2_ps")
+dada2_ps_remove_BRS <- get_GroupPhyloseq(
+                     ps = dada2_ps,
+                     group = "Group",
+                     group_names = "QC")
+dada2_ps_remove_BRS
 ```
 
 <details>
 <summary>**metagenomic sequencing (metaphlan2/3)**</summary>
-```{r, warning=FALSE}
-data("metaphlan2_ps")
-metaphlan2_ps
-```
-</details>
-
-
-## Removing BRS
-
-Using `get_GroupPhyloseq` to remove some samples. For instance, removing the spike-in sample QC in Group column.
-
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_remove_BRS <- get_GroupPhyloseq(
-                     ps = dada2_ps,
-                     group = "Group",
-                     group_names = "QC",
-                     discard = TRUE
-                     )
-dada2_ps_remove_BRS
-
+data("metaphlan2_ps")
 metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = metaphlan2_ps,
                      group = "Group",
-                     group_names = "QC",
-                     discard = TRUE
-                     )
+                     group_names = "QC")
 metaphlan2_ps_remove_BRS
 ```
-
+</details>
 
 
 ## Transformation
@@ -64,8 +51,8 @@ Transforming the taxa abundances in `otu_table` by sample, which means the count
 ```{r, warning=FALSE}
 dada2_ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus")
 
-ps_transform <- transform_abundances(dada2_ps_genus, transform = "log10")
-head(ps_transform@otu_table@.Data, 3)
+dada2_ps_transform <- transform_abundances(dada2_ps_genus, transform = "log10")
+head(dada2_ps_transform@otu_table@.Data, 3)
 ```
 
 <details>
@@ -73,8 +60,8 @@ head(ps_transform@otu_table@.Data, 3)
 ```{r, warning=FALSE}
 metaphlan2_ps_species <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Species")
 
-ps_transform_mgs <- transform_abundances(metaphlan2_ps, transform = "log10")
-head(ps_transform_mgs@otu_table@.Data, 3)
+metaphlan2_ps_transform_mgs <- transform_abundances(metaphlan2_ps_species, transform = "log10")
+head(metaphlan2_ps_transform_mgs@otu_table@.Data, 3)
 ```
 </details>
 
@@ -85,6 +72,7 @@ Normalizing the OTU_table in phyloseq-class object. It is critical to normalize 
 * **rarefy**: random subsampling counts to the smallest library size in the data set. **Caution: the default library size is 25000 according to our own results(Rarefaction Curves)**.
 ```{r, warning=FALSE, message=FALSE}
 normalize(dada2_ps_genus, method = "rarefy")
+# norm_rarefy(dada2_ps_genus, size = 50000)
 ```
 
 
@@ -166,8 +154,8 @@ Dropping the taxa and samples whose prevalence are less than 0.4.
 <details>
 <summary>**filtering metagenomic sequencing**</summary>
 ```{r, warning=FALSE, message=FALSE}
-ps_trim_mgs <- run_trim(metaphlan2_ps_remove_BRS, cutoff = 0.4, trim = "feature")
-ps_trim_mgs
+metaphlan2_ps_trim_mgs <- run_trim(metaphlan2_ps_remove_BRS, cutoff = 0.4, trim = "feature")
+metaphlan2_ps_trim_mgs
 ```
 </details>
 
@@ -179,9 +167,7 @@ The missing values in otu table maybe affect the statistical results, imputing t
 * limit of detection
 ```{r, warning=FALSE, message=FALSE, collapse=TRUE}
 min(dada2_ps_genus@otu_table)
-
 LOD_imputed_ps <- run_impute(dada2_ps_genus, impute = "LOD", LOD = 2)
-
 min(LOD_imputed_ps@otu_table)
 ```
 
@@ -191,38 +177,37 @@ The taxonomic level are *Kingdom*, *Phylum*, *Class*, *Order*, *Family*, *Genu*s
 
 * amplicon sequencing: Phylum
 ```{r, warning=FALSE, message=FALSE}
-data("dada2_ps")
-ps_phylum <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Phylum")
-ps_phylum
+dada2_ps_phylum <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Phylum")
+dada2_ps_phylum
 ```
 
 * amplicon sequencing: Order
 ```{r, warning=FALSE, message=FALSE}
-ps_order <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Order")
-ps_order
+dada2_ps_order <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Order")
+dada2_ps_order
 ```
 
 
 * amplicon sequencing: Family
 ```{r, warning=FALSE, message=FALSE}
-ps_family <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Family")
-ps_family
+dada2_ps_family <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Family")
+dada2_ps_family
 ```
 
 * amplicon sequencing: Genus
 ```{r, warning=FALSE, message=FALSE}
-ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus")
-ps_genus
+dada2_ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus")
+dada2_ps_genus
 ```
 
 <details>
 <summary>**extracting metagenomic sequencing**</summary>
 ```{r, warning=FALSE, message=FALSE}
-ps_genus_mgs <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Genus")
-ps_genus_mgs
+metaphlan2_ps_genus_mgs <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Genus")
+metaphlan2_ps_genus_mgs
 
-ps_species_mgs <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Species")
-ps_species_mgs
+metaphlan2_ps_species_mgs <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Species")
+metaphlan2_ps_species_mgs
 ```
 </details>
 
@@ -236,25 +221,24 @@ ps_species_mgs
 * amplicon sequencing
 ```{r, warning=FALSE, message=FALSE}
 # relative abundance
-ps_genus_rb <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus", absolute = FALSE)
-ps_genus_LRA <- summarize_LowAbundance_taxa(ps_genus_rb, cutoff = 1e-04, unclass = TRUE)
-ps_genus_LRA 
-tail(phyloseq::taxa_names(ps_genus_LRA))
+dada2_ps_genus_rb <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus", absolute = FALSE)
+dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(ps_genus_rb, cutoff = 1e-04, unclass = TRUE)
+dada2_ps_genus_LRA 
+tail(phyloseq::taxa_names(dada2_ps_genus_LRA))
 
 # absolute abundance
-ps_genus_counts <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10)
-ps_genus_counts
+dada2_ps_genus_counts <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10)
+dada2_ps_genus_counts
 ```
 
 <details>
 <summary>**aggregating metagenomic sequencing**</summary>
 ```{r, warning=FALSE, message=FALSE}
-ps_genus_LRA_mgs <- summarize_LowAbundance_taxa(ps_genus_mgs, cutoff = 1e-04, unclass = TRUE)
-ps_genus_LRA_mgs
-tail(phyloseq::taxa_names(ps_genus_LRA_mgs))
+metaphlan2_ps_genus_LRA_mgs <- summarize_LowAbundance_taxa(metaphlan2_ps_genus_mgs, cutoff = 1e-04, unclass = TRUE)
+metaphlan2_ps_genus_LRA_mgs
+tail(phyloseq::taxa_names(metaphlan2_ps_genus_LRA_mgs))
 ```
 </details>
-
 
 
 ## Systematic Information

@@ -20,27 +20,39 @@ library(tibble)
 library(phyloseq)
 library(ggplot2)
 library(ggpubr)
-library(picante)
 ```
 
 ## Equal sample sums
 
-The previous result from *Rarefaction Curves* had demonstrated that the sequence depth of each sample has a larger significance and normalizing the samples' depth into equal sampling depth is necessary.
-```{r, warning=FALSE}
-data("amplicon_ps")
-summary(sample_sums(amplicon_ps))
+* Remove BRS
+```{r, warning=FALSE, message=FALSE}
+data("dada2_ps")
+dada2_ps_remove_BRS <- get_GroupPhyloseq(
+                     ps = dada2_ps,
+                     group = "Group",
+                     group_names = "QC")
+dada2_ps_remove_BRS
 ```
 
-As is evident there is a large difference in the number of reads. Minimum is _1114_ and maximum is _11449_!! There is a **~10X** difference!
+* Summary counts 
+
+The previous result from *Rarefaction Curves* had demonstrated that the sequence depth of each sample has a larger significance and normalizing the samples' depth into equal sampling depth is necessary.
+
+
+```{r, warning=FALSE}
+summary(sample_sums(dada2_ps_remove_BRS))
+```
+
+As is evident there is a large difference in the number of reads. Minimum is _51181_ and maximum is _71667_!! There is a **~1.4X** difference.
 
 ```{r, warning=FALSE, message=FALSE}
-amplicon_ps_rarefy <- norm_rarefy(amplicon_ps, size = 1114, rng_seed = 123)
-summary(sample_sums(amplicon_ps))
+dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
+summary(sample_sums(dada2_ps_rarefy))
 ```
 
 Quickly check taxa prevalence
 ```{r, warning=FALSE, fig.width=7, fig.height=7, fig.align="center", fig.cap="Taxa prevalence after rarefying"}
-plot_taxa_prevalence(amplicon_ps_rarefy, "Phylum")
+plot_taxa_prevalence(dada2_ps_rarefy, "Phylum")
 ```
 
 
@@ -49,8 +61,8 @@ plot_taxa_prevalence(amplicon_ps_rarefy, "Phylum")
 
 *. Calculation
 ```{r, warning=FALSE, message=FALSE}
-dat_alpha <- run_alpha_diversity(ps=amplicon_ps, measures = c("Shannon", "Chao1", "Observed")) 
-head(dat_alpha)
+dada2_alpha <- run_alpha_diversity(ps = dada2_ps_rarefy, measures = c("Shannon", "Chao1", "Observed")) 
+head(dada2_alpha)
 ```
 
 
@@ -58,21 +70,19 @@ head(dat_alpha)
 
 1. single measure
 ```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Alpha diversity from XMAS(one measure)"}
-plot_boxplot(data=dat_alpha,
+plot_boxplot(data=dada2_alpha,
              y_index = "Shannon",
-             group = "SampleType",
-             method = "wilcox.test",
-  )
+             group = "Group",
+             method = "wilcox.test")
 ```
 
 2. multiple measures
 ```{r, warning=FALSE, fig.width=9, fig.height=5, fig.align="center", fig.cap="Alpha diversity from XMAS(multiple measures)"}
-plot_boxplot(data=dat_alpha,
+plot_boxplot(data=dada2_alpha,
              y_index = c("Shannon", "Chao1", "Observed"),
-             group = "SampleType",
-             group_names = c("gut", "right palm", "tongue"),
-             group_color = c("red", "green", "blue"),
-             ref_group = "gut",
+             group = "Group",
+             group_names = c("AA", "BB"),
+             group_color = c("red", "blue"),
              method = "wilcox.test")
 ```
 
@@ -92,11 +102,10 @@ The curve is a 2D chart with relative abundance on the Y-axis and the abundance 
 
 ```{r, warning=FALSE, fig.width=5, fig.height=4, fig.align="center", fig.cap="Rank Abundance"}
 plot_RankAbundance(
-        ps=dada2_ps,
+        ps=dada2_ps_rarefy,
         taxa_level="Family",
         group="Group",
-        group_names=c("AA", "BB")
-)
+        group_names=c("AA", "BB"))
 ```
 
 **Results**:
@@ -110,4 +119,3 @@ plot_RankAbundance(
 ```{r}
 sessionInfo()
 ```
-

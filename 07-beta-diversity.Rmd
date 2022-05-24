@@ -14,24 +14,16 @@ library(ggplot2)
 
 ## Loading data and Removing BRS
 
-Using `get_GroupPhyloseq` to remove some samples. For instance, removing the spike-in sample QC in Group column.
+* Using `get_GroupPhyloseq` to remove some samples. For instance, removing the spike-in sample QC in Group column.
 
+* Rarefying counts
 ```{r, warning=FALSE, message=FALSE}
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC",
-                     discard = TRUE
-                     )
-dada2_ps_remove_BRS
-
-metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
-                     ps = metaphlan2_ps,
-                     group = "Group",
-                     group_names = "QC",
-                     discard = TRUE
-                     )
-metaphlan2_ps_remove_BRS
+                     group_names = "QC")
+dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
+dada2_ps_rarefy
 ```
 
 
@@ -59,18 +51,12 @@ where,
 
 * Calculation
 ```{r, warning=FALSE, message=FALSE}
-beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "unifrac", group = "Group")
+dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "unifrac")
 ```
-
-The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity condition** of two groups were significant.
-
 
 * Visualization
 ```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Unweighted Unifrac Distance"}
-plot_distance_corrplot(beta_df$BetaDistance, 
-              method = "color",
-              type = "lower",
-              order = "original")
+plot_distance_corrplot(dada2_beta$BetaDistance)
 ```
 
 Try repeating the above ordination using filtered phyloseq object (**discarding singletons/OTUs with very low reads**).
@@ -99,17 +85,14 @@ where,
 
 * **Calculation**
 ```{r, warning=FALSE, message=FALSE}
-beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "wunifrac", group = "Group")
+dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "wunifrac")
 ```
 
 The result of dispersion test (`Pr(>F) > 0.05`) showed that the **homogeneity condition** of two groups were not significant.
 
 * **Visualization**
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Weighted Unifrac Distance"}
-plot_distance_corrplot(beta_df$BetaDistance, 
-              method = "color",
-              type = "lower",
-              order = "original")
+plot_distance_corrplot(dada2_beta$BetaDistance)
 ```
 
 ### Generalized UniFrac Distance Metrics
@@ -129,17 +112,14 @@ where,
 
 * **Calculation**
 ```{r, warning=FALSE, message=FALSE}
-beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "GUniFrac", group = "Group", GUniFrac_alpha = 0.5)
+dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "GUniFrac", GUniFrac_alpha = 0.5)
 ```
 
 
 
 * **Visualization**: GUniFrac with alpha 0.5
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Generalized UniFrac Distance (alpha=0.5)"}
-plot_distance_corrplot(beta_df$BetaDistance, 
-              method = "color",
-              type = "lower",
-              order = "original")
+plot_distance_corrplot(dada2_beta$BetaDistance)
 ```
 
 
@@ -163,17 +143,14 @@ where,
 * $n$ Total number of species in samples.
 
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Bray Curtis Distance"}
-beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "bray", group = "Group")
-plot_distance_corrplot(beta_df$BetaDistance, 
-              method = "color",
-              type = "lower",
-              order = "original")
+dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "bray")
+plot_distance_corrplot(dada2_beta$BetaDistance)
 ```
 
 
 ## Checking the homogeneity condition 
 ```{r, warning=FALSE, message=FALSE}
-beta_df <- run_beta_diversity(ps=dada2_ps_remove_BRS, method = "jsd", group = "Group")
+dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "jsd", group = "Group")
 ```
 
 The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity condition** of two groups were significant.
@@ -184,7 +161,10 @@ The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity co
 **Permutational Multivariate Analysis of Variance (PERMANOVA)** test [@anderson2014permutational] is to investigate the associations between the environmental factors including discrete or continuous variables (treatments or populations representatives, age, gender etc) and the whole microbial community. 
 
 ```{r, warning=FALSE, message=FALSE}
-data("amplicon_ps")
+run_permanova(dada2_ps_rarefy, method = "bray", columns = "Group")
+```
+
+```{r, warning=FALSE, message=FALSE}
 run_permanova(amplicon_ps, method = "bray")
 ```
 
@@ -221,11 +201,10 @@ where,
 * $r_{W}$ is the mean of the ranked similarity within groups.
 
 ```{r, warning=FALSE, message=FALSE}
-data("amplicon_ps")
-run_ANOSIM(amplicon_ps, method = "bray", group = "SampleType")
+run_ANOSIM(ps = dada2_ps_rarefy, method = "bray", group = "Group")
 ```
 
-The p-value of 0.001 is less than 0.05, which indicates that within-group similarity is greater than between-group similarity at 0.05 significant level. We can conclude that there is strong evidence that the within-group samples are more different than would be expected by random chance.
+The p-value of 0.62 is more than 0.05, which indicates that within-group similarity is not greater or less than between-group similarity at 0.05 significant level. We can conclude that there is no strong evidence that the within-group samples are more different than would be expected by random chance.
 
 
 ## Ordination 
@@ -246,19 +225,19 @@ data("dada2_ps")
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC",
-                     discard = TRUE
-                     )
-dada2_ps_remove_BRS
+                     group_names = "QC")
 
-# step2: Extracting specific taxa phyloseq-class object 
-dada2_ps_genus <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Genus", absolute = TRUE)
+# step2: Rarefying counts in phyloseq-class object
+dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
 
-# step3: Aggregating low relative abundance or unclassified taxa into others
-#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+# step3: Extracting specific taxa phyloseq-class object 
+dada2_ps_rare_genus <- summarize_taxa(dada2_ps_rarefy, taxa_level = "Genus", absolute = TRUE)
+
+# step4: Aggregating low relative abundance or unclassified taxa into others
+#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
 
 # step4: Filtering the low relative abundance or unclassified taxa by the threshold
-dada2_ps_genus_filter <- run_filter(dada2_ps_genus, cutoff = 10, unclass = TRUE)
+dada2_ps_genus_filter <- run_filter(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
 
 # step5: Trimming the taxa with low occurrence less than threshold
 dada2_ps_genus_filter_trim <- run_trim(dada2_ps_genus_filter, cutoff = 0.2, trim = "feature")
@@ -294,12 +273,9 @@ The object of `run_ordination` is comprising of several results which could be u
 
 `plot_Ordination` provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.
 
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=5, fig.height=4, fig.cap="Principal Component Analysis (PCA): Ordinary pattern"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Principal Component Analysis (PCA): Ordinary pattern"}
 plot_Ordination(ResultList = ordination_PCA, 
-                group = "Group",
-                circle_type = "ellipse",
-                sideboxplot = TRUE,
-                sidelinechart = FALSE)
+                group = "Group")
 ```
 
 **Results:**
@@ -308,17 +284,15 @@ plot_Ordination(ResultList = ordination_PCA,
 
 2. PERMANOVA results revealed that there was no association between the groups and the genus microbial community;
 
-3. Sideboxplot of PC1 and PC2 also demonstrated that there were no significant differences between the groups.
+3. Sidelinechart showed the top 3 taxa related to PCA1 and PCA2.
 
 
 * plot with SampleID and setting group colors
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Principal Component Analysis (PCA): Ordinary pattern with SampleID"}
-
 plot_Ordination(ResultList = ordination_PCA, 
                 group = "Group", 
                 group_names = c("AA", "BB"),
                 group_color = c("blue", "red"),
-                circle_type = "ellipse_groups",
                 sample = TRUE)
 ```
 
@@ -358,13 +332,9 @@ names(ordination_PCoA)
 
 
 #### Visualization
-
-* side linechart of XVIZ package
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Principal Coordinate Analysis (PCoA): XVIZ package"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Principal Coordinate Analysis (PCoA)"}
 plot_Ordination(ordination_PCoA, 
-                group = "Group", 
-                circle_type = "ellipse",
-                sidelinechart = TRUE)
+                group = "Group")
 ```
 
 
@@ -393,9 +363,7 @@ names(ordination_tSNE)
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern"}
 plot_Ordination(ResultList = ordination_tSNE, 
-                group = "Group",
-                circle_type = "ellipse",
-                sideboxplot = TRUE)
+                group = "Group")
 ```
 
 
@@ -421,9 +389,7 @@ names(ordination_UMAP)
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern"}
 plot_Ordination(ResultList = ordination_UMAP, 
-                group = "Group",
-                circle_type = "ellipse",
-                sideboxplot = TRUE)
+                group = "Group")
 ```
 
 
