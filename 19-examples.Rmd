@@ -572,7 +572,7 @@ The PERMANOVA result of the Group (AdjustedPvalue < 0.05) revealed that the two 
 #### Ordination
 
 We performed ordination by using Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP). If you want to try other methods please go to see **Chapter 8** for more details.
-```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="PCoA (MGS example)"}
+```{r, warning=FALSE, message=FALSE, fig.width=5, fig.height=4, fig.align="center", fig.cap="PCoA (MGS example)"}
 metaphlan2_ps_ordination <- run_ordination(
                        ps = metaphlan2_ps_species_filter_trim,
                        group = "Group",
@@ -582,7 +582,10 @@ plot_Ordination(ResultList = metaphlan2_ps_ordination,
                 group = "Group", 
                 group_names = c("AA", "BB"),
                 group_color = c("blue", "red"),
-                sample = TRUE)
+                sample = TRUE,
+                sidelinechart = FALSE,
+                circle_type = "ellipse_line",
+                sideboxplot = TRUE)
 ```
 
 
@@ -656,9 +659,6 @@ head(metaphlan2_ps_lefse)
 
 * Visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="Lefse analysis (MGS example)"}
-# in order to show barplot (don't run it in reality)
-metaphlan2_ps_lefse$LDA_Score <- metaphlan2_ps_lefse$LDA_Score * 1000
-
 plot_lefse(
   da_res = metaphlan2_ps_lefse,
   x_index = "LDA_Score",
