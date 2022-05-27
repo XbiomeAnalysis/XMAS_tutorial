@@ -6,7 +6,7 @@ Here, we give users two examples to practice the data analysis workflow by **XMA
 **Loading packages**
 
 ```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
-library(XMAS)
+library(XMAS2)
 library(dplyr)
 library(tibble)
 library(phyloseq)
@@ -96,7 +96,7 @@ The upstream process is performed by in-house pipeline. and this example just sh
 dada2_res <- readRDS(
   system.file(
     "extdata", "dada2_res.rds",
-    package = "XMAS"    
+    package = "XMAS2"    
     )
 )
 
@@ -104,7 +104,7 @@ dada2_res <- readRDS(
 sam_tab <- read.table(
     system.file(
         "extdata", "dada2_metadata.tsv",
-        package = "XMAS"
+        package = "XMAS2"
     ),
     sep = "\t",
     header = TRUE,
@@ -115,7 +115,7 @@ sam_tab <- read.table(
 tree <- phyloseq::read_tree(
   system.file(
     "extdata", "tree.nwk",
-    package = "XMAS"    
+    package = "XMAS2"    
     )
 )
 
@@ -436,7 +436,7 @@ The result of the in-house **[Metaphlan2/3](https://huttenhower.sph.harvard.edu/
 metaphlan2_res <- read.table(
     system.file(
         "extdata", "metaphlan2_merged.tsv",
-        package = "XMAS"
+        package = "XMAS2"
     ),
     header = TRUE, 
     stringsAsFactors = FALSE
@@ -444,7 +444,7 @@ metaphlan2_res <- read.table(
 metaphlan2_sam <- read.table(
     system.file(
         "extdata", "metaphlan2_metadata.tsv",
-        package = "XMAS"
+        package = "XMAS2"
     ),
     sep = "\t",
     header = TRUE,

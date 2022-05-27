@@ -23,7 +23,7 @@ Identifying the significant taxa between case and control group is necessary. Th
 
 **Loading packages**
 ```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
-library(XMAS)
+library(XMAS2)
 library(dplyr)
 library(tibble)
 library(phyloseq)

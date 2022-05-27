@@ -190,7 +190,7 @@ utils::browseVignettes(package="XMAS")
 
 ### library package
 ```R
-library(XMAS)
+library(XMAS2)
 ```
 
 ## Future plan

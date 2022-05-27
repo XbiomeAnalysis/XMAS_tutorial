@@ -534,7 +534,7 @@ div.csl-indent {
 </tbody>
 </table>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="differential-analysis.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS)</span>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="differential-analysis.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
 <span id="cb193-2"><a href="differential-analysis.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb193-3"><a href="differential-analysis.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb193-4"><a href="differential-analysis.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
@@ -740,41 +740,34 @@ div.csl-indent {
 ## [17] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="differential-analysis.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_limma_voom)</span></code></pre></div>
-<pre><code>##                       TaxaID         Block Enrichment EffectSize     logFC      Pvalue
-## 1              g__Romboutsia 9_AA vs 14_BB  Nonsignif   4.695463  4.695463 0.003755076
-## 2 g__Ruminococcaceae_UCG_004 9_AA vs 14_BB  Nonsignif  -3.917539 -3.917539 0.021019060
-## 3           g__Lactobacillus 9_AA vs 14_BB  Nonsignif   3.819030  3.819030 0.025755771
-## 4          g__Parasutterella 9_AA vs 14_BB  Nonsignif  -3.581423 -3.581423 0.031612929
-## 5             g__Odoribacter 9_AA vs 14_BB  Nonsignif  -3.085026 -3.085026 0.043219346
-## 6               g__Roseburia 9_AA vs 14_BB  Nonsignif   3.470587  3.470587 0.065834317
-##   AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1      0.2591003                         -6.499846                     105                    3
-## 2      0.5453230                                NA                      11                  107
-## 3      0.5453230                         -2.870821                      57                   27
-## 4      0.5453230                          5.029747                       7                   49
-## 5      0.5964270                                NA                       3                   30
-## 6      0.6632463                                NA                     125                    0
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1                271.5                       -3.197677             295.47826           49.44444
-## 2                  0.0                        2.211165              66.91304          128.00000
-## 3                197.5                       -5.067893             799.95652           38.44444
-## 4                  1.5                        4.244838             164.56522          388.66667
-## 5                  0.0                        2.050293              26.43478           49.11111
-## 6                252.5                       -3.184643             669.60870          113.00000
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1          453.64286                    78.26                 55.56                 92.86
-## 2           27.64286                    52.17                 77.78                 35.71
-## 3         1289.50000                    86.96                 77.78                 92.86
-## 4           20.50000                    65.22                 88.89                 50.00
-## 5           11.85714                    52.17                 77.78                 35.71
-## 6         1027.42857                    65.22                 44.44                 78.57
-##   Odds Ratio (95% CI)
-## 1          42 (49;34)
-## 2     0.19 (-3.1;3.5)
-## 3 4e+08 (4e+08;4e+08)
-## 4         0.01 (-9;9)
-## 5     0.33 (-1.9;2.5)
-## 6          64 (72;56)</code></pre>
+<pre><code>##                       TaxaID         Block Enrichment EffectSize     logFC      Pvalue AdjustedPvalue
+## 1              g__Romboutsia 9_AA vs 14_BB  Nonsignif   4.695463  4.695463 0.003755076      0.2591003
+## 2 g__Ruminococcaceae_UCG_004 9_AA vs 14_BB  Nonsignif  -3.917539 -3.917539 0.021019060      0.5453230
+## 3           g__Lactobacillus 9_AA vs 14_BB  Nonsignif   3.819030  3.819030 0.025755771      0.5453230
+## 4          g__Parasutterella 9_AA vs 14_BB  Nonsignif  -3.581423 -3.581423 0.031612929      0.5453230
+## 5             g__Odoribacter 9_AA vs 14_BB  Nonsignif  -3.085026 -3.085026 0.043219346      0.5964270
+## 6               g__Roseburia 9_AA vs 14_BB  Nonsignif   3.470587  3.470587 0.065834317      0.6632463
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                         -6.499846                     105                    3                271.5
+## 2                                NA                      11                  107                  0.0
+## 3                         -2.870821                      57                   27                197.5
+## 4                          5.029747                       7                   49                  1.5
+## 5                                NA                       3                   30                  0.0
+## 6                                NA                     125                    0                252.5
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                       -3.197677             295.47826           49.44444          453.64286
+## 2                        2.211165              66.91304          128.00000           27.64286
+## 3                       -5.067893             799.95652           38.44444         1289.50000
+## 4                        4.244838             164.56522          388.66667           20.50000
+## 5                        2.050293              26.43478           49.11111           11.85714
+## 6                       -3.184643             669.60870          113.00000         1027.42857
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    78.26                 55.56                 92.86          42 (49;34)
+## 2                    52.17                 77.78                 35.71     0.19 (-3.1;3.5)
+## 3                    86.96                 77.78                 92.86 4e+08 (4e+08;4e+08)
+## 4                    65.22                 88.89                 50.00         0.01 (-9;9)
+## 5                    52.17                 77.78                 35.71     0.33 (-1.9;2.5)
+## 6                    65.22                 44.44                 78.57          64 (72;56)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -855,34 +848,27 @@ div.csl-indent {
 ## 4   3.911818  2.6554273   11.73606  2.06902032 0.3333161   0.1671589 0.02507192  4.101251  9.988211
 ## 5  25.770711 -2.0949222   46.38413 -1.24068800 0.5555933  -0.2482619 0.08910223  3.810059  9.580823
 ## 6 231.635435 -0.1958844  297.86046  0.07898054 0.7776642  -0.1349032 0.04031021  3.417434  8.989818
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                        -2.8708213                      57                   27
-## 2                        -0.3504972                      46                   40
-## 3                        -6.4998459                     105                    3
-## 4                                NA                       0                    0
-## 5                                NA                       0                   34
-## 6                         2.0596429                     292                  321
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1                197.5                      -5.0678928             799.95652          38.444444
-## 2                 51.0                      -0.7826083              51.78261          36.000000
-## 3                271.5                      -3.1976766             295.47826          49.444444
-## 4                  9.5                      -2.5541902              19.39130           4.888889
-## 5                  0.0                       2.2719126              18.73913          36.222222
-## 6                 77.0                       0.3575932             241.04348         278.222222
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1         1289.50000                    86.96                 77.78                 92.86
-## 2           61.92857                    91.30                100.00                 85.71
-## 3          453.64286                    78.26                 55.56                 92.86
-## 4           28.71429                    43.48                 33.33                 50.00
-## 5            7.50000                    39.13                 55.56                 28.57
-## 6          217.14286                    69.57                 77.78                 64.29
-##   Odds Ratio (95% CI)
-## 1 4e+08 (4e+08;4e+08)
-## 2        2.3 (4;0.67)
-## 3          42 (49;34)
-## 4           13 (18;8)
-## 5     0.33 (-1.8;2.5)
-## 6     0.76 (0.21;1.3)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                        -2.8708213                      57                   27                197.5
+## 2                        -0.3504972                      46                   40                 51.0
+## 3                        -6.4998459                     105                    3                271.5
+## 4                                NA                       0                    0                  9.5
+## 5                                NA                       0                   34                  0.0
+## 6                         2.0596429                     292                  321                 77.0
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                      -5.0678928             799.95652          38.444444         1289.50000
+## 2                      -0.7826083              51.78261          36.000000           61.92857
+## 3                      -3.1976766             295.47826          49.444444          453.64286
+## 4                      -2.5541902              19.39130           4.888889           28.71429
+## 5                       2.2719126              18.73913          36.222222            7.50000
+## 6                       0.3575932             241.04348         278.222222          217.14286
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    86.96                 77.78                 92.86 4e+08 (4e+08;4e+08)
+## 2                    91.30                100.00                 85.71        2.3 (4;0.67)
+## 3                    78.26                 55.56                 92.86          42 (49;34)
+## 4                    43.48                 33.33                 50.00           13 (18;8)
+## 5                    39.13                 55.56                 28.57     0.33 (-1.8;2.5)
+## 6                    69.57                 77.78                 64.29     0.76 (0.21;1.3)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1228,34 +1214,27 @@ div.csl-indent {
 ## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.07097212        67 0.8239507      0.9129068
 ## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.40991461        58 0.7767603      0.9129068
 ## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.93028412        89 0.1093014      0.6737725
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                        -1.1699250                      30                   22
-## 2                                NA                       0                    0
-## 3                         0.1772545                     311                  333
-## 4                        -0.4280937                      64                   55
-## 5                         1.0204641                     515                  923
-## 6                         1.5520348                    3806                 9118
-##   Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
-## 1                 49.5                     -0.41034110                   10.00
-## 2                  9.5                     -0.43387758                    9.89
-## 3                294.5                      0.17342686                   12.89
-## 4                 74.0                      0.08724541                   12.44
-## 5                455.0                     -0.11159169                   11.44
-## 6               3109.5                      0.55428610                   14.89
-##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1                   13.29                    82.61                 88.89                 78.57
-## 2                   13.36                    43.48                 33.33                 50.00
-## 3                   11.43                    65.22                 55.56                 71.43
-## 4                   11.71                    73.91                 77.78                 71.43
-## 5                   12.36                    95.65                100.00                 92.86
-## 6                   10.14                   100.00                100.00                100.00
-##   Odds Ratio (95% CI)
-## 1       4.3 (7.1;1.4)
-## 2           13 (18;8)
-## 3     0.39 (-1.4;2.2)
-## 4     0.87 (0.59;1.1)
-## 5      1.1 (1.2;0.93)
-## 6       0.45 (-1.1;2)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                        -1.1699250                      30                   22                 49.5
+## 2                                NA                       0                    0                  9.5
+## 3                         0.1772545                     311                  333                294.5
+## 4                        -0.4280937                      64                   55                 74.0
+## 5                         1.0204641                     515                  923                455.0
+## 6                         1.5520348                    3806                 9118               3109.5
+##   Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA Mean Rank Abundance\nBB
+## 1                     -0.41034110                   10.00                   13.29
+## 2                     -0.43387758                    9.89                   13.36
+## 3                      0.17342686                   12.89                   11.43
+## 4                      0.08724541                   12.44                   11.71
+## 5                     -0.11159169                   11.44                   12.36
+## 6                      0.55428610                   14.89                   10.14
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    82.61                 88.89                 78.57       4.3 (7.1;1.4)
+## 2                    43.48                 33.33                 50.00           13 (18;8)
+## 3                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
+## 4                    73.91                 77.78                 71.43     0.87 (0.59;1.1)
+## 5                    95.65                100.00                 92.86      1.1 (1.2;0.93)
+## 6                   100.00                100.00                100.00       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1429,30 +1408,24 @@ div.csl-indent {
 ## 3             g__Odoribacter 9_AA vs 14_BB         BB  2.614361   1.253339
 ## 4              g__Romboutsia 9_AA vs 14_BB         BB  3.648822   2.957096
 ## 5           g__Lactobacillus 9_AA vs 14_BB         BB  4.167103   2.572577
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                          5.109407               203.81424           1059.27623
-## 2                                NA               241.29686           2522.09782
-## 3                                NA                65.80823            615.67509
-## 4                         -6.323595              2149.56906             75.54011
-## 5                         -3.139263              1230.67622            600.96154
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1             30.68489                        4.358465             3829.5975           9096.906
-## 2              0.00000                        2.270464             1476.6749           2853.673
-## 3              0.00000                        2.106533              580.3768           1089.610
-## 4           6050.19693                       -3.401631             7079.2882           1037.410
-## 5           5294.91550                       -5.157524            20157.4190            911.408
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1           443.4708                    65.22                 88.89                 50.00
-## 2           591.4617                    52.17                 77.78                 35.71
-## 3           253.0123                    52.17                 77.78                 35.71
-## 4         10963.3528                    78.26                 55.56                 92.86
-## 5         32529.8547                    86.96                 77.78                 92.86
-##         Odds Ratio (95% CI)
-## 1           0.0043 (-11;11)
-## 2           0.16 (-3.4;3.7)
-## 3             0.31 (-2;2.6)
-## 4                90 (99;81)
-## 5 2.2e+08 (2.2e+08;2.2e+08)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                          5.109407               203.81424           1059.27623             30.68489
+## 2                                NA               241.29686           2522.09782              0.00000
+## 3                                NA                65.80823            615.67509              0.00000
+## 4                         -6.323595              2149.56906             75.54011           6050.19693
+## 5                         -3.139263              1230.67622            600.96154           5294.91550
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                        4.358465             3829.5975           9096.906           443.4708
+## 2                        2.270464             1476.6749           2853.673           591.4617
+## 3                        2.106533              580.3768           1089.610           253.0123
+## 4                       -3.401631             7079.2882           1037.410         10963.3528
+## 5                       -5.157524            20157.4190            911.408         32529.8547
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB       Odds Ratio (95% CI)
+## 1                    65.22                 88.89                 50.00           0.0043 (-11;11)
+## 2                    52.17                 77.78                 35.71           0.16 (-3.4;3.7)
+## 3                    52.17                 77.78                 35.71             0.31 (-2;2.6)
+## 4                    78.26                 55.56                 92.86                90 (99;81)
+## 5                    86.96                 77.78                 92.86 2.2e+08 (2.2e+08;2.2e+08)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1528,34 +1501,34 @@ div.csl-indent {
 ## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.07097212  0.3094918 0.76107100      0.9054120
 ## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.40991461 -0.1605561 0.87404155      0.9283954
 ## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.93028412  1.5658052 0.14459422      0.5805112
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                        -1.1699250                      30                   22
-## 2                                NA                       0                    0
-## 3                         0.1772545                     311                  333
-## 4                        -0.4280937                      64                   55
-## 5                         1.0204641                     515                  923
-## 6                         1.5520348                    3806                 9118
-##   Median Abundance\nBB Log2FoldChange (geometricmean)\nAA_vs_BB GeometricMean Abundance\n(All)
-## 1                 49.5                               -5.2268338                      0.5117863
-## 2                  9.5                               -3.1311631                      0.5218980
-## 3                294.5                                1.4704215                      0.7835288
-## 4                 74.0                               -0.6655791                      0.7002247
-## 5                455.0                               -0.8553998                      0.6131952
-## 6               3109.5                                1.4548821                      0.6828714
-##   GeometricMean Abundance\nAA GeometricMean Abundance\nBB Occurrence (100%)\n(All)
-## 1                  0.02149483                   0.8049481                    82.61
-## 2                  0.08122039                   0.7116052                    43.48
-## 3                  1.10053019                   0.3971559                    65.22
-## 4                  0.54190943                   0.8595794                    73.91
-## 5                  0.45587764                   0.8248012                    95.65
-## 6                  1.13062995                   0.4124367                   100.00
-##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                 88.89                 78.57       4.3 (7.1;1.4)
-## 2                 33.33                 50.00           13 (18;8)
-## 3                 55.56                 71.43     0.39 (-1.4;2.2)
-## 4                 77.78                 71.43     0.87 (0.59;1.1)
-## 5                100.00                 92.86      1.1 (1.2;0.93)
-## 6                100.00                100.00       0.45 (-1.1;2)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                        -1.1699250                      30                   22                 49.5
+## 2                                NA                       0                    0                  9.5
+## 3                         0.1772545                     311                  333                294.5
+## 4                        -0.4280937                      64                   55                 74.0
+## 5                         1.0204641                     515                  923                455.0
+## 6                         1.5520348                    3806                 9118               3109.5
+##   Log2FoldChange (geometricmean)\nAA_vs_BB GeometricMean Abundance\n(All) GeometricMean Abundance\nAA
+## 1                               -5.2268338                      0.5117863                  0.02149483
+## 2                               -3.1311631                      0.5218980                  0.08122039
+## 3                                1.4704215                      0.7835288                  1.10053019
+## 4                               -0.6655791                      0.7002247                  0.54190943
+## 5                               -0.8553998                      0.6131952                  0.45587764
+## 6                                1.4548821                      0.6828714                  1.13062995
+##   GeometricMean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1                   0.8049481                    82.61                 88.89                 78.57
+## 2                   0.7116052                    43.48                 33.33                 50.00
+## 3                   0.3971559                    65.22                 55.56                 71.43
+## 4                   0.8595794                    73.91                 77.78                 71.43
+## 5                   0.8248012                    95.65                100.00                 92.86
+## 6                   0.4124367                   100.00                100.00                100.00
+##   Odds Ratio (95% CI)
+## 1       4.3 (7.1;1.4)
+## 2           13 (18;8)
+## 3     0.39 (-1.4;2.2)
+## 4     0.87 (0.59;1.1)
+## 5      1.1 (1.2;0.93)
+## 6       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1657,41 +1630,34 @@ div.csl-indent {
 ## [17] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="differential-analysis.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_metagenomeseq)</span></code></pre></div>
-<pre><code>##                       TaxaID         Block Enrichment      logFC      Pvalue AdjustedPvalue
-## 1              g__Romboutsia 9_AA vs 14_BB  Nonsignif  1.5820439 0.001857198      0.1300039
-## 2             g__Megasphaera 9_AA vs 14_BB  Nonsignif -1.7778094 0.004391697      0.1537094
-## 3 g__Ruminococcaceae_UCG_013 9_AA vs 14_BB  Nonsignif  0.7685692 0.057122207      0.8174723
-## 4 g__Lachnospiraceae_UCG_010 9_AA vs 14_BB  Nonsignif -1.1072541 0.083441340      0.8174723
-## 5               g__Roseburia 9_AA vs 14_BB  Nonsignif  0.9583484 0.088348576      0.8174723
-## 6              g__Tyzzerella 9_AA vs 14_BB  Nonsignif -1.6944399 0.088913558      0.8174723
-##          se Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1 0.5083417                         -5.213950                96.15385             7.672634
-## 2 0.6241071                                NA                 0.00000             0.000000
-## 3 0.4040052                         -2.792157                45.19774            10.662605
-## 4 0.6396399                                NA                 0.00000            25.894897
-## 5 0.5623536                                NA                94.30707             0.000000
-## 6 0.9960516                                NA                 0.00000             9.345794
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1            284.77369                       -4.157644             423.30698           37.61073
-## 2              0.00000                        3.234514             882.94339         1936.38092
-## 3             73.85609                       -1.702861             121.28674           51.11355
-## 4              0.00000                        2.002867              16.61215           30.58335
-## 5            237.61595                       -4.059516             868.99235           82.44231
-## 6              0.00000                        2.773081              51.49608          107.20501
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1         671.254571                    78.26                 55.56                 92.86
-## 2         205.733552                    34.78                 33.33                 35.71
-## 3         166.398077                    60.87                 55.56                 64.29
-## 4           7.630657                    39.13                 55.56                 28.57
-## 5        1374.631667                    65.22                 44.44                 78.57
-## 6          15.683192                    34.78                 55.56                 21.43
-##   Odds Ratio (95% CI)
-## 1    5300 (5300;5300)
-## 2     0.29 (-2.1;2.7)
-## 3         3.4 (5.9;1)
-## 4     0.38 (-1.5;2.3)
-## 5    6500 (6600;6500)
-## 6     0.35 (-1.7;2.4)</code></pre>
+<pre><code>##                       TaxaID         Block Enrichment      logFC      Pvalue AdjustedPvalue        se
+## 1              g__Romboutsia 9_AA vs 14_BB  Nonsignif  1.5820439 0.001857198      0.1300039 0.5083417
+## 2             g__Megasphaera 9_AA vs 14_BB  Nonsignif -1.7778094 0.004391697      0.1537094 0.6241071
+## 3 g__Ruminococcaceae_UCG_013 9_AA vs 14_BB  Nonsignif  0.7685692 0.057122207      0.8174723 0.4040052
+## 4 g__Lachnospiraceae_UCG_010 9_AA vs 14_BB  Nonsignif -1.1072541 0.083441340      0.8174723 0.6396399
+## 5               g__Roseburia 9_AA vs 14_BB  Nonsignif  0.9583484 0.088348576      0.8174723 0.5623536
+## 6              g__Tyzzerella 9_AA vs 14_BB  Nonsignif -1.6944399 0.088913558      0.8174723 0.9960516
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                         -5.213950                96.15385             7.672634            284.77369
+## 2                                NA                 0.00000             0.000000              0.00000
+## 3                         -2.792157                45.19774            10.662605             73.85609
+## 4                                NA                 0.00000            25.894897              0.00000
+## 5                                NA                94.30707             0.000000            237.61595
+## 6                                NA                 0.00000             9.345794              0.00000
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                       -4.157644             423.30698           37.61073         671.254571
+## 2                        3.234514             882.94339         1936.38092         205.733552
+## 3                       -1.702861             121.28674           51.11355         166.398077
+## 4                        2.002867              16.61215           30.58335           7.630657
+## 5                       -4.059516             868.99235           82.44231        1374.631667
+## 6                        2.773081              51.49608          107.20501          15.683192
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    78.26                 55.56                 92.86    5300 (5300;5300)
+## 2                    34.78                 33.33                 35.71     0.29 (-2.1;2.7)
+## 3                    60.87                 55.56                 64.29         3.4 (5.9;1)
+## 4                    39.13                 55.56                 28.57     0.38 (-1.5;2.3)
+## 5                    65.22                 44.44                 78.57    6500 (6600;6500)
+## 6                    34.78                 55.56                 21.43     0.35 (-1.7;2.4)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1768,34 +1734,27 @@ div.csl-indent {
 ## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.7735607924    0.953137405  0.2630218  0.2877204
 ## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.1814463414    0.395198703  1.0037124  1.3363150
 ## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.4391206065    0.688620951 -0.6885763 -0.7736791
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                        -1.1699250                      30                   22
-## 2                                NA                       0                    0
-## 3                         0.1772545                     311                  333
-## 4                        -0.4280937                      64                   55
-## 5                         1.0204641                     515                  923
-## 6                         1.5520348                    3806                 9118
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1                 49.5                      -1.3859026              50.65217          25.555556
-## 2                  9.5                      -2.5541902              19.39130           4.888889
-## 3                294.5                       1.7486195             997.26087        1742.111111
-## 4                 74.0                       0.2295656             163.17391         179.222222
-## 5                455.0                      -0.1010837             821.30435         786.555556
-## 6               3109.5                       0.9814940            5740.60870        8205.777778
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1           66.78571                    82.61                 88.89                 78.57
-## 2           28.71429                    43.48                 33.33                 50.00
-## 3          518.42857                    65.22                 55.56                 71.43
-## 4          152.85714                    73.91                 77.78                 71.43
-## 5          843.64286                    95.65                100.00                 92.86
-## 6         4155.85714                   100.00                100.00                100.00
-##   Odds Ratio (95% CI)
-## 1       4.3 (7.1;1.4)
-## 2           13 (18;8)
-## 3     0.39 (-1.4;2.2)
-## 4     0.87 (0.59;1.1)
-## 5      1.1 (1.2;0.93)
-## 6       0.45 (-1.1;2)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                        -1.1699250                      30                   22                 49.5
+## 2                                NA                       0                    0                  9.5
+## 3                         0.1772545                     311                  333                294.5
+## 4                        -0.4280937                      64                   55                 74.0
+## 5                         1.0204641                     515                  923                455.0
+## 6                         1.5520348                    3806                 9118               3109.5
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                      -1.3859026              50.65217          25.555556           66.78571
+## 2                      -2.5541902              19.39130           4.888889           28.71429
+## 3                       1.7486195             997.26087        1742.111111          518.42857
+## 4                       0.2295656             163.17391         179.222222          152.85714
+## 5                      -0.1010837             821.30435         786.555556          843.64286
+## 6                       0.9814940            5740.60870        8205.777778         4155.85714
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    82.61                 88.89                 78.57       4.3 (7.1;1.4)
+## 2                    43.48                 33.33                 50.00           13 (18;8)
+## 3                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
+## 4                    73.91                 77.78                 71.43     0.87 (0.59;1.1)
+## 5                    95.65                100.00                 92.86      1.1 (1.2;0.93)
+## 6                   100.00                100.00                100.00       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1871,34 +1830,27 @@ Figure 11.1: EdgeR (BVC distance)
 ## 4   g__Odoribacter 9_AA vs 14_BB         AA 0.0023562226 0.04064484 -2.718081  9.376449  9.249014
 ## 5     g__Roseburia 9_AA vs 14_BB         BB 0.0029682519 0.04096188  4.327703 14.410912  8.826882
 ## 6 g__Adlercreutzia 9_AA vs 14_BB         BB 0.0036077438 0.04148905  2.879377  8.887302  8.471396
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                         -2.870821                      57                   27
-## 2                         -6.499846                     105                    3
-## 3                                NA                       0                    0
-## 4                                NA                       3                   30
-## 5                                NA                     125                    0
-## 6                                NA                       0                    0
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1                197.5                       -5.067893            799.956522          38.444444
-## 2                271.5                       -3.197677            295.478261          49.444444
-## 3                  0.0                        2.508697              8.304348          16.666667
-## 4                  0.0                        2.050293             26.434783          49.111111
-## 5                252.5                       -3.184643            669.608696         113.000000
-## 6                  9.5                       -2.554190             19.391304           4.888889
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1        1289.500000                    86.96                 77.78                 92.86
-## 2         453.642857                    78.26                 55.56                 92.86
-## 3           2.928571                    30.43                 44.44                 21.43
-## 4          11.857143                    52.17                 77.78                 35.71
-## 5        1027.428571                    65.22                 44.44                 78.57
-## 6          28.714286                    43.48                 33.33                 50.00
-##   Odds Ratio (95% CI)
-## 1 4e+08 (4e+08;4e+08)
-## 2          42 (49;34)
-## 3     0.33 (-1.8;2.5)
-## 4     0.33 (-1.9;2.5)
-## 5          64 (72;56)
-## 6           13 (18;8)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                         -2.870821                      57                   27                197.5
+## 2                         -6.499846                     105                    3                271.5
+## 3                                NA                       0                    0                  0.0
+## 4                                NA                       3                   30                  0.0
+## 5                                NA                     125                    0                252.5
+## 6                                NA                       0                    0                  9.5
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                       -5.067893            799.956522          38.444444        1289.500000
+## 2                       -3.197677            295.478261          49.444444         453.642857
+## 3                        2.508697              8.304348          16.666667           2.928571
+## 4                        2.050293             26.434783          49.111111          11.857143
+## 5                       -3.184643            669.608696         113.000000        1027.428571
+## 6                       -2.554190             19.391304           4.888889          28.714286
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    86.96                 77.78                 92.86 4e+08 (4e+08;4e+08)
+## 2                    78.26                 55.56                 92.86          42 (49;34)
+## 3                    30.43                 44.44                 21.43     0.33 (-1.8;2.5)
+## 4                    52.17                 77.78                 35.71     0.33 (-1.9;2.5)
+## 5                    65.22                 44.44                 78.57          64 (72;56)
+## 6                    43.48                 33.33                 50.00           13 (18;8)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1975,34 +1927,27 @@ Figure 11.2: ANCOM (Structure Zero)
 ## 4     g__Alistipes 9_AA vs 14_BB         BB  0.0005271225                   0       0        FALSE
 ## 5  g__Anaerostipes 9_AA vs 14_BB         BB  0.3772522367                   0       0        FALSE
 ## 6   g__Bacteroides 9_AA vs 14_BB         AA -1.2561760038                   0       0        FALSE
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                        -1.1699250                      30                   22
-## 2                                NA                       0                    0
-## 3                         0.1772545                     311                  333
-## 4                        -0.4280937                      64                   55
-## 5                         1.0204641                     515                  923
-## 6                         1.5520348                    3806                 9118
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1                 49.5                      -1.3859026              50.65217          25.555556
-## 2                  9.5                      -2.5541902              19.39130           4.888889
-## 3                294.5                       1.7486195             997.26087        1742.111111
-## 4                 74.0                       0.2295656             163.17391         179.222222
-## 5                455.0                      -0.1010837             821.30435         786.555556
-## 6               3109.5                       0.9814940            5740.60870        8205.777778
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1           66.78571                    82.61                 88.89                 78.57
-## 2           28.71429                    43.48                 33.33                 50.00
-## 3          518.42857                    65.22                 55.56                 71.43
-## 4          152.85714                    73.91                 77.78                 71.43
-## 5          843.64286                    95.65                100.00                 92.86
-## 6         4155.85714                   100.00                100.00                100.00
-##   Odds Ratio (95% CI)
-## 1       4.3 (7.1;1.4)
-## 2           13 (18;8)
-## 3     0.39 (-1.4;2.2)
-## 4     0.87 (0.59;1.1)
-## 5      1.1 (1.2;0.93)
-## 6       0.45 (-1.1;2)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                        -1.1699250                      30                   22                 49.5
+## 2                                NA                       0                    0                  9.5
+## 3                         0.1772545                     311                  333                294.5
+## 4                        -0.4280937                      64                   55                 74.0
+## 5                         1.0204641                     515                  923                455.0
+## 6                         1.5520348                    3806                 9118               3109.5
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                      -1.3859026              50.65217          25.555556           66.78571
+## 2                      -2.5541902              19.39130           4.888889           28.71429
+## 3                       1.7486195             997.26087        1742.111111          518.42857
+## 4                       0.2295656             163.17391         179.222222          152.85714
+## 5                      -0.1010837             821.30435         786.555556          843.64286
+## 6                       0.9814940            5740.60870        8205.777778         4155.85714
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    82.61                 88.89                 78.57       4.3 (7.1;1.4)
+## 2                    43.48                 33.33                 50.00           13 (18;8)
+## 3                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
+## 4                    73.91                 77.78                 71.43     0.87 (0.59;1.1)
+## 5                    95.65                100.00                 92.86      1.1 (1.2;0.93)
+## 6                   100.00                100.00                100.00       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -2190,34 +2135,27 @@ Figure 11.2: ANCOM (Structure Zero)
 ## 4    g__Lactobacillus 7_AA vs 15_BB         BB  0.1445633 0.1445633 5.294053e-05   4.632296e-04
 ## 5  g__Bifidobacterium 7_AA vs 15_BB         BB  0.3734565 0.3734565 2.016069e-04   1.079861e-03
 ## 6        g__Roseburia 7_AA vs 15_BB         BB  0.1286164 0.1286164 1.261249e-04   8.828745e-04
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                         -4.011562              0.05346880            0.0047826
-## 2                         -2.906486              0.02141570            0.0044236
-## 3                         -3.182422              0.02000425            0.0036769
-## 4                                NA              0.00155690            0.0000000
-## 5                         -6.549698              0.03731980            0.0009090
-## 6                         -4.442582              0.00752330            0.0008393
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1            0.0771373                       -3.992131            0.05750352       0.0051489857
-## 2            0.0331677                       -2.892349            0.03578485       0.0066508000
-## 3            0.0333800                       -2.265551            0.02431008       0.0067591429
-## 4            0.0024249                       -5.399318            0.02118822       0.0007282714
-## 5            0.0851568                       -3.394708            0.10730063       0.0143274857
-## 6            0.0182502                       -2.451452            0.02013462       0.0049745857
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1         0.08193563                    77.27                 57.14                 86.67
-## 2         0.04938074                    81.82                 57.14                 93.33
-## 3         0.03250052                   100.00                100.00                100.00
-## 4         0.03073619                    72.73                 42.86                 86.67
-## 5         0.15068810                   100.00                100.00                100.00
-## 6         0.02720931                    81.82                 57.14                 93.33
-##         Odds Ratio (95% CI)
-## 1                75 (83;66)
-## 2             270 (280;260)
-## 3                90 (99;81)
-## 4 5.3e+10 (5.3e+10;5.3e+10)
-## 5             130 (140;120)
-## 6               12 (17;7.2)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                         -4.011562              0.05346880            0.0047826            0.0771373
+## 2                         -2.906486              0.02141570            0.0044236            0.0331677
+## 3                         -3.182422              0.02000425            0.0036769            0.0333800
+## 4                                NA              0.00155690            0.0000000            0.0024249
+## 5                         -6.549698              0.03731980            0.0009090            0.0851568
+## 6                         -4.442582              0.00752330            0.0008393            0.0182502
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                       -3.992131            0.05750352       0.0051489857         0.08193563
+## 2                       -2.892349            0.03578485       0.0066508000         0.04938074
+## 3                       -2.265551            0.02431008       0.0067591429         0.03250052
+## 4                       -5.399318            0.02118822       0.0007282714         0.03073619
+## 5                       -3.394708            0.10730063       0.0143274857         0.15068810
+## 6                       -2.451452            0.02013462       0.0049745857         0.02720931
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB       Odds Ratio (95% CI)
+## 1                    77.27                 57.14                 86.67                75 (83;66)
+## 2                    81.82                 57.14                 93.33             270 (280;260)
+## 3                   100.00                100.00                100.00                90 (99;81)
+## 4                    72.73                 42.86                 86.67 5.3e+10 (5.3e+10;5.3e+10)
+## 5                   100.00                100.00                100.00             130 (140;120)
+## 6                    81.82                 57.14                 93.33               12 (17;7.2)</code></pre>
 <details>
 <summary>
 <strong>limma_voom Metagenomic sequencing in run_da</strong>
@@ -2256,34 +2194,27 @@ Figure 11.2: ANCOM (Structure Zero)
 ## 4 g__Bifidobacterium 7_AA vs 15_BB         BB  4.0400547        11 0.0021226194     0.03357196
 ## 5       g__Bilophila 7_AA vs 15_BB  Nonsignif  0.5394300        60 0.6160709679     0.73547689
 ## 6         g__Blautia 7_AA vs 15_BB         BB  1.7897262         6 0.0003518154     0.01231354
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                          2.061604              0.00711780            0.0236665
-## 2                         -4.964322              0.00031435            0.0000229
-## 3                          1.229057              0.24894650            0.4568864
-## 4                         -6.549698              0.03731980            0.0009090
-## 5                          1.177523              0.00104585            0.0020513
-## 6                         -3.182422              0.02000425            0.0036769
-##   Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
-## 1            0.0056693                       0.4613459                   14.14
-## 2            0.0007149                      -0.6171177                    8.43
-## 3            0.1949060                       0.7906916                   16.14
-## 4            0.0851568                      -1.3572361                    5.57
-## 5            0.0009069                       0.1924811                   12.57
-## 6            0.0333800                      -1.5869402                    4.86
-##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1                   10.27                    77.27                 71.43                 80.00
-## 2                   12.93                    86.36                 71.43                 93.33
-## 3                    9.33                   100.00                100.00                100.00
-## 4                   14.27                   100.00                100.00                100.00
-## 5                   11.00                    68.18                 71.43                 66.67
-## 6                   14.60                   100.00                100.00                100.00
-##   Odds Ratio (95% CI)
-## 1     0.22 (-2.7;3.2)
-## 2         6 (9.5;2.5)
-## 3       0.31 (-2;2.6)
-## 4       130 (140;120)
-## 5      0.4 (-1.4;2.2)
-## 6          90 (99;81)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                          2.061604              0.00711780            0.0236665            0.0056693
+## 2                         -4.964322              0.00031435            0.0000229            0.0007149
+## 3                          1.229057              0.24894650            0.4568864            0.1949060
+## 4                         -6.549698              0.03731980            0.0009090            0.0851568
+## 5                          1.177523              0.00104585            0.0020513            0.0009069
+## 6                         -3.182422              0.02000425            0.0036769            0.0333800
+##   Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA Mean Rank Abundance\nBB
+## 1                       0.4613459                   14.14                   10.27
+## 2                      -0.6171177                    8.43                   12.93
+## 3                       0.7906916                   16.14                    9.33
+## 4                      -1.3572361                    5.57                   14.27
+## 5                       0.1924811                   12.57                   11.00
+## 6                      -1.5869402                    4.86                   14.60
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    77.27                 71.43                 80.00     0.22 (-2.7;3.2)
+## 2                    86.36                 71.43                 93.33         6 (9.5;2.5)
+## 3                   100.00                100.00                100.00       0.31 (-2;2.6)
+## 4                   100.00                100.00                100.00       130 (140;120)
+## 5                    68.18                 71.43                 66.67      0.4 (-1.4;2.2)
+## 6                   100.00                100.00                100.00          90 (99;81)</code></pre>
 <details>
 <summary>
 <strong>wilcox Metagenomic sequencing in run_da</strong>
@@ -2386,34 +2317,34 @@ Figure 11.2: ANCOM (Structure Zero)
 ## 4 g__Bifidobacterium 7_AA vs 15_BB  Nonsignif  4.0400547 -2.725201 1.523564e-02    0.090761685
 ## 5       g__Bilophila 7_AA vs 15_BB  Nonsignif  0.5394300  1.203014 2.727749e-01    0.500106397
 ## 6         g__Blautia 7_AA vs 15_BB         BB  1.7897262 -5.254033 4.588669e-05    0.001606034
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                          2.061604              0.00711780            0.0236665
-## 2                         -4.964322              0.00031435            0.0000229
-## 3                          1.229057              0.24894650            0.4568864
-## 4                         -6.549698              0.03731980            0.0009090
-## 5                          1.177523              0.00104585            0.0020513
-## 6                         -3.182422              0.02000425            0.0036769
-##   Median Abundance\nBB Log2FoldChange (geometricmean)\nAA_vs_BB GeometricMean Abundance\n(All)
-## 1            0.0056693                                 2.055288                      0.3989446
-## 2            0.0007149                                       NA                      1.8882218
-## 3            0.1949060                                 1.607214                      0.3871167
-## 4            0.0851568                                       NA                      0.1936930
-## 5            0.0009069                                 3.174655                      0.6988408
-## 6            0.0333800                                       NA                      0.9008965
-##   GeometricMean Abundance\nAA GeometricMean Abundance\nBB Occurrence (100%)\n(All)
-## 1                   0.7346341                   0.1767534                    77.27
-## 2                         NaN                   1.8882218                    86.36
-## 3                   0.6044631                   0.1984039                   100.00
-## 4                         NaN                   0.1936930                   100.00
-## 5                   2.6168456                   0.2898089                    68.18
-## 6                         NaN                   0.9008965                   100.00
-##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                 71.43                 80.00     0.22 (-2.7;3.2)
-## 2                 71.43                 93.33         6 (9.5;2.5)
-## 3                100.00                100.00       0.31 (-2;2.6)
-## 4                100.00                100.00       130 (140;120)
-## 5                 71.43                 66.67      0.4 (-1.4;2.2)
-## 6                100.00                100.00          90 (99;81)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                          2.061604              0.00711780            0.0236665            0.0056693
+## 2                         -4.964322              0.00031435            0.0000229            0.0007149
+## 3                          1.229057              0.24894650            0.4568864            0.1949060
+## 4                         -6.549698              0.03731980            0.0009090            0.0851568
+## 5                          1.177523              0.00104585            0.0020513            0.0009069
+## 6                         -3.182422              0.02000425            0.0036769            0.0333800
+##   Log2FoldChange (geometricmean)\nAA_vs_BB GeometricMean Abundance\n(All) GeometricMean Abundance\nAA
+## 1                                 2.055288                      0.3989446                   0.7346341
+## 2                                       NA                      1.8882218                         NaN
+## 3                                 1.607214                      0.3871167                   0.6044631
+## 4                                       NA                      0.1936930                         NaN
+## 5                                 3.174655                      0.6988408                   2.6168456
+## 6                                       NA                      0.9008965                         NaN
+##   GeometricMean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1                   0.1767534                    77.27                 71.43                 80.00
+## 2                   1.8882218                    86.36                 71.43                 93.33
+## 3                   0.1984039                   100.00                100.00                100.00
+## 4                   0.1936930                   100.00                100.00                100.00
+## 5                   0.2898089                    68.18                 71.43                 66.67
+## 6                   0.9008965                   100.00                100.00                100.00
+##   Odds Ratio (95% CI)
+## 1     0.22 (-2.7;3.2)
+## 2         6 (9.5;2.5)
+## 3       0.31 (-2;2.6)
+## 4       130 (140;120)
+## 5      0.4 (-1.4;2.2)
+## 6          90 (99;81)</code></pre>
 <details>
 <summary>
 <strong>ttest Metagenomic sequencing in run_da</strong>
@@ -2640,7 +2571,7 @@ Figure 11.7: Multiple DA results
 ## [10] S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
 ## [13] matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5              
 ## [16] phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                
-## [19] XMAS_2.1.2                 
+## [19] XMAS2_2.1.2                
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] utf8_1.2.2             reticulate_1.24        tidyselect_1.1.2       RSQLite_2.2.10        

@@ -400,7 +400,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 13</span> Examples<a href="examples.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Here, we give users two examples to practice the data analysis workflow by <strong>XMAS 2.0</strong>. By the way, we also recommend users handling your own microbiota data in a reasonable manner when you utilize this package or workflow. Pay attention to whether your data fit the methods this package provided.</p>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="examples.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS)</span>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="examples.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
 <span id="cb373-2"><a href="examples.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb373-3"><a href="examples.html#cb373-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb373-4"><a href="examples.html#cb373-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
@@ -411,8 +411,8 @@ div.csl-indent {
 <h2><span class="header-section-number">13.1</span> Workflow description<a href="examples.html#workflow-description" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 The standard data analysis of 16S and MGS data by <strong>XMAS 2.0</strong>.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-210"></span>
-<div id="htmlwidget-05812c91556ed734c057" style="width:672px;height:768px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-05812c91556ed734c057">{"x":{"diagram":"digraph flowchart { \n\n# initiate graph\ngraph [layout = dot, rankdir = TB, label = \"[dada2_res|metadata|tree]\n\n\", labelloc = t]\n\n\n# global node settings\nnode [shape = rectangle, style = filled, fillcolor = Linen, fontname = arial, width = 4]\n \ntab1 [label = \"Importing data: import_dada2()/summarize_phyloseq()\"]  \ntab2 [label = \"Quality Control(RefCheck/Remove): summarize_taxa()/run_RefCheck()/get_GroupPhyloseq()\"]  \ntab3 [label = \"Quality Control(Rarefaction curves): plot_RarefCure()\"]\ntab4 [label = \"Quality Control(Reads Track): plot_Dada2Track()\"]  \ntab5 [label = \"Quality Control(Variability): plot_taxa_cv()/plot_read_distribution()\"]  \ntab6 [label = \"Data processing(Rarefy): normalize()\"]\ntab7 [label = \"Data processing(Extract specific taxonomic level): summarize_taxa()\"]  \ntab8 [label = \"Data processing(Count2Relative): summarize_taxa(absolute = FALSE)\"]  \ntab9 [label = \"Data processing(Filter&trim): run_filter()/run_trim()\"]\ntab10 [label = \"GlobalView(Alpha diveristy): run_alpha_diversity()/plot_boxplot()\"]  \ntab11 [label = \"GlobalView(Beta diveristy): run_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()\"]  \ntab12 [label = \"GlobalView(microbial composition): plot_StackBarPlot()/plot_core_taxa()/core_members()\"]\ntab13 [label = \"DifferentialAnalysis: run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()\"] \n \ntab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7 -> tab8 -> tab9 -> tab10 -> tab11 -> tab12 -> tab13;  \n}  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-744af165ac3a0a0a9cbc" style="width:672px;height:768px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-744af165ac3a0a0a9cbc">{"x":{"diagram":"digraph flowchart { \n\n# initiate graph\ngraph [layout = dot, rankdir = TB, label = \"[dada2_res|metadata|tree]\n\n\", labelloc = t]\n\n\n# global node settings\nnode [shape = rectangle, style = filled, fillcolor = Linen, fontname = arial, width = 4]\n \ntab1 [label = \"Importing data: import_dada2()/summarize_phyloseq()\"]  \ntab2 [label = \"Quality Control(RefCheck/Remove): summarize_taxa()/run_RefCheck()/get_GroupPhyloseq()\"]  \ntab3 [label = \"Quality Control(Rarefaction curves): plot_RarefCure()\"]\ntab4 [label = \"Quality Control(Reads Track): plot_Dada2Track()\"]  \ntab5 [label = \"Quality Control(Variability): plot_taxa_cv()/plot_read_distribution()\"]  \ntab6 [label = \"Data processing(Rarefy): normalize()\"]\ntab7 [label = \"Data processing(Extract specific taxonomic level): summarize_taxa()\"]  \ntab8 [label = \"Data processing(Count2Relative): summarize_taxa(absolute = FALSE)\"]  \ntab9 [label = \"Data processing(Filter&trim): run_filter()/run_trim()\"]\ntab10 [label = \"GlobalView(Alpha diveristy): run_alpha_diversity()/plot_boxplot()\"]  \ntab11 [label = \"GlobalView(Beta diveristy): run_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()\"]  \ntab12 [label = \"GlobalView(microbial composition): plot_StackBarPlot()/plot_core_taxa()/core_members()\"]\ntab13 [label = \"DifferentialAnalysis: run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()\"] \n \ntab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7 -> tab8 -> tab9 -> tab10 -> tab11 -> tab12 -> tab13;  \n}  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 13.1: Functions of XMAS 2.0 in 16s and MGS
 </p>
@@ -442,7 +442,7 @@ Figure 13.1: Functions of XMAS 2.0 in 16s and MGS
 <span id="cb374-2"><a href="examples.html#cb374-2" aria-hidden="true" tabindex="-1"></a>dada2_res <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
 <span id="cb374-3"><a href="examples.html#cb374-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
 <span id="cb374-4"><a href="examples.html#cb374-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_res.rds&quot;</span>,</span>
-<span id="cb374-5"><a href="examples.html#cb374-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS&quot;</span>    </span>
+<span id="cb374-5"><a href="examples.html#cb374-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
 <span id="cb374-6"><a href="examples.html#cb374-6" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb374-7"><a href="examples.html#cb374-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb374-8"><a href="examples.html#cb374-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -450,7 +450,7 @@ Figure 13.1: Functions of XMAS 2.0 in 16s and MGS
 <span id="cb374-10"><a href="examples.html#cb374-10" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
 <span id="cb374-11"><a href="examples.html#cb374-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
 <span id="cb374-12"><a href="examples.html#cb374-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_metadata.tsv&quot;</span>,</span>
-<span id="cb374-13"><a href="examples.html#cb374-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS&quot;</span></span>
+<span id="cb374-13"><a href="examples.html#cb374-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
 <span id="cb374-14"><a href="examples.html#cb374-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb374-15"><a href="examples.html#cb374-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
 <span id="cb374-16"><a href="examples.html#cb374-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
@@ -461,7 +461,7 @@ Figure 13.1: Functions of XMAS 2.0 in 16s and MGS
 <span id="cb374-21"><a href="examples.html#cb374-21" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">read_tree</span>(</span>
 <span id="cb374-22"><a href="examples.html#cb374-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
 <span id="cb374-23"><a href="examples.html#cb374-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;tree.nwk&quot;</span>,</span>
-<span id="cb374-24"><a href="examples.html#cb374-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS&quot;</span>    </span>
+<span id="cb374-24"><a href="examples.html#cb374-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
 <span id="cb374-25"><a href="examples.html#cb374-25" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb374-26"><a href="examples.html#cb374-26" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb374-27"><a href="examples.html#cb374-27" aria-hidden="true" tabindex="-1"></a></span>
@@ -957,30 +957,24 @@ Figure 13.9: Core taxa (16s example)
 ## 3             g__Odoribacter 9_AA vs 14_BB         BB  2.720655   1.317365
 ## 4              g__Romboutsia 9_AA vs 14_BB         BB  3.750779   3.016968
 ## 5           g__Lactobacillus 9_AA vs 14_BB         BB  4.075009   2.628616
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                          4.402050               172.77125           1080.35695
-## 2                                NA               241.24923           2451.90494
-## 3                                NA                21.93175            604.99989
-## 4                         -6.856424              2189.79596             50.35627
-## 5                         -3.336128              1283.85401            520.46061
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1             51.09966                        4.481148             3901.0977          9320.3061
-## 2              0.00000                        2.342928             1443.2092          2822.7139
-## 3              0.00000                        2.099583              578.0758          1083.9017
-## 4           5835.02623                       -3.334490             7094.1306          1086.1419
-## 5           5256.08763                       -5.173067            19938.7655           892.0297
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1           417.3209                    65.22                 88.89                 50.00
-## 2           556.3847                    52.17                 77.78                 35.71
-## 3           252.9020                    52.17                 77.78                 35.71
-## 4         10956.4090                    78.26                 55.56                 92.86
-## 5         32183.0957                    86.96                 77.78                 92.86
-##         Odds Ratio (95% CI)
-## 1           0.0025 (-12;12)
-## 2             0.14 (-3.7;4)
-## 3             0.31 (-2;2.6)
-## 4                76 (85;68)
-## 5 1.1e+08 (1.1e+08;1.1e+08)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                          4.402050               172.77125           1080.35695             51.09966
+## 2                                NA               241.24923           2451.90494              0.00000
+## 3                                NA                21.93175            604.99989              0.00000
+## 4                         -6.856424              2189.79596             50.35627           5835.02623
+## 5                         -3.336128              1283.85401            520.46061           5256.08763
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                        4.481148             3901.0977          9320.3061           417.3209
+## 2                        2.342928             1443.2092          2822.7139           556.3847
+## 3                        2.099583              578.0758          1083.9017           252.9020
+## 4                       -3.334490             7094.1306          1086.1419         10956.4090
+## 5                       -5.173067            19938.7655           892.0297         32183.0957
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB       Odds Ratio (95% CI)
+## 1                    65.22                 88.89                 50.00           0.0025 (-12;12)
+## 2                    52.17                 77.78                 35.71             0.14 (-3.7;4)
+## 3                    52.17                 77.78                 35.71             0.31 (-2;2.6)
+## 4                    78.26                 55.56                 92.86                76 (85;68)
+## 5                    86.96                 77.78                 92.86 1.1e+08 (1.1e+08;1.1e+08)</code></pre>
 <ul>
 <li>Visualization</li>
 </ul>
@@ -1014,34 +1008,27 @@ Figure 13.10: Lefse analysis (16s example)
 ## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif   23.03175      67.0 0.8239942      0.9286981
 ## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif   60.25397      57.0 0.7343041      0.9167109
 ## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 4064.23016      89.0 0.1093014      0.7114368
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                        -0.9577718                      30                   26
-## 2                                NA                       0                    0
-## 3                         0.1524904                     316                  329
-## 4                        -0.1085245                      64                   64
-## 5                         0.9551297                     537                  918
-## 6                         1.5367266                    3807                 9103
-##   Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
-## 1                 50.5                     -0.42227633                    9.94
-## 2                  9.0                     -0.43387758                    9.89
-## 3                296.0                      0.17342686                   12.89
-## 4                 69.0                      0.08724541                   12.44
-## 5                473.5                     -0.13367844                   11.33
-## 6               3137.5                      0.55428610                   14.89
-##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1                   13.32                    82.61                 88.89                 78.57
-## 2                   13.36                    43.48                 33.33                 50.00
-## 3                   11.43                    65.22                 55.56                 71.43
-## 4                   11.71                    73.91                 77.78                 71.43
-## 5                   12.43                    95.65                100.00                 92.86
-## 6                   10.14                   100.00                100.00                100.00
-##   Odds Ratio (95% CI)
-## 1       4.1 (6.8;1.3)
-## 2        8.6 (13;4.3)
-## 3     0.39 (-1.4;2.2)
-## 4     0.88 (0.64;1.1)
-## 5      1.1 (1.2;0.93)
-## 6       0.45 (-1.1;2)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                        -0.9577718                      30                   26                 50.5
+## 2                                NA                       0                    0                  9.0
+## 3                         0.1524904                     316                  329                296.0
+## 4                        -0.1085245                      64                   64                 69.0
+## 5                         0.9551297                     537                  918                473.5
+## 6                         1.5367266                    3807                 9103               3137.5
+##   Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA Mean Rank Abundance\nBB
+## 1                     -0.42227633                    9.94                   13.32
+## 2                     -0.43387758                    9.89                   13.36
+## 3                      0.17342686                   12.89                   11.43
+## 4                      0.08724541                   12.44                   11.71
+## 5                     -0.13367844                   11.33                   12.43
+## 6                      0.55428610                   14.89                   10.14
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    82.61                 88.89                 78.57       4.1 (6.8;1.3)
+## 2                    43.48                 33.33                 50.00        8.6 (13;4.3)
+## 3                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
+## 4                    73.91                 77.78                 71.43     0.88 (0.64;1.1)
+## 5                    95.65                100.00                 92.86      1.1 (1.2;0.93)
+## 6                   100.00                100.00                100.00       0.45 (-1.1;2)</code></pre>
 <ul>
 <li>Volcano</li>
 </ul>
@@ -1084,7 +1071,7 @@ Figure 13.11: Wilcoxon Rank-Sum test (16s example)
 <div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="examples.html#cb415-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_res <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
 <span id="cb415-2"><a href="examples.html#cb415-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
 <span id="cb415-3"><a href="examples.html#cb415-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_merged.tsv&quot;</span>,</span>
-<span id="cb415-4"><a href="examples.html#cb415-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS&quot;</span></span>
+<span id="cb415-4"><a href="examples.html#cb415-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
 <span id="cb415-5"><a href="examples.html#cb415-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb415-6"><a href="examples.html#cb415-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb415-7"><a href="examples.html#cb415-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
@@ -1092,7 +1079,7 @@ Figure 13.11: Wilcoxon Rank-Sum test (16s example)
 <span id="cb415-9"><a href="examples.html#cb415-9" aria-hidden="true" tabindex="-1"></a>metaphlan2_sam <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
 <span id="cb415-10"><a href="examples.html#cb415-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
 <span id="cb415-11"><a href="examples.html#cb415-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_metadata.tsv&quot;</span>,</span>
-<span id="cb415-12"><a href="examples.html#cb415-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS&quot;</span></span>
+<span id="cb415-12"><a href="examples.html#cb415-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
 <span id="cb415-13"><a href="examples.html#cb415-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb415-14"><a href="examples.html#cb415-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
 <span id="cb415-15"><a href="examples.html#cb415-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
@@ -1258,23 +1245,23 @@ Figure 13.11: Wilcoxon Rank-Sum test (16s example)
 <span id="cb423-66"><a href="examples.html#cb423-66" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.04781  0.06825  0.15573000</span></span>
 <span id="cb423-67"><a href="examples.html#cb423-67" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      10.57600 32.69000 11.09996222</span></span>
 <span id="cb423-68"><a href="examples.html#cb423-68" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                                Evaluation</span></span>
-<span id="cb423-69"><a href="examples.html#cb423-69" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum              refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-70"><a href="examples.html#cb423-70" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis               refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-71"><a href="examples.html#cb423-71" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii        refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-72"><a href="examples.html#cb423-72" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis        refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-73"><a href="examples.html#cb423-73" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron        refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-74"><a href="examples.html#cb423-74" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens             refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-75"><a href="examples.html#cb423-75" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                   refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-76"><a href="examples.html#cb423-76" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans               refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-77"><a href="examples.html#cb423-77" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius            refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-78"><a href="examples.html#cb423-78" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens           refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-79"><a href="examples.html#cb423-79" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                  refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-80"><a href="examples.html#cb423-80" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                   refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-81"><a href="examples.html#cb423-81" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-82"><a href="examples.html#cb423-82" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                    refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-83"><a href="examples.html#cb423-83" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum   refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-84"><a href="examples.html#cb423-84" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span>
-<span id="cb423-85"><a href="examples.html#cb423-85" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      refE didn&#39;t pass the threshold (2022-05-27 12:00:57).</span></span></code></pre></div>
+<span id="cb423-69"><a href="examples.html#cb423-69" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum              refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-70"><a href="examples.html#cb423-70" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis               refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-71"><a href="examples.html#cb423-71" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii        refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-72"><a href="examples.html#cb423-72" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis        refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-73"><a href="examples.html#cb423-73" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron        refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-74"><a href="examples.html#cb423-74" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens             refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-75"><a href="examples.html#cb423-75" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                   refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-76"><a href="examples.html#cb423-76" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans               refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-77"><a href="examples.html#cb423-77" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius            refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-78"><a href="examples.html#cb423-78" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens           refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-79"><a href="examples.html#cb423-79" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                  refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-80"><a href="examples.html#cb423-80" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                   refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-81"><a href="examples.html#cb423-81" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-82"><a href="examples.html#cb423-82" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                    refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-83"><a href="examples.html#cb423-83" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum   refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-84"><a href="examples.html#cb423-84" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span>
+<span id="cb423-85"><a href="examples.html#cb423-85" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      refE didn&#39;t pass the threshold (2022-05-27 16:36:27).</span></span></code></pre></div>
 <p>The spike-in samples didn’t pass the cutoff and failed to add the the Reference Matrix.</p>
 </div>
 <div id="spike-in-samples-remove-1" class="section level4 hasAnchor" number="13.3.2.2">
@@ -1515,34 +1502,27 @@ Figure 13.17: Core taxa (MGS example)
 ## 4            s__Dorea_longicatena 7_AA vs 15_BB         BB  3.728547   3.324470
 ## 5           s__Ruminococcus_obeum 7_AA vs 15_BB         BB  3.824989   3.233014
 ## 6         s__Ruminococcus_torques 7_AA vs 15_BB         BB  3.828019   1.718488
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                          5.381835               3626.6258           46672.3795
-## 2                                NA                  0.0000             696.1790
-## 3                                NA                301.5399               0.0000
-## 4                                NA                830.7987               0.0000
-## 5                         -5.093080               8098.0608             360.8439
-## 6                         -2.667017               4806.8158            1096.7357
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1            1119.3508                        3.179359             24351.508         61892.9455
-## 2               0.0000                        5.427947              1263.429          3782.4986
-## 3             501.0011                       -3.798289              1379.263           140.6860
-## 4            9534.0308                       -7.282836              7575.907            71.1401
-## 5           12316.5574                       -2.669016             10704.595          2299.8308
-## 6            6965.5274                       -2.425578              9957.454          2501.1119
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1         6832.17069                    90.91                100.00                 86.67
-## 2           87.86256                    31.82                 57.14                 20.00
-## 3         1957.26519                    68.18                 42.86                 80.00
-## 4        11078.13206                    63.64                 42.86                 73.33
-## 5        14626.81876                    90.91                 71.43                100.00
-## 6        13437.07968                   100.00                100.00                100.00
-##         Odds Ratio (95% CI)
-## 1          0.058 (-5.5;5.6)
-## 2          0.00044 (-15;15)
-## 3             620 (630;610)
-## 4 7.8e+16 (7.8e+16;7.8e+16)
-## 5                22 (28;16)
-## 6             520 (530;510)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                          5.381835               3626.6258           46672.3795            1119.3508
+## 2                                NA                  0.0000             696.1790               0.0000
+## 3                                NA                301.5399               0.0000             501.0011
+## 4                                NA                830.7987               0.0000            9534.0308
+## 5                         -5.093080               8098.0608             360.8439           12316.5574
+## 6                         -2.667017               4806.8158            1096.7357            6965.5274
+##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
+## 1                        3.179359             24351.508         61892.9455         6832.17069
+## 2                        5.427947              1263.429          3782.4986           87.86256
+## 3                       -3.798289              1379.263           140.6860         1957.26519
+## 4                       -7.282836              7575.907            71.1401        11078.13206
+## 5                       -2.669016             10704.595          2299.8308        14626.81876
+## 6                       -2.425578              9957.454          2501.1119        13437.07968
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB       Odds Ratio (95% CI)
+## 1                    90.91                100.00                 86.67          0.058 (-5.5;5.6)
+## 2                    31.82                 57.14                 20.00          0.00044 (-15;15)
+## 3                    68.18                 42.86                 80.00             620 (630;610)
+## 4                    63.64                 42.86                 73.33 7.8e+16 (7.8e+16;7.8e+16)
+## 5                    90.91                 71.43                100.00                22 (28;16)
+## 6                   100.00                100.00                100.00             520 (530;510)</code></pre>
 <ul>
 <li>Visualization</li>
 </ul>
@@ -1576,34 +1556,27 @@ Figure 13.18: Lefse analysis (MGS example)
 ## 4   s__Alistipes_putredinis 7_AA vs 15_BB  Nonsignif 1.34298152      54.0 0.9409918      0.9830621
 ## 5       s__Alistipes_shahii 7_AA vs 15_BB  Nonsignif 1.04736939      71.0 0.1751506      0.5801989
 ## 6    s__Anaerostipes_hadrus 7_AA vs 15_BB  Nonsignif 0.02734989      30.5 0.1258306      0.4625882
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1                                NA              0.00000000            0.0027362
-## 2                                NA              0.00000000            0.0000000
-## 3                          5.819157              0.00000825            0.0002823
-## 4                                NA              0.00016915            0.0000000
-## 5                                NA              0.00012580            0.0062474
-## 6                         -3.900867              0.00013665            0.0000144
-##   Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
-## 1            0.0000000                      0.52169761                   14.50
-## 2            0.0000000                      0.34139504                   13.43
-## 3            0.0000050                      0.27924089                   13.07
-## 4            0.0002200                      0.03870725                   11.71
-## 5            0.0000000                      0.46134594                   14.14
-## 6            0.0002151                     -0.63360363                    8.36
-##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1                   10.10                    45.45                 57.14                 40.00
-## 2                   10.60                    31.82                 42.86                 26.67
-## 3                   10.77                    54.55                 57.14                 53.33
-## 4                   11.40                    54.55                 42.86                 60.00
-## 5                   10.27                    50.00                 57.14                 46.67
-## 6                   12.97                    72.73                 57.14                 80.00
-##   Odds Ratio (95% CI)
-## 1     0.0028 (-12;12)
-## 2    0.067 (-5.2;5.4)
-## 3     0.38 (-1.5;2.3)
-## 4    0.47 (-0.99;1.9)
-## 5     0.17 (-3.2;3.6)
-## 6          31 (38;24)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
+## 1                                NA              0.00000000            0.0027362            0.0000000
+## 2                                NA              0.00000000            0.0000000            0.0000000
+## 3                          5.819157              0.00000825            0.0002823            0.0000050
+## 4                                NA              0.00016915            0.0000000            0.0002200
+## 5                                NA              0.00012580            0.0062474            0.0000000
+## 6                         -3.900867              0.00013665            0.0000144            0.0002151
+##   Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA Mean Rank Abundance\nBB
+## 1                      0.52169761                   14.50                   10.10
+## 2                      0.34139504                   13.43                   10.60
+## 3                      0.27924089                   13.07                   10.77
+## 4                      0.03870725                   11.71                   11.40
+## 5                      0.46134594                   14.14                   10.27
+## 6                     -0.63360363                    8.36                   12.97
+##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                    45.45                 57.14                 40.00     0.0028 (-12;12)
+## 2                    31.82                 42.86                 26.67    0.067 (-5.2;5.4)
+## 3                    54.55                 57.14                 53.33     0.38 (-1.5;2.3)
+## 4                    54.55                 42.86                 60.00    0.47 (-0.99;1.9)
+## 5                    50.00                 57.14                 46.67     0.17 (-3.2;3.6)
+## 6                    72.73                 57.14                 80.00          31 (38;24)</code></pre>
 <ul>
 <li>Volcano</li>
 </ul>
@@ -1648,7 +1621,7 @@ Figure 13.19: Wilcoxon Rank-Sum test (MGS example)
 ## [10] S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
 ## [13] matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5              
 ## [16] phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                
-## [19] XMAS_2.1.2                 
+## [19] XMAS2_2.1.2                
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] utf8_1.2.2             reticulate_1.24        tidyselect_1.1.2       RSQLite_2.2.10        

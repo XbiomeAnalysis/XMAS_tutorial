@@ -4,7 +4,7 @@
 
 **Loading packages**
 ```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
-library(XMAS)
+library(XMAS2)
 library(dplyr)
 library(tibble)
 library(phyloseq)

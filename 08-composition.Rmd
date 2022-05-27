@@ -5,7 +5,7 @@ Stacked barplot is often used as a visualization way to display the microbial co
 **Loading packages**
 
 ```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
-library(XMAS)
+library(XMAS2)
 library(dplyr)
 library(tibble)
 library(phyloseq)
