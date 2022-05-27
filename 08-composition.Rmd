@@ -4,12 +4,14 @@ Stacked barplot is often used as a visualization way to display the microbial co
 
 **Loading packages**
 
-```R
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
 library(XMAS)
 library(dplyr)
 library(tibble)
 library(phyloseq)
 library(ggplot2)
+library(ggpubr)
+library(SummarizedExperiment)
 ```
 
 

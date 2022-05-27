@@ -4,12 +4,14 @@ Beta-diversity: Measures for differences between samples from different groups t
 
 
 **Loading packages**
-```R
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
 library(XMAS)
 library(dplyr)
 library(tibble)
 library(phyloseq)
 library(ggplot2)
+library(ggpubr)
+library(SummarizedExperiment)
 ```
 
 ## Loading data and Removing BRS

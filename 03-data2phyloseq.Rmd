@@ -9,13 +9,11 @@ This tutorial will introduce you the basic steps to convert results from the in-
 ## loading packages
 
 Loading the `XMAS` into the R session:
-```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE, fig.align="center"}
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
 library(XMAS)
 library(dplyr)
 library(tibble)
 library(phyloseq)
-library(ggplot2)
-library(ggpubr)
 ```
 
 

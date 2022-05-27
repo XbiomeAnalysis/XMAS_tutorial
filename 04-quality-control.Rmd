@@ -3,12 +3,14 @@
 Quality control of DADA2 results will help us have more rational determinations on the further data analysis. Firstly, the reads' track of DADA2 could show us the Changed Ratio of reads through the in-house standard amplicon sequencing data upstream pipeline. Then, the Evaluation of the spike-in samples from the Reference Matrix will reflect the quality of sequencing data. Finally, we recommend you that utilizing the rarefaction curves to assess the sequence depth per sample and choose the rational cutoff of OTU Number to do rarefy. 
 
 **Loading packages**
-```R
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
 library(XMAS)
 library(dplyr)
 library(tibble)
 library(phyloseq)
 library(ggplot2)
+library(ggpubr)
+library(SummarizedExperiment)
 ```
 
 ## Reads' track

@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-05-24" />
+<meta name="date" content="2022-05-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -538,7 +538,9 @@ div.csl-indent {
 <span id="cb193-2"><a href="differential-analysis.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb193-3"><a href="differential-analysis.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb193-4"><a href="differential-analysis.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb193-5"><a href="differential-analysis.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<span id="cb193-5"><a href="differential-analysis.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb193-6"><a href="differential-analysis.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb193-7"><a href="differential-analysis.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
 <div id="amplicon-sequencing-microbial-data-16s" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Amplicon sequencing microbial data (16s)<a href="differential-analysis.html#amplicon-sequencing-microbial-data-16s" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We use the same strategy to filter phyloseq object.</p>
@@ -579,42 +581,53 @@ div.csl-indent {
 <span id="cb196-4"><a href="differential-analysis.html#cb196-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb196-5"><a href="differential-analysis.html#cb196-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;t.test&quot;</span>)</span>
 <span id="cb196-6"><a href="differential-analysis.html#cb196-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_ALDEx2)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
-##  [7] &quot;Median CLR \n(All)&quot;                &quot;Median CLR\nAA&quot;                    &quot;Median CLR\nBB&quot;                   
-## [10] &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
-## [13] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;            
-## [16] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
-## [19] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
+##  [7] &quot;Median CLR \n(All)&quot;                &quot;Median CLR\nAA&quot;                   
+##  [9] &quot;Median CLR\nBB&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+## [11] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [13] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [15] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [17] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [19] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+## [21] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="differential-analysis.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_ALDEx2)</span></code></pre></div>
-<pre><code>##             TaxaID         Block Enrichment  EffectSize    Pvalue AdjustedPvalue Median CLR \n(All) Median CLR\nAA Median CLR\nBB
-## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif  0.20107672 0.5589168      0.8980570           1.857087      0.5668075      2.4851585
-## 2 g__Adlercreutzia 9_AA vs 14_BB  Nonsignif  0.32991526 0.2422022      0.7763186          -1.632999     -2.9753218     -0.9749769
-## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif -0.04590925 0.8337783      0.9604595           4.368404      4.7683067      4.2619500
-## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif -0.06269794 0.8102824      0.9564874           2.570901      2.8604190      2.4889260
-## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif  0.17863931 0.4600141      0.8789664           5.558388      5.0016632      5.8204768
-## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif -0.28723651 0.3695268      0.8619353           8.448104      8.8781307      8.2735587
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB
-## 1                        -1.1699250                      30                   22                 49.5                      -1.3859026
-## 2                                NA                       0                    0                  9.5                      -2.5541902
-## 3                         0.1772545                     311                  333                294.5                       1.7486195
-## 4                        -0.4280937                      64                   55                 74.0                       0.2295656
-## 5                         1.0204641                     515                  923                455.0                      -0.1010837
-## 6                         1.5520348                    3806                 9118               3109.5                       0.9814940
-##   Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1              50.65217          25.555556           66.78571                    82.61                 88.89                 78.57
-## 2              19.39130           4.888889           28.71429                    43.48                 33.33                 50.00
-## 3             997.26087        1742.111111          518.42857                    65.22                 55.56                 71.43
-## 4             163.17391         179.222222          152.85714                    73.91                 77.78                 71.43
-## 5             821.30435         786.555556          843.64286                    95.65                100.00                 92.86
-## 6            5740.60870        8205.777778         4155.85714                   100.00                100.00                100.00
-##   Odds Ratio (95% CI)
-## 1       4.3 (7.1;1.4)
-## 2           13 (18;8)
-## 3     0.39 (-1.4;2.2)
-## 4     0.87 (0.59;1.1)
-## 5      1.1 (1.2;0.93)
-## 6       0.45 (-1.1;2)</code></pre>
+<pre><code>##             TaxaID         Block Enrichment  EffectSize    Pvalue AdjustedPvalue Median CLR \n(All)
+## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif  0.20107672 0.5589168      0.8980570           1.857087
+## 2 g__Adlercreutzia 9_AA vs 14_BB  Nonsignif  0.32991526 0.2422022      0.7763186          -1.632999
+## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif -0.04590925 0.8337783      0.9604595           4.368404
+## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif -0.06269794 0.8102824      0.9564874           2.570901
+## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif  0.17863931 0.4600141      0.8789664           5.558388
+## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif -0.28723651 0.3695268      0.8619353           8.448104
+##   Median CLR\nAA Median CLR\nBB Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All)
+## 1      0.5668075      2.4851585                        -1.1699250                      30
+## 2     -2.9753218     -0.9749769                                NA                       0
+## 3      4.7683067      4.2619500                         0.1772545                     311
+## 4      2.8604190      2.4889260                        -0.4280937                      64
+## 5      5.0016632      5.8204768                         1.0204641                     515
+## 6      8.8781307      8.2735587                         1.5520348                    3806
+##   Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
+## 1                   22                 49.5                      -1.3859026              50.65217
+## 2                    0                  9.5                      -2.5541902              19.39130
+## 3                  333                294.5                       1.7486195             997.26087
+## 4                   55                 74.0                       0.2295656             163.17391
+## 5                  923                455.0                      -0.1010837             821.30435
+## 6                 9118               3109.5                       0.9814940            5740.60870
+##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA
+## 1          25.555556           66.78571                    82.61                 88.89
+## 2           4.888889           28.71429                    43.48                 33.33
+## 3        1742.111111          518.42857                    65.22                 55.56
+## 4         179.222222          152.85714                    73.91                 77.78
+## 5         786.555556          843.64286                    95.65                100.00
+## 6        8205.777778         4155.85714                   100.00                100.00
+##   Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                 78.57       4.3 (7.1;1.4)
+## 2                 50.00           13 (18;8)
+## 3                 71.43     0.39 (-1.4;2.2)
+## 4                 71.43     0.87 (0.59;1.1)
+## 5                 92.86      1.1 (1.2;0.93)
+## 6                100.00       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -644,13 +657,17 @@ div.csl-indent {
 <span id="cb200-5"><a href="differential-analysis.html#cb200-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">da_method =</span> <span class="st">&quot;aldex&quot;</span>,</span>
 <span id="cb200-6"><a href="differential-analysis.html#cb200-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;t.test&quot;</span>)</span>
 <span id="cb200-7"><a href="differential-analysis.html#cb200-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_ALDEx2)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
-##  [7] &quot;Median CLR \n(All)&quot;                &quot;Median CLR\nAA&quot;                    &quot;Median CLR\nBB&quot;                   
-## [10] &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
-## [13] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;            
-## [16] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
-## [19] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
+##  [7] &quot;Median CLR \n(All)&quot;                &quot;Median CLR\nAA&quot;                   
+##  [9] &quot;Median CLR\nBB&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+## [11] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [13] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [15] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [17] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [19] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+## [21] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 </details>
 <details>
 <summary>
@@ -665,13 +682,17 @@ div.csl-indent {
 <span id="cb202-6"><a href="differential-analysis.html#cb202-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;t.test&quot;</span>)</span>
 <span id="cb202-7"><a href="differential-analysis.html#cb202-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb202-8"><a href="differential-analysis.html#cb202-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_ALDEx2)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
-##  [7] &quot;Median CLR \n(All)&quot;                &quot;Median CLR\nAA&quot;                    &quot;Median CLR\nBB&quot;                   
-## [10] &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
-## [13] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;            
-## [16] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
-## [19] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
+##  [7] &quot;Median CLR \n(All)&quot;                &quot;Median CLR\nAA&quot;                   
+##  [9] &quot;Median CLR\nBB&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+## [11] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [13] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [15] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [17] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [19] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+## [21] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 </details>
 <details>
 <summary>
@@ -685,13 +706,17 @@ div.csl-indent {
 <span id="cb204-5"><a href="differential-analysis.html#cb204-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb204-6"><a href="differential-analysis.html#cb204-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">&quot;t.test&quot;</span>)</span>
 <span id="cb204-7"><a href="differential-analysis.html#cb204-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_ALDEx2)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
-##  [7] &quot;Median CLR \n(All)&quot;                &quot;Median CLR\nAA&quot;                    &quot;Median CLR\nBB&quot;                   
-## [10] &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
-## [13] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;            
-## [16] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
-## [19] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
+##  [7] &quot;Median CLR \n(All)&quot;                &quot;Median CLR\nAA&quot;                   
+##  [9] &quot;Median CLR\nBB&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+## [11] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [13] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [15] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [17] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [19] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+## [21] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 </details>
 </div>
 <div id="limma_voom" class="section level3 hasAnchor" number="11.1.2">
@@ -704,35 +729,52 @@ div.csl-indent {
 <span id="cb206-4"><a href="differential-analysis.html#cb206-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb206-5"><a href="differential-analysis.html#cb206-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb206-6"><a href="differential-analysis.html#cb206-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_limma_voom)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;logFC&quot;                             &quot;Pvalue&quot;                           
-##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
-## [16] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;logFC&quot;                             &quot;Pvalue&quot;                           
+##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [15] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [17] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="differential-analysis.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_limma_voom)</span></code></pre></div>
-<pre><code>##                       TaxaID         Block Enrichment EffectSize     logFC      Pvalue AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB
-## 1              g__Romboutsia 9_AA vs 14_BB  Nonsignif   4.695463  4.695463 0.003755076      0.2591003                         -6.499846
-## 2 g__Ruminococcaceae_UCG_004 9_AA vs 14_BB  Nonsignif  -3.917539 -3.917539 0.021019060      0.5453230                                NA
-## 3           g__Lactobacillus 9_AA vs 14_BB  Nonsignif   3.819030  3.819030 0.025755771      0.5453230                         -2.870821
-## 4          g__Parasutterella 9_AA vs 14_BB  Nonsignif  -3.581423 -3.581423 0.031612929      0.5453230                          5.029747
-## 5             g__Odoribacter 9_AA vs 14_BB  Nonsignif  -3.085026 -3.085026 0.043219346      0.5964270                                NA
-## 6               g__Roseburia 9_AA vs 14_BB  Nonsignif   3.470587  3.470587 0.065834317      0.6632463                                NA
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
-## 1                     105                    3                271.5                       -3.197677             295.47826
-## 2                      11                  107                  0.0                        2.211165              66.91304
-## 3                      57                   27                197.5                       -5.067893             799.95652
-## 4                       7                   49                  1.5                        4.244838             164.56522
-## 5                       3                   30                  0.0                        2.050293              26.43478
-## 6                     125                    0                252.5                       -3.184643             669.60870
-##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1           49.44444          453.64286                    78.26                 55.56                 92.86          42 (49;34)
-## 2          128.00000           27.64286                    52.17                 77.78                 35.71     0.19 (-3.1;3.5)
-## 3           38.44444         1289.50000                    86.96                 77.78                 92.86 4e+08 (4e+08;4e+08)
-## 4          388.66667           20.50000                    65.22                 88.89                 50.00         0.01 (-9;9)
-## 5           49.11111           11.85714                    52.17                 77.78                 35.71     0.33 (-1.9;2.5)
-## 6          113.00000         1027.42857                    65.22                 44.44                 78.57          64 (72;56)</code></pre>
+<pre><code>##                       TaxaID         Block Enrichment EffectSize     logFC      Pvalue
+## 1              g__Romboutsia 9_AA vs 14_BB  Nonsignif   4.695463  4.695463 0.003755076
+## 2 g__Ruminococcaceae_UCG_004 9_AA vs 14_BB  Nonsignif  -3.917539 -3.917539 0.021019060
+## 3           g__Lactobacillus 9_AA vs 14_BB  Nonsignif   3.819030  3.819030 0.025755771
+## 4          g__Parasutterella 9_AA vs 14_BB  Nonsignif  -3.581423 -3.581423 0.031612929
+## 5             g__Odoribacter 9_AA vs 14_BB  Nonsignif  -3.085026 -3.085026 0.043219346
+## 6               g__Roseburia 9_AA vs 14_BB  Nonsignif   3.470587  3.470587 0.065834317
+##   AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1      0.2591003                         -6.499846                     105                    3
+## 2      0.5453230                                NA                      11                  107
+## 3      0.5453230                         -2.870821                      57                   27
+## 4      0.5453230                          5.029747                       7                   49
+## 5      0.5964270                                NA                       3                   30
+## 6      0.6632463                                NA                     125                    0
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
+## 1                271.5                       -3.197677             295.47826           49.44444
+## 2                  0.0                        2.211165              66.91304          128.00000
+## 3                197.5                       -5.067893             799.95652           38.44444
+## 4                  1.5                        4.244838             164.56522          388.66667
+## 5                  0.0                        2.050293              26.43478           49.11111
+## 6                252.5                       -3.184643             669.60870          113.00000
+##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1          453.64286                    78.26                 55.56                 92.86
+## 2           27.64286                    52.17                 77.78                 35.71
+## 3         1289.50000                    86.96                 77.78                 92.86
+## 4           20.50000                    65.22                 88.89                 50.00
+## 5           11.85714                    52.17                 77.78                 35.71
+## 6         1027.42857                    65.22                 44.44                 78.57
+##   Odds Ratio (95% CI)
+## 1          42 (49;34)
+## 2     0.19 (-3.1;3.5)
+## 3 4e+08 (4e+08;4e+08)
+## 4         0.01 (-9;9)
+## 5     0.33 (-1.9;2.5)
+## 6          64 (72;56)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -784,44 +826,63 @@ div.csl-indent {
 <span id="cb211-3"><a href="differential-analysis.html#cb211-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb211-4"><a href="differential-analysis.html#cb211-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb211-5"><a href="differential-analysis.html#cb211-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_mbzinb)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                    &quot;EffectSize&quot;                       
-##  [7] &quot;base.mean&quot;                         &quot;mean.LFC&quot;                          &quot;base.abund&quot;                       
-## [10] &quot;abund.LFC&quot;                         &quot;base.prev&quot;                         &quot;prev.change&quot;                      
-## [13] &quot;base.disp&quot;                         &quot;disp.LFC&quot;                          &quot;statistic&quot;                        
-## [16] &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
-## [19] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;            
-## [22] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
-## [25] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;Pvalue&quot;                           
+##  [5] &quot;AdjustedPvalue&quot;                    &quot;EffectSize&quot;                       
+##  [7] &quot;base.mean&quot;                         &quot;mean.LFC&quot;                         
+##  [9] &quot;base.abund&quot;                        &quot;abund.LFC&quot;                        
+## [11] &quot;base.prev&quot;                         &quot;prev.change&quot;                      
+## [13] &quot;base.disp&quot;                         &quot;disp.LFC&quot;                         
+## [15] &quot;statistic&quot;                         &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+## [17] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [19] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [21] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [23] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [25] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+## [27] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="differential-analysis.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_mbzinb)</span></code></pre></div>
-<pre><code>##                       TaxaID         Block Enrichment      Pvalue AdjustedPvalue EffectSize  base.mean   mean.LFC base.abund   abund.LFC
-## 1           g__Lactobacillus 9_AA vs 14_BB  Nonsignif 0.002086875      0.1439944  2.2952990  34.129282  4.4898620   43.61763  4.19415460
-## 2     g__Ruminiclostridium_5 9_AA vs 14_BB  Nonsignif 0.008876265      0.3003035  0.3212103  30.315071  0.7865167   30.31507  1.00848113
-## 3              g__Romboutsia 9_AA vs 14_BB  Nonsignif 0.016443976      0.3003035  2.2507136  36.557345  3.1571628   63.05112  2.46745862
-## 4           g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.018666615      0.3003035  0.5762774   3.911818  2.6554273   11.73606  2.06902032
-## 5 g__Lachnospiraceae_UCG_010 9_AA vs 14_BB  Nonsignif 0.022486902      0.3003035  0.4854298  25.770711 -2.0949222   46.38413 -1.24068800
-## 6          g__Butyricicoccus 9_AA vs 14_BB  Nonsignif 0.029426570      0.3003035  0.5544952 231.635435 -0.1958844  297.86046  0.07898054
-##   base.prev prev.change  base.disp  disp.LFC statistic Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
-## 1 0.7824654   0.1780005 0.70022332  1.652437 14.705041                        -2.8708213                      57                   27
-## 2 1.0000000  -0.1426028 0.11584182  1.935466 11.602584                        -0.3504972                      46                   40
-## 3 0.5798048   0.3553929 1.40372047 -0.312006 10.264842                        -6.4998459                     105                    3
-## 4 0.3333161   0.1671589 0.02507192  4.101251  9.988211                                NA                       0                    0
-## 5 0.5555933  -0.2482619 0.08910223  3.810059  9.580823                                NA                       0                   34
-## 6 0.7776642  -0.1349032 0.04031021  3.417434  8.989818                         2.0596429                     292                  321
-##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
-## 1                197.5                      -5.0678928             799.95652          38.444444         1289.50000
-## 2                 51.0                      -0.7826083              51.78261          36.000000           61.92857
-## 3                271.5                      -3.1976766             295.47826          49.444444          453.64286
-## 4                  9.5                      -2.5541902              19.39130           4.888889           28.71429
-## 5                  0.0                       2.2719126              18.73913          36.222222            7.50000
-## 6                 77.0                       0.3575932             241.04348         278.222222          217.14286
-##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                    86.96                 77.78                 92.86 4e+08 (4e+08;4e+08)
-## 2                    91.30                100.00                 85.71        2.3 (4;0.67)
-## 3                    78.26                 55.56                 92.86          42 (49;34)
-## 4                    43.48                 33.33                 50.00           13 (18;8)
-## 5                    39.13                 55.56                 28.57     0.33 (-1.8;2.5)
-## 6                    69.57                 77.78                 64.29     0.76 (0.21;1.3)</code></pre>
+<pre><code>##                       TaxaID         Block Enrichment      Pvalue AdjustedPvalue EffectSize
+## 1           g__Lactobacillus 9_AA vs 14_BB  Nonsignif 0.002086875      0.1439944  2.2952990
+## 2     g__Ruminiclostridium_5 9_AA vs 14_BB  Nonsignif 0.008876265      0.3003035  0.3212103
+## 3              g__Romboutsia 9_AA vs 14_BB  Nonsignif 0.016443976      0.3003035  2.2507136
+## 4           g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.018666615      0.3003035  0.5762774
+## 5 g__Lachnospiraceae_UCG_010 9_AA vs 14_BB  Nonsignif 0.022486902      0.3003035  0.4854298
+## 6          g__Butyricicoccus 9_AA vs 14_BB  Nonsignif 0.029426570      0.3003035  0.5544952
+##    base.mean   mean.LFC base.abund   abund.LFC base.prev prev.change  base.disp  disp.LFC statistic
+## 1  34.129282  4.4898620   43.61763  4.19415460 0.7824654   0.1780005 0.70022332  1.652437 14.705041
+## 2  30.315071  0.7865167   30.31507  1.00848113 1.0000000  -0.1426028 0.11584182  1.935466 11.602584
+## 3  36.557345  3.1571628   63.05112  2.46745862 0.5798048   0.3553929 1.40372047 -0.312006 10.264842
+## 4   3.911818  2.6554273   11.73606  2.06902032 0.3333161   0.1671589 0.02507192  4.101251  9.988211
+## 5  25.770711 -2.0949222   46.38413 -1.24068800 0.5555933  -0.2482619 0.08910223  3.810059  9.580823
+## 6 231.635435 -0.1958844  297.86046  0.07898054 0.7776642  -0.1349032 0.04031021  3.417434  8.989818
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                        -2.8708213                      57                   27
+## 2                        -0.3504972                      46                   40
+## 3                        -6.4998459                     105                    3
+## 4                                NA                       0                    0
+## 5                                NA                       0                   34
+## 6                         2.0596429                     292                  321
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
+## 1                197.5                      -5.0678928             799.95652          38.444444
+## 2                 51.0                      -0.7826083              51.78261          36.000000
+## 3                271.5                      -3.1976766             295.47826          49.444444
+## 4                  9.5                      -2.5541902              19.39130           4.888889
+## 5                  0.0                       2.2719126              18.73913          36.222222
+## 6                 77.0                       0.3575932             241.04348         278.222222
+##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1         1289.50000                    86.96                 77.78                 92.86
+## 2           61.92857                    91.30                100.00                 85.71
+## 3          453.64286                    78.26                 55.56                 92.86
+## 4           28.71429                    43.48                 33.33                 50.00
+## 5            7.50000                    39.13                 55.56                 28.57
+## 6          217.14286                    69.57                 77.78                 64.29
+##   Odds Ratio (95% CI)
+## 1 4e+08 (4e+08;4e+08)
+## 2        2.3 (4;0.67)
+## 3          42 (49;34)
+## 4           13 (18;8)
+## 5     0.33 (-1.8;2.5)
+## 6     0.76 (0.21;1.3)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -906,52 +967,71 @@ div.csl-indent {
 ## Permutation test ....
 ## Completed!</code></pre>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="differential-analysis.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_omnibus)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                    &quot;EffectSize&quot;                       
-##  [7] &quot;chi.stat&quot;                          &quot;df&quot;                                &quot;abund.baseline&quot;                   
-## [10] &quot;prev.baseline&quot;                     &quot;dispersion.baseline&quot;               &quot;abund.LFC.CompvarBB.est&quot;          
-## [13] &quot;abund.LFC.CompvarBB.se&quot;            &quot;prev.LOD.CompvarBB.est&quot;            &quot;prev.LOD.CompvarBB.se&quot;            
-## [16] &quot;dispersion.LFC.CompvarBB.est&quot;      &quot;dispersion.LFC.CompvarBB.se&quot;       &quot;method&quot;                           
-## [19] &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
-## [22] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;            
-## [25] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
-## [28] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;Pvalue&quot;                           
+##  [5] &quot;AdjustedPvalue&quot;                    &quot;EffectSize&quot;                       
+##  [7] &quot;chi.stat&quot;                          &quot;df&quot;                               
+##  [9] &quot;abund.baseline&quot;                    &quot;prev.baseline&quot;                    
+## [11] &quot;dispersion.baseline&quot;               &quot;abund.LFC.CompvarBB.est&quot;          
+## [13] &quot;abund.LFC.CompvarBB.se&quot;            &quot;prev.LOD.CompvarBB.est&quot;           
+## [15] &quot;prev.LOD.CompvarBB.se&quot;             &quot;dispersion.LFC.CompvarBB.est&quot;     
+## [17] &quot;dispersion.LFC.CompvarBB.se&quot;       &quot;method&quot;                           
+## [19] &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
+## [21] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;             
+## [23] &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;            
+## [25] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
+## [27] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
+## [29] &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="differential-analysis.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_omnibus)</span></code></pre></div>
-<pre><code>##             TaxaID         Block Enrichment     Pvalue AdjustedPvalue EffectSize  chi.stat df abund.baseline prev.baseline
-## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.17169244      0.5280000 0.87195760 5.0014303  3   0.0007418605     0.8901709
-## 2 g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.03616107      0.3388752 0.57627740 8.5347448  3   0.0003617986     0.3333489
-## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.10406623      0.4876000 0.10803167 6.1603052  3   0.0581883369     0.5555657
-## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.96368031      0.9778521 0.07097212 0.2803523  3   0.0051269736     0.7813914
-## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.63526925      0.8276736 0.40991461 1.7074928  3   0.0191836324     0.9999998
-## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.08900000      0.4723846 0.93028412        NA NA             NA            NA
-##   dispersion.baseline abund.LFC.CompvarBB.est abund.LFC.CompvarBB.se prev.LOD.CompvarBB.est prev.LOD.CompvarBB.se
-## 1           2.5621526              0.76587774              0.3430326             -0.7589141             1.2527366
-## 2          22.4213282              1.30993086              0.3239451              0.6948755             0.8863894
-## 3           1.6994493             -1.17340512              0.4639835              0.6956651             0.8946536
-## 4           1.0309783             -0.03887534              0.4626257             -0.3549679             1.0004486
-## 5           0.6029724              0.05053905              0.5148806            -13.1146633                    NA
-## 6                  NA                      NA                     NA                     NA                    NA
-##   dispersion.LFC.CompvarBB.est dispersion.LFC.CompvarBB.se              method Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All)
-## 1                   -0.5841087                   0.6581748             omnibus                        -1.1699250                      30
-## 2                   -2.3168718                   2.0799668             omnibus                                NA                       0
-## 3                   -0.5041838                   0.7037559             omnibus                         0.1772545                     311
-## 4                    0.2574561                   0.6308201             omnibus                        -0.4280937                      64
-## 5                    0.4588537                   0.5267880             omnibus                         1.0204641                     515
-## 6                           NA                          NA permutation(n=1000)                         1.5520348                    3806
-##   Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
-## 1                   22                 49.5                      -1.3859026              50.65217          25.555556           66.78571
-## 2                    0                  9.5                      -2.5541902              19.39130           4.888889           28.71429
-## 3                  333                294.5                       1.7486195             997.26087        1742.111111          518.42857
-## 4                   55                 74.0                       0.2295656             163.17391         179.222222          152.85714
-## 5                  923                455.0                      -0.1010837             821.30435         786.555556          843.64286
-## 6                 9118               3109.5                       0.9814940            5740.60870        8205.777778         4155.85714
-##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                    82.61                 88.89                 78.57       4.3 (7.1;1.4)
-## 2                    43.48                 33.33                 50.00           13 (18;8)
-## 3                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
-## 4                    73.91                 77.78                 71.43     0.87 (0.59;1.1)
-## 5                    95.65                100.00                 92.86      1.1 (1.2;0.93)
-## 6                   100.00                100.00                100.00       0.45 (-1.1;2)</code></pre>
+<pre><code>##             TaxaID         Block Enrichment     Pvalue AdjustedPvalue EffectSize  chi.stat df
+## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.17169244      0.5280000 0.87195760 5.0014303  3
+## 2 g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.03616107      0.3388752 0.57627740 8.5347448  3
+## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.10406623      0.4876000 0.10803167 6.1603052  3
+## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.96368031      0.9778521 0.07097212 0.2803523  3
+## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.63526925      0.8276736 0.40991461 1.7074928  3
+## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.08900000      0.4723846 0.93028412        NA NA
+##   abund.baseline prev.baseline dispersion.baseline abund.LFC.CompvarBB.est abund.LFC.CompvarBB.se
+## 1   0.0007418605     0.8901709           2.5621526              0.76587774              0.3430326
+## 2   0.0003617986     0.3333489          22.4213282              1.30993086              0.3239451
+## 3   0.0581883369     0.5555657           1.6994493             -1.17340512              0.4639835
+## 4   0.0051269736     0.7813914           1.0309783             -0.03887534              0.4626257
+## 5   0.0191836324     0.9999998           0.6029724              0.05053905              0.5148806
+## 6             NA            NA                  NA                      NA                     NA
+##   prev.LOD.CompvarBB.est prev.LOD.CompvarBB.se dispersion.LFC.CompvarBB.est
+## 1             -0.7589141             1.2527366                   -0.5841087
+## 2              0.6948755             0.8863894                   -2.3168718
+## 3              0.6956651             0.8946536                   -0.5041838
+## 4             -0.3549679             1.0004486                    0.2574561
+## 5            -13.1146633                    NA                    0.4588537
+## 6                     NA                    NA                           NA
+##   dispersion.LFC.CompvarBB.se              method Log2FoldChange (Median)\nAA_vs_BB
+## 1                   0.6581748             omnibus                        -1.1699250
+## 2                   2.0799668             omnibus                                NA
+## 3                   0.7037559             omnibus                         0.1772545
+## 4                   0.6308201             omnibus                        -0.4280937
+## 5                   0.5267880             omnibus                         1.0204641
+## 6                          NA permutation(n=1000)                         1.5520348
+##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB
+## 1                      30                   22                 49.5                      -1.3859026
+## 2                       0                    0                  9.5                      -2.5541902
+## 3                     311                  333                294.5                       1.7486195
+## 4                      64                   55                 74.0                       0.2295656
+## 5                     515                  923                455.0                      -0.1010837
+## 6                    3806                 9118               3109.5                       0.9814940
+##   Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All)
+## 1              50.65217          25.555556           66.78571                    82.61
+## 2              19.39130           4.888889           28.71429                    43.48
+## 3             997.26087        1742.111111          518.42857                    65.22
+## 4             163.17391         179.222222          152.85714                    73.91
+## 5             821.30435         786.555556          843.64286                    95.65
+## 6            5740.60870        8205.777778         4155.85714                   100.00
+##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                 88.89                 78.57       4.3 (7.1;1.4)
+## 2                 33.33                 50.00           13 (18;8)
+## 3                 55.56                 71.43     0.39 (-1.4;2.2)
+## 4                 77.78                 71.43     0.87 (0.59;1.1)
+## 5                100.00                 92.86      1.1 (1.2;0.93)
+## 6                100.00                100.00       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1020,37 +1100,48 @@ div.csl-indent {
 <span id="cb223-4"><a href="differential-analysis.html#cb223-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb223-5"><a href="differential-analysis.html#cb223-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb223-6"><a href="differential-analysis.html#cb223-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_RAIDA)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
-##  [7] &quot;eta_AA&quot;                            &quot;mean_AA&quot;                           &quot;sd_AA&quot;                            
-## [10] &quot;eta_BB&quot;                            &quot;mean_BB&quot;                           &quot;sd_BB&quot;                            
-## [13] &quot;mod.pool.var&quot;                      &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [16] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
-## [19] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
-## [22] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
+##  [7] &quot;eta_AA&quot;                            &quot;mean_AA&quot;                          
+##  [9] &quot;sd_AA&quot;                             &quot;eta_BB&quot;                           
+## [11] &quot;mean_BB&quot;                           &quot;sd_BB&quot;                            
+## [13] &quot;mod.pool.var&quot;                      &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+## [15] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [17] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [19] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [21] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [23] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [25] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="differential-analysis.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_RAIDA)</span></code></pre></div>
-<pre><code>##                    TaxaID         Block Enrichment EffectSize      Pvalue AdjustedPvalue    eta_AA   mean_AA     sd_AA     eta_BB
-## 1          g__Megasphaera 9_AA vs 14_BB  Nonsignif  0.8198271 0.005697322      0.3133527 0.6666667  1.052529 0.6673820 0.64285714
-## 2     g__Faecalibacterium 9_AA vs 14_BB  Nonsignif  0.4701759 0.035043427      0.4002378 0.3333333  1.197269 0.4839668 0.28571429
-## 3        g__Lactobacillus 9_AA vs 14_BB  Nonsignif  2.2952990 0.043419259      0.4002378 0.2222222 -3.497406 1.4602720 0.07142857
-## 4          g__Bacteroides 9_AA vs 14_BB  Nonsignif  0.9302841 0.043697499      0.4002378 0.0000000  1.365432 1.1945235 0.00000000
-## 5 g__Escherichia.Shigella 9_AA vs 14_BB  Nonsignif  0.9681020 0.045317520      0.4002378 0.1111111 -1.182989 1.8000680 0.14285714
-## 6           g__Romboutsia 9_AA vs 14_BB  Nonsignif  2.2507136 0.055806331      0.4002378 0.4444444 -3.677903 1.4067837 0.07142857
-##       mean_BB    sd_BB mod.pool.var Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
-## 1 -1.81131976 1.343843     1.389145                                NA                       0                    0                  0.0
-## 2 -0.04932509 1.202811     1.144126                          2.373851                    1377                 4512                870.5
-## 3 -1.62700629 2.310432     3.509818                         -2.870821                      57                   27                197.5
-## 4 -0.01095745 1.823840     2.322156                          1.552035                    3806                 9118               3109.5
-## 5 -2.81738839 1.877394     2.882621                          2.261867                      70                  247                 51.5
-## 6 -1.88434753 1.982971     2.856684                         -6.499846                     105                    3                271.5
-##   Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All)
-## 1                       1.7193715              333.9130          579.55556           176.0000                    34.78
-## 2                       1.4344092             2678.7826         4345.00000          1607.6429                    69.57
-## 3                      -5.0678928              799.9565           38.44444          1289.5000                    86.96
-## 4                       0.9814940             5740.6087         8205.77778          4155.8571                   100.00
-## 5                       0.4374399              574.2609          683.00000           504.3571                    86.96
-## 6                      -3.1976766              295.4783           49.44444           453.6429                    78.26
+<pre><code>##                    TaxaID         Block Enrichment EffectSize      Pvalue AdjustedPvalue    eta_AA
+## 1          g__Megasphaera 9_AA vs 14_BB  Nonsignif  0.8198271 0.005697322      0.3133527 0.6666667
+## 2     g__Faecalibacterium 9_AA vs 14_BB  Nonsignif  0.4701759 0.035043427      0.4002378 0.3333333
+## 3        g__Lactobacillus 9_AA vs 14_BB  Nonsignif  2.2952990 0.043419259      0.4002378 0.2222222
+## 4          g__Bacteroides 9_AA vs 14_BB  Nonsignif  0.9302841 0.043697499      0.4002378 0.0000000
+## 5 g__Escherichia.Shigella 9_AA vs 14_BB  Nonsignif  0.9681020 0.045317520      0.4002378 0.1111111
+## 6           g__Romboutsia 9_AA vs 14_BB  Nonsignif  2.2507136 0.055806331      0.4002378 0.4444444
+##     mean_AA     sd_AA     eta_BB     mean_BB    sd_BB mod.pool.var Log2FoldChange (Median)\nAA_vs_BB
+## 1  1.052529 0.6673820 0.64285714 -1.81131976 1.343843     1.389145                                NA
+## 2  1.197269 0.4839668 0.28571429 -0.04932509 1.202811     1.144126                          2.373851
+## 3 -3.497406 1.4602720 0.07142857 -1.62700629 2.310432     3.509818                         -2.870821
+## 4  1.365432 1.1945235 0.00000000 -0.01095745 1.823840     2.322156                          1.552035
+## 5 -1.182989 1.8000680 0.14285714 -2.81738839 1.877394     2.882621                          2.261867
+## 6 -3.677903 1.4067837 0.07142857 -1.88434753 1.982971     2.856684                         -6.499846
+##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB
+## 1                       0                    0                  0.0                       1.7193715
+## 2                    1377                 4512                870.5                       1.4344092
+## 3                      57                   27                197.5                      -5.0678928
+## 4                    3806                 9118               3109.5                       0.9814940
+## 5                      70                  247                 51.5                       0.4374399
+## 6                     105                    3                271.5                      -3.1976766
+##   Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All)
+## 1              333.9130          579.55556           176.0000                    34.78
+## 2             2678.7826         4345.00000          1607.6429                    69.57
+## 3              799.9565           38.44444          1289.5000                    86.96
+## 4             5740.6087         8205.77778          4155.8571                   100.00
+## 5              574.2609          683.00000           504.3571                    86.96
+## 6              295.4783           49.44444           453.6429                    78.26
 ##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
 ## 1                 33.33                 35.71    0.55 (-0.64;1.7)
 ## 2                 66.67                 71.43     0.37 (-1.6;2.3)
@@ -1120,34 +1211,51 @@ div.csl-indent {
 <span id="cb228-4"><a href="differential-analysis.html#cb228-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb228-5"><a href="differential-analysis.html#cb228-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb228-6"><a href="differential-analysis.html#cb228-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_wilcox)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Statistic&quot;                         &quot;Pvalue&quot;                           
-##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Rank)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Rank Abundance\nAA&quot;           &quot;Mean Rank Abundance\nBB&quot;           &quot;Occurrence (100%)\n(All)&quot;         
-## [16] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Statistic&quot;                         &quot;Pvalue&quot;                           
+##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Rank)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Rank Abundance\nAA&quot;           &quot;Mean Rank Abundance\nBB&quot;          
+## [15] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
+## [17] &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="differential-analysis.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_wilcox)</span></code></pre></div>
-<pre><code>##             TaxaID         Block Enrichment EffectSize Statistic    Pvalue AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB
-## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.87195760        45 0.2689844      0.6737725                        -1.1699250
-## 2 g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.57627740        44 0.1981520      0.6737725                                NA
-## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.10803167        71 0.6293971      0.9129068                         0.1772545
-## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.07097212        67 0.8239507      0.9129068                        -0.4280937
-## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.40991461        58 0.7767603      0.9129068                         1.0204641
-## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.93028412        89 0.1093014      0.6737725                         1.5520348
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
-## 1                      30                   22                 49.5                     -0.41034110                   10.00
-## 2                       0                    0                  9.5                     -0.43387758                    9.89
-## 3                     311                  333                294.5                      0.17342686                   12.89
-## 4                      64                   55                 74.0                      0.08724541                   12.44
-## 5                     515                  923                455.0                     -0.11159169                   11.44
-## 6                    3806                 9118               3109.5                      0.55428610                   14.89
-##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                   13.29                    82.61                 88.89                 78.57       4.3 (7.1;1.4)
-## 2                   13.36                    43.48                 33.33                 50.00           13 (18;8)
-## 3                   11.43                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
-## 4                   11.71                    73.91                 77.78                 71.43     0.87 (0.59;1.1)
-## 5                   12.36                    95.65                100.00                 92.86      1.1 (1.2;0.93)
-## 6                   10.14                   100.00                100.00                100.00       0.45 (-1.1;2)</code></pre>
+<pre><code>##             TaxaID         Block Enrichment EffectSize Statistic    Pvalue AdjustedPvalue
+## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.87195760        45 0.2689844      0.6737725
+## 2 g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.57627740        44 0.1981520      0.6737725
+## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.10803167        71 0.6293971      0.9129068
+## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.07097212        67 0.8239507      0.9129068
+## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.40991461        58 0.7767603      0.9129068
+## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.93028412        89 0.1093014      0.6737725
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                        -1.1699250                      30                   22
+## 2                                NA                       0                    0
+## 3                         0.1772545                     311                  333
+## 4                        -0.4280937                      64                   55
+## 5                         1.0204641                     515                  923
+## 6                         1.5520348                    3806                 9118
+##   Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
+## 1                 49.5                     -0.41034110                   10.00
+## 2                  9.5                     -0.43387758                    9.89
+## 3                294.5                      0.17342686                   12.89
+## 4                 74.0                      0.08724541                   12.44
+## 5                455.0                     -0.11159169                   11.44
+## 6               3109.5                      0.55428610                   14.89
+##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1                   13.29                    82.61                 88.89                 78.57
+## 2                   13.36                    43.48                 33.33                 50.00
+## 3                   11.43                    65.22                 55.56                 71.43
+## 4                   11.71                    73.91                 77.78                 71.43
+## 5                   12.36                    95.65                100.00                 92.86
+## 6                   10.14                   100.00                100.00                100.00
+##   Odds Ratio (95% CI)
+## 1       4.3 (7.1;1.4)
+## 2           13 (18;8)
+## 3     0.39 (-1.4;2.2)
+## 4     0.87 (0.59;1.1)
+## 5      1.1 (1.2;0.93)
+## 6       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1235,12 +1343,15 @@ div.csl-indent {
 <span id="cb235-5"><a href="differential-analysis.html#cb235-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb235-6"><a href="differential-analysis.html#cb235-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">norm =</span> <span class="st">&quot;rarefy&quot;</span>)</span>
 <span id="cb235-7"><a href="differential-analysis.html#cb235-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_wilcox_rarefy)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Statistic&quot;                         &quot;Pvalue&quot;                           
-##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Rank)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Rank Abundance\nAA&quot;           &quot;Mean Rank Abundance\nBB&quot;           &quot;Occurrence (100%)\n(All)&quot;         
-## [16] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Statistic&quot;                         &quot;Pvalue&quot;                           
+##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Rank)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Rank Abundance\nAA&quot;           &quot;Mean Rank Abundance\nBB&quot;          
+## [15] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
+## [17] &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <p>The output is the same as the previous results of ordinary pattern.</p>
 <details>
 <summary>
@@ -1267,12 +1378,15 @@ div.csl-indent {
 <span id="cb238-5"><a href="differential-analysis.html#cb238-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">norm =</span> <span class="st">&quot;CLR&quot;</span>)</span>
 <span id="cb238-6"><a href="differential-analysis.html#cb238-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb238-7"><a href="differential-analysis.html#cb238-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_wilcox_CLR)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Statistic&quot;                         &quot;Pvalue&quot;                           
-##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Rank)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Rank Abundance\nAA&quot;           &quot;Mean Rank Abundance\nBB&quot;           &quot;Occurrence (100%)\n(All)&quot;         
-## [16] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Statistic&quot;                         &quot;Pvalue&quot;                           
+##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Rank)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Rank Abundance\nAA&quot;           &quot;Mean Rank Abundance\nBB&quot;          
+## [15] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
+## [17] &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <p>The output is the same as the previous results of ordinary pattern.</p>
 <details>
 <summary>
@@ -1299,31 +1413,46 @@ div.csl-indent {
 <span id="cb241-4"><a href="differential-analysis.html#cb241-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb241-5"><a href="differential-analysis.html#cb241-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Lda =</span> <span class="dv">0</span>)</span>
 <span id="cb241-6"><a href="differential-analysis.html#cb241-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_lefse)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;LDA_Score&quot;                         &quot;EffectSize&quot;                        &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
-##  [7] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;             
-## [10] &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
-## [13] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
-## [16] &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;LDA_Score&quot;                        
+##  [5] &quot;EffectSize&quot;                        &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [7] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+##  [9] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [11] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [13] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [15] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+## [17] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="differential-analysis.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_lefse)</span></code></pre></div>
-<pre><code>##                       TaxaID         Block Enrichment LDA_Score EffectSize Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All)
-## 1          g__Parasutterella 9_AA vs 14_BB         AA -3.711752   1.656223                          5.109407               203.81424
-## 2 g__Ruminococcaceae_UCG_004 9_AA vs 14_BB         AA -2.225826   1.582683                                NA               241.29686
-## 3             g__Odoribacter 9_AA vs 14_BB         BB  2.614361   1.253339                                NA                65.80823
-## 4              g__Romboutsia 9_AA vs 14_BB         BB  3.648822   2.957096                         -6.323595              2149.56906
-## 5           g__Lactobacillus 9_AA vs 14_BB         BB  4.167103   2.572577                         -3.139263              1230.67622
-##   Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
-## 1           1059.27623             30.68489                        4.358465             3829.5975           9096.906           443.4708
-## 2           2522.09782              0.00000                        2.270464             1476.6749           2853.673           591.4617
-## 3            615.67509              0.00000                        2.106533              580.3768           1089.610           253.0123
-## 4             75.54011           6050.19693                       -3.401631             7079.2882           1037.410         10963.3528
-## 5            600.96154           5294.91550                       -5.157524            20157.4190            911.408         32529.8547
-##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB       Odds Ratio (95% CI)
-## 1                    65.22                 88.89                 50.00           0.0043 (-11;11)
-## 2                    52.17                 77.78                 35.71           0.16 (-3.4;3.7)
-## 3                    52.17                 77.78                 35.71             0.31 (-2;2.6)
-## 4                    78.26                 55.56                 92.86                90 (99;81)
-## 5                    86.96                 77.78                 92.86 2.2e+08 (2.2e+08;2.2e+08)</code></pre>
+<pre><code>##                       TaxaID         Block Enrichment LDA_Score EffectSize
+## 1          g__Parasutterella 9_AA vs 14_BB         AA -3.711752   1.656223
+## 2 g__Ruminococcaceae_UCG_004 9_AA vs 14_BB         AA -2.225826   1.582683
+## 3             g__Odoribacter 9_AA vs 14_BB         BB  2.614361   1.253339
+## 4              g__Romboutsia 9_AA vs 14_BB         BB  3.648822   2.957096
+## 5           g__Lactobacillus 9_AA vs 14_BB         BB  4.167103   2.572577
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                          5.109407               203.81424           1059.27623
+## 2                                NA               241.29686           2522.09782
+## 3                                NA                65.80823            615.67509
+## 4                         -6.323595              2149.56906             75.54011
+## 5                         -3.139263              1230.67622            600.96154
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
+## 1             30.68489                        4.358465             3829.5975           9096.906
+## 2              0.00000                        2.270464             1476.6749           2853.673
+## 3              0.00000                        2.106533              580.3768           1089.610
+## 4           6050.19693                       -3.401631             7079.2882           1037.410
+## 5           5294.91550                       -5.157524            20157.4190            911.408
+##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1           443.4708                    65.22                 88.89                 50.00
+## 2           591.4617                    52.17                 77.78                 35.71
+## 3           253.0123                    52.17                 77.78                 35.71
+## 4         10963.3528                    78.26                 55.56                 92.86
+## 5         32529.8547                    86.96                 77.78                 92.86
+##         Odds Ratio (95% CI)
+## 1           0.0043 (-11;11)
+## 2           0.16 (-3.4;3.7)
+## 3             0.31 (-2;2.6)
+## 4                90 (99;81)
+## 5 2.2e+08 (2.2e+08;2.2e+08)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1381,42 +1510,52 @@ div.csl-indent {
 <span id="cb246-4"><a href="differential-analysis.html#cb246-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb246-5"><a href="differential-analysis.html#cb246-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb246-6"><a href="differential-analysis.html#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_ttest)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                                   &quot;Block&quot;                                    &quot;Enrichment&quot;                              
-##  [4] &quot;EffectSize&quot;                               &quot;Statistic&quot;                                &quot;Pvalue&quot;                                  
-##  [7] &quot;AdjustedPvalue&quot;                           &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;        &quot;Median Abundance\n(All)&quot;                 
-## [10] &quot;Median Abundance\nAA&quot;                     &quot;Median Abundance\nBB&quot;                     &quot;Log2FoldChange (geometricmean)\nAA_vs_BB&quot;
-## [13] &quot;GeometricMean Abundance\n(All)&quot;           &quot;GeometricMean Abundance\nAA&quot;              &quot;GeometricMean Abundance\nBB&quot;             
-## [16] &quot;Occurrence (100%)\n(All)&quot;                 &quot;Occurrence (100%)\nAA&quot;                    &quot;Occurrence (100%)\nBB&quot;                   
+<pre><code>##  [1] &quot;TaxaID&quot;                                   &quot;Block&quot;                                   
+##  [3] &quot;Enrichment&quot;                               &quot;EffectSize&quot;                              
+##  [5] &quot;Statistic&quot;                                &quot;Pvalue&quot;                                  
+##  [7] &quot;AdjustedPvalue&quot;                           &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;       
+##  [9] &quot;Median Abundance\n(All)&quot;                  &quot;Median Abundance\nAA&quot;                    
+## [11] &quot;Median Abundance\nBB&quot;                     &quot;Log2FoldChange (geometricmean)\nAA_vs_BB&quot;
+## [13] &quot;GeometricMean Abundance\n(All)&quot;           &quot;GeometricMean Abundance\nAA&quot;             
+## [15] &quot;GeometricMean Abundance\nBB&quot;              &quot;Occurrence (100%)\n(All)&quot;                
+## [17] &quot;Occurrence (100%)\nAA&quot;                    &quot;Occurrence (100%)\nBB&quot;                   
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="differential-analysis.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_ttest)</span></code></pre></div>
-<pre><code>##             TaxaID         Block Enrichment EffectSize  Statistic     Pvalue AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB
-## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.87195760 -1.9509301 0.06966436      0.5805112                        -1.1699250
-## 2 g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.57627740 -2.2520991 0.04004033      0.5805112                                NA
-## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.10803167  1.4025255 0.19444323      0.5805112                         0.1772545
-## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.07097212  0.3094918 0.76107100      0.9054120                        -0.4280937
-## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.40991461 -0.1605561 0.87404155      0.9283954                         1.0204641
-## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.93028412  1.5658052 0.14459422      0.5805112                         1.5520348
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (geometricmean)\nAA_vs_BB
-## 1                      30                   22                 49.5                               -5.2268338
-## 2                       0                    0                  9.5                               -3.1311631
-## 3                     311                  333                294.5                                1.4704215
-## 4                      64                   55                 74.0                               -0.6655791
-## 5                     515                  923                455.0                               -0.8553998
-## 6                    3806                 9118               3109.5                                1.4548821
-##   GeometricMean Abundance\n(All) GeometricMean Abundance\nAA GeometricMean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA
-## 1                      0.5117863                  0.02149483                   0.8049481                    82.61                 88.89
-## 2                      0.5218980                  0.08122039                   0.7116052                    43.48                 33.33
-## 3                      0.7835288                  1.10053019                   0.3971559                    65.22                 55.56
-## 4                      0.7002247                  0.54190943                   0.8595794                    73.91                 77.78
-## 5                      0.6131952                  0.45587764                   0.8248012                    95.65                100.00
-## 6                      0.6828714                  1.13062995                   0.4124367                   100.00                100.00
-##   Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                 78.57       4.3 (7.1;1.4)
-## 2                 50.00           13 (18;8)
-## 3                 71.43     0.39 (-1.4;2.2)
-## 4                 71.43     0.87 (0.59;1.1)
-## 5                 92.86      1.1 (1.2;0.93)
-## 6                100.00       0.45 (-1.1;2)</code></pre>
+<pre><code>##             TaxaID         Block Enrichment EffectSize  Statistic     Pvalue AdjustedPvalue
+## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.87195760 -1.9509301 0.06966436      0.5805112
+## 2 g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.57627740 -2.2520991 0.04004033      0.5805112
+## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.10803167  1.4025255 0.19444323      0.5805112
+## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.07097212  0.3094918 0.76107100      0.9054120
+## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.40991461 -0.1605561 0.87404155      0.9283954
+## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.93028412  1.5658052 0.14459422      0.5805112
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                        -1.1699250                      30                   22
+## 2                                NA                       0                    0
+## 3                         0.1772545                     311                  333
+## 4                        -0.4280937                      64                   55
+## 5                         1.0204641                     515                  923
+## 6                         1.5520348                    3806                 9118
+##   Median Abundance\nBB Log2FoldChange (geometricmean)\nAA_vs_BB GeometricMean Abundance\n(All)
+## 1                 49.5                               -5.2268338                      0.5117863
+## 2                  9.5                               -3.1311631                      0.5218980
+## 3                294.5                                1.4704215                      0.7835288
+## 4                 74.0                               -0.6655791                      0.7002247
+## 5                455.0                               -0.8553998                      0.6131952
+## 6               3109.5                                1.4548821                      0.6828714
+##   GeometricMean Abundance\nAA GeometricMean Abundance\nBB Occurrence (100%)\n(All)
+## 1                  0.02149483                   0.8049481                    82.61
+## 2                  0.08122039                   0.7116052                    43.48
+## 3                  1.10053019                   0.3971559                    65.22
+## 4                  0.54190943                   0.8595794                    73.91
+## 5                  0.45587764                   0.8248012                    95.65
+## 6                  1.13062995                   0.4124367                   100.00
+##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                 88.89                 78.57       4.3 (7.1;1.4)
+## 2                 33.33                 50.00           13 (18;8)
+## 3                 55.56                 71.43     0.39 (-1.4;2.2)
+## 4                 77.78                 71.43     0.87 (0.59;1.1)
+## 5                100.00                 92.86      1.1 (1.2;0.93)
+## 6                100.00                100.00       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1469,12 +1608,15 @@ div.csl-indent {
 <span id="cb251-4"><a href="differential-analysis.html#cb251-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb251-5"><a href="differential-analysis.html#cb251-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">norm =</span> <span class="st">&quot;rarefy&quot;</span>)</span>
 <span id="cb251-6"><a href="differential-analysis.html#cb251-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_ttest_rarefy)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                                   &quot;Block&quot;                                    &quot;Enrichment&quot;                              
-##  [4] &quot;EffectSize&quot;                               &quot;Statistic&quot;                                &quot;Pvalue&quot;                                  
-##  [7] &quot;AdjustedPvalue&quot;                           &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;        &quot;Median Abundance\n(All)&quot;                 
-## [10] &quot;Median Abundance\nAA&quot;                     &quot;Median Abundance\nBB&quot;                     &quot;Log2FoldChange (geometricmean)\nAA_vs_BB&quot;
-## [13] &quot;GeometricMean Abundance\n(All)&quot;           &quot;GeometricMean Abundance\nAA&quot;              &quot;GeometricMean Abundance\nBB&quot;             
-## [16] &quot;Occurrence (100%)\n(All)&quot;                 &quot;Occurrence (100%)\nAA&quot;                    &quot;Occurrence (100%)\nBB&quot;                   
+<pre><code>##  [1] &quot;TaxaID&quot;                                   &quot;Block&quot;                                   
+##  [3] &quot;Enrichment&quot;                               &quot;EffectSize&quot;                              
+##  [5] &quot;Statistic&quot;                                &quot;Pvalue&quot;                                  
+##  [7] &quot;AdjustedPvalue&quot;                           &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;       
+##  [9] &quot;Median Abundance\n(All)&quot;                  &quot;Median Abundance\nAA&quot;                    
+## [11] &quot;Median Abundance\nBB&quot;                     &quot;Log2FoldChange (geometricmean)\nAA_vs_BB&quot;
+## [13] &quot;GeometricMean Abundance\n(All)&quot;           &quot;GeometricMean Abundance\nAA&quot;             
+## [15] &quot;GeometricMean Abundance\nBB&quot;              &quot;Occurrence (100%)\n(All)&quot;                
+## [17] &quot;Occurrence (100%)\nAA&quot;                    &quot;Occurrence (100%)\nBB&quot;                   
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <p>The output is the same as the previous results of ordinary pattern.</p>
 <details>
@@ -1504,35 +1646,52 @@ div.csl-indent {
 <span id="cb254-6"><a href="differential-analysis.html#cb254-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">method =</span> <span class="st">&quot;ZILN&quot;</span>)</span>
 <span id="cb254-7"><a href="differential-analysis.html#cb254-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb254-8"><a href="differential-analysis.html#cb254-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_metagenomeseq)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;logFC&quot;                             &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
-##  [7] &quot;se&quot;                                &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
-## [16] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;logFC&quot;                            
+##  [5] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                   
+##  [7] &quot;se&quot;                                &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [15] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [17] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="differential-analysis.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_metagenomeseq)</span></code></pre></div>
-<pre><code>##                       TaxaID         Block Enrichment      logFC      Pvalue AdjustedPvalue        se Log2FoldChange (Median)\nAA_vs_BB
-## 1              g__Romboutsia 9_AA vs 14_BB  Nonsignif  1.5820439 0.001857198      0.1300039 0.5083417                         -5.213950
-## 2             g__Megasphaera 9_AA vs 14_BB  Nonsignif -1.7778094 0.004391697      0.1537094 0.6241071                                NA
-## 3 g__Ruminococcaceae_UCG_013 9_AA vs 14_BB  Nonsignif  0.7685692 0.057122207      0.8174723 0.4040052                         -2.792157
-## 4 g__Lachnospiraceae_UCG_010 9_AA vs 14_BB  Nonsignif -1.1072541 0.083441340      0.8174723 0.6396399                                NA
-## 5               g__Roseburia 9_AA vs 14_BB  Nonsignif  0.9583484 0.088348576      0.8174723 0.5623536                                NA
-## 6              g__Tyzzerella 9_AA vs 14_BB  Nonsignif -1.6944399 0.088913558      0.8174723 0.9960516                                NA
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
-## 1                96.15385             7.672634            284.77369                       -4.157644             423.30698
-## 2                 0.00000             0.000000              0.00000                        3.234514             882.94339
-## 3                45.19774            10.662605             73.85609                       -1.702861             121.28674
-## 4                 0.00000            25.894897              0.00000                        2.002867              16.61215
-## 5                94.30707             0.000000            237.61595                       -4.059516             868.99235
-## 6                 0.00000             9.345794              0.00000                        2.773081              51.49608
-##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1           37.61073         671.254571                    78.26                 55.56                 92.86    5300 (5300;5300)
-## 2         1936.38092         205.733552                    34.78                 33.33                 35.71     0.29 (-2.1;2.7)
-## 3           51.11355         166.398077                    60.87                 55.56                 64.29         3.4 (5.9;1)
-## 4           30.58335           7.630657                    39.13                 55.56                 28.57     0.38 (-1.5;2.3)
-## 5           82.44231        1374.631667                    65.22                 44.44                 78.57    6500 (6600;6500)
-## 6          107.20501          15.683192                    34.78                 55.56                 21.43     0.35 (-1.7;2.4)</code></pre>
+<pre><code>##                       TaxaID         Block Enrichment      logFC      Pvalue AdjustedPvalue
+## 1              g__Romboutsia 9_AA vs 14_BB  Nonsignif  1.5820439 0.001857198      0.1300039
+## 2             g__Megasphaera 9_AA vs 14_BB  Nonsignif -1.7778094 0.004391697      0.1537094
+## 3 g__Ruminococcaceae_UCG_013 9_AA vs 14_BB  Nonsignif  0.7685692 0.057122207      0.8174723
+## 4 g__Lachnospiraceae_UCG_010 9_AA vs 14_BB  Nonsignif -1.1072541 0.083441340      0.8174723
+## 5               g__Roseburia 9_AA vs 14_BB  Nonsignif  0.9583484 0.088348576      0.8174723
+## 6              g__Tyzzerella 9_AA vs 14_BB  Nonsignif -1.6944399 0.088913558      0.8174723
+##          se Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1 0.5083417                         -5.213950                96.15385             7.672634
+## 2 0.6241071                                NA                 0.00000             0.000000
+## 3 0.4040052                         -2.792157                45.19774            10.662605
+## 4 0.6396399                                NA                 0.00000            25.894897
+## 5 0.5623536                                NA                94.30707             0.000000
+## 6 0.9960516                                NA                 0.00000             9.345794
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
+## 1            284.77369                       -4.157644             423.30698           37.61073
+## 2              0.00000                        3.234514             882.94339         1936.38092
+## 3             73.85609                       -1.702861             121.28674           51.11355
+## 4              0.00000                        2.002867              16.61215           30.58335
+## 5            237.61595                       -4.059516             868.99235           82.44231
+## 6              0.00000                        2.773081              51.49608          107.20501
+##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1         671.254571                    78.26                 55.56                 92.86
+## 2         205.733552                    34.78                 33.33                 35.71
+## 3         166.398077                    60.87                 55.56                 64.29
+## 4           7.630657                    39.13                 55.56                 28.57
+## 5        1374.631667                    65.22                 44.44                 78.57
+## 6          15.683192                    34.78                 55.56                 21.43
+##   Odds Ratio (95% CI)
+## 1    5300 (5300;5300)
+## 2     0.29 (-2.1;2.7)
+## 3         3.4 (5.9;1)
+## 4     0.38 (-1.5;2.3)
+## 5    6500 (6600;6500)
+## 6     0.35 (-1.7;2.4)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1591,35 +1750,52 @@ div.csl-indent {
 <span id="cb259-4"><a href="differential-analysis.html#cb259-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb259-5"><a href="differential-analysis.html#cb259-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb259-6"><a href="differential-analysis.html#cb259-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_deseq2)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;Pvalue&quot;                            &quot;AdjustedPvalue&quot;                    &quot;logFC&quot;                            
-##  [7] &quot;Statistic&quot;                         &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
-## [16] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;Pvalue&quot;                           
+##  [5] &quot;AdjustedPvalue&quot;                    &quot;logFC&quot;                            
+##  [7] &quot;Statistic&quot;                         &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [15] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [17] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="differential-analysis.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_deseq2)</span></code></pre></div>
-<pre><code>##             TaxaID         Block Enrichment       Pvalue AdjustedPvalue      logFC  Statistic Log2FoldChange (Median)\nAA_vs_BB
-## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.0551305049    0.237750302  1.9320873  1.9178463                        -1.1699250
-## 2 g__Adlercreutzia 9_AA vs 14_BB         BB 0.0006165856    0.006077772  3.1571509  3.4242117                                NA
-## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.6414696139    0.878400624 -0.4875701 -0.4656450                         0.1772545
-## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.7735607924    0.953137405  0.2630218  0.2877204                        -0.4280937
-## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.1814463414    0.395198703  1.0037124  1.3363150                         1.0204641
-## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.4391206065    0.688620951 -0.6885763 -0.7736791                         1.5520348
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
-## 1                      30                   22                 49.5                      -1.3859026              50.65217
-## 2                       0                    0                  9.5                      -2.5541902              19.39130
-## 3                     311                  333                294.5                       1.7486195             997.26087
-## 4                      64                   55                 74.0                       0.2295656             163.17391
-## 5                     515                  923                455.0                      -0.1010837             821.30435
-## 6                    3806                 9118               3109.5                       0.9814940            5740.60870
-##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1          25.555556           66.78571                    82.61                 88.89                 78.57       4.3 (7.1;1.4)
-## 2           4.888889           28.71429                    43.48                 33.33                 50.00           13 (18;8)
-## 3        1742.111111          518.42857                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
-## 4         179.222222          152.85714                    73.91                 77.78                 71.43     0.87 (0.59;1.1)
-## 5         786.555556          843.64286                    95.65                100.00                 92.86      1.1 (1.2;0.93)
-## 6        8205.777778         4155.85714                   100.00                100.00                100.00       0.45 (-1.1;2)</code></pre>
+<pre><code>##             TaxaID         Block Enrichment       Pvalue AdjustedPvalue      logFC  Statistic
+## 1   g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.0551305049    0.237750302  1.9320873  1.9178463
+## 2 g__Adlercreutzia 9_AA vs 14_BB         BB 0.0006165856    0.006077772  3.1571509  3.4242117
+## 3  g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.6414696139    0.878400624 -0.4875701 -0.4656450
+## 4     g__Alistipes 9_AA vs 14_BB  Nonsignif 0.7735607924    0.953137405  0.2630218  0.2877204
+## 5  g__Anaerostipes 9_AA vs 14_BB  Nonsignif 0.1814463414    0.395198703  1.0037124  1.3363150
+## 6   g__Bacteroides 9_AA vs 14_BB  Nonsignif 0.4391206065    0.688620951 -0.6885763 -0.7736791
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                        -1.1699250                      30                   22
+## 2                                NA                       0                    0
+## 3                         0.1772545                     311                  333
+## 4                        -0.4280937                      64                   55
+## 5                         1.0204641                     515                  923
+## 6                         1.5520348                    3806                 9118
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
+## 1                 49.5                      -1.3859026              50.65217          25.555556
+## 2                  9.5                      -2.5541902              19.39130           4.888889
+## 3                294.5                       1.7486195             997.26087        1742.111111
+## 4                 74.0                       0.2295656             163.17391         179.222222
+## 5                455.0                      -0.1010837             821.30435         786.555556
+## 6               3109.5                       0.9814940            5740.60870        8205.777778
+##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1           66.78571                    82.61                 88.89                 78.57
+## 2           28.71429                    43.48                 33.33                 50.00
+## 3          518.42857                    65.22                 55.56                 71.43
+## 4          152.85714                    73.91                 77.78                 71.43
+## 5          843.64286                    95.65                100.00                 92.86
+## 6         4155.85714                   100.00                100.00                100.00
+##   Odds Ratio (95% CI)
+## 1       4.3 (7.1;1.4)
+## 2           13 (18;8)
+## 3     0.39 (-1.4;2.2)
+## 4     0.87 (0.59;1.1)
+## 5      1.1 (1.2;0.93)
+## 6       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1670,42 +1846,59 @@ div.csl-indent {
 <span id="cb264-2"><a href="differential-analysis.html#cb264-2" aria-hidden="true" tabindex="-1"></a>                    dada2_ps_genus_filter_trim,</span>
 <span id="cb264-3"><a href="differential-analysis.html#cb264-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb264-4"><a href="differential-analysis.html#cb264-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-132"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-132-1.png" alt="EdgeR (BVC distance)" width="480" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-139"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-139-1.png" alt="EdgeR (BVC distance)" width="480" />
 <p class="caption">
 Figure 11.1: EdgeR (BVC distance)
 </p>
 </div>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="differential-analysis.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_edger)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;Pvalue&quot;                            &quot;AdjPval&quot;                           &quot;logFC&quot;                            
-##  [7] &quot;logCPM&quot;                            &quot;LR&quot;                                &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
-## [10] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;             
-## [13] &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
-## [16] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;Pvalue&quot;                           
+##  [5] &quot;AdjPval&quot;                           &quot;logFC&quot;                            
+##  [7] &quot;logCPM&quot;                            &quot;LR&quot;                               
+##  [9] &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
+## [11] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;             
+## [13] &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;            
+## [15] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
+## [17] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
 ## [19] &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="differential-analysis.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_edger)</span></code></pre></div>
-<pre><code>##             TaxaID         Block Enrichment       Pvalue    AdjPval     logFC    logCPM        LR Log2FoldChange (Median)\nAA_vs_BB
-## 1 g__Lactobacillus 9_AA vs 14_BB         BB 0.0002688579 0.01293042  5.145965 14.920303 13.275774                         -2.870821
-## 2    g__Romboutsia 9_AA vs 14_BB         BB 0.0003747947 0.01293042  4.322922 13.242686 12.653842                         -6.499846
-## 3   g__Eubacterium 9_AA vs 14_BB  Nonsignif 0.0017789184 0.04064484 -2.889222  8.386044  9.764728                                NA
-## 4   g__Odoribacter 9_AA vs 14_BB         AA 0.0023562226 0.04064484 -2.718081  9.376449  9.249014                                NA
-## 5     g__Roseburia 9_AA vs 14_BB         BB 0.0029682519 0.04096188  4.327703 14.410912  8.826882                                NA
-## 6 g__Adlercreutzia 9_AA vs 14_BB         BB 0.0036077438 0.04148905  2.879377  8.887302  8.471396                                NA
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
-## 1                      57                   27                197.5                       -5.067893            799.956522
-## 2                     105                    3                271.5                       -3.197677            295.478261
-## 3                       0                    0                  0.0                        2.508697              8.304348
-## 4                       3                   30                  0.0                        2.050293             26.434783
-## 5                     125                    0                252.5                       -3.184643            669.608696
-## 6                       0                    0                  9.5                       -2.554190             19.391304
-##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1          38.444444        1289.500000                    86.96                 77.78                 92.86 4e+08 (4e+08;4e+08)
-## 2          49.444444         453.642857                    78.26                 55.56                 92.86          42 (49;34)
-## 3          16.666667           2.928571                    30.43                 44.44                 21.43     0.33 (-1.8;2.5)
-## 4          49.111111          11.857143                    52.17                 77.78                 35.71     0.33 (-1.9;2.5)
-## 5         113.000000        1027.428571                    65.22                 44.44                 78.57          64 (72;56)
-## 6           4.888889          28.714286                    43.48                 33.33                 50.00           13 (18;8)</code></pre>
+<pre><code>##             TaxaID         Block Enrichment       Pvalue    AdjPval     logFC    logCPM        LR
+## 1 g__Lactobacillus 9_AA vs 14_BB         BB 0.0002688579 0.01293042  5.145965 14.920303 13.275774
+## 2    g__Romboutsia 9_AA vs 14_BB         BB 0.0003747947 0.01293042  4.322922 13.242686 12.653842
+## 3   g__Eubacterium 9_AA vs 14_BB  Nonsignif 0.0017789184 0.04064484 -2.889222  8.386044  9.764728
+## 4   g__Odoribacter 9_AA vs 14_BB         AA 0.0023562226 0.04064484 -2.718081  9.376449  9.249014
+## 5     g__Roseburia 9_AA vs 14_BB         BB 0.0029682519 0.04096188  4.327703 14.410912  8.826882
+## 6 g__Adlercreutzia 9_AA vs 14_BB         BB 0.0036077438 0.04148905  2.879377  8.887302  8.471396
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                         -2.870821                      57                   27
+## 2                         -6.499846                     105                    3
+## 3                                NA                       0                    0
+## 4                                NA                       3                   30
+## 5                                NA                     125                    0
+## 6                                NA                       0                    0
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
+## 1                197.5                       -5.067893            799.956522          38.444444
+## 2                271.5                       -3.197677            295.478261          49.444444
+## 3                  0.0                        2.508697              8.304348          16.666667
+## 4                  0.0                        2.050293             26.434783          49.111111
+## 5                252.5                       -3.184643            669.608696         113.000000
+## 6                  9.5                       -2.554190             19.391304           4.888889
+##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1        1289.500000                    86.96                 77.78                 92.86
+## 2         453.642857                    78.26                 55.56                 92.86
+## 3           2.928571                    30.43                 44.44                 21.43
+## 4          11.857143                    52.17                 77.78                 35.71
+## 5        1027.428571                    65.22                 44.44                 78.57
+## 6          28.714286                    43.48                 33.33                 50.00
+##   Odds Ratio (95% CI)
+## 1 4e+08 (4e+08;4e+08)
+## 2          42 (49;34)
+## 3     0.33 (-1.8;2.5)
+## 4     0.33 (-1.9;2.5)
+## 5          64 (72;56)
+## 6           13 (18;8)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1757,42 +1950,59 @@ Figure 11.1: EdgeR (BVC distance)
 <span id="cb270-2"><a href="differential-analysis.html#cb270-2" aria-hidden="true" tabindex="-1"></a>                    dada2_ps_genus_filter_trim,</span>
 <span id="cb270-3"><a href="differential-analysis.html#cb270-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb270-4"><a href="differential-analysis.html#cb270-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-134"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-134-1.png" alt="ANCOM (Structure Zero)" width="480" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-141"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-141-1.png" alt="ANCOM (Structure Zero)" width="480" />
 <p class="caption">
 Figure 11.2: ANCOM (Structure Zero)
 </p>
 </div>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="differential-analysis.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_ancom)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;(W)q-values &lt; alpha&quot;               &quot;W_ratio&quot;                          
-##  [7] &quot;detected_0.7&quot;                      &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
-## [16] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;(W)q-values &lt; alpha&quot;               &quot;W_ratio&quot;                          
+##  [7] &quot;detected_0.7&quot;                      &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [15] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [17] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="differential-analysis.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_ancom)</span></code></pre></div>
-<pre><code>##             TaxaID         Block Enrichment    EffectSize (W)q-values &lt; alpha W_ratio detected_0.7 Log2FoldChange (Median)\nAA_vs_BB
-## 1   g__Actinomyces 9_AA vs 14_BB         BB  0.7005817485                   0       0        FALSE                        -1.1699250
-## 2 g__Adlercreutzia 9_AA vs 14_BB         BB  0.2230005222                   0       0        FALSE                                NA
-## 3  g__Agathobacter 9_AA vs 14_BB         AA -0.5666589896                   0       0        FALSE                         0.1772545
-## 4     g__Alistipes 9_AA vs 14_BB         BB  0.0005271225                   0       0        FALSE                        -0.4280937
-## 5  g__Anaerostipes 9_AA vs 14_BB         BB  0.3772522367                   0       0        FALSE                         1.0204641
-## 6   g__Bacteroides 9_AA vs 14_BB         AA -1.2561760038                   0       0        FALSE                         1.5520348
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
-## 1                      30                   22                 49.5                      -1.3859026              50.65217
-## 2                       0                    0                  9.5                      -2.5541902              19.39130
-## 3                     311                  333                294.5                       1.7486195             997.26087
-## 4                      64                   55                 74.0                       0.2295656             163.17391
-## 5                     515                  923                455.0                      -0.1010837             821.30435
-## 6                    3806                 9118               3109.5                       0.9814940            5740.60870
-##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1          25.555556           66.78571                    82.61                 88.89                 78.57       4.3 (7.1;1.4)
-## 2           4.888889           28.71429                    43.48                 33.33                 50.00           13 (18;8)
-## 3        1742.111111          518.42857                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
-## 4         179.222222          152.85714                    73.91                 77.78                 71.43     0.87 (0.59;1.1)
-## 5         786.555556          843.64286                    95.65                100.00                 92.86      1.1 (1.2;0.93)
-## 6        8205.777778         4155.85714                   100.00                100.00                100.00       0.45 (-1.1;2)</code></pre>
+<pre><code>##             TaxaID         Block Enrichment    EffectSize (W)q-values &lt; alpha W_ratio detected_0.7
+## 1   g__Actinomyces 9_AA vs 14_BB         BB  0.7005817485                   0       0        FALSE
+## 2 g__Adlercreutzia 9_AA vs 14_BB         BB  0.2230005222                   0       0        FALSE
+## 3  g__Agathobacter 9_AA vs 14_BB         AA -0.5666589896                   0       0        FALSE
+## 4     g__Alistipes 9_AA vs 14_BB         BB  0.0005271225                   0       0        FALSE
+## 5  g__Anaerostipes 9_AA vs 14_BB         BB  0.3772522367                   0       0        FALSE
+## 6   g__Bacteroides 9_AA vs 14_BB         AA -1.2561760038                   0       0        FALSE
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                        -1.1699250                      30                   22
+## 2                                NA                       0                    0
+## 3                         0.1772545                     311                  333
+## 4                        -0.4280937                      64                   55
+## 5                         1.0204641                     515                  923
+## 6                         1.5520348                    3806                 9118
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
+## 1                 49.5                      -1.3859026              50.65217          25.555556
+## 2                  9.5                      -2.5541902              19.39130           4.888889
+## 3                294.5                       1.7486195             997.26087        1742.111111
+## 4                 74.0                       0.2295656             163.17391         179.222222
+## 5                455.0                      -0.1010837             821.30435         786.555556
+## 6               3109.5                       0.9814940            5740.60870        8205.777778
+##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1           66.78571                    82.61                 88.89                 78.57
+## 2           28.71429                    43.48                 33.33                 50.00
+## 3          518.42857                    65.22                 55.56                 71.43
+## 4          152.85714                    73.91                 77.78                 71.43
+## 5          843.64286                    95.65                100.00                 92.86
+## 6         4155.85714                   100.00                100.00                100.00
+##   Odds Ratio (95% CI)
+## 1       4.3 (7.1;1.4)
+## 2           13 (18;8)
+## 3     0.39 (-1.4;2.2)
+## 4     0.87 (0.59;1.1)
+## 5      1.1 (1.2;0.93)
+## 6       0.45 (-1.1;2)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -1962,35 +2172,52 @@ Figure 11.2: ANCOM (Structure Zero)
 <span id="cb281-3"><a href="differential-analysis.html#cb281-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb281-4"><a href="differential-analysis.html#cb281-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb281-5"><a href="differential-analysis.html#cb281-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_limma_voom_mgs)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;logFC&quot;                             &quot;Pvalue&quot;                           
-##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
-## [16] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;logFC&quot;                             &quot;Pvalue&quot;                           
+##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [15] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [17] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="differential-analysis.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_limma_voom_mgs)</span></code></pre></div>
-<pre><code>##                TaxaID         Block Enrichment EffectSize     logFC       Pvalue AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB
-## 1 g__Faecalibacterium 7_AA vs 15_BB         BB  0.3073228 0.3073228 1.361399e-07   3.027405e-06                         -4.011562
-## 2     g__Ruminococcus 7_AA vs 15_BB         BB  0.2253165 0.2253165 1.729946e-07   3.027405e-06                         -2.906486
-## 3          g__Blautia 7_AA vs 15_BB         BB  0.1655853 0.1655853 7.359395e-06   8.585960e-05                         -3.182422
-## 4    g__Lactobacillus 7_AA vs 15_BB         BB  0.1445633 0.1445633 5.294053e-05   4.632296e-04                                NA
-## 5  g__Bifidobacterium 7_AA vs 15_BB         BB  0.3734565 0.3734565 2.016069e-04   1.079861e-03                         -6.549698
-## 6        g__Roseburia 7_AA vs 15_BB         BB  0.1286164 0.1286164 1.261249e-04   8.828745e-04                         -4.442582
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
-## 1              0.05346880            0.0047826            0.0771373                       -3.992131            0.05750352
-## 2              0.02141570            0.0044236            0.0331677                       -2.892349            0.03578485
-## 3              0.02000425            0.0036769            0.0333800                       -2.265551            0.02431008
-## 4              0.00155690            0.0000000            0.0024249                       -5.399318            0.02118822
-## 5              0.03731980            0.0009090            0.0851568                       -3.394708            0.10730063
-## 6              0.00752330            0.0008393            0.0182502                       -2.451452            0.02013462
-##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB       Odds Ratio (95% CI)
-## 1       0.0051489857         0.08193563                    77.27                 57.14                 86.67                75 (83;66)
-## 2       0.0066508000         0.04938074                    81.82                 57.14                 93.33             270 (280;260)
-## 3       0.0067591429         0.03250052                   100.00                100.00                100.00                90 (99;81)
-## 4       0.0007282714         0.03073619                    72.73                 42.86                 86.67 5.3e+10 (5.3e+10;5.3e+10)
-## 5       0.0143274857         0.15068810                   100.00                100.00                100.00             130 (140;120)
-## 6       0.0049745857         0.02720931                    81.82                 57.14                 93.33               12 (17;7.2)</code></pre>
+<pre><code>##                TaxaID         Block Enrichment EffectSize     logFC       Pvalue AdjustedPvalue
+## 1 g__Faecalibacterium 7_AA vs 15_BB         BB  0.3073228 0.3073228 1.361399e-07   3.027405e-06
+## 2     g__Ruminococcus 7_AA vs 15_BB         BB  0.2253165 0.2253165 1.729946e-07   3.027405e-06
+## 3          g__Blautia 7_AA vs 15_BB         BB  0.1655853 0.1655853 7.359395e-06   8.585960e-05
+## 4    g__Lactobacillus 7_AA vs 15_BB         BB  0.1445633 0.1445633 5.294053e-05   4.632296e-04
+## 5  g__Bifidobacterium 7_AA vs 15_BB         BB  0.3734565 0.3734565 2.016069e-04   1.079861e-03
+## 6        g__Roseburia 7_AA vs 15_BB         BB  0.1286164 0.1286164 1.261249e-04   8.828745e-04
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                         -4.011562              0.05346880            0.0047826
+## 2                         -2.906486              0.02141570            0.0044236
+## 3                         -3.182422              0.02000425            0.0036769
+## 4                                NA              0.00155690            0.0000000
+## 5                         -6.549698              0.03731980            0.0009090
+## 6                         -4.442582              0.00752330            0.0008393
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
+## 1            0.0771373                       -3.992131            0.05750352       0.0051489857
+## 2            0.0331677                       -2.892349            0.03578485       0.0066508000
+## 3            0.0333800                       -2.265551            0.02431008       0.0067591429
+## 4            0.0024249                       -5.399318            0.02118822       0.0007282714
+## 5            0.0851568                       -3.394708            0.10730063       0.0143274857
+## 6            0.0182502                       -2.451452            0.02013462       0.0049745857
+##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1         0.08193563                    77.27                 57.14                 86.67
+## 2         0.04938074                    81.82                 57.14                 93.33
+## 3         0.03250052                   100.00                100.00                100.00
+## 4         0.03073619                    72.73                 42.86                 86.67
+## 5         0.15068810                   100.00                100.00                100.00
+## 6         0.02720931                    81.82                 57.14                 93.33
+##         Odds Ratio (95% CI)
+## 1                75 (83;66)
+## 2             270 (280;260)
+## 3                90 (99;81)
+## 4 5.3e+10 (5.3e+10;5.3e+10)
+## 5             130 (140;120)
+## 6               12 (17;7.2)</code></pre>
 <details>
 <summary>
 <strong>limma_voom Metagenomic sequencing in run_da</strong>
@@ -2012,34 +2239,51 @@ Figure 11.2: ANCOM (Structure Zero)
 <span id="cb286-3"><a href="differential-analysis.html#cb286-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb286-4"><a href="differential-analysis.html#cb286-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb286-5"><a href="differential-analysis.html#cb286-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_wilcox_mgs)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;Statistic&quot;                         &quot;Pvalue&quot;                           
-##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Rank)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Rank Abundance\nAA&quot;           &quot;Mean Rank Abundance\nBB&quot;           &quot;Occurrence (100%)\n(All)&quot;         
-## [16] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;Statistic&quot;                         &quot;Pvalue&quot;                           
+##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Rank)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Rank Abundance\nAA&quot;           &quot;Mean Rank Abundance\nBB&quot;          
+## [15] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
+## [17] &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="differential-analysis.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_wilcox_mgs)</span></code></pre></div>
-<pre><code>##               TaxaID         Block Enrichment EffectSize Statistic       Pvalue AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB
-## 1       g__Alistipes 7_AA vs 15_BB  Nonsignif  2.0074906        71 0.2019346498     0.44173205                          2.061604
-## 2    g__Anaerostipes 7_AA vs 15_BB  Nonsignif  0.0846993        31 0.1383456045     0.32280641                         -4.964322
-## 3     g__Bacteroides 7_AA vs 15_BB  Nonsignif  1.3155909        85 0.0212848297     0.06622869                          1.229057
-## 4 g__Bifidobacterium 7_AA vs 15_BB         BB  4.0400547        11 0.0021226194     0.03357196                         -6.549698
-## 5       g__Bilophila 7_AA vs 15_BB  Nonsignif  0.5394300        60 0.6160709679     0.73547689                          1.177523
-## 6         g__Blautia 7_AA vs 15_BB         BB  1.7897262         6 0.0003518154     0.01231354                         -3.182422
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
-## 1              0.00711780            0.0236665            0.0056693                       0.4613459                   14.14
-## 2              0.00031435            0.0000229            0.0007149                      -0.6171177                    8.43
-## 3              0.24894650            0.4568864            0.1949060                       0.7906916                   16.14
-## 4              0.03731980            0.0009090            0.0851568                      -1.3572361                    5.57
-## 5              0.00104585            0.0020513            0.0009069                       0.1924811                   12.57
-## 6              0.02000425            0.0036769            0.0333800                      -1.5869402                    4.86
-##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                   10.27                    77.27                 71.43                 80.00     0.22 (-2.7;3.2)
-## 2                   12.93                    86.36                 71.43                 93.33         6 (9.5;2.5)
-## 3                    9.33                   100.00                100.00                100.00       0.31 (-2;2.6)
-## 4                   14.27                   100.00                100.00                100.00       130 (140;120)
-## 5                   11.00                    68.18                 71.43                 66.67      0.4 (-1.4;2.2)
-## 6                   14.60                   100.00                100.00                100.00          90 (99;81)</code></pre>
+<pre><code>##               TaxaID         Block Enrichment EffectSize Statistic       Pvalue AdjustedPvalue
+## 1       g__Alistipes 7_AA vs 15_BB  Nonsignif  2.0074906        71 0.2019346498     0.44173205
+## 2    g__Anaerostipes 7_AA vs 15_BB  Nonsignif  0.0846993        31 0.1383456045     0.32280641
+## 3     g__Bacteroides 7_AA vs 15_BB  Nonsignif  1.3155909        85 0.0212848297     0.06622869
+## 4 g__Bifidobacterium 7_AA vs 15_BB         BB  4.0400547        11 0.0021226194     0.03357196
+## 5       g__Bilophila 7_AA vs 15_BB  Nonsignif  0.5394300        60 0.6160709679     0.73547689
+## 6         g__Blautia 7_AA vs 15_BB         BB  1.7897262         6 0.0003518154     0.01231354
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                          2.061604              0.00711780            0.0236665
+## 2                         -4.964322              0.00031435            0.0000229
+## 3                          1.229057              0.24894650            0.4568864
+## 4                         -6.549698              0.03731980            0.0009090
+## 5                          1.177523              0.00104585            0.0020513
+## 6                         -3.182422              0.02000425            0.0036769
+##   Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
+## 1            0.0056693                       0.4613459                   14.14
+## 2            0.0007149                      -0.6171177                    8.43
+## 3            0.1949060                       0.7906916                   16.14
+## 4            0.0851568                      -1.3572361                    5.57
+## 5            0.0009069                       0.1924811                   12.57
+## 6            0.0333800                      -1.5869402                    4.86
+##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1                   10.27                    77.27                 71.43                 80.00
+## 2                   12.93                    86.36                 71.43                 93.33
+## 3                    9.33                   100.00                100.00                100.00
+## 4                   14.27                   100.00                100.00                100.00
+## 5                   11.00                    68.18                 71.43                 66.67
+## 6                   14.60                   100.00                100.00                100.00
+##   Odds Ratio (95% CI)
+## 1     0.22 (-2.7;3.2)
+## 2         6 (9.5;2.5)
+## 3       0.31 (-2;2.6)
+## 4       130 (140;120)
+## 5      0.4 (-1.4;2.2)
+## 6          90 (99;81)</code></pre>
 <details>
 <summary>
 <strong>wilcox Metagenomic sequencing in run_da</strong>
@@ -2064,34 +2308,44 @@ Figure 11.2: ANCOM (Structure Zero)
 <span id="cb291-5"><a href="differential-analysis.html#cb291-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Lda =</span> <span class="dv">0</span>)  </span>
 <span id="cb291-6"><a href="differential-analysis.html#cb291-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb291-7"><a href="differential-analysis.html#cb291-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_lefse_mgs)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;LDA_Score&quot;                         &quot;EffectSize&quot;                        &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
-##  [7] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;             
-## [10] &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;   &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
-## [13] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;            
-## [16] &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;LDA_Score&quot;                        
+##  [5] &quot;EffectSize&quot;                        &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [7] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+##  [9] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [11] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [13] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [15] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+## [17] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="differential-analysis.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_lefse_mgs)</span></code></pre></div>
-<pre><code>##              TaxaID         Block Enrichment LDA_Score EffectSize Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All)
-## 1    g__Bacteroides 7_AA vs 15_BB         AA -5.043523  2.4706924                          1.190750            254167.50879
-## 2  g__Fusobacterium 7_AA vs 15_BB         AA -4.177621  1.4909458                                NA                 0.00000
-## 3 g__Granulicatella 7_AA vs 15_BB         BB  3.027420  0.7148612                                NA                25.66255
-## 4    g__Eggerthella 7_AA vs 15_BB         BB  3.250342  1.0775520                                NA               591.34240
-## 5          g__Dorea 7_AA vs 15_BB         BB  3.843600  1.8875977                         -5.725323              8554.29279
-## 6    g__Collinsella 7_AA vs 15_BB         BB  3.897707  2.1429199                                NA              7735.89039
-##   Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB
-## 1          464614.8499         203536.16836                        1.141368           291673.9273       464989.41139       210793.36812
-## 2             123.8325              0.00000                        6.941519             9891.9128        30556.16386          248.59562
-## 3               0.0000             52.35042                       -3.071984               64.1451           10.59936           89.13311
-## 4               0.0000            771.47121                       -3.764280             2231.9872          232.91482         3164.88766
-## 5             270.5150          14311.50707                       -3.454344            11339.4984         1455.31524        15952.11728
-## 6               0.0000          11641.72307                       -2.928116            12495.9911         2268.85954        17268.65252
-##   Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                   100.00                100.00                100.00     0.32 (-1.9;2.5)
-## 2                    40.91                 85.71                 20.00     0.0032 (-11;11)
-## 3                    72.73                 42.86                 86.67       220 (230;210)
-## 4                    63.64                 42.86                 73.33       430 (450;420)
-## 5                    90.91                 71.43                100.00          28 (34;21)
-## 6                    68.18                 42.86                 80.00          20 (25;14)</code></pre>
+<pre><code>##              TaxaID         Block Enrichment LDA_Score EffectSize Log2FoldChange (Median)\nAA_vs_BB
+## 1    g__Bacteroides 7_AA vs 15_BB         AA -5.043523  2.4706924                          1.190750
+## 2  g__Fusobacterium 7_AA vs 15_BB         AA -4.177621  1.4909458                                NA
+## 3 g__Granulicatella 7_AA vs 15_BB         BB  3.027420  0.7148612                                NA
+## 4    g__Eggerthella 7_AA vs 15_BB         BB  3.250342  1.0775520                                NA
+## 5          g__Dorea 7_AA vs 15_BB         BB  3.843600  1.8875977                         -5.725323
+## 6    g__Collinsella 7_AA vs 15_BB         BB  3.897707  2.1429199                                NA
+##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB
+## 1            254167.50879          464614.8499         203536.16836                        1.141368
+## 2                 0.00000             123.8325              0.00000                        6.941519
+## 3                25.66255               0.0000             52.35042                       -3.071984
+## 4               591.34240               0.0000            771.47121                       -3.764280
+## 5              8554.29279             270.5150          14311.50707                       -3.454344
+## 6              7735.89039               0.0000          11641.72307                       -2.928116
+##   Mean Abundance\n(All) Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All)
+## 1           291673.9273       464989.41139       210793.36812                   100.00
+## 2             9891.9128        30556.16386          248.59562                    40.91
+## 3               64.1451           10.59936           89.13311                    72.73
+## 4             2231.9872          232.91482         3164.88766                    63.64
+## 5            11339.4984         1455.31524        15952.11728                    90.91
+## 6            12495.9911         2268.85954        17268.65252                    68.18
+##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                100.00                100.00     0.32 (-1.9;2.5)
+## 2                 85.71                 20.00     0.0032 (-11;11)
+## 3                 42.86                 86.67       220 (230;210)
+## 4                 42.86                 73.33       430 (450;420)
+## 5                 71.43                100.00          28 (34;21)
+## 6                 42.86                 80.00          20 (25;14)</code></pre>
 <details>
 <summary>
 <strong>lefse Metagenomic sequencing in run_da</strong>
@@ -2114,42 +2368,52 @@ Figure 11.2: ANCOM (Structure Zero)
 <span id="cb296-3"><a href="differential-analysis.html#cb296-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb296-4"><a href="differential-analysis.html#cb296-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb296-5"><a href="differential-analysis.html#cb296-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_ttest_mgs)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                                   &quot;Block&quot;                                    &quot;Enrichment&quot;                              
-##  [4] &quot;EffectSize&quot;                               &quot;Statistic&quot;                                &quot;Pvalue&quot;                                  
-##  [7] &quot;AdjustedPvalue&quot;                           &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;        &quot;Median Abundance\n(All)&quot;                 
-## [10] &quot;Median Abundance\nAA&quot;                     &quot;Median Abundance\nBB&quot;                     &quot;Log2FoldChange (geometricmean)\nAA_vs_BB&quot;
-## [13] &quot;GeometricMean Abundance\n(All)&quot;           &quot;GeometricMean Abundance\nAA&quot;              &quot;GeometricMean Abundance\nBB&quot;             
-## [16] &quot;Occurrence (100%)\n(All)&quot;                 &quot;Occurrence (100%)\nAA&quot;                    &quot;Occurrence (100%)\nBB&quot;                   
+<pre><code>##  [1] &quot;TaxaID&quot;                                   &quot;Block&quot;                                   
+##  [3] &quot;Enrichment&quot;                               &quot;EffectSize&quot;                              
+##  [5] &quot;Statistic&quot;                                &quot;Pvalue&quot;                                  
+##  [7] &quot;AdjustedPvalue&quot;                           &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;       
+##  [9] &quot;Median Abundance\n(All)&quot;                  &quot;Median Abundance\nAA&quot;                    
+## [11] &quot;Median Abundance\nBB&quot;                     &quot;Log2FoldChange (geometricmean)\nAA_vs_BB&quot;
+## [13] &quot;GeometricMean Abundance\n(All)&quot;           &quot;GeometricMean Abundance\nAA&quot;             
+## [15] &quot;GeometricMean Abundance\nBB&quot;              &quot;Occurrence (100%)\n(All)&quot;                
+## [17] &quot;Occurrence (100%)\nAA&quot;                    &quot;Occurrence (100%)\nBB&quot;                   
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="differential-analysis.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_ttest_mgs)</span></code></pre></div>
-<pre><code>##               TaxaID         Block Enrichment EffectSize Statistic       Pvalue AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB
-## 1       g__Alistipes 7_AA vs 15_BB  Nonsignif  2.0074906  1.596368 1.595156e-01    0.389526338                          2.061604
-## 2    g__Anaerostipes 7_AA vs 15_BB  Nonsignif  0.0846993 -1.697056 1.093743e-01    0.319008386                         -4.964322
-## 3     g__Bacteroides 7_AA vs 15_BB  Nonsignif  1.3155909  2.288232 4.545820e-02    0.159103700                          1.229057
-## 4 g__Bifidobacterium 7_AA vs 15_BB  Nonsignif  4.0400547 -2.725201 1.523564e-02    0.090761685                         -6.549698
-## 5       g__Bilophila 7_AA vs 15_BB  Nonsignif  0.5394300  1.203014 2.727749e-01    0.500106397                          1.177523
-## 6         g__Blautia 7_AA vs 15_BB         BB  1.7897262 -5.254033 4.588669e-05    0.001606034                         -3.182422
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (geometricmean)\nAA_vs_BB
-## 1              0.00711780            0.0236665            0.0056693                                 2.055288
-## 2              0.00031435            0.0000229            0.0007149                                       NA
-## 3              0.24894650            0.4568864            0.1949060                                 1.607214
-## 4              0.03731980            0.0009090            0.0851568                                       NA
-## 5              0.00104585            0.0020513            0.0009069                                 3.174655
-## 6              0.02000425            0.0036769            0.0333800                                       NA
-##   GeometricMean Abundance\n(All) GeometricMean Abundance\nAA GeometricMean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA
-## 1                      0.3989446                   0.7346341                   0.1767534                    77.27                 71.43
-## 2                      1.8882218                         NaN                   1.8882218                    86.36                 71.43
-## 3                      0.3871167                   0.6044631                   0.1984039                   100.00                100.00
-## 4                      0.1936930                         NaN                   0.1936930                   100.00                100.00
-## 5                      0.6988408                   2.6168456                   0.2898089                    68.18                 71.43
-## 6                      0.9008965                         NaN                   0.9008965                   100.00                100.00
-##   Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                 80.00     0.22 (-2.7;3.2)
-## 2                 93.33         6 (9.5;2.5)
-## 3                100.00       0.31 (-2;2.6)
-## 4                100.00       130 (140;120)
-## 5                 66.67      0.4 (-1.4;2.2)
-## 6                100.00          90 (99;81)</code></pre>
+<pre><code>##               TaxaID         Block Enrichment EffectSize Statistic       Pvalue AdjustedPvalue
+## 1       g__Alistipes 7_AA vs 15_BB  Nonsignif  2.0074906  1.596368 1.595156e-01    0.389526338
+## 2    g__Anaerostipes 7_AA vs 15_BB  Nonsignif  0.0846993 -1.697056 1.093743e-01    0.319008386
+## 3     g__Bacteroides 7_AA vs 15_BB  Nonsignif  1.3155909  2.288232 4.545820e-02    0.159103700
+## 4 g__Bifidobacterium 7_AA vs 15_BB  Nonsignif  4.0400547 -2.725201 1.523564e-02    0.090761685
+## 5       g__Bilophila 7_AA vs 15_BB  Nonsignif  0.5394300  1.203014 2.727749e-01    0.500106397
+## 6         g__Blautia 7_AA vs 15_BB         BB  1.7897262 -5.254033 4.588669e-05    0.001606034
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                          2.061604              0.00711780            0.0236665
+## 2                         -4.964322              0.00031435            0.0000229
+## 3                          1.229057              0.24894650            0.4568864
+## 4                         -6.549698              0.03731980            0.0009090
+## 5                          1.177523              0.00104585            0.0020513
+## 6                         -3.182422              0.02000425            0.0036769
+##   Median Abundance\nBB Log2FoldChange (geometricmean)\nAA_vs_BB GeometricMean Abundance\n(All)
+## 1            0.0056693                                 2.055288                      0.3989446
+## 2            0.0007149                                       NA                      1.8882218
+## 3            0.1949060                                 1.607214                      0.3871167
+## 4            0.0851568                                       NA                      0.1936930
+## 5            0.0009069                                 3.174655                      0.6988408
+## 6            0.0333800                                       NA                      0.9008965
+##   GeometricMean Abundance\nAA GeometricMean Abundance\nBB Occurrence (100%)\n(All)
+## 1                   0.7346341                   0.1767534                    77.27
+## 2                         NaN                   1.8882218                    86.36
+## 3                   0.6044631                   0.1984039                   100.00
+## 4                         NaN                   0.1936930                   100.00
+## 5                   2.6168456                   0.2898089                    68.18
+## 6                         NaN                   0.9008965                   100.00
+##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                 71.43                 80.00     0.22 (-2.7;3.2)
+## 2                 71.43                 93.33         6 (9.5;2.5)
+## 3                100.00                100.00       0.31 (-2;2.6)
+## 4                100.00                100.00       130 (140;120)
+## 5                 71.43                 66.67      0.4 (-1.4;2.2)
+## 6                100.00                100.00          90 (99;81)</code></pre>
 <details>
 <summary>
 <strong>ttest Metagenomic sequencing in run_da</strong>
@@ -2209,12 +2473,15 @@ Figure 11.2: ANCOM (Structure Zero)
 <span id="cb303-4"><a href="differential-analysis.html#cb303-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb303-5"><a href="differential-analysis.html#cb303-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb303-6"><a href="differential-analysis.html#cb303-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(DA_limma_voom)</span></code></pre></div>
-<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                             &quot;Enrichment&quot;                       
-##  [4] &quot;EffectSize&quot;                        &quot;logFC&quot;                             &quot;Pvalue&quot;                           
-##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot; &quot;Median Abundance\n(All)&quot;          
-## [10] &quot;Median Abundance\nAA&quot;              &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
-## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;               
-## [16] &quot;Occurrence (100%)\n(All)&quot;          &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
+<pre><code>##  [1] &quot;TaxaID&quot;                            &quot;Block&quot;                            
+##  [3] &quot;Enrichment&quot;                        &quot;EffectSize&quot;                       
+##  [5] &quot;logFC&quot;                             &quot;Pvalue&quot;                           
+##  [7] &quot;AdjustedPvalue&quot;                    &quot;Log2FoldChange (Median)\nAA_vs_BB&quot;
+##  [9] &quot;Median Abundance\n(All)&quot;           &quot;Median Abundance\nAA&quot;             
+## [11] &quot;Median Abundance\nBB&quot;              &quot;Log2FoldChange (Mean)\nAA_vs_BB&quot;  
+## [13] &quot;Mean Abundance\n(All)&quot;             &quot;Mean Abundance\nAA&quot;               
+## [15] &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
+## [17] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;            
 ## [19] &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="differential-analysis.html#cb305-1" aria-hidden="true" tabindex="-1"></a>DA_limma_voom_volcano <span class="ot">&lt;-</span> <span class="fu">plot_volcano</span>(</span>
 <span id="cb305-2"><a href="differential-analysis.html#cb305-2" aria-hidden="true" tabindex="-1"></a>    DA_limma_voom,</span>
@@ -2227,8 +2494,8 @@ Figure 11.2: ANCOM (Structure Zero)
 <span id="cb305-9"><a href="differential-analysis.html#cb305-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">5</span>)</span>
 <span id="cb305-10"><a href="differential-analysis.html#cb305-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb305-11"><a href="differential-analysis.html#cb305-11" aria-hidden="true" tabindex="-1"></a>DA_limma_voom_volcano</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-150"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-150-1.png" alt="Volcano (limma-voom: logFC and AdjustedPvalue)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-157"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-157-1.png" alt="Volcano (limma-voom: logFC and AdjustedPvalue)" width="672" />
 <p class="caption">
 Figure 11.3: Volcano (limma-voom: logFC and AdjustedPvalue)
 </p>
@@ -2246,8 +2513,8 @@ Figure 11.3: Volcano (limma-voom: logFC and AdjustedPvalue)
 <span id="cb306-7"><a href="differential-analysis.html#cb306-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
 <span id="cb306-8"><a href="differential-analysis.html#cb306-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
 <span id="cb306-9"><a href="differential-analysis.html#cb306-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">8</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-151"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-151-1.png" alt="Volcano (limma-voom: EffectSize and Pvalue)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-158"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-158-1.png" alt="Volcano (limma-voom: EffectSize and Pvalue)" width="672" />
 <p class="caption">
 Figure 11.4: Volcano (limma-voom: EffectSize and Pvalue)
 </p>
@@ -2268,8 +2535,8 @@ Figure 11.4: Volcano (limma-voom: EffectSize and Pvalue)
 <span id="cb307-9"><a href="differential-analysis.html#cb307-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
 <span id="cb307-10"><a href="differential-analysis.html#cb307-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">1</span>,</span>
 <span id="cb307-11"><a href="differential-analysis.html#cb307-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-152"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-152-1.png" alt="Barplot (Lefse)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-159"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-159-1.png" alt="Barplot (Lefse)" width="576" />
 <p class="caption">
 Figure 11.5: Barplot (Lefse)
 </p>
@@ -2294,8 +2561,8 @@ Figure 11.5: Barplot (Lefse)
 <span id="cb308-13"><a href="differential-analysis.html#cb308-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">3</span>,</span>
 <span id="cb308-14"><a href="differential-analysis.html#cb308-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">taxa_name =</span> <span class="st">&quot;s__Ruminococcus_torques&quot;</span>,</span>
 <span id="cb308-15"><a href="differential-analysis.html#cb308-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-153"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-153-1.png" alt="Dominant Taxa" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-160"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-160-1.png" alt="Dominant Taxa" width="768" />
 <p class="caption">
 Figure 11.6: Dominant Taxa
 </p>
@@ -2343,8 +2610,8 @@ Figure 11.6: Dominant Taxa
 <span id="cb313-6"><a href="differential-analysis.html#cb313-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_index_cutoff =</span> <span class="fl">0.5</span>,</span>
 <span id="cb313-7"><a href="differential-analysis.html#cb313-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cellwidth =</span> <span class="dv">50</span>,</span>
 <span id="cb313-8"><a href="differential-analysis.html#cb313-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">cellheight =</span> <span class="dv">10</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-155"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-155-1.png" alt="Multiple DA results" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-162"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-162-1.png" alt="Multiple DA results" width="768" />
 <p class="caption">
 Figure 11.7: Multiple DA results
 </p>
@@ -2364,59 +2631,59 @@ Figure 11.7: Multiple DA results
 ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] RColorBrewer_1.1-2 viridis_0.6.2      viridisLite_0.4.0  ggpubr_0.4.0       ggplot2_3.3.5      phyloseq_1.38.0    tibble_3.1.6      
-## [8] dplyr_1.0.8        XMAS_2.1.1        
+##  [1] RColorBrewer_1.1-2          viridis_0.6.2               viridisLite_0.4.0          
+##  [4] conflicted_1.1.0            SummarizedExperiment_1.24.0 Biobase_2.54.0             
+##  [7] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1         IRanges_2.28.0             
+## [10] S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
+## [13] matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5              
+## [16] phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                
+## [19] XMAS_2.1.2                 
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] utf8_1.2.2                  reticulate_1.24             tidyselect_1.1.2            RSQLite_2.2.10             
-##   [5] AnnotationDbi_1.56.2        htmlwidgets_1.5.4           grid_4.1.2                  BiocParallel_1.28.3        
-##   [9] Rtsne_0.15                  munsell_0.5.0               codetools_0.2-18            DT_0.21                    
-##  [13] umap_0.2.8.0                withr_2.5.0                 colorspace_2.0-3            Biobase_2.54.0             
-##  [17] highr_0.9                   knitr_1.37                  rstudioapi_0.13             pscl_1.5.5                 
-##  [21] stats4_4.1.2                bayesm_3.1-4                robustbase_0.93-9           ggsignif_0.6.3             
-##  [25] MatrixGenerics_1.6.0        labeling_0.4.2              optparse_1.7.1              mbzinb_0.2                 
-##  [29] GenomeInfoDbData_1.2.7      lpsymphony_1.22.0           pheatmap_1.0.12             bit64_4.0.5                
-##  [33] farver_2.1.0                rhdf5_2.38.1                vctrs_0.3.8                 generics_0.1.2             
-##  [37] TH.data_1.1-0               xfun_0.30                   Maaslin2_1.8.0              R6_2.5.1                   
-##  [41] GenomeInfoDb_1.30.1         locfit_1.5-9.5              RcppZiggurat_0.1.6          bitops_1.0-7               
-##  [45] rhdf5filters_1.6.0          cachem_1.0.6                DelayedArray_0.20.0         assertthat_0.2.1           
-##  [49] scales_1.1.1                multcomp_1.4-18             nnet_7.3-17                 gtable_0.3.0               
-##  [53] sandwich_3.0-1              rlang_1.0.2                 genefilter_1.76.0           splines_4.1.2              
-##  [57] protoclust_1.6.3            rstatix_0.7.0               broom_0.7.12                checkmate_2.0.0            
-##  [61] yaml_2.3.5                  reshape2_1.4.4              abind_1.4-5                 crosstalk_1.2.0            
-##  [65] backports_1.4.1             Rfast_2.0.6                 qvalue_2.26.0               Hmisc_4.6-0                
-##  [69] DiagrammeR_1.0.9            tensorA_0.36.2              tools_4.1.2                 bookdown_0.24              
-##  [73] zCompositions_1.4.0         ellipsis_0.3.2              gplots_3.1.1                jquerylib_0.1.4            
-##  [77] biomformat_1.22.0           BiocGenerics_0.40.0         Rcpp_1.0.8.2                plyr_1.8.6                 
-##  [81] base64enc_0.1-3             visNetwork_2.1.0            zlibbioc_1.40.0             purrr_0.3.4                
-##  [85] RCurl_1.98-1.6              rpart_4.1.16                openssl_2.0.0               Wrench_1.12.0              
-##  [89] cowplot_1.1.1               S4Vectors_0.32.3            zoo_1.8-9                   SummarizedExperiment_1.24.0
-##  [93] ggrepel_0.9.1               cluster_2.1.2               magrittr_2.0.2              data.table_1.14.2          
-##  [97] RSpectra_0.16-0             truncnorm_1.0-8             mvtnorm_1.1-3               matrixStats_0.61.0         
-## [101] ALDEx2_1.26.0               corncob_0.2.0               RAIDA_1.0                   evaluate_0.15              
-## [105] xtable_1.8-4                XML_3.99-0.9                jpeg_0.1-9                  IRanges_2.28.0             
-## [109] gridExtra_2.3               shape_1.4.6                 compiler_4.1.2              KernSmooth_2.23-20         
-## [113] crayon_1.5.0                htmltools_0.5.2             mgcv_1.8-39                 pcaPP_1.9-74               
-## [117] Formula_1.2-4               tidyr_1.2.0                 geneplotter_1.72.0          libcoin_1.0-9              
-## [121] DBI_1.1.2                   corrplot_0.92               biglm_0.9-2.1               MASS_7.3-55                
-## [125] compositions_2.0-4          Matrix_1.4-0                ade4_1.7-18                 getopt_1.20.3              
-## [129] car_3.0-12                  permute_0.9-7               cli_3.2.0                   parallel_4.1.2             
-## [133] igraph_1.2.11               GenomicRanges_1.46.1        pkgconfig_2.0.3             coin_1.4-2                 
-## [137] foreign_0.8-82              foreach_1.5.2               annotate_1.72.0             bslib_0.3.1                
-## [141] multtest_2.50.0             XVector_0.34.0              NADA_1.6-1.1                stringr_1.4.0              
-## [145] digest_0.6.29               vegan_2.5-7                 Biostrings_2.62.0           rmarkdown_2.13             
-## [149] htmlTable_2.4.0             edgeR_3.36.0                gtools_3.9.2                modeltools_0.2-23          
-## [153] lifecycle_1.0.1             nlme_3.1-155                jsonlite_1.8.0              Rhdf5lib_1.16.0            
-## [157] carData_3.0-5               askpass_1.1                 limma_3.50.1                fansi_1.0.2                
-## [161] pillar_1.7.0                lattice_0.20-45             KEGGREST_1.34.0             fastmap_1.1.0              
-## [165] httr_1.4.2                  DEoptimR_1.0-10             survival_3.3-1              glue_1.6.2                 
-## [169] png_0.1-7                   iterators_1.0.14            glmnet_4.1-3                bit_4.0.4                  
-## [173] stringi_1.7.6               sass_0.4.0                  metagenomeSeq_1.36.0        blob_1.2.2                 
-## [177] DESeq2_1.34.0               latticeExtra_0.6-29         caTools_1.18.2              memoise_2.0.1              
-## [181] ape_5.6-2</code></pre>
+##   [1] utf8_1.2.2             reticulate_1.24        tidyselect_1.1.2       RSQLite_2.2.10        
+##   [5] AnnotationDbi_1.56.2   htmlwidgets_1.5.4      grid_4.1.2             BiocParallel_1.28.3   
+##   [9] Rtsne_0.15             munsell_0.5.0          codetools_0.2-18       umap_0.2.8.0          
+##  [13] DT_0.21                withr_2.5.0            colorspace_2.0-3       highr_0.9             
+##  [17] knitr_1.37             rstudioapi_0.13        pscl_1.5.5             robustbase_0.93-9     
+##  [21] bayesm_3.1-4           ggsignif_0.6.3         labeling_0.4.2         mbzinb_0.2            
+##  [25] GenomeInfoDbData_1.2.7 bit64_4.0.5            farver_2.1.0           pheatmap_1.0.12       
+##  [29] rhdf5_2.38.1           vctrs_0.3.8            generics_0.1.2         TH.data_1.1-0         
+##  [33] xfun_0.30              R6_2.5.1               locfit_1.5-9.5         RcppZiggurat_0.1.6    
+##  [37] bitops_1.0-7           rhdf5filters_1.6.0     cachem_1.0.6           DelayedArray_0.20.0   
+##  [41] assertthat_0.2.1       scales_1.1.1           multcomp_1.4-18        nnet_7.3-17           
+##  [45] gtable_0.3.0           sandwich_3.0-1         rlang_1.0.2            genefilter_1.76.0     
+##  [49] splines_4.1.2          protoclust_1.6.3       rstatix_0.7.0          broom_0.7.12          
+##  [53] checkmate_2.0.0        yaml_2.3.5             reshape2_1.4.4         abind_1.4-5           
+##  [57] crosstalk_1.2.0        backports_1.4.1        Rfast_2.0.6            qvalue_2.26.0         
+##  [61] Hmisc_4.6-0            DiagrammeR_1.0.9       tensorA_0.36.2         tools_4.1.2           
+##  [65] bookdown_0.24          zCompositions_1.4.0    ellipsis_0.3.2         gplots_3.1.1          
+##  [69] jquerylib_0.1.4        biomformat_1.22.0      Rcpp_1.0.8.2           plyr_1.8.6            
+##  [73] base64enc_0.1-3        visNetwork_2.1.0       zlibbioc_1.40.0        purrr_0.3.4           
+##  [77] RCurl_1.98-1.6         openssl_2.0.0          rpart_4.1.16           Wrench_1.12.0         
+##  [81] cowplot_1.1.1          zoo_1.8-9              ggrepel_0.9.1          cluster_2.1.2         
+##  [85] magrittr_2.0.2         RSpectra_0.16-0        data.table_1.14.2      truncnorm_1.0-8       
+##  [89] mvtnorm_1.1-3          ALDEx2_1.26.0          RAIDA_1.0              evaluate_0.15         
+##  [93] xtable_1.8-4           XML_3.99-0.9           jpeg_0.1-9             gridExtra_2.3         
+##  [97] shape_1.4.6            compiler_4.1.2         KernSmooth_2.23-20     crayon_1.5.0          
+## [101] htmltools_0.5.2        mgcv_1.8-39            Formula_1.2-4          tidyr_1.2.0           
+## [105] geneplotter_1.72.0     libcoin_1.0-9          DBI_1.1.2              corrplot_0.92         
+## [109] MASS_7.3-55            compositions_2.0-4     Matrix_1.4-0           ade4_1.7-18           
+## [113] car_3.0-12             permute_0.9-7          cli_3.2.0              parallel_4.1.2        
+## [117] igraph_1.2.11          pkgconfig_2.0.3        coin_1.4-2             foreign_0.8-82        
+## [121] foreach_1.5.2          annotate_1.72.0        bslib_0.3.1            multtest_2.50.0       
+## [125] XVector_0.34.0         NADA_1.6-1.1           stringr_1.4.0          digest_0.6.29         
+## [129] vegan_2.5-7            Biostrings_2.62.0      rmarkdown_2.13         htmlTable_2.4.0       
+## [133] edgeR_3.36.0           gtools_3.9.2           modeltools_0.2-23      lifecycle_1.0.1       
+## [137] nlme_3.1-155           jsonlite_1.8.0         Rhdf5lib_1.16.0        carData_3.0-5         
+## [141] askpass_1.1            limma_3.50.1           fansi_1.0.2            pillar_1.7.0          
+## [145] lattice_0.20-45        KEGGREST_1.34.0        fastmap_1.1.0          httr_1.4.2            
+## [149] DEoptimR_1.0-10        survival_3.3-1         glue_1.6.2             png_0.1-7             
+## [153] iterators_1.0.14       glmnet_4.1-3           bit_4.0.4              stringi_1.7.6         
+## [157] sass_0.4.0             metagenomeSeq_1.36.0   blob_1.2.2             DESeq2_1.34.0         
+## [161] latticeExtra_0.6-29    caTools_1.18.2         memoise_2.0.1          ape_5.6-2</code></pre>
 
 </div>
 </div>

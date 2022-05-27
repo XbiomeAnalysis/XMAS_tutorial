@@ -4,12 +4,17 @@ Performing the pre-processing steps on the phyloseq-class object.
 
 **Loading packages**
 
-```R
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
 library(XMAS)
 library(dplyr)
 library(tibble)
 library(phyloseq)
 library(ggplot2)
+library(ggpubr)
+library(SummarizedExperiment)
+
+library(conflicted)
+conflicted::conflict_prefer("normalize", "XMAS")
 ```
 
 

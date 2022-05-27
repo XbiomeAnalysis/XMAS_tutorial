@@ -5,13 +5,14 @@ Here, we give users two examples to practice the data analysis workflow by **XMA
 
 **Loading packages**
 
-```R
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
 library(XMAS)
 library(dplyr)
 library(tibble)
 library(phyloseq)
 library(ggplot2)
 library(ggpubr)
+library(SummarizedExperiment)
 ```
 
 ## Workflow description

@@ -22,12 +22,14 @@ Identifying the significant taxa between case and control group is necessary. Th
 
 
 **Loading packages**
-```R
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
 library(XMAS)
 library(dplyr)
 library(tibble)
 library(phyloseq)
 library(ggplot2)
+library(ggpubr)
+library(SummarizedExperiment)
 ```
 
 ## Amplicon sequencing microbial data (16s) 

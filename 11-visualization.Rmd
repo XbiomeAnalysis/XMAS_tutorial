@@ -2,6 +2,17 @@
 
 **XMAS 2.0** provides functions for visualization.
 
+**Loading packages**
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
+library(XMAS)
+library(dplyr)
+library(tibble)
+library(phyloseq)
+library(ggplot2)
+library(ggpubr)
+library(SummarizedExperiment)
+```
+
 ## plot_boxplot
 
 ```{r, warning=FALSE}
