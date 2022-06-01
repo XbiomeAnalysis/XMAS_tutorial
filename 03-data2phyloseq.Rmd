@@ -88,7 +88,7 @@ head(sam_tab)
 
 ### phyloseq object
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps <- import_dada2(seq_tab = otu_tab, 
+dada2_ps <- get_dada2_phyloseq(seq_tab = otu_tab, 
                    tax_tab = tax_tab, 
                    sam_tab = sam_tab, 
                    phy_tree = tree)
@@ -170,11 +170,12 @@ head(sam_tab)
 
 ### phyloseq object
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps <- import_metaphlan2(otu_tab = otu_tab, 
+metaphlan2_ps <- get_metaphlan_phyloseq(otu_tab = otu_tab, 
                                    sam_tab = sam_tab,
                                    tax_tab = tax_tab)
 metaphlan2_ps
 ```
+
 
 ## Systematic Information
 ```{r}

@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-05-27" />
+<meta name="date" content="2022-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,8 +283,8 @@ div.csl-indent {
 <li class="chapter" data-level="9" data-path="composition.html"><a href="composition.html"><i class="fa fa-check"></i><b>9</b> Composition<span></span></a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="composition.html"><a href="composition.html#loading-precessing-phyloseq-object"><i class="fa fa-check"></i><b>9.1</b> Loading &amp; precessing phyloseq object<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="composition.html"><a href="composition.html#stacked-barplot"><i class="fa fa-check"></i><b>9.2</b> Stacked barplot<span></span></a></li>
-<li class="chapter" data-level="9.3" data-path="composition.html"><a href="composition.html#xviz-plot_stacked_bar"><i class="fa fa-check"></i><b>9.3</b> XVIZ <code>plot_stacked_bar</code><span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="composition.html"><a href="composition.html#xviz-plot_stacked_bar"><i class="fa fa-check"></i><b>9.2</b> XVIZ <code>plot_stacked_bar</code><span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="composition.html"><a href="composition.html#stacked-barplot"><i class="fa fa-check"></i><b>9.3</b> Stacked barplot<span></span></a></li>
 <li class="chapter" data-level="9.4" data-path="composition.html"><a href="composition.html#heatmaps"><i class="fa fa-check"></i><b>9.4</b> Heatmaps<span></span></a></li>
 <li class="chapter" data-level="9.5" data-path="composition.html"><a href="composition.html#systematic-information-6"><i class="fa fa-check"></i><b>9.5</b> Systematic Information<span></span></a></li>
 </ul></li>
@@ -484,7 +484,7 @@ div.csl-indent {
 <ul>
 <li><strong>rarefy</strong>: random subsampling counts to the smallest library size in the data set. <strong>Caution: the default library size is 25000 according to our own results(Rarefaction Curves)</strong>.</li>
 </ul>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="pre-processing.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;rarefy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="pre-processing.html#cb65-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;rarefy&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 194 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -493,7 +493,7 @@ div.csl-indent {
 <ul>
 <li><strong>TSS</strong>: total sum scaling, also referred to as “relative abundance”, the abundances were normalized by dividing the corresponding sample library size</li>
 </ul>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="pre-processing.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="pre-processing.html#cb68-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -501,7 +501,7 @@ div.csl-indent {
 <ul>
 <li><strong>TMM</strong>: trimmed mean of m-values. First, a sample is chosen as reference. The scaling factor is then derived using a weighted trimmed mean over the differences of the log-transformed gene-count fold-change between the sample and the reference.</li>
 </ul>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="pre-processing.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="pre-processing.html#cb70-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -509,7 +509,7 @@ div.csl-indent {
 <ul>
 <li><strong>RLE</strong>: relative log expression, RLE uses a pseudo-reference calculated using the geometric mean of the gene-specific abundances over all samples. The scaling factors are then calculated as the median of the gene counts ratios between the samples and the reference.</li>
 </ul>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="pre-processing.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;RLE&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="pre-processing.html#cb72-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;RLE&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -517,7 +517,7 @@ div.csl-indent {
 <ul>
 <li><strong>CSS</strong>: cumulative sum scaling, calculates scaling factors as the cumulative sum of gene abundances up to a data-derived threshold. While standard relative abundance (fraction/percentage) normalization re-scales all samples to the same total sum (100%), CSS keeps a variation in total counts between samples. CSS re-scales the samples based on a subset (quartile) of lower abundant taxa (relatively constant and independent), thereby excluding the impact of (study dominating) high abundant taxa.</li>
 </ul>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="pre-processing.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CSS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="pre-processing.html#cb74-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CSS&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -525,7 +525,7 @@ div.csl-indent {
 <ul>
 <li><strong>CLR</strong>: centered log-ratio normalization.</li>
 </ul>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="pre-processing.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CLR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="pre-processing.html#cb76-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CLR&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -533,7 +533,7 @@ div.csl-indent {
 <ul>
 <li><strong>CPM</strong>: pre-sample normalization of the sum of the values to 1e+06.</li>
 </ul>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="pre-processing.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CPM&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="pre-processing.html#cb78-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CPM&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -653,14 +653,14 @@ div.csl-indent {
 <summary>
 <strong>extracting metagenomic sequencing</strong>
 </summary>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="pre-processing.html#cb101-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_mgs <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(metaphlan2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb101-2"><a href="pre-processing.html#cb101-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_mgs</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="pre-processing.html#cb101-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(metaphlan2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb101-2"><a href="pre-processing.html#cb101-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 109 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
 ## tax_table()   Taxonomy Table:    [ 109 taxa by 6 taxonomic ranks ]</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="pre-processing.html#cb103-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_mgs <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(metaphlan2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb103-2"><a href="pre-processing.html#cb103-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_mgs</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="pre-processing.html#cb103-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(metaphlan2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb103-2"><a href="pre-processing.html#cb103-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 325 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -697,13 +697,13 @@ div.csl-indent {
 <summary>
 <strong>aggregating metagenomic sequencing</strong>
 </summary>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="pre-processing.html#cb111-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_LRA_mgs <span class="ot">&lt;-</span> <span class="fu">summarize_LowAbundance_taxa</span>(metaphlan2_ps_genus_mgs, <span class="at">cutoff =</span> <span class="fl">1e-04</span>, <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb111-2"><a href="pre-processing.html#cb111-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_LRA_mgs</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="pre-processing.html#cb111-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_LRA <span class="ot">&lt;-</span> <span class="fu">summarize_LowAbundance_taxa</span>(metaphlan2_ps_genus, <span class="at">cutoff =</span> <span class="fl">1e-04</span>, <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb111-2"><a href="pre-processing.html#cb111-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_LRA</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 78 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
 ## tax_table()   Taxonomy Table:    [ 78 taxa by 6 taxonomic ranks ]</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="pre-processing.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(phyloseq<span class="sc">::</span><span class="fu">taxa_names</span>(metaphlan2_ps_genus_LRA_mgs))</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="pre-processing.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(phyloseq<span class="sc">::</span><span class="fu">taxa_names</span>(metaphlan2_ps_genus_LRA))</span></code></pre></div>
 <pre><code>## [1] &quot;g__T4likevirus&quot;      &quot;g__Turicibacter&quot;     &quot;g__Veillonella&quot;      &quot;g__Weissella&quot;        &quot;Others_LowAbundance&quot; &quot;Others_Unclassified&quot;</code></pre>
 </details>
 </div>
@@ -724,43 +724,48 @@ div.csl-indent {
 ## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] conflicted_1.1.0            SummarizedExperiment_1.24.0 Biobase_2.54.0              GenomicRanges_1.46.1       
-##  [5] GenomeInfoDb_1.30.1         IRanges_2.28.0              S4Vectors_0.32.3            BiocGenerics_0.40.0        
-##  [9] MatrixGenerics_1.6.0        matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5              
-## [13] phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                 XMAS2_2.1.2                
+##  [1] RColorBrewer_1.1-2          viridis_0.6.2               viridisLite_0.4.0           conflicted_1.1.0           
+##  [5] SummarizedExperiment_1.24.0 Biobase_2.54.0              GenomicRanges_1.46.1        GenomeInfoDb_1.30.1        
+##  [9] IRanges_2.28.0              S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
+## [13] matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5               phyloseq_1.38.0            
+## [17] tibble_3.1.6                dplyr_1.0.8                 XMAS2_2.1.3                
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] backports_1.4.1        Hmisc_4.6-0            plyr_1.8.6             igraph_1.2.11          splines_4.1.2         
-##   [6] crosstalk_1.2.0        BiocParallel_1.28.3    TH.data_1.1-0          digest_0.6.29          foreach_1.5.2         
-##  [11] htmltools_0.5.2        fansi_1.0.2            checkmate_2.0.0        magrittr_2.0.2         memoise_2.0.1         
-##  [16] cluster_2.1.2          limma_3.50.1           Biostrings_2.62.0      annotate_1.72.0        bayesm_3.1-4          
-##  [21] sandwich_3.0-1         metagenomeSeq_1.36.0   jpeg_0.1-9             colorspace_2.0-3       ggrepel_0.9.1         
-##  [26] blob_1.2.2             xfun_0.30              crayon_1.5.0           RCurl_1.98-1.6         jsonlite_1.8.0        
-##  [31] libcoin_1.0-9          genefilter_1.76.0      survival_3.3-1         zoo_1.8-9              iterators_1.0.14      
-##  [36] ape_5.6-2              glue_1.6.2             gtable_0.3.0           zlibbioc_1.40.0        XVector_0.34.0        
-##  [41] compositions_2.0-4     DelayedArray_0.20.0    car_3.0-12             RcppZiggurat_0.1.6     Rhdf5lib_1.16.0       
-##  [46] shape_1.4.6            DEoptimR_1.0-10        pscl_1.5.5             abind_1.4-5            scales_1.1.1          
-##  [51] pheatmap_1.0.12        mvtnorm_1.1-3          DBI_1.1.2              edgeR_3.36.0           rstatix_0.7.0         
-##  [56] Rcpp_1.0.8.2           xtable_1.8-4           htmlTable_2.4.0        foreign_0.8-82         bit_4.0.4             
-##  [61] Formula_1.2-4          DT_0.21                truncnorm_1.0-8        glmnet_4.1-3           htmlwidgets_1.5.4     
-##  [66] httr_1.4.2             DiagrammeR_1.0.9       gplots_3.1.1           RColorBrewer_1.1-2     modeltools_0.2-23     
-##  [71] ellipsis_0.3.2         NADA_1.6-1.1           farver_2.1.0           pkgconfig_2.0.3        XML_3.99-0.9          
-##  [76] nnet_7.3-17            sass_0.4.0             locfit_1.5-9.5         utf8_1.2.2             labeling_0.4.2        
-##  [81] tidyselect_1.1.2       rlang_1.0.2            reshape2_1.4.4         AnnotationDbi_1.56.2   munsell_0.5.0         
-##  [86] tools_4.1.2            visNetwork_2.1.0       cachem_1.0.6           cli_3.2.0              generics_0.1.2        
-##  [91] RSQLite_2.2.10         ade4_1.7-18            broom_0.7.12           evaluate_0.15          biomformat_1.22.0     
-##  [96] stringr_1.4.0          fastmap_1.1.0          yaml_2.3.5             knitr_1.37             bit64_4.0.5           
-## [101] robustbase_0.93-9      caTools_1.18.2         purrr_0.3.4            KEGGREST_1.34.0        coin_1.4-2            
-## [106] nlme_3.1-155           mbzinb_0.2             compiler_4.1.2         rstudioapi_0.13        png_0.1-7             
-## [111] ggsignif_0.6.3         zCompositions_1.4.0    geneplotter_1.72.0     bslib_0.3.1            stringi_1.7.6         
-## [116] highr_0.9              lattice_0.20-45        Matrix_1.4-0           tensorA_0.36.2         vegan_2.5-7           
-## [121] permute_0.9-7          multtest_2.50.0        vctrs_0.3.8            pillar_1.7.0           lifecycle_1.0.1       
-## [126] rhdf5filters_1.6.0     jquerylib_0.1.4        cowplot_1.1.1          data.table_1.14.2      bitops_1.0-7          
-## [131] R6_2.5.1               latticeExtra_0.6-29    bookdown_0.24          KernSmooth_2.23-20     gridExtra_2.3         
-## [136] codetools_0.2-18       MASS_7.3-55            gtools_3.9.2           assertthat_0.2.1       Wrench_1.12.0         
-## [141] rhdf5_2.38.1           DESeq2_1.34.0          withr_2.5.0            multcomp_1.4-18        GenomeInfoDbData_1.2.7
-## [146] mgcv_1.8-39            parallel_4.1.2         grid_4.1.2             rpart_4.1.16           tidyr_1.2.0           
-## [151] Rfast_2.0.6            rmarkdown_2.13         carData_3.0-5          ALDEx2_1.26.0          base64enc_0.1-3</code></pre>
+##   [1] utf8_1.2.2             reticulate_1.24        tidyselect_1.1.2       RSQLite_2.2.10         AnnotationDbi_1.56.2  
+##   [6] htmlwidgets_1.5.4      grid_4.1.2             BiocParallel_1.28.3    Rtsne_0.15             munsell_0.5.0         
+##  [11] units_0.8-0            codetools_0.2-18       DT_0.21                umap_0.2.8.0           withr_2.5.0           
+##  [16] colorspace_2.0-3       highr_0.9              knitr_1.37             rstudioapi_0.13        pscl_1.5.5            
+##  [21] robustbase_0.93-9      bayesm_3.1-4           ggsignif_0.6.3         labeling_0.4.2         mbzinb_0.2            
+##  [26] GenomeInfoDbData_1.2.7 pheatmap_1.0.12        bit64_4.0.5            farver_2.1.0           rhdf5_2.38.1          
+##  [31] vctrs_0.3.8            generics_0.1.2         TH.data_1.1-0          xfun_0.30              R6_2.5.1              
+##  [36] RVenn_1.1.0            locfit_1.5-9.5         RcppZiggurat_0.1.6     bitops_1.0-7           rhdf5filters_1.6.0    
+##  [41] cachem_1.0.6           DelayedArray_0.20.0    assertthat_0.2.1       scales_1.1.1           multcomp_1.4-18       
+##  [46] nnet_7.3-17            gtable_0.3.0           sandwich_3.0-1         rlang_1.0.2            genefilter_1.76.0     
+##  [51] splines_4.1.2          protoclust_1.6.3       rstatix_0.7.0          broom_0.7.12           checkmate_2.0.0       
+##  [56] yaml_2.3.5             reshape2_1.4.4         abind_1.4-5            crosstalk_1.2.0        backports_1.4.1       
+##  [61] Rfast_2.0.6            qvalue_2.26.0          Hmisc_4.6-0            DiagrammeR_1.0.9       tensorA_0.36.2        
+##  [66] tools_4.1.2            bookdown_0.24          zCompositions_1.4.0    ellipsis_0.3.2         gplots_3.1.1          
+##  [71] jquerylib_0.1.4        biomformat_1.22.0      proxy_0.4-26           Rcpp_1.0.8.2           plyr_1.8.6            
+##  [76] base64enc_0.1-3        visNetwork_2.1.0       zlibbioc_1.40.0        classInt_0.4-3         purrr_0.3.4           
+##  [81] RCurl_1.98-1.6         rpart_4.1.16           openssl_2.0.0          Wrench_1.12.0          cowplot_1.1.1         
+##  [86] zoo_1.8-9              ggrepel_0.9.1          cluster_2.1.2          magrittr_2.0.2         data.table_1.14.2     
+##  [91] RSpectra_0.16-0        truncnorm_1.0-8        mvtnorm_1.1-3          ALDEx2_1.26.0          RAIDA_1.0             
+##  [96] evaluate_0.15          xtable_1.8-4           XML_3.99-0.9           jpeg_0.1-9             gridExtra_2.3         
+## [101] shape_1.4.6            compiler_4.1.2         KernSmooth_2.23-20     crayon_1.5.0           htmltools_0.5.2       
+## [106] mgcv_1.8-39            ggVennDiagram_1.2.1    Formula_1.2-4          tidyr_1.2.0            geneplotter_1.72.0    
+## [111] libcoin_1.0-9          DBI_1.1.2              corrplot_0.92          MASS_7.3-55            sf_1.0-7              
+## [116] compositions_2.0-4     Matrix_1.4-0           ade4_1.7-18            car_3.0-12             permute_0.9-7         
+## [121] cli_3.2.0              parallel_4.1.2         igraph_1.2.11          pkgconfig_2.0.3        coin_1.4-2            
+## [126] foreign_0.8-82         foreach_1.5.2          annotate_1.72.0        bslib_0.3.1            multtest_2.50.0       
+## [131] XVector_0.34.0         NADA_1.6-1.1           stringr_1.4.0          digest_0.6.29          vegan_2.5-7           
+## [136] Biostrings_2.62.0      rmarkdown_2.13         htmlTable_2.4.0        edgeR_3.36.0           gtools_3.9.2          
+## [141] modeltools_0.2-23      lifecycle_1.0.1        nlme_3.1-155           jsonlite_1.8.0         Rhdf5lib_1.16.0       
+## [146] carData_3.0-5          askpass_1.1            limma_3.50.1           fansi_1.0.2            pillar_1.7.0          
+## [151] lattice_0.20-45        DEoptimR_1.0-10        KEGGREST_1.34.0        fastmap_1.1.0          httr_1.4.2            
+## [156] survival_3.3-1         glue_1.6.2             png_0.1-7              iterators_1.0.14       glmnet_4.1-3          
+## [161] bit_4.0.4              class_7.3-20           stringi_1.7.6          sass_0.4.0             metagenomeSeq_1.36.0  
+## [166] blob_1.2.2             DESeq2_1.34.0          latticeExtra_0.6-29    caTools_1.18.2         memoise_2.0.1         
+## [171] e1071_1.7-9            ape_5.6-2</code></pre>
 
 </div>
 </div>

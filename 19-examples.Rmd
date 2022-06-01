@@ -40,25 +40,23 @@ tab9 [label = '@@9']
 tab10 [label = '@@10']  
 tab11 [label = '@@11']  
 tab12 [label = '@@12']
-tab13 [label = '@@13'] 
  
-tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7 -> tab8 -> tab9 -> tab10 -> tab11 -> tab12 -> tab13;  
+tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7 -> tab8 -> tab9 -> tab10 -> tab11 -> tab12;  
 }  
 
   
-[1]: paste0('Importing data: import_dada2()/summarize_phyloseq()')
+[1]: paste0('Importing data: get_dada2_phyloseq()/summarize_phyloseq()')
 [2]: paste0('Quality Control(RefCheck/Remove): summarize_taxa()/run_RefCheck()/get_GroupPhyloseq()')
-[3]: paste0('Quality Control(Rarefaction curves): plot_RarefCure()')  
+[3]: paste0('Quality Control(Rarefaction curves): plot_RarefCurve()')  
 [4]: paste0('Quality Control(Reads Track): plot_Dada2Track()')  
-[5]: paste0('Quality Control(Variability): plot_taxa_cv()/plot_read_distribution()')  
-[6]: paste0('Data processing(Rarefy): normalize()') 
-[7]: paste0('Data processing(Extract specific taxonomic level): summarize_taxa()') 
-[8]: paste0('Data processing(Count2Relative): summarize_taxa(absolute = FALSE)') 
-[9]: paste0('Data processing(Filter&trim): run_filter()/run_trim()') 
-[10]: paste0('GlobalView(Alpha diveristy): run_alpha_diversity()/plot_boxplot()') 
-[11]: paste0('GlobalView(Beta diveristy): run_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()') 
-[12]: paste0('GlobalView(microbial composition): plot_StackBarPlot()/plot_core_taxa()/core_members()')
-[13]: paste0('DifferentialAnalysis: run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()')
+[5]: paste0('Data processing(Rarefy): normalize()') 
+[6]: paste0('Data processing(Extract specific taxonomic level): summarize_taxa()') 
+[7]: paste0('Data processing(Count2Relative): summarize_taxa(absolute = FALSE)') 
+[8]: paste0('Data processing(Filter&trim): run_filter()/run_trim()') 
+[9]: paste0('GlobalView(Alpha diveristy): run_alpha_diversity()/plot_boxplot()') 
+[10]: paste0('GlobalView(Beta diveristy): run_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()') 
+[11]: paste0('GlobalView(microbial composition): plot_StackBarPlot()/plot_core_taxa()/core_members()')
+[12]: paste0('DifferentialAnalysis: run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()')
 ")
 ```
 
@@ -127,7 +125,7 @@ sam_tab <- sam_tab %>% tibble::column_to_rownames("seqID")
 rownames(otu_tab) <- paste0("S", rownames(otu_tab))
 rownames(sam_tab) <- paste0("S", rownames(sam_tab))
 
-dada2_ps <- import_dada2(seq_tab = otu_tab, 
+dada2_ps <- get_dada2_phyloseq(seq_tab = otu_tab, 
                          tax_tab = tax_tab, 
                          sam_tab = sam_tab, 
                          phy_tree = tree)
@@ -191,7 +189,7 @@ dada2_ps_remove_BRS
 
 #### Rarefaction curves
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Rarefaction curves (16s example)"}
-plot_RarefCure(ps = dada2_ps_remove_BRS,
+plot_RarefCurve(ps = dada2_ps_remove_BRS,
                taxa_level = "OTU",
                step = 100,
                label = "Group",
@@ -456,7 +454,7 @@ otu_tab <- metaphlan2_res_list$abu_tab
 tax_tab <- metaphlan2_res_list$tax_tab
 sam_tab <- metaphlan2_sam %>% tibble::column_to_rownames("SampleID")
 
-metaphlan2_ps <- import_metaphlan2(otu_tab = otu_tab, 
+metaphlan2_ps <- get_metaphlan_phyloseq(otu_tab = otu_tab, 
                                    sam_tab = sam_tab,
                                    tax_tab = tax_tab)
 metaphlan2_ps

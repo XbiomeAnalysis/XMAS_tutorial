@@ -187,8 +187,8 @@ visualization-3
 systematic-information-5
 composition
 loading-precessing-phyloseq-object
-stacked-barplot
 xviz-plot_stacked_bar
+stacked-barplot
 heatmaps
 systematic-information-6
 core-microbiota

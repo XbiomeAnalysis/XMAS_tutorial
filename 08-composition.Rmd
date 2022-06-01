@@ -30,6 +30,14 @@ dada2_ps_rarefy
 ```
 
 
+## XVIZ `plot_stacked_bar`
+
+`plot_stacked_bar` from XVIZ.
+
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Stacked barplot XVIZ"}
+plot_stacked_bar_XIVZ(phyloseq=dada2_ps_rarefy, level="Phylum")
+```
+
 ## Stacked barplot 
 
 `plot_StackBarPlot` provides too many parameters for users to display the Stacked barplot of microbial composition by using ggplot2 format. Here is the ordinary pattern. More details to see `help(plot_StackBarPlot)`.
@@ -89,15 +97,6 @@ plot_StackBarPlot(
         facet = TRUE)
 ```
 </details>
-
-
-## XVIZ `plot_stacked_bar`
-
-`plot_stacked_bar` from XVIZ.
-
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Stacked barplot XVIZ"}
-plot_stacked_bar_XIVZ(phyloseq=dada2_ps_rarefy, level="Phylum")
-```
 
 ## Heatmaps
 

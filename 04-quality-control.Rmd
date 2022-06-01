@@ -113,7 +113,7 @@ dada2_ps_remove_BRS
 >  Rarefaction curves are often used when calculating alpha diversity indices, because increasing numbers of sequenced taxa allow increasingly accurate estimates of total population diversity. Rarefaction curves can therefore be used to estimate the full sample richness, as compared to the observed sample richness.
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Rarefaction Curves"}
-plot_RarefCure(dada2_ps_remove_BRS,
+plot_RarefCurve(dada2_ps_remove_BRS,
                taxa_level = "OTU",
                step = 100,
                label = "Group",

@@ -33,7 +33,7 @@ dada2_ps_rarefy_genus <- summarize_taxa(dada2_ps_rarefy, taxa_level = "Genus")
 
 * Normalization: See the Chapter 6 Pre-processing
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_rarefy_genus_rb <- normalize(dada2_ps_rarefy_genus, method = "TSS")
+dada2_ps_rarefy_genus_rb <- XMAS2::normalize(dada2_ps_rarefy_genus, method = "TSS")
 dada2_ps_rarefy_genus_rb
 ```
 
