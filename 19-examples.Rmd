@@ -191,7 +191,7 @@ dada2_ps_remove_BRS
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Rarefaction curves (16s example)"}
 plot_RarefCurve(ps = dada2_ps_remove_BRS,
                taxa_level = "OTU",
-               step = 100,
+               step = 400,
                label = "Group",
                color = "Group")
 ```

@@ -36,7 +36,7 @@ knitr::include_graphics("./figures/SchematicFigure.png")
 **XMAS 2.0** is comprised of R functions for in-house use, including functions for *statistical*, *functional*, and *visual* analysis of microbiol data, and is still underdevelopment.
 
 
-Here, we provide the [first ultimate version (v2.1.0) of XMAS 2.0](https://gitlab.com/BangzhuoTong/xmas/-/releases) and users can download it.
+Here, we provide the [XMAS 2.0 releases](https://gitlab.com/BangzhuoTong/xmas/-/releases) and users can download it.
 
 
 ### Installation of dependent packages
