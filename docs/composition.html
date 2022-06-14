@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-08" />
+<meta name="date" content="2022-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,7 +238,12 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="quality-evaluation.html"><a href="quality-evaluation.html#remove-brs"><i class="fa fa-check"></i><b>5.3</b> Remove BRS<span></span></a></li>
 <li class="chapter" data-level="5.4" data-path="quality-evaluation.html"><a href="quality-evaluation.html#rarefaction-curves"><i class="fa fa-check"></i><b>5.4</b> Rarefaction Curves<span></span></a></li>
 <li class="chapter" data-level="5.5" data-path="quality-evaluation.html"><a href="quality-evaluation.html#summarize-phyloseq-class-object"><i class="fa fa-check"></i><b>5.5</b> Summarize phyloseq-class object<span></span></a></li>
-<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.6</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#variability"><i class="fa fa-check"></i><b>5.6</b> Variability<span></span></a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#coefficient-of-variation"><i class="fa fa-check"></i><b>5.6.1</b> Coefficient of variation<span></span></a></li>
+<li class="chapter" data-level="5.6.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#distribution-of-number-of-sequences"><i class="fa fa-check"></i><b>5.6.2</b> Distribution of number of sequences<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.7</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>6</b> Pre-processing<span></span></a>
 <ul>
@@ -249,12 +254,17 @@ div.csl-indent {
 <li class="chapter" data-level="6.5" data-path="pre-processing.html"><a href="pre-processing.html#imputation"><i class="fa fa-check"></i><b>6.5</b> Imputation<span></span></a></li>
 <li class="chapter" data-level="6.6" data-path="pre-processing.html"><a href="pre-processing.html#extracting-specific-taxa-phyloseq-class-object"><i class="fa fa-check"></i><b>6.6</b> Extracting specific taxa phyloseq-class object<span></span></a></li>
 <li class="chapter" data-level="6.7" data-path="pre-processing.html"><a href="pre-processing.html#aggregating-low-relative-abundance-or-unclassified-taxa-into-others"><i class="fa fa-check"></i><b>6.7</b> Aggregating low relative abundance or unclassified taxa into others<span></span></a></li>
-<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.8</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23"><i class="fa fa-check"></i><b>6.8</b> Transform the abundance of taxa whose relative abundance under Limit Of Detection (LOD) into Zeros (only in metaphlan2/3)<span></span></a></li>
+<li class="chapter" data-level="6.9" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.9</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="aplha-diversity.html"><a href="aplha-diversity.html"><i class="fa fa-check"></i><b>7</b> Aplha diversity<span></span></a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#equal-sample-sums"><i class="fa fa-check"></i><b>7.1</b> Equal sample sums<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#non-phylogenetic-diversities"><i class="fa fa-check"></i><b>7.2.1</b> Non-phylogenetic diversities<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#phylogenetic-diversity"><i class="fa fa-check"></i><b>7.2.2</b> Phylogenetic diversity<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="7.3" data-path="aplha-diversity.html"><a href="aplha-diversity.html#rank-abundance"><i class="fa fa-check"></i><b>7.3</b> Rank Abundance<span></span></a></li>
 <li class="chapter" data-level="7.4" data-path="aplha-diversity.html"><a href="aplha-diversity.html#systematic-information-4"><i class="fa fa-check"></i><b>7.4</b> Systematic Information<span></span></a></li>
 </ul></li>
@@ -270,15 +280,17 @@ div.csl-indent {
 <li class="chapter" data-level="8.3" data-path="beta-diversity.html"><a href="beta-diversity.html#distance-dissimilarity-coefficients-bray-curtis-index"><i class="fa fa-check"></i><b>8.3</b> Distance (Dissimilarity) Coefficients: Bray-Curtis Index<span></span></a></li>
 <li class="chapter" data-level="8.4" data-path="beta-diversity.html"><a href="beta-diversity.html#checking-the-homogeneity-condition"><i class="fa fa-check"></i><b>8.4</b> Checking the homogeneity condition<span></span></a></li>
 <li class="chapter" data-level="8.5" data-path="beta-diversity.html"><a href="beta-diversity.html#permutational-multivariate-analysis-of-variance-permanova"><i class="fa fa-check"></i><b>8.5</b> Permutational Multivariate Analysis of Variance (PERMANOVA)<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.6</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
-<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.7</b> Ordination<span></span></a>
+<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#mantel-test"><i class="fa fa-check"></i><b>8.6</b> Mantel Test<span></span></a></li>
+<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.7</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
+<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#multi-response-permutation-procedures-mrpp"><i class="fa fa-check"></i><b>8.8</b> Multi-response permutation procedures (MRPP)<span></span></a></li>
+<li class="chapter" data-level="8.9" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.9</b> Ordination<span></span></a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.7.1</b> Principal Component Analysis (PCA)<span></span></a></li>
-<li class="chapter" data-level="8.7.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.7.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
-<li class="chapter" data-level="8.7.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.7.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
-<li class="chapter" data-level="8.7.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.7.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
+<li class="chapter" data-level="8.9.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.9.1</b> Principal Component Analysis (PCA)<span></span></a></li>
+<li class="chapter" data-level="8.9.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.9.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
+<li class="chapter" data-level="8.9.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.9.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
+<li class="chapter" data-level="8.9.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.9.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.8</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="8.10" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.10</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="composition.html"><a href="composition.html"><i class="fa fa-check"></i><b>9</b> Composition<span></span></a>
 <ul>
@@ -400,37 +412,38 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 9</span> Composition<a href="composition.html#composition" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Stacked barplot is often used as a visualization way to display the microbial composition per sample.</p>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="composition.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb168-2"><a href="composition.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb168-3"><a href="composition.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb168-4"><a href="composition.html#cb168-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb168-5"><a href="composition.html#cb168-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb168-6"><a href="composition.html#cb168-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb168-7"><a href="composition.html#cb168-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="composition.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb193-2"><a href="composition.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb193-3"><a href="composition.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb193-4"><a href="composition.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb193-5"><a href="composition.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb193-6"><a href="composition.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb193-7"><a href="composition.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
 <div id="loading-precessing-phyloseq-object" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Loading &amp; precessing phyloseq object<a href="composition.html#loading-precessing-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Using <code>get_GroupPhyloseq</code> to remove some samples. For instance, removing the spike-in sample QC in Group column.</p></li>
 <li><p>Rarefying counts</p></li>
 </ul>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="composition.html#cb169-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb169-2"><a href="composition.html#cb169-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb169-3"><a href="composition.html#cb169-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb169-4"><a href="composition.html#cb169-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
-<span id="cb169-5"><a href="composition.html#cb169-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
-<span id="cb169-6"><a href="composition.html#cb169-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="composition.html#cb194-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb194-2"><a href="composition.html#cb194-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb194-3"><a href="composition.html#cb194-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb194-4"><a href="composition.html#cb194-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
+<span id="cb194-5"><a href="composition.html#cb194-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
+<span id="cb194-6"><a href="composition.html#cb194-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
-## otu_table()   OTU Table:         [ 892 taxa and 23 samples ]
+## otu_table()   OTU Table:         [ 891 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
-## tax_table()   Taxonomy Table:    [ 892 taxa by 7 taxonomic ranks ]
-## phy_tree()    Phylogenetic Tree: [ 892 tips and 889 internal nodes ]</code></pre>
+## tax_table()   Taxonomy Table:    [ 891 taxa by 7 taxonomic ranks ]
+## phy_tree()    Phylogenetic Tree: [ 891 tips and 888 internal nodes ]
+## refseq()      DNAStringSet:      [ 891 reference sequences ]</code></pre>
 </div>
 <div id="xviz-plot_stacked_bar" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> XVIZ <code>plot_stacked_bar</code><a href="composition.html#xviz-plot_stacked_bar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>plot_stacked_bar</code> from XVIZ.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="composition.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq=</span>dada2_ps_rarefy, <span class="at">level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-91"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-91-1.png" alt="Stacked barplot XVIZ" width="768" />
+<p><code>plot_stacked_bar_XIVZ</code> from XVIZ.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="composition.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq=</span>dada2_ps_rarefy, <span class="at">level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-172"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-172-1.png" alt="Stacked barplot XVIZ" width="768" />
 <p class="caption">
 Figure 9.1: Stacked barplot XVIZ
 </p>
@@ -439,9 +452,9 @@ Figure 9.1: Stacked barplot XVIZ
 <div id="stacked-barplot" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Stacked barplot<a href="composition.html#stacked-barplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>plot_StackBarPlot</code> provides too many parameters for users to display the Stacked barplot of microbial composition by using ggplot2 format. Here is the ordinary pattern. More details to see <code>help(plot_StackBarPlot)</code>.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="composition.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-92"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-92-1.png" alt="Stacked barplot Ordinary pattern" width="576" />
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="composition.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-173"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-173-1.png" alt="Stacked barplot Ordinary pattern" width="576" />
 <p class="caption">
 Figure 9.2: Stacked barplot Ordinary pattern
 </p>
@@ -451,16 +464,16 @@ Figure 9.2: Stacked barplot Ordinary pattern
 <summary>
 <strong>genus level in stacked barplot</strong>
 </summary>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="composition.html#cb173-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_rarefy, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb173-2"><a href="composition.html#cb173-2" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(dada2_ps_rarefy_genus)</span>
-<span id="cb173-3"><a href="composition.html#cb173-3" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(dada2_ps_rarefy_genus)</span>
-<span id="cb173-4"><a href="composition.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb173-5"><a href="composition.html#cb173-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_otu=</span>otu_tab,</span>
-<span id="cb173-6"><a href="composition.html#cb173-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_sam=</span>sam_tab,</span>
-<span id="cb173-7"><a href="composition.html#cb173-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cutoff =</span> <span class="fl">0.01</span>,</span>
-<span id="cb173-8"><a href="composition.html#cb173-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">taxa_level=</span><span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-93"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-93-1.png" alt="Stacked barplot otu_tab and sample_table as input" width="672" />
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="composition.html#cb198-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_rarefy, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb198-2"><a href="composition.html#cb198-2" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(dada2_ps_rarefy_genus)</span>
+<span id="cb198-3"><a href="composition.html#cb198-3" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(dada2_ps_rarefy_genus)</span>
+<span id="cb198-4"><a href="composition.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb198-5"><a href="composition.html#cb198-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_otu=</span>otu_tab,</span>
+<span id="cb198-6"><a href="composition.html#cb198-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_sam=</span>sam_tab,</span>
+<span id="cb198-7"><a href="composition.html#cb198-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cutoff =</span> <span class="fl">0.01</span>,</span>
+<span id="cb198-8"><a href="composition.html#cb198-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">taxa_level=</span><span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-174"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-174-1.png" alt="Stacked barplot otu_tab and sample_table as input" width="672" />
 <p class="caption">
 Figure 9.3: Stacked barplot otu_tab and sample_table as input
 </p>
@@ -470,12 +483,12 @@ Figure 9.3: Stacked barplot otu_tab and sample_table as input
 <summary>
 <strong>Metadata with <code>Group</code> phenotype</strong>
 </summary>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="composition.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb174-2"><a href="composition.html#cb174-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
-<span id="cb174-3"><a href="composition.html#cb174-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb174-4"><a href="composition.html#cb174-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-94"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-94-1.png" alt="Stacked barplot Metadata with group" width="624" />
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="composition.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb199-2"><a href="composition.html#cb199-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
+<span id="cb199-3"><a href="composition.html#cb199-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb199-4"><a href="composition.html#cb199-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-175"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-175-1.png" alt="Stacked barplot Metadata with group" width="624" />
 <p class="caption">
 Figure 9.4: Stacked barplot Metadata with group
 </p>
@@ -485,13 +498,13 @@ Figure 9.4: Stacked barplot Metadata with group
 <summary>
 <strong>Metadata with <code>Group</code> phenotype in cluster mode</strong>
 </summary>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="composition.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb175-2"><a href="composition.html#cb175-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
-<span id="cb175-3"><a href="composition.html#cb175-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb175-4"><a href="composition.html#cb175-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb175-5"><a href="composition.html#cb175-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-95"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-95-1.png" alt="Stacked barplot Metadata with group in cluster mode" width="624" />
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="composition.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb200-2"><a href="composition.html#cb200-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
+<span id="cb200-3"><a href="composition.html#cb200-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb200-4"><a href="composition.html#cb200-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb200-5"><a href="composition.html#cb200-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-176"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-176-1.png" alt="Stacked barplot Metadata with group in cluster mode" width="624" />
 <p class="caption">
 Figure 9.5: Stacked barplot Metadata with group in cluster mode
 </p>
@@ -501,13 +514,13 @@ Figure 9.5: Stacked barplot Metadata with group in cluster mode
 <summary>
 <strong>Metadata with <code>Group</code> phenotype in facet</strong>
 </summary>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="composition.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb176-2"><a href="composition.html#cb176-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
-<span id="cb176-3"><a href="composition.html#cb176-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb176-4"><a href="composition.html#cb176-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb176-5"><a href="composition.html#cb176-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">facet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-96"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-96-1.png" alt="Stacked barplot Metadata with group in facet" width="672" />
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="composition.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb201-2"><a href="composition.html#cb201-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
+<span id="cb201-3"><a href="composition.html#cb201-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb201-4"><a href="composition.html#cb201-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb201-5"><a href="composition.html#cb201-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">facet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-177"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-177-1.png" alt="Stacked barplot Metadata with group in facet" width="672" />
 <p class="caption">
 Figure 9.6: Stacked barplot Metadata with group in facet
 </p>
@@ -516,12 +529,12 @@ Figure 9.6: Stacked barplot Metadata with group in facet
 </div>
 <div id="heatmaps" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Heatmaps<a href="composition.html#heatmaps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="composition.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_taxa_heatmap</span>(dada2_ps_rarefy, </span>
-<span id="cb177-2"><a href="composition.html#cb177-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>, </span>
-<span id="cb177-3"><a href="composition.html#cb177-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">cutoff =</span> <span class="fl">1e-4</span>, </span>
-<span id="cb177-4"><a href="composition.html#cb177-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-97"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-97-1.png" alt="Heatmaps" width="672" />
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="composition.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_taxa_heatmap</span>(dada2_ps_rarefy, </span>
+<span id="cb202-2"><a href="composition.html#cb202-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>, </span>
+<span id="cb202-3"><a href="composition.html#cb202-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">cutoff =</span> <span class="fl">1e-4</span>, </span>
+<span id="cb202-4"><a href="composition.html#cb202-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-178"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-178-1.png" alt="Heatmaps" width="672" />
 <p class="caption">
 Figure 9.7: Heatmaps
 </p>
@@ -529,7 +542,7 @@ Figure 9.7: Heatmaps
 </div>
 <div id="systematic-information-6" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Systematic Information<a href="composition.html#systematic-information-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="composition.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="composition.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.1.2 (2021-11-01)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
 ## Running under: macOS Monterey 12.2.1
@@ -544,42 +557,43 @@ Figure 9.7: Heatmaps
 ## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] conflicted_1.1.0            SummarizedExperiment_1.24.0 Biobase_2.54.0              GenomicRanges_1.46.1       
-##  [5] GenomeInfoDb_1.30.1         IRanges_2.28.0              S4Vectors_0.32.3            BiocGenerics_0.40.0        
-##  [9] MatrixGenerics_1.6.0        matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5              
-## [13] phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                 XMAS2_2.1.4                
+##  [1] picante_1.8.2               nlme_3.1-155                vegan_2.5-7                 lattice_0.20-45            
+##  [5] permute_0.9-7               ape_5.6-2                   conflicted_1.1.0            SummarizedExperiment_1.24.0
+##  [9] Biobase_2.54.0              GenomicRanges_1.46.1        GenomeInfoDb_1.30.1         IRanges_2.28.0             
+## [13] S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0        matrixStats_0.61.0         
+## [17] ggpubr_0.4.0                ggplot2_3.3.5               phyloseq_1.38.0             tibble_3.1.6               
+## [21] dplyr_1.0.8                 XMAS2_2.1.4                
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] backports_1.4.1        Hmisc_4.6-0            corrplot_0.92          plyr_1.8.6             igraph_1.2.11         
-##   [6] splines_4.1.2          BiocParallel_1.28.3    TH.data_1.1-0          digest_0.6.29          foreach_1.5.2         
-##  [11] htmltools_0.5.2        fansi_1.0.2            checkmate_2.0.0        magrittr_2.0.2         memoise_2.0.1         
-##  [16] cluster_2.1.2          limma_3.50.1           Biostrings_2.62.0      annotate_1.72.0        sandwich_3.0-1        
-##  [21] askpass_1.1            metagenomeSeq_1.36.0   jpeg_0.1-9             colorspace_2.0-3       ggrepel_0.9.1         
-##  [26] blob_1.2.2             xfun_0.30              crayon_1.5.0           RCurl_1.98-1.6         jsonlite_1.8.0        
-##  [31] libcoin_1.0-9          genefilter_1.76.0      survival_3.3-1         zoo_1.8-9              iterators_1.0.14      
-##  [36] ape_5.6-2              glue_1.6.2             gtable_0.3.0           zlibbioc_1.40.0        XVector_0.34.0        
+##   [6] splines_4.1.2          crosstalk_1.2.0        BiocParallel_1.28.3    TH.data_1.1-0          digest_0.6.29         
+##  [11] foreach_1.5.2          htmltools_0.5.2        fansi_1.0.2            checkmate_2.0.0        magrittr_2.0.2        
+##  [16] memoise_2.0.1          cluster_2.1.2          limma_3.50.1           Biostrings_2.62.0      annotate_1.72.0       
+##  [21] sandwich_3.0-1         askpass_1.1            metagenomeSeq_1.36.0   jpeg_0.1-9             colorspace_2.0-3      
+##  [26] ggrepel_0.9.1          blob_1.2.2             xfun_0.30              crayon_1.5.0           RCurl_1.98-1.6        
+##  [31] jsonlite_1.8.0         libcoin_1.0-9          genefilter_1.76.0      survival_3.3-1         zoo_1.8-9             
+##  [36] iterators_1.0.14       glue_1.6.2             gtable_0.3.0           zlibbioc_1.40.0        XVector_0.34.0        
 ##  [41] DelayedArray_0.20.0    car_3.0-12             Rhdf5lib_1.16.0        shape_1.4.6            abind_1.4-5           
 ##  [46] scales_1.1.1           mvtnorm_1.1-3          DBI_1.1.2              edgeR_3.36.0           rstatix_0.7.0         
 ##  [51] Rcpp_1.0.8.2           htmlTable_2.4.0        xtable_1.8-4           reticulate_1.24        foreign_0.8-82        
-##  [56] bit_4.0.4              Formula_1.2-4          umap_0.2.8.0           glmnet_4.1-3           htmlwidgets_1.5.4     
-##  [61] httr_1.4.2             DiagrammeR_1.0.9       gplots_3.1.1           RColorBrewer_1.1-2     modeltools_0.2-23     
-##  [66] ellipsis_0.3.2         farver_2.1.0           pkgconfig_2.0.3        XML_3.99-0.9           nnet_7.3-17           
-##  [71] sass_0.4.0             locfit_1.5-9.5         utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.2      
+##  [56] bit_4.0.4              Formula_1.2-4          umap_0.2.8.0           DT_0.21                glmnet_4.1-3          
+##  [61] htmlwidgets_1.5.4      httr_1.4.2             gplots_3.1.1           RColorBrewer_1.1-2     modeltools_0.2-23     
+##  [66] ellipsis_0.3.2         farver_2.1.0           pkgconfig_2.0.3        XML_3.99-0.9           sass_0.4.0            
+##  [71] nnet_7.3-17            locfit_1.5-9.5         utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.2      
 ##  [76] rlang_1.0.2            reshape2_1.4.4         AnnotationDbi_1.56.2   munsell_0.5.0          tools_4.1.2           
-##  [81] visNetwork_2.1.0       cachem_1.0.6           cli_3.2.0              generics_0.1.2         RSQLite_2.2.10        
-##  [86] ade4_1.7-18            broom_0.7.12           evaluate_0.15          biomformat_1.22.0      stringr_1.4.0         
-##  [91] fastmap_1.1.0          yaml_2.3.5             knitr_1.37             bit64_4.0.5            caTools_1.18.2        
-##  [96] purrr_0.3.4            KEGGREST_1.34.0        coin_1.4-2             nlme_3.1-155           compiler_4.1.2        
-## [101] rstudioapi_0.13        png_0.1-7              ggsignif_0.6.3         geneplotter_1.72.0     bslib_0.3.1           
-## [106] stringi_1.7.6          highr_0.9              RSpectra_0.16-0        lattice_0.20-45        Matrix_1.4-0          
-## [111] vegan_2.5-7            permute_0.9-7          multtest_2.50.0        vctrs_0.3.8            pillar_1.7.0          
-## [116] lifecycle_1.0.1        rhdf5filters_1.6.0     jquerylib_0.1.4        cowplot_1.1.1          data.table_1.14.2     
-## [121] bitops_1.0-7           latticeExtra_0.6-29    R6_2.5.1               bookdown_0.24          gridExtra_2.3         
-## [126] KernSmooth_2.23-20     codetools_0.2-18       MASS_7.3-55            gtools_3.9.2           assertthat_0.2.1      
-## [131] Wrench_1.12.0          rhdf5_2.38.1           openssl_2.0.0          DESeq2_1.34.0          withr_2.5.0           
-## [136] multcomp_1.4-18        GenomeInfoDbData_1.2.7 mgcv_1.8-39            parallel_4.1.2         rpart_4.1.16          
-## [141] grid_4.1.2             tidyr_1.2.0            rmarkdown_2.13         carData_3.0-5          Rtsne_0.15            
-## [146] base64enc_0.1-3</code></pre>
+##  [81] cachem_1.0.6           cli_3.2.0              generics_0.1.2         RSQLite_2.2.10         ade4_1.7-18           
+##  [86] broom_0.7.12           evaluate_0.15          biomformat_1.22.0      stringr_1.4.0          fastmap_1.1.0         
+##  [91] yaml_2.3.5             knitr_1.37             bit64_4.0.5            caTools_1.18.2         purrr_0.3.4           
+##  [96] KEGGREST_1.34.0        coin_1.4-2             compiler_4.1.2         rstudioapi_0.13        png_0.1-7             
+## [101] ggsignif_0.6.3         geneplotter_1.72.0     bslib_0.3.1            stringi_1.7.6          highr_0.9             
+## [106] RSpectra_0.16-0        Matrix_1.4-0           ggsci_2.9              microbiome_1.16.0      multtest_2.50.0       
+## [111] vctrs_0.3.8            pillar_1.7.0           lifecycle_1.0.1        rhdf5filters_1.6.0     jquerylib_0.1.4       
+## [116] cowplot_1.1.1          data.table_1.14.2      bitops_1.0-7           R6_2.5.1               latticeExtra_0.6-29   
+## [121] bookdown_0.24          KernSmooth_2.23-20     gridExtra_2.3          codetools_0.2-18       MASS_7.3-55           
+## [126] gtools_3.9.2           assertthat_0.2.1       Wrench_1.12.0          rhdf5_2.38.1           openssl_2.0.0         
+## [131] DESeq2_1.34.0          withr_2.5.0            multcomp_1.4-18        GenomeInfoDbData_1.2.7 mgcv_1.8-39           
+## [136] parallel_4.1.2         grid_4.1.2             rpart_4.1.16           tidyr_1.2.0            rmarkdown_2.13        
+## [141] carData_3.0-5          Rtsne_0.15             base64enc_0.1-3</code></pre>
 
 </div>
 </div>

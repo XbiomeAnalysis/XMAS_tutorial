@@ -26,7 +26,8 @@ data("dada2_ps")
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 dada2_ps_remove_BRS
 ```
 
@@ -37,7 +38,8 @@ data("metaphlan2_ps")
 metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = metaphlan2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 metaphlan2_ps_remove_BRS
 ```
 </details>
@@ -98,7 +100,6 @@ XMAS2::normalize(dada2_ps_genus, method = "TMM")
 XMAS2::normalize(dada2_ps_genus, method = "RLE")
 ```
 
-
 * **CSS**: cumulative sum scaling, calculates scaling factors as the cumulative sum of gene abundances up to a data-derived threshold. While standard relative abundance (fraction/percentage) normalization re-scales all samples to the same total sum (100%), CSS keeps a variation in total counts between samples. CSS re-scales the samples based on a subset (quartile) of lower abundant taxa (relatively constant and independent), thereby excluding the impact of (study dominating) high abundant taxa.
 ```{r, warning=FALSE, message=FALSE}
 XMAS2::normalize(dada2_ps_genus, method = "CSS")
@@ -113,7 +114,6 @@ XMAS2::normalize(dada2_ps_genus, method = "CLR")
 ```{r, warning=FALSE, message=FALSE}
 XMAS2::normalize(dada2_ps_genus, method = "CPM")
 ```
-
 
 
 ## Filtering
@@ -192,7 +192,6 @@ dada2_ps_order <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Order")
 dada2_ps_order
 ```
 
-
 * amplicon sequencing: Family
 ```{r, warning=FALSE, message=FALSE}
 dada2_ps_family <- summarize_taxa(dada2_ps_remove_BRS, taxa_level = "Family")
@@ -244,6 +243,14 @@ metaphlan2_ps_genus_LRA
 tail(phyloseq::taxa_names(metaphlan2_ps_genus_LRA))
 ```
 </details>
+
+## Transform the abundance of taxa whose relative abundance under Limit Of Detection (LOD) into Zeros (only in metaphlan2/3)
+```{r, warning=FALSE, message=FALSE}
+metaphlan2_ps_Species_LOD <- aggregate_LOD_taxa(metaphlan2_ps, 
+                                                taxa_level = "Species", 
+                                                cutoff = 1e-04)
+metaphlan2_ps_Species_LOD
+```
 
 
 ## Systematic Information

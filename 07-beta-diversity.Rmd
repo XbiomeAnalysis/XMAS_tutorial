@@ -23,7 +23,8 @@ library(SummarizedExperiment)
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
 dada2_ps_rarefy
 ```
@@ -114,7 +115,20 @@ where,
 
 * **Calculation**
 ```{r, warning=FALSE, message=FALSE}
+# approach1
 dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "GUniFrac", GUniFrac_alpha = 0.5)
+
+# approach2
+dada2_otu_tab <- phyloseq::otu_table(dada2_ps_rarefy)
+dada2_tree <- phyloseq::phy_tree(dada2_ps_rarefy)
+
+dada2_unifracs <- run_GUniFrac(dada2_otu_tab, dada2_tree, alpha=c(0, 0.5, 1))$unifracs
+
+dada2_dw <- dada2_unifracs[, , "d_1"]    # Weighted UniFrac
+dada2_du <- dada2_unifracs[, , "d_UW"]   # Unweighted UniFrac
+dada2_dv <- dada2_unifracs[, , "d_VAW"]  # Variance adjusted weighted UniFrac
+dada2_d0 <- dada2_unifracs[, , "d_0"]    # GUniFrac with alpha 0
+dada2_d5 <- dada2_unifracs[, , "d_0.5"]  # GUniFrac with alpha 0.5
 ```
 
 
@@ -181,6 +195,57 @@ run_permanova(amplicon_ps, method = "bray")
 4. Ordination analysis is usually utilized for dimensionality reduction and then we decipher their results by using scatterplot. In fact, we should combine the statistical results, for example PERMANOVA, ANOSIM or others and dimension reduction results to provide stronger evidences to display the association and difference.
 
 
+## Mantel Test
+
+> **Mantel tests** [@mantel1967detection] are correlation tests that determine the correlation between two matrices (rather than two variables). When using the test for microbial ecology, the matrices are often distance/dissimilarity matrices with corresponding positions (i.e. samples in the same order in both matrices). 
+
+> A significant Mantel test will tell you that the distances between samples in one matrix are correlated with the distances between samples in the other matrix. Therefore, as the distance between samples increases with respect to one matrix, the distances between the same samples also increases in the other matrix.
+
+There are also three distance matrix for mantel test:
+
+* **Species abundance dissimilarity matrix**: created using a distance measure, i.e. Bray-curtis dissimilarity. This is the same type of dissimilarity matrix used when conducting an ANOSIM test or when making an NMDS plot;
+* **Environmental factors distance matrix**: generally created using Euclidean Distance;
+* **Geographic distance matrix**: the physical distance between sites for z_distance (i.e. Haversine distance).
+
+```{r, warning=FALSE, message=FALSE}
+data("amplicon_ps")
+run_MantelTest(ps = amplicon_ps,
+           y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", "DaysSinceExperimentStart", "Description"),
+           z_variables = c("Year", "Month", "Day"),
+           method_mantel = "mantel.partial",
+           method_cor = "spearman",
+           method_dist = c("bray", "euclidean", "jaccard")
+          )
+```
+
+**Results**:
+
+From the results, we could see that the **y_dis (environmental factors) has a strong relationship with the OTU Bray-Curtis dissimiliarity matrix** (Mantel statistic R: 0.3318, p value = 0.001) after adjusting the z_dis matrix. In other words, as samples become more dissimilar in terms of environmental factors, they also become more dissimilar in terms of microbial community composition.
+
+
+<details>
+<summary>**Options for Mantel test**</summary>
+```{r, warning=FALSE, message=FALSE}
+run_MantelTest(ps = amplicon_ps,
+           y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", "DaysSinceExperimentStart", "Description"),
+           method_mantel = "mantel",
+           method_cor = "spearman",
+           method_dist = c("bray", "euclidean")
+          )
+```
+
+
+```{r, warning=FALSE, message=FALSE}
+run_MantelTest(ps = amplicon_ps,
+           y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", "DaysSinceExperimentStart", "Description"),
+           method_mantel = "mantel.randtest",
+           method_cor = "spearman",
+           method_dist = c("bray", "euclidean")
+          )
+```
+
+</details>
+
 ## Analysis of Similarity (ANOSIM)
 
 **Analysis of Similarity (ANOSIM)** is simply a modified version of the Mantel Test based on a standardized *rank* correlation between two distance matrices.
@@ -207,6 +272,15 @@ run_ANOSIM(ps = dada2_ps_rarefy, method = "bray", group = "Group")
 ```
 
 The p-value of 0.62 is more than 0.05, which indicates that within-group similarity is not greater or less than between-group similarity at 0.05 significant level. We can conclude that there is no strong evidence that the within-group samples are more different than would be expected by random chance.
+
+## Multi-response permutation procedures (MRPP)
+
+**Multi-response permutation procedures (MRPP)** [@mielke1991application] is a nonparametric procedure for testing the hypothesis of no difference between two or more groups of samples based on permutation test of among-and within-group dissimilarities.
+```{r, warning=FALSE, message=FALSE}
+run_MRPP(ps = dada2_ps_rarefy, method = "bray", group = "Group")
+```
+
+The observed and expected deltas are 0.6469 and 0.851, respectively. The significance of delta is 0.001 with the chance corrected within-group agreement A of 0.2399. *We conclude that there is statistically significant difference of the four SampleType at the 0.05 of significance level*.
 
 
 ## Ordination 

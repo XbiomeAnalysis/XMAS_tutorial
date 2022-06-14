@@ -31,7 +31,8 @@ data("dada2_ps")
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 dada2_ps_remove_BRS
 ```
 
@@ -57,13 +58,28 @@ plot_taxa_prevalence(dada2_ps_rarefy, "Phylum")
 ```
 
 
-
 ## Diversities 
 
-*. Calculation
+```{r, warning=FALSE}
+data("amplicon_ps")
+summary(sample_sums(amplicon_ps))
+```
+
+As is evident there is a large difference in the number of reads. Minimum is _1114_ and maximum is _11449_!! There is a **~10X** difference!
+
 ```{r, warning=FALSE, message=FALSE}
-dada2_alpha <- run_alpha_diversity(ps = dada2_ps_rarefy, measures = c("Shannon", "Chao1", "Observed")) 
-head(dada2_alpha)
+amplicon_ps_rarefy <- norm_rarefy(amplicon_ps, size = 1114, rng_seed = 123)
+summary(sample_sums(amplicon_ps))
+```
+
+### Non-phylogenetic diversities
+
+#### XMAS 
+
+1. Calculation
+```{r, warning=FALSE, message=FALSE}
+amplicon_ps_rarefy_alpha <- run_alpha_diversity(ps=amplicon_ps_rarefy, measures = c("Shannon", "Chao1", "Observed")) 
+head(amplicon_ps_rarefy_alpha)
 ```
 
 
@@ -71,20 +87,111 @@ head(dada2_alpha)
 
 1. single measure
 ```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Alpha diversity from XMAS(one measure)"}
-plot_boxplot(data=dada2_alpha,
+plot_boxplot(data = amplicon_ps_rarefy_alpha,
              y_index = "Shannon",
-             group = "Group",
-             method = "wilcox.test")
+             group = "SampleType",
+             group_names = NULL,
+             group_color = NULL,
+             do_test = TRUE,
+             ref_group = NULL,
+             method = "wilcox.test",
+             outlier = TRUE)
 ```
 
 2. multiple measures
 ```{r, warning=FALSE, fig.width=9, fig.height=5, fig.align="center", fig.cap="Alpha diversity from XMAS(multiple measures)"}
-plot_boxplot(data=dada2_alpha,
+plot_boxplot(data = amplicon_ps_rarefy_alpha,
              y_index = c("Shannon", "Chao1", "Observed"),
-             group = "Group",
-             group_names = c("AA", "BB"),
-             group_color = c("red", "blue"),
-             method = "wilcox.test")
+             group = "SampleType",
+             group_names = c("gut", "right palm", "tongue"),
+             group_color = c("red", "green", "blue"),
+             do_test = TRUE,
+             ref_group = "gut",
+             method = "wilcox.test",
+             outlier = TRUE)
+```
+
+
+
+#### microbiome
+
+* **Calculation**
+```{r, warning=FALSE, message=FALSE}
+amplicon_ps_rarefy_alpha_v2 <- microbiome::alpha(amplicon_ps_rarefy, index = "all")
+DT::datatable(amplicon_ps_rarefy_alpha_v2)
+```
+
+* **Visualization**
+```{r, warning=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="Alpha diversity from microbiome"}
+amplicon_ps_rarefy_metadata <- phyloseq::sample_data(amplicon_ps_rarefy) %>%
+  data.frame()
+amplicon_ps_rarefy_alpha_v2$SampleID <- rownames(amplicon_ps_rarefy_metadata)
+amplicon_ps_rarefy_metadata$SampleID <- rownames(amplicon_ps_rarefy_metadata)
+dat_diversity <- dplyr::inner_join(amplicon_ps_rarefy_metadata, amplicon_ps_rarefy_alpha_v2, by = "SampleID")
+dat_diversity_v2 <- dat_diversity[, c("SampleType", "diversity_inverse_simpson", 
+                                 "diversity_gini_simpson", "diversity_shannon", 
+                                 "diversity_fisher", "diversity_coverage")]
+
+colnames(dat_diversity_v2) <- c("SampleType", "Inverse Simpson", "Gini-Simpson", "Shannon", "Fisher", "Coverage")
+
+plotdata <- dat_diversity_v2 %>% 
+  tidyr::gather(key = "Variable", value = "Value", -SampleType)
+groups <- unique(dat_diversity_v2$SampleType) 
+cmp_list <- combn(seq_along(groups), 2, simplify = FALSE, FUN = function(x) {groups[x]})
+pval_sign <- list(
+  cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 0.1, 1),
+  symbols = c("****", "***", "**", "*", "n.s")
+)
+
+ggboxplot(plotdata, x = "SampleType", y = "Value",
+          fill = "SampleType", 
+          palette = "jco", 
+          legend= "right",
+          facet.by = "Variable", 
+          scales = "free")+
+  rotate_x_text()+
+  rremove("x.text")+
+  stat_compare_means(
+  comparisons = cmp_list,
+  label = "p.signif",
+  symnum.args = pval_sign
+  )
+```
+
+
+###  Phylogenetic diversity
+
+Phylogenetic diversity is calculated using the picante package.
+
+* **Calculation**
+```{r, warning=FALSE, message=FALSE}
+library(picante)
+amplicon_ps_rarefy_tab <- as.data.frame(amplicon_ps_rarefy@otu_table)
+amplicon_ps_rarefy_tree <- amplicon_ps_rarefy@phy_tree
+dat_pd <- pd(t(amplicon_ps_rarefy_tab), 
+             amplicon_ps_rarefy_tree, 
+             include.root = FALSE)
+
+DT::datatable(dat_pd)
+```
+
+* **Visualization**
+```{r, warning=FALSE, fig.align="center", fig.cap="Alpha diversity from picante(Phylogenetic diversity)"}
+amplicon_ps_rarefy_metadata$Phylogenetic_Diversity <- dat_pd$PD
+
+ggboxplot(amplicon_ps_rarefy_metadata,
+    x = "SampleType",
+    y = "Phylogenetic_Diversity",
+    fill = "SampleType",
+    palette = "jco",
+    ylab = "Phylogenetic Diversity",
+    xlab = "Sample Type",
+    legend = "right")+ 
+  rotate_x_text()+
+  stat_compare_means(
+    comparisons = cmp_list,
+    label = "p.signif",
+    symnum.args = pval_sign)
 ```
 
 
@@ -92,6 +199,35 @@ plot_boxplot(data=dada2_alpha,
 
 > There are arguments both for and against the use of rarefying to equal library size.
 The application of normalization method will depend on the type of research question. It is always good to check if there is a correlation between increasing library sizes and richness. Observed ASVs and Phylogenetic diversity can be affected by library sizes. It is always good to check for this before making a choice.
+
+* Calculation
+```{r, warning=FALSE, message=FALSE}
+lib.div <- microbiome::alpha(amplicon_ps, index = "all")
+lib.div2 <- microbiome::richness(amplicon_ps)
+lib.div$ReadsPerSample <- sample_sums(amplicon_ps)
+lib.div$Observed <- lib.div2$observed
+
+colnames(lib.div)
+```
+
+* scatterplot
+```{r, warning=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="Correlation between increasing library sizes and richness"}
+p1 <- ggscatter(lib.div, "diversity_shannon", "ReadsPerSample")+
+  stat_cor(method = "pearson")
+
+p2 <- ggscatter(lib.div, "diversity_inverse_simpson", "ReadsPerSample",dd = "loess")+
+  stat_cor(method = "pearson")
+
+p3 <- ggscatter(lib.div, "Observed", "ReadsPerSample", add = "loess") +
+  stat_cor(
+    method = "pearson",
+    label.x = 100,
+    label.y = 50000
+  )
+
+ggarrange(p1, p2, p3, ncol = 2, nrow = 2)
+```
+
 
 ## Rank Abundance
 
@@ -103,10 +239,10 @@ The curve is a 2D chart with relative abundance on the Y-axis and the abundance 
 
 ```{r, warning=FALSE, fig.width=5, fig.height=4, fig.align="center", fig.cap="Rank Abundance"}
 plot_RankAbundance(
-        ps=dada2_ps_rarefy,
-        taxa_level="Family",
-        group="Group",
-        group_names=c("AA", "BB"))
+        ps = dada2_ps_remove_BRS,
+        taxa_level = "Family",
+        group = "Group",
+        group_names = c("AA", "BB"))
 ```
 
 **Results**:

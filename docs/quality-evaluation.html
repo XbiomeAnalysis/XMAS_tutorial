@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-08" />
+<meta name="date" content="2022-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,7 +238,12 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="quality-evaluation.html"><a href="quality-evaluation.html#remove-brs"><i class="fa fa-check"></i><b>5.3</b> Remove BRS<span></span></a></li>
 <li class="chapter" data-level="5.4" data-path="quality-evaluation.html"><a href="quality-evaluation.html#rarefaction-curves"><i class="fa fa-check"></i><b>5.4</b> Rarefaction Curves<span></span></a></li>
 <li class="chapter" data-level="5.5" data-path="quality-evaluation.html"><a href="quality-evaluation.html#summarize-phyloseq-class-object"><i class="fa fa-check"></i><b>5.5</b> Summarize phyloseq-class object<span></span></a></li>
-<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.6</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#variability"><i class="fa fa-check"></i><b>5.6</b> Variability<span></span></a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#coefficient-of-variation"><i class="fa fa-check"></i><b>5.6.1</b> Coefficient of variation<span></span></a></li>
+<li class="chapter" data-level="5.6.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#distribution-of-number-of-sequences"><i class="fa fa-check"></i><b>5.6.2</b> Distribution of number of sequences<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.7</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>6</b> Pre-processing<span></span></a>
 <ul>
@@ -249,12 +254,17 @@ div.csl-indent {
 <li class="chapter" data-level="6.5" data-path="pre-processing.html"><a href="pre-processing.html#imputation"><i class="fa fa-check"></i><b>6.5</b> Imputation<span></span></a></li>
 <li class="chapter" data-level="6.6" data-path="pre-processing.html"><a href="pre-processing.html#extracting-specific-taxa-phyloseq-class-object"><i class="fa fa-check"></i><b>6.6</b> Extracting specific taxa phyloseq-class object<span></span></a></li>
 <li class="chapter" data-level="6.7" data-path="pre-processing.html"><a href="pre-processing.html#aggregating-low-relative-abundance-or-unclassified-taxa-into-others"><i class="fa fa-check"></i><b>6.7</b> Aggregating low relative abundance or unclassified taxa into others<span></span></a></li>
-<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.8</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23"><i class="fa fa-check"></i><b>6.8</b> Transform the abundance of taxa whose relative abundance under Limit Of Detection (LOD) into Zeros (only in metaphlan2/3)<span></span></a></li>
+<li class="chapter" data-level="6.9" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.9</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="aplha-diversity.html"><a href="aplha-diversity.html"><i class="fa fa-check"></i><b>7</b> Aplha diversity<span></span></a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#equal-sample-sums"><i class="fa fa-check"></i><b>7.1</b> Equal sample sums<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#non-phylogenetic-diversities"><i class="fa fa-check"></i><b>7.2.1</b> Non-phylogenetic diversities<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#phylogenetic-diversity"><i class="fa fa-check"></i><b>7.2.2</b> Phylogenetic diversity<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="7.3" data-path="aplha-diversity.html"><a href="aplha-diversity.html#rank-abundance"><i class="fa fa-check"></i><b>7.3</b> Rank Abundance<span></span></a></li>
 <li class="chapter" data-level="7.4" data-path="aplha-diversity.html"><a href="aplha-diversity.html#systematic-information-4"><i class="fa fa-check"></i><b>7.4</b> Systematic Information<span></span></a></li>
 </ul></li>
@@ -270,15 +280,17 @@ div.csl-indent {
 <li class="chapter" data-level="8.3" data-path="beta-diversity.html"><a href="beta-diversity.html#distance-dissimilarity-coefficients-bray-curtis-index"><i class="fa fa-check"></i><b>8.3</b> Distance (Dissimilarity) Coefficients: Bray-Curtis Index<span></span></a></li>
 <li class="chapter" data-level="8.4" data-path="beta-diversity.html"><a href="beta-diversity.html#checking-the-homogeneity-condition"><i class="fa fa-check"></i><b>8.4</b> Checking the homogeneity condition<span></span></a></li>
 <li class="chapter" data-level="8.5" data-path="beta-diversity.html"><a href="beta-diversity.html#permutational-multivariate-analysis-of-variance-permanova"><i class="fa fa-check"></i><b>8.5</b> Permutational Multivariate Analysis of Variance (PERMANOVA)<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.6</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
-<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.7</b> Ordination<span></span></a>
+<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#mantel-test"><i class="fa fa-check"></i><b>8.6</b> Mantel Test<span></span></a></li>
+<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.7</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
+<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#multi-response-permutation-procedures-mrpp"><i class="fa fa-check"></i><b>8.8</b> Multi-response permutation procedures (MRPP)<span></span></a></li>
+<li class="chapter" data-level="8.9" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.9</b> Ordination<span></span></a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.7.1</b> Principal Component Analysis (PCA)<span></span></a></li>
-<li class="chapter" data-level="8.7.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.7.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
-<li class="chapter" data-level="8.7.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.7.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
-<li class="chapter" data-level="8.7.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.7.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
+<li class="chapter" data-level="8.9.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.9.1</b> Principal Component Analysis (PCA)<span></span></a></li>
+<li class="chapter" data-level="8.9.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.9.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
+<li class="chapter" data-level="8.9.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.9.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
+<li class="chapter" data-level="8.9.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.9.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.8</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="8.10" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.10</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="composition.html"><a href="composition.html"><i class="fa fa-check"></i><b>9</b> Composition<span></span></a>
 <ul>
@@ -413,8 +425,8 @@ div.csl-indent {
 <li>this procedure only perform in 16s data</li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="quality-evaluation.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Dada2Track</span>(<span class="at">data=</span>dada2_res<span class="sc">$</span>reads_track)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-19-1.png" alt="Reads' track of DADA2" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-84"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-84-1.png" alt="Reads' track of DADA2" width="672" />
 <p class="caption">
 Figure 5.1: Reads’ track of DADA2
 </p>
@@ -472,54 +484,52 @@ Figure 5.1: Reads’ track of DADA2
 <span id="cb45-8"><a href="quality-evaluation.html#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="do">## S8005 is in the Reference Matrix&#39;s samples and remove it to run</span></span>
 <span id="cb45-9"><a href="quality-evaluation.html#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb45-10"><a href="quality-evaluation.html#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="do">## #########Matched baterica of the Spike-in sample###########</span></span>
-<span id="cb45-11"><a href="quality-evaluation.html#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking out all the taxa of the Reference Matrix are in the sequencing dataset </span></span>
-<span id="cb45-12"><a href="quality-evaluation.html#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Bifidobacterium</span></span>
-<span id="cb45-13"><a href="quality-evaluation.html#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Bacteroides</span></span>
-<span id="cb45-14"><a href="quality-evaluation.html#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Faecalibacterium</span></span>
-<span id="cb45-15"><a href="quality-evaluation.html#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Lactobacillus</span></span>
-<span id="cb45-16"><a href="quality-evaluation.html#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Parabacteroides</span></span>
-<span id="cb45-17"><a href="quality-evaluation.html#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Collinsella</span></span>
-<span id="cb45-18"><a href="quality-evaluation.html#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Coprococcus_3</span></span>
-<span id="cb45-19"><a href="quality-evaluation.html#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Dorea</span></span>
-<span id="cb45-20"><a href="quality-evaluation.html#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Streptococcus</span></span>
-<span id="cb45-21"><a href="quality-evaluation.html#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Roseburia</span></span>
-<span id="cb45-22"><a href="quality-evaluation.html#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Anaerostipes</span></span>
-<span id="cb45-23"><a href="quality-evaluation.html#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Escherichia/Shigella</span></span>
-<span id="cb45-24"><a href="quality-evaluation.html#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Enterococcus</span></span>
-<span id="cb45-25"><a href="quality-evaluation.html#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Prevotella_9</span></span>
-<span id="cb45-26"><a href="quality-evaluation.html#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Eggerthella</span></span>
-<span id="cb45-27"><a href="quality-evaluation.html#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb45-28"><a href="quality-evaluation.html#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="do">## The number of the additional Taxa in the sequencing dataset is 1</span></span>
-<span id="cb45-29"><a href="quality-evaluation.html#cb45-29" aria-hidden="true" tabindex="-1"></a><span class="do">## ###########################################################</span></span>
-<span id="cb45-30"><a href="quality-evaluation.html#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb45-31"><a href="quality-evaluation.html#cb45-31" aria-hidden="true" tabindex="-1"></a><span class="do">## ##############Value of the Reference sample###############</span></span>
-<span id="cb45-32"><a href="quality-evaluation.html#cb45-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Correlation Coefficient of the Reference sample is: 0.9714</span></span>
-<span id="cb45-33"><a href="quality-evaluation.html#cb45-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Bray Curtis of the Reference sample is: 0.07607</span></span>
-<span id="cb45-34"><a href="quality-evaluation.html#cb45-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity of the Reference sample is: 0.06409</span></span>
-<span id="cb45-35"><a href="quality-evaluation.html#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="do">## ###########################################################</span></span>
-<span id="cb45-36"><a href="quality-evaluation.html#cb45-36" aria-hidden="true" tabindex="-1"></a><span class="do">## #####Final Evaluation Results of the Spike-in sample#######</span></span>
-<span id="cb45-37"><a href="quality-evaluation.html#cb45-37" aria-hidden="true" tabindex="-1"></a><span class="do">## The spike-in sample of sequencing dataset passed the cutoff of the Reference Matrix </span></span>
-<span id="cb45-38"><a href="quality-evaluation.html#cb45-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Cutoff of Coefficient is 0.8946</span></span>
-<span id="cb45-39"><a href="quality-evaluation.html#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Cutoff of BrayCurtis is 0.3878</span></span>
-<span id="cb45-40"><a href="quality-evaluation.html#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Cutoff of Impurity is 0.1565</span></span>
-<span id="cb45-41"><a href="quality-evaluation.html#cb45-41" aria-hidden="true" tabindex="-1"></a><span class="do">## ###########################################################</span></span>
-<span id="cb45-42"><a href="quality-evaluation.html#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="do">##                             8002        8003        8004       8006        8007        8008        8009        8005        mean</span></span>
-<span id="cb45-43"><a href="quality-evaluation.html#cb45-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium      31.11079015 30.88310969 32.31232692 18.4930259 20.20409870 17.96225391 18.03588291 27.22437034 24.52823232</span></span>
-<span id="cb45-44"><a href="quality-evaluation.html#cb45-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides          20.44753484 14.46581958 24.57151411 26.7370147 25.85863655 27.51353663 26.99272343 24.23896093 23.85321759</span></span>
-<span id="cb45-45"><a href="quality-evaluation.html#cb45-45" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium      0.79850615  0.62937893  1.05531023  1.7487249  1.64282727  1.96346413  1.81219797  1.04035376  1.33634542</span></span>
-<span id="cb45-46"><a href="quality-evaluation.html#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus         2.61732573  3.36856272  3.44379163  5.9292703  5.78000836  5.78189064  6.32672332  3.87088505  4.63980722</span></span>
-<span id="cb45-47"><a href="quality-evaluation.html#cb45-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides       7.11124408  7.45952579  5.36075144  8.7149995  8.01840234  8.74899584  8.62634005  5.61833757  7.45732457</span></span>
-<span id="cb45-48"><a href="quality-evaluation.html#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella           0.12792605  0.88271385  0.55665744  1.2764130  0.67921372  1.89356397  1.26367828  0.45502126  0.89189845</span></span>
-<span id="cb45-49"><a href="quality-evaluation.html#cb45-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3         1.00380683  0.97969362  0.80270938  1.6693557  1.56419908  1.67969035  1.71221463  0.87586251  1.28594151</span></span>
-<span id="cb45-50"><a href="quality-evaluation.html#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea                 2.80715148  3.45564660  2.46613277  3.9684605  3.99163530  3.81529666  3.69382881  2.34880690  3.31836988</span></span>
-<span id="cb45-51"><a href="quality-evaluation.html#cb45-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus         2.91960260  3.43387563  2.59149764  3.4818362  3.31409452  3.51378702  3.37721491  2.68740253  3.16491388</span></span>
-<span id="cb45-52"><a href="quality-evaluation.html#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia             0.03404484  0.04750030  0.02806676  0.0338295  0.03178586  0.02503886  0.02499583  0.03311188  0.03229673</span></span>
-<span id="cb45-53"><a href="quality-evaluation.html#cb45-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes          0.32291011  0.43245062  0.31528329  0.5386697  0.44500209  0.53416240  0.48047548  0.32471000  0.42420796</span></span>
-<span id="cb45-54"><a href="quality-evaluation.html#cb45-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Escherichia/Shigella 15.27581475 16.00265210 12.36527954 10.8423545 13.43203680 10.15743185 11.59945565 14.03516268 12.96377349</span></span>
-<span id="cb45-55"><a href="quality-evaluation.html#cb45-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus         14.51444842 14.66472707 11.04239952 13.1674820 12.07360937 12.88771113 12.84924735 11.61906390 12.85233610</span></span>
-<span id="cb45-56"><a href="quality-evaluation.html#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9          0.77374627  3.07465463  2.75709154  2.9145415  2.52446675  3.04952478  2.84952508  5.40257632  2.91826586</span></span>
-<span id="cb45-57"><a href="quality-evaluation.html#cb45-57" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella           0.04951976  0.15437596  0.27131203  0.4840221  0.43998327  0.47365181  0.35549631  0.16128688  0.29870601</span></span>
-<span id="cb45-58"><a href="quality-evaluation.html#cb45-58" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level        0.08562792  0.06531291  0.05987576  0.0000000  0.00000000  0.00000000  0.00000000  0.06409000  0.03436332</span></span></code></pre></div>
+<span id="cb45-11"><a href="quality-evaluation.html#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Identifying some taxa of the Reference Matrix are not in the dataset </span></span>
+<span id="cb45-12"><a href="quality-evaluation.html#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="do">## g__Escherichia/Shigella</span></span>
+<span id="cb45-13"><a href="quality-evaluation.html#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb45-14"><a href="quality-evaluation.html#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Checking out the additional Taxa are in the sequencing dataset</span></span>
+<span id="cb45-15"><a href="quality-evaluation.html#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="do">## ###########################################################</span></span>
+<span id="cb45-16"><a href="quality-evaluation.html#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb45-17"><a href="quality-evaluation.html#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="do">## ##############Value of the Reference sample###############</span></span>
+<span id="cb45-18"><a href="quality-evaluation.html#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Correlation Coefficient of the Reference sample is: 0.9692</span></span>
+<span id="cb45-19"><a href="quality-evaluation.html#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Bray Curtis of the Reference sample is: 0.0808</span></span>
+<span id="cb45-20"><a href="quality-evaluation.html#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity of the Reference sample is: 14.1</span></span>
+<span id="cb45-21"><a href="quality-evaluation.html#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="do">## ###########################################################</span></span>
+<span id="cb45-22"><a href="quality-evaluation.html#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="do">## #####Final Evaluation Results of the Spike-in sample#######</span></span>
+<span id="cb45-23"><a href="quality-evaluation.html#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="do">## The spike-in sample&#39;s 14.1 is more than the Cutoff of Impurity (0.1565)</span></span>
+<span id="cb45-24"><a href="quality-evaluation.html#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="do">## ###########################################################</span></span>
+<span id="cb45-25"><a href="quality-evaluation.html#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="do">##                         8002        8003        8004       8006        8007        8008        8009        8005        mean</span></span>
+<span id="cb45-26"><a href="quality-evaluation.html#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  31.11079015 30.88310969 32.31232692 18.4930259 20.20409870 17.96225391 18.03588291 27.22437034 24.52823232</span></span>
+<span id="cb45-27"><a href="quality-evaluation.html#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      20.44753484 14.46581958 24.57151411 26.7370147 25.85863655 27.51353663 26.99272343 24.23896093 23.85321759</span></span>
+<span id="cb45-28"><a href="quality-evaluation.html#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium  0.79850615  0.62937893  1.05531023  1.7487249  1.64282727  1.96346413  1.81219797  1.04035376  1.33634542</span></span>
+<span id="cb45-29"><a href="quality-evaluation.html#cb45-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus     2.61732573  3.36856272  3.44379163  5.9292703  5.78000836  5.78189064  6.32672332  3.87088505  4.63980722</span></span>
+<span id="cb45-30"><a href="quality-evaluation.html#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides   7.11124408  7.45952579  5.36075144  8.7149995  8.01840234  8.74899584  8.62634005  5.61833757  7.45732457</span></span>
+<span id="cb45-31"><a href="quality-evaluation.html#cb45-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella       0.12792605  0.88271385  0.55665744  1.2764130  0.67921372  1.89356397  1.26367828  0.45502126  0.89189845</span></span>
+<span id="cb45-32"><a href="quality-evaluation.html#cb45-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3     1.00380683  0.97969362  0.80270938  1.6693557  1.56419908  1.67969035  1.71221463  0.87586251  1.28594151</span></span>
+<span id="cb45-33"><a href="quality-evaluation.html#cb45-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea             2.80715148  3.45564660  2.46613277  3.9684605  3.99163530  3.81529666  3.69382881  2.34880690  3.31836988</span></span>
+<span id="cb45-34"><a href="quality-evaluation.html#cb45-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus     2.91960260  3.43387563  2.59149764  3.4818362  3.31409452  3.51378702  3.37721491  2.68740253  3.16491388</span></span>
+<span id="cb45-35"><a href="quality-evaluation.html#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia         0.03404484  0.04750030  0.02806676  0.0338295  0.03178586  0.02503886  0.02499583  0.03311188  0.03229673</span></span>
+<span id="cb45-36"><a href="quality-evaluation.html#cb45-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes      0.32291011  0.43245062  0.31528329  0.5386697  0.44500209  0.53416240  0.48047548  0.32471000  0.42420796</span></span>
+<span id="cb45-37"><a href="quality-evaluation.html#cb45-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     14.51444842 14.66472707 11.04239952 13.1674820 12.07360937 12.88771113 12.84924735 11.61906390 12.85233610</span></span>
+<span id="cb45-38"><a href="quality-evaluation.html#cb45-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9      0.77374627  3.07465463  2.75709154  2.9145415  2.52446675  3.04952478  2.84952508  5.40257632  2.91826586</span></span>
+<span id="cb45-39"><a href="quality-evaluation.html#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella       0.04951976  0.15437596  0.27131203  0.4840221  0.43998327  0.47365181  0.35549631  0.16128688  0.29870601</span></span>
+<span id="cb45-40"><a href="quality-evaluation.html#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level    0.08562792  0.06531291  0.05987576  0.0000000  0.00000000  0.00000000  0.00000000 14.10000000  1.78885207</span></span>
+<span id="cb45-41"><a href="quality-evaluation.html#cb45-41" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                              Evaluation</span></span>
+<span id="cb45-42"><a href="quality-evaluation.html#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-43"><a href="quality-evaluation.html#cb45-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-44"><a href="quality-evaluation.html#cb45-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-45"><a href="quality-evaluation.html#cb45-45" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus    S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-46"><a href="quality-evaluation.html#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides  S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-47"><a href="quality-evaluation.html#cb45-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella      S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-48"><a href="quality-evaluation.html#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3    S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-49"><a href="quality-evaluation.html#cb45-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea            S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-50"><a href="quality-evaluation.html#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus    S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-51"><a href="quality-evaluation.html#cb45-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia        S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-52"><a href="quality-evaluation.html#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes     S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-53"><a href="quality-evaluation.html#cb45-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-54"><a href="quality-evaluation.html#cb45-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9     S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-55"><a href="quality-evaluation.html#cb45-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella      S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb45-56"><a href="quality-evaluation.html#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level   S8005 didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span></code></pre></div>
 <p>We could see that the messages are comprised of four parts.</p>
 <ol style="list-style-type: decimal">
 <li><p>the 1st part showed the type of <em>reference matrix</em> and whether the spike-in sample had been added to reference matrix;</p></li>
@@ -592,23 +602,23 @@ Figure 5.1: Reads’ track of DADA2
 <span id="cb48-23"><a href="quality-evaluation.html#cb48-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.22002 0.26062 0.28058 0.33329  0.07093  0.06778  0.05229  0.04781  0.06825  0.15573000</span></span>
 <span id="cb48-24"><a href="quality-evaluation.html#cb48-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                       7.33876 7.34799 7.14891 6.47250  8.88190  9.72198  9.72162 10.57600 32.69000 11.09996222</span></span>
 <span id="cb48-25"><a href="quality-evaluation.html#cb48-25" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                                Evaluation</span></span>
-<span id="cb48-26"><a href="quality-evaluation.html#cb48-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum              refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-27"><a href="quality-evaluation.html#cb48-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis               refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-28"><a href="quality-evaluation.html#cb48-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii        refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-29"><a href="quality-evaluation.html#cb48-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis        refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-30"><a href="quality-evaluation.html#cb48-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron        refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-31"><a href="quality-evaluation.html#cb48-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens             refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-32"><a href="quality-evaluation.html#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                   refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-33"><a href="quality-evaluation.html#cb48-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans               refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-34"><a href="quality-evaluation.html#cb48-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius            refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-35"><a href="quality-evaluation.html#cb48-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens           refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-36"><a href="quality-evaluation.html#cb48-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                  refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-37"><a href="quality-evaluation.html#cb48-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                   refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-38"><a href="quality-evaluation.html#cb48-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-39"><a href="quality-evaluation.html#cb48-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                    refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-40"><a href="quality-evaluation.html#cb48-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum   refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-41"><a href="quality-evaluation.html#cb48-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span>
-<span id="cb48-42"><a href="quality-evaluation.html#cb48-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      refE didn&#39;t pass the threshold (2022-06-08 15:36:39).</span></span></code></pre></div>
+<span id="cb48-26"><a href="quality-evaluation.html#cb48-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum              refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-27"><a href="quality-evaluation.html#cb48-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis               refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-28"><a href="quality-evaluation.html#cb48-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii        refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-29"><a href="quality-evaluation.html#cb48-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis        refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-30"><a href="quality-evaluation.html#cb48-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron        refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-31"><a href="quality-evaluation.html#cb48-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens             refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-32"><a href="quality-evaluation.html#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                   refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-33"><a href="quality-evaluation.html#cb48-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans               refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-34"><a href="quality-evaluation.html#cb48-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius            refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-35"><a href="quality-evaluation.html#cb48-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens           refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-36"><a href="quality-evaluation.html#cb48-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                  refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-37"><a href="quality-evaluation.html#cb48-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                   refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-38"><a href="quality-evaluation.html#cb48-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-39"><a href="quality-evaluation.html#cb48-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                    refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-40"><a href="quality-evaluation.html#cb48-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum   refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-41"><a href="quality-evaluation.html#cb48-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span>
+<span id="cb48-42"><a href="quality-evaluation.html#cb48-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      refE didn&#39;t pass the threshold (2022-06-14 15:35:54).</span></span></code></pre></div>
 </details>
 </div>
 </div>
@@ -660,8 +670,8 @@ Figure 5.1: Reads’ track of DADA2
 ## rarefying sample S6065
 ## rarefying sample S6066
 ## rarefying sample S6068</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-25-1.png" alt="Rarefaction Curves" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-90"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-90-1.png" alt="Rarefaction Curves" width="672" />
 <p class="caption">
 Figure 5.2: Rarefaction Curves
 </p>
@@ -710,9 +720,46 @@ Figure 5.2: Rarefaction Curves
 <p>The minus account of the OTU counts is <em>51181</em> in the phyloseq object, and we can use it as the threshold to rarefy.</p>
 <p>Notice the <strong>Sparsity (0.865)</strong>, indicating the data has many zeros and pay attention to the downstream data analysis. A common property of amplicon based microbiota data generated by sequencing.</p>
 </div>
-<div id="systematic-information-2" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Systematic Information<a href="quality-evaluation.html#systematic-information-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="quality-evaluation.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div id="variability" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Variability<a href="quality-evaluation.html#variability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We use the variability to measure measure heterogeneity in OTU/ASV abundance data.</p>
+<p><span class="math display">\[Variability_{X} = \frac{sd(X)}{mean(X)}\]</span></p>
+<div id="coefficient-of-variation" class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Coefficient of variation<a href="quality-evaluation.html#coefficient-of-variation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Coefficient of variation (C.V)</strong>, i.e. sd(x)/mean(x) is a widely used approach to measure heterogeneity in OTU/ASV abundance data. The plot below shows CV-mean(relaive mean abundance) relationship in the scatter plot, where variation is calculated for each OTU/ASV across samples versus mean relative abundance.
+Now plot C.V.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="quality-evaluation.html#cb54-1" aria-hidden="true" tabindex="-1"></a>pl <span class="ot">&lt;-</span> <span class="fu">plot_taxa_cv</span>(dada2_ps_remove_BRS, <span class="at">plot.type =</span> <span class="st">&quot;scatter&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-92"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-92-1.png" alt="Density of the Taxa Mean abundance" width="672" />
+<p class="caption">
+Figure 5.3: Density of the Taxa Mean abundance
+</p>
+</div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="quality-evaluation.html#cb55-1" aria-hidden="true" tabindex="-1"></a>pl <span class="sc">+</span> <span class="fu">scale_x_log10</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-93"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-93-1.png" alt="Coefficient of variation" width="672" />
+<p class="caption">
+Figure 5.4: Coefficient of variation
+</p>
+</div>
+<p>From the above two plots, we see that there are several OTUs which have <strong>high C.V.</strong> and <strong>low mean</strong>.</p>
+</div>
+<div id="distribution-of-number-of-sequences" class="section level3 hasAnchor" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Distribution of number of sequences<a href="quality-evaluation.html#distribution-of-number-of-sequences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Checking for distribution of number of sequences</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="quality-evaluation.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(dada2_ps_remove_BRS, <span class="at">group=</span><span class="st">&quot;Group&quot;</span>, <span class="at">plot.type =</span> <span class="st">&quot;density&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-94"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-94-1.png" alt="Distribution of number of sequences" width="672" />
+<p class="caption">
+Figure 5.5: Distribution of number of sequences
+</p>
+</div>
+<p>Different distribution between group <em>AA</em> and <em>BB</em>.</p>
+</div>
+</div>
+<div id="systematic-information-2" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Systematic Information<a href="quality-evaluation.html#systematic-information-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="quality-evaluation.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.1.2 (2021-11-01)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
 ## Running under: macOS Monterey 12.2.1
@@ -727,40 +774,42 @@ Figure 5.2: Rarefaction Curves
 ## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] SummarizedExperiment_1.24.0 Biobase_2.54.0              GenomicRanges_1.46.1        GenomeInfoDb_1.30.1        
-##  [5] IRanges_2.28.0              S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
-##  [9] matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5               phyloseq_1.38.0            
-## [13] tibble_3.1.6                dplyr_1.0.8                 XMAS2_2.1.4                
+##  [1] picante_1.8.2               nlme_3.1-155                vegan_2.5-7                 lattice_0.20-45            
+##  [5] permute_0.9-7               ape_5.6-2                   conflicted_1.1.0            SummarizedExperiment_1.24.0
+##  [9] Biobase_2.54.0              GenomicRanges_1.46.1        GenomeInfoDb_1.30.1         IRanges_2.28.0             
+## [13] S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0        matrixStats_0.61.0         
+## [17] ggpubr_0.4.0                ggplot2_3.3.5               phyloseq_1.38.0             tibble_3.1.6               
+## [21] dplyr_1.0.8                 XMAS2_2.1.4                
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] backports_1.4.1        Hmisc_4.6-0            plyr_1.8.6             igraph_1.2.11          splines_4.1.2         
-##   [6] BiocParallel_1.28.3    TH.data_1.1-0          digest_0.6.29          foreach_1.5.2          htmltools_0.5.2       
-##  [11] fansi_1.0.2            checkmate_2.0.0        magrittr_2.0.2         memoise_2.0.1          cluster_2.1.2         
-##  [16] limma_3.50.1           Biostrings_2.62.0      annotate_1.72.0        sandwich_3.0-1         metagenomeSeq_1.36.0  
-##  [21] jpeg_0.1-9             colorspace_2.0-3       blob_1.2.2             xfun_0.30              crayon_1.5.0          
-##  [26] RCurl_1.98-1.6         jsonlite_1.8.0         libcoin_1.0-9          genefilter_1.76.0      survival_3.3-1        
-##  [31] zoo_1.8-9              iterators_1.0.14       ape_5.6-2              glue_1.6.2             gtable_0.3.0          
-##  [36] zlibbioc_1.40.0        XVector_0.34.0         DelayedArray_0.20.0    car_3.0-12             Rhdf5lib_1.16.0       
-##  [41] shape_1.4.6            abind_1.4-5            scales_1.1.1           mvtnorm_1.1-3          DBI_1.1.2             
-##  [46] edgeR_3.36.0           rstatix_0.7.0          Rcpp_1.0.8.2           htmlTable_2.4.0        xtable_1.8-4          
-##  [51] foreign_0.8-82         bit_4.0.4              Formula_1.2-4          glmnet_4.1-3           htmlwidgets_1.5.4     
-##  [56] httr_1.4.2             DiagrammeR_1.0.9       gplots_3.1.1           RColorBrewer_1.1-2     modeltools_0.2-23     
-##  [61] ellipsis_0.3.2         farver_2.1.0           pkgconfig_2.0.3        XML_3.99-0.9           nnet_7.3-17           
-##  [66] sass_0.4.0             locfit_1.5-9.5         utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.2      
-##  [71] rlang_1.0.2            reshape2_1.4.4         AnnotationDbi_1.56.2   munsell_0.5.0          tools_4.1.2           
-##  [76] visNetwork_2.1.0       cachem_1.0.6           cli_3.2.0              generics_0.1.2         RSQLite_2.2.10        
-##  [81] ade4_1.7-18            broom_0.7.12           evaluate_0.15          biomformat_1.22.0      stringr_1.4.0         
-##  [86] fastmap_1.1.0          yaml_2.3.5             knitr_1.37             bit64_4.0.5            caTools_1.18.2        
-##  [91] purrr_0.3.4            KEGGREST_1.34.0        coin_1.4-2             nlme_3.1-155           compiler_4.1.2        
+##   [1] backports_1.4.1        Hmisc_4.6-0            corrplot_0.92          plyr_1.8.6             igraph_1.2.11         
+##   [6] splines_4.1.2          crosstalk_1.2.0        BiocParallel_1.28.3    TH.data_1.1-0          digest_0.6.29         
+##  [11] foreach_1.5.2          htmltools_0.5.2        fansi_1.0.2            checkmate_2.0.0        magrittr_2.0.2        
+##  [16] memoise_2.0.1          cluster_2.1.2          limma_3.50.1           Biostrings_2.62.0      annotate_1.72.0       
+##  [21] sandwich_3.0-1         metagenomeSeq_1.36.0   jpeg_0.1-9             colorspace_2.0-3       ggrepel_0.9.1         
+##  [26] blob_1.2.2             xfun_0.30              crayon_1.5.0           RCurl_1.98-1.6         jsonlite_1.8.0        
+##  [31] libcoin_1.0-9          genefilter_1.76.0      survival_3.3-1         zoo_1.8-9              iterators_1.0.14      
+##  [36] glue_1.6.2             gtable_0.3.0           zlibbioc_1.40.0        XVector_0.34.0         DelayedArray_0.20.0   
+##  [41] car_3.0-12             Rhdf5lib_1.16.0        shape_1.4.6            abind_1.4-5            scales_1.1.1          
+##  [46] mvtnorm_1.1-3          DBI_1.1.2              edgeR_3.36.0           rstatix_0.7.0          Rcpp_1.0.8.2          
+##  [51] htmlTable_2.4.0        xtable_1.8-4           foreign_0.8-82         bit_4.0.4              Formula_1.2-4         
+##  [56] DT_0.21                glmnet_4.1-3           htmlwidgets_1.5.4      httr_1.4.2             gplots_3.1.1          
+##  [61] RColorBrewer_1.1-2     modeltools_0.2-23      ellipsis_0.3.2         farver_2.1.0           pkgconfig_2.0.3       
+##  [66] XML_3.99-0.9           sass_0.4.0             nnet_7.3-17            locfit_1.5-9.5         utf8_1.2.2            
+##  [71] labeling_0.4.2         tidyselect_1.1.2       rlang_1.0.2            reshape2_1.4.4         AnnotationDbi_1.56.2  
+##  [76] munsell_0.5.0          tools_4.1.2            cachem_1.0.6           cli_3.2.0              generics_0.1.2        
+##  [81] RSQLite_2.2.10         ade4_1.7-18            broom_0.7.12           evaluate_0.15          biomformat_1.22.0     
+##  [86] stringr_1.4.0          fastmap_1.1.0          yaml_2.3.5             knitr_1.37             bit64_4.0.5           
+##  [91] caTools_1.18.2         purrr_0.3.4            KEGGREST_1.34.0        coin_1.4-2             compiler_4.1.2        
 ##  [96] rstudioapi_0.13        png_0.1-7              ggsignif_0.6.3         geneplotter_1.72.0     bslib_0.3.1           
-## [101] stringi_1.7.6          highr_0.9              lattice_0.20-45        Matrix_1.4-0           vegan_2.5-7           
-## [106] permute_0.9-7          conflicted_1.1.0       multtest_2.50.0        vctrs_0.3.8            pillar_1.7.0          
-## [111] lifecycle_1.0.1        rhdf5filters_1.6.0     jquerylib_0.1.4        data.table_1.14.2      bitops_1.0-7          
-## [116] latticeExtra_0.6-29    R6_2.5.1               bookdown_0.24          gridExtra_2.3          KernSmooth_2.23-20    
-## [121] codetools_0.2-18       MASS_7.3-55            gtools_3.9.2           assertthat_0.2.1       Wrench_1.12.0         
-## [126] rhdf5_2.38.1           DESeq2_1.34.0          withr_2.5.0            multcomp_1.4-18        GenomeInfoDbData_1.2.7
-## [131] mgcv_1.8-39            parallel_4.1.2         rpart_4.1.16           grid_4.1.2             tidyr_1.2.0           
-## [136] rmarkdown_2.13         carData_3.0-5          base64enc_0.1-3</code></pre>
+## [101] stringi_1.7.6          highr_0.9              Matrix_1.4-0           ggsci_2.9              microbiome_1.16.0     
+## [106] multtest_2.50.0        vctrs_0.3.8            pillar_1.7.0           lifecycle_1.0.1        rhdf5filters_1.6.0    
+## [111] jquerylib_0.1.4        cowplot_1.1.1          data.table_1.14.2      bitops_1.0-7           R6_2.5.1              
+## [116] latticeExtra_0.6-29    bookdown_0.24          KernSmooth_2.23-20     gridExtra_2.3          codetools_0.2-18      
+## [121] MASS_7.3-55            gtools_3.9.2           assertthat_0.2.1       Wrench_1.12.0          rhdf5_2.38.1          
+## [126] DESeq2_1.34.0          withr_2.5.0            multcomp_1.4-18        GenomeInfoDbData_1.2.7 mgcv_1.8-39           
+## [131] parallel_4.1.2         grid_4.1.2             rpart_4.1.16           tidyr_1.2.0            rmarkdown_2.13        
+## [136] carData_3.0-5          Rtsne_0.15             base64enc_0.1-3</code></pre>
 
 </div>
 </div>

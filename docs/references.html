@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-08" />
+<meta name="date" content="2022-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,7 +238,12 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="quality-evaluation.html"><a href="quality-evaluation.html#remove-brs"><i class="fa fa-check"></i><b>5.3</b> Remove BRS<span></span></a></li>
 <li class="chapter" data-level="5.4" data-path="quality-evaluation.html"><a href="quality-evaluation.html#rarefaction-curves"><i class="fa fa-check"></i><b>5.4</b> Rarefaction Curves<span></span></a></li>
 <li class="chapter" data-level="5.5" data-path="quality-evaluation.html"><a href="quality-evaluation.html#summarize-phyloseq-class-object"><i class="fa fa-check"></i><b>5.5</b> Summarize phyloseq-class object<span></span></a></li>
-<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.6</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#variability"><i class="fa fa-check"></i><b>5.6</b> Variability<span></span></a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#coefficient-of-variation"><i class="fa fa-check"></i><b>5.6.1</b> Coefficient of variation<span></span></a></li>
+<li class="chapter" data-level="5.6.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#distribution-of-number-of-sequences"><i class="fa fa-check"></i><b>5.6.2</b> Distribution of number of sequences<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.7</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>6</b> Pre-processing<span></span></a>
 <ul>
@@ -249,12 +254,17 @@ div.csl-indent {
 <li class="chapter" data-level="6.5" data-path="pre-processing.html"><a href="pre-processing.html#imputation"><i class="fa fa-check"></i><b>6.5</b> Imputation<span></span></a></li>
 <li class="chapter" data-level="6.6" data-path="pre-processing.html"><a href="pre-processing.html#extracting-specific-taxa-phyloseq-class-object"><i class="fa fa-check"></i><b>6.6</b> Extracting specific taxa phyloseq-class object<span></span></a></li>
 <li class="chapter" data-level="6.7" data-path="pre-processing.html"><a href="pre-processing.html#aggregating-low-relative-abundance-or-unclassified-taxa-into-others"><i class="fa fa-check"></i><b>6.7</b> Aggregating low relative abundance or unclassified taxa into others<span></span></a></li>
-<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.8</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23"><i class="fa fa-check"></i><b>6.8</b> Transform the abundance of taxa whose relative abundance under Limit Of Detection (LOD) into Zeros (only in metaphlan2/3)<span></span></a></li>
+<li class="chapter" data-level="6.9" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.9</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="aplha-diversity.html"><a href="aplha-diversity.html"><i class="fa fa-check"></i><b>7</b> Aplha diversity<span></span></a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#equal-sample-sums"><i class="fa fa-check"></i><b>7.1</b> Equal sample sums<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#non-phylogenetic-diversities"><i class="fa fa-check"></i><b>7.2.1</b> Non-phylogenetic diversities<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#phylogenetic-diversity"><i class="fa fa-check"></i><b>7.2.2</b> Phylogenetic diversity<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="7.3" data-path="aplha-diversity.html"><a href="aplha-diversity.html#rank-abundance"><i class="fa fa-check"></i><b>7.3</b> Rank Abundance<span></span></a></li>
 <li class="chapter" data-level="7.4" data-path="aplha-diversity.html"><a href="aplha-diversity.html#systematic-information-4"><i class="fa fa-check"></i><b>7.4</b> Systematic Information<span></span></a></li>
 </ul></li>
@@ -270,15 +280,17 @@ div.csl-indent {
 <li class="chapter" data-level="8.3" data-path="beta-diversity.html"><a href="beta-diversity.html#distance-dissimilarity-coefficients-bray-curtis-index"><i class="fa fa-check"></i><b>8.3</b> Distance (Dissimilarity) Coefficients: Bray-Curtis Index<span></span></a></li>
 <li class="chapter" data-level="8.4" data-path="beta-diversity.html"><a href="beta-diversity.html#checking-the-homogeneity-condition"><i class="fa fa-check"></i><b>8.4</b> Checking the homogeneity condition<span></span></a></li>
 <li class="chapter" data-level="8.5" data-path="beta-diversity.html"><a href="beta-diversity.html#permutational-multivariate-analysis-of-variance-permanova"><i class="fa fa-check"></i><b>8.5</b> Permutational Multivariate Analysis of Variance (PERMANOVA)<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.6</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
-<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.7</b> Ordination<span></span></a>
+<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#mantel-test"><i class="fa fa-check"></i><b>8.6</b> Mantel Test<span></span></a></li>
+<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.7</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
+<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#multi-response-permutation-procedures-mrpp"><i class="fa fa-check"></i><b>8.8</b> Multi-response permutation procedures (MRPP)<span></span></a></li>
+<li class="chapter" data-level="8.9" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.9</b> Ordination<span></span></a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.7.1</b> Principal Component Analysis (PCA)<span></span></a></li>
-<li class="chapter" data-level="8.7.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.7.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
-<li class="chapter" data-level="8.7.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.7.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
-<li class="chapter" data-level="8.7.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.7.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
+<li class="chapter" data-level="8.9.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.9.1</b> Principal Component Analysis (PCA)<span></span></a></li>
+<li class="chapter" data-level="8.9.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.9.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
+<li class="chapter" data-level="8.9.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.9.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
+<li class="chapter" data-level="8.9.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.9.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.8</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="8.10" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.10</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="composition.html"><a href="composition.html"><i class="fa fa-check"></i><b>9</b> Composition<span></span></a>
 <ul>
@@ -437,6 +449,9 @@ Mallick, Himel, Ali Rahnavard, Lauren J McIver, Siyuan Ma, Yancong Zhang, Long H
 Mandal, Siddhartha, Will Van Treuren, Richard A White, Merete Eggesbø, Rob Knight, and Shyamal D Peddada. 2015. <span>“Analysis of Composition of Microbiomes: A Novel Method for Studying Microbial Composition.”</span> <em>Microbial Ecology in Health and Disease</em> 26 (1): 27663.
 </div>
 <div class="csl-entry">
+Mantel, Nathan. 1967. <span>“The Detection of Disease Clustering and a Generalized Regression Approach.”</span> <em>Cancer Research</em> 27 (2 Part 1): 209–20.
+</div>
+<div class="csl-entry">
 Martin, Bryan D, Daniela Witten, and Amy D Willis. 2020. <span>“Modeling Microbial Abundances and Dysbiosis with Beta-Binomial Regression.”</span> <em>The Annals of Applied Statistics</em> 14 (1): 94.
 </div>
 <div class="csl-entry">
@@ -444,6 +459,9 @@ McInnes, L et al. 2022. <span>“Uniform Manifold Approximation and Projection f
 </div>
 <div class="csl-entry">
 McMurdie, Paul J, and Susan Holmes. 2013. <span>“Phyloseq: An r Package for Reproducible Interactive Analysis and Graphics of Microbiome Census Data.”</span> <em>PloS One</em> 8 (4): e61217.
+</div>
+<div class="csl-entry">
+Mielke Jr, Paul W. 1991. <span>“The Application of Multivariate Permutation Methods Based on Distance Functions in the Earth Sciences.”</span> <em>Earth-Science Reviews</em> 31 (1): 55–71.
 </div>
 <div class="csl-entry">
 Nearing, Jacob T, Gavin M Douglas, Molly G Hayes, Jocelyn MacDonald, Dhwani K Desai, Nicole Allward, Casey Jones, et al. 2022. <span>“Microbiome Differential Abundance Methods Produce Different Results Across 38 Datasets.”</span> <em>Nature Communications</em> 13 (1): 1–16.

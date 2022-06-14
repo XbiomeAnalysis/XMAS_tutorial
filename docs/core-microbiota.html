@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-08" />
+<meta name="date" content="2022-06-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,7 +238,12 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="quality-evaluation.html"><a href="quality-evaluation.html#remove-brs"><i class="fa fa-check"></i><b>5.3</b> Remove BRS<span></span></a></li>
 <li class="chapter" data-level="5.4" data-path="quality-evaluation.html"><a href="quality-evaluation.html#rarefaction-curves"><i class="fa fa-check"></i><b>5.4</b> Rarefaction Curves<span></span></a></li>
 <li class="chapter" data-level="5.5" data-path="quality-evaluation.html"><a href="quality-evaluation.html#summarize-phyloseq-class-object"><i class="fa fa-check"></i><b>5.5</b> Summarize phyloseq-class object<span></span></a></li>
-<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.6</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#variability"><i class="fa fa-check"></i><b>5.6</b> Variability<span></span></a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#coefficient-of-variation"><i class="fa fa-check"></i><b>5.6.1</b> Coefficient of variation<span></span></a></li>
+<li class="chapter" data-level="5.6.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#distribution-of-number-of-sequences"><i class="fa fa-check"></i><b>5.6.2</b> Distribution of number of sequences<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.7</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>6</b> Pre-processing<span></span></a>
 <ul>
@@ -249,12 +254,17 @@ div.csl-indent {
 <li class="chapter" data-level="6.5" data-path="pre-processing.html"><a href="pre-processing.html#imputation"><i class="fa fa-check"></i><b>6.5</b> Imputation<span></span></a></li>
 <li class="chapter" data-level="6.6" data-path="pre-processing.html"><a href="pre-processing.html#extracting-specific-taxa-phyloseq-class-object"><i class="fa fa-check"></i><b>6.6</b> Extracting specific taxa phyloseq-class object<span></span></a></li>
 <li class="chapter" data-level="6.7" data-path="pre-processing.html"><a href="pre-processing.html#aggregating-low-relative-abundance-or-unclassified-taxa-into-others"><i class="fa fa-check"></i><b>6.7</b> Aggregating low relative abundance or unclassified taxa into others<span></span></a></li>
-<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.8</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23"><i class="fa fa-check"></i><b>6.8</b> Transform the abundance of taxa whose relative abundance under Limit Of Detection (LOD) into Zeros (only in metaphlan2/3)<span></span></a></li>
+<li class="chapter" data-level="6.9" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.9</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="aplha-diversity.html"><a href="aplha-diversity.html"><i class="fa fa-check"></i><b>7</b> Aplha diversity<span></span></a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#equal-sample-sums"><i class="fa fa-check"></i><b>7.1</b> Equal sample sums<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#non-phylogenetic-diversities"><i class="fa fa-check"></i><b>7.2.1</b> Non-phylogenetic diversities<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#phylogenetic-diversity"><i class="fa fa-check"></i><b>7.2.2</b> Phylogenetic diversity<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="7.3" data-path="aplha-diversity.html"><a href="aplha-diversity.html#rank-abundance"><i class="fa fa-check"></i><b>7.3</b> Rank Abundance<span></span></a></li>
 <li class="chapter" data-level="7.4" data-path="aplha-diversity.html"><a href="aplha-diversity.html#systematic-information-4"><i class="fa fa-check"></i><b>7.4</b> Systematic Information<span></span></a></li>
 </ul></li>
@@ -270,15 +280,17 @@ div.csl-indent {
 <li class="chapter" data-level="8.3" data-path="beta-diversity.html"><a href="beta-diversity.html#distance-dissimilarity-coefficients-bray-curtis-index"><i class="fa fa-check"></i><b>8.3</b> Distance (Dissimilarity) Coefficients: Bray-Curtis Index<span></span></a></li>
 <li class="chapter" data-level="8.4" data-path="beta-diversity.html"><a href="beta-diversity.html#checking-the-homogeneity-condition"><i class="fa fa-check"></i><b>8.4</b> Checking the homogeneity condition<span></span></a></li>
 <li class="chapter" data-level="8.5" data-path="beta-diversity.html"><a href="beta-diversity.html#permutational-multivariate-analysis-of-variance-permanova"><i class="fa fa-check"></i><b>8.5</b> Permutational Multivariate Analysis of Variance (PERMANOVA)<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.6</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
-<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.7</b> Ordination<span></span></a>
+<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#mantel-test"><i class="fa fa-check"></i><b>8.6</b> Mantel Test<span></span></a></li>
+<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.7</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
+<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#multi-response-permutation-procedures-mrpp"><i class="fa fa-check"></i><b>8.8</b> Multi-response permutation procedures (MRPP)<span></span></a></li>
+<li class="chapter" data-level="8.9" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.9</b> Ordination<span></span></a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.7.1</b> Principal Component Analysis (PCA)<span></span></a></li>
-<li class="chapter" data-level="8.7.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.7.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
-<li class="chapter" data-level="8.7.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.7.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
-<li class="chapter" data-level="8.7.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.7.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
+<li class="chapter" data-level="8.9.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.9.1</b> Principal Component Analysis (PCA)<span></span></a></li>
+<li class="chapter" data-level="8.9.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.9.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
+<li class="chapter" data-level="8.9.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.9.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
+<li class="chapter" data-level="8.9.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.9.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.8</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="8.10" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.10</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="composition.html"><a href="composition.html"><i class="fa fa-check"></i><b>9</b> Composition<span></span></a>
 <ul>
@@ -400,13 +412,13 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 10</span> Core microbiota<a href="core-microbiota.html#core-microbiota" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>These functions in this chapter are from <span class="citation">(<a href="#ref-microbiome" role="doc-biblioref">Leo Lahti 2018</a>)</span> package. The core microbiota are passed the parameters’ cutoff (eg. prevalence, abundance).</p>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="core-microbiota.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb180-2"><a href="core-microbiota.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb180-3"><a href="core-microbiota.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb180-4"><a href="core-microbiota.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb180-5"><a href="core-microbiota.html#cb180-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb180-6"><a href="core-microbiota.html#cb180-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb180-7"><a href="core-microbiota.html#cb180-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="core-microbiota.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb205-2"><a href="core-microbiota.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb205-3"><a href="core-microbiota.html#cb205-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb205-4"><a href="core-microbiota.html#cb205-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb205-5"><a href="core-microbiota.html#cb205-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb205-6"><a href="core-microbiota.html#cb205-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb205-7"><a href="core-microbiota.html#cb205-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
 <div id="core-microbiota-anlaysis" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Core microbiota anlaysis<a href="core-microbiota.html#core-microbiota-anlaysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
@@ -414,18 +426,19 @@ div.csl-indent {
 <li><p>Rarefying counts</p></li>
 <li><p>Genus data are from previous chapter and we will use this object</p></li>
 </ul>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="core-microbiota.html#cb181-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb181-2"><a href="core-microbiota.html#cb181-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb181-3"><a href="core-microbiota.html#cb181-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb181-4"><a href="core-microbiota.html#cb181-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
-<span id="cb181-5"><a href="core-microbiota.html#cb181-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
-<span id="cb181-6"><a href="core-microbiota.html#cb181-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-7"><a href="core-microbiota.html#cb181-7" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_rarefy, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="core-microbiota.html#cb206-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb206-2"><a href="core-microbiota.html#cb206-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb206-3"><a href="core-microbiota.html#cb206-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb206-4"><a href="core-microbiota.html#cb206-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb206-5"><a href="core-microbiota.html#cb206-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb206-6"><a href="core-microbiota.html#cb206-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(dada2_ps_remove_BRS, <span class="at">size =</span> <span class="dv">51181</span>, <span class="at">rng_seed =</span> <span class="dv">123</span>)</span>
+<span id="cb206-7"><a href="core-microbiota.html#cb206-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-8"><a href="core-microbiota.html#cb206-8" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_rarefy, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Normalization: See the Chapter 6 Pre-processing</li>
 </ul>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="core-microbiota.html#cb182-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus_rb <span class="ot">&lt;-</span> XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_rarefy_genus, <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span>
-<span id="cb182-2"><a href="core-microbiota.html#cb182-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus_rb</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="core-microbiota.html#cb207-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus_rb <span class="ot">&lt;-</span> XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_rarefy_genus, <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span>
+<span id="cb207-2"><a href="core-microbiota.html#cb207-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus_rb</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -434,8 +447,8 @@ div.csl-indent {
 <li>Check for the core ASVs</li>
 </ul>
 <p>Use <code>core_members</code> to obtain the core taxa. <em>detection</em> for abundance and <em>prevalence</em> for occurrence.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="core-microbiota.html#cb184-1" aria-hidden="true" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(dada2_ps_rarefy_genus_rb, <span class="at">detection =</span> <span class="fl">0.01</span>, <span class="at">prevalence =</span> <span class="fl">0.8</span>)</span>
-<span id="cb184-2"><a href="core-microbiota.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="core-microbiota.html#cb209-1" aria-hidden="true" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(dada2_ps_rarefy_genus_rb, <span class="at">detection =</span> <span class="fl">0.01</span>, <span class="at">prevalence =</span> <span class="fl">0.8</span>)</span>
+<span id="cb209-2"><a href="core-microbiota.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
 <pre><code>## [1] &quot;g__Bifidobacterium&quot;              &quot;g__Blautia&quot;                      &quot;g__Lachnospiraceae_unclassified&quot;</code></pre>
 <p><strong>Result:</strong></p>
 <p>Only <strong>three</strong> genera (g__Bifidobacterium, g__Blautia and g__Lachnospiraceae_unclassified) passed the threshold of detection and prevalence which we choose.</p>
@@ -443,11 +456,11 @@ div.csl-indent {
 <div id="core-abundance-and-diversity" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Core abundance and diversity<a href="core-microbiota.html#core-abundance-and-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Total core abundance in each sample (sum of abundances of the core members):</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="core-microbiota.html#cb186-1" aria-hidden="true" tabindex="-1"></a>core_abundance <span class="ot">&lt;-</span> <span class="fu">sample_sums</span>(<span class="fu">phyloseq_core_taxa</span>(dada2_ps_rarefy_genus_rb, <span class="at">detection =</span> <span class="fl">0.01</span>, <span class="at">prevalence =</span> <span class="fl">0.8</span>))</span>
-<span id="cb186-2"><a href="core-microbiota.html#cb186-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-3"><a href="core-microbiota.html#cb186-3" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">data.frame</span>(core_abundance))</span></code></pre></div>
-<div id="htmlwidget-058d0223fd3fb5a4fc48" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-058d0223fd3fb5a4fc48">{"x":{"filter":"none","vertical":false,"data":[["S6030","S6032","S6033","S6035","S6036","S6037","S6040","S6043","S6045","S6046","S6048","S6049","S6050","S6054","S6055","S6058","S6059","S6060","S6061","S6063","S6065","S6066","S6068"],[0.427111623454016,0.542916316601864,0.300345831460894,0.643305132764112,0.167444950274516,0.687833375666751,0.423868232351849,0.348254234970008,0.270510541021082,0.412770364002266,0.456184912369825,0.204724409448819,0.517340419296223,0.24761141829976,0.569644985443817,0.51739903479807,0.199273167777105,0.702819405638811,0.127899025028819,0.754186123756863,0.367812274086087,0.431996248607882,0.636583888552392]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>core_abundance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="core-microbiota.html#cb211-1" aria-hidden="true" tabindex="-1"></a>core_abundance <span class="ot">&lt;-</span> <span class="fu">sample_sums</span>(<span class="fu">phyloseq_core_taxa</span>(dada2_ps_rarefy_genus_rb, <span class="at">detection =</span> <span class="fl">0.01</span>, <span class="at">prevalence =</span> <span class="fl">0.8</span>))</span>
+<span id="cb211-2"><a href="core-microbiota.html#cb211-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb211-3"><a href="core-microbiota.html#cb211-3" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">data.frame</span>(core_abundance))</span></code></pre></div>
+<div id="htmlwidget-9635cea4bff730843e66" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9635cea4bff730843e66">{"x":{"filter":"none","vertical":false,"data":[["S6030","S6032","S6033","S6035","S6036","S6037","S6040","S6043","S6045","S6046","S6048","S6049","S6050","S6054","S6055","S6058","S6059","S6060","S6061","S6063","S6065","S6066","S6068"],[0.426505929934937,0.542506008088939,0.298782751411657,0.640178972665638,0.168109259295442,0.689591840722143,0.425880697915242,0.348508235478009,0.269963463003849,0.413512827025654,0.458822609952912,0.204568101443895,0.517340419296223,0.24825618882007,0.56954729294074,0.517105957288838,0.199663937789414,0.70213555811727,0.127430101014048,0.752662120708857,0.368925968621168,0.431468709091264,0.635489732517927]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>core_abundance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="core-visualization" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Core visualization<a href="core-microbiota.html#core-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -457,20 +470,20 @@ div.csl-indent {
 <ul>
 <li>Core with composition</li>
 </ul>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="core-microbiota.html#cb187-1" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
-<span id="cb187-2"><a href="core-microbiota.html#cb187-2" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
-<span id="cb187-3"><a href="core-microbiota.html#cb187-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-4"><a href="core-microbiota.html#cb187-4" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
-<span id="cb187-5"><a href="core-microbiota.html#cb187-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
-<span id="cb187-6"><a href="core-microbiota.html#cb187-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">gray</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">5</span>)),</span>
-<span id="cb187-7"><a href="core-microbiota.html#cb187-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
-<span id="cb187-8"><a href="core-microbiota.html#cb187-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
-<span id="cb187-9"><a href="core-microbiota.html#cb187-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb187-10"><a href="core-microbiota.html#cb187-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>)</span>
-<span id="cb187-11"><a href="core-microbiota.html#cb187-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-12"><a href="core-microbiota.html#cb187-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-104"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-104-1.png" alt="Core with composition in Heatmap" width="576" />
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="core-microbiota.html#cb212-1" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
+<span id="cb212-2"><a href="core-microbiota.html#cb212-2" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb212-3"><a href="core-microbiota.html#cb212-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb212-4"><a href="core-microbiota.html#cb212-4" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
+<span id="cb212-5"><a href="core-microbiota.html#cb212-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
+<span id="cb212-6"><a href="core-microbiota.html#cb212-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">gray</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">5</span>)),</span>
+<span id="cb212-7"><a href="core-microbiota.html#cb212-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
+<span id="cb212-8"><a href="core-microbiota.html#cb212-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
+<span id="cb212-9"><a href="core-microbiota.html#cb212-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb212-10"><a href="core-microbiota.html#cb212-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>)</span>
+<span id="cb212-11"><a href="core-microbiota.html#cb212-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb212-12"><a href="core-microbiota.html#cb212-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-185"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-185-1.png" alt="Core with composition in Heatmap" width="576" />
 <p class="caption">
 Figure 10.1: Core with composition in Heatmap
 </p>
@@ -479,10 +492,10 @@ Figure 10.1: Core with composition in Heatmap
 <ul>
 <li>other colors: viridis</li>
 </ul>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="core-microbiota.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb188-2"><a href="core-microbiota.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pl_core <span class="sc">+</span> <span class="fu">scale_fill_viridis</span>())</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-105"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-105-1.png" alt="Core with composition in Heatmap (viridis)" width="576" />
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="core-microbiota.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb213-2"><a href="core-microbiota.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pl_core <span class="sc">+</span> <span class="fu">scale_fill_viridis</span>())</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-186"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-186-1.png" alt="Core with composition in Heatmap (viridis)" width="576" />
 <p class="caption">
 Figure 10.2: Core with composition in Heatmap (viridis)
 </p>
@@ -490,23 +503,23 @@ Figure 10.2: Core with composition in Heatmap (viridis)
 <ul>
 <li>change color</li>
 </ul>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="core-microbiota.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb189-2"><a href="core-microbiota.html#cb189-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb189-3"><a href="core-microbiota.html#cb189-3" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
-<span id="cb189-4"><a href="core-microbiota.html#cb189-4" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
-<span id="cb189-5"><a href="core-microbiota.html#cb189-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb189-6"><a href="core-microbiota.html#cb189-6" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
-<span id="cb189-7"><a href="core-microbiota.html#cb189-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
-<span id="cb189-8"><a href="core-microbiota.html#cb189-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">&quot;Spectral&quot;</span>)),</span>
-<span id="cb189-9"><a href="core-microbiota.html#cb189-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
-<span id="cb189-10"><a href="core-microbiota.html#cb189-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
-<span id="cb189-11"><a href="core-microbiota.html#cb189-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb189-12"><a href="core-microbiota.html#cb189-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
-<span id="cb189-13"><a href="core-microbiota.html#cb189-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span>
-<span id="cb189-14"><a href="core-microbiota.html#cb189-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb189-15"><a href="core-microbiota.html#cb189-15" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-106"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-106-1.png" alt="Core with composition in Heatmap (RColorBrewer)" width="576" />
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="core-microbiota.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb214-2"><a href="core-microbiota.html#cb214-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-3"><a href="core-microbiota.html#cb214-3" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
+<span id="cb214-4"><a href="core-microbiota.html#cb214-4" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb214-5"><a href="core-microbiota.html#cb214-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-6"><a href="core-microbiota.html#cb214-6" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
+<span id="cb214-7"><a href="core-microbiota.html#cb214-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
+<span id="cb214-8"><a href="core-microbiota.html#cb214-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">&quot;Spectral&quot;</span>)),</span>
+<span id="cb214-9"><a href="core-microbiota.html#cb214-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
+<span id="cb214-10"><a href="core-microbiota.html#cb214-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
+<span id="cb214-11"><a href="core-microbiota.html#cb214-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb214-12"><a href="core-microbiota.html#cb214-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
+<span id="cb214-13"><a href="core-microbiota.html#cb214-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span>
+<span id="cb214-14"><a href="core-microbiota.html#cb214-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-15"><a href="core-microbiota.html#cb214-15" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-187"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-187-1.png" alt="Core with composition in Heatmap (RColorBrewer)" width="576" />
 <p class="caption">
 Figure 10.3: Core with composition in Heatmap (RColorBrewer)
 </p>
@@ -515,20 +528,20 @@ Figure 10.3: Core with composition in Heatmap (RColorBrewer)
 <div id="linechart" class="section level3 hasAnchor" number="10.3.2">
 <h3><span class="header-section-number">10.3.2</span> linechart<a href="core-microbiota.html#linechart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This plot show the relationship between Detection and Prevalence in a linear model.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="core-microbiota.html#cb190-1" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
-<span id="cb190-2"><a href="core-microbiota.html#cb190-2" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
-<span id="cb190-3"><a href="core-microbiota.html#cb190-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-4"><a href="core-microbiota.html#cb190-4" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
-<span id="cb190-5"><a href="core-microbiota.html#cb190-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;lineplot&quot;</span>, </span>
-<span id="cb190-6"><a href="core-microbiota.html#cb190-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
-<span id="cb190-7"><a href="core-microbiota.html#cb190-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
-<span id="cb190-8"><a href="core-microbiota.html#cb190-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb190-9"><a href="core-microbiota.html#cb190-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
-<span id="cb190-10"><a href="core-microbiota.html#cb190-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span>
-<span id="cb190-11"><a href="core-microbiota.html#cb190-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb190-12"><a href="core-microbiota.html#cb190-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-107"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-107-1.png" alt="Core with composition in linechart" width="480" />
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="core-microbiota.html#cb215-1" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
+<span id="cb215-2"><a href="core-microbiota.html#cb215-2" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb215-3"><a href="core-microbiota.html#cb215-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-4"><a href="core-microbiota.html#cb215-4" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
+<span id="cb215-5"><a href="core-microbiota.html#cb215-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;lineplot&quot;</span>, </span>
+<span id="cb215-6"><a href="core-microbiota.html#cb215-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
+<span id="cb215-7"><a href="core-microbiota.html#cb215-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
+<span id="cb215-8"><a href="core-microbiota.html#cb215-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb215-9"><a href="core-microbiota.html#cb215-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
+<span id="cb215-10"><a href="core-microbiota.html#cb215-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span>
+<span id="cb215-11"><a href="core-microbiota.html#cb215-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-12"><a href="core-microbiota.html#cb215-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-188"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-188-1.png" alt="Core with composition in linechart" width="480" />
 <p class="caption">
 Figure 10.4: Core with composition in linechart
 </p>
@@ -538,7 +551,7 @@ Figure 10.4: Core with composition in linechart
 </div>
 <div id="systematic-information-7" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Systematic Information<a href="core-microbiota.html#systematic-information-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="core-microbiota.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="core-microbiota.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.1.2 (2021-11-01)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
 ## Running under: macOS Monterey 12.2.1
@@ -553,11 +566,13 @@ Figure 10.4: Core with composition in linechart
 ## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] RColorBrewer_1.1-2          viridis_0.6.2               viridisLite_0.4.0           conflicted_1.1.0           
-##  [5] SummarizedExperiment_1.24.0 Biobase_2.54.0              GenomicRanges_1.46.1        GenomeInfoDb_1.30.1        
-##  [9] IRanges_2.28.0              S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
-## [13] matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5               phyloseq_1.38.0            
-## [17] tibble_3.1.6                dplyr_1.0.8                 XMAS2_2.1.4                
+##  [1] RColorBrewer_1.1-2          viridis_0.6.2               viridisLite_0.4.0           picante_1.8.2              
+##  [5] nlme_3.1-155                vegan_2.5-7                 lattice_0.20-45             permute_0.9-7              
+##  [9] ape_5.6-2                   conflicted_1.1.0            SummarizedExperiment_1.24.0 Biobase_2.54.0             
+## [13] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1         IRanges_2.28.0              S4Vectors_0.32.3           
+## [17] BiocGenerics_0.40.0         MatrixGenerics_1.6.0        matrixStats_0.61.0          ggpubr_0.4.0               
+## [21] ggplot2_3.3.5               phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                
+## [25] XMAS2_2.1.4                
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] backports_1.4.1        Hmisc_4.6-0            corrplot_0.92          plyr_1.8.6             igraph_1.2.11         
@@ -567,29 +582,28 @@ Figure 10.4: Core with composition in linechart
 ##  [21] sandwich_3.0-1         askpass_1.1            metagenomeSeq_1.36.0   jpeg_0.1-9             colorspace_2.0-3      
 ##  [26] ggrepel_0.9.1          blob_1.2.2             xfun_0.30              crayon_1.5.0           RCurl_1.98-1.6        
 ##  [31] jsonlite_1.8.0         libcoin_1.0-9          genefilter_1.76.0      survival_3.3-1         zoo_1.8-9             
-##  [36] iterators_1.0.14       ape_5.6-2              glue_1.6.2             gtable_0.3.0           zlibbioc_1.40.0       
-##  [41] XVector_0.34.0         DelayedArray_0.20.0    car_3.0-12             Rhdf5lib_1.16.0        shape_1.4.6           
-##  [46] abind_1.4-5            scales_1.1.1           mvtnorm_1.1-3          DBI_1.1.2              edgeR_3.36.0          
-##  [51] rstatix_0.7.0          Rcpp_1.0.8.2           htmlTable_2.4.0        xtable_1.8-4           reticulate_1.24       
-##  [56] foreign_0.8-82         bit_4.0.4              Formula_1.2-4          DT_0.21                umap_0.2.8.0          
-##  [61] glmnet_4.1-3           htmlwidgets_1.5.4      httr_1.4.2             DiagrammeR_1.0.9       gplots_3.1.1          
-##  [66] modeltools_0.2-23      ellipsis_0.3.2         farver_2.1.0           pkgconfig_2.0.3        XML_3.99-0.9          
-##  [71] nnet_7.3-17            sass_0.4.0             locfit_1.5-9.5         utf8_1.2.2             labeling_0.4.2        
-##  [76] tidyselect_1.1.2       rlang_1.0.2            reshape2_1.4.4         AnnotationDbi_1.56.2   munsell_0.5.0         
-##  [81] tools_4.1.2            visNetwork_2.1.0       cachem_1.0.6           cli_3.2.0              generics_0.1.2        
-##  [86] RSQLite_2.2.10         ade4_1.7-18            broom_0.7.12           evaluate_0.15          biomformat_1.22.0     
-##  [91] stringr_1.4.0          fastmap_1.1.0          yaml_2.3.5             knitr_1.37             bit64_4.0.5           
-##  [96] caTools_1.18.2         purrr_0.3.4            KEGGREST_1.34.0        coin_1.4-2             nlme_3.1-155          
-## [101] compiler_4.1.2         rstudioapi_0.13        png_0.1-7              ggsignif_0.6.3         geneplotter_1.72.0    
-## [106] bslib_0.3.1            stringi_1.7.6          highr_0.9              RSpectra_0.16-0        lattice_0.20-45       
-## [111] Matrix_1.4-0           vegan_2.5-7            permute_0.9-7          multtest_2.50.0        vctrs_0.3.8           
-## [116] pillar_1.7.0           lifecycle_1.0.1        rhdf5filters_1.6.0     jquerylib_0.1.4        cowplot_1.1.1         
-## [121] data.table_1.14.2      bitops_1.0-7           latticeExtra_0.6-29    R6_2.5.1               bookdown_0.24         
-## [126] gridExtra_2.3          KernSmooth_2.23-20     codetools_0.2-18       MASS_7.3-55            gtools_3.9.2          
-## [131] assertthat_0.2.1       Wrench_1.12.0          rhdf5_2.38.1           openssl_2.0.0          DESeq2_1.34.0         
-## [136] withr_2.5.0            multcomp_1.4-18        GenomeInfoDbData_1.2.7 mgcv_1.8-39            parallel_4.1.2        
-## [141] rpart_4.1.16           grid_4.1.2             tidyr_1.2.0            rmarkdown_2.13         carData_3.0-5         
-## [146] Rtsne_0.15             base64enc_0.1-3</code></pre>
+##  [36] iterators_1.0.14       glue_1.6.2             gtable_0.3.0           zlibbioc_1.40.0        XVector_0.34.0        
+##  [41] DelayedArray_0.20.0    car_3.0-12             Rhdf5lib_1.16.0        shape_1.4.6            abind_1.4-5           
+##  [46] scales_1.1.1           mvtnorm_1.1-3          DBI_1.1.2              edgeR_3.36.0           rstatix_0.7.0         
+##  [51] Rcpp_1.0.8.2           htmlTable_2.4.0        xtable_1.8-4           reticulate_1.24        foreign_0.8-82        
+##  [56] bit_4.0.4              Formula_1.2-4          umap_0.2.8.0           DT_0.21                glmnet_4.1-3          
+##  [61] htmlwidgets_1.5.4      httr_1.4.2             gplots_3.1.1           modeltools_0.2-23      ellipsis_0.3.2        
+##  [66] farver_2.1.0           pkgconfig_2.0.3        XML_3.99-0.9           sass_0.4.0             nnet_7.3-17           
+##  [71] locfit_1.5-9.5         utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.2       rlang_1.0.2           
+##  [76] reshape2_1.4.4         AnnotationDbi_1.56.2   munsell_0.5.0          tools_4.1.2            cachem_1.0.6          
+##  [81] cli_3.2.0              generics_0.1.2         RSQLite_2.2.10         ade4_1.7-18            broom_0.7.12          
+##  [86] evaluate_0.15          biomformat_1.22.0      stringr_1.4.0          fastmap_1.1.0          yaml_2.3.5            
+##  [91] knitr_1.37             bit64_4.0.5            caTools_1.18.2         purrr_0.3.4            KEGGREST_1.34.0       
+##  [96] coin_1.4-2             compiler_4.1.2         rstudioapi_0.13        png_0.1-7              ggsignif_0.6.3        
+## [101] geneplotter_1.72.0     bslib_0.3.1            stringi_1.7.6          highr_0.9              RSpectra_0.16-0       
+## [106] Matrix_1.4-0           ggsci_2.9              microbiome_1.16.0      multtest_2.50.0        vctrs_0.3.8           
+## [111] pillar_1.7.0           lifecycle_1.0.1        rhdf5filters_1.6.0     jquerylib_0.1.4        cowplot_1.1.1         
+## [116] data.table_1.14.2      bitops_1.0-7           R6_2.5.1               latticeExtra_0.6-29    bookdown_0.24         
+## [121] KernSmooth_2.23-20     gridExtra_2.3          codetools_0.2-18       MASS_7.3-55            gtools_3.9.2          
+## [126] assertthat_0.2.1       Wrench_1.12.0          rhdf5_2.38.1           openssl_2.0.0          DESeq2_1.34.0         
+## [131] withr_2.5.0            multcomp_1.4-18        GenomeInfoDbData_1.2.7 mgcv_1.8-39            parallel_4.1.2        
+## [136] grid_4.1.2             rpart_4.1.16           tidyr_1.2.0            rmarkdown_2.13         carData_3.0-5         
+## [141] Rtsne_0.15             base64enc_0.1-3</code></pre>
 
 </div>
 </div>
