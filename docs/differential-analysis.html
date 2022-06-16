@@ -375,6 +375,9 @@ div.csl-indent {
 <li class="chapter" data-level="13.9" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#metagenomeseq-1"><i class="fa fa-check"></i><b>13.9</b> metagenomeSeq<span></span></a></li>
 <li class="chapter" data-level="13.10" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#t-test-2"><i class="fa fa-check"></i><b>13.10</b> t-test<span></span></a></li>
 <li class="chapter" data-level="13.11" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#wilcoxon-test"><i class="fa fa-check"></i><b>13.11</b> Wilcoxon test<span></span></a></li>
+<li class="chapter" data-level="13.12" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#raida-1"><i class="fa fa-check"></i><b>13.12</b> RAIDA<span></span></a></li>
+<li class="chapter" data-level="13.13" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#summary"><i class="fa fa-check"></i><b>13.13</b> Summary<span></span></a></li>
+<li class="chapter" data-level="13.14" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>13.14</b> Advantages and disadvantages<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>14</b> Examples<span></span></a>
 <ul>
@@ -481,7 +484,7 @@ div.csl-indent {
 <td>RAIDA (1.0)</td>
 <td>Counts</td>
 <td>None</td>
-<td>Log</td>
+<td>zero-inflated log normal</td>
 <td>modified t-test</td>
 <td>16s</td>
 </tr>
@@ -962,41 +965,48 @@ div.csl-indent {
 ## [25] &quot;Mean Abundance\nAA&quot;                &quot;Mean Abundance\nBB&quot;                &quot;Occurrence (100%)\n(All)&quot;         
 ## [28] &quot;Occurrence (100%)\nAA&quot;             &quot;Occurrence (100%)\nBB&quot;             &quot;Odds Ratio (95% CI)&quot;</code></pre>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="differential-analysis.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DA_omnibus)</span></code></pre></div>
-<pre><code>##               TaxaID         Block Enrichment     Pvalue AdjustedPvalue EffectSize  chi.stat df abund.baseline prev.baseline
-## 1 g__Acidaminococcus 9_AA vs 14_BB  Nonsignif 0.26993990      0.6960000   70.56349 3.9226381  3   0.0051278458     0.2912821
-## 2     g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.14553831      0.5275764   39.65079 5.3872772  3   0.0006995458     0.8894855
-## 3   g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.06379234      0.4269179   23.17460 7.2692892  3   0.0003689644     0.3333678
-## 4    g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.12015581      0.5220000 1222.58730 5.8304723  3   0.0560610913     0.5555645
-## 5     g__Akkermansia 9_AA vs 14_BB  Nonsignif 0.86180157      0.9186186  104.78571 0.7482458  3   0.0031679714     0.2351930
-## 6       g__Alistipes 9_AA vs 14_BB  Nonsignif 0.97964464      0.9800328   23.03175 0.1870987  3   0.0049913684     0.7814974
-##   dispersion.baseline abund.LFC.CompvarBB.est abund.LFC.CompvarBB.se prev.LOD.CompvarBB.est prev.LOD.CompvarBB.se
-## 1           0.2037930             -0.37106147              1.4052050             -0.4101193             0.9810350
-## 2           3.1449736              0.72928600              0.3066857             -0.7729345             1.2481748
-## 3          11.4842094              1.28359134              0.3623742              0.6963880             0.8863818
-## 4           1.6248619             -1.15961032              0.4774192              0.6971297             0.8947782
-## 5           0.5224326             -0.85062762              1.7380445              2.3859635             1.0103235
-## 6           1.0034163              0.01952004              0.4762646             -0.3538909             1.0006899
-##   dispersion.LFC.CompvarBB.est dispersion.LFC.CompvarBB.se  method Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All)
-## 1                    2.8157726                   1.1350785 omnibus                                NA                       0
-## 2                   -0.5258551                   0.6760915 omnibus                        -0.9577718                      30
-## 3                   -1.8335068                   1.5022561 omnibus                                NA                       0
-## 4                   -0.5315454                   0.7007912 omnibus                         0.1524904                     316
-## 5                   -2.4754249                   1.0588367 omnibus                                NA                       0
-## 6                    0.1699865                   0.6267560 omnibus                        -0.1085245                      64
-##   Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All) Mean Abundance\nAA
-## 1                    0                  0.0                       1.7051442              58.82609         101.777778
-## 2                   26                 50.5                      -1.3107676              50.91304          26.777778
-## 3                    0                  9.0                      -2.4683647              19.21739           5.111111
-## 4                  329                296.0                       1.7488297             996.26087        1740.444444
-## 5                    0                  0.0                      -2.1676332              93.78261          30.000000
-## 6                   64                 69.0                       0.2000385             163.86957         177.888889
-##   Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1           31.21429                    21.74                 22.22                 21.43    0.67 (-0.11;1.5)
-## 2           66.42857                    82.61                 88.89                 78.57       4.1 (6.8;1.3)
-## 3           28.28571                    43.48                 33.33                 50.00        8.6 (13;4.3)
-## 4          517.85714                    65.22                 55.56                 71.43     0.39 (-1.4;2.2)
-## 5          134.78571                    21.74                 22.22                 21.43      1.5 (2.3;0.71)
-## 6          154.85714                    73.91                 77.78                 71.43     0.88 (0.64;1.1)</code></pre>
+<pre><code>##               TaxaID         Block Enrichment     Pvalue AdjustedPvalue EffectSize  chi.stat df abund.baseline
+## 1 g__Acidaminococcus 9_AA vs 14_BB  Nonsignif 0.26993990      0.6960000   70.56349 3.9226381  3   0.0051278458
+## 2     g__Actinomyces 9_AA vs 14_BB  Nonsignif 0.14553831      0.5275764   39.65079 5.3872772  3   0.0006995458
+## 3   g__Adlercreutzia 9_AA vs 14_BB  Nonsignif 0.06379234      0.4269179   23.17460 7.2692892  3   0.0003689644
+## 4    g__Agathobacter 9_AA vs 14_BB  Nonsignif 0.12015581      0.5220000 1222.58730 5.8304723  3   0.0560610913
+## 5     g__Akkermansia 9_AA vs 14_BB  Nonsignif 0.86180157      0.9186186  104.78571 0.7482458  3   0.0031679714
+## 6       g__Alistipes 9_AA vs 14_BB  Nonsignif 0.97964464      0.9800328   23.03175 0.1870987  3   0.0049913684
+##   prev.baseline dispersion.baseline abund.LFC.CompvarBB.est abund.LFC.CompvarBB.se prev.LOD.CompvarBB.est
+## 1     0.2912821           0.2037930             -0.37106147              1.4052050             -0.4101193
+## 2     0.8894855           3.1449736              0.72928600              0.3066857             -0.7729345
+## 3     0.3333678          11.4842094              1.28359134              0.3623742              0.6963880
+## 4     0.5555645           1.6248619             -1.15961032              0.4774192              0.6971297
+## 5     0.2351930           0.5224326             -0.85062762              1.7380445              2.3859635
+## 6     0.7814974           1.0034163              0.01952004              0.4762646             -0.3538909
+##   prev.LOD.CompvarBB.se dispersion.LFC.CompvarBB.est dispersion.LFC.CompvarBB.se  method Log2FoldChange (Median)\nAA_vs_BB
+## 1             0.9810350                    2.8157726                   1.1350785 omnibus                                NA
+## 2             1.2481748                   -0.5258551                   0.6760915 omnibus                        -0.9577718
+## 3             0.8863818                   -1.8335068                   1.5022561 omnibus                                NA
+## 4             0.8947782                   -0.5315454                   0.7007912 omnibus                         0.1524904
+## 5             1.0103235                   -2.4754249                   1.0588367 omnibus                                NA
+## 6             1.0006899                    0.1699865                   0.6267560 omnibus                        -0.1085245
+##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
+## 1                       0                    0                  0.0                       1.7051442              58.82609
+## 2                      30                   26                 50.5                      -1.3107676              50.91304
+## 3                       0                    0                  9.0                      -2.4683647              19.21739
+## 4                     316                  329                296.0                       1.7488297             996.26087
+## 5                       0                    0                  0.0                      -2.1676332              93.78261
+## 6                      64                   64                 69.0                       0.2000385             163.86957
+##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
+## 1         101.777778           31.21429                    21.74                 22.22                 21.43
+## 2          26.777778           66.42857                    82.61                 88.89                 78.57
+## 3           5.111111           28.28571                    43.48                 33.33                 50.00
+## 4        1740.444444          517.85714                    65.22                 55.56                 71.43
+## 5          30.000000          134.78571                    21.74                 22.22                 21.43
+## 6         177.888889          154.85714                    73.91                 77.78                 71.43
+##   Odds Ratio (95% CI)
+## 1    0.67 (-0.11;1.5)
+## 2       4.1 (6.8;1.3)
+## 3        8.6 (13;4.3)
+## 4     0.39 (-1.4;2.2)
+## 5      1.5 (2.3;0.71)
+## 6     0.88 (0.64;1.1)</code></pre>
 <p><strong>Results</strong>:</p>
 <p>The results comprises more than 10 columns, and the details as follow:</p>
 <ol style="list-style-type: decimal">
@@ -2492,36 +2502,38 @@ Figure 11.7: Multiple DA results
 ## loaded via a namespace (and not attached):
 ##   [1] utf8_1.2.2             reticulate_1.24        tidyselect_1.1.2       RSQLite_2.2.10         AnnotationDbi_1.56.2  
 ##   [6] htmlwidgets_1.5.4      grid_4.1.2             BiocParallel_1.28.3    Rtsne_0.15             munsell_0.5.0         
-##  [11] codetools_0.2-18       DT_0.21                umap_0.2.8.0           withr_2.5.0            colorspace_2.0-3      
-##  [16] highr_0.9              knitr_1.37             rstudioapi_0.13        pscl_1.5.5             robustbase_0.93-9     
-##  [21] bayesm_3.1-4           ggsignif_0.6.3         labeling_0.4.2         mbzinb_0.2             GenomeInfoDbData_1.2.7
-##  [26] pheatmap_1.0.12        bit64_4.0.5            farver_2.1.0           rhdf5_2.38.1           vctrs_0.3.8           
-##  [31] generics_0.1.2         TH.data_1.1-0          xfun_0.30              R6_2.5.1               locfit_1.5-9.5        
-##  [36] RcppZiggurat_0.1.6     bitops_1.0-7           rhdf5filters_1.6.0     microbiome_1.16.0      cachem_1.0.6          
-##  [41] DelayedArray_0.20.0    assertthat_0.2.1       scales_1.1.1           multcomp_1.4-18        nnet_7.3-17           
-##  [46] gtable_0.3.0           sandwich_3.0-1         rlang_1.0.2            genefilter_1.76.0      splines_4.1.2         
-##  [51] protoclust_1.6.3       rstatix_0.7.0          broom_0.7.12           checkmate_2.0.0        yaml_2.3.5            
-##  [56] reshape2_1.4.4         abind_1.4-5            crosstalk_1.2.0        backports_1.4.1        Rfast_2.0.6           
-##  [61] qvalue_2.26.0          Hmisc_4.6-0            tensorA_0.36.2         tools_4.1.2            bookdown_0.24         
-##  [66] zCompositions_1.4.0    ellipsis_0.3.2         gplots_3.1.1           jquerylib_0.1.4        biomformat_1.22.0     
-##  [71] Rcpp_1.0.8.2           plyr_1.8.6             base64enc_0.1-3        zlibbioc_1.40.0        purrr_0.3.4           
-##  [76] RCurl_1.98-1.6         rpart_4.1.16           openssl_2.0.0          Wrench_1.12.0          cowplot_1.1.1         
-##  [81] zoo_1.8-9              ggrepel_0.9.1          cluster_2.1.2          magrittr_2.0.2         data.table_1.14.2     
-##  [86] RSpectra_0.16-0        truncnorm_1.0-8        mvtnorm_1.1-3          ALDEx2_1.26.0          RAIDA_1.0             
-##  [91] evaluate_0.15          xtable_1.8-4           XML_3.99-0.9           jpeg_0.1-9             gridExtra_2.3         
-##  [96] shape_1.4.6            compiler_4.1.2         KernSmooth_2.23-20     crayon_1.5.0           htmltools_0.5.2       
-## [101] mgcv_1.8-39            Formula_1.2-4          tidyr_1.2.0            geneplotter_1.72.0     libcoin_1.0-9         
-## [106] DBI_1.1.2              corrplot_0.92          MASS_7.3-55            compositions_2.0-4     Matrix_1.4-0          
-## [111] ade4_1.7-18            car_3.0-12             cli_3.2.0              parallel_4.1.2         igraph_1.2.11         
-## [116] pkgconfig_2.0.3        coin_1.4-2             foreign_0.8-82         foreach_1.5.2          annotate_1.72.0       
-## [121] bslib_0.3.1            multtest_2.50.0        XVector_0.34.0         NADA_1.6-1.1           stringr_1.4.0         
-## [126] digest_0.6.29          Biostrings_2.62.0      rmarkdown_2.13         htmlTable_2.4.0        edgeR_3.36.0          
-## [131] gtools_3.9.2           modeltools_0.2-23      lifecycle_1.0.1        jsonlite_1.8.0         Rhdf5lib_1.16.0       
-## [136] carData_3.0-5          askpass_1.1            limma_3.50.1           fansi_1.0.2            pillar_1.7.0          
-## [141] ggsci_2.9              DEoptimR_1.0-10        KEGGREST_1.34.0        fastmap_1.1.0          httr_1.4.2            
-## [146] survival_3.3-1         glue_1.6.2             png_0.1-7              iterators_1.0.14       glmnet_4.1-3          
-## [151] bit_4.0.4              stringi_1.7.6          sass_0.4.0             metagenomeSeq_1.36.0   blob_1.2.2            
-## [156] DESeq2_1.34.0          latticeExtra_0.6-29    caTools_1.18.2         memoise_2.0.1</code></pre>
+##  [11] units_0.8-0            codetools_0.2-18       DT_0.21                umap_0.2.8.0           withr_2.5.0           
+##  [16] colorspace_2.0-3       highr_0.9              knitr_1.37             rstudioapi_0.13        pscl_1.5.5            
+##  [21] robustbase_0.93-9      bayesm_3.1-4           ggsignif_0.6.3         labeling_0.4.2         mbzinb_0.2            
+##  [26] GenomeInfoDbData_1.2.7 pheatmap_1.0.12        bit64_4.0.5            farver_2.1.0           rhdf5_2.38.1          
+##  [31] vctrs_0.3.8            generics_0.1.2         TH.data_1.1-0          xfun_0.30              R6_2.5.1              
+##  [36] RVenn_1.1.0            locfit_1.5-9.5         RcppZiggurat_0.1.6     bitops_1.0-7           rhdf5filters_1.6.0    
+##  [41] microbiome_1.16.0      cachem_1.0.6           DelayedArray_0.20.0    assertthat_0.2.1       scales_1.1.1          
+##  [46] multcomp_1.4-18        nnet_7.3-17            gtable_0.3.0           sandwich_3.0-1         rlang_1.0.2           
+##  [51] genefilter_1.76.0      splines_4.1.2          protoclust_1.6.3       rstatix_0.7.0          broom_0.7.12          
+##  [56] checkmate_2.0.0        yaml_2.3.5             reshape2_1.4.4         abind_1.4-5            crosstalk_1.2.0       
+##  [61] backports_1.4.1        Rfast_2.0.6            qvalue_2.26.0          Hmisc_4.6-0            DiagrammeR_1.0.9      
+##  [66] tensorA_0.36.2         tools_4.1.2            bookdown_0.24          zCompositions_1.4.0    ellipsis_0.3.2        
+##  [71] gplots_3.1.1           jquerylib_0.1.4        biomformat_1.22.0      proxy_0.4-26           Rcpp_1.0.8.2          
+##  [76] plyr_1.8.6             visNetwork_2.1.0       base64enc_0.1-3        zlibbioc_1.40.0        classInt_0.4-3        
+##  [81] purrr_0.3.4            RCurl_1.98-1.6         rpart_4.1.16           openssl_2.0.0          Wrench_1.12.0         
+##  [86] cowplot_1.1.1          zoo_1.8-9              ggrepel_0.9.1          cluster_2.1.2          magrittr_2.0.2        
+##  [91] data.table_1.14.2      RSpectra_0.16-0        truncnorm_1.0-8        mvtnorm_1.1-3          ALDEx2_1.26.0         
+##  [96] RAIDA_1.0              evaluate_0.15          xtable_1.8-4           XML_3.99-0.9           jpeg_0.1-9            
+## [101] gridExtra_2.3          shape_1.4.6            compiler_4.1.2         KernSmooth_2.23-20     crayon_1.5.0          
+## [106] htmltools_0.5.2        mgcv_1.8-39            ggVennDiagram_1.2.1    Formula_1.2-4          tidyr_1.2.0           
+## [111] geneplotter_1.72.0     libcoin_1.0-9          DBI_1.1.2              corrplot_0.92          MASS_7.3-55           
+## [116] sf_1.0-7               compositions_2.0-4     Matrix_1.4-0           ade4_1.7-18            car_3.0-12            
+## [121] cli_3.2.0              parallel_4.1.2         igraph_1.2.11          pkgconfig_2.0.3        coin_1.4-2            
+## [126] foreign_0.8-82         foreach_1.5.2          annotate_1.72.0        bslib_0.3.1            multtest_2.50.0       
+## [131] XVector_0.34.0         NADA_1.6-1.1           stringr_1.4.0          digest_0.6.29          Biostrings_2.62.0     
+## [136] rmarkdown_2.13         htmlTable_2.4.0        edgeR_3.36.0           gtools_3.9.2           modeltools_0.2-23     
+## [141] lifecycle_1.0.1        jsonlite_1.8.0         Rhdf5lib_1.16.0        carData_3.0-5          askpass_1.1           
+## [146] limma_3.50.1           fansi_1.0.2            pillar_1.7.0           ggsci_2.9              DEoptimR_1.0-10       
+## [151] KEGGREST_1.34.0        fastmap_1.1.0          httr_1.4.2             survival_3.3-1         glue_1.6.2            
+## [156] png_0.1-7              iterators_1.0.14       glmnet_4.1-3           bit_4.0.4              class_7.3-20          
+## [161] stringi_1.7.6          sass_0.4.0             metagenomeSeq_1.36.0   blob_1.2.2             DESeq2_1.34.0         
+## [166] latticeExtra_0.6-29    caTools_1.18.2         memoise_2.0.1          e1071_1.7-9</code></pre>
 
 </div>
 </div>

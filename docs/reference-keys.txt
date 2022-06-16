@@ -267,6 +267,9 @@ maaslin2
 metagenomeseq-1
 t-test-2
 wilcoxon-test
+raida-1
+summary
+advantages-and-disadvantages
 examples
 workflow-description
 amplicon-sequencing-16s

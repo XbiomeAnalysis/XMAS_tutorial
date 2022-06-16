@@ -6,10 +6,10 @@ Identifying the significant taxa between case and control group is necessary. Th
 | **Tool(version)**       | **Input**                  | **Normalization**                        | **Transformation**        | **Distribution**                 | **MicrobialData** |
 | ----------------------- | -------------------------- | ---------------------------------------- | ------------------------- | -------------------------------- | ----------------- |
 | ALDEx2  (1.26.0)        | Counts                     | None                                     | CLR                       | Dirichlet-multinormial           | 16s               |
-| limma  voom (3.50.1)    | Counts/Relative            | None/TMM                                 | Log;  Precision weighting | Normal                           | 16s/MGS           |
+| limma  voom (3.50.1)    | Counts/Relative            | None/TMM                                 | Log; Precision weighting | Normal                           | 16s/MGS           |
 | mbzinb  (0.2)           | Counts                     | RLE                                      | None                      | zero-inflated  negative binomial | 16s               |
 | omnibus  (0.2)          | Counts                     | GMPR(Geometric  Mean of Pairwise Ratios) | None                      | zero-inflated  negative binomial | 16s               |
-| RAIDA  (1.0)            | Counts                     | None                                     | Log                       | modified  t-test                 | 16s               |
+| RAIDA  (1.0)            | Counts                     | None                                     | zero-inflated log normal                       | modified  t-test                 | 16s               |
 | Wilcox(rare/CLR)        | Counts/Relative            | None                                     | None/CLR                  | Non-parametric                   | 16s/MGS           |
 | LEfSe                   | Rarefied  Counts//Relative | TSS                                      | None                      | Non-parametric                   | 16s/MGS           |
 | t-test  (rare)          | Counts//Relative           | None                                     | None                      | Normal                           | 16s/MGS           |

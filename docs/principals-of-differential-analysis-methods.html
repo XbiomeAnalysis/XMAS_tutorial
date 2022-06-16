@@ -375,6 +375,9 @@ div.csl-indent {
 <li class="chapter" data-level="13.9" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#metagenomeseq-1"><i class="fa fa-check"></i><b>13.9</b> metagenomeSeq<span></span></a></li>
 <li class="chapter" data-level="13.10" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#t-test-2"><i class="fa fa-check"></i><b>13.10</b> t-test<span></span></a></li>
 <li class="chapter" data-level="13.11" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#wilcoxon-test"><i class="fa fa-check"></i><b>13.11</b> Wilcoxon test<span></span></a></li>
+<li class="chapter" data-level="13.12" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#raida-1"><i class="fa fa-check"></i><b>13.12</b> RAIDA<span></span></a></li>
+<li class="chapter" data-level="13.13" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#summary"><i class="fa fa-check"></i><b>13.13</b> Summary<span></span></a></li>
+<li class="chapter" data-level="13.14" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>13.14</b> Advantages and disadvantages<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>14</b> Examples<span></span></a>
 <ul>
@@ -506,7 +509,7 @@ div.csl-indent {
 <h2><span class="header-section-number">13.8</span> MaAsLin2<a href="principals-of-differential-analysis-methods.html#maaslin2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>using <em>arcsine square-root transformation (AST)</em> for transformation and <em>total sum scaling normalization (TSS)</em> for normalization;</p></li>
-<li><p>The function fit a linear model (without random effects chosen) to each feature’s transformed abundance on the specified sample grouping, tested significance using a Wald test, and output BH FDR- corrected p-values;</p></li>
+<li><p>The function fit a linear model (without random effects chosen) to each feature’s transformed abundance on the specified sample grouping, tested significance using a Wald test, and output BH FDR-corrected p-values;</p></li>
 </ol>
 </div>
 <div id="metagenomeseq-1" class="section level2 hasAnchor" number="13.9">
@@ -531,6 +534,41 @@ div.csl-indent {
 <li><p>CLR (after applying a pseudocount of 1) transforms or not to abundances;</p></li>
 <li><p>Performing Wilcoxon rank-sum tests for each feature to compare the specified sample groupings;</p></li>
 <li><p>Correcting the resulting p-values with the BH method.</p></li>
+</ol>
+</div>
+<div id="raida-1" class="section level2 hasAnchor" number="13.12">
+<h2><span class="header-section-number">13.12</span> RAIDA<a href="principals-of-differential-analysis-methods.html#raida-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Approach for Identifying Differential Abundance (RAIDA)</strong> - is a robust approach for identifying differentially abundant features in metagenomic samples across different conditions. It utilizes the ratio between features in a modified zero-inflated log-normal model.</p>
+<ol style="list-style-type: decimal">
+<li><p>Utilizing the ratios between the counts of features in each sample, eliminating possible problems associated with counts on different scales within and between conditions;</p></li>
+<li><p>To fit ratios with zeros by EM algorithm, using a modified ZIL (zero-inflated log normal: sparsity);</p></li>
+<li><p>Constructing a moderated t-statistics for the log ratio of each feature <span class="math inline">\(y_{ij}\)</span> using the estimated mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(r^2\)</span> and obtain <span class="math inline">\(P\)</span> values for the null hypotheses for all features;</p></li>
+<li><p>Adjust <span class="math inline">\(P\)</span> values using a multiple testing correction method</p></li>
+</ol>
+</div>
+<div id="summary" class="section level2 hasAnchor" number="13.13">
+<h2><span class="header-section-number">13.13</span> Summary<a href="principals-of-differential-analysis-methods.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>The most commonly assumed data distribution was the negative binomial distribution (DESeq2, edgeR, omnibus, mbzinb).</li>
+</ol>
+<blockquote>
+<p>No data transformations were performed for negative binomial methods, or metagenomeSeq methods, to try and bring the data to normality as non-normality of data is taken into account in their statistical models.</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li><p>The remaining parametric methods (ALDEx2 t-test, t-test, limma-voom) all used statistical tests that assumed a Gaussian distribution of the data, therefore, transformations were needed before analysis, which here included a log transform of some kind.</p></li>
+<li><p>Three methods (ALDEx2 Wilcoxon, ANCOM-II, LEfSe) were considered non-parametric (assumes no underlying distribution of data) as they used statistical tests that transformed data to ranks.</p></li>
+<li><p>Two of the four negative binomial methods (DESeq2, edgeR) calculated scaling factors for each sample to account for uneven sequence count.</p></li>
+<li><p>Cumulative sum scaling (CSS) was used for both metagenomeSeq and MaAsLin2. Total sum scaling (TSS; also referred to as relative abundance) was performed for LEfSe, and for method that did not have a built-in normalization function (t-test) as this strategy is commonly used in the literature. Log-ratio based transformations were used for ALDEx2 methods, ANCOM, and, in addition to TSS, were applied to methods without a built-in normalization function.</p></li>
+</ol>
+</div>
+<div id="advantages-and-disadvantages" class="section level2 hasAnchor" number="13.14">
+<h2><span class="header-section-number">13.14</span> Advantages and disadvantages<a href="principals-of-differential-analysis-methods.html#advantages-and-disadvantages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>limma-voom, edgeR, Wilcoxon (CLR), and LEfSe output a high number of significant ASVs on average, while ALDEx2 and ANCOM-II tended to identify only a relatively small number of ASVs as significant;</p></li>
+<li><p>limma-voom, edgeR, Wilcoxon (CLR), and LEfSe methods have been previously found to exhibit a high FDR, in contrast, ANCOM appropriately controls the FDR;</p></li>
+<li><p>We can clearly recommend that users avoid using edgeR (a tool primarily intended for RNA-seq data) as well as LEfSe (without p-value correction) for conducting DA testing with 16S rRNA gene data.</p></li>
+<li><p>Users should also be aware that limma voom and the Wilcoxon (CLR) approaches may perform poorly on unfiltered data that is highly sparse.</p></li>
+<li><p>More generally, we recommend that users employ several methods and focus on significant features identified by most tools.</p></li>
 </ol>
 
 </div>

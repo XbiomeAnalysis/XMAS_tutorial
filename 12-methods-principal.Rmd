@@ -99,7 +99,7 @@ Finally, the function returned the expected Benjamini-Hochberg (BH) FDR-correcte
 
 1. using *arcsine square-root transformation (AST)* for transformation and *total sum scaling normalization (TSS)* for normalization; 
 
-2. The function fit a linear model (without random effects chosen) to each feature’s transformed abundance on the specified sample grouping, tested significance using a Wald test, and output BH FDR- corrected p-values;
+2. The function fit a linear model (without random effects chosen) to each feature’s transformed abundance on the specified sample grouping, tested significance using a Wald test, and output BH FDR-corrected p-values;
 
 
 ## metagenomeSeq
@@ -127,5 +127,49 @@ Finally, the function returned the expected Benjamini-Hochberg (BH) FDR-correcte
 2. Performing Wilcoxon rank-sum tests for each feature to compare the specified sample groupings;
 
 3. Correcting the resulting p-values with the BH method.
+
+
+## RAIDA
+
+**Approach for Identifying Differential Abundance (RAIDA)** - is a robust approach for identifying differentially abundant features in metagenomic samples across different conditions. It utilizes the ratio between features in a modified zero-inflated log-normal model.
+
+1. Utilizing the ratios between the counts of features in each sample, eliminating possible problems associated with counts on different scales within and between conditions;
+
+2. To fit ratios with zeros by EM algorithm, using a modified ZIL (zero-inflated log normal: sparsity);
+
+3. Constructing a moderated t-statistics for the log ratio of each feature $y_{ij}$ using the estimated mean $\mu$ and variance $r^2$ and obtain $P$ values for the null hypotheses for all features;
+
+4. Adjust $P$ values using a multiple testing correction method
+
+
+## Summary
+
+1. The most commonly assumed data distribution was the negative binomial distribution (DESeq2, edgeR, omnibus, mbzinb). 
+
+> No data transformations were performed for negative binomial methods, or metagenomeSeq methods, to try and bring the data to normality as non-normality of data is taken into account in their statistical models. 
+
+
+2. The remaining parametric methods (ALDEx2 t-test, t-test, limma-voom) all used statistical tests that assumed a Gaussian distribution of the data, therefore, transformations were needed before analysis, which here included a log transform of some kind.
+
+
+3. Three methods (ALDEx2 Wilcoxon, ANCOM-II, LEfSe) were considered non-parametric (assumes no underlying distribution of data) as they used statistical tests that transformed data to ranks.
+
+
+4. Two of the four negative binomial methods (DESeq2, edgeR) calculated scaling factors for each sample to account for uneven sequence count. 
+
+5. Cumulative sum scaling (CSS) was used for both metagenomeSeq and MaAsLin2. Total sum scaling (TSS; also referred to as relative abundance) was performed for LEfSe, and for method that did not have a built-in normalization function (t-test) as this strategy is commonly used in the literature. Log-ratio based transformations were used for ALDEx2 methods, ANCOM, and, in addition to TSS, were applied to methods without a built-in normalization function.
+
+
+## Advantages and disadvantages
+
+1. limma-voom, edgeR, Wilcoxon (CLR), and LEfSe output a high number of significant ASVs on average, while ALDEx2 and ANCOM-II tended to identify only a relatively small number of ASVs as significant;
+
+2. limma-voom, edgeR, Wilcoxon (CLR), and LEfSe methods have been previously found to exhibit a high FDR, in contrast, ANCOM appropriately controls the FDR;
+
+3. We can clearly recommend that users avoid using edgeR (a tool primarily intended for RNA-seq data) as well as LEfSe (without p-value correction) for conducting DA testing with 16S rRNA gene data.
+
+4. Users should also be aware that limma voom and the Wilcoxon (CLR) approaches may perform poorly on unfiltered data that is highly sparse.
+
+5. More generally, we recommend that users employ several methods and focus on significant features identified by most tools. 
 
 
