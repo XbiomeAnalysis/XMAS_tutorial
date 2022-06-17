@@ -42,7 +42,8 @@ data("dada2_ps")
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 
 # step2: Rarefying counts in phyloseq-class object
 dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
@@ -1223,7 +1224,8 @@ data("metaphlan2_ps")
 metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = metaphlan2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 
 # step2: Extracting specific taxa phyloseq-class object 
 metaphlan2_ps_genus <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Genus")
@@ -1446,6 +1448,9 @@ DA_lefse <- run_lefse(
     group = "Group",
     group_names = c("AA", "BB"),
     Lda = 0)
+
+# don't run this code when you do lefse in reality
+DA_lefse$LDA_Score <- DA_lefse$LDA_Score * 1000
 
 plot_lefse(
   da_res = DA_lefse,

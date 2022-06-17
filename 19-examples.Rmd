@@ -182,7 +182,8 @@ run_RefCheck(
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 dada2_ps_remove_BRS
 ```
 
@@ -320,7 +321,7 @@ plot_stacked_bar_XIVZ(
 
 * convert absolute abundance into relative abundance 
 ```{r}
-dada2_ps_rare_genus_filter_trim_rb <- normalize(dada2_ps_rare_genus_filter_trim, method = "TSS")
+dada2_ps_rare_genus_filter_trim_rb <- XMAS2::normalize(dada2_ps_rare_genus_filter_trim, method = "TSS")
 dada2_ps_rare_genus_filter_trim_rb
 ```
 
@@ -370,10 +371,13 @@ head(dada2_ps_lefse)
 
 * Visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align="center", fig.cap="Lefse analysis (16s example)"}
+
+# don't run this code when you do lefse in reality
+dada2_ps_lefse$LDA_Score <- dada2_ps_lefse$LDA_Score * 1000
 plot_lefse(
   da_res = dada2_ps_lefse,
   x_index = "LDA_Score",
-  x_index_cutoff = 2,
+  x_index_cutoff = 1,
   group_color = c("green", "red"))
 ```
 
@@ -497,7 +501,8 @@ The spike-in samples didn't pass the cutoff and failed to add the the Reference 
 metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = metaphlan2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 metaphlan2_ps_remove_BRS
 ```
 
@@ -658,10 +663,13 @@ head(metaphlan2_ps_lefse)
 
 * Visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="Lefse analysis (MGS example)"}
+# don't run this code when you do lefse in reality
+metaphlan2_ps_lefse$LDA_Score <- metaphlan2_ps_lefse$LDA_Score * 100
+
 plot_lefse(
   da_res = metaphlan2_ps_lefse,
   x_index = "LDA_Score",
-  x_index_cutoff = 2,
+  x_index_cutoff = 0,
   group_color = c("green", "red"))
 ```
 

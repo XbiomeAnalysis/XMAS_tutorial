@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-16" />
+<meta name="date" content="2022-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -439,9 +439,9 @@ div.csl-indent {
 <div id="workflow-description" class="section level2 hasAnchor" number="14.1">
 <h2><span class="header-section-number">14.1</span> Workflow description<a href="examples.html#workflow-description" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 The standard data analysis of 16S and MGS data by <strong>XMAS 2.0</strong>.
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-226"></span>
-<div id="htmlwidget-fa91c1e2fe75c5019fd0" style="width:672px;height:768px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fa91c1e2fe75c5019fd0">{"x":{"diagram":"digraph flowchart { \n\n# initiate graph\ngraph [layout = dot, rankdir = TB, label = \"[dada2_res|metadata|tree]\n\n\", labelloc = t]\n\n\n# global node settings\nnode [shape = rectangle, style = filled, fillcolor = Linen, fontname = arial, width = 4]\n \ntab1 [label = \"Importing data: get_dada2_phyloseq()/summarize_phyloseq()\"]  \ntab2 [label = \"Quality Control(RefCheck/Remove): summarize_taxa()/run_RefCheck()/get_GroupPhyloseq()\"]  \ntab3 [label = \"Quality Control(Rarefaction curves): plot_RarefCurve()\"]\ntab4 [label = \"Quality Control(Reads Track): plot_Dada2Track()\"]  \ntab5 [label = \"Data processing(Rarefy): normalize()\"]  \ntab6 [label = \"Data processing(Extract specific taxonomic level): summarize_taxa()\"]\ntab7 [label = \"Data processing(Count2Relative): summarize_taxa(absolute = FALSE)\"]  \ntab8 [label = \"Data processing(Filter&trim): run_filter()/run_trim()\"]  \ntab9 [label = \"GlobalView(Alpha diveristy): run_alpha_diversity()/plot_boxplot()\"]\ntab10 [label = \"GlobalView(Beta diveristy): run_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()\"]  \ntab11 [label = \"GlobalView(microbial composition): plot_StackBarPlot()/plot_core_taxa()/core_members()\"]  \ntab12 [label = \"DifferentialAnalysis: run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()\"]\n \ntab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7 -> tab8 -> tab9 -> tab10 -> tab11 -> tab12;  \n}  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-258"></span>
+<div id="htmlwidget-229490000ebb9517b526" style="width:672px;height:768px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-229490000ebb9517b526">{"x":{"diagram":"digraph flowchart { \n\n# initiate graph\ngraph [layout = dot, rankdir = TB, label = \"[dada2_res|metadata|tree]\n\n\", labelloc = t]\n\n\n# global node settings\nnode [shape = rectangle, style = filled, fillcolor = Linen, fontname = arial, width = 4]\n \ntab1 [label = \"Importing data: get_dada2_phyloseq()/summarize_phyloseq()\"]  \ntab2 [label = \"Quality Control(RefCheck/Remove): summarize_taxa()/run_RefCheck()/get_GroupPhyloseq()\"]  \ntab3 [label = \"Quality Control(Rarefaction curves): plot_RarefCurve()\"]\ntab4 [label = \"Quality Control(Reads Track): plot_Dada2Track()\"]  \ntab5 [label = \"Data processing(Rarefy): normalize()\"]  \ntab6 [label = \"Data processing(Extract specific taxonomic level): summarize_taxa()\"]\ntab7 [label = \"Data processing(Count2Relative): summarize_taxa(absolute = FALSE)\"]  \ntab8 [label = \"Data processing(Filter&trim): run_filter()/run_trim()\"]  \ntab9 [label = \"GlobalView(Alpha diveristy): run_alpha_diversity()/plot_boxplot()\"]\ntab10 [label = \"GlobalView(Beta diveristy): run_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()\"]  \ntab11 [label = \"GlobalView(microbial composition): plot_StackBarPlot()/plot_core_taxa()/core_members()\"]  \ntab12 [label = \"DifferentialAnalysis: run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()\"]\n \ntab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7 -> tab8 -> tab9 -> tab10 -> tab11 -> tab12;  \n}  ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 14.1: Functions of XMAS 2.0 in 16s and MGS
 </p>
@@ -562,8 +562,8 @@ Figure 14.1: Functions of XMAS 2.0 in 16s and MGS
 <div id="reads-track-by-dada2" class="section level4 hasAnchor" number="14.2.2.1">
 <h4><span class="header-section-number">14.2.2.1</span> Reads’ track by DADA2<a href="examples.html#reads-track-by-dada2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="examples.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Dada2Track</span>(<span class="at">data=</span>dada2_res<span class="sc">$</span>reads_track)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-229"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-229-1.png" alt="Reads' track by DADA2 (16s example)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-261"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-261-1.png" alt="Reads' track by DADA2 (16s example)" width="576" />
 <p class="caption">
 Figure 14.2: Reads’ track by DADA2 (16s example)
 </p>
@@ -630,46 +630,63 @@ Figure 14.2: Reads’ track by DADA2 (16s example)
 <span id="cb413-22"><a href="examples.html#cb413-22" aria-hidden="true" tabindex="-1"></a><span class="do">## #####Final Evaluation Results of the Spike-in sample#######</span></span>
 <span id="cb413-23"><a href="examples.html#cb413-23" aria-hidden="true" tabindex="-1"></a><span class="do">## The spike-in sample&#39;s 14.1 is more than the Cutoff of Impurity (0.1565)</span></span>
 <span id="cb413-24"><a href="examples.html#cb413-24" aria-hidden="true" tabindex="-1"></a><span class="do">## ###########################################################</span></span>
-<span id="cb413-25"><a href="examples.html#cb413-25" aria-hidden="true" tabindex="-1"></a><span class="do">##                         8002        8003        8004       8006        8007        8008        8009        8005        mean</span></span>
-<span id="cb413-26"><a href="examples.html#cb413-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  31.11079015 30.88310969 32.31232692 18.4930259 20.20409870 17.96225391 18.03588291 27.22437034 24.52823232</span></span>
-<span id="cb413-27"><a href="examples.html#cb413-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      20.44753484 14.46581958 24.57151411 26.7370147 25.85863655 27.51353663 26.99272343 24.23896093 23.85321759</span></span>
-<span id="cb413-28"><a href="examples.html#cb413-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium  0.79850615  0.62937893  1.05531023  1.7487249  1.64282727  1.96346413  1.81219797  1.04035376  1.33634542</span></span>
-<span id="cb413-29"><a href="examples.html#cb413-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus     2.61732573  3.36856272  3.44379163  5.9292703  5.78000836  5.78189064  6.32672332  3.87088505  4.63980722</span></span>
-<span id="cb413-30"><a href="examples.html#cb413-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides   7.11124408  7.45952579  5.36075144  8.7149995  8.01840234  8.74899584  8.62634005  5.61833757  7.45732457</span></span>
-<span id="cb413-31"><a href="examples.html#cb413-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella       0.12792605  0.88271385  0.55665744  1.2764130  0.67921372  1.89356397  1.26367828  0.45502126  0.89189845</span></span>
-<span id="cb413-32"><a href="examples.html#cb413-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3     1.00380683  0.97969362  0.80270938  1.6693557  1.56419908  1.67969035  1.71221463  0.87586251  1.28594151</span></span>
-<span id="cb413-33"><a href="examples.html#cb413-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea             2.80715148  3.45564660  2.46613277  3.9684605  3.99163530  3.81529666  3.69382881  2.34880690  3.31836988</span></span>
-<span id="cb413-34"><a href="examples.html#cb413-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus     2.91960260  3.43387563  2.59149764  3.4818362  3.31409452  3.51378702  3.37721491  2.68740253  3.16491388</span></span>
-<span id="cb413-35"><a href="examples.html#cb413-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia         0.03404484  0.04750030  0.02806676  0.0338295  0.03178586  0.02503886  0.02499583  0.03311188  0.03229673</span></span>
-<span id="cb413-36"><a href="examples.html#cb413-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes      0.32291011  0.43245062  0.31528329  0.5386697  0.44500209  0.53416240  0.48047548  0.32471000  0.42420796</span></span>
-<span id="cb413-37"><a href="examples.html#cb413-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     14.51444842 14.66472707 11.04239952 13.1674820 12.07360937 12.88771113 12.84924735 11.61906390 12.85233610</span></span>
-<span id="cb413-38"><a href="examples.html#cb413-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9      0.77374627  3.07465463  2.75709154  2.9145415  2.52446675  3.04952478  2.84952508  5.40257632  2.91826586</span></span>
-<span id="cb413-39"><a href="examples.html#cb413-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella       0.04951976  0.15437596  0.27131203  0.4840221  0.43998327  0.47365181  0.35549631  0.16128688  0.29870601</span></span>
-<span id="cb413-40"><a href="examples.html#cb413-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level    0.08562792  0.06531291  0.05987576  0.0000000  0.00000000  0.00000000  0.00000000 14.10000000  1.78885207</span></span>
-<span id="cb413-41"><a href="examples.html#cb413-41" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                              Evaluation</span></span>
-<span id="cb413-42"><a href="examples.html#cb413-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-43"><a href="examples.html#cb413-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-44"><a href="examples.html#cb413-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-45"><a href="examples.html#cb413-45" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus    S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-46"><a href="examples.html#cb413-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides  S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-47"><a href="examples.html#cb413-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella      S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-48"><a href="examples.html#cb413-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3    S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-49"><a href="examples.html#cb413-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea            S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-50"><a href="examples.html#cb413-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus    S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-51"><a href="examples.html#cb413-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia        S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-52"><a href="examples.html#cb413-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes     S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-53"><a href="examples.html#cb413-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-54"><a href="examples.html#cb413-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9     S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-55"><a href="examples.html#cb413-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella      S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span>
-<span id="cb413-56"><a href="examples.html#cb413-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level   S8005 didn&#39;t pass the threshold (2022-06-16 18:00:30).</span></span></code></pre></div>
+<span id="cb413-25"><a href="examples.html#cb413-25" aria-hidden="true" tabindex="-1"></a><span class="do">##                         8002        8003        8004       8006        8007        8008</span></span>
+<span id="cb413-26"><a href="examples.html#cb413-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  31.11079015 30.88310969 32.31232692 18.4930259 20.20409870 17.96225391</span></span>
+<span id="cb413-27"><a href="examples.html#cb413-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      20.44753484 14.46581958 24.57151411 26.7370147 25.85863655 27.51353663</span></span>
+<span id="cb413-28"><a href="examples.html#cb413-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium  0.79850615  0.62937893  1.05531023  1.7487249  1.64282727  1.96346413</span></span>
+<span id="cb413-29"><a href="examples.html#cb413-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus     2.61732573  3.36856272  3.44379163  5.9292703  5.78000836  5.78189064</span></span>
+<span id="cb413-30"><a href="examples.html#cb413-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides   7.11124408  7.45952579  5.36075144  8.7149995  8.01840234  8.74899584</span></span>
+<span id="cb413-31"><a href="examples.html#cb413-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella       0.12792605  0.88271385  0.55665744  1.2764130  0.67921372  1.89356397</span></span>
+<span id="cb413-32"><a href="examples.html#cb413-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3     1.00380683  0.97969362  0.80270938  1.6693557  1.56419908  1.67969035</span></span>
+<span id="cb413-33"><a href="examples.html#cb413-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea             2.80715148  3.45564660  2.46613277  3.9684605  3.99163530  3.81529666</span></span>
+<span id="cb413-34"><a href="examples.html#cb413-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus     2.91960260  3.43387563  2.59149764  3.4818362  3.31409452  3.51378702</span></span>
+<span id="cb413-35"><a href="examples.html#cb413-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia         0.03404484  0.04750030  0.02806676  0.0338295  0.03178586  0.02503886</span></span>
+<span id="cb413-36"><a href="examples.html#cb413-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes      0.32291011  0.43245062  0.31528329  0.5386697  0.44500209  0.53416240</span></span>
+<span id="cb413-37"><a href="examples.html#cb413-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     14.51444842 14.66472707 11.04239952 13.1674820 12.07360937 12.88771113</span></span>
+<span id="cb413-38"><a href="examples.html#cb413-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9      0.77374627  3.07465463  2.75709154  2.9145415  2.52446675  3.04952478</span></span>
+<span id="cb413-39"><a href="examples.html#cb413-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella       0.04951976  0.15437596  0.27131203  0.4840221  0.43998327  0.47365181</span></span>
+<span id="cb413-40"><a href="examples.html#cb413-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level    0.08562792  0.06531291  0.05987576  0.0000000  0.00000000  0.00000000</span></span>
+<span id="cb413-41"><a href="examples.html#cb413-41" aria-hidden="true" tabindex="-1"></a><span class="do">##                         8009        8005        mean</span></span>
+<span id="cb413-42"><a href="examples.html#cb413-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  18.03588291 27.22437034 24.52823232</span></span>
+<span id="cb413-43"><a href="examples.html#cb413-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      26.99272343 24.23896093 23.85321759</span></span>
+<span id="cb413-44"><a href="examples.html#cb413-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium  1.81219797  1.04035376  1.33634542</span></span>
+<span id="cb413-45"><a href="examples.html#cb413-45" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus     6.32672332  3.87088505  4.63980722</span></span>
+<span id="cb413-46"><a href="examples.html#cb413-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides   8.62634005  5.61833757  7.45732457</span></span>
+<span id="cb413-47"><a href="examples.html#cb413-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella       1.26367828  0.45502126  0.89189845</span></span>
+<span id="cb413-48"><a href="examples.html#cb413-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3     1.71221463  0.87586251  1.28594151</span></span>
+<span id="cb413-49"><a href="examples.html#cb413-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea             3.69382881  2.34880690  3.31836988</span></span>
+<span id="cb413-50"><a href="examples.html#cb413-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus     3.37721491  2.68740253  3.16491388</span></span>
+<span id="cb413-51"><a href="examples.html#cb413-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia         0.02499583  0.03311188  0.03229673</span></span>
+<span id="cb413-52"><a href="examples.html#cb413-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes      0.48047548  0.32471000  0.42420796</span></span>
+<span id="cb413-53"><a href="examples.html#cb413-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     12.84924735 11.61906390 12.85233610</span></span>
+<span id="cb413-54"><a href="examples.html#cb413-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9      2.84952508  5.40257632  2.91826586</span></span>
+<span id="cb413-55"><a href="examples.html#cb413-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella       0.35549631  0.16128688  0.29870601</span></span>
+<span id="cb413-56"><a href="examples.html#cb413-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level    0.00000000 14.10000000  1.78885207</span></span>
+<span id="cb413-57"><a href="examples.html#cb413-57" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                              Evaluation</span></span>
+<span id="cb413-58"><a href="examples.html#cb413-58" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-59"><a href="examples.html#cb413-59" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-60"><a href="examples.html#cb413-60" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-61"><a href="examples.html#cb413-61" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus    S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-62"><a href="examples.html#cb413-62" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides  S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-63"><a href="examples.html#cb413-63" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella      S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-64"><a href="examples.html#cb413-64" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3    S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-65"><a href="examples.html#cb413-65" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea            S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-66"><a href="examples.html#cb413-66" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus    S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-67"><a href="examples.html#cb413-67" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia        S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-68"><a href="examples.html#cb413-68" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes     S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-69"><a href="examples.html#cb413-69" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-70"><a href="examples.html#cb413-70" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9     S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-71"><a href="examples.html#cb413-71" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella      S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span>
+<span id="cb413-72"><a href="examples.html#cb413-72" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level   S8005 didn&#39;t pass the threshold (2022-06-17 11:19:53).</span></span></code></pre></div>
 </div>
 <div id="spike-in-samples-remove" class="section level4 hasAnchor" number="14.2.2.3">
 <h4><span class="header-section-number">14.2.2.3</span> Spike-in sample’s remove<a href="examples.html#spike-in-samples-remove" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="examples.html#cb414-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
 <span id="cb414-2"><a href="examples.html#cb414-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
 <span id="cb414-3"><a href="examples.html#cb414-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb414-4"><a href="examples.html#cb414-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
-<span id="cb414-5"><a href="examples.html#cb414-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
+<span id="cb414-4"><a href="examples.html#cb414-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb414-5"><a href="examples.html#cb414-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb414-6"><a href="examples.html#cb414-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 896 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -707,8 +724,8 @@ Figure 14.2: Reads’ track by DADA2 (16s example)
 ## rarefying sample S6065
 ## rarefying sample S6066
 ## rarefying sample S6068</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-233"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-233-1.png" alt="Rarefaction curves (16s example)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-265"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-265-1.png" alt="Rarefaction curves (16s example)" width="576" />
 <p class="caption">
 Figure 14.3: Rarefaction curves (16s example)
 </p>
@@ -771,30 +788,30 @@ Figure 14.3: Rarefaction curves (16s example)
 <p><strong>Notes:</strong> the otu table must be counts matrix (<em>rarefied but not trim counts matrix</em>) when you choose <em>Observed</em> etc measures.</p>
 <div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="examples.html#cb426-1" aria-hidden="true" tabindex="-1"></a>dada_ps_rare_genus_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps=</span>dada2_ps_rare_genus, <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>))</span>
 <span id="cb426-2"><a href="examples.html#cb426-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dada_ps_rare_genus_alpha)</span></code></pre></div>
-<pre><code>##    SampleID Group Observed    Chao1  se.chao1  Shannon
-## 1     S6030    BB       74 74.00000 0.0000000 2.622800
-## 2     S6032    BB       38 38.00000 0.0000000 1.711068
-## 3     S6033    BB       80 80.16667 0.5431879 2.719495
-## 4     S6035    AA       35 35.00000 0.1232013 1.953807
-## 5     S6036    BB       95 95.00000 0.0000000 2.942657
-## 6     S6037    AA       35 35.00000 0.0000000 1.933007
-## 7     S6040    BB       58 58.00000 0.0000000 2.490198
-## 8     S6043    AA       65 65.33333 0.9246628 2.098003
-## 9     S6045    BB       60 60.00000 0.0000000 2.920363
-## 10    S6046    BB       71 71.00000 0.1241166 2.264433
-## 11    S6048    BB       66 66.00000 0.0000000 2.630421
-## 12    S6049    AA       60 60.00000 0.0000000 2.506885
-## 13    S6050    BB       53 53.00000 0.0000000 2.431334
-## 14    S6054    BB       84 84.00000 0.0000000 2.769973
-## 15    S6055    BB       75 75.00000 0.0000000 2.297388
-## 16    S6058    BB       37 37.00000 0.2465985 2.262059
-## 17    S6059    AA       71 71.00000 0.0000000 2.682960
-## 18    S6060    AA       48 48.00000 0.0000000 1.883809
-## 19    S6061    AA       80 80.00000 0.0000000 3.088651
-## 20    S6063    BB       38 38.00000 0.0000000 1.543267
-## 21    S6065    AA       77 77.00000 0.0000000 2.877568
-## 22    S6066    AA       67 67.00000 0.0000000 2.638564
-## 23    S6068    BB       40 40.00000 0.0000000 2.100363</code></pre>
+<pre><code>##    TempRowNames Group Observed    Chao1  se.chao1  Shannon
+## 1         S6030    BB       74 74.00000 0.0000000 2.622800
+## 2         S6032    BB       38 38.00000 0.0000000 1.711068
+## 3         S6033    BB       80 80.16667 0.5431879 2.719495
+## 4         S6035    AA       35 35.00000 0.1232013 1.953807
+## 5         S6036    BB       95 95.00000 0.0000000 2.942657
+## 6         S6037    AA       35 35.00000 0.0000000 1.933007
+## 7         S6040    BB       58 58.00000 0.0000000 2.490198
+## 8         S6043    AA       65 65.33333 0.9246628 2.098003
+## 9         S6045    BB       60 60.00000 0.0000000 2.920363
+## 10        S6046    BB       71 71.00000 0.1241166 2.264433
+## 11        S6048    BB       66 66.00000 0.0000000 2.630421
+## 12        S6049    AA       60 60.00000 0.0000000 2.506885
+## 13        S6050    BB       53 53.00000 0.0000000 2.431334
+## 14        S6054    BB       84 84.00000 0.0000000 2.769973
+## 15        S6055    BB       75 75.00000 0.0000000 2.297388
+## 16        S6058    BB       37 37.00000 0.2465985 2.262059
+## 17        S6059    AA       71 71.00000 0.0000000 2.682960
+## 18        S6060    AA       48 48.00000 0.0000000 1.883809
+## 19        S6061    AA       80 80.00000 0.0000000 3.088651
+## 20        S6063    BB       38 38.00000 0.0000000 1.543267
+## 21        S6065    AA       77 77.00000 0.0000000 2.877568
+## 22        S6066    AA       67 67.00000 0.0000000 2.638564
+## 23        S6068    BB       40 40.00000 0.0000000 2.100363</code></pre>
 <ul>
 <li>visualization</li>
 </ul>
@@ -804,8 +821,8 @@ Figure 14.3: Rarefaction curves (16s example)
 <span id="cb428-4"><a href="examples.html#cb428-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb428-5"><a href="examples.html#cb428-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
 <span id="cb428-6"><a href="examples.html#cb428-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-239"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-239-1.png" alt="Alpha diversity (16s example)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-271"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-271-1.png" alt="Alpha diversity (16s example)" width="576" />
 <p class="caption">
 Figure 14.4: Alpha diversity (16s example)
 </p>
@@ -833,8 +850,8 @@ Figure 14.4: Alpha diversity (16s example)
 ## AA         0.21
 ## BB 0.21063</code></pre>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="examples.html#cb431-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_beta<span class="sc">$</span>BetaDispersion</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-240"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-240-1.png" alt="Beta diversity (16s example)" width="480" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-272"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-272-1.png" alt="Beta diversity (16s example)" width="480" />
 <p class="caption">
 Figure 14.5: Beta diversity (16s example)
 </p>
@@ -863,8 +880,8 @@ Figure 14.5: Beta diversity (16s example)
 <span id="cb434-7"><a href="examples.html#cb434-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>, </span>
 <span id="cb434-8"><a href="examples.html#cb434-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb434-9"><a href="examples.html#cb434-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-242"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-242-1.png" alt="PCoA (16s example)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-274"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-274-1.png" alt="PCoA (16s example)" width="768" />
 <p class="caption">
 Figure 14.6: PCoA (16s example)
 </p>
@@ -884,8 +901,8 @@ Figure 14.6: PCoA (16s example)
 <span id="cb435-3"><a href="examples.html#cb435-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
 <span id="cb435-4"><a href="examples.html#cb435-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb435-5"><a href="examples.html#cb435-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-243"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-243-1.png" alt="Microbial composition (16s example)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-275"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-275-1.png" alt="Microbial composition (16s example)" width="768" />
 <p class="caption">
 Figure 14.7: Microbial composition (16s example)
 </p>
@@ -897,8 +914,8 @@ Figure 14.7: Microbial composition (16s example)
 <span id="cb436-2"><a href="examples.html#cb436-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">phyloseq=</span>dada2_ps_rarefy,</span>
 <span id="cb436-3"><a href="examples.html#cb436-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
 <span id="cb436-4"><a href="examples.html#cb436-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-244"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-244-1.png" alt="Microbial composition (16s example) XVIZ" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-276"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-276-1.png" alt="Microbial composition (16s example) XVIZ" width="768" />
 <p class="caption">
 Figure 14.8: Microbial composition (16s example) XVIZ
 </p>
@@ -909,7 +926,7 @@ Figure 14.8: Microbial composition (16s example) XVIZ
 <ul>
 <li>convert absolute abundance into relative abundance</li>
 </ul>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="examples.html#cb437-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim_rb <span class="ot">&lt;-</span> <span class="fu">normalize</span>(dada2_ps_rare_genus_filter_trim, <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="examples.html#cb437-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim_rb <span class="ot">&lt;-</span> XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_rare_genus_filter_trim, <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span>
 <span id="cb437-2"><a href="examples.html#cb437-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim_rb</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 100 taxa and 23 samples ]
@@ -930,8 +947,8 @@ Figure 14.8: Microbial composition (16s example) XVIZ
 <span id="cb439-10"><a href="examples.html#cb439-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>)</span>
 <span id="cb439-11"><a href="examples.html#cb439-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb439-12"><a href="examples.html#cb439-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-246"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-246-1.png" alt="Core taxa (16s example)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-278"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-278-1.png" alt="Core taxa (16s example)" width="768" />
 <p class="caption">
 Figure 14.9: Core taxa (16s example)
 </p>
@@ -961,44 +978,53 @@ Figure 14.9: Core taxa (16s example)
 <span id="cb442-4"><a href="examples.html#cb442-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb442-5"><a href="examples.html#cb442-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Lda =</span> <span class="dv">0</span>)</span>
 <span id="cb442-6"><a href="examples.html#cb442-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_ps_lefse)</span></code></pre></div>
-<pre><code>##                           TaxaID         Block Enrichment LDA_Score EffectSize Log2FoldChange (Median)\nAA_vs_BB
-## 1              g__Parasutterella 9_AA vs 14_BB         AA -3.662466   2.109795                          4.402050
-## 2     g__Ruminococcaceae_UCG_004 9_AA vs 14_BB         AA -2.797983   2.030471                                NA
-## 3                 g__Odoribacter 9_AA vs 14_BB         BB  2.058258   1.780728                                NA
-## 4             g__Intestinibacter 9_AA vs 14_BB         BB  3.177811   2.358750                                NA
-## 5 g__Clostridium_sensu_stricto_1 9_AA vs 14_BB         BB  3.677589   2.661728                                NA
-## 6                  g__Romboutsia 9_AA vs 14_BB         BB  3.699671   2.988350                         -6.856424
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
-## 1               172.77125           1080.35695             51.09966                        4.481148             3901.0977
-## 2               241.24923           2451.90494              0.00000                        2.342928             1443.2092
-## 3                21.93175            604.99989              0.00000                        2.099583              578.0758
-## 4               383.50911              0.00000           1398.79740                       -1.964554             1883.3386
-## 5               225.11921              0.00000           1173.88222                       -4.746617             5861.9051
-## 6              2189.79596             50.35627           5835.02623                       -3.334490             7094.1306
-##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1          9320.3061           417.3209                    65.22                 88.89                 50.00
-## 2          2822.7139           556.3847                    52.17                 77.78                 35.71
-## 3          1083.9017           252.9020                    52.17                 77.78                 35.71
-## 4           680.6440          2656.4994                    60.87                 22.22                 85.71
-## 5           350.3379          9405.0554                    60.87                 22.22                 85.71
-## 6          1086.1419         10956.4090                    78.26                 55.56                 92.86
-##   Odds Ratio (95% CI)
-## 1     0.0025 (-12;12)
-## 2       0.14 (-3.7;4)
-## 3       0.31 (-2;2.6)
-## 4         3.4 (5.8;1)
-## 5    4900 (5000;4900)
-## 6          76 (85;68)</code></pre>
+<pre><code>##                           TaxaID         Block Enrichment     LDA_Score EffectSize
+## 1              g__Parasutterella 9_AA vs 14_BB         AA -0.0016591047 0.85650392
+## 2             g__Intestinibacter 9_AA vs 14_BB         AA -0.0006908416 1.93147690
+## 3 g__Clostridium_sensu_stricto_1 9_AA vs 14_BB         BB  0.0015775708 1.82912951
+## 4     g__Ruminococcaceae_UCG_004 9_AA vs 14_BB         BB  0.0022272123 0.90316718
+## 5                 g__Odoribacter 9_AA vs 14_BB         BB  0.0024493354 1.51101169
+## 6                  g__Romboutsia 9_AA vs 14_BB         BB  0.0025243365 0.03488245
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                          4.402050            1.727713e-04         1.080357e-03
+## 2                                NA            3.835091e-04         0.000000e+00
+## 3                                NA            2.251192e-04         0.000000e+00
+## 4                                NA            2.412492e-04         2.451905e-03
+## 5                                NA            2.193175e-05         6.049999e-04
+## 6                         -6.856424            2.189796e-03         5.035627e-05
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
+## 1         5.109966e-05                        4.481148          0.0039010977
+## 2         1.398797e-03                       -1.964554          0.0018833386
+## 3         1.173882e-03                       -4.746617          0.0058619051
+## 4         0.000000e+00                        2.342928          0.0014432092
+## 5         0.000000e+00                        2.099583          0.0005780758
+## 6         5.835026e-03                       -3.334490          0.0070941306
+##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA
+## 1       0.0093203061       0.0004173209                    65.22                 88.89
+## 2       0.0006806440       0.0026564994                    60.87                 22.22
+## 3       0.0003503379       0.0094050554                    60.87                 22.22
+## 4       0.0028227139       0.0005563847                    52.17                 77.78
+## 5       0.0010839017       0.0002529020                    52.17                 77.78
+## 6       0.0010861419       0.0109564090                    78.26                 55.56
+##   Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                 50.00     0.0025 (-12;12)
+## 2                 85.71         3.4 (5.8;1)
+## 3                 85.71    4900 (5000;4900)
+## 4                 35.71       0.14 (-3.7;4)
+## 5                 35.71       0.31 (-2;2.6)
+## 6                 92.86          76 (85;68)</code></pre>
 <ul>
 <li>Visualization</li>
 </ul>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="examples.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lefse</span>(</span>
-<span id="cb444-2"><a href="examples.html#cb444-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">da_res =</span> dada2_ps_lefse,</span>
-<span id="cb444-3"><a href="examples.html#cb444-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
-<span id="cb444-4"><a href="examples.html#cb444-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">2</span>,</span>
-<span id="cb444-5"><a href="examples.html#cb444-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-249"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-249-1.png" alt="Lefse analysis (16s example)" width="576" />
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="examples.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="co"># don&#39;t run this code when you do lefse in reality</span></span>
+<span id="cb444-2"><a href="examples.html#cb444-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_lefse<span class="sc">$</span>LDA_Score <span class="ot">&lt;-</span> dada2_ps_lefse<span class="sc">$</span>LDA_Score <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb444-3"><a href="examples.html#cb444-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lefse</span>(</span>
+<span id="cb444-4"><a href="examples.html#cb444-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">da_res =</span> dada2_ps_lefse,</span>
+<span id="cb444-5"><a href="examples.html#cb444-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
+<span id="cb444-6"><a href="examples.html#cb444-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">1</span>,</span>
+<span id="cb444-7"><a href="examples.html#cb444-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-281"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-281-1.png" alt="Lefse analysis (16s example)" width="576" />
 <p class="caption">
 Figure 14.10: Lefse analysis (16s example)
 </p>
@@ -1022,27 +1048,34 @@ Figure 14.10: Lefse analysis (16s example)
 ## 4    g__Agathobacter 9_AA vs 14_BB  Nonsignif 1222.58730      71.0 0.6293971      0.9192573
 ## 5     g__Akkermansia 9_AA vs 14_BB  Nonsignif  104.78571      64.5 0.9304707      0.9718249
 ## 6       g__Alistipes 9_AA vs 14_BB  Nonsignif   23.03175      67.0 0.8239942      0.9445787
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
-## 1                                NA                       0                    0                  0.0
-## 2                        -0.9577718                      30                   26                 50.5
-## 3                                NA                       0                    0                  9.0
-## 4                         0.1524904                     316                  329                296.0
-## 5                                NA                       0                    0                  0.0
-## 6                        -0.1085245                      64                   64                 69.0
-##   Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA Mean Rank Abundance\nBB Occurrence (100%)\n(All)
-## 1                      0.01201252                   12.06                   11.96                    21.74
-## 2                     -0.42227633                    9.94                   13.32                    82.61
-## 3                     -0.43387758                    9.89                   13.36                    43.48
-## 4                      0.17342686                   12.89                   11.43                    65.22
-## 5                      0.03358045                   12.17                   11.89                    21.74
-## 6                      0.08724541                   12.44                   11.71                    73.91
-##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
-## 1                 22.22                 21.43    0.67 (-0.11;1.5)
-## 2                 88.89                 78.57       4.1 (6.8;1.3)
-## 3                 33.33                 50.00        8.6 (13;4.3)
-## 4                 55.56                 71.43     0.39 (-1.4;2.2)
-## 5                 22.22                 21.43      1.5 (2.3;0.71)
-## 6                 77.78                 71.43     0.88 (0.64;1.1)</code></pre>
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                                NA                       0                    0
+## 2                        -0.9577718                      30                   26
+## 3                                NA                       0                    0
+## 4                         0.1524904                     316                  329
+## 5                                NA                       0                    0
+## 6                        -0.1085245                      64                   64
+##   Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA
+## 1                  0.0                      0.01201252                   12.06
+## 2                 50.5                     -0.42227633                    9.94
+## 3                  9.0                     -0.43387758                    9.89
+## 4                296.0                      0.17342686                   12.89
+## 5                  0.0                      0.03358045                   12.17
+## 6                 69.0                      0.08724541                   12.44
+##   Mean Rank Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA
+## 1                   11.96                    21.74                 22.22
+## 2                   13.32                    82.61                 88.89
+## 3                   13.36                    43.48                 33.33
+## 4                   11.43                    65.22                 55.56
+## 5                   11.89                    21.74                 22.22
+## 6                   11.71                    73.91                 77.78
+##   Occurrence (100%)\nBB Odds Ratio (95% CI)
+## 1                 21.43    0.67 (-0.11;1.5)
+## 2                 78.57       4.1 (6.8;1.3)
+## 3                 50.00        8.6 (13;4.3)
+## 4                 71.43     0.39 (-1.4;2.2)
+## 5                 21.43      1.5 (2.3;0.71)
+## 6                 71.43     0.88 (0.64;1.1)</code></pre>
 <ul>
 <li>Volcano</li>
 </ul>
@@ -1055,8 +1088,8 @@ Figure 14.10: Lefse analysis (16s example)
 <span id="cb447-7"><a href="examples.html#cb447-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
 <span id="cb447-8"><a href="examples.html#cb447-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
 <span id="cb447-9"><a href="examples.html#cb447-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">5</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-251"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-251-1.png" alt="Wilcoxon Rank-Sum test (16s example)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-283"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-283-1.png" alt="Wilcoxon Rank-Sum test (16s example)" width="768" />
 <p class="caption">
 Figure 14.11: Wilcoxon Rank-Sum test (16s example)
 </p>
@@ -1222,42 +1255,60 @@ Figure 14.11: Wilcoxon Rank-Sum test (16s example)
 <span id="cb456-29"><a href="examples.html#cb456-29" aria-hidden="true" tabindex="-1"></a><span class="do">## #####Final Evaluation Results of the Spike-in sample#######</span></span>
 <span id="cb456-30"><a href="examples.html#cb456-30" aria-hidden="true" tabindex="-1"></a><span class="do">## The spike-in sample of sequencing dataset didn&#39;t pass the cutoff of the Reference Matrix</span></span>
 <span id="cb456-31"><a href="examples.html#cb456-31" aria-hidden="true" tabindex="-1"></a><span class="do">## ###########################################################</span></span>
-<span id="cb456-32"><a href="examples.html#cb456-32" aria-hidden="true" tabindex="-1"></a><span class="do">##                                         7682    7683    7684    7685     7842     7843     7844     7845     refE</span></span>
-<span id="cb456-33"><a href="examples.html#cb456-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum              10.31563 9.25812 9.69184 7.76031 11.03311 11.61484 12.29030 11.69019  0.01646</span></span>
-<span id="cb456-34"><a href="examples.html#cb456-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis                2.24195 2.24035 1.92015 2.18435  2.43230  2.38180  2.13830  2.41437  0.21061</span></span>
-<span id="cb456-35"><a href="examples.html#cb456-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii         0.65615 0.60153 0.60112 0.62079  0.54147  0.55383  0.58806  0.54655  1.61939</span></span>
-<span id="cb456-36"><a href="examples.html#cb456-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis         7.05426 6.28460 6.57297 6.25448  4.69357  4.80628  4.94943  4.84278  0.04649</span></span>
-<span id="cb456-37"><a href="examples.html#cb456-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron         3.25076 3.31897 3.22418 3.43809  3.35611  3.38323  3.29098  3.30355  1.47422</span></span>
-<span id="cb456-38"><a href="examples.html#cb456-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens              0.56220 0.53249 0.60476 0.47934  0.65513  0.68833  0.76063  0.66896  0.07251</span></span>
-<span id="cb456-39"><a href="examples.html#cb456-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                    2.28581 2.42978 2.25227 2.82904  1.21527  1.16485  1.07160  1.07834  0.01444</span></span>
-<span id="cb456-40"><a href="examples.html#cb456-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans                4.83509 5.02149 5.18268 5.56891  3.34720  3.09877  3.08677  2.70732  0.02775</span></span>
-<span id="cb456-41"><a href="examples.html#cb456-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius             3.54266 3.74119 3.62036 4.01546  2.90216  2.70193  2.61760  2.57348  0.02846</span></span>
-<span id="cb456-42"><a href="examples.html#cb456-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens            1.55648 1.84824 1.91166 1.85273  1.75220  1.74002  1.69811  1.67676  0.32466</span></span>
-<span id="cb456-43"><a href="examples.html#cb456-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                   3.08489 3.27226 3.10904 3.24565  3.51376  3.50063  3.37872  3.42300  0.25782</span></span>
-<span id="cb456-44"><a href="examples.html#cb456-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                    0.04383 0.04183 0.04107 0.02304  0.03853  0.03464  0.03532  0.03597  0.01307</span></span>
-<span id="cb456-45"><a href="examples.html#cb456-45" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                 3.06713 3.20369 3.14979 3.15352  3.24822  3.09280  3.13038  3.06113  2.14684</span></span>
-<span id="cb456-46"><a href="examples.html#cb456-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                     2.03128 1.99619 1.92504 2.15422  1.57638  1.60584  1.57913  1.59224 60.84109</span></span>
-<span id="cb456-47"><a href="examples.html#cb456-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum    6.89310 6.36177 7.39605 5.76804  6.19464  6.47094  7.41615  6.27837  0.15023</span></span>
-<span id="cb456-48"><a href="examples.html#cb456-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.22002 0.26062 0.28058 0.33329  0.07093  0.06778  0.05229  0.04781  0.06825</span></span>
-<span id="cb456-49"><a href="examples.html#cb456-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                       7.33876 7.34799 7.14891 6.47250  8.88190  9.72198  9.72162 10.57600 32.69000</span></span>
-<span id="cb456-50"><a href="examples.html#cb456-50" aria-hidden="true" tabindex="-1"></a><span class="do">##                                            mean                                            Evaluation</span></span>
-<span id="cb456-51"><a href="examples.html#cb456-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum               9.29675556 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-52"><a href="examples.html#cb456-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis                2.01824222 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-53"><a href="examples.html#cb456-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii         0.70321000 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-54"><a href="examples.html#cb456-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis         5.05609556 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-55"><a href="examples.html#cb456-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron         3.11556556 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-56"><a href="examples.html#cb456-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens              0.55826111 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-57"><a href="examples.html#cb456-57" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                    1.59348889 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-58"><a href="examples.html#cb456-58" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans                3.65288667 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-59"><a href="examples.html#cb456-59" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius             2.86036667 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-60"><a href="examples.html#cb456-60" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens            1.59565111 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-61"><a href="examples.html#cb456-61" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                   2.97619667 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-62"><a href="examples.html#cb456-62" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                    0.03414444 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-63"><a href="examples.html#cb456-63" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                 3.02816667 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-64"><a href="examples.html#cb456-64" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                     8.36682333 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-65"><a href="examples.html#cb456-65" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum    5.88103222 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-66"><a href="examples.html#cb456-66" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.15573000 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span>
-<span id="cb456-67"><a href="examples.html#cb456-67" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      11.09996222 refE didn&#39;t pass the threshold (2022-06-16 18:00:46).</span></span></code></pre></div>
+<span id="cb456-32"><a href="examples.html#cb456-32" aria-hidden="true" tabindex="-1"></a><span class="do">##                                         7682    7683    7684    7685     7842     7843</span></span>
+<span id="cb456-33"><a href="examples.html#cb456-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum              10.31563 9.25812 9.69184 7.76031 11.03311 11.61484</span></span>
+<span id="cb456-34"><a href="examples.html#cb456-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis                2.24195 2.24035 1.92015 2.18435  2.43230  2.38180</span></span>
+<span id="cb456-35"><a href="examples.html#cb456-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii         0.65615 0.60153 0.60112 0.62079  0.54147  0.55383</span></span>
+<span id="cb456-36"><a href="examples.html#cb456-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis         7.05426 6.28460 6.57297 6.25448  4.69357  4.80628</span></span>
+<span id="cb456-37"><a href="examples.html#cb456-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron         3.25076 3.31897 3.22418 3.43809  3.35611  3.38323</span></span>
+<span id="cb456-38"><a href="examples.html#cb456-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens              0.56220 0.53249 0.60476 0.47934  0.65513  0.68833</span></span>
+<span id="cb456-39"><a href="examples.html#cb456-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                    2.28581 2.42978 2.25227 2.82904  1.21527  1.16485</span></span>
+<span id="cb456-40"><a href="examples.html#cb456-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans                4.83509 5.02149 5.18268 5.56891  3.34720  3.09877</span></span>
+<span id="cb456-41"><a href="examples.html#cb456-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius             3.54266 3.74119 3.62036 4.01546  2.90216  2.70193</span></span>
+<span id="cb456-42"><a href="examples.html#cb456-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens            1.55648 1.84824 1.91166 1.85273  1.75220  1.74002</span></span>
+<span id="cb456-43"><a href="examples.html#cb456-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                   3.08489 3.27226 3.10904 3.24565  3.51376  3.50063</span></span>
+<span id="cb456-44"><a href="examples.html#cb456-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                    0.04383 0.04183 0.04107 0.02304  0.03853  0.03464</span></span>
+<span id="cb456-45"><a href="examples.html#cb456-45" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                 3.06713 3.20369 3.14979 3.15352  3.24822  3.09280</span></span>
+<span id="cb456-46"><a href="examples.html#cb456-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                     2.03128 1.99619 1.92504 2.15422  1.57638  1.60584</span></span>
+<span id="cb456-47"><a href="examples.html#cb456-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum    6.89310 6.36177 7.39605 5.76804  6.19464  6.47094</span></span>
+<span id="cb456-48"><a href="examples.html#cb456-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.22002 0.26062 0.28058 0.33329  0.07093  0.06778</span></span>
+<span id="cb456-49"><a href="examples.html#cb456-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                       7.33876 7.34799 7.14891 6.47250  8.88190  9.72198</span></span>
+<span id="cb456-50"><a href="examples.html#cb456-50" aria-hidden="true" tabindex="-1"></a><span class="do">##                                         7844     7845     refE        mean</span></span>
+<span id="cb456-51"><a href="examples.html#cb456-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum              12.29030 11.69019  0.01646  9.29675556</span></span>
+<span id="cb456-52"><a href="examples.html#cb456-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis                2.13830  2.41437  0.21061  2.01824222</span></span>
+<span id="cb456-53"><a href="examples.html#cb456-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii         0.58806  0.54655  1.61939  0.70321000</span></span>
+<span id="cb456-54"><a href="examples.html#cb456-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis         4.94943  4.84278  0.04649  5.05609556</span></span>
+<span id="cb456-55"><a href="examples.html#cb456-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron         3.29098  3.30355  1.47422  3.11556556</span></span>
+<span id="cb456-56"><a href="examples.html#cb456-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens              0.76063  0.66896  0.07251  0.55826111</span></span>
+<span id="cb456-57"><a href="examples.html#cb456-57" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                    1.07160  1.07834  0.01444  1.59348889</span></span>
+<span id="cb456-58"><a href="examples.html#cb456-58" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans                3.08677  2.70732  0.02775  3.65288667</span></span>
+<span id="cb456-59"><a href="examples.html#cb456-59" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius             2.61760  2.57348  0.02846  2.86036667</span></span>
+<span id="cb456-60"><a href="examples.html#cb456-60" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens            1.69811  1.67676  0.32466  1.59565111</span></span>
+<span id="cb456-61"><a href="examples.html#cb456-61" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                   3.37872  3.42300  0.25782  2.97619667</span></span>
+<span id="cb456-62"><a href="examples.html#cb456-62" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                    0.03532  0.03597  0.01307  0.03414444</span></span>
+<span id="cb456-63"><a href="examples.html#cb456-63" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                 3.13038  3.06113  2.14684  3.02816667</span></span>
+<span id="cb456-64"><a href="examples.html#cb456-64" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                     1.57913  1.59224 60.84109  8.36682333</span></span>
+<span id="cb456-65"><a href="examples.html#cb456-65" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum    7.41615  6.27837  0.15023  5.88103222</span></span>
+<span id="cb456-66"><a href="examples.html#cb456-66" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.05229  0.04781  0.06825  0.15573000</span></span>
+<span id="cb456-67"><a href="examples.html#cb456-67" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                       9.72162 10.57600 32.69000 11.09996222</span></span>
+<span id="cb456-68"><a href="examples.html#cb456-68" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                                                Evaluation</span></span>
+<span id="cb456-69"><a href="examples.html#cb456-69" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum              refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-70"><a href="examples.html#cb456-70" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis               refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-71"><a href="examples.html#cb456-71" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii        refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-72"><a href="examples.html#cb456-72" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis        refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-73"><a href="examples.html#cb456-73" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron        refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-74"><a href="examples.html#cb456-74" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens             refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-75"><a href="examples.html#cb456-75" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                   refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-76"><a href="examples.html#cb456-76" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans               refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-77"><a href="examples.html#cb456-77" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius            refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-78"><a href="examples.html#cb456-78" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens           refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-79"><a href="examples.html#cb456-79" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                  refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-80"><a href="examples.html#cb456-80" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                   refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-81"><a href="examples.html#cb456-81" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-82"><a href="examples.html#cb456-82" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                    refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-83"><a href="examples.html#cb456-83" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum   refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-84"><a href="examples.html#cb456-84" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span>
+<span id="cb456-85"><a href="examples.html#cb456-85" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      refE didn&#39;t pass the threshold (2022-06-17 11:20:09).</span></span></code></pre></div>
 <p>The spike-in samples didn’t pass the cutoff and failed to add the the Reference Matrix.</p>
 </div>
 <div id="spike-in-samples-remove-1" class="section level4 hasAnchor" number="14.3.2.2">
@@ -1265,8 +1316,9 @@ Figure 14.11: Wilcoxon Rank-Sum test (16s example)
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="examples.html#cb457-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
 <span id="cb457-2"><a href="examples.html#cb457-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> metaphlan2_ps,</span>
 <span id="cb457-3"><a href="examples.html#cb457-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb457-4"><a href="examples.html#cb457-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
-<span id="cb457-5"><a href="examples.html#cb457-5" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS</span></code></pre></div>
+<span id="cb457-4"><a href="examples.html#cb457-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb457-5"><a href="examples.html#cb457-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb457-6"><a href="examples.html#cb457-6" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 326 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -1315,13 +1367,13 @@ Figure 14.11: Wilcoxon Rank-Sum test (16s example)
 <p><strong>Notes:</strong> choosing the measures (<em>Shannon, Simpson and InvSimpson</em>) only for relative abundance.</p>
 <div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="examples.html#cb465-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps=</span>metaphlan2_ps_remove_BRS, <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Simpson&quot;</span>, <span class="st">&quot;InvSimpson&quot;</span>))</span>
 <span id="cb465-2"><a href="examples.html#cb465-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_genus_alpha)</span></code></pre></div>
-<pre><code>##   SampleID Group phynotype  Shannon   Simpson InvSimpson
-## 1       s1    BB      0.00 2.876002 0.9108857  11.221549
-## 2       s2    AA      2.50 2.045392 0.8105742   5.279111
-## 3       s3    BB      0.00 3.441176 0.9439371  17.837114
-## 4       s4    AA      1.25 2.746917 0.8290768   5.850579
-## 5       s5    AA     30.00 1.450722 0.6412178   2.787207
-## 6       s6    AA     15.00 2.619951 0.8950369   9.527154</code></pre>
+<pre><code>##   TempRowNames Group phynotype  Shannon   Simpson InvSimpson
+## 1           s1    BB      0.00 2.876002 0.9108857  11.221549
+## 2           s2    AA      2.50 2.045392 0.8105742   5.279111
+## 3           s3    BB      0.00 3.441176 0.9439371  17.837114
+## 4           s4    AA      1.25 2.746917 0.8290768   5.850579
+## 5           s5    AA     30.00 1.450722 0.6412178   2.787207
+## 6           s6    AA     15.00 2.619951 0.8950369   9.527154</code></pre>
 <ul>
 <li>visualization</li>
 </ul>
@@ -1331,8 +1383,8 @@ Figure 14.11: Wilcoxon Rank-Sum test (16s example)
 <span id="cb467-4"><a href="examples.html#cb467-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb467-5"><a href="examples.html#cb467-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
 <span id="cb467-6"><a href="examples.html#cb467-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-261"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-261-1.png" alt="Alpha diversity (MGS example)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-293"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-293-1.png" alt="Alpha diversity (MGS example)" width="576" />
 <p class="caption">
 Figure 14.12: Alpha diversity (MGS example)
 </p>
@@ -1360,8 +1412,8 @@ Figure 14.12: Alpha diversity (MGS example)
 ## AA         0.37
 ## BB 0.36968</code></pre>
 <div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="examples.html#cb470-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_beta<span class="sc">$</span>BetaDispersion</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-262"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-262-1.png" alt="Beta diversity (MGS example)" width="480" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-294"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-294-1.png" alt="Beta diversity (MGS example)" width="480" />
 <p class="caption">
 Figure 14.13: Beta diversity (MGS example)
 </p>
@@ -1394,8 +1446,8 @@ Figure 14.13: Beta diversity (MGS example)
 <span id="cb473-11"><a href="examples.html#cb473-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">sidelinechart =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb473-12"><a href="examples.html#cb473-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">circle_type =</span> <span class="st">&quot;ellipse_line&quot;</span>,</span>
 <span id="cb473-13"><a href="examples.html#cb473-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">sideboxplot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-264"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-264-1.png" alt="PCoA (MGS example)" width="480" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-296"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-296-1.png" alt="PCoA (MGS example)" width="480" />
 <p class="caption">
 Figure 14.14: PCoA (MGS example)
 </p>
@@ -1414,8 +1466,8 @@ Figure 14.14: PCoA (MGS example)
 <span id="cb474-3"><a href="examples.html#cb474-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
 <span id="cb474-4"><a href="examples.html#cb474-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
 <span id="cb474-5"><a href="examples.html#cb474-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-265"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-265-1.png" alt="Microbial composition (MGS example)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-297"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-297-1.png" alt="Microbial composition (MGS example)" width="768" />
 <p class="caption">
 Figure 14.15: Microbial composition (MGS example)
 </p>
@@ -1427,8 +1479,8 @@ Figure 14.15: Microbial composition (MGS example)
 <span id="cb475-2"><a href="examples.html#cb475-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">phyloseq =</span> metaphlan2_ps_species,</span>
 <span id="cb475-3"><a href="examples.html#cb475-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
 <span id="cb475-4"><a href="examples.html#cb475-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-266"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-266-1.png" alt="Microbial composition (MGS) XVIZ" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-298"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-298-1.png" alt="Microbial composition (MGS) XVIZ" width="768" />
 <p class="caption">
 Figure 14.16: Microbial composition (MGS) XVIZ
 </p>
@@ -1452,8 +1504,8 @@ Figure 14.16: Microbial composition (MGS) XVIZ
 <span id="cb476-11"><a href="examples.html#cb476-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
 <span id="cb476-12"><a href="examples.html#cb476-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
 <span id="cb476-13"><a href="examples.html#cb476-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-267"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-267-1.png" alt="Core taxa (MGS example)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-299"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-299-1.png" alt="Core taxa (MGS example)" width="768" />
 <p class="caption">
 Figure 14.17: Core taxa (MGS example)
 </p>
@@ -1464,12 +1516,15 @@ Figure 14.17: Core taxa (MGS example)
 </ul>
 <div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="examples.html#cb477-1" aria-hidden="true" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(metaphlan2_ps_species_filter_trim, <span class="at">detection =</span> <span class="fl">0.001</span>, <span class="at">prevalence =</span> <span class="fl">0.5</span>)</span>
 <span id="cb477-2"><a href="examples.html#cb477-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
-<pre><code>##  [1] &quot;s__Bacteroides_ovatus&quot;                &quot;s__Bacteroides_thetaiotaomicron&quot;      &quot;s__Bacteroides_uniformis&quot;            
-##  [4] &quot;s__Bacteroides_vulgatus&quot;              &quot;s__Bifidobacterium_longum&quot;            &quot;s__Bifidobacterium_pseudocatenulatum&quot;
-##  [7] &quot;s__Collinsella_aerofaciens&quot;           &quot;s__Escherichia_coli&quot;                  &quot;s__Eubacterium_eligens&quot;              
-## [10] &quot;s__Eubacterium_hallii&quot;                &quot;s__Faecalibacterium_prausnitzii&quot;      &quot;s__Roseburia_inulinivorans&quot;          
-## [13] &quot;s__Ruminococcus_gnavus&quot;               &quot;s__Ruminococcus_obeum&quot;                &quot;s__Ruminococcus_sp_5_1_39BFAA&quot;       
-## [16] &quot;s__Ruminococcus_torques&quot;              &quot;s__Streptococcus_salivarius&quot;</code></pre>
+<pre><code>##  [1] &quot;s__Bacteroides_ovatus&quot;                &quot;s__Bacteroides_thetaiotaomicron&quot;     
+##  [3] &quot;s__Bacteroides_uniformis&quot;             &quot;s__Bacteroides_vulgatus&quot;             
+##  [5] &quot;s__Bifidobacterium_longum&quot;            &quot;s__Bifidobacterium_pseudocatenulatum&quot;
+##  [7] &quot;s__Collinsella_aerofaciens&quot;           &quot;s__Escherichia_coli&quot;                 
+##  [9] &quot;s__Eubacterium_eligens&quot;               &quot;s__Eubacterium_hallii&quot;               
+## [11] &quot;s__Faecalibacterium_prausnitzii&quot;      &quot;s__Roseburia_inulinivorans&quot;          
+## [13] &quot;s__Ruminococcus_gnavus&quot;               &quot;s__Ruminococcus_obeum&quot;               
+## [15] &quot;s__Ruminococcus_sp_5_1_39BFAA&quot;        &quot;s__Ruminococcus_torques&quot;             
+## [17] &quot;s__Streptococcus_salivarius&quot;</code></pre>
 <p><strong>Result</strong>:</p>
 <p>17 species passed the threshold of detection and prevalence which we choose.</p>
 </div>
@@ -1488,44 +1543,54 @@ Figure 14.17: Core taxa (MGS example)
 <span id="cb479-4"><a href="examples.html#cb479-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb479-5"><a href="examples.html#cb479-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Lda =</span> <span class="dv">0</span>)</span>
 <span id="cb479-6"><a href="examples.html#cb479-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_lefse)</span></code></pre></div>
-<pre><code>##                            TaxaID         Block Enrichment LDA_Score EffectSize Log2FoldChange (Median)\nAA_vs_BB
-## 1 s__Bacteroides_thetaiotaomicron 7_AA vs 15_BB         AA -4.446151   3.930394                          5.381835
-## 2        s__Megamonas_rupellensis 7_AA vs 15_BB         AA -2.976634   2.254496                                NA
-## 3            s__Eggerthella_lenta 7_AA vs 15_BB         BB  3.149119   1.003763                                NA
-## 4       s__Clostridium_bartlettii 7_AA vs 15_BB         BB  3.175733   1.619116                                NA
-## 5            s__Dorea_longicatena 7_AA vs 15_BB         BB  3.692214   3.343097                                NA
-## 6           s__Ruminococcus_obeum 7_AA vs 15_BB         BB  3.725663   3.116214                         -5.093080
-##   Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
-## 1              3626.62577           46672.3795            1119.3508                        3.179359            24351.5081
-## 2                 0.00000             696.1790               0.0000                        5.427947             1263.4286
-## 3                48.14304               0.0000             199.7106                       -2.851660              211.9311
-## 4               301.53989               0.0000             501.0011                       -3.798289             1379.2627
-## 5               830.79870               0.0000            9534.0308                       -7.282836             7575.9073
-## 6              8098.06079             360.8439           12316.5574                       -2.669016            10704.5953
-##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA Occurrence (100%)\nBB
-## 1        61892.94549         6832.17069                    90.91                100.00                 86.67
-## 2         3782.49859           87.86256                    31.82                 57.14                 20.00
-## 3           40.44677          291.95711                    54.55                 28.57                 66.67
-## 4          140.68597         1957.26519                    68.18                 42.86                 80.00
-## 5           71.14010        11078.13206                    63.64                 42.86                 73.33
-## 6         2299.83082        14626.81876                    90.91                 71.43                100.00
-##         Odds Ratio (95% CI)
-## 1          0.058 (-5.5;5.6)
-## 2          0.00044 (-15;15)
-## 3               10 (15;5.9)
-## 4             620 (630;610)
-## 5 7.8e+16 (7.8e+16;7.8e+16)
-## 6                22 (28;16)</code></pre>
+<pre><code>##                            TaxaID         Block Enrichment     LDA_Score EffectSize
+## 1 s__Bacteroides_thetaiotaomicron 7_AA vs 15_BB         AA -0.0116335575  1.7060104
+## 2            s__Dorea_longicatena 7_AA vs 15_BB         BB  0.0001815435  1.8150746
+## 3       s__Clostridium_bartlettii 7_AA vs 15_BB         BB  0.0002684431  0.5568581
+## 4            s__Eggerthella_lenta 7_AA vs 15_BB         BB  0.0007727734  1.3782640
+## 5        s__Megamonas_rupellensis 7_AA vs 15_BB         BB  0.0015165676  0.6588019
+## 6           s__Eubacterium_hallii 7_AA vs 15_BB         BB  0.0022815951  0.9344746
+##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA
+## 1                          5.381835            3.626626e-03          0.046672380
+## 2                                NA            8.307987e-04          0.000000000
+## 3                                NA            3.015399e-04          0.000000000
+## 4                                NA            4.814304e-05          0.000000000
+## 5                                NA            0.000000e+00          0.000696179
+## 6                                NA            4.971583e-03          0.000000000
+##   Median Abundance\nBB Log2FoldChange (Mean)\nAA_vs_BB Mean Abundance\n(All)
+## 1         0.0011193508                        3.179359          0.0243515081
+## 2         0.0095340308                       -7.282836          0.0075759073
+## 3         0.0005010011                       -3.798289          0.0013792627
+## 4         0.0001997106                       -2.851660          0.0002119311
+## 5         0.0000000000                        5.427947          0.0012634286
+## 6         0.0122431283                       -3.926701          0.0107446245
+##   Mean Abundance\nAA Mean Abundance\nBB Occurrence (100%)\n(All) Occurrence (100%)\nAA
+## 1       6.189295e-02       6.832171e-03                    90.91                100.00
+## 2       7.114010e-05       1.107813e-02                    63.64                 42.86
+## 3       1.406860e-04       1.957265e-03                    68.18                 42.86
+## 4       4.044677e-05       2.919571e-04                    54.55                 28.57
+## 5       3.782499e-03       8.786256e-05                    31.82                 57.14
+## 6       1.005405e-03       1.528959e-02                    63.64                 42.86
+##   Occurrence (100%)\nBB       Odds Ratio (95% CI)
+## 1                 86.67          0.058 (-5.5;5.6)
+## 2                 73.33 7.8e+16 (7.8e+16;7.8e+16)
+## 3                 80.00             620 (630;610)
+## 4                 66.67               10 (15;5.9)
+## 5                 20.00          0.00044 (-15;15)
+## 6                 73.33             170 (180;160)</code></pre>
 <ul>
 <li>Visualization</li>
 </ul>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="examples.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lefse</span>(</span>
-<span id="cb481-2"><a href="examples.html#cb481-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">da_res =</span> metaphlan2_ps_lefse,</span>
-<span id="cb481-3"><a href="examples.html#cb481-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
-<span id="cb481-4"><a href="examples.html#cb481-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">2</span>,</span>
-<span id="cb481-5"><a href="examples.html#cb481-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-270"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-270-1.png" alt="Lefse analysis (MGS example)" width="768" />
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="examples.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="co"># don&#39;t run this code when you do lefse in reality</span></span>
+<span id="cb481-2"><a href="examples.html#cb481-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_lefse<span class="sc">$</span>LDA_Score <span class="ot">&lt;-</span> metaphlan2_ps_lefse<span class="sc">$</span>LDA_Score <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb481-3"><a href="examples.html#cb481-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb481-4"><a href="examples.html#cb481-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lefse</span>(</span>
+<span id="cb481-5"><a href="examples.html#cb481-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">da_res =</span> metaphlan2_ps_lefse,</span>
+<span id="cb481-6"><a href="examples.html#cb481-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
+<span id="cb481-7"><a href="examples.html#cb481-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
+<span id="cb481-8"><a href="examples.html#cb481-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-302"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-302-1.png" alt="Lefse analysis (MGS example)" width="768" />
 <p class="caption">
 Figure 14.18: Lefse analysis (MGS example)
 </p>
@@ -1542,27 +1607,34 @@ Figure 14.18: Lefse analysis (MGS example)
 <span id="cb482-4"><a href="examples.html#cb482-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
 <span id="cb482-5"><a href="examples.html#cb482-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb482-6"><a href="examples.html#cb482-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_wilcox)</span></code></pre></div>
-<pre><code>##                      TaxaID         Block Enrichment EffectSize Statistic    Pvalue AdjustedPvalue
-## 1   s__Alistipes_finegoldii 7_AA vs 15_BB  Nonsignif  1.0408198      73.5 0.1145448      0.4903434
-## 2 s__Alistipes_indistinctus 7_AA vs 15_BB  Nonsignif  0.6121359      66.0 0.2677815      0.7432693
-## 3  s__Alistipes_onderdonkii 7_AA vs 15_BB  Nonsignif  0.9447780      63.5 0.4370143      0.8178636
-## 4   s__Alistipes_putredinis 7_AA vs 15_BB  Nonsignif  1.2379874      54.0 0.9409918      1.0000000
-## 5 s__Alistipes_senegalensis 7_AA vs 15_BB  Nonsignif  0.2194185      53.5 0.9641827      1.0000000
-## 6       s__Alistipes_shahii 7_AA vs 15_BB  Nonsignif  0.8582355      71.0 0.1751506      0.6286778
-##   Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All) Median Abundance\nAA Median Abundance\nBB
-## 1                                NA              0.00000000            0.0027362              0.0e+00
-## 2                                NA              0.00000000            0.0000000              0.0e+00
-## 3                          5.819157              0.00000825            0.0002823              5.0e-06
-## 4                                NA              0.00016915            0.0000000              2.2e-04
-## 5                                NA              0.00000000            0.0000000              0.0e+00
-## 6                                NA              0.00012580            0.0062474              0.0e+00
-##   Log2FoldChange (Rank)\nAA_vs_BB Mean Rank Abundance\nAA Mean Rank Abundance\nBB Occurrence (100%)\n(All)
-## 1                      0.52169761                   14.50                   10.10                    45.45
-## 2                      0.34139504                   13.43                   10.60                    31.82
-## 3                      0.27924089                   13.07                   10.77                    54.55
-## 4                      0.03870725                   11.71                   11.40                    54.55
-## 5                      0.02626565                   11.64                   11.43                    27.27
-## 6                      0.46134594                   14.14                   10.27                    50.00
+<pre><code>##                      TaxaID         Block Enrichment EffectSize Statistic    Pvalue
+## 1   s__Alistipes_finegoldii 7_AA vs 15_BB  Nonsignif  1.0408198      73.5 0.1145448
+## 2 s__Alistipes_indistinctus 7_AA vs 15_BB  Nonsignif  0.6121359      66.0 0.2677815
+## 3  s__Alistipes_onderdonkii 7_AA vs 15_BB  Nonsignif  0.9447780      63.5 0.4370143
+## 4   s__Alistipes_putredinis 7_AA vs 15_BB  Nonsignif  1.2379874      54.0 0.9409918
+## 5 s__Alistipes_senegalensis 7_AA vs 15_BB  Nonsignif  0.2194185      53.5 0.9641827
+## 6       s__Alistipes_shahii 7_AA vs 15_BB  Nonsignif  0.8582355      71.0 0.1751506
+##   AdjustedPvalue Log2FoldChange (Median)\nAA_vs_BB Median Abundance\n(All)
+## 1      0.4903434                                NA              0.00000000
+## 2      0.7432693                                NA              0.00000000
+## 3      0.8178636                          5.819157              0.00000825
+## 4      1.0000000                                NA              0.00016915
+## 5      1.0000000                                NA              0.00000000
+## 6      0.6286778                                NA              0.00012580
+##   Median Abundance\nAA Median Abundance\nBB Log2FoldChange (Rank)\nAA_vs_BB
+## 1            0.0027362              0.0e+00                      0.52169761
+## 2            0.0000000              0.0e+00                      0.34139504
+## 3            0.0002823              5.0e-06                      0.27924089
+## 4            0.0000000              2.2e-04                      0.03870725
+## 5            0.0000000              0.0e+00                      0.02626565
+## 6            0.0062474              0.0e+00                      0.46134594
+##   Mean Rank Abundance\nAA Mean Rank Abundance\nBB Occurrence (100%)\n(All)
+## 1                   14.50                   10.10                    45.45
+## 2                   13.43                   10.60                    31.82
+## 3                   13.07                   10.77                    54.55
+## 4                   11.71                   11.40                    54.55
+## 5                   11.64                   11.43                    27.27
+## 6                   14.14                   10.27                    50.00
 ##   Occurrence (100%)\nAA Occurrence (100%)\nBB Odds Ratio (95% CI)
 ## 1                 57.14                 40.00     0.0028 (-12;12)
 ## 2                 42.86                 26.67    0.067 (-5.2;5.4)
@@ -1582,8 +1654,8 @@ Figure 14.18: Lefse analysis (MGS example)
 <span id="cb484-7"><a href="examples.html#cb484-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
 <span id="cb484-8"><a href="examples.html#cb484-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
 <span id="cb484-9"><a href="examples.html#cb484-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">5</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-272"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-272-1.png" alt="Wilcoxon Rank-Sum test (MGS example)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-304"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-304-1.png" alt="Wilcoxon Rank-Sum test (MGS example)" width="768" />
 <p class="caption">
 Figure 14.19: Wilcoxon Rank-Sum test (MGS example)
 </p>
@@ -1608,49 +1680,74 @@ Figure 14.19: Wilcoxon Rank-Sum test (MGS example)
 ## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] RColorBrewer_1.1-2          viridis_0.6.2               viridisLite_0.4.0           picante_1.8.2              
-##  [5] nlme_3.1-155                vegan_2.5-7                 lattice_0.20-45             permute_0.9-7              
-##  [9] ape_5.6-2                   conflicted_1.1.0            SummarizedExperiment_1.24.0 Biobase_2.54.0             
-## [13] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1         IRanges_2.28.0              S4Vectors_0.32.3           
-## [17] BiocGenerics_0.40.0         MatrixGenerics_1.6.0        matrixStats_0.61.0          ggpubr_0.4.0               
-## [21] ggplot2_3.3.5               phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                
+##  [1] RColorBrewer_1.1-2          viridis_0.6.2               viridisLite_0.4.0          
+##  [4] picante_1.8.2               nlme_3.1-155                vegan_2.5-7                
+##  [7] lattice_0.20-45             permute_0.9-7               ape_5.6-2                  
+## [10] conflicted_1.1.0            SummarizedExperiment_1.24.0 Biobase_2.54.0             
+## [13] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1         IRanges_2.28.0             
+## [16] S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
+## [19] matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5              
+## [22] phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                
 ## [25] XMAS2_2.1.4                
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] utf8_1.2.2             reticulate_1.24        tidyselect_1.1.2       RSQLite_2.2.10         AnnotationDbi_1.56.2  
-##   [6] htmlwidgets_1.5.4      grid_4.1.2             BiocParallel_1.28.3    Rtsne_0.15             munsell_0.5.0         
-##  [11] units_0.8-0            codetools_0.2-18       DT_0.21                umap_0.2.8.0           withr_2.5.0           
-##  [16] colorspace_2.0-3       highr_0.9              knitr_1.37             rstudioapi_0.13        pscl_1.5.5            
-##  [21] robustbase_0.93-9      bayesm_3.1-4           ggsignif_0.6.3         labeling_0.4.2         mbzinb_0.2            
-##  [26] GenomeInfoDbData_1.2.7 pheatmap_1.0.12        bit64_4.0.5            farver_2.1.0           rhdf5_2.38.1          
-##  [31] vctrs_0.3.8            generics_0.1.2         TH.data_1.1-0          xfun_0.30              R6_2.5.1              
-##  [36] RVenn_1.1.0            locfit_1.5-9.5         RcppZiggurat_0.1.6     bitops_1.0-7           rhdf5filters_1.6.0    
-##  [41] microbiome_1.16.0      cachem_1.0.6           DelayedArray_0.20.0    assertthat_0.2.1       scales_1.1.1          
-##  [46] multcomp_1.4-18        nnet_7.3-17            gtable_0.3.0           sandwich_3.0-1         rlang_1.0.2           
-##  [51] genefilter_1.76.0      splines_4.1.2          protoclust_1.6.3       rstatix_0.7.0          broom_0.7.12          
-##  [56] checkmate_2.0.0        yaml_2.3.5             reshape2_1.4.4         abind_1.4-5            crosstalk_1.2.0       
-##  [61] backports_1.4.1        Rfast_2.0.6            qvalue_2.26.0          Hmisc_4.6-0            DiagrammeR_1.0.9      
-##  [66] tensorA_0.36.2         tools_4.1.2            bookdown_0.24          zCompositions_1.4.0    ellipsis_0.3.2        
-##  [71] gplots_3.1.1           jquerylib_0.1.4        biomformat_1.22.0      proxy_0.4-26           Rcpp_1.0.8.2          
-##  [76] plyr_1.8.6             visNetwork_2.1.0       base64enc_0.1-3        zlibbioc_1.40.0        classInt_0.4-3        
-##  [81] purrr_0.3.4            RCurl_1.98-1.6         rpart_4.1.16           openssl_2.0.0          Wrench_1.12.0         
-##  [86] cowplot_1.1.1          zoo_1.8-9              ggrepel_0.9.1          cluster_2.1.2          magrittr_2.0.2        
-##  [91] data.table_1.14.2      RSpectra_0.16-0        truncnorm_1.0-8        mvtnorm_1.1-3          ALDEx2_1.26.0         
-##  [96] RAIDA_1.0              evaluate_0.15          xtable_1.8-4           XML_3.99-0.9           jpeg_0.1-9            
-## [101] gridExtra_2.3          shape_1.4.6            compiler_4.1.2         KernSmooth_2.23-20     crayon_1.5.0          
-## [106] htmltools_0.5.2        mgcv_1.8-39            ggVennDiagram_1.2.1    Formula_1.2-4          tidyr_1.2.0           
-## [111] geneplotter_1.72.0     libcoin_1.0-9          DBI_1.1.2              corrplot_0.92          MASS_7.3-55           
-## [116] sf_1.0-7               compositions_2.0-4     Matrix_1.4-0           ade4_1.7-18            car_3.0-12            
-## [121] cli_3.2.0              parallel_4.1.2         igraph_1.2.11          pkgconfig_2.0.3        coin_1.4-2            
-## [126] foreign_0.8-82         foreach_1.5.2          annotate_1.72.0        bslib_0.3.1            multtest_2.50.0       
-## [131] XVector_0.34.0         NADA_1.6-1.1           stringr_1.4.0          digest_0.6.29          Biostrings_2.62.0     
-## [136] rmarkdown_2.13         htmlTable_2.4.0        edgeR_3.36.0           gtools_3.9.2           modeltools_0.2-23     
-## [141] lifecycle_1.0.1        jsonlite_1.8.0         Rhdf5lib_1.16.0        carData_3.0-5          askpass_1.1           
-## [146] limma_3.50.1           fansi_1.0.2            pillar_1.7.0           ggsci_2.9              DEoptimR_1.0-10       
-## [151] KEGGREST_1.34.0        fastmap_1.1.0          httr_1.4.2             survival_3.3-1         glue_1.6.2            
-## [156] png_0.1-7              iterators_1.0.14       glmnet_4.1-3           bit_4.0.4              class_7.3-20          
-## [161] stringi_1.7.6          sass_0.4.0             metagenomeSeq_1.36.0   blob_1.2.2             DESeq2_1.34.0         
-## [166] latticeExtra_0.6-29    caTools_1.18.2         memoise_2.0.1          e1071_1.7-9</code></pre>
+##   [1] utf8_1.2.2             reticulate_1.24        tidyselect_1.1.2      
+##   [4] RSQLite_2.2.10         AnnotationDbi_1.56.2   htmlwidgets_1.5.4     
+##   [7] grid_4.1.2             BiocParallel_1.28.3    Rtsne_0.15            
+##  [10] munsell_0.5.0          units_0.8-0            codetools_0.2-18      
+##  [13] DT_0.21                umap_0.2.8.0           withr_2.5.0           
+##  [16] colorspace_2.0-3       highr_0.9              knitr_1.37            
+##  [19] rstudioapi_0.13        pscl_1.5.5             robustbase_0.93-9     
+##  [22] bayesm_3.1-4           ggsignif_0.6.3         labeling_0.4.2        
+##  [25] mbzinb_0.2             GenomeInfoDbData_1.2.7 pheatmap_1.0.12       
+##  [28] bit64_4.0.5            farver_2.1.0           rhdf5_2.38.1          
+##  [31] vctrs_0.3.8            generics_0.1.2         TH.data_1.1-0         
+##  [34] xfun_0.30              R6_2.5.1               RVenn_1.1.0           
+##  [37] locfit_1.5-9.5         RcppZiggurat_0.1.6     bitops_1.0-7          
+##  [40] rhdf5filters_1.6.0     microbiome_1.16.0      cachem_1.0.6          
+##  [43] DelayedArray_0.20.0    assertthat_0.2.1       scales_1.1.1          
+##  [46] multcomp_1.4-18        nnet_7.3-17            gtable_0.3.0          
+##  [49] sandwich_3.0-1         rlang_1.0.2            genefilter_1.76.0     
+##  [52] splines_4.1.2          protoclust_1.6.3       rstatix_0.7.0         
+##  [55] broom_0.7.12           checkmate_2.0.0        yaml_2.3.5            
+##  [58] reshape2_1.4.4         abind_1.4-5            crosstalk_1.2.0       
+##  [61] backports_1.4.1        Rfast_2.0.6            qvalue_2.26.0         
+##  [64] Hmisc_4.6-0            DiagrammeR_1.0.9       tensorA_0.36.2        
+##  [67] tools_4.1.2            bookdown_0.24          zCompositions_1.4.0   
+##  [70] ellipsis_0.3.2         gplots_3.1.1           jquerylib_0.1.4       
+##  [73] biomformat_1.22.0      proxy_0.4-26           Rcpp_1.0.8.2          
+##  [76] plyr_1.8.6             base64enc_0.1-3        visNetwork_2.1.0      
+##  [79] zlibbioc_1.40.0        classInt_0.4-3         purrr_0.3.4           
+##  [82] RCurl_1.98-1.6         rpart_4.1.16           openssl_2.0.0         
+##  [85] Wrench_1.12.0          cowplot_1.1.1          zoo_1.8-9             
+##  [88] ggrepel_0.9.1          cluster_2.1.2          magrittr_2.0.2        
+##  [91] data.table_1.14.2      RSpectra_0.16-0        truncnorm_1.0-8       
+##  [94] mvtnorm_1.1-3          ALDEx2_1.26.0          RAIDA_1.0             
+##  [97] evaluate_0.15          xtable_1.8-4           XML_3.99-0.9          
+## [100] jpeg_0.1-9             gridExtra_2.3          shape_1.4.6           
+## [103] compiler_4.1.2         KernSmooth_2.23-20     crayon_1.5.0          
+## [106] htmltools_0.5.2        mgcv_1.8-39            ggVennDiagram_1.2.1   
+## [109] Formula_1.2-4          tidyr_1.2.0            geneplotter_1.72.0    
+## [112] libcoin_1.0-9          DBI_1.1.2              corrplot_0.92         
+## [115] MASS_7.3-55            sf_1.0-7               compositions_2.0-4    
+## [118] Matrix_1.4-0           ade4_1.7-18            car_3.0-12            
+## [121] cli_3.2.0              parallel_4.1.2         igraph_1.2.11         
+## [124] pkgconfig_2.0.3        coin_1.4-2             foreign_0.8-82        
+## [127] foreach_1.5.2          annotate_1.72.0        bslib_0.3.1           
+## [130] multtest_2.50.0        XVector_0.34.0         NADA_1.6-1.1          
+## [133] stringr_1.4.0          digest_0.6.29          Biostrings_2.62.0     
+## [136] rmarkdown_2.13         htmlTable_2.4.0        edgeR_3.36.0          
+## [139] gtools_3.9.2           modeltools_0.2-23      lifecycle_1.0.1       
+## [142] jsonlite_1.8.0         Rhdf5lib_1.16.0        carData_3.0-5         
+## [145] askpass_1.1            limma_3.50.1           fansi_1.0.2           
+## [148] pillar_1.7.0           ggsci_2.9              DEoptimR_1.0-10       
+## [151] KEGGREST_1.34.0        fastmap_1.1.0          httr_1.4.2            
+## [154] survival_3.3-1         glue_1.6.2             png_0.1-7             
+## [157] iterators_1.0.14       glmnet_4.1-3           bit_4.0.4             
+## [160] class_7.3-20           stringi_1.7.6          sass_0.4.0            
+## [163] metagenomeSeq_1.36.0   blob_1.2.2             DESeq2_1.34.0         
+## [166] latticeExtra_0.6-29    caTools_1.18.2         memoise_2.0.1         
+## [169] e1071_1.7-9</code></pre>
 
 </div>
 </div>
