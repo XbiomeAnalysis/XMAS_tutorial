@@ -702,5 +702,5 @@ plot_volcano(
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```

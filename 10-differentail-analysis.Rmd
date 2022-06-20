@@ -2,23 +2,98 @@
 
 Identifying the significant taxa between case and control group is necessary. There are too many differential analysis (DA) approaches to choose [@nearing2022microbiome], we provide some of them which focusing on microbial data, including: 
 
+```{r, warning=FALSE, echo=FALSE}
+DA_tools <- data.frame(`Tool(version)`=c("ALDEx2  (1.26.0)", 
+                                         "limma  voom (3.50.1)",
+                                         "mbzinb  (0.2)",
+                                         "omnibus  (0.2)",
+                                         "RAIDA  (1.0)",
+                                         "Wilcox(rare/CLR)",
+                                         "LEfSe",
+                                         "t-test  (rare)",
+                                         "metagenomeSeq  (1.36.0)",
+                                         "DESeq2  (1.34.0)",
+                                         "edgeR  (3.36.0)",
+                                         "ANCOM-II  (2.1)",
+                                         "Corncob  (0.2.0)",
+                                         "MaAslin2  (1.8.0)"),
+                       Input=c("Counts",
+                               "Counts/Relative",
+                               "Counts",
+                               "Counts",
+                               "Counts",
+                               "Counts/Relative",
+                               "Rarefied  Counts/Relative",
+                               "Counts/Relative",
+                               "Counts",
+                               "Counts",
+                               "Counts",
+                               "Counts/Relative",
+                               "Counts",
+                               "Counts/Relative"),
+                       Normalization=c("None",
+                                       "None/TMM",
+                                       "RLE",
+                                       "GMPR(Geometric  Mean of Pairwise Ratios)",
+                                       "None",
+                                       "None",
+                                       "TSS",
+                                       "None",
+                                       "CSS",
+                                       "RLE",
+                                       "RLE/TMM",
+                                       "None",
+                                       "None",
+                                       "None/TSS"),
+                       Transformation=c("CLR",
+                                        "Log; Precision weighting",
+                                        "None",
+                                        "None",
+                                        "zero-inflated Log",
+                                        "None/CLR",
+                                        "None",
+                                        "None",
+                                        "Log",
+                                        "None",
+                                        "None",
+                                        "ALR",
+                                        "None",
+                                        "AST"),
+                       Distribution=c("Dirichlet-multinormial",
+                                      "Normal",
+                                      "Zero-inflated negative binomial",
+                                      "Zero-inflated negative binomial",
+                                      "Modified t-test",
+                                      "Non-parametric",
+                                      "Non-parametric",
+                                      "Normal",
+                                      "Zero-inflated (log) Normal",
+                                      "Negative binomial",
+                                      "Negative binomial",
+                                      "Non-parametric",
+                                      "Beta-binomial",
+                                      "Normal"),
+                       MicrobialData=c("16s",
+                                       "16s/MGS",
+                                       "16s",
+                                       "16s",
+                                       "16s",
+                                       "16s/MGS",
+                                       "16s/MGS",
+                                       "16s/MGS",
+                                       "16s",
+                                       "16s",
+                                       "16s",
+                                       "16s/MGS",
+                                       "16s",
+                                       "16s/MGS"))
 
-| **Tool(version)**       | **Input**                  | **Normalization**                        | **Transformation**        | **Distribution**                 | **MicrobialData** |
-| ----------------------- | -------------------------- | ---------------------------------------- | ------------------------- | -------------------------------- | ----------------- |
-| ALDEx2  (1.26.0)        | Counts                     | None                                     | CLR                       | Dirichlet-multinormial           | 16s               |
-| limma  voom (3.50.1)    | Counts/Relative            | None/TMM                                 | Log; Precision weighting | Normal                           | 16s/MGS           |
-| mbzinb  (0.2)           | Counts                     | RLE                                      | None                      | zero-inflated  negative binomial | 16s               |
-| omnibus  (0.2)          | Counts                     | GMPR(Geometric  Mean of Pairwise Ratios) | None                      | zero-inflated  negative binomial | 16s               |
-| RAIDA  (1.0)            | Counts                     | None                                     | zero-inflated log normal                       | modified  t-test                 | 16s               |
-| Wilcox(rare/CLR)        | Counts/Relative            | None                                     | None/CLR                  | Non-parametric                   | 16s/MGS           |
-| LEfSe                   | Rarefied  Counts//Relative | TSS                                      | None                      | Non-parametric                   | 16s/MGS           |
-| t-test  (rare)          | Counts//Relative           | None                                     | None                      | Normal                           | 16s/MGS           |
-| metagenomeSeq  (1.36.0) | Counts                     | CSS                                      | Log                       | Zero-inflated  (log) Normal      | 16s               |
-| DESeq2  (1.34.0)        | Counts                     | RLE                                      | None                      | Negative  binomial               | 16s               |
-| edgeR  (3.36.0)         | Counts                     | RLE/TMM                                  | None                      | Negative  binomial               | 16s               |
-| ANCOM-II  (2.1)         | Counts/Relative            | None                                     | ALR                       | Non-parametric                   | 16s/MGS           |
-| Corncob  (0.2.0)        | Counts                     | None                                     | None                      | Beta-binomial                    | 16s               |
-| MaAslin2  (1.8.0)       | Counts/Relative  abundance | None/TSS                                 | AST                       | Normal                           | 16s/MGS           |
+knitr::kable(DA_tools, longtable = TRUE, booktabs = TRUE,
+  caption = 'Differential analysis tools in XMAS.',
+  format = "html") %>% 
+  kableExtra::kable_styling() %>%
+  kableExtra::scroll_box(width = "100%", box_css = "border: 0px;") 
+```
 
 
 **Loading packages**
@@ -1514,5 +1589,5 @@ plot_multiple_DA(
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```

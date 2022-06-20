@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-17" />
+<meta name="date" content="2022-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.21/datatables.js"></script>
@@ -358,9 +360,10 @@ div.csl-indent {
 <li class="chapter" data-level="12.7" data-path="visualization-5.html"><a href="visualization-5.html#plot_ggbiplot"><i class="fa fa-check"></i><b>12.7</b> plot_ggbiplot<span></span></a></li>
 <li class="chapter" data-level="12.8" data-path="visualization-5.html"><a href="visualization-5.html#plot_corrplot"><i class="fa fa-check"></i><b>12.8</b> plot_corrplot<span></span></a></li>
 <li class="chapter" data-level="12.9" data-path="visualization-5.html"><a href="visualization-5.html#plot_2da_venn"><i class="fa fa-check"></i><b>12.9</b> plot_2DA_venn<span></span></a></li>
-<li class="chapter" data-level="12.10" data-path="visualization-5.html"><a href="visualization-5.html#plot_stacked_bar_xivz"><i class="fa fa-check"></i><b>12.10</b> plot_stacked_bar_XIVZ<span></span></a></li>
-<li class="chapter" data-level="12.11" data-path="visualization-5.html"><a href="visualization-5.html#plot_stackbarplot"><i class="fa fa-check"></i><b>12.11</b> plot_StackBarPlot<span></span></a></li>
-<li class="chapter" data-level="12.12" data-path="visualization-5.html"><a href="visualization-5.html#systematic-information-9"><i class="fa fa-check"></i><b>12.12</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="12.10" data-path="visualization-5.html"><a href="visualization-5.html#plot-the-da-results-from-the-significant-taxa-by-double-barplot"><i class="fa fa-check"></i><b>12.10</b> plot the DA results from the significant taxa by double barplot<span></span></a></li>
+<li class="chapter" data-level="12.11" data-path="visualization-5.html"><a href="visualization-5.html#plot_stacked_bar_xivz"><i class="fa fa-check"></i><b>12.11</b> plot_stacked_bar_XIVZ<span></span></a></li>
+<li class="chapter" data-level="12.12" data-path="visualization-5.html"><a href="visualization-5.html#plot_stackbarplot"><i class="fa fa-check"></i><b>12.12</b> plot_StackBarPlot<span></span></a></li>
+<li class="chapter" data-level="12.13" data-path="visualization-5.html"><a href="visualization-5.html#systematic-information-9"><i class="fa fa-check"></i><b>12.13</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html"><i class="fa fa-check"></i><b>13</b> Principals of Differential Analysis methods<span></span></a>
 <ul>
@@ -441,20 +444,20 @@ div.csl-indent {
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="visualization-5.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;amplicon_ps&quot;</span>)</span>
 <span id="cb350-2"><a href="visualization-5.html#cb350-2" aria-hidden="true" tabindex="-1"></a>dat_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps=</span>amplicon_ps, <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>))</span>
 <span id="cb350-3"><a href="visualization-5.html#cb350-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_alpha)</span></code></pre></div>
-<pre><code>##   TempRowNames SampleType Year Month Day Subject ReportedAntibioticUsage
-## 1       L1S140        gut 2008    10  28       2                     Yes
-## 2       L1S208        gut 2009     1  20       2                      No
-## 3         L1S8        gut 2008    10  28       1                     Yes
-## 4       L1S281        gut 2009     4  14       2                      No
-## 5       L3S242 right palm 2008    10  28       1                     Yes
-## 6       L2S309  left palm 2009     1  20       2                      No
-##   DaysSinceExperimentStart         Description Observed    Chao1 se.chao1  Shannon
-## 1                        0   2_Fece_10_28_2008      451 689.4070 44.91230 3.307548
-## 2                       84    2_Fece_1_20_2009      606 997.2371 64.64807 3.857186
-## 3                        0   1_Fece_10_28_2008      329 514.0968 40.45151 3.014101
-## 4                      168    2_Fece_4_14_2009      551 888.3656 58.04358 4.031350
-## 5                        0 1_R_Palm_10_28_2008      120 278.8824 54.21486 2.911609
-## 6                       84  2_L_Palm_1_20_2009      399 765.4429 68.07293 4.591979</code></pre>
+<pre><code>##   TempRowNames SampleType Year Month Day Subject ReportedAntibioticUsage DaysSinceExperimentStart         Description
+## 1       L1S140        gut 2008    10  28       2                     Yes                        0   2_Fece_10_28_2008
+## 2       L1S208        gut 2009     1  20       2                      No                       84    2_Fece_1_20_2009
+## 3         L1S8        gut 2008    10  28       1                     Yes                        0   1_Fece_10_28_2008
+## 4       L1S281        gut 2009     4  14       2                      No                      168    2_Fece_4_14_2009
+## 5       L3S242 right palm 2008    10  28       1                     Yes                        0 1_R_Palm_10_28_2008
+## 6       L2S309  left palm 2009     1  20       2                      No                       84  2_L_Palm_1_20_2009
+##   Observed    Chao1 se.chao1  Shannon
+## 1      451 689.4070 44.91230 3.307548
+## 2      606 997.2371 64.64807 3.857186
+## 3      329 514.0968 40.45151 3.014101
+## 4      551 888.3656 58.04358 4.031350
+## 5      120 278.8824 54.21486 2.911609
+## 6      399 765.4429 68.07293 4.591979</code></pre>
 <p><code>plot_boxplot</code> has many parameters, and help you enjoy it.</p>
 <ul>
 <li>single measure</li>
@@ -463,8 +466,8 @@ div.csl-indent {
 <span id="cb352-2"><a href="visualization-5.html#cb352-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="st">&quot;Shannon&quot;</span>,</span>
 <span id="cb352-3"><a href="visualization-5.html#cb352-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb352-4"><a href="visualization-5.html#cb352-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-214"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-214-1.png" alt="boxplot(single measure)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-184"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-184-1.png" alt="boxplot(single measure)" width="576" />
 <p class="caption">
 Figure 12.1: boxplot(single measure)
 </p>
@@ -476,8 +479,8 @@ Figure 12.1: boxplot(single measure)
 <span id="cb353-2"><a href="visualization-5.html#cb353-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="st">&quot;Shannon&quot;</span>,</span>
 <span id="cb353-3"><a href="visualization-5.html#cb353-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb353-4"><a href="visualization-5.html#cb353-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-215"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-215-1.png" alt="boxplot(single measure with significant results)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-185"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-185-1.png" alt="boxplot(single measure with significant results)" width="576" />
 <p class="caption">
 Figure 12.2: boxplot(single measure with significant results)
 </p>
@@ -490,8 +493,8 @@ Figure 12.2: boxplot(single measure with significant results)
 <span id="cb354-3"><a href="visualization-5.html#cb354-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb354-4"><a href="visualization-5.html#cb354-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb354-5"><a href="visualization-5.html#cb354-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">cmp_list =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;gut&quot;</span>, <span class="st">&quot;right palm&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;gut&quot;</span>, <span class="st">&quot;tongue&quot;</span>)))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-216"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-216-1.png" alt="boxplot(single measure with significant results of pairwises)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-186"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-186-1.png" alt="boxplot(single measure with significant results of pairwises)" width="576" />
 <p class="caption">
 Figure 12.3: boxplot(single measure with significant results of pairwises)
 </p>
@@ -505,8 +508,8 @@ Figure 12.3: boxplot(single measure with significant results of pairwises)
 <span id="cb355-4"><a href="visualization-5.html#cb355-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb355-5"><a href="visualization-5.html#cb355-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">cmp_list =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;gut&quot;</span>, <span class="st">&quot;right palm&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;gut&quot;</span>, <span class="st">&quot;tongue&quot;</span>)),</span>
 <span id="cb355-6"><a href="visualization-5.html#cb355-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">outlier =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-217"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-217-1.png" alt="boxplot(single measure with significant results of pairwises and outlier)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-187"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-187-1.png" alt="boxplot(single measure with significant results of pairwises and outlier)" width="576" />
 <p class="caption">
 Figure 12.4: boxplot(single measure with significant results of pairwises and outlier)
 </p>
@@ -519,8 +522,8 @@ Figure 12.4: boxplot(single measure with significant results of pairwises and ou
 <span id="cb356-3"><a href="visualization-5.html#cb356-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb356-4"><a href="visualization-5.html#cb356-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb356-5"><a href="visualization-5.html#cb356-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ref_group =</span> <span class="st">&quot;gut&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-218"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-218-1.png" alt="boxplot(single measure with significant results of ref_group)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-188"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-188-1.png" alt="boxplot(single measure with significant results of ref_group)" width="576" />
 <p class="caption">
 Figure 12.5: boxplot(single measure with significant results of ref_group)
 </p>
@@ -536,8 +539,8 @@ Figure 12.5: boxplot(single measure with significant results of ref_group)
 <span id="cb357-6"><a href="visualization-5.html#cb357-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">ref_group =</span> <span class="st">&quot;gut&quot;</span>,</span>
 <span id="cb357-7"><a href="visualization-5.html#cb357-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>,</span>
 <span id="cb357-8"><a href="visualization-5.html#cb357-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">outlier =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-219"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-219-1.png" alt="boxplot(multiple measure with group number)" width="864" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-189"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-189-1.png" alt="boxplot(multiple measure with group number)" width="864" />
 <p class="caption">
 Figure 12.6: boxplot(multiple measure with group number)
 </p>
@@ -553,8 +556,8 @@ Figure 12.6: boxplot(multiple measure with group number)
 <span id="cb358-2"><a href="visualization-5.html#cb358-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="st">&quot;Shannon&quot;</span>,</span>
 <span id="cb358-3"><a href="visualization-5.html#cb358-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb358-4"><a href="visualization-5.html#cb358-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-220"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-220-1.png" alt="barplot(single measure)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-190"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-190-1.png" alt="barplot(single measure)" width="576" />
 <p class="caption">
 Figure 12.7: barplot(single measure)
 </p>
@@ -566,8 +569,8 @@ Figure 12.7: barplot(single measure)
 <span id="cb359-2"><a href="visualization-5.html#cb359-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="st">&quot;Shannon&quot;</span>,</span>
 <span id="cb359-3"><a href="visualization-5.html#cb359-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb359-4"><a href="visualization-5.html#cb359-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-221"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-221-1.png" alt="barplot(single measure with significant results)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-191"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-191-1.png" alt="barplot(single measure with significant results)" width="576" />
 <p class="caption">
 Figure 12.8: barplot(single measure with significant results)
 </p>
@@ -580,8 +583,8 @@ Figure 12.8: barplot(single measure with significant results)
 <span id="cb360-3"><a href="visualization-5.html#cb360-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb360-4"><a href="visualization-5.html#cb360-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb360-5"><a href="visualization-5.html#cb360-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">cmp_list =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;gut&quot;</span>, <span class="st">&quot;right palm&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;gut&quot;</span>, <span class="st">&quot;tongue&quot;</span>)))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-222"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-222-1.png" alt="barplot(single measure with significant results of pairwises)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-192"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-192-1.png" alt="barplot(single measure with significant results of pairwises)" width="576" />
 <p class="caption">
 Figure 12.9: barplot(single measure with significant results of pairwises)
 </p>
@@ -594,8 +597,8 @@ Figure 12.9: barplot(single measure with significant results of pairwises)
 <span id="cb361-3"><a href="visualization-5.html#cb361-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb361-4"><a href="visualization-5.html#cb361-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb361-5"><a href="visualization-5.html#cb361-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ref_group =</span> <span class="st">&quot;gut&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-223"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-223-1.png" alt="barplot(single measure with significant results of ref_group)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-193"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-193-1.png" alt="barplot(single measure with significant results of ref_group)" width="576" />
 <p class="caption">
 Figure 12.10: barplot(single measure with significant results of ref_group)
 </p>
@@ -608,8 +611,8 @@ Figure 12.10: barplot(single measure with significant results of ref_group)
 <span id="cb362-3"><a href="visualization-5.html#cb362-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">group=</span><span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb362-4"><a href="visualization-5.html#cb362-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">do_test=</span><span class="cn">TRUE</span>,</span>
 <span id="cb362-5"><a href="visualization-5.html#cb362-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">method=</span><span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-224"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-224-1.png" alt="barplot(multiple index)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-194"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-194-1.png" alt="barplot(multiple index)" width="768" />
 <p class="caption">
 Figure 12.11: barplot(multiple index)
 </p>
@@ -626,8 +629,8 @@ Figure 12.11: barplot(multiple index)
 <span id="cb363-3"><a href="visualization-5.html#cb363-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb363-4"><a href="visualization-5.html#cb363-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-225"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-225-1.png" alt="dotplot(single measure)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-195"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-195-1.png" alt="dotplot(single measure)" width="576" />
 <p class="caption">
 Figure 12.12: dotplot(single measure)
 </p>
@@ -640,8 +643,8 @@ Figure 12.12: dotplot(single measure)
 <span id="cb365-3"><a href="visualization-5.html#cb365-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;SampleType&quot;</span>,</span>
 <span id="cb365-4"><a href="visualization-5.html#cb365-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-226"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-226-1.png" alt="dotplot(single measure with significant results)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-196"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-196-1.png" alt="dotplot(single measure with significant results)" width="576" />
 <p class="caption">
 Figure 12.13: dotplot(single measure with significant results)
 </p>
@@ -655,8 +658,8 @@ Figure 12.13: dotplot(single measure with significant results)
 <span id="cb367-4"><a href="visualization-5.html#cb367-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb367-5"><a href="visualization-5.html#cb367-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">cmp_list =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;gut&quot;</span>, <span class="st">&quot;right palm&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;gut&quot;</span>, <span class="st">&quot;tongue&quot;</span>)))</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-227"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-227-1.png" alt="dotplot(single measure with significant results of pairwises)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-197"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-197-1.png" alt="dotplot(single measure with significant results of pairwises)" width="576" />
 <p class="caption">
 Figure 12.14: dotplot(single measure with significant results of pairwises)
 </p>
@@ -670,8 +673,8 @@ Figure 12.14: dotplot(single measure with significant results of pairwises)
 <span id="cb369-4"><a href="visualization-5.html#cb369-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">do_test =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb369-5"><a href="visualization-5.html#cb369-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ref_group =</span> <span class="st">&quot;gut&quot;</span>)</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-228"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-228-1.png" alt="dotplot(single measure with significant results of ref_group)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-198"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-198-1.png" alt="dotplot(single measure with significant results of ref_group)" width="576" />
 <p class="caption">
 Figure 12.15: dotplot(single measure with significant results of ref_group)
 </p>
@@ -687,8 +690,8 @@ Figure 12.15: dotplot(single measure with significant results of ref_group)
 <span id="cb371-6"><a href="visualization-5.html#cb371-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">dotsize =</span> <span class="fl">0.5</span>,</span>
 <span id="cb371-7"><a href="visualization-5.html#cb371-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">mediansize =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-229"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-229-1.png" alt="dotplot(dot size and median size)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-199"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-199-1.png" alt="dotplot(dot size and median size)" width="576" />
 <p class="caption">
 Figure 12.16: dotplot(dot size and median size)
 </p>
@@ -702,8 +705,8 @@ Figure 12.16: dotplot(dot size and median size)
 <span id="cb373-4"><a href="visualization-5.html#cb373-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">do_test=</span><span class="cn">TRUE</span>,</span>
 <span id="cb373-5"><a href="visualization-5.html#cb373-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">method=</span><span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-230"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-230-1.png" alt="dotplot(multiple index)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-200"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-200-1.png" alt="dotplot(multiple index)" width="768" />
 <p class="caption">
 Figure 12.17: dotplot(multiple index)
 </p>
@@ -718,8 +721,8 @@ Figure 12.17: dotplot(multiple index)
 <span id="cb375-5"><a href="visualization-5.html#cb375-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">show_type=</span><span class="st">&quot;errorbar&quot;</span>,</span>
 <span id="cb375-6"><a href="visualization-5.html#cb375-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">method=</span><span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
 <pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-231"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-231-1.png" alt="dotplot(multiple index errorbar)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-201"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-201-1.png" alt="dotplot(multiple index errorbar)" width="768" />
 <p class="caption">
 Figure 12.18: dotplot(multiple index errorbar)
 </p>
@@ -732,8 +735,8 @@ Figure 12.18: dotplot(multiple index errorbar)
 <span id="cb377-2"><a href="visualization-5.html#cb377-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">x_index=</span><span class="st">&quot;Chao1&quot;</span>,</span>
 <span id="cb377-3"><a href="visualization-5.html#cb377-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index=</span><span class="st">&quot;Shannon&quot;</span>,</span>
 <span id="cb377-4"><a href="visualization-5.html#cb377-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group=</span><span class="st">&quot;SampleType&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-232"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-232-1.png" alt="correlation with boxplot" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-202"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-202-1.png" alt="correlation with boxplot" width="768" />
 <p class="caption">
 Figure 12.19: correlation with boxplot
 </p>
@@ -746,8 +749,8 @@ Figure 12.19: correlation with boxplot
 <span id="cb378-2"><a href="visualization-5.html#cb378-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">x_index=</span><span class="st">&quot;Chao1&quot;</span>,</span>
 <span id="cb378-3"><a href="visualization-5.html#cb378-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index=</span><span class="st">&quot;Shannon&quot;</span>,</span>
 <span id="cb378-4"><a href="visualization-5.html#cb378-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group=</span><span class="st">&quot;SampleType&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-233"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-233-1.png" alt="correlation with density" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-203"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-203-1.png" alt="correlation with density" width="768" />
 <p class="caption">
 Figure 12.20: correlation with density
 </p>
@@ -789,15 +792,14 @@ Figure 12.20: correlation with density
 <span id="cb381-4"><a href="visualization-5.html#cb381-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;PCA&quot;</span>)</span>
 <span id="cb381-5"><a href="visualization-5.html#cb381-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb381-6"><a href="visualization-5.html#cb381-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ordination_PCA)</span></code></pre></div>
-<pre><code>## [1] &quot;fit&quot;           &quot;dat&quot;           &quot;explains&quot;      &quot;eigvalue&quot;      &quot;PERMANOVA&quot;    
-## [6] &quot;axis_taxa_cor&quot;</code></pre>
+<pre><code>## [1] &quot;fit&quot;           &quot;dat&quot;           &quot;explains&quot;      &quot;eigvalue&quot;      &quot;PERMANOVA&quot;     &quot;axis_taxa_cor&quot;</code></pre>
 <ul>
 <li>Ordinary pattern</li>
 </ul>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="visualization-5.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCA, </span>
 <span id="cb383-2"><a href="visualization-5.html#cb383-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-235"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-235-1.png" alt="plot_Ordination (Ordinary pattern)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-205"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-205-1.png" alt="plot_Ordination (Ordinary pattern)" width="768" />
 <p class="caption">
 Figure 12.21: plot_Ordination (Ordinary pattern)
 </p>
@@ -811,8 +813,8 @@ Figure 12.21: plot_Ordination (Ordinary pattern)
 <span id="cb384-4"><a href="visualization-5.html#cb384-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
 <span id="cb384-5"><a href="visualization-5.html#cb384-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">circle_type =</span> <span class="st">&quot;ellipse&quot;</span>,</span>
 <span id="cb384-6"><a href="visualization-5.html#cb384-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-236"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-236-1.png" alt="plot_Ordination (Ordinary pattern with SampleID)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-206"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-206-1.png" alt="plot_Ordination (Ordinary pattern with SampleID)" width="768" />
 <p class="caption">
 Figure 12.22: plot_Ordination (Ordinary pattern with SampleID)
 </p>
@@ -826,8 +828,8 @@ Figure 12.22: plot_Ordination (Ordinary pattern with SampleID)
 <span id="cb385-4"><a href="visualization-5.html#cb385-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
 <span id="cb385-5"><a href="visualization-5.html#cb385-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">circle_type =</span> <span class="st">&quot;ellipse_CI&quot;</span>,</span>
 <span id="cb385-6"><a href="visualization-5.html#cb385-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-237"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-237-1.png" alt="plot_Ordination (ellipse with 95% confidence interval)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-207"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-207-1.png" alt="plot_Ordination (ellipse with 95% confidence interval)" width="768" />
 <p class="caption">
 Figure 12.23: plot_Ordination (ellipse with 95% confidence interval)
 </p>
@@ -841,8 +843,8 @@ Figure 12.23: plot_Ordination (ellipse with 95% confidence interval)
 <span id="cb386-4"><a href="visualization-5.html#cb386-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
 <span id="cb386-5"><a href="visualization-5.html#cb386-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">circle_type =</span> <span class="st">&quot;ellipse_groups&quot;</span>,</span>
 <span id="cb386-6"><a href="visualization-5.html#cb386-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-238"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-238-1.png" alt="plot_Ordination (ellipse with groups)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-208"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-208-1.png" alt="plot_Ordination (ellipse with groups)" width="768" />
 <p class="caption">
 Figure 12.24: plot_Ordination (ellipse with groups)
 </p>
@@ -856,8 +858,8 @@ Figure 12.24: plot_Ordination (ellipse with groups)
 <span id="cb387-4"><a href="visualization-5.html#cb387-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
 <span id="cb387-5"><a href="visualization-5.html#cb387-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">circle_type =</span> <span class="st">&quot;ellipse_line&quot;</span>,</span>
 <span id="cb387-6"><a href="visualization-5.html#cb387-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-239"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-239-1.png" alt="plot_Ordination (ellipse with border line)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-209"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-209-1.png" alt="plot_Ordination (ellipse with border line)" width="768" />
 <p class="caption">
 Figure 12.25: plot_Ordination (ellipse with border line)
 </p>
@@ -873,8 +875,8 @@ Figure 12.25: plot_Ordination (ellipse with border line)
 <span id="cb388-6"><a href="visualization-5.html#cb388-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sidelinechart =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb388-7"><a href="visualization-5.html#cb388-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">sideboxplot =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb388-8"><a href="visualization-5.html#cb388-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-240"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-240-1.png" alt="plot_Ordination (Ordinary pattern with SampleID sideboxplot)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-210"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-210-1.png" alt="plot_Ordination (Ordinary pattern with SampleID sideboxplot)" width="576" />
 <p class="caption">
 Figure 12.26: plot_Ordination (Ordinary pattern with SampleID sideboxplot)
 </p>
@@ -890,8 +892,8 @@ Figure 12.26: plot_Ordination (Ordinary pattern with SampleID sideboxplot)
 <span id="cb389-6"><a href="visualization-5.html#cb389-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sidelinechart =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb389-7"><a href="visualization-5.html#cb389-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">sideboxplot =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb389-8"><a href="visualization-5.html#cb389-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-241"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-241-1.png" alt="plot_Ordination (ellipse_CI with SampleID sideboxplot)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-211"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-211-1.png" alt="plot_Ordination (ellipse_CI with SampleID sideboxplot)" width="576" />
 <p class="caption">
 Figure 12.27: plot_Ordination (ellipse_CI with SampleID sideboxplot)
 </p>
@@ -907,8 +909,8 @@ Figure 12.27: plot_Ordination (ellipse_CI with SampleID sideboxplot)
 <span id="cb390-6"><a href="visualization-5.html#cb390-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sidelinechart =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb390-7"><a href="visualization-5.html#cb390-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">sideboxplot =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb390-8"><a href="visualization-5.html#cb390-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-242"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-242-1.png" alt="plot_Ordination (ellipse_groups with SampleID sideboxplot)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-212"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-212-1.png" alt="plot_Ordination (ellipse_groups with SampleID sideboxplot)" width="576" />
 <p class="caption">
 Figure 12.28: plot_Ordination (ellipse_groups with SampleID sideboxplot)
 </p>
@@ -924,8 +926,8 @@ Figure 12.28: plot_Ordination (ellipse_groups with SampleID sideboxplot)
 <span id="cb391-6"><a href="visualization-5.html#cb391-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sidelinechart =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb391-7"><a href="visualization-5.html#cb391-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">sideboxplot =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb391-8"><a href="visualization-5.html#cb391-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-243"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-243-1.png" alt="plot_Ordination (ellipse_line with SampleID sideboxplot)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-213"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-213-1.png" alt="plot_Ordination (ellipse_line with SampleID sideboxplot)" width="576" />
 <p class="caption">
 Figure 12.29: plot_Ordination (ellipse_line with SampleID sideboxplot)
 </p>
@@ -948,8 +950,8 @@ Figure 12.29: plot_Ordination (ellipse_line with SampleID sideboxplot)
 <span id="cb392-13"><a href="visualization-5.html#cb392-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">sidelinechart =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb392-14"><a href="visualization-5.html#cb392-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">sideboxplot =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb392-15"><a href="visualization-5.html#cb392-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-244"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-244-1.png" alt="plot_Ordination (ellipse_line with SampleID sideboxplot)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-214"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-214-1.png" alt="plot_Ordination (ellipse_line with SampleID sideboxplot)" width="576" />
 <p class="caption">
 Figure 12.30: plot_Ordination (ellipse_line with SampleID sideboxplot)
 </p>
@@ -966,8 +968,8 @@ Figure 12.30: plot_Ordination (ellipse_line with SampleID sideboxplot)
 <span id="cb393-4"><a href="visualization-5.html#cb393-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">topN =</span> <span class="dv">5</span>,</span>
 <span id="cb393-5"><a href="visualization-5.html#cb393-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">ellipse =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb393-6"><a href="visualization-5.html#cb393-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">labels =</span> <span class="st">&quot;SampleID&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-245"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-245-1.png" alt="plot_ggbiplot (biplot)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-215"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-215-1.png" alt="plot_ggbiplot (biplot)" width="576" />
 <p class="caption">
 Figure 12.31: plot_ggbiplot (biplot)
 </p>
@@ -977,8 +979,8 @@ Figure 12.31: plot_ggbiplot (biplot)
 <h2><span class="header-section-number">12.8</span> plot_corrplot<a href="visualization-5.html#plot_corrplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="visualization-5.html#cb394-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span>
 <span id="cb394-2"><a href="visualization-5.html#cb394-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-246"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-246-1.png" alt="plot_corrplot (distance)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-216"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-216-1.png" alt="plot_corrplot (distance)" width="576" />
 <p class="caption">
 Figure 12.32: plot_corrplot (distance)
 </p>
@@ -1006,208 +1008,373 @@ Figure 12.32: plot_corrplot (distance)
 <span id="cb395-18"><a href="visualization-5.html#cb395-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">Pvalue_cutoff =</span> <span class="fl">0.8</span>,</span>
 <span id="cb395-19"><a href="visualization-5.html#cb395-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">logFC_cutoff =</span> <span class="fl">0.2</span>)</span>
 <span id="cb395-20"><a href="visualization-5.html#cb395-20" aria-hidden="true" tabindex="-1"></a>DA_venn_res<span class="sc">$</span>pl</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-247"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-247-1.png" alt="plot_2DA_venn (wilcox vs t_test)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-217"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-217-1.png" alt="plot_2DA_venn (wilcox vs t_test)" width="576" />
 <p class="caption">
 Figure 12.33: plot_2DA_venn (wilcox vs t_test)
 </p>
 </div>
 </div>
-<div id="plot_stacked_bar_xivz" class="section level2 hasAnchor" number="12.10">
-<h2><span class="header-section-number">12.10</span> plot_stacked_bar_XIVZ<a href="visualization-5.html#plot_stacked_bar_xivz" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="plot-the-da-results-from-the-significant-taxa-by-double-barplot" class="section level2 hasAnchor" number="12.10">
+<h2><span class="header-section-number">12.10</span> plot the DA results from the significant taxa by double barplot<a href="visualization-5.html#plot-the-da-results-from-the-significant-taxa-by-double-barplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="visualization-5.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;amplicon_ps&quot;</span>)</span>
+<span id="cb396-2"><a href="visualization-5.html#cb396-2" aria-hidden="true" tabindex="-1"></a>DA_res <span class="ot">&lt;-</span> <span class="fu">run_wilcox</span>(amplicon_ps, <span class="at">taxa_level=</span><span class="st">&quot;Family&quot;</span>, <span class="at">group=</span><span class="st">&quot;SampleType&quot;</span>, <span class="at">group_names=</span><span class="fu">c</span>(<span class="st">&quot;tongue&quot;</span>, <span class="st">&quot;gut&quot;</span>))</span>
+<span id="cb396-3"><a href="visualization-5.html#cb396-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb396-4"><a href="visualization-5.html#cb396-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_double_barplot</span>(<span class="at">data=</span>DA_res,</span>
+<span id="cb396-5"><a href="visualization-5.html#cb396-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">x_index=</span><span class="st">&quot;Log2FoldChange (Rank)</span><span class="sc">\n</span><span class="st">tongue_vs_gut&quot;</span>,</span>
+<span id="cb396-6"><a href="visualization-5.html#cb396-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">x_index_cutoff=</span><span class="dv">1</span>,</span>
+<span id="cb396-7"><a href="visualization-5.html#cb396-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">y_index=</span><span class="st">&quot;AdjustedPvalue&quot;</span>,</span>
+<span id="cb396-8"><a href="visualization-5.html#cb396-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">y_index_cutoff=</span><span class="fl">0.05</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-218"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-218-1.png" alt="double barplot for DA results" width="672" />
+<p class="caption">
+Figure 12.34: double barplot for DA results
+</p>
+</div>
+</div>
+<div id="plot_stacked_bar_xivz" class="section level2 hasAnchor" number="12.11">
+<h2><span class="header-section-number">12.11</span> plot_stacked_bar_XIVZ<a href="visualization-5.html#plot_stacked_bar_xivz" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Minimum usage: plot in relative abundance</li>
 </ul>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="visualization-5.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, <span class="at">level =</span> <span class="st">&quot;Family&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-248"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-248-1.png" alt="plot_stacked_bar_XIVZ (test1)" width="768" />
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="visualization-5.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, <span class="at">level =</span> <span class="st">&quot;Family&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-219"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-219-1.png" alt="plot_stacked_bar_XIVZ (test1)" width="1152" />
 <p class="caption">
-Figure 12.34: plot_stacked_bar_XIVZ (test1)
+Figure 12.35: plot_stacked_bar_XIVZ (test1)
 </p>
 </div>
 <ul>
 <li>Set feature parameter to show feature information</li>
 </ul>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="visualization-5.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, </span>
-<span id="cb397-2"><a href="visualization-5.html#cb397-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">level =</span> <span class="st">&quot;Family&quot;</span>,</span>
-<span id="cb397-3"><a href="visualization-5.html#cb397-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-249"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-249-1.png" alt="plot_stacked_bar_XIVZ (test2)" width="768" />
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="visualization-5.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, </span>
+<span id="cb398-2"><a href="visualization-5.html#cb398-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">level =</span> <span class="st">&quot;Family&quot;</span>,</span>
+<span id="cb398-3"><a href="visualization-5.html#cb398-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-220"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-220-1.png" alt="plot_stacked_bar_XIVZ (test2)" width="1152" />
 <p class="caption">
-Figure 12.35: plot_stacked_bar_XIVZ (test2)
+Figure 12.36: plot_stacked_bar_XIVZ (test2)
 </p>
 </div>
 <ul>
 <li>Pass ordered sample names to order parameter to plot in specific order</li>
 </ul>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="visualization-5.html#cb398-1" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(dada2_ps_rarefy) <span class="sc">%&gt;%</span> </span>
-<span id="cb398-2"><a href="visualization-5.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb398-3"><a href="visualization-5.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(Group)</span>
-<span id="cb398-4"><a href="visualization-5.html#cb398-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, </span>
-<span id="cb398-5"><a href="visualization-5.html#cb398-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">level =</span> <span class="st">&quot;Family&quot;</span>,</span>
-<span id="cb398-6"><a href="visualization-5.html#cb398-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb398-7"><a href="visualization-5.html#cb398-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">order =</span> <span class="fu">rownames</span>(metadata))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-250"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-250-1.png" alt="plot_stacked_bar_XIVZ (test3)" width="768" />
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="visualization-5.html#cb399-1" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(dada2_ps_rarefy) <span class="sc">%&gt;%</span> </span>
+<span id="cb399-2"><a href="visualization-5.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb399-3"><a href="visualization-5.html#cb399-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(Group)</span>
+<span id="cb399-4"><a href="visualization-5.html#cb399-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, </span>
+<span id="cb399-5"><a href="visualization-5.html#cb399-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">level =</span> <span class="st">&quot;Family&quot;</span>,</span>
+<span id="cb399-6"><a href="visualization-5.html#cb399-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb399-7"><a href="visualization-5.html#cb399-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">order =</span> <span class="fu">rownames</span>(metadata))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-221"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-221-1.png" alt="plot_stacked_bar_XIVZ (test3)" width="1152" />
 <p class="caption">
-Figure 12.36: plot_stacked_bar_XIVZ (test3)
+Figure 12.37: plot_stacked_bar_XIVZ (test3)
 </p>
 </div>
 <ul>
 <li>Use facet_wrap(vars(), scale=“free”) funciton to facet stacked barplot</li>
 </ul>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="visualization-5.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, </span>
-<span id="cb399-2"><a href="visualization-5.html#cb399-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">level =</span> <span class="st">&quot;Family&quot;</span>, </span>
-<span id="cb399-3"><a href="visualization-5.html#cb399-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">relative_abundance =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb399-4"><a href="visualization-5.html#cb399-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">order =</span> <span class="fu">rownames</span>(metadata)) <span class="sc">+</span> </span>
-<span id="cb399-5"><a href="visualization-5.html#cb399-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Group), <span class="at">scale=</span><span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-251"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-251-1.png" alt="plot_stacked_bar_XIVZ (test4)" width="768" />
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="visualization-5.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, </span>
+<span id="cb400-2"><a href="visualization-5.html#cb400-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">level =</span> <span class="st">&quot;Family&quot;</span>, </span>
+<span id="cb400-3"><a href="visualization-5.html#cb400-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">relative_abundance =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb400-4"><a href="visualization-5.html#cb400-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">order =</span> <span class="fu">rownames</span>(metadata)) <span class="sc">+</span> </span>
+<span id="cb400-5"><a href="visualization-5.html#cb400-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Group), <span class="at">scale=</span><span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-222"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-222-1.png" alt="plot_stacked_bar_XIVZ (test4)" width="1152" />
 <p class="caption">
-Figure 12.37: plot_stacked_bar_XIVZ (test4)
+Figure 12.38: plot_stacked_bar_XIVZ (test4)
 </p>
 </div>
 </div>
-<div id="plot_stackbarplot" class="section level2 hasAnchor" number="12.11">
-<h2><span class="header-section-number">12.11</span> plot_StackBarPlot<a href="visualization-5.html#plot_stackbarplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="plot_stackbarplot" class="section level2 hasAnchor" number="12.12">
+<h2><span class="header-section-number">12.12</span> plot_StackBarPlot<a href="visualization-5.html#plot_stackbarplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>plot_StackBarPlot</code> provides too many parameters for users to display the Stacked barplot of microbial composition by using ggplot2 format. Here is the ordinary pattern. More details to see <code>help(plot_StackBarPlot)</code>.</p>
 <ul>
 <li>Ordinary pattern</li>
 </ul>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="visualization-5.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-252"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-252-1.png" alt="plot_StackBarPlot(Ordinary pattern)" width="576" />
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="visualization-5.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(<span class="at">ps=</span>dada2_ps_rarefy, <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-223"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-223-1.png" alt="plot_StackBarPlot(Ordinary pattern)" width="576" />
 <p class="caption">
-Figure 12.38: plot_StackBarPlot(Ordinary pattern)
+Figure 12.39: plot_StackBarPlot(Ordinary pattern)
 </p>
 </div>
 <ul>
 <li>Metadata with <code>Group</code> phenotype</li>
 </ul>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="visualization-5.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb401-2"><a href="visualization-5.html#cb401-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
-<span id="cb401-3"><a href="visualization-5.html#cb401-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb401-4"><a href="visualization-5.html#cb401-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-253"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-253-1.png" alt="plot_StackBarPlot (Metadata with group)" width="624" />
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="visualization-5.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb402-2"><a href="visualization-5.html#cb402-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
+<span id="cb402-3"><a href="visualization-5.html#cb402-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb402-4"><a href="visualization-5.html#cb402-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-224"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-224-1.png" alt="plot_StackBarPlot (Metadata with group)" width="624" />
 <p class="caption">
-Figure 12.39: plot_StackBarPlot (Metadata with group)
+Figure 12.40: plot_StackBarPlot (Metadata with group)
 </p>
 </div>
 <ul>
 <li>Metadata with <code>Group</code> phenotype in cluster mode</li>
 </ul>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="visualization-5.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb402-2"><a href="visualization-5.html#cb402-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
-<span id="cb402-3"><a href="visualization-5.html#cb402-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb402-4"><a href="visualization-5.html#cb402-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb402-5"><a href="visualization-5.html#cb402-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-254"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-254-1.png" alt="plot_StackBarPlot (Metadata with group in cluster mode)" width="624" />
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="visualization-5.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb403-2"><a href="visualization-5.html#cb403-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
+<span id="cb403-3"><a href="visualization-5.html#cb403-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb403-4"><a href="visualization-5.html#cb403-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb403-5"><a href="visualization-5.html#cb403-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-225"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-225-1.png" alt="plot_StackBarPlot (Metadata with group in cluster mode)" width="624" />
 <p class="caption">
-Figure 12.40: plot_StackBarPlot (Metadata with group in cluster mode)
+Figure 12.41: plot_StackBarPlot (Metadata with group in cluster mode)
 </p>
 </div>
 <ul>
 <li>Metadata with <code>Group</code> phenotype in facet</li>
 </ul>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="visualization-5.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb403-2"><a href="visualization-5.html#cb403-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
-<span id="cb403-3"><a href="visualization-5.html#cb403-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb403-4"><a href="visualization-5.html#cb403-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb403-5"><a href="visualization-5.html#cb403-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">facet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-255"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-255-1.png" alt="plot_StackBarPlot (Metadata with group in facet)" width="672" />
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="visualization-5.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb404-2"><a href="visualization-5.html#cb404-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps=</span>dada2_ps_rarefy,</span>
+<span id="cb404-3"><a href="visualization-5.html#cb404-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb404-4"><a href="visualization-5.html#cb404-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb404-5"><a href="visualization-5.html#cb404-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">facet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-226"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-226-1.png" alt="plot_StackBarPlot (Metadata with group in facet)" width="672" />
 <p class="caption">
-Figure 12.41: plot_StackBarPlot (Metadata with group in facet)
+Figure 12.42: plot_StackBarPlot (Metadata with group in facet)
 </p>
 </div>
 </div>
-<div id="systematic-information-9" class="section level2 hasAnchor" number="12.12">
-<h2><span class="header-section-number">12.12</span> Systematic Information<a href="visualization-5.html#systematic-information-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="visualization-5.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.1.2 (2021-11-01)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS Monterey 12.2.1
+<div id="systematic-information-9" class="section level2 hasAnchor" number="12.13">
+<h2><span class="header-section-number">12.13</span> Systematic Information<a href="visualization-5.html#systematic-information-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="visualization-5.html#cb405-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+##  setting  value
+##  version  R version 4.1.2 (2021-11-01)
+##  os       macOS Monterey 12.2.1
+##  system   x86_64, darwin17.0
+##  ui       RStudio
+##  language (EN)
+##  collate  en_US.UTF-8
+##  ctype    en_US.UTF-8
+##  tz       Asia/Shanghai
+##  date     2022-06-20
+##  rstudio  2022.02.0+443 Prairie Trillium (desktop)
+##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 ## 
-## Matrix products: default
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
+##  package              * version  date (UTC) lib source
+##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
+##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
+##  ALDEx2                 1.26.0   2021-10-26 [1] Bioconductor
+##  annotate               1.72.0   2021-10-26 [1] Bioconductor
+##  AnnotationDbi          1.56.2   2021-11-09 [1] Bioconductor
+##  ape                  * 5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
+##  askpass                1.1      2019-01-13 [1] CRAN (R 4.1.0)
+##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
+##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
+##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
+##  bayesm                 3.1-4    2019-10-15 [1] CRAN (R 4.1.0)
+##  Biobase              * 2.54.0   2021-10-26 [1] Bioconductor
+##  BiocGenerics         * 0.40.0   2021-10-26 [1] Bioconductor
+##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
+##  biomformat             1.22.0   2021-10-26 [1] Bioconductor
+##  Biostrings             2.62.0   2021-10-26 [1] Bioconductor
+##  bit                    4.0.4    2020-08-04 [1] CRAN (R 4.1.0)
+##  bit64                  4.0.5    2020-08-30 [1] CRAN (R 4.1.0)
+##  bitops                 1.0-7    2021-04-24 [1] CRAN (R 4.1.0)
+##  blob                   1.2.2    2021-07-23 [1] CRAN (R 4.1.0)
+##  bookdown               0.24     2021-09-02 [1] CRAN (R 4.1.0)
+##  brio                   1.1.3    2021-11-30 [1] CRAN (R 4.1.0)
+##  broom                  0.7.12   2022-01-28 [1] CRAN (R 4.1.2)
+##  bslib                  0.3.1    2021-10-06 [1] CRAN (R 4.1.0)
+##  cachem                 1.0.6    2021-08-19 [1] CRAN (R 4.1.0)
+##  callr                  3.7.0    2021-04-20 [1] CRAN (R 4.1.0)
+##  car                    3.0-12   2021-11-06 [1] CRAN (R 4.1.0)
+##  carData                3.0-5    2022-01-06 [1] CRAN (R 4.1.2)
+##  caTools                1.18.2   2021-03-28 [1] CRAN (R 4.1.0)
+##  checkmate              2.0.0    2020-02-06 [1] CRAN (R 4.1.0)
+##  class                  7.3-20   2022-01-13 [1] CRAN (R 4.1.2)
+##  classInt               0.4-3    2020-04-07 [1] CRAN (R 4.1.0)
+##  cli                    3.2.0    2022-02-14 [1] CRAN (R 4.1.2)
+##  cluster                2.1.2    2021-04-17 [1] CRAN (R 4.1.2)
+##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
+##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
+##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
+##  compositions           2.0-4    2022-01-05 [1] CRAN (R 4.1.2)
+##  conflicted           * 1.1.0    2021-11-26 [1] CRAN (R 4.1.0)
+##  corrplot               0.92     2021-11-18 [1] CRAN (R 4.1.0)
+##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
+##  crayon                 1.5.0    2022-02-14 [1] CRAN (R 4.1.2)
+##  crosstalk              1.2.0    2021-11-04 [1] CRAN (R 4.1.0)
+##  data.table             1.14.2   2021-09-27 [1] CRAN (R 4.1.0)
+##  DBI                    1.1.2    2021-12-20 [1] CRAN (R 4.1.0)
+##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
+##  DEoptimR               1.0-10   2022-01-03 [1] CRAN (R 4.1.2)
+##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
+##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
+##  devtools               2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
+##  DiagrammeR             1.0.9    2022-03-05 [1] CRAN (R 4.1.2)
+##  digest                 0.6.29   2021-12-01 [1] CRAN (R 4.1.0)
+##  dplyr                * 1.0.8    2022-02-08 [1] CRAN (R 4.1.2)
+##  DT                     0.21     2022-02-26 [1] CRAN (R 4.1.2)
+##  e1071                  1.7-9    2021-09-16 [1] CRAN (R 4.1.0)
+##  edgeR                  3.36.0   2021-10-26 [1] Bioconductor
+##  ellipsis               0.3.2    2021-04-29 [1] CRAN (R 4.1.0)
+##  evaluate               0.15     2022-02-18 [1] CRAN (R 4.1.2)
+##  fansi                  1.0.2    2022-01-14 [1] CRAN (R 4.1.2)
+##  farver                 2.1.0    2021-02-28 [1] CRAN (R 4.1.0)
+##  fastmap                1.1.0    2021-01-25 [1] CRAN (R 4.1.0)
+##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
+##  foreign                0.8-82   2022-01-13 [1] CRAN (R 4.1.2)
+##  Formula                1.2-4    2020-10-16 [1] CRAN (R 4.1.0)
+##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
+##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
+##  geneplotter            1.72.0   2021-10-26 [1] Bioconductor
+##  generics               0.1.2    2022-01-31 [1] CRAN (R 4.1.2)
+##  GenomeInfoDb         * 1.30.1   2022-01-30 [1] Bioconductor
+##  GenomeInfoDbData       1.2.7    2022-03-09 [1] Bioconductor
+##  GenomicRanges        * 1.46.1   2021-11-18 [1] Bioconductor
+##  ggplot2              * 3.3.5    2021-06-25 [1] CRAN (R 4.1.0)
+##  ggpubr               * 0.4.0    2020-06-27 [1] CRAN (R 4.1.0)
+##  ggrepel                0.9.1    2021-01-15 [1] CRAN (R 4.1.0)
+##  ggsci                  2.9      2018-05-14 [1] CRAN (R 4.1.0)
+##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
+##  ggVennDiagram          1.2.1    2022-04-13 [1] Github (gaospecial/ggVennDiagram@db6742d)
+##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
+##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
+##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
+##  gridExtra              2.3      2017-09-09 [1] CRAN (R 4.1.0)
+##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
+##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
+##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
+##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
+##  htmlTable              2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
+##  htmltools              0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
+##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
+##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
+##  igraph                 1.2.11   2022-01-04 [1] CRAN (R 4.1.2)
+##  IRanges              * 2.28.0   2021-10-26 [1] Bioconductor
+##  iterators              1.0.14   2022-02-05 [1] CRAN (R 4.1.2)
+##  jpeg                   0.1-9    2021-07-24 [1] CRAN (R 4.1.0)
+##  jquerylib              0.1.4    2021-04-26 [1] CRAN (R 4.1.0)
+##  jsonlite               1.8.0    2022-02-22 [1] CRAN (R 4.1.2)
+##  kableExtra             1.3.4    2021-02-20 [1] CRAN (R 4.1.2)
+##  KEGGREST               1.34.0   2021-10-26 [1] Bioconductor
+##  KernSmooth             2.23-20  2021-05-03 [1] CRAN (R 4.1.2)
+##  knitr                  1.37     2021-12-16 [1] CRAN (R 4.1.0)
+##  labeling               0.4.2    2020-10-20 [1] CRAN (R 4.1.0)
+##  lattice              * 0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
+##  latticeExtra           0.6-29   2019-12-19 [1] CRAN (R 4.1.0)
+##  libcoin                1.0-9    2021-09-27 [1] CRAN (R 4.1.0)
+##  lifecycle              1.0.1    2021-09-24 [1] CRAN (R 4.1.0)
+##  limma                  3.50.1   2022-02-17 [1] Bioconductor
+##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
+##  magrittr               2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
+##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
+##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
+##  MatrixGenerics       * 1.6.0    2021-10-26 [1] Bioconductor
+##  matrixStats          * 0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
+##  mbzinb                 0.2      2022-03-16 [1] local
+##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
+##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
+##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
+##  microbiome             1.16.0   2021-10-26 [1] Bioconductor
+##  modeltools             0.2-23   2020-03-05 [1] CRAN (R 4.1.0)
+##  multcomp               1.4-18   2022-01-04 [1] CRAN (R 4.1.2)
+##  multtest               2.50.0   2021-10-26 [1] Bioconductor
+##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
+##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
+##  NADA                   1.6-1.1  2020-03-22 [1] CRAN (R 4.1.0)
+##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
+##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
+##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
+##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
+##  pheatmap               1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
+##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
+##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
+##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
+##  pkgbuild               1.3.1    2021-12-20 [1] CRAN (R 4.1.0)
+##  pkgconfig              2.0.3    2019-09-22 [1] CRAN (R 4.1.0)
+##  pkgload                1.2.4    2021-11-30 [1] CRAN (R 4.1.0)
+##  plyr                   1.8.6    2020-03-03 [1] CRAN (R 4.1.0)
+##  png                    0.1-7    2013-12-03 [1] CRAN (R 4.1.0)
+##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
+##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
+##  protoclust             1.6.3    2019-01-31 [1] CRAN (R 4.1.0)
+##  proxy                  0.4-26   2021-06-07 [1] CRAN (R 4.1.0)
+##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
+##  pscl                   1.5.5    2020-03-07 [1] CRAN (R 4.1.0)
+##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
+##  qvalue                 2.26.0   2021-10-26 [1] Bioconductor
+##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
+##  RAIDA                  1.0      2022-03-14 [1] local
+##  RColorBrewer         * 1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
+##  Rcpp                   1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
+##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
+##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
+##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
+##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
+##  reticulate             1.24     2022-01-26 [1] CRAN (R 4.1.2)
+##  Rfast                  2.0.6    2022-02-16 [1] CRAN (R 4.1.2)
+##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
+##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
+##  Rhdf5lib               1.16.0   2021-10-26 [1] Bioconductor
+##  rlang                  1.0.2    2022-03-04 [1] CRAN (R 4.1.2)
+##  rmarkdown              2.13     2022-03-10 [1] CRAN (R 4.1.2)
+##  robustbase             0.93-9   2021-09-27 [1] CRAN (R 4.1.0)
+##  rpart                  4.1.16   2022-01-24 [1] CRAN (R 4.1.2)
+##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
+##  RSpectra               0.16-0   2019-12-01 [1] CRAN (R 4.1.0)
+##  RSQLite                2.2.10   2022-02-17 [1] CRAN (R 4.1.2)
+##  rstatix                0.7.0    2021-02-13 [1] CRAN (R 4.1.0)
+##  rstudioapi             0.13     2020-11-12 [1] CRAN (R 4.1.0)
+##  Rtsne                  0.15     2018-11-10 [1] CRAN (R 4.1.0)
+##  RVenn                  1.1.0    2019-07-18 [1] CRAN (R 4.1.0)
+##  rvest                  1.0.2    2021-10-16 [1] CRAN (R 4.1.0)
+##  S4Vectors            * 0.32.3   2021-11-21 [1] Bioconductor
+##  sandwich               3.0-1    2021-05-18 [1] CRAN (R 4.1.0)
+##  sass                   0.4.0    2021-05-12 [1] CRAN (R 4.1.0)
+##  scales                 1.1.1    2020-05-11 [1] CRAN (R 4.1.0)
+##  sessioninfo            1.2.2    2021-12-06 [1] CRAN (R 4.1.0)
+##  sf                     1.0-7    2022-03-07 [1] CRAN (R 4.1.2)
+##  shape                  1.4.6    2021-05-19 [1] CRAN (R 4.1.0)
+##  stringi                1.7.6    2021-11-29 [1] CRAN (R 4.1.0)
+##  stringr                1.4.0    2019-02-10 [1] CRAN (R 4.1.0)
+##  SummarizedExperiment * 1.24.0   2021-10-26 [1] Bioconductor
+##  survival               3.3-1    2022-03-03 [1] CRAN (R 4.1.2)
+##  svglite                2.1.0    2022-02-03 [1] CRAN (R 4.1.2)
+##  systemfonts            1.0.4    2022-02-11 [1] CRAN (R 4.1.2)
+##  tensorA                0.36.2   2020-11-19 [1] CRAN (R 4.1.0)
+##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
+##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
+##  tibble               * 3.1.6    2021-11-07 [1] CRAN (R 4.1.0)
+##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
+##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
+##  truncnorm              1.0-8    2018-02-27 [1] CRAN (R 4.1.0)
+##  umap                   0.2.8.0  2022-03-23 [1] CRAN (R 4.1.2)
+##  units                  0.8-0    2022-02-05 [1] CRAN (R 4.1.2)
+##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
+##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
+##  vctrs                  0.3.8    2021-04-29 [1] CRAN (R 4.1.0)
+##  vegan                * 2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
+##  viridis              * 0.6.2    2021-10-13 [1] CRAN (R 4.1.0)
+##  viridisLite          * 0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
+##  visNetwork             2.1.0    2021-09-29 [1] CRAN (R 4.1.0)
+##  webshot                0.5.3    2022-04-14 [1] CRAN (R 4.1.2)
+##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
+##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
+##  xfun                   0.30     2022-03-02 [1] CRAN (R 4.1.2)
+##  XMAS2                * 2.1.4    2022-06-20 [1] local
+##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
+##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
+##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
+##  XVector                0.34.0   2021-10-26 [1] Bioconductor
+##  yaml                   2.3.5    2022-02-21 [1] CRAN (R 4.1.2)
+##  zCompositions          1.4.0    2022-01-13 [1] CRAN (R 4.1.2)
+##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
+##  zoo                    1.8-9    2021-03-09 [1] CRAN (R 4.1.0)
 ## 
-## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
 ## 
-## attached base packages:
-## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] RColorBrewer_1.1-2          viridis_0.6.2               viridisLite_0.4.0          
-##  [4] picante_1.8.2               nlme_3.1-155                vegan_2.5-7                
-##  [7] lattice_0.20-45             permute_0.9-7               ape_5.6-2                  
-## [10] conflicted_1.1.0            SummarizedExperiment_1.24.0 Biobase_2.54.0             
-## [13] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1         IRanges_2.28.0             
-## [16] S4Vectors_0.32.3            BiocGenerics_0.40.0         MatrixGenerics_1.6.0       
-## [19] matrixStats_0.61.0          ggpubr_0.4.0                ggplot2_3.3.5              
-## [22] phyloseq_1.38.0             tibble_3.1.6                dplyr_1.0.8                
-## [25] XMAS2_2.1.4                
-## 
-## loaded via a namespace (and not attached):
-##   [1] utf8_1.2.2             reticulate_1.24        tidyselect_1.1.2      
-##   [4] RSQLite_2.2.10         AnnotationDbi_1.56.2   htmlwidgets_1.5.4     
-##   [7] grid_4.1.2             BiocParallel_1.28.3    Rtsne_0.15            
-##  [10] munsell_0.5.0          units_0.8-0            codetools_0.2-18      
-##  [13] DT_0.21                umap_0.2.8.0           withr_2.5.0           
-##  [16] colorspace_2.0-3       highr_0.9              knitr_1.37            
-##  [19] rstudioapi_0.13        pscl_1.5.5             robustbase_0.93-9     
-##  [22] bayesm_3.1-4           ggsignif_0.6.3         labeling_0.4.2        
-##  [25] mbzinb_0.2             GenomeInfoDbData_1.2.7 pheatmap_1.0.12       
-##  [28] bit64_4.0.5            farver_2.1.0           rhdf5_2.38.1          
-##  [31] vctrs_0.3.8            generics_0.1.2         TH.data_1.1-0         
-##  [34] xfun_0.30              R6_2.5.1               RVenn_1.1.0           
-##  [37] locfit_1.5-9.5         RcppZiggurat_0.1.6     bitops_1.0-7          
-##  [40] rhdf5filters_1.6.0     microbiome_1.16.0      cachem_1.0.6          
-##  [43] DelayedArray_0.20.0    assertthat_0.2.1       scales_1.1.1          
-##  [46] multcomp_1.4-18        nnet_7.3-17            gtable_0.3.0          
-##  [49] sandwich_3.0-1         rlang_1.0.2            genefilter_1.76.0     
-##  [52] splines_4.1.2          protoclust_1.6.3       rstatix_0.7.0         
-##  [55] broom_0.7.12           checkmate_2.0.0        yaml_2.3.5            
-##  [58] reshape2_1.4.4         abind_1.4-5            crosstalk_1.2.0       
-##  [61] backports_1.4.1        Rfast_2.0.6            qvalue_2.26.0         
-##  [64] Hmisc_4.6-0            DiagrammeR_1.0.9       tensorA_0.36.2        
-##  [67] tools_4.1.2            bookdown_0.24          zCompositions_1.4.0   
-##  [70] ellipsis_0.3.2         gplots_3.1.1           jquerylib_0.1.4       
-##  [73] biomformat_1.22.0      proxy_0.4-26           Rcpp_1.0.8.2          
-##  [76] plyr_1.8.6             base64enc_0.1-3        visNetwork_2.1.0      
-##  [79] zlibbioc_1.40.0        classInt_0.4-3         purrr_0.3.4           
-##  [82] RCurl_1.98-1.6         rpart_4.1.16           openssl_2.0.0         
-##  [85] Wrench_1.12.0          cowplot_1.1.1          zoo_1.8-9             
-##  [88] ggrepel_0.9.1          cluster_2.1.2          magrittr_2.0.2        
-##  [91] data.table_1.14.2      RSpectra_0.16-0        truncnorm_1.0-8       
-##  [94] mvtnorm_1.1-3          ALDEx2_1.26.0          RAIDA_1.0             
-##  [97] evaluate_0.15          xtable_1.8-4           XML_3.99-0.9          
-## [100] jpeg_0.1-9             gridExtra_2.3          shape_1.4.6           
-## [103] compiler_4.1.2         KernSmooth_2.23-20     crayon_1.5.0          
-## [106] htmltools_0.5.2        mgcv_1.8-39            ggVennDiagram_1.2.1   
-## [109] Formula_1.2-4          tidyr_1.2.0            geneplotter_1.72.0    
-## [112] libcoin_1.0-9          DBI_1.1.2              corrplot_0.92         
-## [115] MASS_7.3-55            sf_1.0-7               compositions_2.0-4    
-## [118] Matrix_1.4-0           ade4_1.7-18            car_3.0-12            
-## [121] cli_3.2.0              parallel_4.1.2         igraph_1.2.11         
-## [124] pkgconfig_2.0.3        coin_1.4-2             foreign_0.8-82        
-## [127] foreach_1.5.2          annotate_1.72.0        bslib_0.3.1           
-## [130] multtest_2.50.0        XVector_0.34.0         NADA_1.6-1.1          
-## [133] stringr_1.4.0          digest_0.6.29          Biostrings_2.62.0     
-## [136] rmarkdown_2.13         htmlTable_2.4.0        edgeR_3.36.0          
-## [139] gtools_3.9.2           modeltools_0.2-23      lifecycle_1.0.1       
-## [142] jsonlite_1.8.0         Rhdf5lib_1.16.0        carData_3.0-5         
-## [145] askpass_1.1            limma_3.50.1           fansi_1.0.2           
-## [148] pillar_1.7.0           ggsci_2.9              DEoptimR_1.0-10       
-## [151] KEGGREST_1.34.0        fastmap_1.1.0          httr_1.4.2            
-## [154] survival_3.3-1         glue_1.6.2             png_0.1-7             
-## [157] iterators_1.0.14       glmnet_4.1-3           bit_4.0.4             
-## [160] class_7.3-20           stringi_1.7.6          sass_0.4.0            
-## [163] metagenomeSeq_1.36.0   blob_1.2.2             DESeq2_1.34.0         
-## [166] latticeExtra_0.6-29    caTools_1.18.2         memoise_2.0.1         
-## [169] e1071_1.7-9</code></pre>
+## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 
 </div>
 </div>

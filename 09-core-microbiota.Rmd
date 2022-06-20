@@ -139,6 +139,6 @@ When increasing the Detection, the core size turns to low level.
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```
 

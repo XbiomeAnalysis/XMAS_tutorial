@@ -110,5 +110,5 @@ plot_taxa_heatmap(dada2_ps_rarefy,
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```

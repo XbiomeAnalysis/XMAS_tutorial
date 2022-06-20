@@ -255,5 +255,5 @@ metaphlan2_ps_Species_LOD
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```

@@ -430,23 +430,35 @@ DA_venn_res$pl
 ```
 
 
+## plot the DA results from the significant taxa by double barplot
+```{r, warning=FALSE, fig.align="center", fig.width=7, fig.height=5, fig.cap="double barplot for DA results"}
+data("amplicon_ps")
+DA_res <- run_wilcox(amplicon_ps, taxa_level="Family", group="SampleType", group_names=c("tongue", "gut"))
+
+plot_double_barplot(data=DA_res,
+              x_index="Log2FoldChange (Rank)\ntongue_vs_gut",
+              x_index_cutoff=1,
+              y_index="AdjustedPvalue",
+              y_index_cutoff=0.05)
+```
+
 ## plot_stacked_bar_XIVZ
 
 * Minimum usage: plot in relative abundance
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="plot_stacked_bar_XIVZ (test1)"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=12, fig.height=6, fig.cap="plot_stacked_bar_XIVZ (test1)"}
 plot_stacked_bar_XIVZ(phyloseq = dada2_ps_rarefy, level = "Family")
 ```
 
 
 * Set feature parameter to show feature information
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test2)"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=12, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test2)"}
 plot_stacked_bar_XIVZ(phyloseq = dada2_ps_rarefy, 
                  level = "Family",
                  feature = "Group")
 ```
 
 * Pass ordered sample names to order parameter to plot in specific order
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test3)"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=12, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test3)"}
 metadata <- phyloseq::sample_data(dada2_ps_rarefy) %>% 
   data.frame() %>%
   dplyr::arrange(Group)
@@ -458,7 +470,7 @@ plot_stacked_bar_XIVZ(phyloseq = dada2_ps_rarefy,
 
 
 * Use facet_wrap(vars(), scale="free") funciton to facet stacked barplot
-```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test4)"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=12, fig.height=8, fig.cap="plot_stacked_bar_XIVZ (test4)"}
 plot_stacked_bar_XIVZ(phyloseq = dada2_ps_rarefy, 
                  level = "Family", 
                  relative_abundance = TRUE, 
@@ -503,7 +515,8 @@ plot_StackBarPlot(
         facet = TRUE)
 ```
 
+
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```

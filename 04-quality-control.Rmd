@@ -171,6 +171,6 @@ Different distribution between group *AA* and *BB*.
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```
 

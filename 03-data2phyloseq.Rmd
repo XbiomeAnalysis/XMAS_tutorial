@@ -179,5 +179,5 @@ metaphlan2_ps
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```

@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-17" />
+<meta name="date" content="2022-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.21/datatables.js"></script>
@@ -358,9 +360,10 @@ div.csl-indent {
 <li class="chapter" data-level="12.7" data-path="visualization-5.html"><a href="visualization-5.html#plot_ggbiplot"><i class="fa fa-check"></i><b>12.7</b> plot_ggbiplot<span></span></a></li>
 <li class="chapter" data-level="12.8" data-path="visualization-5.html"><a href="visualization-5.html#plot_corrplot"><i class="fa fa-check"></i><b>12.8</b> plot_corrplot<span></span></a></li>
 <li class="chapter" data-level="12.9" data-path="visualization-5.html"><a href="visualization-5.html#plot_2da_venn"><i class="fa fa-check"></i><b>12.9</b> plot_2DA_venn<span></span></a></li>
-<li class="chapter" data-level="12.10" data-path="visualization-5.html"><a href="visualization-5.html#plot_stacked_bar_xivz"><i class="fa fa-check"></i><b>12.10</b> plot_stacked_bar_XIVZ<span></span></a></li>
-<li class="chapter" data-level="12.11" data-path="visualization-5.html"><a href="visualization-5.html#plot_stackbarplot"><i class="fa fa-check"></i><b>12.11</b> plot_StackBarPlot<span></span></a></li>
-<li class="chapter" data-level="12.12" data-path="visualization-5.html"><a href="visualization-5.html#systematic-information-9"><i class="fa fa-check"></i><b>12.12</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="12.10" data-path="visualization-5.html"><a href="visualization-5.html#plot-the-da-results-from-the-significant-taxa-by-double-barplot"><i class="fa fa-check"></i><b>12.10</b> plot the DA results from the significant taxa by double barplot<span></span></a></li>
+<li class="chapter" data-level="12.11" data-path="visualization-5.html"><a href="visualization-5.html#plot_stacked_bar_xivz"><i class="fa fa-check"></i><b>12.11</b> plot_stacked_bar_XIVZ<span></span></a></li>
+<li class="chapter" data-level="12.12" data-path="visualization-5.html"><a href="visualization-5.html#plot_stackbarplot"><i class="fa fa-check"></i><b>12.12</b> plot_StackBarPlot<span></span></a></li>
+<li class="chapter" data-level="12.13" data-path="visualization-5.html"><a href="visualization-5.html#systematic-information-9"><i class="fa fa-check"></i><b>12.13</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html"><i class="fa fa-check"></i><b>13</b> Principals of Differential Analysis methods<span></span></a>
 <ul>
@@ -460,140 +463,317 @@ div.csl-indent {
 <h2><span class="header-section-number">2.4</span> Data Analysis apply for discovering the potential microbial biomarkers<a href="introduction.html#data-analysis-apply-for-discovering-the-potential-microbial-biomarkers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this tutorial, we focus on differential analysis with the step-by-step procedures by using the R programming language. We also briefly introduce the concepts and principals of the statistical methods before the applications and give conclusions on the results.</p>
 <p>The following table shows more than 10 differential analysis methods:</p>
-<table style="width:100%;">
-<colgroup>
-<col width="14%" />
-<col width="15%" />
-<col width="24%" />
-<col width="15%" />
-<col width="19%" />
-<col width="10%" />
-</colgroup>
+<div style="border: 0px;overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-1">Table 2.1: </span>Differential analysis tools in XMAS.
+</caption>
 <thead>
-<tr class="header">
-<th><strong>Tool(version)</strong></th>
-<th><strong>Input</strong></th>
-<th><strong>Normalization</strong></th>
-<th><strong>Transformation</strong></th>
-<th><strong>Distribution</strong></th>
-<th><strong>MicrobialData</strong></th>
+<tr>
+<th style="text-align:left;">
+Tool.version.
+</th>
+<th style="text-align:left;">
+Input
+</th>
+<th style="text-align:left;">
+Normalization
+</th>
+<th style="text-align:left;">
+Transformation
+</th>
+<th style="text-align:left;">
+Distribution
+</th>
+<th style="text-align:left;">
+MicrobialData
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>ALDEx2 (1.26.0)</td>
-<td>Counts</td>
-<td>None</td>
-<td>CLR</td>
-<td>Dirichlet-multinormial</td>
-<td>16s</td>
+<tr>
+<td style="text-align:left;">
+ALDEx2 (1.26.0)
+</td>
+<td style="text-align:left;">
+Counts
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+CLR
+</td>
+<td style="text-align:left;">
+Dirichlet-multinormial
+</td>
+<td style="text-align:left;">
+16s
+</td>
 </tr>
-<tr class="even">
-<td>limma voom (3.50.1)</td>
-<td>Counts/Relative</td>
-<td>None/TMM</td>
-<td>Log; Precision weighting</td>
-<td>Normal</td>
-<td>16s/MGS</td>
+<tr>
+<td style="text-align:left;">
+limma voom (3.50.1)
+</td>
+<td style="text-align:left;">
+Counts/Relative
+</td>
+<td style="text-align:left;">
+None/TMM
+</td>
+<td style="text-align:left;">
+Log; Precision weighting
+</td>
+<td style="text-align:left;">
+Normal
+</td>
+<td style="text-align:left;">
+16s/MGS
+</td>
 </tr>
-<tr class="odd">
-<td>mbzinb (0.2)</td>
-<td>Counts</td>
-<td>RLE</td>
-<td>None</td>
-<td>zero-inflated negative binomial</td>
-<td>16s</td>
+<tr>
+<td style="text-align:left;">
+mbzinb (0.2)
+</td>
+<td style="text-align:left;">
+Counts
+</td>
+<td style="text-align:left;">
+RLE
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+Zero-inflated negative binomial
+</td>
+<td style="text-align:left;">
+16s
+</td>
 </tr>
-<tr class="even">
-<td>omnibus (0.2)</td>
-<td>Counts</td>
-<td>GMPR(Geometric Mean of Pairwise Ratios)</td>
-<td>None</td>
-<td>zero-inflated negative binomial</td>
-<td>16s</td>
+<tr>
+<td style="text-align:left;">
+omnibus (0.2)
+</td>
+<td style="text-align:left;">
+Counts
+</td>
+<td style="text-align:left;">
+GMPR(Geometric Mean of Pairwise Ratios)
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+Zero-inflated negative binomial
+</td>
+<td style="text-align:left;">
+16s
+</td>
 </tr>
-<tr class="odd">
-<td>RAIDA (1.0)</td>
-<td>Counts</td>
-<td>None</td>
-<td>Log</td>
-<td>modified t-test</td>
-<td>16s</td>
+<tr>
+<td style="text-align:left;">
+RAIDA (1.0)
+</td>
+<td style="text-align:left;">
+Counts
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+zero-inflated Log
+</td>
+<td style="text-align:left;">
+Modified t-test
+</td>
+<td style="text-align:left;">
+16s
+</td>
 </tr>
-<tr class="even">
-<td>Wilcox(rare/CLR)</td>
-<td>Counts/Relative</td>
-<td>None</td>
-<td>None/CLR</td>
-<td>Non-parametric</td>
-<td>16s/MGS</td>
+<tr>
+<td style="text-align:left;">
+Wilcox(rare/CLR)
+</td>
+<td style="text-align:left;">
+Counts/Relative
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+None/CLR
+</td>
+<td style="text-align:left;">
+Non-parametric
+</td>
+<td style="text-align:left;">
+16s/MGS
+</td>
 </tr>
-<tr class="odd">
-<td>LEfSe</td>
-<td>Rarefied Counts//Relative</td>
-<td>TSS</td>
-<td>None</td>
-<td>Non-parametric</td>
-<td>16s/MGS</td>
+<tr>
+<td style="text-align:left;">
+LEfSe
+</td>
+<td style="text-align:left;">
+Rarefied Counts/Relative
+</td>
+<td style="text-align:left;">
+TSS
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+Non-parametric
+</td>
+<td style="text-align:left;">
+16s/MGS
+</td>
 </tr>
-<tr class="even">
-<td>t-test (rare)</td>
-<td>Counts//Relative</td>
-<td>None</td>
-<td>None</td>
-<td>Normal</td>
-<td>16s/MGS</td>
+<tr>
+<td style="text-align:left;">
+t-test (rare)
+</td>
+<td style="text-align:left;">
+Counts/Relative
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+Normal
+</td>
+<td style="text-align:left;">
+16s/MGS
+</td>
 </tr>
-<tr class="odd">
-<td>metagenomeSeq (1.36.0)</td>
-<td>Counts</td>
-<td>CSS</td>
-<td>Log</td>
-<td>Zero-inflated (log) Normal</td>
-<td>16s</td>
+<tr>
+<td style="text-align:left;">
+metagenomeSeq (1.36.0)
+</td>
+<td style="text-align:left;">
+Counts
+</td>
+<td style="text-align:left;">
+CSS
+</td>
+<td style="text-align:left;">
+Log
+</td>
+<td style="text-align:left;">
+Zero-inflated (log) Normal
+</td>
+<td style="text-align:left;">
+16s
+</td>
 </tr>
-<tr class="even">
-<td>DESeq2 (1.34.0)</td>
-<td>Counts</td>
-<td>RLE</td>
-<td>None</td>
-<td>Negative binomial</td>
-<td>16s</td>
+<tr>
+<td style="text-align:left;">
+DESeq2 (1.34.0)
+</td>
+<td style="text-align:left;">
+Counts
+</td>
+<td style="text-align:left;">
+RLE
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+Negative binomial
+</td>
+<td style="text-align:left;">
+16s
+</td>
 </tr>
-<tr class="odd">
-<td>edgeR (3.36.0)</td>
-<td>Counts</td>
-<td>RLE/TMM</td>
-<td>None</td>
-<td>Negative binomial</td>
-<td>16s</td>
+<tr>
+<td style="text-align:left;">
+edgeR (3.36.0)
+</td>
+<td style="text-align:left;">
+Counts
+</td>
+<td style="text-align:left;">
+RLE/TMM
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+Negative binomial
+</td>
+<td style="text-align:left;">
+16s
+</td>
 </tr>
-<tr class="even">
-<td>ANCOM-II (2.1)</td>
-<td>Counts/Relative</td>
-<td>None</td>
-<td>ALR</td>
-<td>Non-parametric</td>
-<td>16s/MGS</td>
+<tr>
+<td style="text-align:left;">
+ANCOM-II (2.1)
+</td>
+<td style="text-align:left;">
+Counts/Relative
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+ALR
+</td>
+<td style="text-align:left;">
+Non-parametric
+</td>
+<td style="text-align:left;">
+16s/MGS
+</td>
 </tr>
-<tr class="odd">
-<td>Corncob (0.2.0)</td>
-<td>Counts</td>
-<td>None</td>
-<td>None</td>
-<td>Beta-binomial</td>
-<td>16s</td>
+<tr>
+<td style="text-align:left;">
+Corncob (0.2.0)
+</td>
+<td style="text-align:left;">
+Counts
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+None
+</td>
+<td style="text-align:left;">
+Beta-binomial
+</td>
+<td style="text-align:left;">
+16s
+</td>
 </tr>
-<tr class="even">
-<td>MaAslin2 (1.8.0)</td>
-<td>Counts/Relative abundance</td>
-<td>None/TSS</td>
-<td>AST</td>
-<td>Normal</td>
-<td>16s/MGS</td>
+<tr>
+<td style="text-align:left;">
+MaAslin2 (1.8.0)
+</td>
+<td style="text-align:left;">
+Counts/Relative
+</td>
+<td style="text-align:left;">
+None/TSS
+</td>
+<td style="text-align:left;">
+AST
+</td>
+<td style="text-align:left;">
+Normal
+</td>
+<td style="text-align:left;">
+16s/MGS
+</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>We suggest you using the reasonable method to fit your own microbiota data.</p>
 </div>
 <div id="book" class="section level2 hasAnchor" number="2.5">

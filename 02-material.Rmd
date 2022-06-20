@@ -202,5 +202,5 @@ We welcome any comments and requirements and hope users give issues on the gitla
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```

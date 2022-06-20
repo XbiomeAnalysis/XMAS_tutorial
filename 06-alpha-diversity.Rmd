@@ -254,5 +254,5 @@ plot_RankAbundance(
 
 ## Systematic Information
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```
