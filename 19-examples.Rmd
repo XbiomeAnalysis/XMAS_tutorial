@@ -409,7 +409,7 @@ plot_volcano(
 ```
 
 
-## Metagenomics
+## Metagenomics (MGS)
 
 
 The metagenomic data analysis pipeline is just the same as 16s. In briefly, the example comprises the following steps:
@@ -524,7 +524,7 @@ metaphlan2_ps_species_filter
 
 #### Trimming the taxa with low occurrence less than threshold
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps_species_filter_trim <- run_trim(metaphlan2_ps_species_filter, cutoff = 0.2, trim = "feature")
+metaphlan2_ps_species_filter_trim <- run_trim(metaphlan2_ps_species_filter, cutoff = 0.1, trim = "feature")
 metaphlan2_ps_species_filter_trim
 ```
 
@@ -597,6 +597,14 @@ plot_Ordination(ResultList = metaphlan2_ps_ordination,
 
 #### Stacked barplot 
 
+* **XVIZ** package
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=9, fig.align="center", fig.cap="Microbial composition (MGS) XVIZ"}
+plot_stacked_bar_XIVZ(
+        phyloseq = metaphlan2_ps_species,
+        level = "Phylum",
+        feature = "Group")
+```
+
 * **XMAS** package
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=7, fig.align="center", fig.cap="Microbial composition (MGS example)"}
 plot_StackBarPlot(
@@ -604,14 +612,6 @@ plot_StackBarPlot(
         taxa_level="Phylum",
         group = "Group",
         cluster = TRUE)
-```
-
-* **XVIZ** package
-```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=9, fig.align="center", fig.cap="Microbial composition (MGS) XVIZ"}
-plot_stacked_bar_XIVZ(
-        phyloseq = metaphlan2_ps_species,
-        level = "Phylum",
-        feature = "Group")
 ```
 
 #### Core microbiota

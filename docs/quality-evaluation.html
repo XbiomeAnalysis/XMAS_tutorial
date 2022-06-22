@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-20" />
+<meta name="date" content="2022-06-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -395,7 +395,7 @@ div.csl-indent {
 <li class="chapter" data-level="14.2.6" data-path="examples.html"><a href="examples.html#microbial-composition"><i class="fa fa-check"></i><b>14.2.6</b> Microbial composition<span></span></a></li>
 <li class="chapter" data-level="14.2.7" data-path="examples.html"><a href="examples.html#differential-analysis-1"><i class="fa fa-check"></i><b>14.2.7</b> Differential Analysis<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="examples.html"><a href="examples.html#metagenomics"><i class="fa fa-check"></i><b>14.3</b> Metagenomics<span></span></a>
+<li class="chapter" data-level="14.3" data-path="examples.html"><a href="examples.html#metagenomics-mgs"><i class="fa fa-check"></i><b>14.3</b> Metagenomics (MGS)<span></span></a>
 <ul>
 <li class="chapter" data-level="14.3.1" data-path="examples.html"><a href="examples.html#converting-inputs-into-phyloseq-class-object-1"><i class="fa fa-check"></i><b>14.3.1</b> Converting inputs into phyloseq-class object<span></span></a></li>
 <li class="chapter" data-level="14.3.2" data-path="examples.html"><a href="examples.html#quality-control-1"><i class="fa fa-check"></i><b>14.3.2</b> Quality Control<span></span></a></li>
@@ -535,21 +535,21 @@ Figure 5.1: Reads’ track of DADA2
 <span id="cb45-39"><a href="quality-evaluation.html#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella       0.04951976  0.15437596  0.27131203  0.4840221  0.43998327  0.47365181  0.35549631  0.16128688  0.29870601</span></span>
 <span id="cb45-40"><a href="quality-evaluation.html#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level    0.08562792  0.06531291  0.05987576  0.0000000  0.00000000  0.00000000  0.00000000 14.10000000  1.78885207</span></span>
 <span id="cb45-41"><a href="quality-evaluation.html#cb45-41" aria-hidden="true" tabindex="-1"></a><span class="do">##                                                              Evaluation</span></span>
-<span id="cb45-42"><a href="quality-evaluation.html#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-43"><a href="quality-evaluation.html#cb45-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-44"><a href="quality-evaluation.html#cb45-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-45"><a href="quality-evaluation.html#cb45-45" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus    S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-46"><a href="quality-evaluation.html#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides  S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-47"><a href="quality-evaluation.html#cb45-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella      S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-48"><a href="quality-evaluation.html#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3    S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-49"><a href="quality-evaluation.html#cb45-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea            S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-50"><a href="quality-evaluation.html#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus    S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-51"><a href="quality-evaluation.html#cb45-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia        S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-52"><a href="quality-evaluation.html#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes     S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-53"><a href="quality-evaluation.html#cb45-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-54"><a href="quality-evaluation.html#cb45-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9     S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-55"><a href="quality-evaluation.html#cb45-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella      S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span>
-<span id="cb45-56"><a href="quality-evaluation.html#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level   S8005 didn&#39;t pass the threshold (2022-06-20 18:28:40).</span></span></code></pre></div>
+<span id="cb45-42"><a href="quality-evaluation.html#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium  S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-43"><a href="quality-evaluation.html#cb45-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides      S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-44"><a href="quality-evaluation.html#cb45-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-45"><a href="quality-evaluation.html#cb45-45" aria-hidden="true" tabindex="-1"></a><span class="do">## Lactobacillus    S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-46"><a href="quality-evaluation.html#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="do">## Parabacteroides  S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-47"><a href="quality-evaluation.html#cb45-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella      S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-48"><a href="quality-evaluation.html#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_3    S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-49"><a href="quality-evaluation.html#cb45-49" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea            S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-50"><a href="quality-evaluation.html#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus    S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-51"><a href="quality-evaluation.html#cb45-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia        S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-52"><a href="quality-evaluation.html#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Anaerostipes     S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-53"><a href="quality-evaluation.html#cb45-53" aria-hidden="true" tabindex="-1"></a><span class="do">## Enterococcus     S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-54"><a href="quality-evaluation.html#cb45-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_9     S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-55"><a href="quality-evaluation.html#cb45-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Eggerthella      S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb45-56"><a href="quality-evaluation.html#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level   S8005 didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span></code></pre></div>
 <p>We could see that the messages are comprised of four parts.</p>
 <ol style="list-style-type: decimal">
 <li><p>the 1st part showed the type of <em>reference matrix</em> and whether the spike-in sample had been added to reference matrix;</p></li>
@@ -622,23 +622,23 @@ Figure 5.1: Reads’ track of DADA2
 <span id="cb48-23"><a href="quality-evaluation.html#cb48-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.22002 0.26062 0.28058 0.33329  0.07093  0.06778  0.05229  0.04781  0.06825</span></span>
 <span id="cb48-24"><a href="quality-evaluation.html#cb48-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                       7.33876 7.34799 7.14891 6.47250  8.88190  9.72198  9.72162 10.57600 32.69000</span></span>
 <span id="cb48-25"><a href="quality-evaluation.html#cb48-25" aria-hidden="true" tabindex="-1"></a><span class="do">##                                            mean                                            Evaluation</span></span>
-<span id="cb48-26"><a href="quality-evaluation.html#cb48-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum               9.29675556 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-27"><a href="quality-evaluation.html#cb48-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis                2.01824222 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-28"><a href="quality-evaluation.html#cb48-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii         0.70321000 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-29"><a href="quality-evaluation.html#cb48-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis         5.05609556 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-30"><a href="quality-evaluation.html#cb48-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron         3.11556556 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-31"><a href="quality-evaluation.html#cb48-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens              0.55826111 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-32"><a href="quality-evaluation.html#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                    1.59348889 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-33"><a href="quality-evaluation.html#cb48-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans                3.65288667 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-34"><a href="quality-evaluation.html#cb48-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius             2.86036667 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-35"><a href="quality-evaluation.html#cb48-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens            1.59565111 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-36"><a href="quality-evaluation.html#cb48-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                   2.97619667 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-37"><a href="quality-evaluation.html#cb48-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                    0.03414444 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-38"><a href="quality-evaluation.html#cb48-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                 3.02816667 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-39"><a href="quality-evaluation.html#cb48-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                     8.36682333 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-40"><a href="quality-evaluation.html#cb48-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum    5.88103222 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-41"><a href="quality-evaluation.html#cb48-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.15573000 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span>
-<span id="cb48-42"><a href="quality-evaluation.html#cb48-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      11.09996222 refE didn&#39;t pass the threshold (2022-06-20 18:28:41).</span></span></code></pre></div>
+<span id="cb48-26"><a href="quality-evaluation.html#cb48-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_longum               9.29675556 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-27"><a href="quality-evaluation.html#cb48-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_uniformis                2.01824222 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-28"><a href="quality-evaluation.html#cb48-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Faecalibacterium_prausnitzii         0.70321000 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-29"><a href="quality-evaluation.html#cb48-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_adolescentis         5.05609556 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-30"><a href="quality-evaluation.html#cb48-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_thetaiotaomicron         3.11556556 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-31"><a href="quality-evaluation.html#cb48-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Collinsella_aerofaciens              0.55826111 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-32"><a href="quality-evaluation.html#cb48-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Coprococcus_comes                    1.59348889 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-33"><a href="quality-evaluation.html#cb48-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Dorea_formicigenerans                3.65288667 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-34"><a href="quality-evaluation.html#cb48-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Streptococcus_salivarius             2.86036667 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-35"><a href="quality-evaluation.html#cb48-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_xylanisolvens            1.59565111 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-36"><a href="quality-evaluation.html#cb48-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_ovatus                   2.97619667 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-37"><a href="quality-evaluation.html#cb48-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Roseburia_hominis                    0.03414444 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-38"><a href="quality-evaluation.html#cb48-38" aria-hidden="true" tabindex="-1"></a><span class="do">## Bacteroides_vulgatus                 3.02816667 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-39"><a href="quality-evaluation.html#cb48-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Prevotella_copri                     8.36682333 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-40"><a href="quality-evaluation.html#cb48-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Bifidobacterium_pseudocatenulatum    5.88103222 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-41"><a href="quality-evaluation.html#cb48-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Lachnospiraceae_bacterium_5_1_63FAA  0.15573000 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span>
+<span id="cb48-42"><a href="quality-evaluation.html#cb48-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Impurity_level                      11.09996222 refE didn&#39;t pass the threshold (2022-06-22 11:27:16).</span></span></code></pre></div>
 </details>
 </div>
 </div>
@@ -790,7 +790,7 @@ Figure 5.5: Distribution of number of sequences
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-06-20
+##  date     2022-06-22
 ##  rstudio  2022.02.0+443 Prairie Trillium (desktop)
 ##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 ## 

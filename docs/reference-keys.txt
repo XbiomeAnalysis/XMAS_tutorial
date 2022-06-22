@@ -40,7 +40,6 @@ fig:unnamed-chunk-175
 fig:unnamed-chunk-176
 fig:unnamed-chunk-177
 fig:unnamed-chunk-178
-fig:unnamed-chunk-180
 fig:unnamed-chunk-184
 fig:unnamed-chunk-185
 fig:unnamed-chunk-186
@@ -301,7 +300,7 @@ core-microbiota-1
 differential-analysis-1
 liner-discriminant-analysis-lda-effect-size-lefse-2
 wilcoxon-rank-sum-test
-metagenomics
+metagenomics-mgs
 converting-inputs-into-phyloseq-class-object-1
 summarize-phyloseq-class-object-2
 quality-control-1
