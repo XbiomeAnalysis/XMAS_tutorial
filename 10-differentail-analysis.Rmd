@@ -104,7 +104,6 @@ library(tibble)
 library(phyloseq)
 library(ggplot2)
 library(ggpubr)
-library(SummarizedExperiment)
 ```
 
 ## Amplicon sequencing microbial data (16s) 
@@ -730,7 +729,7 @@ DA_lefse <- run_lefse(
                     dada2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    Lda = 0)
+                    Lda = 2)
 colnames(DA_lefse)
 head(DA_lefse)
 ```
@@ -1380,7 +1379,7 @@ DA_lefse_mgs <- run_lefse(
                     metaphlan2_ps_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    Lda = 0)  
+                    Lda = 2)  
 
 colnames(DA_lefse_mgs)
 head(DA_lefse_mgs)
@@ -1522,10 +1521,10 @@ DA_lefse <- run_lefse(
     dada2_ps_genus_filter_trim,
     group = "Group",
     group_names = c("AA", "BB"),
-    Lda = 0)
+    Lda = 2)
 
-# don't run this code when you do lefse in reality
-DA_lefse$LDA_Score <- DA_lefse$LDA_Score * 1000
+# # don't run this code when you do lefse in reality
+# DA_lefse$LDA_Score <- DA_lefse$LDA_Score * 1000
 
 plot_lefse(
   da_res = DA_lefse,

@@ -18,47 +18,142 @@ library(SummarizedExperiment)
 ## Workflow description
 
 The standard data analysis of 16S and MGS data by **XMAS 2.0**.
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=8, fig.align="center", fig.cap="Functions of XMAS 2.0 in 16s and MGS"}
-DiagrammeR::grViz(diagram = "digraph flowchart { 
 
-# initiate graph
-graph [layout = dot, rankdir = TB, label = '[dada2_res|metadata|tree]\n\n', labelloc = t]
+* 16S 
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=8, fig.width=8, fig.align="center", fig.cap="Functions of XMAS 2.0 in 16s"}
+library(Gmisc, quietly = TRUE)
+library(glue)
+library(htmlTable)
+library(grid)
+library(magrittr)
+
+ReadsTrack <- boxGrob("Step1: Reads' Track of DADA2\nplot_Dada2Track()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+ImportData <- boxGrob("Step2: Importing data\nimport_dada2_taxa()/get_dada2_phyloseq()/summarize_phyloseq()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+RefCheck <- boxGrob("Step3: BRS checking\nsummarize_taxa()/run_RefCheck()/get_GroupPhyloseq()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+Rarefaction <- boxGrob("Step4: Rarefaction curves\nplot_RarefCurve()/summarize_phyloseq()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+Normalization <- boxGrob("Step5: Normalization (Rarefy or not)",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+Rarefy <- boxGrob("Rarefy OTU table [Optional]\nnorm_rarefy()",
+                      txt_gp = gpar(col = "darkgrey", cex = .8))
+
+Extract <- boxGrob("Step6: Extract specific taxonomic level\nsummarize_taxa()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+
+GlobalView <- boxGrob("Step7: GlobalView",
+                      txt_gp = gpar(col = "darkblue", cex = .8)) 
+GlobalView_a <- boxGrob("Step7.1: Alpha diveristy\nrun_alpha_diversity()/plot_boxplot()",
+                      txt_gp = gpar(col = "darkblue", cex = .6)) 
+GlobalView_b <- boxGrob("Step7.2: Beta diveristy\nrun_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()",
+                      txt_gp = gpar(col = "darkblue", cex = .6))  
+GlobalView_c <- boxGrob("Step7.3: Composition\nplot_stacked_bar_XIVZ()/plot_core_taxa()/core_members()",
+                      txt_gp = gpar(col = "darkblue", cex = .6))  
+
+Differential <- boxGrob("Step8: DifferentialAnalysis\nrun_filter()/run_trim()/run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))  
 
 
-# global node settings
-node [shape = rectangle, style = filled, fillcolor = Linen, fontname = arial, width = 4]
- 
-tab1 [label = '@@1']  
-tab2 [label = '@@2']  
-tab3 [label = '@@3']
-tab4 [label = '@@4']  
-tab5 [label = '@@5']  
-tab6 [label = '@@6']
-tab7 [label = '@@7']  
-tab8 [label = '@@8']  
-tab9 [label = '@@9']
-tab10 [label = '@@10']  
-tab11 [label = '@@11']  
-tab12 [label = '@@12']
- 
-tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6 -> tab7 -> tab8 -> tab9 -> tab10 -> tab11 -> tab12;  
-}  
+grid.newpage()
+vert <- spreadVertical(ReadsTrack,
+                       ImportData = ImportData,
+                       RefCheck = RefCheck,
+                       Rarefaction = Rarefaction,
+                       Normalization = Normalization,
+                       #Rarefy = Rarefy,
+                       Extract = Extract,
+                       GlobalView = GlobalView,
+                       grps = GlobalView_a,
+                       Differential = Differential)
+grps <- alignVertical(reference = vert$grps,
+                      GlobalView_a, GlobalView_b, GlobalView_c) %>%
+  spreadHorizontal()
 
-  
-[1]: paste0('Importing data: get_dada2_phyloseq()/summarize_phyloseq()')
-[2]: paste0('Quality Control(RefCheck/Remove): summarize_taxa()/run_RefCheck()/get_GroupPhyloseq()')
-[3]: paste0('Quality Control(Rarefaction curves): plot_RarefCurve()')  
-[4]: paste0('Quality Control(Reads Track): plot_Dada2Track()')  
-[5]: paste0('Data processing(Rarefy): normalize()') 
-[6]: paste0('Data processing(Extract specific taxonomic level): summarize_taxa()') 
-[7]: paste0('Data processing(Count2Relative): summarize_taxa(absolute = FALSE)') 
-[8]: paste0('Data processing(Filter&trim): run_filter()/run_trim()') 
-[9]: paste0('GlobalView(Alpha diveristy): run_alpha_diversity()/plot_boxplot()') 
-[10]: paste0('GlobalView(Beta diveristy): run_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()') 
-[11]: paste0('GlobalView(microbial composition): plot_StackBarPlot()/plot_core_taxa()/core_members()')
-[12]: paste0('DifferentialAnalysis: run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()')
-")
+vert$grps <- NULL
+
+Rarefy <- moveBox(Rarefy,
+                  x = .8,
+                  y = coords(vert$Extract)$top + 
+                      Gmisc::distance(vert$Normalization, vert$Extract, half = TRUE, center = FALSE))
+
+for (i in 1:(length(vert) - 1)) {
+  connectGrob(vert[[i]], vert[[i + 1]], type = "vert") %>%
+    print
+}
+
+connectGrob(vert$GlobalView, grps[[1]], type = "N")
+connectGrob(vert$GlobalView, grps[[2]], type = "N")
+connectGrob(vert$GlobalView, grps[[3]], type = "N")
+
+connectGrob(vert$Extract, Rarefy, type = "L")
+
+vert
+grps
+Rarefy
 ```
+
+
+* MGS 
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=6, fig.width=8, fig.align="center", fig.cap="Functions of XMAS 2.0 in MGS"}
+ImportData <- boxGrob("Step1: Importing data\nimport_metaphlan_taxa()/get_metaphlan_phyloseq()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+
+TransformLOD <- boxGrob("Transform LOD into Zeros\naggregate_LOD_taxa()",
+                        txt_gp = gpar(col = "grey", cex = .8))
+
+RefCheck <- boxGrob("Step2: BRS checking\nsummarize_taxa()/run_RefCheck()/get_GroupPhyloseq()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+Extract <- boxGrob("Step3: Extract specific taxonomic level\nsummarize_taxa()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))
+GlobalView <- boxGrob("Step4: GlobalView",
+                      txt_gp = gpar(col = "darkblue", cex = .8)) 
+GlobalView_a <- boxGrob("Step4.1: Alpha diveristy\nrun_alpha_diversity()/plot_boxplot()",
+                      txt_gp = gpar(col = "darkblue", cex = .6)) 
+GlobalView_b <- boxGrob("Step4.2: Beta diveristy\nrun_beta_diversity()/run_permanova()/run_ordination()/plot_Ordination()",
+                      txt_gp = gpar(col = "darkblue", cex = .6))  
+GlobalView_c <- boxGrob("Step4.3: Composition\nplot_stacked_bar_XIVZ()/plot_core_taxa()/core_members()",
+                      txt_gp = gpar(col = "darkblue", cex = .6))  
+
+Differential <- boxGrob("Step5: DifferentialAnalysis\nrun_filter()/run_trim()/run_lefse()/plot_lefse()/run_wilcox()/plot_volcano()",
+                      txt_gp = gpar(col = "darkblue", cex = .8))  
+
+
+grid.newpage()
+vert <- spreadVertical(ImportData = ImportData,
+                       RefCheck = RefCheck,
+                       Extract = Extract,
+                       GlobalView = GlobalView,
+                       grps = GlobalView_a,
+                       Differential = Differential)
+grps <- alignVertical(reference = vert$grps,
+                      GlobalView_a, GlobalView_b, GlobalView_c) %>%
+  spreadHorizontal()
+
+vert$grps <- NULL
+
+TransformLOD <- moveBox(TransformLOD,
+                  x = .8,
+                  y = coords(vert$RefCheck)$top + 
+                      Gmisc::distance(vert$RefCheck, vert$Extract, half = TRUE, center = FALSE))
+
+for (i in 1:(length(vert) - 1)) {
+  connectGrob(vert[[i]], vert[[i + 1]], type = "vert") %>%
+    print
+}
+
+connectGrob(vert$GlobalView, grps[[1]], type = "N")
+connectGrob(vert$GlobalView, grps[[2]], type = "N")
+connectGrob(vert$GlobalView, grps[[3]], type = "N")
+
+connectGrob(vert$ImportData, TransformLOD, type = "L")
+
+vert
+grps
+TransformLOD
+```
+
 
 ## Amplicon sequencing (16s)
 
@@ -365,15 +460,15 @@ dada2_ps_lefse <- run_lefse(
                     dada2_ps_rare_genus_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    Lda = 0)
+                    Lda = 2)
 head(dada2_ps_lefse)
 ```
 
 * Visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align="center", fig.cap="Lefse analysis (16s example)"}
+# # don't run this code when you do lefse in reality
+# dada2_ps_lefse$LDA_Score <- dada2_ps_lefse$LDA_Score * 1000
 
-# don't run this code when you do lefse in reality
-dada2_ps_lefse$LDA_Score <- dada2_ps_lefse$LDA_Score * 1000
 plot_lefse(
   da_res = dada2_ps_lefse,
   x_index = "LDA_Score",
@@ -657,19 +752,19 @@ metaphlan2_ps_lefse <- run_lefse(
                     metaphlan2_ps_species_filter_trim,
                     group = "Group",
                     group_names = c("AA", "BB"),
-                    Lda = 0)
+                    Lda = 2)
 head(metaphlan2_ps_lefse)
 ```
 
 * Visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="Lefse analysis (MGS example)"}
-# don't run this code when you do lefse in reality
-metaphlan2_ps_lefse$LDA_Score <- metaphlan2_ps_lefse$LDA_Score * 100
+# # don't run this code when you do lefse in reality
+# metaphlan2_ps_lefse$LDA_Score <- metaphlan2_ps_lefse$LDA_Score * 100
 
 plot_lefse(
   da_res = metaphlan2_ps_lefse,
   x_index = "LDA_Score",
-  x_index_cutoff = 0,
+  x_index_cutoff = 2,
   group_color = c("green", "red"))
 ```
 
