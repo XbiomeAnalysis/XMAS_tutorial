@@ -612,6 +612,23 @@ metaphlan2_ps_species
 ```
 
 #### Filtering the low relative abundance or unclassified taxa by the threshold (total counts < 1e-4)
+
+The condition to filter low relative abundance is according to this article [@thingholm2019obese].
+
+> Species from taxonomic profiles were retained for further analysis if their mean relative abundance exceeded 0.005
+(0.5%) across the dataset with a minimum abundance of 0.05 (5%) in at least one sample and non-zero abundance in at least
+60% of samples. 
+
+There are three conditions
+
+1. Mean relative abundance: 0.005; 
+
+2. Minimum relative abundance: 0.05;
+
+3. Occurrence: 60%. 
+
+Here, we use 0.01 (the 1e-4 regarded as 0.01 compared to the Referece because Metaphlan2 data had been divided 100)
+
 ```{r, warning=FALSE, message=FALSE}
 metaphlan2_ps_species_filter <- run_filter(metaphlan2_ps_species, cutoff = 1e-4, unclass = TRUE)
 metaphlan2_ps_species_filter 
