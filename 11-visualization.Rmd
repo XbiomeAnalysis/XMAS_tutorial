@@ -126,12 +126,11 @@ plot_barplot(data = dat_alpha,
 * multiple index
 ```{r, warning=FALSE, fig.width=8, fig.height=4, fig.align="center", fig.cap="barplot(multiple index)"}
 plot_barplot(data = dat_alpha,
-              y_index = c("Shannon", "Chao1", "Observed"),
-              group = "SampleType",
-              do_test = TRUE,
-              method = "wilcox.test")
+             y_index = c("Shannon", "Chao1", "Observed"),
+             group = "SampleType",
+             do_test = TRUE,
+            method = "wilcox.test")
 ```
-
 
 
 ## plot_dotplot
@@ -439,16 +438,16 @@ da_ttest <- run_ttest(
                group_names = c("AA", "BB"))
 
 DA_venn_res <- plot_2DA_venn(
-         daTest1 = da_wilcox,
-         daTest2 = da_ttest,
-         datType1 = "AA vs BB(wilcox)",
-         datType2 = "AA vs BB(t-test)",
-         group_names = c("AA", "BB"),
-         Pvalue_name = "Pvalue",
-         logFc_name1 = "Log2FoldChange (Rank)\nAA_vs_BB",
-         logFc_name2 = "Log2FoldChange (geometricmean)\nAA_vs_BB",
-         Pvalue_cutoff = 0.8,
-         logFC_cutoff = 0.2)
+                   daTest1 = da_wilcox,
+                   daTest2 = da_ttest,
+                   datType1 = "AA vs BB(wilcox)",
+                   datType2 = "AA vs BB(t-test)",
+                   group_names = c("AA", "BB"),
+                   Pvalue_name = "Pvalue",
+                   logFc_name1 = "Log2FoldChange (Rank)\nAA_vs_BB",
+                   logFc_name2 = "Log2FoldChange (geometricmean)\nAA_vs_BB",
+                   Pvalue_cutoff = 0.8,
+                   logFC_cutoff = 0.2)
 DA_venn_res$pl
 ```
 

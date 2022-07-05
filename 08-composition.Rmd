@@ -24,7 +24,8 @@ library(SummarizedExperiment)
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      ps = dada2_ps,
                      group = "Group",
-                     group_names = "QC")
+                     group_names = "QC",
+                     discard = TRUE)
 dada2_ps_rarefy <- norm_rarefy(object = dada2_ps_remove_BRS, 
                                size = 51181)
 dada2_ps_rarefy
