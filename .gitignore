@@ -7,3 +7,6 @@
 #_bookdown_files
 *.DS_Store
 
+# folders
+docs/
+_bookdown_files/

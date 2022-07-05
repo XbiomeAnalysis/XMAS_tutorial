@@ -212,7 +212,7 @@ tree <- phyloseq::read_tree(
     )
 )
 
-tax_tab <- import_dada2_taxa(dada2_res$tax_tab)
+tax_tab <- import_dada2_taxa(dada2_taxa = dada2_res$tax_tab)
 otu_tab <- dada2_res$seq_tab
 sam_tab <- sam_tab %>% tibble::column_to_rownames("seqID")
 
@@ -220,10 +220,11 @@ sam_tab <- sam_tab %>% tibble::column_to_rownames("seqID")
 rownames(otu_tab) <- paste0("S", rownames(otu_tab))
 rownames(sam_tab) <- paste0("S", rownames(sam_tab))
 
-dada2_ps <- get_dada2_phyloseq(seq_tab = otu_tab, 
-                         tax_tab = tax_tab, 
-                         sam_tab = sam_tab, 
-                         phy_tree = tree)
+dada2_ps <- get_dada2_phyloseq(
+                seq_tab = otu_tab, 
+                tax_tab = tax_tab, 
+                sam_tab = sam_tab, 
+                phy_tree = tree)
 dada2_ps
 ```
 
@@ -231,7 +232,7 @@ Here, the phyloseq object comprises five components (*OTU Table*, *Sample Data*,
 
 ####  Summarize phyloseq-class object
 ```{r, warning=FALSE, collapse=TRUE}
-summarize_phyloseq(dada2_ps)
+summarize_phyloseq(ps = dada2_ps)
 ```
 
 The minus account of the OTU counts is *51181* in the phyloseq object, and we can use it as the threshold to rarefy. 
@@ -245,7 +246,7 @@ Quality control of DADA2 results will help us have more rational determinations 
 
 #### Reads' track by DADA2
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Reads' track by DADA2 (16s example)"}
-plot_Dada2Track(data=dada2_res$reads_track)
+plot_Dada2Track(data = dada2_res$reads_track)
 ```
 
 
@@ -255,30 +256,39 @@ The percentage of the final remained read counts approximate **70%**, indicating
 
 * Extract the genus level phyloseq and getting the BRS_ID
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_genus <- summarize_taxa(ps = dada2_ps, taxa_level = "Genus")
+dada2_ps_genus <- summarize_taxa(ps = dada2_ps, 
+                                 taxa_level = "Genus")
 sample_data(dada2_ps_genus)
 ```
 
 **The BRS_ID is *S8005* **.
 
 * Run `run_RefCheck`
-```{r, warning=FALSE, collapse=TRUE}
+
+```markdown
 run_RefCheck(
-    ps=dada2_ps_genus,
-    BRS_ID="S8005",
-    Reference=NULL,
-    Ref_type="16s",
-    Save=NULL)
+    ps = dada2_ps_genus,
+    BRS_ID = "S8005",
+    Ref_type = "16s")
+```
+
+```{r, warning=FALSE, collapse=TRUE, echo=FALSE}
+run_RefCheck(
+    ps = dada2_ps_genus,
+    BRS_ID = "S8005",
+    Reference = NULL,
+    Ref_type = "16s",
+    Save = NULL)
 ```
 
 
 #### Spike-in sample's remove
 ```{r, warning=FALSE, message=FALSE}
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
-                     ps = dada2_ps,
-                     group = "Group",
-                     group_names = "QC",
-                     discard = TRUE)
+                         ps = dada2_ps,
+                         group = "Group",
+                         group_names = "QC",
+                         discard = TRUE)
 dada2_ps_remove_BRS
 ```
 
@@ -286,10 +296,10 @@ dada2_ps_remove_BRS
 #### Rarefaction curves
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=6, fig.height=4, fig.cap="Rarefaction curves (16s example)"}
 plot_RarefCurve(ps = dada2_ps_remove_BRS,
-               taxa_level = "OTU",
-               step = 400,
-               label = "Group",
-               color = "Group")
+                taxa_level = "OTU",
+                step = 400,
+                label = "Group",
+                color = "Group")
 ```
 
 The result showed that all the samples had **different sequence depth** but had the full sample richness.
@@ -304,7 +314,8 @@ This part has too may procedures and we only choose some of them. Please go to *
 From previous results of quality evaluation, the sequence depth of samples are different which have effects on the downstream analysis. Here, choosing the **rarefy** (Normaliztion method: random subsampling counts to the smallest library size) to get the equal sample sums.
 
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
+dada2_ps_rarefy <- norm_rarefy(object = dada2_ps_remove_BRS, 
+                               size = 51181)
 dada2_ps_rarefy
 ```
 
@@ -312,19 +323,24 @@ In addition, we could also perform some other normalization methods on the raref
 
 #### Extracting specific taxonomic level
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_rare_genus <- summarize_taxa(dada2_ps_rarefy, taxa_level = "Genus")
+dada2_ps_rare_genus <- summarize_taxa(ps = dada2_ps_rarefy, 
+                                      taxa_level = "Genus")
 dada2_ps_rare_genus
 ```
 
 #### Filtering the low relative abundance or unclassified taxa by the threshold (total counts < 10)
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_rare_genus_filter <- run_filter(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
+dada2_ps_rare_genus_filter <- run_filter(ps = dada2_ps_rare_genus, 
+                                         cutoff = 10, 
+                                         unclass = TRUE)
 dada2_ps_rare_genus_filter 
 ```
 
 #### Trimming the taxa with low occurrence less than threshold
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_rare_genus_filter_trim <- run_trim(dada2_ps_rare_genus_filter, cutoff = 0.2, trim = "feature")
+dada2_ps_rare_genus_filter_trim <- run_trim(object = dada2_ps_rare_genus_filter, 
+                                            cutoff = 0.2, 
+                                            trim = "feature")
 dada2_ps_rare_genus_filter_trim
 ```
 
@@ -338,13 +354,14 @@ Finally, we obtained the final phyloseq-class object _dada2\_ps\_rare\_genus\_fi
 
 **Notes:** the otu table must be counts matrix (*rarefied but not trim counts matrix*) when you choose *Observed* etc measures. 
 ```{r, warning=FALSE, message=FALSE}
-dada_ps_rare_genus_alpha <- run_alpha_diversity(ps=dada2_ps_rare_genus, measures = c("Shannon", "Chao1", "Observed"))
+dada_ps_rare_genus_alpha <- run_alpha_diversity(ps = dada2_ps_rare_genus, 
+                                                measures = c("Shannon", "Chao1", "Observed"))
 print(dada_ps_rare_genus_alpha)
 ```
 
 * visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align="center", fig.cap="Alpha diversity (16s example)"}
-plot_boxplot(data=dada_ps_rare_genus_alpha,
+plot_boxplot(data = dada_ps_rare_genus_alpha,
              y_index = c("Shannon", "Chao1", "Observed"),
              group = "Group",
              group_names = c("AA", "BB"),
@@ -357,7 +374,9 @@ plot_boxplot(data=dada_ps_rare_genus_alpha,
 
 * beta dipersion
 ```{r, warning=FALSE, message=FALSE, fig.width=5, fig.height=4, fig.align="center", fig.cap="Beta diversity (16s example)"}
-dada2_ps_beta <- run_beta_diversity(ps=dada2_ps_rare_genus_filter_trim, method = "bray", group = "Group")
+dada2_ps_beta <- run_beta_diversity(ps = dada2_ps_rare_genus_filter_trim, 
+                                    method = "bray", 
+                                    group = "Group")
 dada2_ps_beta$BetaDispersion
 ```
 
@@ -366,7 +385,9 @@ dada2_ps_beta$BetaDispersion
 
 #### PERMANOVA
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_per <- run_permanova(ps=dada2_ps_rare_genus_filter_trim, method = "bray", columns = "Group")
+dada2_ps_per <- run_permanova(ps = dada2_ps_rare_genus_filter_trim, 
+                              method = "bray", 
+                              columns = "Group")
 print(dada2_ps_per)
 ```
 
@@ -378,9 +399,9 @@ The PERMANOVA result of the Group (`Pr(>F)` > 0.05) revealed that the two groups
 We performed ordination by using Principal Coordinate Analysis (PCoA). If you want to try other methods please go to see **Chapter 8** for more details.
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=8, fig.align="center", fig.cap="PCoA (16s example)"}
 dada2_ps_ordination <- run_ordination(
-                       ps = dada2_ps_rare_genus_filter_trim,
-                       group = "Group",
-                       method = "PCoA")
+                         ps = dada2_ps_rare_genus_filter_trim,
+                         group = "Group",
+                         method = "PCoA")
 
 plot_Ordination(ResultList = dada2_ps_ordination, 
                 group = "Group", 
@@ -398,8 +419,8 @@ A whole picture of the microbial composition.
 * **XMAS** package
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=7, fig.align="center", fig.cap="Microbial composition (16s example)"}
 plot_StackBarPlot(
-        ps=dada2_ps_rarefy,
-        taxa_level="Phylum",
+        ps = dada2_ps_rarefy,
+        taxa_level = "Phylum",
         group = "Group",
         cluster = TRUE)
 ```
@@ -407,8 +428,8 @@ plot_StackBarPlot(
 * **XVIZ** package
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=9, fig.align="center", fig.cap="Microbial composition (16s example) XVIZ"}
 plot_stacked_bar_XIVZ(
-        phyloseq=dada2_ps_rarefy,
-        level="Phylum",
+        phyloseq = dada2_ps_rarefy,
+        level = "Phylum",
         feature = "Group")
 ```
 
@@ -416,7 +437,8 @@ plot_stacked_bar_XIVZ(
 
 * convert absolute abundance into relative abundance 
 ```{r}
-dada2_ps_rare_genus_filter_trim_rb <- XMAS2::normalize(dada2_ps_rare_genus_filter_trim, method = "TSS")
+dada2_ps_rare_genus_filter_trim_rb <- XMAS2::normalize(object = dada2_ps_rare_genus_filter_trim, 
+                                                       method = "TSS")
 dada2_ps_rare_genus_filter_trim_rb
 ```
 
@@ -457,10 +479,11 @@ There are more than 10 approaches to perform differential analysis. Here, we cho
 * Calculation
 ```{r, warning=FALSE, message=FALSE}
 dada2_ps_lefse <- run_lefse(
-                    dada2_ps_rare_genus_filter_trim,
-                    group = "Group",
-                    group_names = c("AA", "BB"),
-                    Lda = 2)
+                      ps = dada2_ps_rare_genus_filter_trim,
+                      group = "Group",
+                      group_names = c("AA", "BB"),
+                      norm = "CPM",
+                      Lda = 2)
 head(dada2_ps_lefse)
 ```
 
@@ -482,9 +505,9 @@ plot_lefse(
 * Calculation
 ```{r, warning=FALSE, message=FALSE}
 dada2_ps_wilcox <- run_wilcox(
-                    dada2_ps_rare_genus_filter_trim,
-                    group = "Group",
-                    group_names = c("AA", "BB"))
+                      ps = dada2_ps_rare_genus_filter_trim,
+                      group = "Group",
+                      group_names = c("AA", "BB"))
 
 head(dada2_ps_wilcox)
 ```
@@ -493,7 +516,7 @@ head(dada2_ps_wilcox)
 * Volcano
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="Wilcoxon Rank-Sum test (16s example)"}
 plot_volcano(
-    dada2_ps_wilcox,
+    da_res = dada2_ps_wilcox,
     group_names = c("AA", "BB"),
     x_index = "Log2FoldChange (Rank)\nAA_vs_BB",
     x_index_cutoff = 0.5,
@@ -548,14 +571,16 @@ metaphlan2_sam <- read.table(
     stringsAsFactors = FALSE
 )
 
-metaphlan2_res_list <- import_metaphlan_taxa(metaphlan2_res, taxa_level = "Species")
+metaphlan2_res_list <- import_metaphlan_taxa(data_metaphlan2 = metaphlan2_res, 
+                                             taxa_level = "Species")
 otu_tab <- metaphlan2_res_list$abu_tab
 tax_tab <- metaphlan2_res_list$tax_tab
 sam_tab <- metaphlan2_sam %>% tibble::column_to_rownames("SampleID")
 
-metaphlan2_ps <- get_metaphlan_phyloseq(otu_tab = otu_tab, 
-                                   sam_tab = sam_tab,
-                                   tax_tab = tax_tab)
+metaphlan2_ps <- get_metaphlan_phyloseq(
+                    otu_tab = otu_tab, 
+                    sam_tab = sam_tab,
+                    tax_tab = tax_tab)
 metaphlan2_ps
 ```
 
@@ -563,7 +588,7 @@ Here, the phyloseq object comprises three components (*OTU Table*, *Sample Data*
 
 ####  Summarize phyloseq-class object
 ```{r, warning=FALSE}
-summarize_phyloseq(metaphlan2_ps)
+summarize_phyloseq(ps = metaphlan2_ps)
 ```
 
 Notice the **Sparsity (0.713)**, indicating the data has many zeros and pay attention to the downstream data analysis.
@@ -575,18 +600,27 @@ Notice the **Sparsity (0.713)**, indicating the data has many zeros and pay atte
 
 * Extract the species level phyloseq and obtain the BRS_ID
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps_species <- summarize_taxa(metaphlan2_ps, taxa_level = "Species")
+metaphlan2_ps_species <- summarize_taxa(ps = metaphlan2_ps, 
+                                        taxa_level = "Species")
 metaphlan2_ps_species@sam_data
 ```
 
 * Run `run_RefCheck`
-```{r, warning=FALSE, collapse=TRUE}
+
+```markdown
 run_RefCheck(
-    ps=metaphlan2_ps_species,
-    BRS_ID="refE",
-    Reference=NULL,
-    Ref_type="MGS",
-    Save=NULL)
+    ps = metaphlan2_ps_species,
+    BRS_ID = "refE",
+    Ref_type = "MGS")
+```
+
+```{r, warning=FALSE, collapse=TRUE, echo=FALSE}
+run_RefCheck(
+    ps = metaphlan2_ps_species,
+    BRS_ID = "refE",
+    Reference = NULL,
+    Ref_type = "MGS",
+    Save = NULL)
 ```
 
 The spike-in samples didn't pass the cutoff and failed to add the the Reference Matrix.
@@ -594,10 +628,10 @@ The spike-in samples didn't pass the cutoff and failed to add the the Reference 
 #### Spike-in sample's remove
 ```{r, warning=FALSE, message=FALSE}
 metaphlan2_ps_remove_BRS <- get_GroupPhyloseq(
-                     ps = metaphlan2_ps,
-                     group = "Group",
-                     group_names = "QC",
-                     discard = TRUE)
+                               ps = metaphlan2_ps,
+                               group = "Group",
+                               group_names = "QC",
+                               discard = TRUE)
 metaphlan2_ps_remove_BRS
 ```
 
@@ -607,7 +641,8 @@ This part has too may procedures and we only choose some of them. Please go to *
 
 #### Extracting specific taxonomic level
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps_species <- summarize_taxa(metaphlan2_ps_remove_BRS, taxa_level = "Species")
+metaphlan2_ps_species <- summarize_taxa(ps = metaphlan2_ps_remove_BRS, 
+                                        taxa_level = "Species")
 metaphlan2_ps_species
 ```
 
@@ -630,13 +665,17 @@ There are three conditions
 Here, we use 0.01 (the 1e-4 regarded as 0.01 compared to the Referece because Metaphlan2 data had been divided 100)
 
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps_species_filter <- run_filter(metaphlan2_ps_species, cutoff = 1e-4, unclass = TRUE)
+metaphlan2_ps_species_filter <- run_filter(ps = metaphlan2_ps_species, 
+                                           cutoff = 1e-4, 
+                                           unclass = TRUE)
 metaphlan2_ps_species_filter 
 ```
 
 #### Trimming the taxa with low occurrence less than threshold
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps_species_filter_trim <- run_trim(metaphlan2_ps_species_filter, cutoff = 0.1, trim = "feature")
+metaphlan2_ps_species_filter_trim <- run_trim(object = metaphlan2_ps_species_filter, 
+                                              cutoff = 0.1, 
+                                              trim = "feature")
 metaphlan2_ps_species_filter_trim
 ```
 
@@ -650,13 +689,14 @@ Finally, we obtained the final phyloseq-class object _metaphlan2\_ps\_species\_f
 
 **Notes:** choosing the measures (*Shannon, Simpson and InvSimpson*) only for relative abundance. 
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps_genus_alpha <- run_alpha_diversity(ps=metaphlan2_ps_remove_BRS, measures = c("Shannon", "Simpson", "InvSimpson"))
+metaphlan2_ps_genus_alpha <- run_alpha_diversity(ps = metaphlan2_ps_remove_BRS, 
+                                                 measures = c("Shannon", "Simpson", "InvSimpson"))
 head(metaphlan2_ps_genus_alpha)
 ```
 
 * visualization
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, fig.align="center", fig.cap="Alpha diversity (MGS example)"}
-plot_boxplot(data=metaphlan2_ps_genus_alpha,
+plot_boxplot(data = metaphlan2_ps_genus_alpha,
              y_index = c("Shannon", "Simpson", "InvSimpson"),
              group = "Group",
              group_names = c("AA", "BB"),
@@ -669,7 +709,9 @@ plot_boxplot(data=metaphlan2_ps_genus_alpha,
 
 * beta dipersion
 ```{r, warning=FALSE, message=FALSE, fig.width=5, fig.height=4, fig.align="center", fig.cap="Beta diversity (MGS example)"}
-metaphlan2_ps_beta <- run_beta_diversity(ps=metaphlan2_ps_species_filter_trim, method = "bray", group = "Group")
+metaphlan2_ps_beta <- run_beta_diversity(ps = metaphlan2_ps_species_filter_trim, 
+                                         method = "bray", 
+                                         group = "Group")
 metaphlan2_ps_beta$BetaDispersion
 ```
 
@@ -678,7 +720,9 @@ metaphlan2_ps_beta$BetaDispersion
 
 #### PERMANOVA
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps_per <- run_permanova(ps=metaphlan2_ps_species_filter_trim, method = "bray", columns = "Group")
+metaphlan2_ps_per <- run_permanova(ps = metaphlan2_ps_species_filter_trim, 
+                                   method = "bray", 
+                                   columns = "Group")
 head(metaphlan2_ps_per)
 ```
 
@@ -720,8 +764,8 @@ plot_stacked_bar_XIVZ(
 * **XMAS** package
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=7, fig.align="center", fig.cap="Microbial composition (MGS example)"}
 plot_StackBarPlot(
-        ps=metaphlan2_ps_species,
-        taxa_level="Phylum",
+        ps = metaphlan2_ps_species,
+        taxa_level = "Phylum",
         group = "Group",
         cluster = TRUE)
 ```
@@ -749,7 +793,9 @@ The degree of color indicates the size of abundance and prevalence.
 
 * Use `core_members` to obtain the core taxa. detection for abundance and prevalence for occurrence.
 ```{r, warning=FALSE, message=FALSE}
-core_taxa_name <- core_members(metaphlan2_ps_species_filter_trim, detection = 0.001, prevalence = 0.5)
+core_taxa_name <- core_members(metaphlan2_ps_species_filter_trim, 
+                               detection = 0.001, 
+                               prevalence = 0.5)
 print(core_taxa_name)
 ```
 
@@ -766,10 +812,11 @@ There are more than 10 approaches to perform differential analysis. Here, we cho
 * Calculation
 ```{r, warning=FALSE, message=FALSE}
 metaphlan2_ps_lefse <- run_lefse(
-                    metaphlan2_ps_species_filter_trim,
-                    group = "Group",
-                    group_names = c("AA", "BB"),
-                    Lda = 2)
+                          ps = metaphlan2_ps_species_filter_trim,
+                          group = "Group",
+                          group_names = c("AA", "BB"),
+                          norm = "CPM",
+                          Lda = 2)
 head(metaphlan2_ps_lefse)
 ```
 
@@ -791,9 +838,9 @@ plot_lefse(
 * Calculation
 ```{r, warning=FALSE, message=FALSE}
 metaphlan2_ps_wilcox <- run_wilcox(
-                    metaphlan2_ps_species_filter_trim,
-                    group = "Group",
-                    group_names = c("AA", "BB"))
+                          ps = metaphlan2_ps_species_filter_trim,
+                          group = "Group",
+                          group_names = c("AA", "BB"))
 
 head(metaphlan2_ps_wilcox)
 ```
@@ -802,7 +849,7 @@ head(metaphlan2_ps_wilcox)
 * Volcano
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=6, fig.align="center", fig.cap="Wilcoxon Rank-Sum test (MGS example)"}
 plot_volcano(
-    metaphlan2_ps_wilcox,
+    da_res = metaphlan2_ps_wilcox,
     group_names = c("AA", "BB"),
     x_index = "Log2FoldChange (Rank)\nAA_vs_BB",
     x_index_cutoff = 0.5,

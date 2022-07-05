@@ -25,7 +25,8 @@ dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      group = "Group",
                      group_names = "QC",
                      discard = TRUE)
-dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
+dada2_ps_rarefy <- norm_rarefy(object = dada2_ps_remove_BRS, 
+                               size = 51181)
 dada2_ps_rarefy
 ```
 
@@ -54,12 +55,13 @@ where,
 
 * Calculation
 ```{r, warning=FALSE, message=FALSE}
-dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "unifrac")
+dada2_beta <- run_beta_diversity(ps = dada2_ps_rarefy, 
+                                 method = "unifrac")
 ```
 
 * Visualization
 ```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Unweighted Unifrac Distance"}
-plot_distance_corrplot(dada2_beta$BetaDistance)
+plot_distance_corrplot(datMatrix = dada2_beta$BetaDistance)
 ```
 
 Try repeating the above ordination using filtered phyloseq object (**discarding singletons/OTUs with very low reads**).
@@ -88,14 +90,15 @@ where,
 
 * **Calculation**
 ```{r, warning=FALSE, message=FALSE}
-dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "wunifrac")
+dada2_beta <- run_beta_diversity(ps = dada2_ps_rarefy, 
+                                 method = "wunifrac")
 ```
 
 The result of dispersion test (`Pr(>F) > 0.05`) showed that the **homogeneity condition** of two groups were not significant.
 
 * **Visualization**
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Weighted Unifrac Distance"}
-plot_distance_corrplot(dada2_beta$BetaDistance)
+plot_distance_corrplot(datMatrix = dada2_beta$BetaDistance)
 ```
 
 ### Generalized UniFrac Distance Metrics
@@ -116,13 +119,17 @@ where,
 * **Calculation**
 ```{r, warning=FALSE, message=FALSE}
 # approach1
-dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "GUniFrac", GUniFrac_alpha = 0.5)
+dada2_beta <- run_beta_diversity(ps = dada2_ps_rarefy, 
+                                 method = "GUniFrac", 
+                                 GUniFrac_alpha = 0.5)
 
 # approach2
 dada2_otu_tab <- phyloseq::otu_table(dada2_ps_rarefy)
 dada2_tree <- phyloseq::phy_tree(dada2_ps_rarefy)
 
-dada2_unifracs <- run_GUniFrac(dada2_otu_tab, dada2_tree, alpha=c(0, 0.5, 1))$unifracs
+dada2_unifracs <- run_GUniFrac(otu.tab = dada2_otu_tab, 
+                               tree = dada2_tree, 
+                               alpha = c(0, 0.5, 1))$unifracs
 
 dada2_dw <- dada2_unifracs[, , "d_1"]    # Weighted UniFrac
 dada2_du <- dada2_unifracs[, , "d_UW"]   # Unweighted UniFrac
@@ -135,7 +142,7 @@ dada2_d5 <- dada2_unifracs[, , "d_0.5"]  # GUniFrac with alpha 0.5
 
 * **Visualization**: GUniFrac with alpha 0.5
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Generalized UniFrac Distance (alpha=0.5)"}
-plot_distance_corrplot(dada2_beta$BetaDistance)
+plot_distance_corrplot(datMatrix = dada2_beta$BetaDistance)
 ```
 
 
@@ -159,14 +166,17 @@ where,
 * $n$ Total number of species in samples.
 
 ```{r, warning=FALSE, message=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="Bray Curtis Distance"}
-dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "bray")
-plot_distance_corrplot(dada2_beta$BetaDistance)
+dada2_beta <- run_beta_diversity(ps = dada2_ps_rarefy, 
+                                 method = "bray")
+plot_distance_corrplot(datMatrix = dada2_beta$BetaDistance)
 ```
 
 
 ## Checking the homogeneity condition 
 ```{r, warning=FALSE, message=FALSE}
-dada2_beta <- run_beta_diversity(ps=dada2_ps_rarefy, method = "jsd", group = "Group")
+dada2_beta <- run_beta_diversity(ps = dada2_ps_rarefy, 
+                                 method = "jsd", 
+                                 group = "Group")
 ```
 
 The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity condition** of two groups were significant.
@@ -177,11 +187,14 @@ The result of dispersion test (`Pr(>F) < 0.05`) showed that the **homogeneity co
 **Permutational Multivariate Analysis of Variance (PERMANOVA)** test [@anderson2014permutational] is to investigate the associations between the environmental factors including discrete or continuous variables (treatments or populations representatives, age, gender etc) and the whole microbial community. 
 
 ```{r, warning=FALSE, message=FALSE}
-run_permanova(dada2_ps_rarefy, method = "bray", columns = "Group")
+run_permanova(ps = dada2_ps_rarefy, 
+              method = "bray", 
+              columns = "Group")
 ```
 
 ```{r, warning=FALSE, message=FALSE}
-run_permanova(amplicon_ps, method = "bray")
+run_permanova(ps = amplicon_ps, 
+              method = "bray")
 ```
 
 **Results:**
@@ -209,13 +222,14 @@ There are also three distance matrix for mantel test:
 
 ```{r, warning=FALSE, message=FALSE}
 data("amplicon_ps")
-run_MantelTest(ps = amplicon_ps,
-           y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", "DaysSinceExperimentStart", "Description"),
-           z_variables = c("Year", "Month", "Day"),
-           method_mantel = "mantel.partial",
-           method_cor = "spearman",
-           method_dist = c("bray", "euclidean", "jaccard")
-          )
+run_MantelTest(
+        ps = amplicon_ps,
+        y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", 
+                        "DaysSinceExperimentStart", "Description"),
+        z_variables = c("Year", "Month", "Day"),
+        method_mantel = "mantel.partial",
+        method_cor = "spearman",
+        method_dist = c("bray", "euclidean", "jaccard"))
 ```
 
 **Results**:
@@ -226,22 +240,24 @@ From the results, we could see that the **y_dis (environmental factors) has a st
 <details>
 <summary>**Options for Mantel test**</summary>
 ```{r, warning=FALSE, message=FALSE}
-run_MantelTest(ps = amplicon_ps,
-           y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", "DaysSinceExperimentStart", "Description"),
-           method_mantel = "mantel",
-           method_cor = "spearman",
-           method_dist = c("bray", "euclidean")
-          )
+run_MantelTest(
+        ps = amplicon_ps,
+        y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", 
+                        "DaysSinceExperimentStart", "Description"),
+        method_mantel = "mantel",
+        method_cor = "spearman",
+        method_dist = c("bray", "euclidean"))
 ```
 
 
 ```{r, warning=FALSE, message=FALSE}
-run_MantelTest(ps = amplicon_ps,
-           y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", "DaysSinceExperimentStart", "Description"),
-           method_mantel = "mantel.randtest",
-           method_cor = "spearman",
-           method_dist = c("bray", "euclidean")
-          )
+run_MantelTest(
+        ps = amplicon_ps,
+        y_variables = c("SampleType", "Subject", "ReportedAntibioticUsage", 
+                        "DaysSinceExperimentStart", "Description"),
+        method_mantel = "mantel.randtest",
+        method_cor = "spearman",
+        method_dist = c("bray", "euclidean"))
 ```
 
 </details>
@@ -268,7 +284,9 @@ where,
 * $r_{W}$ is the mean of the ranked similarity within groups.
 
 ```{r, warning=FALSE, message=FALSE}
-run_ANOSIM(ps = dada2_ps_rarefy, method = "bray", group = "Group")
+run_ANOSIM(ps = dada2_ps_rarefy, 
+           method = "bray", 
+           group = "Group")
 ```
 
 The p-value of 0.62 is more than 0.05, which indicates that within-group similarity is not greater or less than between-group similarity at 0.05 significant level. We can conclude that there is no strong evidence that the within-group samples are more different than would be expected by random chance.
@@ -277,7 +295,9 @@ The p-value of 0.62 is more than 0.05, which indicates that within-group similar
 
 **Multi-response permutation procedures (MRPP)** [@mielke1991application] is a nonparametric procedure for testing the hypothesis of no difference between two or more groups of samples based on permutation test of among-and within-group dissimilarities.
 ```{r, warning=FALSE, message=FALSE}
-run_MRPP(ps = dada2_ps_rarefy, method = "bray", group = "Group")
+run_MRPP(ps = dada2_ps_rarefy, 
+         method = "bray", 
+         group = "Group")
 ```
 
 The observed and expected deltas are 0.6469 and 0.851, respectively. The significance of delta is 0.001 with the chance corrected within-group agreement A of 0.2399. *We conclude that there is statistically significant difference of the four SampleType at the 0.05 of significance level*.
@@ -304,19 +324,28 @@ dada2_ps_remove_BRS <- get_GroupPhyloseq(
                      group_names = "QC")
 
 # step2: Rarefying counts in phyloseq-class object
-dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
+dada2_ps_rarefy <- norm_rarefy(object = dada2_ps_remove_BRS, 
+                               size = 51181)
 
 # step3: Extracting specific taxa phyloseq-class object 
-dada2_ps_rare_genus <- summarize_taxa(dada2_ps_rarefy, taxa_level = "Genus", absolute = TRUE)
+dada2_ps_rare_genus <- summarize_taxa(ps = dada2_ps_rarefy, 
+                                      taxa_level = "Genus", 
+                                      absolute = TRUE)
 
 # step4: Aggregating low relative abundance or unclassified taxa into others
-#dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
+# dada2_ps_genus_LRA <- summarize_LowAbundance_taxa(ps = dada2_ps_rare_genus, 
+#                                                   cutoff = 10, 
+#                                                   unclass = TRUE)
 
 # step4: Filtering the low relative abundance or unclassified taxa by the threshold
-dada2_ps_genus_filter <- run_filter(dada2_ps_rare_genus, cutoff = 10, unclass = TRUE)
+dada2_ps_genus_filter <- run_filter(ps = dada2_ps_rare_genus, 
+                                    cutoff = 10, 
+                                    unclass = TRUE)
 
 # step5: Trimming the taxa with low occurrence less than threshold
-dada2_ps_genus_filter_trim <- run_trim(dada2_ps_genus_filter, cutoff = 0.2, trim = "feature")
+dada2_ps_genus_filter_trim <- run_trim(object = dada2_ps_genus_filter, 
+                                       cutoff = 0.2, 
+                                       trim = "feature")
 dada2_ps_genus_filter_trim
 ```
 
@@ -409,7 +438,7 @@ names(ordination_PCoA)
 
 #### Visualization
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=6, fig.cap="Principal Coordinate Analysis (PCoA)"}
-plot_Ordination(ordination_PCoA, 
+plot_Ordination(ResultList = ordination_PCoA, 
                 group = "Group")
 ```
 

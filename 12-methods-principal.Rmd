@@ -19,7 +19,36 @@ $$S^{D} = \left \{ X = [x_{1}, x_{2}, ..., x_{D}] | x_{i} > 0, i = 1, 2, ..., D;
 
 ## ALDEx2
 
-ALDEx2 R package use the main *aldex*.
+ALDEx2 is from [@fernandes2014unifying]
+
+### Vignette
+
+[ANOVA-Like Differential Expression tool for high throughput sequencing data: ALDEx2](https://www.bioconductor.org/packages/devel/bioc/vignettes/ALDEx2/inst/doc/ALDEx2_vignette.html)
+
+### Input Data Type
+
+All the input data type should be **Raw Counts**:
+
+1. 16s rRNA sequencing (amplicon sequencing); 
+
+2. Metagenomic sequencing (absolute abundance);
+
+3. RNA-seq.
+
+### Input Key Arguments
+
+1. **reads**: Raw counts matrix (Rows->Features; columns->Samples).
+
+2. **conditions**: A vector of group labels for testing.
+
+3. **mc.samples**: The number of Monte Carlo samples, default is 128.
+
+4. **denom**: The methods for Geometric Mean calculation, default is "all".
+
+5. **test**: The test to perform, default is "t.test".
+
+
+### Procedures
 
 1. Monte Carlo samples of Dirichlet distributions for each sample, using a uniform prior; (Sparsity)
 
@@ -28,6 +57,15 @@ ALDEx2 R package use the main *aldex*.
 3. Performing Wilcoxon tests on the transformed realizations. 
 
 Finally, the function returned the expected Benjamini-Hochberg (BH) FDR-corrected p-value for each feature based on the results the different across Monte Carlo samples. **ALDEx2’s conservative nature is most likely due to its Monte Carlo Dirichlet sampling approach which down weights low abundance ASVs.**
+
+### Key output
+
+### Original Syntax
+
+### XMAS2 Syntax
+
+### Notes
+
 
 ## ANCOM-II
 

@@ -18,7 +18,7 @@ library(SummarizedExperiment)
 * this procedure only perform in 16s data
 
 ```{r, warning=FALSE, fig.align="center", fig.cap="Reads' track of DADA2"}
-plot_Dada2Track(data=dada2_res$reads_track)
+plot_Dada2Track(data = dada2_res$reads_track)
 ```
 
 
@@ -33,7 +33,8 @@ The spike-in sample is use to evaluate the consistent quality on bacteria when w
 The taxonomic levels of spike-in sample's bacteria is genus. Firstly, using the `summarize_taxa` to get the genus level phyloseq object and get the BRS_ID.
 
 ```{r, warning=FALSE}
-dada2_ps_genus <- summarize_taxa(dada2_ps, taxa_level = "Genus")
+dada2_ps_genus <- summarize_taxa(ps = dada2_ps, 
+                                 taxa_level = "Genus")
 
 dada2_ps_genus@sam_data
 ```
@@ -49,13 +50,21 @@ do `run_RefCheck` under the optimal parameters.
 
 To see more details to use `?run_RefCheck`.
 
-```{r, warning=FALSE, collapse=TRUE}
+```markdown
 run_RefCheck(
-    ps=dada2_ps_genus,
-    BRS_ID="S8005",
-    Reference=NULL,
-    Ref_type="16s",
-    Save=NULL)
+    ps = dada2_ps_genus,
+    BRS_ID = "S8005",
+    Ref_type = "16s")
+```
+
+
+```{r, warning=FALSE, collapse=TRUE, echo=FALSE}
+run_RefCheck(
+    ps = dada2_ps_genus,
+    BRS_ID = "S8005",
+    Reference = NULL,
+    Ref_type = "16s",
+    Save = NULL)
 ```
 
 
@@ -79,18 +88,27 @@ The taxonomic levels of spike-in sample's bacteria is species. Firstly, using th
 
 * get the BRS_ID
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps_species <- summarize_taxa(metaphlan2_ps, taxa_level = "Species")
+metaphlan2_ps_species <- summarize_taxa(ps = metaphlan2_ps, 
+                                        taxa_level = "Species")
 metaphlan2_ps_species@sam_data
 ```
 
 * run `run_RefCheck`
-```{r, warning=FALSE, message=FALSE, collapse=TRUE}
+
+```markdown
 run_RefCheck(
-    ps=metaphlan2_ps_species,
-    BRS_ID="refE",
-    Reference=NULL,
-    Ref_type="MGS",
-    Save=NULL)
+    ps = metaphlan2_ps_species,
+    BRS_ID = "refE",
+    Ref_type = "MGS")
+```
+
+```{r, warning=FALSE, message=TRUE, collapse=TRUE, echo=FALSE}
+run_RefCheck(
+    ps = metaphlan2_ps_species,
+    BRS_ID = "refE",
+    Reference = NULL,
+    Ref_type = "MGS",
+    Save = NULL)
 ```
 </details>
 
@@ -100,9 +118,9 @@ run_RefCheck(
 After evaluating the sequencing quality, we remove the BRS. 
 ```{r, warning=FALSE, message=FALSE}
 dada2_ps_remove_BRS <- get_GroupPhyloseq(
-                     ps = dada2_ps,
-                     group = "Group",
-                     group_names = "QC")
+                         ps = dada2_ps,
+                         group = "Group",
+                         group_names = "QC")
 dada2_ps_remove_BRS
 ```
 
@@ -112,7 +130,7 @@ dada2_ps_remove_BRS
 >  Rarefaction curves are often used when calculating alpha diversity indices, because increasing numbers of sequenced taxa allow increasingly accurate estimates of total population diversity. Rarefaction curves can therefore be used to estimate the full sample richness, as compared to the observed sample richness.
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Rarefaction Curves"}
-plot_RarefCurve(dada2_ps_remove_BRS,
+plot_RarefCurve(ps = dada2_ps_remove_BRS,
                taxa_level = "OTU",
                step = 400,
                label = "Group",
@@ -128,7 +146,7 @@ The result showed that all the samples had different sequencing depth but had th
 Summarizing the phyloseq-class object by using `summarize_phyloseq`. It displayed that briefly introduction of the object.
 
 ```{r, warning=FALSE, collapse=TRUE}
-summarize_phyloseq(dada2_ps_remove_BRS)
+summarize_phyloseq(ps = dada2_ps_remove_BRS)
 ```
 
 The minus account of the OTU counts is *51181* in the phyloseq object, and we can use it as the threshold to rarefy. 
@@ -149,7 +167,8 @@ $$Variability_{X} = \frac{sd(X)}{mean(X)}$$
 Now plot C.V.
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Density of the Taxa Mean abundance"}
-pl <- plot_taxa_cv(dada2_ps_remove_BRS, plot.type = "scatter")
+pl <- plot_taxa_cv(ps = dada2_ps_remove_BRS, 
+                   plot.type = "scatter")
 ```
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Coefficient of variation"}
@@ -163,7 +182,9 @@ From the above two plots, we see that there are several OTUs which have **high C
 Checking for distribution of number of sequences
 
 ```{r, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Distribution of number of sequences"}
-plot_read_distribution(dada2_ps_remove_BRS, group="Group", plot.type = "density")
+plot_read_distribution(ps = dada2_ps_remove_BRS, 
+                       group="Group", 
+                       plot.type = "density")
 ```
 
 Different distribution between group *AA* and *BB*.
@@ -173,4 +194,3 @@ Different distribution between group *AA* and *BB*.
 ```{r}
 devtools::session_info()
 ```
-

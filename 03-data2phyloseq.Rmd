@@ -48,7 +48,7 @@ sam_tab <- read.table(
     stringsAsFactors = FALSE
 )
 
-tree <- read_tree(
+tree <- phyloseq::read_tree(
   system.file(
     "extdata", "tree.nwk",
     package = "XMAS2"    
@@ -60,7 +60,7 @@ tree <- read_tree(
 
 We use `import_dada2_taxa` to convert dada2_res$tax_tab into our own taxa table
 ```{r, warning=FALSE, message=FALSE}
-tax_tab <- import_dada2_taxa(dada2_res$tax_tab)
+tax_tab <- import_dada2_taxa(dada2_taxa = dada2_res$tax_tab)
 
 head(tax_tab, 1)
 ```
@@ -78,7 +78,8 @@ head(otu_tab[, 1, F])
 
 ### metadata table
 ```{r, warning=FALSE, message=FALSE}
-sam_tab <- sam_tab %>% tibble::column_to_rownames("seqID")
+sam_tab <- sam_tab %>% 
+  tibble::column_to_rownames("seqID")
 # Shouldn't use the Total Number as SampleID (wrong: 123456; right: X123456)
 rownames(sam_tab) <- paste0("S", rownames(sam_tab))
 
@@ -88,10 +89,11 @@ head(sam_tab)
 
 ### phyloseq object
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps <- get_dada2_phyloseq(seq_tab = otu_tab, 
-                   tax_tab = tax_tab, 
-                   sam_tab = sam_tab, 
-                   phy_tree = tree)
+dada2_ps <- get_dada2_phyloseq(
+                  seq_tab = otu_tab, 
+                  tax_tab = tax_tab, 
+                  sam_tab = sam_tab, 
+                  phy_tree = tree)
 dada2_ps
 ```
 
@@ -100,17 +102,20 @@ we obtain the **phyloseq-class object** and then use it to perform data analysis
 
 * otu_table
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps@otu_table %>% data.frame() %>% head()
+dada2_ps@otu_table %>% 
+  data.frame() %>% head()
 ```
 
 * tax_table
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps@tax_table %>% data.frame() %>% head()
+dada2_ps@tax_table %>%
+  data.frame() %>% head()
 ```
 
 * sample_table
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps@sam_data %>% data.frame() %>% head()
+dada2_ps@sam_data %>% 
+  data.frame() %>% head()
 ```
 
 
@@ -147,7 +152,9 @@ metaphlan2_sam <- read.table(
 
 ### taxa table
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_res_list <- import_metaphlan_taxa(metaphlan2_res, taxa_level = "Species")
+metaphlan2_res_list <- import_metaphlan_taxa(
+                          data_metaphlan2 = metaphlan2_res, 
+                          taxa_level = "Species")
 tax_tab <- metaphlan2_res_list$tax_tab
 head(tax_tab)
 ```
@@ -155,7 +162,9 @@ head(tax_tab)
 
 ### otu table
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_res_list <- import_metaphlan_taxa(metaphlan2_res, taxa_level = "Species")
+metaphlan2_res_list <- import_metaphlan_taxa(
+                          data_metaphlan2 = metaphlan2_res, 
+                          taxa_level = "Species")
 otu_tab <- metaphlan2_res_list$abu_tab
 head(otu_tab)
 ```
@@ -163,16 +172,18 @@ head(otu_tab)
 
 ### metadata table
 ```{r, warning=FALSE, message=FALSE}
-sam_tab <- metaphlan2_sam %>% tibble::column_to_rownames("SampleID")
+sam_tab <- metaphlan2_sam %>% 
+  tibble::column_to_rownames("SampleID")
 head(sam_tab)
 ```
 
 
 ### phyloseq object
 ```{r, warning=FALSE, message=FALSE}
-metaphlan2_ps <- get_metaphlan_phyloseq(otu_tab = otu_tab, 
-                                   sam_tab = sam_tab,
-                                   tax_tab = tax_tab)
+metaphlan2_ps <- get_metaphlan_phyloseq(
+                    otu_tab = otu_tab, 
+                    sam_tab = sam_tab,
+                    tax_tab = tax_tab)
 metaphlan2_ps
 ```
 

@@ -48,13 +48,15 @@ summary(sample_sums(dada2_ps_remove_BRS))
 As is evident there is a large difference in the number of reads. Minimum is _51181_ and maximum is _71667_!! There is a **~1.4X** difference.
 
 ```{r, warning=FALSE, message=FALSE}
-dada2_ps_rarefy <- norm_rarefy(dada2_ps_remove_BRS, size = 51181, rng_seed = 123)
+dada2_ps_rarefy <- norm_rarefy(object = dada2_ps_remove_BRS, 
+                               size = 51181)
 summary(sample_sums(dada2_ps_rarefy))
 ```
 
 Quickly check taxa prevalence
 ```{r, warning=FALSE, fig.width=7, fig.height=7, fig.align="center", fig.cap="Taxa prevalence after rarefying"}
-plot_taxa_prevalence(dada2_ps_rarefy, "Phylum")
+plot_taxa_prevalence(ps = dada2_ps_rarefy, 
+                     taxa_level = "Phylum")
 ```
 
 
@@ -68,7 +70,8 @@ summary(sample_sums(amplicon_ps))
 As is evident there is a large difference in the number of reads. Minimum is _1114_ and maximum is _11449_!! There is a **~10X** difference!
 
 ```{r, warning=FALSE, message=FALSE}
-amplicon_ps_rarefy <- norm_rarefy(amplicon_ps, size = 1114, rng_seed = 123)
+amplicon_ps_rarefy <- norm_rarefy(object = amplicon_ps, 
+                                  size = 1114)
 summary(sample_sums(amplicon_ps))
 ```
 
@@ -78,7 +81,8 @@ summary(sample_sums(amplicon_ps))
 
 1. Calculation
 ```{r, warning=FALSE, message=FALSE}
-amplicon_ps_rarefy_alpha <- run_alpha_diversity(ps=amplicon_ps_rarefy, measures = c("Shannon", "Chao1", "Observed")) 
+amplicon_ps_rarefy_alpha <- run_alpha_diversity(ps = amplicon_ps_rarefy, 
+                                                measures = c("Shannon", "Chao1", "Observed")) 
 head(amplicon_ps_rarefy_alpha)
 ```
 
@@ -117,7 +121,7 @@ plot_boxplot(data = amplicon_ps_rarefy_alpha,
 
 * **Calculation**
 ```{r, warning=FALSE, message=FALSE}
-amplicon_ps_rarefy_alpha_v2 <- microbiome::alpha(amplicon_ps_rarefy, index = "all")
+amplicon_ps_rarefy_alpha_v2 <- microbiome::alpha(x = amplicon_ps_rarefy, index = "all")
 DT::datatable(amplicon_ps_rarefy_alpha_v2)
 ```
 
@@ -143,7 +147,9 @@ pval_sign <- list(
   symbols = c("****", "***", "**", "*", "n.s")
 )
 
-ggboxplot(plotdata, x = "SampleType", y = "Value",
+ggboxplot(plotdata, 
+          x = "SampleType", 
+          y = "Value",
           fill = "SampleType", 
           palette = "jco", 
           legend= "right",
@@ -154,8 +160,7 @@ ggboxplot(plotdata, x = "SampleType", y = "Value",
   stat_compare_means(
   comparisons = cmp_list,
   label = "p.signif",
-  symnum.args = pval_sign
-  )
+  symnum.args = pval_sign)
 ```
 
 
