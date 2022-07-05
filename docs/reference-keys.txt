@@ -262,6 +262,14 @@ plot_stackbarplot
 systematic-information-9
 principals-of-differential-analysis-methods
 aldex2-1
+vignette-1
+input-data-type
+input-key-arguments
+procedures
+key-output
+original-syntax
+xmas2-syntax
+notes
 ancom-ii
 corncob-1
 deseq2-1

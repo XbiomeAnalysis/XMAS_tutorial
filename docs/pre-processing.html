@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-06-30" />
+<meta name="date" content="2022-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -366,7 +366,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="13" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html"><i class="fa fa-check"></i><b>13</b> Principals of Differential Analysis methods<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#aldex2-1"><i class="fa fa-check"></i><b>13.1</b> ALDEx2<span></span></a></li>
+<li class="chapter" data-level="13.1" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#aldex2-1"><i class="fa fa-check"></i><b>13.1</b> ALDEx2<span></span></a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#vignette-1"><i class="fa fa-check"></i><b>13.1.1</b> Vignette<span></span></a></li>
+<li class="chapter" data-level="13.1.2" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#input-data-type"><i class="fa fa-check"></i><b>13.1.2</b> Input Data Type<span></span></a></li>
+<li class="chapter" data-level="13.1.3" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#input-key-arguments"><i class="fa fa-check"></i><b>13.1.3</b> Input Key Arguments<span></span></a></li>
+<li class="chapter" data-level="13.1.4" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#procedures"><i class="fa fa-check"></i><b>13.1.4</b> Procedures<span></span></a></li>
+<li class="chapter" data-level="13.1.5" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#key-output"><i class="fa fa-check"></i><b>13.1.5</b> Key output<span></span></a></li>
+<li class="chapter" data-level="13.1.6" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#original-syntax"><i class="fa fa-check"></i><b>13.1.6</b> Original Syntax<span></span></a></li>
+<li class="chapter" data-level="13.1.7" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#xmas2-syntax"><i class="fa fa-check"></i><b>13.1.7</b> XMAS2 Syntax<span></span></a></li>
+<li class="chapter" data-level="13.1.8" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#notes"><i class="fa fa-check"></i><b>13.1.8</b> Notes<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="13.2" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#ancom-ii"><i class="fa fa-check"></i><b>13.2</b> ANCOM-II<span></span></a></li>
 <li class="chapter" data-level="13.3" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#corncob-1"><i class="fa fa-check"></i><b>13.3</b> corncob<span></span></a></li>
 <li class="chapter" data-level="13.4" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#deseq2-1"><i class="fa fa-check"></i><b>13.4</b> DESeq2<span></span></a></li>
@@ -431,27 +441,27 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 6</span> Pre-processing<a href="pre-processing.html#pre-processing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Performing the pre-processing steps on the phyloseq-class object.</p>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="pre-processing.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb59-2"><a href="pre-processing.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb59-3"><a href="pre-processing.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb59-4"><a href="pre-processing.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb59-5"><a href="pre-processing.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb59-6"><a href="pre-processing.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb59-7"><a href="pre-processing.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span>
-<span id="cb59-8"><a href="pre-processing.html#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-9"><a href="pre-processing.html#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>
-<span id="cb59-10"><a href="pre-processing.html#cb59-10" aria-hidden="true" tabindex="-1"></a>conflicted<span class="sc">::</span><span class="fu">conflict_prefer</span>(<span class="st">&quot;normalize&quot;</span>, <span class="st">&quot;XMAS2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="pre-processing.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb61-2"><a href="pre-processing.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb61-3"><a href="pre-processing.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb61-4"><a href="pre-processing.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb61-5"><a href="pre-processing.html#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb61-6"><a href="pre-processing.html#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb61-7"><a href="pre-processing.html#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span>
+<span id="cb61-8"><a href="pre-processing.html#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-9"><a href="pre-processing.html#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>
+<span id="cb61-10"><a href="pre-processing.html#cb61-10" aria-hidden="true" tabindex="-1"></a>conflicted<span class="sc">::</span><span class="fu">conflict_prefer</span>(<span class="st">&quot;normalize&quot;</span>, <span class="st">&quot;XMAS2&quot;</span>)</span></code></pre></div>
 <p>Using <code>get_GroupPhyloseq</code> to remove some samples. For instance, removing the spike-in sample QC in Group column.</p>
 <ul>
 <li>amplicon sequencing (16s)</li>
 </ul>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="pre-processing.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dada2_ps&quot;</span>)</span>
-<span id="cb60-2"><a href="pre-processing.html#cb60-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb60-3"><a href="pre-processing.html#cb60-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb60-4"><a href="pre-processing.html#cb60-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb60-5"><a href="pre-processing.html#cb60-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
-<span id="cb60-6"><a href="pre-processing.html#cb60-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb60-7"><a href="pre-processing.html#cb60-7" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="pre-processing.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dada2_ps&quot;</span>)</span>
+<span id="cb62-2"><a href="pre-processing.html#cb62-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb62-3"><a href="pre-processing.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb62-4"><a href="pre-processing.html#cb62-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb62-5"><a href="pre-processing.html#cb62-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb62-6"><a href="pre-processing.html#cb62-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb62-7"><a href="pre-processing.html#cb62-7" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 896 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -462,13 +472,13 @@ div.csl-indent {
 <summary>
 <strong>metagenomic sequencing (metaphlan2/3)</strong>
 </summary>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="pre-processing.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;metaphlan2_ps&quot;</span>)</span>
-<span id="cb62-2"><a href="pre-processing.html#cb62-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb62-3"><a href="pre-processing.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> metaphlan2_ps,</span>
-<span id="cb62-4"><a href="pre-processing.html#cb62-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb62-5"><a href="pre-processing.html#cb62-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
-<span id="cb62-6"><a href="pre-processing.html#cb62-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb62-7"><a href="pre-processing.html#cb62-7" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="pre-processing.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;metaphlan2_ps&quot;</span>)</span>
+<span id="cb64-2"><a href="pre-processing.html#cb64-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb64-3"><a href="pre-processing.html#cb64-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ps =</span> metaphlan2_ps,</span>
+<span id="cb64-4"><a href="pre-processing.html#cb64-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb64-5"><a href="pre-processing.html#cb64-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb64-6"><a href="pre-processing.html#cb64-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-7"><a href="pre-processing.html#cb64-7" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 326 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -482,38 +492,38 @@ div.csl-indent {
 <li><p>“log10”, the transformation is <code>log10(object)</code>, and if the data contains zeros the transformation is <code>log10(1 + object)</code>;</p></li>
 <li><p>“log10p”, the transformation is <code>log10(1 + object)</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="pre-processing.html#cb64-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb64-2"><a href="pre-processing.html#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-3"><a href="pre-processing.html#cb64-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_transform <span class="ot">&lt;-</span> <span class="fu">transform_abundances</span>(dada2_ps_genus, <span class="at">transform =</span> <span class="st">&quot;log10&quot;</span>)</span>
-<span id="cb64-4"><a href="pre-processing.html#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_ps_transform<span class="sc">@</span>otu_table<span class="sc">@</span>.Data, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##                        S6030 S6032 S6033 S6035    S6036    S6037 S6040 S6043    S6045 S6046
-## g__Acetanaerobacterium     0     0     0     0 0.000000 0.000000     0     0 0.000000     0
-## g__Acidaminococcus         0     0     0     0 2.481443 3.066326     0     0 2.326336     0
-## g__Acinetobacter           0     0     0     0 0.000000 0.000000     0     0 0.000000     0
-##                        S6048   S6049 S6050   S6054 S6055 S6058 S6059   S6060 S6061    S6063
-## g__Acetanaerobacterium     0 0.00000     0 0.30103     0     0     0 0.00000     0 0.000000
-## g__Acidaminococcus         0 0.00000     0 0.00000     0     0     0 0.60206     0 1.812913
-## g__Acinetobacter           0 0.69897     0 0.00000     0     0     0 0.00000     0 0.000000
-##                        S6065 S6066 S6068
-## g__Acetanaerobacterium     0     0     0
-## g__Acidaminococcus         0     0     0
-## g__Acinetobacter           0     0     0</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="pre-processing.html#cb66-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb66-2"><a href="pre-processing.html#cb66-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb66-3"><a href="pre-processing.html#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="pre-processing.html#cb66-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_transform <span class="ot">&lt;-</span> <span class="fu">transform_abundances</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb66-5"><a href="pre-processing.html#cb66-5" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">transform =</span> <span class="st">&quot;log10&quot;</span>)</span>
+<span id="cb66-6"><a href="pre-processing.html#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_ps_transform<span class="sc">@</span>otu_table<span class="sc">@</span>.Data, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##                        S6030 S6032 S6033 S6035    S6036    S6037 S6040 S6043    S6045 S6046 S6048   S6049 S6050   S6054
+## g__Acetanaerobacterium     0     0     0     0 0.000000 0.000000     0     0 0.000000     0     0 0.00000     0 0.30103
+## g__Acidaminococcus         0     0     0     0 2.481443 3.066326     0     0 2.326336     0     0 0.00000     0 0.00000
+## g__Acinetobacter           0     0     0     0 0.000000 0.000000     0     0 0.000000     0     0 0.69897     0 0.00000
+##                        S6055 S6058 S6059   S6060 S6061    S6063 S6065 S6066 S6068
+## g__Acetanaerobacterium     0     0     0 0.00000     0 0.000000     0     0     0
+## g__Acidaminococcus         0     0     0 0.60206     0 1.812913     0     0     0
+## g__Acinetobacter           0     0     0 0.00000     0 0.000000     0     0     0</code></pre>
 <details>
 <summary>
 <strong>transforming metagenomic sequencing</strong>
 </summary>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="pre-processing.html#cb66-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(metaphlan2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb66-2"><a href="pre-processing.html#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="pre-processing.html#cb66-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_transform_mgs <span class="ot">&lt;-</span> <span class="fu">transform_abundances</span>(metaphlan2_ps_species, <span class="at">transform =</span> <span class="st">&quot;log10&quot;</span>)</span>
-<span id="cb66-4"><a href="pre-processing.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_transform_mgs<span class="sc">@</span>otu_table<span class="sc">@</span>.Data, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##                                      s1 s2 s3 s4 s5 s6        s7        s8        s9 s10
-## s__Abiotrophia_defectiva      -4.610834  0  0  0  0  0  0.000000  0.000000  0.000000   0
-## s__Acidaminococcus_fermentans  0.000000  0  0  0  0  0  0.000000 -2.957621 -2.180555   0
-## s__Acidaminococcus_intestini  -5.376751  0  0  0  0  0 -3.222573 -2.997748  0.000000   0
-##                               s11 s12 s13 s14 s15       s16 s17 s18 s19 s20 s21       s22
-## s__Abiotrophia_defectiva        0   0   0   0   0  0.000000   0   0   0   0   0  0.000000
-## s__Acidaminococcus_fermentans   0   0   0   0   0 -2.326583   0   0   0   0   0 -2.616418
-## s__Acidaminococcus_intestini    0   0   0   0   0  0.000000   0   0   0   0   0 -2.831945</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="pre-processing.html#cb68-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps_remove_BRS, </span>
+<span id="cb68-2"><a href="pre-processing.html#cb68-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb68-3"><a href="pre-processing.html#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="pre-processing.html#cb68-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_transform_mgs <span class="ot">&lt;-</span> <span class="fu">transform_abundances</span>(<span class="at">object =</span> metaphlan2_ps_species, </span>
+<span id="cb68-5"><a href="pre-processing.html#cb68-5" aria-hidden="true" tabindex="-1"></a>                                                    <span class="at">transform =</span> <span class="st">&quot;log10&quot;</span>)</span>
+<span id="cb68-6"><a href="pre-processing.html#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_transform_mgs<span class="sc">@</span>otu_table<span class="sc">@</span>.Data, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##                                      s1 s2 s3 s4 s5 s6        s7        s8        s9 s10 s11 s12 s13 s14 s15       s16 s17
+## s__Abiotrophia_defectiva      -4.610834  0  0  0  0  0  0.000000  0.000000  0.000000   0   0   0   0   0   0  0.000000   0
+## s__Acidaminococcus_fermentans  0.000000  0  0  0  0  0  0.000000 -2.957621 -2.180555   0   0   0   0   0   0 -2.326583   0
+## s__Acidaminococcus_intestini  -5.376751  0  0  0  0  0 -3.222573 -2.997748  0.000000   0   0   0   0   0   0  0.000000   0
+##                               s18 s19 s20 s21       s22
+## s__Abiotrophia_defectiva        0   0   0   0  0.000000
+## s__Acidaminococcus_fermentans   0   0   0   0 -2.616418
+## s__Acidaminococcus_intestini    0   0   0   0 -2.831945</code></pre>
 </details>
 </div>
 <div id="normalization" class="section level2 hasAnchor" number="6.2">
@@ -522,16 +532,18 @@ div.csl-indent {
 <ul>
 <li><strong>rarefy</strong>: random subsampling counts to the smallest library size in the data set. <strong>Caution: the default library size is 25000 according to our own results(Rarefaction Curves)</strong>.</li>
 </ul>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="pre-processing.html#cb68-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;rarefy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="pre-processing.html#cb70-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb70-2"><a href="pre-processing.html#cb70-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;rarefy&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
 ## tax_table()   Taxonomy Table:    [ 198 taxa by 6 taxonomic ranks ]</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="pre-processing.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># norm_rarefy(dada2_ps_genus, size = 50000)</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="pre-processing.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># norm_rarefy(dada2_ps_genus, size = 50000)</span></span></code></pre></div>
 <ul>
 <li><strong>TSS</strong>: total sum scaling, also referred to as “relative abundance”, the abundances were normalized by dividing the corresponding sample library size</li>
 </ul>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="pre-processing.html#cb71-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="pre-processing.html#cb73-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb73-2"><a href="pre-processing.html#cb73-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -539,7 +551,8 @@ div.csl-indent {
 <ul>
 <li><strong>TMM</strong>: trimmed mean of m-values. First, a sample is chosen as reference. The scaling factor is then derived using a weighted trimmed mean over the differences of the log-transformed gene-count fold-change between the sample and the reference.</li>
 </ul>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="pre-processing.html#cb73-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="pre-processing.html#cb75-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb75-2"><a href="pre-processing.html#cb75-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;TMM&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -547,7 +560,8 @@ div.csl-indent {
 <ul>
 <li><strong>RLE</strong>: relative log expression, RLE uses a pseudo-reference calculated using the geometric mean of the gene-specific abundances over all samples. The scaling factors are then calculated as the median of the gene counts ratios between the samples and the reference.</li>
 </ul>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="pre-processing.html#cb75-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;RLE&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="pre-processing.html#cb77-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb77-2"><a href="pre-processing.html#cb77-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;RLE&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -555,7 +569,8 @@ div.csl-indent {
 <ul>
 <li><strong>CSS</strong>: cumulative sum scaling, calculates scaling factors as the cumulative sum of gene abundances up to a data-derived threshold. While standard relative abundance (fraction/percentage) normalization re-scales all samples to the same total sum (100%), CSS keeps a variation in total counts between samples. CSS re-scales the samples based on a subset (quartile) of lower abundant taxa (relatively constant and independent), thereby excluding the impact of (study dominating) high abundant taxa.</li>
 </ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="pre-processing.html#cb77-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CSS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="pre-processing.html#cb79-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb79-2"><a href="pre-processing.html#cb79-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;CSS&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -563,7 +578,8 @@ div.csl-indent {
 <ul>
 <li><strong>CLR</strong>: centered log-ratio normalization.</li>
 </ul>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="pre-processing.html#cb79-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CLR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="pre-processing.html#cb81-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb81-2"><a href="pre-processing.html#cb81-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;CLR&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -571,7 +587,8 @@ div.csl-indent {
 <ul>
 <li><strong>CPM</strong>: pre-sample normalization of the sum of the values to 1e+06.</li>
 </ul>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="pre-processing.html#cb81-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(dada2_ps_genus, <span class="at">method =</span> <span class="st">&quot;CPM&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="pre-processing.html#cb83-1" aria-hidden="true" tabindex="-1"></a>XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb83-2"><a href="pre-processing.html#cb83-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;CPM&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -580,14 +597,18 @@ div.csl-indent {
 <div id="filtering" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Filtering<a href="pre-processing.html#filtering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Whether to filter the low relative abundance or unclassified taxa by the threshold.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="pre-processing.html#cb83-1" aria-hidden="true" tabindex="-1"></a>ps_genus_rb <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>, <span class="at">absolute =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb83-2"><a href="pre-processing.html#cb83-2" aria-hidden="true" tabindex="-1"></a>ps_genus_rb</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="pre-processing.html#cb85-1" aria-hidden="true" tabindex="-1"></a>ps_genus_rb <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb85-2"><a href="pre-processing.html#cb85-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>, </span>
+<span id="cb85-3"><a href="pre-processing.html#cb85-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">absolute =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb85-4"><a href="pre-processing.html#cb85-4" aria-hidden="true" tabindex="-1"></a>ps_genus_rb</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
 ## tax_table()   Taxonomy Table:    [ 198 taxa by 6 taxonomic ranks ]</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="pre-processing.html#cb85-1" aria-hidden="true" tabindex="-1"></a>ps_genus_rb_filter <span class="ot">&lt;-</span> <span class="fu">run_filter</span>(ps_genus_rb, <span class="at">cutoff =</span> <span class="fl">1e-04</span>, <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb85-2"><a href="pre-processing.html#cb85-2" aria-hidden="true" tabindex="-1"></a>ps_genus_rb_filter</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="pre-processing.html#cb87-1" aria-hidden="true" tabindex="-1"></a>ps_genus_rb_filter <span class="ot">&lt;-</span> <span class="fu">run_filter</span>(<span class="at">ps =</span> ps_genus_rb, </span>
+<span id="cb87-2"><a href="pre-processing.html#cb87-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">cutoff =</span> <span class="fl">1e-04</span>, </span>
+<span id="cb87-3"><a href="pre-processing.html#cb87-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb87-4"><a href="pre-processing.html#cb87-4" aria-hidden="true" tabindex="-1"></a>ps_genus_rb_filter</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 160 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -600,7 +621,9 @@ div.csl-indent {
 <ul>
 <li>trimming by TaxaID</li>
 </ul>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="pre-processing.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_trim</span>(dada2_ps_genus, <span class="at">cutoff =</span> <span class="fl">0.4</span>, <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="pre-processing.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_trim</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb89-2"><a href="pre-processing.html#cb89-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">cutoff =</span> <span class="fl">0.4</span>, </span>
+<span id="cb89-3"><a href="pre-processing.html#cb89-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 63 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -609,7 +632,9 @@ div.csl-indent {
 <ul>
 <li>trimming by SampleID</li>
 </ul>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="pre-processing.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_trim</span>(dada2_ps_genus, <span class="at">cutoff =</span> <span class="fl">0.4</span>, <span class="at">trim =</span> <span class="st">&quot;sample&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="pre-processing.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_trim</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb91-2"><a href="pre-processing.html#cb91-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">cutoff =</span> <span class="fl">0.4</span>, </span>
+<span id="cb91-3"><a href="pre-processing.html#cb91-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">trim =</span> <span class="st">&quot;sample&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 4 samples ]
 ## sample_data() Sample Data:       [ 4 samples by 1 sample variables ]
@@ -618,7 +643,9 @@ div.csl-indent {
 <ul>
 <li>trimming by TaxaID &amp; SampleID</li>
 </ul>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="pre-processing.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_trim</span>(dada2_ps_genus, <span class="at">cutoff =</span> <span class="fl">0.4</span>, <span class="at">trim =</span> <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="pre-processing.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_trim</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb93-2"><a href="pre-processing.html#cb93-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">cutoff =</span> <span class="fl">0.4</span>, </span>
+<span id="cb93-3"><a href="pre-processing.html#cb93-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">trim =</span> <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 63 taxa and 4 samples ]
 ## sample_data() Sample Data:       [ 4 samples by 1 sample variables ]
@@ -628,8 +655,10 @@ div.csl-indent {
 <summary>
 <strong>filtering metagenomic sequencing</strong>
 </summary>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="pre-processing.html#cb93-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_trim_mgs <span class="ot">&lt;-</span> <span class="fu">run_trim</span>(metaphlan2_ps_remove_BRS, <span class="at">cutoff =</span> <span class="fl">0.4</span>, <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span>
-<span id="cb93-2"><a href="pre-processing.html#cb93-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_trim_mgs</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="pre-processing.html#cb95-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_trim_mgs <span class="ot">&lt;-</span> <span class="fu">run_trim</span>(<span class="at">object =</span> metaphlan2_ps_remove_BRS, </span>
+<span id="cb95-2"><a href="pre-processing.html#cb95-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">cutoff =</span> <span class="fl">0.4</span>, </span>
+<span id="cb95-3"><a href="pre-processing.html#cb95-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span>
+<span id="cb95-4"><a href="pre-processing.html#cb95-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_trim_mgs</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 102 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -642,11 +671,13 @@ div.csl-indent {
 <ul>
 <li>limit of detection</li>
 </ul>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="pre-processing.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(dada2_ps_genus<span class="sc">@</span>otu_table)</span>
-<span id="cb95-2"><a href="pre-processing.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0</span></span>
-<span id="cb95-3"><a href="pre-processing.html#cb95-3" aria-hidden="true" tabindex="-1"></a>LOD_imputed_ps <span class="ot">&lt;-</span> <span class="fu">run_impute</span>(dada2_ps_genus, <span class="at">impute =</span> <span class="st">&quot;LOD&quot;</span>, <span class="at">LOD =</span> <span class="dv">2</span>)</span>
-<span id="cb95-4"><a href="pre-processing.html#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(LOD_imputed_ps<span class="sc">@</span>otu_table)</span>
-<span id="cb95-5"><a href="pre-processing.html#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="pre-processing.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(dada2_ps_genus<span class="sc">@</span>otu_table)</span>
+<span id="cb97-2"><a href="pre-processing.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0</span></span>
+<span id="cb97-3"><a href="pre-processing.html#cb97-3" aria-hidden="true" tabindex="-1"></a>LOD_imputed_ps <span class="ot">&lt;-</span> <span class="fu">run_impute</span>(<span class="at">object =</span> dada2_ps_genus, </span>
+<span id="cb97-4"><a href="pre-processing.html#cb97-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">impute =</span> <span class="st">&quot;LOD&quot;</span>, </span>
+<span id="cb97-5"><a href="pre-processing.html#cb97-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">LOD =</span> <span class="dv">2</span>)</span>
+<span id="cb97-6"><a href="pre-processing.html#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(LOD_imputed_ps<span class="sc">@</span>otu_table)</span>
+<span id="cb97-7"><a href="pre-processing.html#cb97-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span></code></pre></div>
 </div>
 <div id="extracting-specific-taxa-phyloseq-class-object" class="section level2 hasAnchor" number="6.6">
 <h2><span class="header-section-number">6.6</span> Extracting specific taxa phyloseq-class object<a href="pre-processing.html#extracting-specific-taxa-phyloseq-class-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -654,8 +685,9 @@ div.csl-indent {
 <ul>
 <li>amplicon sequencing: Phylum</li>
 </ul>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="pre-processing.html#cb96-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_phylum <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>)</span>
-<span id="cb96-2"><a href="pre-processing.html#cb96-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_phylum</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="pre-processing.html#cb98-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_phylum <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb98-2"><a href="pre-processing.html#cb98-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>)</span>
+<span id="cb98-3"><a href="pre-processing.html#cb98-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_phylum</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 10 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -663,8 +695,9 @@ div.csl-indent {
 <ul>
 <li>amplicon sequencing: Order</li>
 </ul>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="pre-processing.html#cb98-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_order <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Order&quot;</span>)</span>
-<span id="cb98-2"><a href="pre-processing.html#cb98-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_order</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="pre-processing.html#cb100-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_order <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb100-2"><a href="pre-processing.html#cb100-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">taxa_level =</span> <span class="st">&quot;Order&quot;</span>)</span>
+<span id="cb100-3"><a href="pre-processing.html#cb100-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_order</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 24 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -672,8 +705,9 @@ div.csl-indent {
 <ul>
 <li>amplicon sequencing: Family</li>
 </ul>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="pre-processing.html#cb100-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_family <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Family&quot;</span>)</span>
-<span id="cb100-2"><a href="pre-processing.html#cb100-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_family</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="pre-processing.html#cb102-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_family <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb102-2"><a href="pre-processing.html#cb102-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">taxa_level =</span> <span class="st">&quot;Family&quot;</span>)</span>
+<span id="cb102-3"><a href="pre-processing.html#cb102-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_family</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 54 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -681,8 +715,9 @@ div.csl-indent {
 <ul>
 <li>amplicon sequencing: Genus</li>
 </ul>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="pre-processing.html#cb102-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb102-2"><a href="pre-processing.html#cb102-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="pre-processing.html#cb104-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb104-2"><a href="pre-processing.html#cb104-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb104-3"><a href="pre-processing.html#cb104-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -691,14 +726,16 @@ div.csl-indent {
 <summary>
 <strong>extracting metagenomic sequencing</strong>
 </summary>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="pre-processing.html#cb104-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(metaphlan2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb104-2"><a href="pre-processing.html#cb104-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="pre-processing.html#cb106-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps_remove_BRS, </span>
+<span id="cb106-2"><a href="pre-processing.html#cb106-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb106-3"><a href="pre-processing.html#cb106-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 109 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
 ## tax_table()   Taxonomy Table:    [ 109 taxa by 6 taxonomic ranks ]</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="pre-processing.html#cb106-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(metaphlan2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb106-2"><a href="pre-processing.html#cb106-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="pre-processing.html#cb108-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps_remove_BRS, </span>
+<span id="cb108-2"><a href="pre-processing.html#cb108-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb108-3"><a href="pre-processing.html#cb108-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 325 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -714,20 +751,25 @@ div.csl-indent {
 <ul>
 <li>amplicon sequencing</li>
 </ul>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="pre-processing.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># relative abundance</span></span>
-<span id="cb108-2"><a href="pre-processing.html#cb108-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_rb <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(dada2_ps_remove_BRS, <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>, <span class="at">absolute =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb108-3"><a href="pre-processing.html#cb108-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_LRA <span class="ot">&lt;-</span> <span class="fu">summarize_LowAbundance_taxa</span>(ps_genus_rb, <span class="at">cutoff =</span> <span class="fl">1e-04</span>, <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb108-4"><a href="pre-processing.html#cb108-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_LRA </span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="pre-processing.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># relative abundance</span></span>
+<span id="cb110-2"><a href="pre-processing.html#cb110-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_rb <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb110-3"><a href="pre-processing.html#cb110-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>, </span>
+<span id="cb110-4"><a href="pre-processing.html#cb110-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">absolute =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb110-5"><a href="pre-processing.html#cb110-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_LRA <span class="ot">&lt;-</span> <span class="fu">summarize_LowAbundance_taxa</span>(<span class="at">ps =</span> ps_genus_rb, </span>
+<span id="cb110-6"><a href="pre-processing.html#cb110-6" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">cutoff =</span> <span class="fl">1e-04</span>, </span>
+<span id="cb110-7"><a href="pre-processing.html#cb110-7" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb110-8"><a href="pre-processing.html#cb110-8" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_LRA </span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 162 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
 ## tax_table()   Taxonomy Table:    [ 162 taxa by 6 taxonomic ranks ]</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="pre-processing.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(phyloseq<span class="sc">::</span><span class="fu">taxa_names</span>(dada2_ps_genus_LRA))</span></code></pre></div>
-<pre><code>## [1] &quot;g__UBA1819&quot;          &quot;g__UC5_1_2E3&quot;        &quot;g__Veillonella&quot;      &quot;g__Weissella&quot;       
-## [5] &quot;Others_LowAbundance&quot; &quot;Others_Unclassified&quot;</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="pre-processing.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># absolute abundance</span></span>
-<span id="cb112-2"><a href="pre-processing.html#cb112-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_counts <span class="ot">&lt;-</span> <span class="fu">summarize_LowAbundance_taxa</span>(dada2_ps_genus, <span class="at">cutoff =</span> <span class="dv">10</span>)</span>
-<span id="cb112-3"><a href="pre-processing.html#cb112-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_counts</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="pre-processing.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(phyloseq<span class="sc">::</span><span class="fu">taxa_names</span>(dada2_ps_genus_LRA))</span></code></pre></div>
+<pre><code>## [1] &quot;g__UBA1819&quot;          &quot;g__UC5_1_2E3&quot;        &quot;g__Veillonella&quot;      &quot;g__Weissella&quot;        &quot;Others_LowAbundance&quot;
+## [6] &quot;Others_Unclassified&quot;</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="pre-processing.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># absolute abundance</span></span>
+<span id="cb114-2"><a href="pre-processing.html#cb114-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_counts <span class="ot">&lt;-</span> <span class="fu">summarize_LowAbundance_taxa</span>(<span class="at">ps =</span> dada2_ps_genus, </span>
+<span id="cb114-3"><a href="pre-processing.html#cb114-3" aria-hidden="true" tabindex="-1"></a>                                                     <span class="at">cutoff =</span> <span class="dv">10</span>)</span>
+<span id="cb114-4"><a href="pre-processing.html#cb114-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_counts</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 173 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -736,23 +778,25 @@ div.csl-indent {
 <summary>
 <strong>aggregating metagenomic sequencing</strong>
 </summary>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="pre-processing.html#cb114-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_LRA <span class="ot">&lt;-</span> <span class="fu">summarize_LowAbundance_taxa</span>(metaphlan2_ps_genus, <span class="at">cutoff =</span> <span class="fl">1e-04</span>, <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb114-2"><a href="pre-processing.html#cb114-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_LRA</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="pre-processing.html#cb116-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_LRA <span class="ot">&lt;-</span> <span class="fu">summarize_LowAbundance_taxa</span>(<span class="at">ps =</span> metaphlan2_ps_genus, </span>
+<span id="cb116-2"><a href="pre-processing.html#cb116-2" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">cutoff =</span> <span class="fl">1e-04</span>, </span>
+<span id="cb116-3"><a href="pre-processing.html#cb116-3" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb116-4"><a href="pre-processing.html#cb116-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_LRA</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 78 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
 ## tax_table()   Taxonomy Table:    [ 78 taxa by 6 taxonomic ranks ]</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="pre-processing.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(phyloseq<span class="sc">::</span><span class="fu">taxa_names</span>(metaphlan2_ps_genus_LRA))</span></code></pre></div>
-<pre><code>## [1] &quot;g__T4likevirus&quot;      &quot;g__Turicibacter&quot;     &quot;g__Veillonella&quot;      &quot;g__Weissella&quot;       
-## [5] &quot;Others_LowAbundance&quot; &quot;Others_Unclassified&quot;</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="pre-processing.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(phyloseq<span class="sc">::</span><span class="fu">taxa_names</span>(metaphlan2_ps_genus_LRA))</span></code></pre></div>
+<pre><code>## [1] &quot;g__T4likevirus&quot;      &quot;g__Turicibacter&quot;     &quot;g__Veillonella&quot;      &quot;g__Weissella&quot;        &quot;Others_LowAbundance&quot;
+## [6] &quot;Others_Unclassified&quot;</code></pre>
 </details>
 </div>
 <div id="transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> Transform the abundance of taxa whose relative abundance under Limit Of Detection (LOD) into Zeros (only in metaphlan2/3)<a href="pre-processing.html#transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="pre-processing.html#cb118-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_Species_LOD <span class="ot">&lt;-</span> <span class="fu">aggregate_LOD_taxa</span>(metaphlan2_ps, </span>
-<span id="cb118-2"><a href="pre-processing.html#cb118-2" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>, </span>
-<span id="cb118-3"><a href="pre-processing.html#cb118-3" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">cutoff =</span> <span class="fl">1e-04</span>)</span>
-<span id="cb118-4"><a href="pre-processing.html#cb118-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_Species_LOD</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="pre-processing.html#cb120-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_Species_LOD <span class="ot">&lt;-</span> <span class="fu">aggregate_LOD_taxa</span>(<span class="at">ps =</span> metaphlan2_ps, </span>
+<span id="cb120-2"><a href="pre-processing.html#cb120-2" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>, </span>
+<span id="cb120-3"><a href="pre-processing.html#cb120-3" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">cutoff =</span> <span class="fl">1e-04</span>)</span>
+<span id="cb120-4"><a href="pre-processing.html#cb120-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_Species_LOD</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 192 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 2 sample variables ]
@@ -760,8 +804,8 @@ div.csl-indent {
 </div>
 <div id="systematic-information-3" class="section level2 hasAnchor" number="6.9">
 <h2><span class="header-section-number">6.9</span> Systematic Information<a href="pre-processing.html#systematic-information-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="pre-processing.html#cb120-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="pre-processing.html#cb122-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
 ##  os       macOS Monterey 12.2.1
@@ -771,19 +815,18 @@ div.csl-indent {
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-06-30
+##  date     2022-07-05
 ##  rstudio  2022.02.0+443 Prairie Trillium (desktop)
 ##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 ## 
-## ─ Packages ───────────────────────────────────────────────────────────────────────────────
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package              * version  date (UTC) lib source
 ##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
 ##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
 ##  ALDEx2                 1.26.0   2021-10-26 [1] Bioconductor
 ##  annotate               1.72.0   2021-10-26 [1] Bioconductor
 ##  AnnotationDbi          1.56.2   2021-11-09 [1] Bioconductor
-##  ape                  * 5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
-##  askpass                1.1      2019-01-13 [1] CRAN (R 4.1.0)
+##  ape                    5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
 ##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
 ##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
 ##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
@@ -808,7 +851,7 @@ div.csl-indent {
 ##  caTools                1.18.2   2021-03-28 [1] CRAN (R 4.1.0)
 ##  cellranger             1.1.0    2016-07-27 [1] CRAN (R 4.1.0)
 ##  checkmate              2.0.0    2020-02-06 [1] CRAN (R 4.1.0)
-##  cli                    3.2.0    2022-02-14 [1] CRAN (R 4.1.2)
+##  cli                    3.3.0    2022-04-25 [1] CRAN (R 4.1.2)
 ##  cluster                2.1.2    2021-04-17 [1] CRAN (R 4.1.2)
 ##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
 ##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
@@ -849,7 +892,6 @@ div.csl-indent {
 ##  ggplot2              * 3.3.5    2021-06-25 [1] CRAN (R 4.1.0)
 ##  ggpubr               * 0.4.0    2020-06-27 [1] CRAN (R 4.1.0)
 ##  ggrepel                0.9.1    2021-01-15 [1] CRAN (R 4.1.0)
-##  ggsci                  2.9      2018-05-14 [1] CRAN (R 4.1.0)
 ##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
 ##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
 ##  glue                 * 1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
@@ -875,7 +917,7 @@ div.csl-indent {
 ##  KernSmooth             2.23-20  2021-05-03 [1] CRAN (R 4.1.2)
 ##  knitr                  1.37     2021-12-16 [1] CRAN (R 4.1.0)
 ##  labeling               0.4.2    2020-10-20 [1] CRAN (R 4.1.0)
-##  lattice              * 0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
+##  lattice                0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
 ##  latticeExtra           0.6-29   2019-12-19 [1] CRAN (R 4.1.0)
 ##  libcoin                1.0-9    2021-09-27 [1] CRAN (R 4.1.0)
 ##  lifecycle              1.0.1    2021-09-24 [1] CRAN (R 4.1.0)
@@ -891,20 +933,17 @@ div.csl-indent {
 ##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
 ##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
 ##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
-##  microbiome             1.16.0   2021-10-26 [1] Bioconductor
 ##  modeltools             0.2-23   2020-03-05 [1] CRAN (R 4.1.0)
 ##  multcomp               1.4-18   2022-01-04 [1] CRAN (R 4.1.2)
 ##  multtest               2.50.0   2021-10-26 [1] Bioconductor
 ##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
 ##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
 ##  NADA                   1.6-1.1  2020-03-22 [1] CRAN (R 4.1.0)
-##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
+##  nlme                   3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
 ##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
-##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
-##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
+##  permute                0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
 ##  pheatmap               1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
 ##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
-##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
 ##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  pkgbuild               1.3.1    2021-12-20 [1] CRAN (R 4.1.0)
 ##  pkgconfig              2.0.3    2019-09-22 [1] CRAN (R 4.1.0)
@@ -913,21 +952,17 @@ div.csl-indent {
 ##  png                    0.1-7    2013-12-03 [1] CRAN (R 4.1.0)
 ##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
 ##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
-##  protoclust             1.6.3    2019-01-31 [1] CRAN (R 4.1.0)
 ##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
 ##  pscl                   1.5.5    2020-03-07 [1] CRAN (R 4.1.0)
 ##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
-##  qvalue                 2.26.0   2021-10-26 [1] Bioconductor
 ##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
-##  RAIDA                  1.0      2022-03-14 [1] local
-##  RColorBrewer         * 1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
+##  RColorBrewer           1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
 ##  Rcpp                 * 1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
 ##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
 ##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
 ##  readxl               * 1.4.0    2022-03-28 [1] CRAN (R 4.1.2)
 ##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
 ##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
-##  reticulate             1.24     2022-01-26 [1] CRAN (R 4.1.2)
 ##  Rfast                  2.0.6    2022-02-16 [1] CRAN (R 4.1.2)
 ##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
 ##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
@@ -937,11 +972,9 @@ div.csl-indent {
 ##  robustbase             0.93-9   2021-09-27 [1] CRAN (R 4.1.0)
 ##  rpart                  4.1.16   2022-01-24 [1] CRAN (R 4.1.2)
 ##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
-##  RSpectra               0.16-0   2019-12-01 [1] CRAN (R 4.1.0)
 ##  RSQLite                2.2.10   2022-02-17 [1] CRAN (R 4.1.2)
 ##  rstatix                0.7.0    2021-02-13 [1] CRAN (R 4.1.0)
 ##  rstudioapi             0.13     2020-11-12 [1] CRAN (R 4.1.0)
-##  Rtsne                  0.15     2018-11-10 [1] CRAN (R 4.1.0)
 ##  rvest                  1.0.2    2021-10-16 [1] CRAN (R 4.1.0)
 ##  S4Vectors            * 0.32.3   2021-11-21 [1] Bioconductor
 ##  sandwich               3.0-1    2021-05-18 [1] CRAN (R 4.1.0)
@@ -962,18 +995,16 @@ div.csl-indent {
 ##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
 ##  truncnorm              1.0-8    2018-02-27 [1] CRAN (R 4.1.0)
-##  umap                   0.2.8.0  2022-03-23 [1] CRAN (R 4.1.2)
 ##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
 ##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
 ##  vctrs                  0.3.8    2021-04-29 [1] CRAN (R 4.1.0)
-##  vegan                * 2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
-##  viridis              * 0.6.2    2021-10-13 [1] CRAN (R 4.1.0)
-##  viridisLite          * 0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
+##  vegan                  2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
+##  viridisLite            0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
 ##  webshot                0.5.3    2022-04-14 [1] CRAN (R 4.1.2)
 ##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
 ##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
 ##  xfun                   0.30     2022-03-02 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.5    2022-06-30 [1] local
+##  XMAS2                * 2.1.5    2022-07-05 [1] local
 ##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
 ##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
@@ -985,7 +1016,7 @@ div.csl-indent {
 ## 
 ##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
 ## 
-## ──────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 
 </div>
 </div>
