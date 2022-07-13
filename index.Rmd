@@ -19,7 +19,7 @@ We provide the universal data analysis framework on microbial data for in-house 
 
 ## Preparing for the tutorial
 
-**If you have no any background on microbiota data analysis, please go to the example of Chapter 13 to get familiar with the SOP of data analysis. Alternatively, you can also go to the following websites:**
+**If you have no any background on microbiota data analysis, please go to the example of Chapter 15 to get familiar with the SOP of data analysis. Alternatively, you can also go to the following websites:**
 
 * [16s DataAnalysis template by XMAS 2.0](https://xbiomeanalysis.github.io/16s_DataAnalysis_template)
 

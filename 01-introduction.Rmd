@@ -157,6 +157,120 @@ This tutorial was organized according to the **XMAS 2.0** functions.
 
 * In **Chapter 12** provided some functions for visualization.
 
-* In **Chapter 13** showed the principals of the differential analysis methods.
+* In **Chapter 13** provided the association analysis.
 
-* In **Chapter 14** provided the examples by using XMAS 2.0 on microbiota data.
+* In **Chapter 14** showed the principals of the differential analysis methods.
+
+* In **Chapter 15** provided the examples by using XMAS 2.0 on microbiota data.
+
+
+## Citation 
+
+Kindly cite by using `citation("XMAS")` if you think **XAMS** helps you. Alternative way is Tong B, Zou H (2022). _XMAS: A set of tools for statistical analysis in metagenomics_. R package version 2.1.6, <URL:https://gitlab.xbiome.com/Analytics/xmas/>.
+
+## Change log
+
+### XMAS 2.1.6
+
++ add *Gut microbiota Data from Zeybel et al. - 2022*. (2022-07-06)
++ add `run_cor`. (2022-07-06)
++ fix bugs `run_lefse`. (2022-07-07)
++ add `run_partial_cor`. (2022-07-08)
++ fix bugs `summarize_LowAbundance_taxa`. (2022-07-08)
++ fix bugs `summarize_taxa`. (2022-07-11)
++ add parameter *group_number* in `plot_barplot`, `plot_boxplot` and `plot_dotplot`. (2022-07-11)
++ change parameter `run_RefCheck`. (2022-07-11)  
++ add `plot_correlation_heatmap`. (2022-07-12) 
+
+### XMAS 2.1.5
+
++ add *paired* parameter in `run_ttest` and `run_wilcox`. (2022-06-27)
++ add *Data from Early Childhood Antibiotics and the Microbiome (ECAM) study*. (2022-06-27)
++ add `run_filter2`. (2022-06-29)
++ fix bugs in `determine_tables`. (2022-06-29)
++ fix bugs in `run_RefCheck`. (2022-06-30)
++ fix bugs in `run_RefCheck`. (2022-07-03)
++ modify the scripts' annotations. (2022-07-05)
++ fix bugs in `run_multiple_da`. (2022-07-05)
++ fix bugs in `run_edger`. (2022-07-05)
+
+### XMAS 2.1.4
+
++ fix bugs in `plot_Dada2Track` and `plot_RarefCurve`. (2022-06-06)
++ fix bugs in `determine_tables`. (2022-06-07)
++ format the codes in elegant style. (2022-06-08)
++ fix bugs in `import_dada2_taxa`. (2022-06-13)
++ fix bugs in `run_permanova`, `run_ANOSIM` and `run_MRPP`. (2022-06-14) 
++ fix bugs in `get_GroupPhyloseq`. (2022-06-14)
++ fix bugs in `run_RefCheck`. (2022-06-15)
++ fix bugs in scripts, for instance, replacing "SampleID" by "TempRowNames". (2022-06-15)
++ fix bugs in `run_lefse`. (2022-06-16)
++ fix bugs in `plot_RankAbundance`, `transform_abundances` and `run_trim`. (2022-06-17)
++ update **SchematicFigure** in vignettes and README. (2022-06-20)
++ add `plot_double_barplot`. (2022-06-20)
++ fix bugs in `aggregate_LOD_taxa`. (2022-06-22)
++ fix bugs in `import_metaphlan_taxa`. (2022-6-24)
+
+
+### XMAS 2.1.3
+
++ add `aggregate_LOD_taxa` and rename scripts. (2022-05-31)
+
+
+### XMAS 2.1.2
+
++ reassign the packages to *imports* or *suggests*. (2022-05-26)
+
+
+### XMAS 2.1.1
+
++ fix bugs in `run_permanova`, `plot_multiple_DA`, `summarize_LowAbundance_taxa` and `plot_boxplot`. (2022-05-23)
+
+
+### XMAS 2.1.0
+
++ add `run_mulitple_da` and `plot_multiple_DA` for multiple DA methods' results. (2022-05-18)
+
+
+### XMAS 2.0.13
+
++ fix bugs. (2022-05-17)
+
+
+### XMAS 2.0.12
+
++ Add `run_MantelTest`. (2022-05-11)
++ Add `plot_2DA_venn`. (2022-05-11)
++ Modify `plot_taxa_heatmap` and `plot_dotplot`. (2022-05-12)
++ Add topN significant taxa boxplot `plot_topN_boxplot` (2022-05-12)
++ Add `run_MRPP`. (2022-05-13)
++ Add `run_rank_abundance` and `plot_RankAbundance`. (2022-05-13)
++ Add `run_impute` for imputation. (2022-05-13)
+
+
+### XMAS 2.0.7 (2022-04-12)
+
++ Add global view modules and other parts.
+
+
+### XMAS 2.0.2 (2022-03-17)
+
++ Recode the differential analysis scripts `run_aldex` etc.
++ Modify the import scripts.
+
+
+### XMAS 2.0.1 (2022-03-14)
+
++ Rearrange the package's structure.
+
+
+### XMAS 1.0.0 (2021-12-13)
+
++ The final version 1.0.0.
+
+
+### Initial repository 0.0.1 (2021-07-25)
+
++ Submitted to gitlab.
+
+

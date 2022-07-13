@@ -1,0 +1,141 @@
+# Association Analysis
+
+  
+
+**Loading packages**
+
+```{r, echo=TRUE, results="hide", warning=FALSE, message=FALSE}
+library(XMAS2)
+library(dplyr)
+library(tibble)
+library(phyloseq)
+library(pheatmap)
+```
+
+
+## Loading and showing phyloseq object
+
+The **Zeybel_Gut** is from [@zeybel2022multiomics], containing gut and oral microbiota.
+```{r, warning=FALSE, message=FALSE}
+data("Zeybel_Gut")
+
+Zeybel_Gut_genus <- summarize_taxa(ps = Zeybel_Gut,
+       taxa_level = "Genus")
+```
+
+* sample data in Zeybel_Gut object
+```{r, warning=FALSE, message=FALSE}
+zeybel_metadata <- sample_data(Zeybel_Gut_genus) %>% 
+  data.frame()
+
+head(zeybel_metadata)
+colnames(zeybel_metadata)
+```
+
+* otu table profile in Zeybel_Gut object
+```{r, warning=FALSE, message=FALSE}
+zeybel_otu <- otu_table(Zeybel_Gut_genus) %>% 
+  data.frame()
+
+head(zeybel_otu)
+```
+
+
+Results: 
+
+1. metadata has 42 continuous variables
+
+
+## Spearman Correlation Analysis
+
+To identify the association between individual genus and continuous variables, we perform the correlation analysis with "spearman", "pearson" and "kendall" method to calculate the test results. Here, the results have four statistical indexes: *statistical*, *Rho*, *Pvalue* and *AdjustedPvalue* and we also provide the `plot_correlation_heatmap` to display the results.
+
+
+* Calculation
+```{r, warning=FALSE, message=FALSE}
+dat_cor <- run_cor(ps = Zeybel_Gut_genus,
+    columns = c("LF", "Sodium", "Potassium", "Creatinine", "Urea", "RLTBW"),
+    method = "spearman")
+
+head(dat_cor)
+```
+
+* visualization
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=5, fig.cap="Spearman Correlation Coefficient"}
+plot_correlation_heatmap(
+      data = dat_cor,
+      x_index = "Rho",
+      x_index_cutoff = 0,
+      y_index = "Pvalue",
+      y_index_cutoff = 0.05,
+      cellwidth = 35,
+      cellheight = 10,
+      fontsize_number = 15)
+```
+
+Results:
+
+1. the color of cell shows the size of *Rho*.
+
+  * red: positive
+  
+  * blue: negative
+
+2. the asterisk of cell shows the significance: 
+
+  * \* for [0.05, 0.01]
+  
+  * \*\* for less than 0.01
+
+
+
+## Partial Correlation Analysis
+
+To identify the association between individual genus and continuous variables, while controlling third variables, we perform the partial correlation analysis with "spearman", "pearson" and "kendall" method to calculate the test results. Here, the results have four statistical indexes: *statistical*, *Rho*, *Pvalue* and *AdjustedPvalue* and we also provide the `plot_correlation_heatmap` to display the results.
+
+When comparing the Spearman Correlation Analysis, Partial Correlation Analysis has adjusted effects from the confounding factors as third variables. For instance, we should pay attention to the age or gender etc, which could affect the test results when we do some association analysis.
+
+* Calculation
+```{r, warning=FALSE, message=FALSE}
+dat_cor_partial <- run_partial_cor(ps = Zeybel_Gut_genus,
+    columns = c("LF", "Sodium", "Potassium", "Creatinine", "Urea", "RLTBW"),
+    AdjVars = c("Age", "Gender", "Smoker"),
+    method_t = "pcor",
+    method = "spearman",
+    p_adjust = "BH")
+
+head(dat_cor_partial)
+```
+
+* visualization
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=8, fig.height=5, fig.cap="Partial Correlation Coefficient"}
+plot_correlation_heatmap(
+      data = dat_cor_partial,
+      x_index = "Rho",
+      x_index_cutoff = 0,
+      y_index = "Pvalue",
+      y_index_cutoff = 0.05,
+      cellwidth = 35,
+      cellheight = 10,
+      fontsize_number = 15)
+```
+
+Results:
+
+1. the color of cell shows the size of *Rho*.
+
+  * red: positive
+  
+  * blue: negative
+
+2. the asterisk of cell shows the significance: 
+
+  * \* for [0.05, 0.01]
+  
+  * \*\* for less than 0.01
+
+
+## Systematic Information
+```{r}
+devtools::session_info()
+```
