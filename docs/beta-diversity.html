@@ -56,6 +56,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.21/datatables.js"></script>
@@ -516,8 +518,8 @@ div.csl-indent {
 <li>Visualization</li>
 </ul>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="beta-diversity.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(<span class="at">datMatrix =</span> dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-104"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-104-1.png" alt="Unweighted Unifrac Distance" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-91"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-91-1.png" alt="Unweighted Unifrac Distance" width="576" />
 <p class="caption">
 Figure 8.1: Unweighted Unifrac Distance
 </p>
@@ -552,8 +554,8 @@ Figure 8.1: Unweighted Unifrac Distance
 <li><strong>Visualization</strong></li>
 </ul>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="beta-diversity.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(<span class="at">datMatrix =</span> dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-106"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-106-1.png" alt="Weighted Unifrac Distance" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-93"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-93-1.png" alt="Weighted Unifrac Distance" width="576" />
 <p class="caption">
 Figure 8.2: Weighted Unifrac Distance
 </p>
@@ -592,8 +594,8 @@ Figure 8.2: Weighted Unifrac Distance
 <li><strong>Visualization</strong>: GUniFrac with alpha 0.5</li>
 </ul>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="beta-diversity.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(<span class="at">datMatrix =</span> dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-108"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-108-1.png" alt="Generalized UniFrac Distance (alpha=0.5)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-95"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-95-1.png" alt="Generalized UniFrac Distance (alpha=0.5)" width="576" />
 <p class="caption">
 Figure 8.3: Generalized UniFrac Distance (alpha=0.5)
 </p>
@@ -616,8 +618,8 @@ where,</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="beta-diversity.html#cb160-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
 <span id="cb160-2"><a href="beta-diversity.html#cb160-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span>
 <span id="cb160-3"><a href="beta-diversity.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(<span class="at">datMatrix =</span> dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-109"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-109-1.png" alt="Bray Curtis Distance" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-96"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-96-1.png" alt="Bray Curtis Distance" width="576" />
 <p class="caption">
 Figure 8.4: Bray Curtis Distance
 </p>
@@ -885,8 +887,8 @@ where,</p>
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="beta-diversity.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCA, </span>
 <span id="cb181-2"><a href="beta-diversity.html#cb181-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-120"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-120-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-107"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-107-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.5: Principal Component Analysis (PCA): Ordinary pattern
 </p>
@@ -905,8 +907,8 @@ Figure 8.5: Principal Component Analysis (PCA): Ordinary pattern
 <span id="cb182-3"><a href="beta-diversity.html#cb182-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb182-4"><a href="beta-diversity.html#cb182-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
 <span id="cb182-5"><a href="beta-diversity.html#cb182-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-121"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-121-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern with SampleID" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-108"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-108-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern with SampleID" width="768" />
 <p class="caption">
 Figure 8.6: Principal Component Analysis (PCA): Ordinary pattern with SampleID
 </p>
@@ -920,8 +922,8 @@ Figure 8.6: Principal Component Analysis (PCA): Ordinary pattern with SampleID
 <span id="cb183-4"><a href="beta-diversity.html#cb183-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">topN =</span> <span class="dv">5</span>,</span>
 <span id="cb183-5"><a href="beta-diversity.html#cb183-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">ellipse =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb183-6"><a href="beta-diversity.html#cb183-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">labels =</span> <span class="st">&quot;SampleID&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-122"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-122-1.png" alt="Principal Component Analysis (PCA): biplot" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-109"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-109-1.png" alt="Principal Component Analysis (PCA): biplot" width="576" />
 <p class="caption">
 Figure 8.7: Principal Component Analysis (PCA): biplot
 </p>
@@ -952,8 +954,8 @@ Figure 8.7: Principal Component Analysis (PCA): biplot
 <h4><span class="header-section-number">8.9.2.2</span> Visualization<a href="beta-diversity.html#visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="beta-diversity.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCoA, </span>
 <span id="cb186-2"><a href="beta-diversity.html#cb186-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-124"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-124-1.png" alt="Principal Coordinate Analysis (PCoA)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-111"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-111-1.png" alt="Principal Coordinate Analysis (PCoA)" width="768" />
 <p class="caption">
 Figure 8.8: Principal Coordinate Analysis (PCoA)
 </p>
@@ -982,8 +984,8 @@ Figure 8.8: Principal Coordinate Analysis (PCoA)
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="beta-diversity.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_tSNE, </span>
 <span id="cb189-2"><a href="beta-diversity.html#cb189-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-126"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-126-1.png" alt="t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-113"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-113-1.png" alt="t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.9: t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern
 </p>
@@ -1010,8 +1012,8 @@ Figure 8.9: t-distributed stochastic neighbor embedding (t-SNE): Ordinary patter
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="beta-diversity.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_UMAP, </span>
 <span id="cb192-2"><a href="beta-diversity.html#cb192-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-128"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-128-1.png" alt="Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-115"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-115-1.png" alt="Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern
 </p>
@@ -1153,7 +1155,6 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
 ##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
 ##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
-##  pheatmap             * 1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
 ##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
 ##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
 ##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
@@ -1162,7 +1163,6 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  pkgload                1.2.4    2021-11-30 [1] CRAN (R 4.1.0)
 ##  plyr                   1.8.6    2020-03-03 [1] CRAN (R 4.1.0)
 ##  png                    0.1-7    2013-12-03 [1] CRAN (R 4.1.0)
-##  ppcor                  1.1      2015-12-03 [1] CRAN (R 4.1.0)
 ##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
 ##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
 ##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
