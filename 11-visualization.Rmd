@@ -10,7 +10,6 @@ library(tibble)
 library(phyloseq)
 library(ggplot2)
 library(ggpubr)
-library(SummarizedExperiment)
 ```
 
 ## plot_boxplot
@@ -82,12 +81,21 @@ plot_boxplot(data = dat_alpha,
              outlier = TRUE)
 ```
 
-
+* show group_number in the x-axis break
+```{r, warning=FALSE, fig.width=8, fig.height=4, fig.align="center", fig.cap="boxplot(group_number)"}
+plot_boxplot(data = dat_alpha,
+             y_index = c("Shannon", "Chao1", "Observed"),
+             group = "SampleType",
+             group_names = c("gut", "right palm", "tongue"),
+             group_color = c("red", "green", "blue"),
+             do_test = TRUE,
+             method = "wilcox.test",
+             group_number = TRUE)
+```
 
 ## plot_barplot
 
 `plot_barplot` has many parameters, and help you enjoy it.
-
 
 * single measure 
 ```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="barplot(single measure)"}
@@ -129,9 +137,20 @@ plot_barplot(data = dat_alpha,
              y_index = c("Shannon", "Chao1", "Observed"),
              group = "SampleType",
              do_test = TRUE,
-            method = "wilcox.test")
+             method = "wilcox.test")
 ```
 
+* show group_number in the x-axis break
+```{r, warning=FALSE, fig.width=8, fig.height=4, fig.align="center", fig.cap="barplot(group_number)"}
+plot_barplot(data = dat_alpha,
+             y_index = c("Shannon", "Chao1", "Observed"),
+             group = "SampleType",
+             group_names = c("gut", "right palm", "tongue"),
+             group_color = c("red", "green", "blue"),
+             do_test = TRUE,
+             method = "wilcox.test",
+             group_number = TRUE)
+```
 
 ## plot_dotplot
 
@@ -163,7 +182,6 @@ plot_dotplot(data = dat_alpha,
                              c("gut", "tongue")))
 ```
 
-
 * single measure with significant results of ref_group
 ```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="dotplot(single measure with significant results of ref_group)"}
 plot_dotplot(
@@ -173,7 +191,6 @@ plot_dotplot(
     do_test = TRUE,
     ref_group = "gut")
 ```
-
 
 * dot size and median size
 ```{r, warning=FALSE, fig.width=6, fig.height=5, fig.align="center", fig.cap="dotplot(dot size and median size)"}
@@ -197,7 +214,6 @@ plot_dotplot(
     method = "wilcox.test")
 ```
 
-
 * multiple index with errorbar
 ```{r, warning=FALSE, fig.width=8, fig.height=4, fig.align="center", fig.cap="dotplot(multiple index errorbar)"}
 plot_dotplot(
@@ -209,6 +225,18 @@ plot_dotplot(
     method = "wilcox.test")
 ```
 
+* show group_number in the x-axis break
+```{r, warning=FALSE, fig.width=8, fig.height=4, fig.align="center", fig.cap="dotplot(group_number)"}
+plot_dotplot(data = dat_alpha,
+             y_index = c("Shannon", "Chao1", "Observed"),
+             group = "SampleType",
+             group_names = c("gut", "right palm", "tongue"),
+             group_color = c("red", "green", "blue"),
+             show_type = "errorbar",
+             do_test = TRUE,
+             method = "wilcox.test",
+             group_number = TRUE)
+```
 
 
 ## plot_correlation_boxplot
