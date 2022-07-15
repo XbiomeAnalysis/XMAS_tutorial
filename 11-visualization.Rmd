@@ -572,6 +572,39 @@ plot_StackBarPlot(
 ```
 
 
+## Color Palettes
+
+### Wes Anderson Palettes
+
+[Wes Anderson Palettes](https://github.com/karthik/wesanderson) is from **wesanderson** package and we have integrated it into **XMAS2.0**. 
+```{r, warning=FALSE, message=FALSE, fig.align="center", fig.width=9, fig.height=4, fig.cap="Wes Anderson Palettes"}
+data("amplicon_ps")
+dat_alpha <- run_alpha_diversity(ps = amplicon_ps, measures = c("Shannon", "Chao1"))
+
+# origin
+pl_origin <- plot_boxplot(data = dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             do_test = TRUE,
+             cmp_list = list(c("gut", "right palm"), c("gut", "left palm")),
+             method = "wilcox.test")
+
+# Wes Anderson Palettes
+pal <- wes_palette(name = "GrandBudapest1", 4, type = "discrete")
+pl_wes <- plot_boxplot(data = dat_alpha,
+             y_index = "Shannon",
+             group = "SampleType",
+             group_color = pal,
+             do_test = TRUE,
+             cmp_list = list(c("gut", "right palm"), c("gut", "left palm")),
+             method = "wilcox.test")
+
+cowplot::plot_grid(pl_origin, pl_wes,
+                   align = "hv",
+                   labels = c("Origin", "Wes Anderson"))
+```
+
+
 ## Systematic Information
 ```{r}
 devtools::session_info()

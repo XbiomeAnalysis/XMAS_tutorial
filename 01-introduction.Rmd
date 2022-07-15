@@ -190,7 +190,7 @@ Note the data pre-processing requirements before analysing data with *XMAS 2.0*:
 
 * **Permutational Multivariate Analysis of Variance (PERMANOVA)**. [@anderson2014permutational] Permutational multivariate analysis of variance (PERMANOVA).
 
-**ALDEx2**. [@fernandes2014unifying] Unifying the analysis of high-throughput sequencing datasets: characterizing RNA-seq, 16S rRNA gene sequencing and selective growth experiments by compositional data analysis.
+* **ALDEx2**. [@fernandes2014unifying] Unifying the analysis of high-throughput sequencing datasets: characterizing RNA-seq, 16S rRNA gene sequencing and selective growth experiments by compositional data analysis.
 
 
 ## Citation 
