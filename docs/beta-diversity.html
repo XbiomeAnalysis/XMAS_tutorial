@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-07-15" />
+<meta name="date" content="2022-07-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -524,8 +524,8 @@ div.csl-indent {
 <li>Visualization</li>
 </ul>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="beta-diversity.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(<span class="at">datMatrix =</span> dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-88"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-88-1.png" alt="Unweighted Unifrac Distance" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-80"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-80-1.png" alt="Unweighted Unifrac Distance" width="576" />
 <p class="caption">
 Figure 8.1: Unweighted Unifrac Distance
 </p>
@@ -560,8 +560,8 @@ Figure 8.1: Unweighted Unifrac Distance
 <li><strong>Visualization</strong></li>
 </ul>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="beta-diversity.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(<span class="at">datMatrix =</span> dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-90"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-90-1.png" alt="Weighted Unifrac Distance" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-82"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-82-1.png" alt="Weighted Unifrac Distance" width="576" />
 <p class="caption">
 Figure 8.2: Weighted Unifrac Distance
 </p>
@@ -600,8 +600,8 @@ Figure 8.2: Weighted Unifrac Distance
 <li><strong>Visualization</strong>: GUniFrac with alpha 0.5</li>
 </ul>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="beta-diversity.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(<span class="at">datMatrix =</span> dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-92"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-92-1.png" alt="Generalized UniFrac Distance (alpha=0.5)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-84"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-84-1.png" alt="Generalized UniFrac Distance (alpha=0.5)" width="576" />
 <p class="caption">
 Figure 8.3: Generalized UniFrac Distance (alpha=0.5)
 </p>
@@ -624,8 +624,8 @@ where,</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="beta-diversity.html#cb160-1" aria-hidden="true" tabindex="-1"></a>dada2_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
 <span id="cb160-2"><a href="beta-diversity.html#cb160-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span>
 <span id="cb160-3"><a href="beta-diversity.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_distance_corrplot</span>(<span class="at">datMatrix =</span> dada2_beta<span class="sc">$</span>BetaDistance)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-93"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-93-1.png" alt="Bray Curtis Distance" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-85"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-85-1.png" alt="Bray Curtis Distance" width="576" />
 <p class="caption">
 Figure 8.4: Bray Curtis Distance
 </p>
@@ -893,8 +893,8 @@ where,</p>
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="beta-diversity.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCA, </span>
 <span id="cb181-2"><a href="beta-diversity.html#cb181-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-104"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-104-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-96"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-96-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.5: Principal Component Analysis (PCA): Ordinary pattern
 </p>
@@ -913,8 +913,8 @@ Figure 8.5: Principal Component Analysis (PCA): Ordinary pattern
 <span id="cb182-3"><a href="beta-diversity.html#cb182-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
 <span id="cb182-4"><a href="beta-diversity.html#cb182-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
 <span id="cb182-5"><a href="beta-diversity.html#cb182-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-105"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-105-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern with SampleID" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-97"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-97-1.png" alt="Principal Component Analysis (PCA): Ordinary pattern with SampleID" width="768" />
 <p class="caption">
 Figure 8.6: Principal Component Analysis (PCA): Ordinary pattern with SampleID
 </p>
@@ -928,8 +928,8 @@ Figure 8.6: Principal Component Analysis (PCA): Ordinary pattern with SampleID
 <span id="cb183-4"><a href="beta-diversity.html#cb183-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">topN =</span> <span class="dv">5</span>,</span>
 <span id="cb183-5"><a href="beta-diversity.html#cb183-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">ellipse =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb183-6"><a href="beta-diversity.html#cb183-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">labels =</span> <span class="st">&quot;SampleID&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-106"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-106-1.png" alt="Principal Component Analysis (PCA): biplot" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-98"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-98-1.png" alt="Principal Component Analysis (PCA): biplot" width="576" />
 <p class="caption">
 Figure 8.7: Principal Component Analysis (PCA): biplot
 </p>
@@ -960,8 +960,8 @@ Figure 8.7: Principal Component Analysis (PCA): biplot
 <h4><span class="header-section-number">8.9.2.2</span> Visualization<a href="beta-diversity.html#visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="beta-diversity.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_PCoA, </span>
 <span id="cb186-2"><a href="beta-diversity.html#cb186-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-108"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-108-1.png" alt="Principal Coordinate Analysis (PCoA)" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-100"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-100-1.png" alt="Principal Coordinate Analysis (PCoA)" width="768" />
 <p class="caption">
 Figure 8.8: Principal Coordinate Analysis (PCoA)
 </p>
@@ -990,8 +990,8 @@ Figure 8.8: Principal Coordinate Analysis (PCoA)
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="beta-diversity.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_tSNE, </span>
 <span id="cb189-2"><a href="beta-diversity.html#cb189-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-110"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-110-1.png" alt="t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-102"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-102-1.png" alt="t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.9: t-distributed stochastic neighbor embedding (t-SNE): Ordinary pattern
 </p>
@@ -1018,8 +1018,8 @@ Figure 8.9: t-distributed stochastic neighbor embedding (t-SNE): Ordinary patter
 <p><code>plot_Ordination</code> provides too many parameters for users to display the ordination results by using ggplot2 format. Here is the ordinary pattern.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="beta-diversity.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> ordination_UMAP, </span>
 <span id="cb192-2"><a href="beta-diversity.html#cb192-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-112"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-112-1.png" alt="Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-104"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-104-1.png" alt="Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern" width="768" />
 <p class="caption">
 Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP): Ordinary pattern
 </p>
@@ -1040,7 +1040,7 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-07-15
+##  date     2022-07-19
 ##  rstudio  2022.02.0+443 Prairie Trillium (desktop)
 ##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 ## 
@@ -1048,6 +1048,7 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  package              * version  date (UTC) lib source
 ##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
 ##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
+##  ALDEx2                 1.26.0   2021-10-26 [1] Bioconductor
 ##  annotate               1.72.0   2021-10-26 [1] Bioconductor
 ##  AnnotationDbi          1.56.2   2021-11-09 [1] Bioconductor
 ##  ape                  * 5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
@@ -1055,6 +1056,7 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
 ##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
 ##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
+##  bayesm                 3.1-4    2019-10-15 [1] CRAN (R 4.1.0)
 ##  Biobase              * 2.54.0   2021-10-26 [1] Bioconductor
 ##  BiocGenerics         * 0.40.0   2021-10-26 [1] Bioconductor
 ##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
@@ -1073,12 +1075,14 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  car                    3.0-12   2021-11-06 [1] CRAN (R 4.1.0)
 ##  carData                3.0-5    2022-01-06 [1] CRAN (R 4.1.2)
 ##  caTools                1.18.2   2021-03-28 [1] CRAN (R 4.1.0)
+##  cellranger             1.1.0    2016-07-27 [1] CRAN (R 4.1.0)
 ##  checkmate              2.0.0    2020-02-06 [1] CRAN (R 4.1.0)
 ##  cli                    3.3.0    2022-04-25 [1] CRAN (R 4.1.2)
 ##  cluster                2.1.2    2021-04-17 [1] CRAN (R 4.1.2)
 ##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
 ##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
 ##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
+##  compositions           2.0-4    2022-01-05 [1] CRAN (R 4.1.2)
 ##  conflicted           * 1.1.0    2021-11-26 [1] CRAN (R 4.1.0)
 ##  corrplot               0.92     2021-11-18 [1] CRAN (R 4.1.0)
 ##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
@@ -1087,6 +1091,7 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  data.table             1.14.2   2021-09-27 [1] CRAN (R 4.1.0)
 ##  DBI                    1.1.2    2021-12-20 [1] CRAN (R 4.1.0)
 ##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
+##  DEoptimR               1.0-10   2022-01-03 [1] CRAN (R 4.1.2)
 ##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
 ##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
 ##  devtools               2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
@@ -1101,6 +1106,7 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  fastmap                1.1.0    2021-01-25 [1] CRAN (R 4.1.0)
 ##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
 ##  foreign                0.8-82   2022-01-13 [1] CRAN (R 4.1.2)
+##  forestplot             2.0.1    2021-09-03 [1] CRAN (R 4.1.0)
 ##  Formula                1.2-4    2020-10-16 [1] CRAN (R 4.1.0)
 ##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
 ##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
@@ -1115,14 +1121,15 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  ggsci                  2.9      2018-05-14 [1] CRAN (R 4.1.0)
 ##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
 ##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
-##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
+##  glue                 * 1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
+##  Gmisc                * 3.0.0    2022-01-03 [1] CRAN (R 4.1.2)
 ##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
 ##  gridExtra              2.3      2017-09-09 [1] CRAN (R 4.1.0)
 ##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
 ##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
 ##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
 ##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
-##  htmlTable              2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
+##  htmlTable            * 2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
 ##  htmltools              0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
 ##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
 ##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
@@ -1143,11 +1150,13 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  lifecycle              1.0.1    2021-09-24 [1] CRAN (R 4.1.0)
 ##  limma                  3.50.1   2022-02-17 [1] Bioconductor
 ##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
-##  magrittr               2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
+##  lubridate              1.8.0    2021-10-07 [1] CRAN (R 4.1.0)
+##  magrittr             * 2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
 ##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
 ##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
 ##  MatrixGenerics       * 1.6.0    2021-10-26 [1] Bioconductor
 ##  matrixStats          * 0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
+##  mbzinb                 0.2      2022-03-16 [1] local
 ##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
 ##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
 ##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
@@ -1157,10 +1166,12 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  multtest               2.50.0   2021-10-26 [1] Bioconductor
 ##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
 ##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
+##  NADA                   1.6-1.1  2020-03-22 [1] CRAN (R 4.1.0)
 ##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
 ##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
 ##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
 ##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
+##  pheatmap               1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
 ##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
 ##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
 ##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
@@ -1172,19 +1183,24 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
 ##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
 ##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
+##  pscl                   1.5.5    2020-03-07 [1] CRAN (R 4.1.0)
 ##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
 ##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
 ##  RColorBrewer           1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
-##  Rcpp                   1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
+##  Rcpp                 * 1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
+##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
 ##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
+##  readxl               * 1.4.0    2022-03-28 [1] CRAN (R 4.1.2)
 ##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
 ##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
 ##  reticulate             1.24     2022-01-26 [1] CRAN (R 4.1.2)
+##  Rfast                  2.0.6    2022-02-16 [1] CRAN (R 4.1.2)
 ##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
 ##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
 ##  Rhdf5lib               1.16.0   2021-10-26 [1] Bioconductor
 ##  rlang                  1.0.2    2022-03-04 [1] CRAN (R 4.1.2)
 ##  rmarkdown              2.13     2022-03-10 [1] CRAN (R 4.1.2)
+##  robustbase             0.93-9   2021-09-27 [1] CRAN (R 4.1.0)
 ##  rpart                  4.1.16   2022-01-24 [1] CRAN (R 4.1.2)
 ##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
 ##  RSpectra               0.16-0   2019-12-01 [1] CRAN (R 4.1.0)
@@ -1205,11 +1221,13 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  survival               3.3-1    2022-03-03 [1] CRAN (R 4.1.2)
 ##  svglite                2.1.0    2022-02-03 [1] CRAN (R 4.1.2)
 ##  systemfonts            1.0.4    2022-02-11 [1] CRAN (R 4.1.2)
+##  tensorA                0.36.2   2020-11-19 [1] CRAN (R 4.1.0)
 ##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
 ##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
 ##  tibble               * 3.1.6    2021-11-07 [1] CRAN (R 4.1.0)
 ##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
+##  truncnorm              1.0-8    2018-02-27 [1] CRAN (R 4.1.0)
 ##  umap                   0.2.8.0  2022-03-23 [1] CRAN (R 4.1.2)
 ##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
 ##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
@@ -1220,12 +1238,13 @@ Figure 8.10: Uniform Manifold Approximation and Projection for Dimension Reducti
 ##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
 ##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
 ##  xfun                   0.30     2022-03-02 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.6    2022-07-15 [1] local
+##  XMAS2                * 2.1.6    2022-07-19 [1] local
 ##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
 ##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
 ##  XVector                0.34.0   2021-10-26 [1] Bioconductor
 ##  yaml                   2.3.5    2022-02-21 [1] CRAN (R 4.1.2)
+##  zCompositions          1.4.0    2022-01-13 [1] CRAN (R 4.1.2)
 ##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
 ##  zoo                    1.8-9    2021-03-09 [1] CRAN (R 4.1.0)
 ## 

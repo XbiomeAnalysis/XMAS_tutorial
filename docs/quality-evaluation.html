@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-07-15" />
+<meta name="date" content="2022-07-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -485,8 +485,8 @@ div.csl-indent {
 <li>this procedure only perform in 16s data</li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="quality-evaluation.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Dada2Track</span>(<span class="at">data =</span> dada2_res<span class="sc">$</span>reads_track)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-28-1.png" alt="Reads' track of DADA2" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-20-1.png" alt="Reads' track of DADA2" width="672" />
 <p class="caption">
 Figure 5.1: Reads’ track of DADA2
 </p>
@@ -619,7 +619,7 @@ Figure 5.1: Reads’ track of DADA2
 </div>
 <div id="metagenomic-data" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Metagenomic data<a href="quality-evaluation.html#metagenomic-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The taxonomic levels of spike-in sample’s bacteria is species. Firstly, using the <code>summarize_taxa</code> to get the genus level phyloseq object and then do <code>run_RefCheck</code> under the optimal parameters.</p>
+<p>The taxonomic levels of spike-in sample’s bacteria is species. Firstly, using the <code>summarize_taxa</code> to get the species level phyloseq object and then do <code>run_RefCheck</code> under the optimal parameters.</p>
 <details>
 <summary>
 <strong>Quality Control by spike-in sample in metagenomic</strong>
@@ -722,23 +722,23 @@ Figure 5.1: Reads’ track of DADA2
 ## Lachnospiraceae_bacterium_5_1_63FAA  0.22002 0.26062 0.28058 0.33329  0.07093  0.06778  0.05229  0.04781  0.06825
 ## Impurity_level                       7.33876 7.34799 7.14891 6.47250  8.88190  9.72198  9.72162 10.57600 32.69000
 ##                                            mean                                            Evaluation
-## Bifidobacterium_longum               9.29675556 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Bacteroides_uniformis                2.01824222 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Faecalibacterium_prausnitzii         0.70321000 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Bifidobacterium_adolescentis         5.05609556 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Bacteroides_thetaiotaomicron         3.11556556 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Collinsella_aerofaciens              0.55826111 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Coprococcus_comes                    1.59348889 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Dorea_formicigenerans                3.65288667 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Streptococcus_salivarius             2.86036667 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Bacteroides_xylanisolvens            1.59565111 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Bacteroides_ovatus                   2.97619667 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Roseburia_hominis                    0.03414444 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Bacteroides_vulgatus                 3.02816667 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Prevotella_copri                     8.36682333 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Bifidobacterium_pseudocatenulatum    5.88103222 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Lachnospiraceae_bacterium_5_1_63FAA  0.15573000 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).
-## Impurity_level                      11.09996222 refE didn&#39;t pass the threshold (2022-07-15 14:25:44).</code></pre>
+## Bifidobacterium_longum               9.29675556 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Bacteroides_uniformis                2.01824222 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Faecalibacterium_prausnitzii         0.70321000 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Bifidobacterium_adolescentis         5.05609556 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Bacteroides_thetaiotaomicron         3.11556556 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Collinsella_aerofaciens              0.55826111 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Coprococcus_comes                    1.59348889 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Dorea_formicigenerans                3.65288667 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Streptococcus_salivarius             2.86036667 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Bacteroides_xylanisolvens            1.59565111 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Bacteroides_ovatus                   2.97619667 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Roseburia_hominis                    0.03414444 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Bacteroides_vulgatus                 3.02816667 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Prevotella_copri                     8.36682333 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Bifidobacterium_pseudocatenulatum    5.88103222 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Lachnospiraceae_bacterium_5_1_63FAA  0.15573000 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).
+## Impurity_level                      11.09996222 refE didn&#39;t pass the threshold (2022-07-19 17:55:24).</code></pre>
 </details>
 </div>
 </div>
@@ -790,8 +790,8 @@ Figure 5.1: Reads’ track of DADA2
 ## rarefying sample S6065
 ## rarefying sample S6066
 ## rarefying sample S6068</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-34-1.png" alt="Rarefaction Curves" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-26-1.png" alt="Rarefaction Curves" width="672" />
 <p class="caption">
 Figure 5.2: Rarefaction Curves
 </p>
@@ -850,15 +850,15 @@ Figure 5.2: Rarefaction Curves
 Now plot C.V.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="quality-evaluation.html#cb56-1" aria-hidden="true" tabindex="-1"></a>pl <span class="ot">&lt;-</span> <span class="fu">plot_taxa_cv</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
 <span id="cb56-2"><a href="quality-evaluation.html#cb56-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">plot.type =</span> <span class="st">&quot;scatter&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-36-1.png" alt="Density of the Taxa Mean abundance" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-28-1.png" alt="Density of the Taxa Mean abundance" width="672" />
 <p class="caption">
 Figure 5.3: Density of the Taxa Mean abundance
 </p>
 </div>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="quality-evaluation.html#cb57-1" aria-hidden="true" tabindex="-1"></a>pl <span class="sc">+</span> <span class="fu">scale_x_log10</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-37"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-37-1.png" alt="Coefficient of variation" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-29-1.png" alt="Coefficient of variation" width="672" />
 <p class="caption">
 Figure 5.4: Coefficient of variation
 </p>
@@ -871,8 +871,8 @@ Figure 5.4: Coefficient of variation
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="quality-evaluation.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
 <span id="cb58-2"><a href="quality-evaluation.html#cb58-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group=</span><span class="st">&quot;Group&quot;</span>, </span>
 <span id="cb58-3"><a href="quality-evaluation.html#cb58-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">plot.type =</span> <span class="st">&quot;density&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-38"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-38-1.png" alt="Distribution of number of sequences" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-30-1.png" alt="Distribution of number of sequences" width="672" />
 <p class="caption">
 Figure 5.5: Distribution of number of sequences
 </p>
@@ -893,7 +893,7 @@ Figure 5.5: Distribution of number of sequences
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-07-15
+##  date     2022-07-19
 ##  rstudio  2022.02.0+443 Prairie Trillium (desktop)
 ##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 ## 
@@ -901,12 +901,14 @@ Figure 5.5: Distribution of number of sequences
 ##  package              * version  date (UTC) lib source
 ##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
 ##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
+##  ALDEx2                 1.26.0   2021-10-26 [1] Bioconductor
 ##  annotate               1.72.0   2021-10-26 [1] Bioconductor
 ##  AnnotationDbi          1.56.2   2021-11-09 [1] Bioconductor
 ##  ape                    5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
 ##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
 ##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
 ##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
+##  bayesm                 3.1-4    2019-10-15 [1] CRAN (R 4.1.0)
 ##  Biobase              * 2.54.0   2021-10-26 [1] Bioconductor
 ##  BiocGenerics         * 0.40.0   2021-10-26 [1] Bioconductor
 ##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
@@ -925,22 +927,29 @@ Figure 5.5: Distribution of number of sequences
 ##  car                    3.0-12   2021-11-06 [1] CRAN (R 4.1.0)
 ##  carData                3.0-5    2022-01-06 [1] CRAN (R 4.1.2)
 ##  caTools                1.18.2   2021-03-28 [1] CRAN (R 4.1.0)
+##  cellranger             1.1.0    2016-07-27 [1] CRAN (R 4.1.0)
 ##  checkmate              2.0.0    2020-02-06 [1] CRAN (R 4.1.0)
 ##  cli                    3.3.0    2022-04-25 [1] CRAN (R 4.1.2)
 ##  cluster                2.1.2    2021-04-17 [1] CRAN (R 4.1.2)
 ##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
 ##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
 ##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
+##  compositions           2.0-4    2022-01-05 [1] CRAN (R 4.1.2)
+##  conflicted             1.1.0    2021-11-26 [1] CRAN (R 4.1.0)
+##  corrplot               0.92     2021-11-18 [1] CRAN (R 4.1.0)
 ##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
 ##  crayon                 1.5.0    2022-02-14 [1] CRAN (R 4.1.2)
+##  crosstalk              1.2.0    2021-11-04 [1] CRAN (R 4.1.0)
 ##  data.table             1.14.2   2021-09-27 [1] CRAN (R 4.1.0)
 ##  DBI                    1.1.2    2021-12-20 [1] CRAN (R 4.1.0)
 ##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
+##  DEoptimR               1.0-10   2022-01-03 [1] CRAN (R 4.1.2)
 ##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
 ##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
 ##  devtools               2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  digest                 0.6.29   2021-12-01 [1] CRAN (R 4.1.0)
 ##  dplyr                * 1.0.8    2022-02-08 [1] CRAN (R 4.1.2)
+##  DT                     0.21     2022-02-26 [1] CRAN (R 4.1.2)
 ##  edgeR                  3.36.0   2021-10-26 [1] Bioconductor
 ##  ellipsis               0.3.2    2021-04-29 [1] CRAN (R 4.1.0)
 ##  evaluate               0.15     2022-02-18 [1] CRAN (R 4.1.2)
@@ -949,6 +958,7 @@ Figure 5.5: Distribution of number of sequences
 ##  fastmap                1.1.0    2021-01-25 [1] CRAN (R 4.1.0)
 ##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
 ##  foreign                0.8-82   2022-01-13 [1] CRAN (R 4.1.2)
+##  forestplot             2.0.1    2021-09-03 [1] CRAN (R 4.1.0)
 ##  Formula                1.2-4    2020-10-16 [1] CRAN (R 4.1.0)
 ##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
 ##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
@@ -959,16 +969,18 @@ Figure 5.5: Distribution of number of sequences
 ##  GenomicRanges        * 1.46.1   2021-11-18 [1] Bioconductor
 ##  ggplot2              * 3.3.5    2021-06-25 [1] CRAN (R 4.1.0)
 ##  ggpubr               * 0.4.0    2020-06-27 [1] CRAN (R 4.1.0)
+##  ggrepel                0.9.1    2021-01-15 [1] CRAN (R 4.1.0)
 ##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
 ##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
-##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
+##  glue                 * 1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
+##  Gmisc                * 3.0.0    2022-01-03 [1] CRAN (R 4.1.2)
 ##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
 ##  gridExtra              2.3      2017-09-09 [1] CRAN (R 4.1.0)
 ##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
 ##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
 ##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
 ##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
-##  htmlTable              2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
+##  htmlTable            * 2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
 ##  htmltools              0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
 ##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
 ##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
@@ -989,11 +1001,13 @@ Figure 5.5: Distribution of number of sequences
 ##  lifecycle              1.0.1    2021-09-24 [1] CRAN (R 4.1.0)
 ##  limma                  3.50.1   2022-02-17 [1] Bioconductor
 ##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
-##  magrittr               2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
+##  lubridate              1.8.0    2021-10-07 [1] CRAN (R 4.1.0)
+##  magrittr             * 2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
 ##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
 ##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
 ##  MatrixGenerics       * 1.6.0    2021-10-26 [1] Bioconductor
 ##  matrixStats          * 0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
+##  mbzinb                 0.2      2022-03-16 [1] local
 ##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
 ##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
 ##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
@@ -1002,9 +1016,11 @@ Figure 5.5: Distribution of number of sequences
 ##  multtest               2.50.0   2021-10-26 [1] Bioconductor
 ##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
 ##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
+##  NADA                   1.6-1.1  2020-03-22 [1] CRAN (R 4.1.0)
 ##  nlme                   3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
 ##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
 ##  permute                0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
+##  pheatmap               1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
 ##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
 ##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  pkgbuild               1.3.1    2021-12-20 [1] CRAN (R 4.1.0)
@@ -1015,18 +1031,23 @@ Figure 5.5: Distribution of number of sequences
 ##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
 ##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
 ##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
+##  pscl                   1.5.5    2020-03-07 [1] CRAN (R 4.1.0)
 ##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
 ##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
 ##  RColorBrewer           1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
-##  Rcpp                   1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
+##  Rcpp                 * 1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
+##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
 ##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
+##  readxl               * 1.4.0    2022-03-28 [1] CRAN (R 4.1.2)
 ##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
 ##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
+##  Rfast                  2.0.6    2022-02-16 [1] CRAN (R 4.1.2)
 ##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
 ##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
 ##  Rhdf5lib               1.16.0   2021-10-26 [1] Bioconductor
 ##  rlang                  1.0.2    2022-03-04 [1] CRAN (R 4.1.2)
 ##  rmarkdown              2.13     2022-03-10 [1] CRAN (R 4.1.2)
+##  robustbase             0.93-9   2021-09-27 [1] CRAN (R 4.1.0)
 ##  rpart                  4.1.16   2022-01-24 [1] CRAN (R 4.1.2)
 ##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
 ##  RSQLite                2.2.10   2022-02-17 [1] CRAN (R 4.1.2)
@@ -1045,11 +1066,13 @@ Figure 5.5: Distribution of number of sequences
 ##  survival               3.3-1    2022-03-03 [1] CRAN (R 4.1.2)
 ##  svglite                2.1.0    2022-02-03 [1] CRAN (R 4.1.2)
 ##  systemfonts            1.0.4    2022-02-11 [1] CRAN (R 4.1.2)
+##  tensorA                0.36.2   2020-11-19 [1] CRAN (R 4.1.0)
 ##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
 ##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
 ##  tibble               * 3.1.6    2021-11-07 [1] CRAN (R 4.1.0)
 ##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
+##  truncnorm              1.0-8    2018-02-27 [1] CRAN (R 4.1.0)
 ##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
 ##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
 ##  vctrs                  0.3.8    2021-04-29 [1] CRAN (R 4.1.0)
@@ -1059,12 +1082,13 @@ Figure 5.5: Distribution of number of sequences
 ##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
 ##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
 ##  xfun                   0.30     2022-03-02 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.6    2022-07-15 [1] local
+##  XMAS2                * 2.1.6    2022-07-19 [1] local
 ##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
 ##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
 ##  XVector                0.34.0   2021-10-26 [1] Bioconductor
 ##  yaml                   2.3.5    2022-02-21 [1] CRAN (R 4.1.2)
+##  zCompositions          1.4.0    2022-01-13 [1] CRAN (R 4.1.2)
 ##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
 ##  zoo                    1.8-9    2021-03-09 [1] CRAN (R 4.1.0)
 ## 
