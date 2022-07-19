@@ -81,7 +81,7 @@ We could see that the messages are comprised of four parts.
 
 ### Metagenomic data 
 
-The taxonomic levels of spike-in sample's bacteria is species. Firstly, using the `summarize_taxa` to get the genus level phyloseq object and then do `run_RefCheck` under the optimal parameters.
+The taxonomic levels of spike-in sample's bacteria is species. Firstly, using the `summarize_taxa` to get the species level phyloseq object and then do `run_RefCheck` under the optimal parameters.
 
 <details>
 <summary>**Quality Control by spike-in sample in metagenomic**</summary>
