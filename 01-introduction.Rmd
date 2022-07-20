@@ -38,6 +38,8 @@ The following table shows more than 10 differential analysis methods:
 
 
 ```{r, warning=FALSE, echo=FALSE}
+library(dplyr)
+
 DA_tools <- data.frame(`Tool(version)`=c("ALDEx2  (1.26.0)", 
                                          "limma  voom (3.50.1)",
                                          "mbzinb  (0.2)",
@@ -198,6 +200,42 @@ Note the data pre-processing requirements before analysing data with *XMAS 2.0*:
 Kindly cite by using `citation("XMAS")` if you think **XAMS** helps you. Alternative way is Tong B, Zou H (2022). _XMAS: A set of tools for statistical analysis in metagenomics_. R package version 2.1.6, <URL:https://gitlab.xbiome.com/Analytics/xmas/>.
 
 ## Change log
+
+### XMAS 2.1.7
+
++ add `preprocess_ps` including keep taxa in rows, filter taxa whose abundance is zero, 
+fix duplicated tax, replace the taxa NA with the higher level taxa unclassified, 
+filter samples whose library size is zero. (2022-07-20)
++ add `check_samples`. (2022-07-20)
++ add `phyloseq_qc`. (2022-07-20)
++ add `keep_taxa_in_rows`. (2022-07-20)
++ add `fix_duplicate_tax`. (2022-07-20)
++ add `fix_na_tax`. (2022-07-20)
++ add `convert_taxa_name`. (2022-07-20)
++ modify `run_cor`. (2022-07-20)
++ modify `run_partial_cor`. (2022-07-20)
++ modify `determine_tables`. (2022-07-20)
++ modify `run_maaslin2`. (2022-07-20)
++ modify `run_ANOSIM`. (2022-07-20)
++ modify `core_members`. (2022-07-20)
++ modify `run_alpha_diversity`. (2022-07-20)
++ modify `run_beta_diversity`. (2022-07-20)
++ modify `run_rank_abundance`. (2022-07-20)
++ modify `run_MantelTest`. (2022-07-20)
++ modify `run_MRPP`. (2022-07-20)
++ modify `run_ordination`. (2022-07-20)
++ modify `run_permanova`. (2022-07-20)
++ modify `run_RefCheck`. (2022-07-20)
++ modify `plot_core_taxa`. (2022-07-20)
++ modify `core_matrix`. (2022-07-20)
++ modify `plot_StackBarPlot`. (2022-07-20)
++ modify `aggregate_LOD_taxa`. (2022-07-20)
++ modify `summarize_taxa`. (2022-07-20)
++ modify `summarize_LowAbundance_taxa`. (2022-07-20)
++ modify `run_filter`. (2022-07-20)
++ modify `run_filter2`. (2022-07-20)
++ modify `run_filter2`. (2022-07-20)
+
 
 ### XMAS 2.1.6
 
