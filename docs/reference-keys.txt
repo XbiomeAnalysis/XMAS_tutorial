@@ -123,6 +123,7 @@ input-data
 key-publications
 citation
 change-log
+xmas-2.1.7
 xmas-2.1.6
 xmas-2.1.5
 xmas-2.1.4
