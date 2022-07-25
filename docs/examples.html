@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-07-20" />
+<meta name="date" content="2022-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,8 +56,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.21/datatables.js"></script>
@@ -367,7 +365,14 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="differential-analysis.html"><a href="differential-analysis.html#dominant-taxa"><i class="fa fa-check"></i><b>11.4</b> Dominant taxa<span></span></a></li>
 <li class="chapter" data-level="11.5" data-path="differential-analysis.html"><a href="differential-analysis.html#multiple-differential-analysis-by-one-function"><i class="fa fa-check"></i><b>11.5</b> Multiple differential analysis by one function<span></span></a></li>
-<li class="chapter" data-level="11.6" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-8"><i class="fa fa-check"></i><b>11.6</b> Systematic Information<span></span></a></li>
+<li class="chapter" data-level="11.6" data-path="differential-analysis.html"><a href="differential-analysis.html#comparing-outputs-from-xmas2-lefse-conda-and-lefse-galaxy-using-the-same-in-house-datasets-amplicon_pszeybel_gut"><i class="fa fa-check"></i><b>11.6</b> Comparing outputs from XMAS2, lefse-conda, and lefse-galaxy using the same in-house datasets (amplicon_ps|Zeybel_Gut)<span></span></a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="differential-analysis.html"><a href="differential-analysis.html#introduction-1"><i class="fa fa-check"></i><b>11.6.1</b> Introduction<span></span></a></li>
+<li class="chapter" data-level="11.6.2" data-path="differential-analysis.html"><a href="differential-analysis.html#dataset"><i class="fa fa-check"></i><b>11.6.2</b> Dataset<span></span></a></li>
+<li class="chapter" data-level="11.6.3" data-path="differential-analysis.html"><a href="differential-analysis.html#run-lefse-independently-with-the-three-applications-r-conda-galaxy"><i class="fa fa-check"></i><b>11.6.3</b> Run lefse independently with the three applications (R, conda, galaxy)<span></span></a></li>
+<li class="chapter" data-level="11.6.4" data-path="differential-analysis.html"><a href="differential-analysis.html#comparison-of-lefse-conda-with-xmas2"><i class="fa fa-check"></i><b>11.6.4</b> Comparison of lefse-conda with XMAS2<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-8"><i class="fa fa-check"></i><b>11.7</b> Systematic Information<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="visualization-5.html"><a href="visualization-5.html"><i class="fa fa-check"></i><b>12</b> Visualization<span></span></a>
 <ul>
@@ -473,27 +478,27 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 15</span> Examples<a href="examples.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Here, we give users two examples to practice the data analysis workflow by <strong>XMAS 2.0</strong>. By the way, we also recommend users handling your own microbiota data in a reasonable manner when you utilize this package or workflow. Pay attention to whether your data fit the methods this package provided.</p>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="examples.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb433-2"><a href="examples.html#cb433-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb433-3"><a href="examples.html#cb433-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb433-4"><a href="examples.html#cb433-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb433-5"><a href="examples.html#cb433-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb433-6"><a href="examples.html#cb433-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb433-7"><a href="examples.html#cb433-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="examples.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb474-2"><a href="examples.html#cb474-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb474-3"><a href="examples.html#cb474-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb474-4"><a href="examples.html#cb474-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb474-5"><a href="examples.html#cb474-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb474-6"><a href="examples.html#cb474-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb474-7"><a href="examples.html#cb474-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
 <div id="workflow-description" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Workflow description<a href="examples.html#workflow-description" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The standard data analysis of 16S and MGS data by <strong>XMAS 2.0</strong>.</p>
 <ul>
 <li>16S
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-242"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-242-1.png" alt="Functions of XMAS 2.0 in 16s" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-267"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-267-1.png" alt="Functions of XMAS 2.0 in 16s" width="768" />
 <p class="caption">
 Figure 15.1: Functions of XMAS 2.0 in 16s
 </p>
 </div></li>
 <li>MGS
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-243"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-243-1.png" alt="Functions of XMAS 2.0 in MGS" width="768" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-268"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-268-1.png" alt="Functions of XMAS 2.0 in MGS" width="768" />
 <p class="caption">
 Figure 15.2: Functions of XMAS 2.0 in MGS
 </p>
@@ -520,47 +525,47 @@ Figure 15.2: Functions of XMAS 2.0 in MGS
 <li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/process/fasta2tree/tree.nwk</p></li>
 <li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/metadata.txt</p></li>
 </ol>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="examples.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dada2 results from in-house 16s pipeline</span></span>
-<span id="cb434-2"><a href="examples.html#cb434-2" aria-hidden="true" tabindex="-1"></a>dada2_res <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
-<span id="cb434-3"><a href="examples.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
-<span id="cb434-4"><a href="examples.html#cb434-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_res.rds&quot;</span>,</span>
-<span id="cb434-5"><a href="examples.html#cb434-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
-<span id="cb434-6"><a href="examples.html#cb434-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb434-7"><a href="examples.html#cb434-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb434-8"><a href="examples.html#cb434-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb434-9"><a href="examples.html#cb434-9" aria-hidden="true" tabindex="-1"></a><span class="co"># the metadata matches to dada2 result</span></span>
-<span id="cb434-10"><a href="examples.html#cb434-10" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
-<span id="cb434-11"><a href="examples.html#cb434-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
-<span id="cb434-12"><a href="examples.html#cb434-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_metadata.tsv&quot;</span>,</span>
-<span id="cb434-13"><a href="examples.html#cb434-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
-<span id="cb434-14"><a href="examples.html#cb434-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb434-15"><a href="examples.html#cb434-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
-<span id="cb434-16"><a href="examples.html#cb434-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb434-17"><a href="examples.html#cb434-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb434-18"><a href="examples.html#cb434-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb434-19"><a href="examples.html#cb434-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb434-20"><a href="examples.html#cb434-20" aria-hidden="true" tabindex="-1"></a><span class="co"># tree file from dada2 reference data silva</span></span>
-<span id="cb434-21"><a href="examples.html#cb434-21" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">read_tree</span>(</span>
-<span id="cb434-22"><a href="examples.html#cb434-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
-<span id="cb434-23"><a href="examples.html#cb434-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;tree.nwk&quot;</span>,</span>
-<span id="cb434-24"><a href="examples.html#cb434-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
-<span id="cb434-25"><a href="examples.html#cb434-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb434-26"><a href="examples.html#cb434-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb434-27"><a href="examples.html#cb434-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb434-28"><a href="examples.html#cb434-28" aria-hidden="true" tabindex="-1"></a>tax_tab <span class="ot">&lt;-</span> <span class="fu">import_dada2_taxa</span>(<span class="at">dada2_taxa =</span> dada2_res<span class="sc">$</span>tax_tab)</span>
-<span id="cb434-29"><a href="examples.html#cb434-29" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> dada2_res<span class="sc">$</span>seq_tab</span>
-<span id="cb434-30"><a href="examples.html#cb434-30" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> sam_tab <span class="sc">%&gt;%</span> tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;seqID&quot;</span>)</span>
-<span id="cb434-31"><a href="examples.html#cb434-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb434-32"><a href="examples.html#cb434-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Shouldn&#39;t use the Total Number as SampleID (wrong: 123456; right: X123456)</span></span>
-<span id="cb434-33"><a href="examples.html#cb434-33" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(otu_tab) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;S&quot;</span>, <span class="fu">rownames</span>(otu_tab))</span>
-<span id="cb434-34"><a href="examples.html#cb434-34" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sam_tab) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;S&quot;</span>, <span class="fu">rownames</span>(sam_tab))</span>
-<span id="cb434-35"><a href="examples.html#cb434-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb434-36"><a href="examples.html#cb434-36" aria-hidden="true" tabindex="-1"></a>dada2_ps <span class="ot">&lt;-</span> <span class="fu">get_dada2_phyloseq</span>(</span>
-<span id="cb434-37"><a href="examples.html#cb434-37" aria-hidden="true" tabindex="-1"></a>                <span class="at">seq_tab =</span> otu_tab, </span>
-<span id="cb434-38"><a href="examples.html#cb434-38" aria-hidden="true" tabindex="-1"></a>                <span class="at">tax_tab =</span> tax_tab, </span>
-<span id="cb434-39"><a href="examples.html#cb434-39" aria-hidden="true" tabindex="-1"></a>                <span class="at">sam_tab =</span> sam_tab, </span>
-<span id="cb434-40"><a href="examples.html#cb434-40" aria-hidden="true" tabindex="-1"></a>                <span class="at">phy_tree =</span> tree)</span>
-<span id="cb434-41"><a href="examples.html#cb434-41" aria-hidden="true" tabindex="-1"></a>dada2_ps</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="examples.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dada2 results from in-house 16s pipeline</span></span>
+<span id="cb475-2"><a href="examples.html#cb475-2" aria-hidden="true" tabindex="-1"></a>dada2_res <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
+<span id="cb475-3"><a href="examples.html#cb475-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
+<span id="cb475-4"><a href="examples.html#cb475-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_res.rds&quot;</span>,</span>
+<span id="cb475-5"><a href="examples.html#cb475-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
+<span id="cb475-6"><a href="examples.html#cb475-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb475-7"><a href="examples.html#cb475-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb475-8"><a href="examples.html#cb475-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb475-9"><a href="examples.html#cb475-9" aria-hidden="true" tabindex="-1"></a><span class="co"># the metadata matches to dada2 result</span></span>
+<span id="cb475-10"><a href="examples.html#cb475-10" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb475-11"><a href="examples.html#cb475-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
+<span id="cb475-12"><a href="examples.html#cb475-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_metadata.tsv&quot;</span>,</span>
+<span id="cb475-13"><a href="examples.html#cb475-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
+<span id="cb475-14"><a href="examples.html#cb475-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb475-15"><a href="examples.html#cb475-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
+<span id="cb475-16"><a href="examples.html#cb475-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb475-17"><a href="examples.html#cb475-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb475-18"><a href="examples.html#cb475-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb475-19"><a href="examples.html#cb475-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb475-20"><a href="examples.html#cb475-20" aria-hidden="true" tabindex="-1"></a><span class="co"># tree file from dada2 reference data silva</span></span>
+<span id="cb475-21"><a href="examples.html#cb475-21" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">read_tree</span>(</span>
+<span id="cb475-22"><a href="examples.html#cb475-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
+<span id="cb475-23"><a href="examples.html#cb475-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;tree.nwk&quot;</span>,</span>
+<span id="cb475-24"><a href="examples.html#cb475-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
+<span id="cb475-25"><a href="examples.html#cb475-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb475-26"><a href="examples.html#cb475-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb475-27"><a href="examples.html#cb475-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb475-28"><a href="examples.html#cb475-28" aria-hidden="true" tabindex="-1"></a>tax_tab <span class="ot">&lt;-</span> <span class="fu">import_dada2_taxa</span>(<span class="at">dada2_taxa =</span> dada2_res<span class="sc">$</span>tax_tab)</span>
+<span id="cb475-29"><a href="examples.html#cb475-29" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> dada2_res<span class="sc">$</span>seq_tab</span>
+<span id="cb475-30"><a href="examples.html#cb475-30" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> sam_tab <span class="sc">%&gt;%</span> tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;seqID&quot;</span>)</span>
+<span id="cb475-31"><a href="examples.html#cb475-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb475-32"><a href="examples.html#cb475-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Shouldn&#39;t use the Total Number as SampleID (wrong: 123456; right: X123456)</span></span>
+<span id="cb475-33"><a href="examples.html#cb475-33" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(otu_tab) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;S&quot;</span>, <span class="fu">rownames</span>(otu_tab))</span>
+<span id="cb475-34"><a href="examples.html#cb475-34" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sam_tab) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;S&quot;</span>, <span class="fu">rownames</span>(sam_tab))</span>
+<span id="cb475-35"><a href="examples.html#cb475-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb475-36"><a href="examples.html#cb475-36" aria-hidden="true" tabindex="-1"></a>dada2_ps <span class="ot">&lt;-</span> <span class="fu">get_dada2_phyloseq</span>(</span>
+<span id="cb475-37"><a href="examples.html#cb475-37" aria-hidden="true" tabindex="-1"></a>                <span class="at">seq_tab =</span> otu_tab, </span>
+<span id="cb475-38"><a href="examples.html#cb475-38" aria-hidden="true" tabindex="-1"></a>                <span class="at">tax_tab =</span> tax_tab, </span>
+<span id="cb475-39"><a href="examples.html#cb475-39" aria-hidden="true" tabindex="-1"></a>                <span class="at">sam_tab =</span> sam_tab, </span>
+<span id="cb475-40"><a href="examples.html#cb475-40" aria-hidden="true" tabindex="-1"></a>                <span class="at">phy_tree =</span> tree)</span>
+<span id="cb475-41"><a href="examples.html#cb475-41" aria-hidden="true" tabindex="-1"></a>dada2_ps</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 896 taxa and 24 samples ]
 ## sample_data() Sample Data:       [ 24 samples by 1 sample variables ]
@@ -570,42 +575,39 @@ Figure 15.2: Functions of XMAS 2.0 in MGS
 <p>Here, the phyloseq object comprises five components (<em>OTU Table</em>, <em>Sample Data</em>, <em>Taxonomy Table</em>, <em>Phylogenetic Tree</em> and <em>DNAStringSet</em>).</p>
 <div id="summarize-phyloseq-class-object-1" class="section level4 hasAnchor" number="15.2.1.1">
 <h4><span class="header-section-number">15.2.1.1</span> Summarize phyloseq-class object<a href="examples.html#summarize-phyloseq-class-object-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="examples.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_phyloseq</span>(<span class="at">ps =</span> dada2_ps)</span>
-<span id="cb436-2"><a href="examples.html#cb436-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Compositional = NO2</span></span>
-<span id="cb436-3"><a href="examples.html#cb436-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1] Min. number of reads = 511812] Max. number of reads = 936223] Total number of reads = 15025374] Average number of reads = 62605.70833333335] Median number of reads = 619157] Sparsity = 0.8653738839285716] Any OTU sum to 1 or less? NO8] Number of singletons = 09] Percent of OTUs that are singletons</span></span>
-<span id="cb436-4"><a href="examples.html#cb436-4" aria-hidden="true" tabindex="-1"></a><span class="do">##         (i.e. exactly one read detected across all samples)010] Number of sample variables are: 1Group2</span></span>
-<span id="cb436-5"><a href="examples.html#cb436-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [[1]]</span></span>
-<span id="cb436-6"><a href="examples.html#cb436-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;1] Min. number of reads = 51181&quot;</span></span>
-<span id="cb436-7"><a href="examples.html#cb436-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-8"><a href="examples.html#cb436-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [[2]]</span></span>
-<span id="cb436-9"><a href="examples.html#cb436-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;2] Max. number of reads = 93622&quot;</span></span>
-<span id="cb436-10"><a href="examples.html#cb436-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-11"><a href="examples.html#cb436-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [[3]]</span></span>
-<span id="cb436-12"><a href="examples.html#cb436-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;3] Total number of reads = 1502537&quot;</span></span>
-<span id="cb436-13"><a href="examples.html#cb436-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-14"><a href="examples.html#cb436-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [[4]]</span></span>
-<span id="cb436-15"><a href="examples.html#cb436-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;4] Average number of reads = 62605.7083333333&quot;</span></span>
-<span id="cb436-16"><a href="examples.html#cb436-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-17"><a href="examples.html#cb436-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [[5]]</span></span>
-<span id="cb436-18"><a href="examples.html#cb436-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;5] Median number of reads = 61915&quot;</span></span>
-<span id="cb436-19"><a href="examples.html#cb436-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-20"><a href="examples.html#cb436-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [[6]]</span></span>
-<span id="cb436-21"><a href="examples.html#cb436-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;7] Sparsity = 0.865373883928571&quot;</span></span>
-<span id="cb436-22"><a href="examples.html#cb436-22" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-23"><a href="examples.html#cb436-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [[7]]</span></span>
-<span id="cb436-24"><a href="examples.html#cb436-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;6] Any OTU sum to 1 or less? NO&quot;</span></span>
-<span id="cb436-25"><a href="examples.html#cb436-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-26"><a href="examples.html#cb436-26" aria-hidden="true" tabindex="-1"></a><span class="do">## [[8]]</span></span>
-<span id="cb436-27"><a href="examples.html#cb436-27" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;8] Number of singletons = 0&quot;</span></span>
-<span id="cb436-28"><a href="examples.html#cb436-28" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-29"><a href="examples.html#cb436-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [[9]]</span></span>
-<span id="cb436-30"><a href="examples.html#cb436-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;9] Percent of OTUs that are singletons\n        (i.e. exactly one read detected across all samples)0&quot;</span></span>
-<span id="cb436-31"><a href="examples.html#cb436-31" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-32"><a href="examples.html#cb436-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [[10]]</span></span>
-<span id="cb436-33"><a href="examples.html#cb436-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;10] Number of sample variables are: 1&quot;</span></span>
-<span id="cb436-34"><a href="examples.html#cb436-34" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb436-35"><a href="examples.html#cb436-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [[11]]</span></span>
-<span id="cb436-36"><a href="examples.html#cb436-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Group&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="examples.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_phyloseq</span>(<span class="at">ps =</span> dada2_ps)</span>
+<span id="cb477-2"><a href="examples.html#cb477-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [[1]]</span></span>
+<span id="cb477-3"><a href="examples.html#cb477-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;1] Min. number of reads = 51181&quot;</span></span>
+<span id="cb477-4"><a href="examples.html#cb477-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-5"><a href="examples.html#cb477-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [[2]]</span></span>
+<span id="cb477-6"><a href="examples.html#cb477-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;2] Max. number of reads = 93622&quot;</span></span>
+<span id="cb477-7"><a href="examples.html#cb477-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-8"><a href="examples.html#cb477-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [[3]]</span></span>
+<span id="cb477-9"><a href="examples.html#cb477-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;3] Total number of reads = 1502537&quot;</span></span>
+<span id="cb477-10"><a href="examples.html#cb477-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-11"><a href="examples.html#cb477-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [[4]]</span></span>
+<span id="cb477-12"><a href="examples.html#cb477-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;4] Average number of reads = 62605.7083333333&quot;</span></span>
+<span id="cb477-13"><a href="examples.html#cb477-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-14"><a href="examples.html#cb477-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [[5]]</span></span>
+<span id="cb477-15"><a href="examples.html#cb477-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;5] Median number of reads = 61915&quot;</span></span>
+<span id="cb477-16"><a href="examples.html#cb477-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-17"><a href="examples.html#cb477-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [[6]]</span></span>
+<span id="cb477-18"><a href="examples.html#cb477-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;7] Sparsity = 0.865373883928571&quot;</span></span>
+<span id="cb477-19"><a href="examples.html#cb477-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-20"><a href="examples.html#cb477-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [[7]]</span></span>
+<span id="cb477-21"><a href="examples.html#cb477-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;6] Any OTU sum to 1 or less? NO&quot;</span></span>
+<span id="cb477-22"><a href="examples.html#cb477-22" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-23"><a href="examples.html#cb477-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [[8]]</span></span>
+<span id="cb477-24"><a href="examples.html#cb477-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;8] Number of singletons = 0&quot;</span></span>
+<span id="cb477-25"><a href="examples.html#cb477-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-26"><a href="examples.html#cb477-26" aria-hidden="true" tabindex="-1"></a><span class="do">## [[9]]</span></span>
+<span id="cb477-27"><a href="examples.html#cb477-27" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;9] Percent of OTUs that are singletons\n        (i.e. exactly one read detected across all samples)0&quot;</span></span>
+<span id="cb477-28"><a href="examples.html#cb477-28" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-29"><a href="examples.html#cb477-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [[10]]</span></span>
+<span id="cb477-30"><a href="examples.html#cb477-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;10] Number of sample variables are: 1&quot;</span></span>
+<span id="cb477-31"><a href="examples.html#cb477-31" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb477-32"><a href="examples.html#cb477-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [[11]]</span></span>
+<span id="cb477-33"><a href="examples.html#cb477-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Group&quot;</span></span></code></pre></div>
 <p>The minus account of the OTU counts is <em>51181</em> in the phyloseq object, and we can use it as the threshold to rarefy.</p>
 <p>Notice the <strong>Sparsity (0.865)</strong>, indicating the data has many zeros and pay attention to the downstream data analysis. A common property of amplicon based microbiota data generated by sequencing.</p>
 </div>
@@ -615,9 +617,9 @@ Figure 15.2: Functions of XMAS 2.0 in MGS
 <p>Quality control of DADA2 results will help us have more rational determinations on the further data analysis.</p>
 <div id="reads-track-by-dada2" class="section level4 hasAnchor" number="15.2.2.1">
 <h4><span class="header-section-number">15.2.2.1</span> Reads’ track by DADA2<a href="examples.html#reads-track-by-dada2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="examples.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Dada2Track</span>(<span class="at">data =</span> dada2_res<span class="sc">$</span>reads_track)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-246"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-246-1.png" alt="Reads' track by DADA2 (16s example)" width="576" />
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="examples.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Dada2Track</span>(<span class="at">data =</span> dada2_res<span class="sc">$</span>reads_track)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-271"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-271-1.png" alt="Reads' track by DADA2 (16s example)" width="576" />
 <p class="caption">
 Figure 15.3: Reads’ track by DADA2 (16s example)
 </p>
@@ -629,9 +631,9 @@ Figure 15.3: Reads’ track by DADA2 (16s example)
 <ul>
 <li>Extract the genus level phyloseq and getting the BRS_ID</li>
 </ul>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="examples.html#cb438-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps, </span>
-<span id="cb438-2"><a href="examples.html#cb438-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb438-3"><a href="examples.html#cb438-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_data</span>(dada2_ps_genus)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="examples.html#cb479-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps, </span>
+<span id="cb479-2"><a href="examples.html#cb479-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb479-3"><a href="examples.html#cb479-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_data</span>(dada2_ps_genus)</span></code></pre></div>
 <pre><code>##       Group
 ## S6030    BB
 ## S6032    BB
@@ -661,47 +663,11 @@ Figure 15.3: Reads’ track by DADA2 (16s example)
 <ul>
 <li>Run <code>run_RefCheck</code></li>
 </ul>
-<div class="sourceCode" id="cb440"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb440-1"><a href="examples.html#cb440-1" aria-hidden="true" tabindex="-1"></a>run_RefCheck(</span>
-<span id="cb440-2"><a href="examples.html#cb440-2" aria-hidden="true" tabindex="-1"></a>    ps = dada2_ps_genus,</span>
-<span id="cb440-3"><a href="examples.html#cb440-3" aria-hidden="true" tabindex="-1"></a>    BRS_ID = &quot;S8005&quot;,</span>
-<span id="cb440-4"><a href="examples.html#cb440-4" aria-hidden="true" tabindex="-1"></a>    Ref_type = &quot;16s&quot;)</span></code></pre></div>
-<pre><code>## Noting: the Reference Matrix is for 16s
-## S8005 is in the Reference Matrix&#39;s samples and remove it to run
-## 
-## ############Matched baterica of the BRS sample#############
-## The number of BRS&#39; bacteria matched the Reference Matrix is [15]
-## g__Bifidobacterium
-## g__Bacteroides
-## g__Faecalibacterium
-## g__Lactobacillus
-## g__Parabacteroides
-## g__Collinsella
-## g__Coprococcus_3
-## g__Dorea
-## g__Streptococcus
-## g__Roseburia
-## g__Anaerostipes
-## g__Escherichia_Shigella
-## g__Enterococcus
-## g__Prevotella_9
-## g__Eggerthella
-## 
-## The number of the additional bacteria compared to Reference Matrix is [1]
-## ###########################################################
-## 
-## ##################Status of the BRS sample##################
-## Whether the BRS has the all bateria of Reference Matrix: TRUE
-## Correlation Coefficient of the BRS is: 0.9714
-## Bray Curtis of the BRS is: 0.07607
-## Impurity of the BRS is: 0.06409
-## ###########################################################
-## #####Final Evaluation Results of the BRS #######
-## The BRS of sequencing dataset passed the cutoff of the Reference Matrix 
-## Cutoff of Coefficient is 0.8946
-## Cutoff of BrayCurtis is 0.3878
-## Cutoff of Impurity is 0.1565
-## ###########################################################
-##                             8002        8003        8004       8006        8007        8008        8009        8005
+<div class="sourceCode" id="cb481"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb481-1"><a href="examples.html#cb481-1" aria-hidden="true" tabindex="-1"></a>run_RefCheck(</span>
+<span id="cb481-2"><a href="examples.html#cb481-2" aria-hidden="true" tabindex="-1"></a>    ps = dada2_ps_genus,</span>
+<span id="cb481-3"><a href="examples.html#cb481-3" aria-hidden="true" tabindex="-1"></a>    BRS_ID = &quot;S8005&quot;,</span>
+<span id="cb481-4"><a href="examples.html#cb481-4" aria-hidden="true" tabindex="-1"></a>    Ref_type = &quot;16s&quot;)</span></code></pre></div>
+<pre><code>##                             8002        8003        8004       8006        8007        8008        8009        8005
 ## Bifidobacterium      31.11079015 30.88310969 32.31232692 18.4930259 20.20409870 17.96225391 18.03588291 27.22437034
 ## Bacteroides          20.44753484 14.46581958 24.57151411 26.7370147 25.85863655 27.51353663 26.99272343 24.23896093
 ## Faecalibacterium      0.79850615  0.62937893  1.05531023  1.7487249  1.64282727  1.96346413  1.81219797  1.04035376
@@ -738,12 +704,12 @@ Figure 15.3: Reads’ track by DADA2 (16s example)
 </div>
 <div id="spike-in-samples-remove" class="section level4 hasAnchor" number="15.2.2.3">
 <h4><span class="header-section-number">15.2.2.3</span> Spike-in sample’s remove<a href="examples.html#spike-in-samples-remove" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="examples.html#cb442-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb442-2"><a href="examples.html#cb442-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb442-3"><a href="examples.html#cb442-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb442-4"><a href="examples.html#cb442-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
-<span id="cb442-5"><a href="examples.html#cb442-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb442-6"><a href="examples.html#cb442-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="examples.html#cb483-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb483-2"><a href="examples.html#cb483-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb483-3"><a href="examples.html#cb483-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb483-4"><a href="examples.html#cb483-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb483-5"><a href="examples.html#cb483-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb483-6"><a href="examples.html#cb483-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 896 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -753,11 +719,11 @@ Figure 15.3: Reads’ track by DADA2 (16s example)
 </div>
 <div id="rarefaction-curves-1" class="section level4 hasAnchor" number="15.2.2.4">
 <h4><span class="header-section-number">15.2.2.4</span> Rarefaction curves<a href="examples.html#rarefaction-curves-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="examples.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_RarefCurve</span>(<span class="at">ps =</span> dada2_ps_remove_BRS,</span>
-<span id="cb444-2"><a href="examples.html#cb444-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">taxa_level =</span> <span class="st">&quot;OTU&quot;</span>,</span>
-<span id="cb444-3"><a href="examples.html#cb444-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">step =</span> <span class="dv">400</span>,</span>
-<span id="cb444-4"><a href="examples.html#cb444-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb444-5"><a href="examples.html#cb444-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="examples.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_RarefCurve</span>(<span class="at">ps =</span> dada2_ps_remove_BRS,</span>
+<span id="cb485-2"><a href="examples.html#cb485-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">taxa_level =</span> <span class="st">&quot;OTU&quot;</span>,</span>
+<span id="cb485-3"><a href="examples.html#cb485-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">step =</span> <span class="dv">400</span>,</span>
+<span id="cb485-4"><a href="examples.html#cb485-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb485-5"><a href="examples.html#cb485-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <pre><code>## rarefying sample S6030
 ## rarefying sample S6032
 ## rarefying sample S6033
@@ -781,8 +747,8 @@ Figure 15.3: Reads’ track by DADA2 (16s example)
 ## rarefying sample S6065
 ## rarefying sample S6066
 ## rarefying sample S6068</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-250"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-250-1.png" alt="Rarefaction curves (16s example)" width="576" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-275"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-275-1.png" alt="Rarefaction curves (16s example)" width="576" />
 <p class="caption">
 Figure 15.4: Rarefaction curves (16s example)
 </p>
@@ -796,9 +762,9 @@ Figure 15.4: Rarefaction curves (16s example)
 <div id="rarefy-otu-counts" class="section level4 hasAnchor" number="15.2.3.1">
 <h4><span class="header-section-number">15.2.3.1</span> Rarefy otu counts<a href="examples.html#rarefy-otu-counts" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>From previous results of quality evaluation, the sequence depth of samples are different which have effects on the downstream analysis. Here, choosing the <strong>rarefy</strong> (Normaliztion method: random subsampling counts to the smallest library size) to get the equal sample sums.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="examples.html#cb446-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(<span class="at">object =</span> dada2_ps_remove_BRS, </span>
-<span id="cb446-2"><a href="examples.html#cb446-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">51181</span>)</span>
-<span id="cb446-3"><a href="examples.html#cb446-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="examples.html#cb487-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(<span class="at">object =</span> dada2_ps_remove_BRS, </span>
+<span id="cb487-2"><a href="examples.html#cb487-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">51181</span>)</span>
+<span id="cb487-3"><a href="examples.html#cb487-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 891 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -809,9 +775,9 @@ Figure 15.4: Rarefaction curves (16s example)
 </div>
 <div id="extracting-specific-taxonomic-level" class="section level4 hasAnchor" number="15.2.3.2">
 <h4><span class="header-section-number">15.2.3.2</span> Extracting specific taxonomic level<a href="examples.html#extracting-specific-taxonomic-level" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="examples.html#cb448-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
-<span id="cb448-2"><a href="examples.html#cb448-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb448-3"><a href="examples.html#cb448-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="examples.html#cb489-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
+<span id="cb489-2"><a href="examples.html#cb489-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb489-3"><a href="examples.html#cb489-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -819,10 +785,10 @@ Figure 15.4: Rarefaction curves (16s example)
 </div>
 <div id="filtering-the-low-relative-abundance-or-unclassified-taxa-by-the-threshold-total-counts-10" class="section level4 hasAnchor" number="15.2.3.3">
 <h4><span class="header-section-number">15.2.3.3</span> Filtering the low relative abundance or unclassified taxa by the threshold (total counts &lt; 10)<a href="examples.html#filtering-the-low-relative-abundance-or-unclassified-taxa-by-the-threshold-total-counts-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="examples.html#cb450-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter <span class="ot">&lt;-</span> <span class="fu">run_filter</span>(<span class="at">ps =</span> dada2_ps_rare_genus, </span>
-<span id="cb450-2"><a href="examples.html#cb450-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">cutoff =</span> <span class="dv">10</span>, </span>
-<span id="cb450-3"><a href="examples.html#cb450-3" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb450-4"><a href="examples.html#cb450-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter </span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="examples.html#cb491-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter <span class="ot">&lt;-</span> <span class="fu">run_filter</span>(<span class="at">ps =</span> dada2_ps_rare_genus, </span>
+<span id="cb491-2"><a href="examples.html#cb491-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">cutoff =</span> <span class="dv">10</span>, </span>
+<span id="cb491-3"><a href="examples.html#cb491-3" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb491-4"><a href="examples.html#cb491-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter </span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 149 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -830,10 +796,10 @@ Figure 15.4: Rarefaction curves (16s example)
 </div>
 <div id="trimming-the-taxa-with-low-occurrence-less-than-threshold" class="section level4 hasAnchor" number="15.2.3.4">
 <h4><span class="header-section-number">15.2.3.4</span> Trimming the taxa with low occurrence less than threshold<a href="examples.html#trimming-the-taxa-with-low-occurrence-less-than-threshold" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="examples.html#cb452-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim <span class="ot">&lt;-</span> <span class="fu">run_trim</span>(<span class="at">object =</span> dada2_ps_rare_genus_filter, </span>
-<span id="cb452-2"><a href="examples.html#cb452-2" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">cutoff =</span> <span class="fl">0.2</span>, </span>
-<span id="cb452-3"><a href="examples.html#cb452-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span>
-<span id="cb452-4"><a href="examples.html#cb452-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="examples.html#cb493-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim <span class="ot">&lt;-</span> <span class="fu">run_trim</span>(<span class="at">object =</span> dada2_ps_rare_genus_filter, </span>
+<span id="cb493-2"><a href="examples.html#cb493-2" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">cutoff =</span> <span class="fl">0.2</span>, </span>
+<span id="cb493-3"><a href="examples.html#cb493-3" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span>
+<span id="cb493-4"><a href="examples.html#cb493-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 100 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -849,9 +815,9 @@ Figure 15.4: Rarefaction curves (16s example)
 <li>Calculate the alpha diversity</li>
 </ul>
 <p><strong>Notes:</strong> the otu table must be counts matrix (<em>rarefied but not trim counts matrix</em>) when you choose <em>Observed</em> etc measures.</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="examples.html#cb454-1" aria-hidden="true" tabindex="-1"></a>dada_ps_rare_genus_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps =</span> dada2_ps_rare_genus, </span>
-<span id="cb454-2"><a href="examples.html#cb454-2" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>))</span>
-<span id="cb454-3"><a href="examples.html#cb454-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dada_ps_rare_genus_alpha)</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="examples.html#cb495-1" aria-hidden="true" tabindex="-1"></a>dada_ps_rare_genus_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps =</span> dada2_ps_rare_genus, </span>
+<span id="cb495-2"><a href="examples.html#cb495-2" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>))</span>
+<span id="cb495-3"><a href="examples.html#cb495-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dada_ps_rare_genus_alpha)</span></code></pre></div>
 <pre><code>##    TempRowNames Group Observed    Chao1  se.chao1  Shannon
 ## 1         S6030    BB       74 74.00000 0.0000000 2.622800
 ## 2         S6032    BB       38 38.00000 0.0000000 1.711068
@@ -879,14 +845,14 @@ Figure 15.4: Rarefaction curves (16s example)
 <ul>
 <li>visualization</li>
 </ul>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="examples.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_boxplot</span>(<span class="at">data =</span> dada_ps_rare_genus_alpha,</span>
-<span id="cb456-2"><a href="examples.html#cb456-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>),</span>
-<span id="cb456-3"><a href="examples.html#cb456-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb456-4"><a href="examples.html#cb456-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb456-5"><a href="examples.html#cb456-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb456-6"><a href="examples.html#cb456-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-256"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-256-1.png" alt="Alpha diversity (16s example)" width="576" />
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="examples.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_boxplot</span>(<span class="at">data =</span> dada_ps_rare_genus_alpha,</span>
+<span id="cb497-2"><a href="examples.html#cb497-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Chao1&quot;</span>, <span class="st">&quot;Observed&quot;</span>),</span>
+<span id="cb497-3"><a href="examples.html#cb497-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb497-4"><a href="examples.html#cb497-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb497-5"><a href="examples.html#cb497-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb497-6"><a href="examples.html#cb497-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-281"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-281-1.png" alt="Alpha diversity (16s example)" width="576" />
 <p class="caption">
 Figure 15.5: Alpha diversity (16s example)
 </p>
@@ -897,9 +863,9 @@ Figure 15.5: Alpha diversity (16s example)
 <ul>
 <li>beta dipersion</li>
 </ul>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="examples.html#cb457-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps =</span> dada2_ps_rare_genus_filter_trim, </span>
-<span id="cb457-2"><a href="examples.html#cb457-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, </span>
-<span id="cb457-3"><a href="examples.html#cb457-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="examples.html#cb498-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps =</span> dada2_ps_rare_genus_filter_trim, </span>
+<span id="cb498-2"><a href="examples.html#cb498-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, </span>
+<span id="cb498-3"><a href="examples.html#cb498-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Permutation test for homogeneity of multivariate dispersions
 ## Permutation: free
@@ -915,9 +881,9 @@ Figure 15.5: Alpha diversity (16s example)
 ##         AA   BB
 ## AA         0.21
 ## BB 0.21063</code></pre>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="examples.html#cb459-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_beta<span class="sc">$</span>BetaDispersion</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-257"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-257-1.png" alt="Beta diversity (16s example)" width="480" />
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="examples.html#cb500-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_beta<span class="sc">$</span>BetaDispersion</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-282"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-282-1.png" alt="Beta diversity (16s example)" width="480" />
 <p class="caption">
 Figure 15.6: Beta diversity (16s example)
 </p>
@@ -928,10 +894,10 @@ Figure 15.6: Beta diversity (16s example)
 <h3><span class="header-section-number">15.2.5</span> PERMANOVA + Ordination<a href="examples.html#permanova-ordination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="permanova" class="section level4 hasAnchor" number="15.2.5.1">
 <h4><span class="header-section-number">15.2.5.1</span> PERMANOVA<a href="examples.html#permanova" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="examples.html#cb460-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_per <span class="ot">&lt;-</span> <span class="fu">run_permanova</span>(<span class="at">ps =</span> dada2_ps_rare_genus_filter_trim, </span>
-<span id="cb460-2"><a href="examples.html#cb460-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, </span>
-<span id="cb460-3"><a href="examples.html#cb460-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">columns =</span> <span class="st">&quot;Group&quot;</span>)</span>
-<span id="cb460-4"><a href="examples.html#cb460-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dada2_ps_per)</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="examples.html#cb501-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_per <span class="ot">&lt;-</span> <span class="fu">run_permanova</span>(<span class="at">ps =</span> dada2_ps_rare_genus_filter_trim, </span>
+<span id="cb501-2"><a href="examples.html#cb501-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, </span>
+<span id="cb501-3"><a href="examples.html#cb501-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">columns =</span> <span class="st">&quot;Group&quot;</span>)</span>
+<span id="cb501-4"><a href="examples.html#cb501-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dada2_ps_per)</span></code></pre></div>
 <pre><code>##       SumsOfSample Df SumsOfSqs   MeanSqs  F.Model         R2 Pr(&gt;F) AdjustedPvalue
 ## Group           23  1 0.2290643 0.2290643 1.331995 0.05964515  0.225          0.225</code></pre>
 <p>The PERMANOVA result of the Group (<code>Pr(&gt;F)</code> &gt; 0.05) revealed that the two groups had not the distinct patterns of microbial community.</p>
@@ -939,17 +905,17 @@ Figure 15.6: Beta diversity (16s example)
 <div id="ordination-1" class="section level4 hasAnchor" number="15.2.5.2">
 <h4><span class="header-section-number">15.2.5.2</span> Ordination<a href="examples.html#ordination-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We performed ordination by using Principal Coordinate Analysis (PCoA). If you want to try other methods please go to see <strong>Chapter 8</strong> for more details.</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="examples.html#cb462-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_ordination <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
-<span id="cb462-2"><a href="examples.html#cb462-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ps =</span> dada2_ps_rare_genus_filter_trim,</span>
-<span id="cb462-3"><a href="examples.html#cb462-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb462-4"><a href="examples.html#cb462-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">method =</span> <span class="st">&quot;PCoA&quot;</span>)</span>
-<span id="cb462-5"><a href="examples.html#cb462-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb462-6"><a href="examples.html#cb462-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> dada2_ps_ordination, </span>
-<span id="cb462-7"><a href="examples.html#cb462-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>, </span>
-<span id="cb462-8"><a href="examples.html#cb462-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb462-9"><a href="examples.html#cb462-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-259"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-259-1.png" alt="PCoA (16s example)" width="768" />
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="examples.html#cb503-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_ordination <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
+<span id="cb503-2"><a href="examples.html#cb503-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ps =</span> dada2_ps_rare_genus_filter_trim,</span>
+<span id="cb503-3"><a href="examples.html#cb503-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb503-4"><a href="examples.html#cb503-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">method =</span> <span class="st">&quot;PCoA&quot;</span>)</span>
+<span id="cb503-5"><a href="examples.html#cb503-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb503-6"><a href="examples.html#cb503-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> dada2_ps_ordination, </span>
+<span id="cb503-7"><a href="examples.html#cb503-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>, </span>
+<span id="cb503-8"><a href="examples.html#cb503-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb503-9"><a href="examples.html#cb503-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-284"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-284-1.png" alt="PCoA (16s example)" width="768" />
 <p class="caption">
 Figure 15.7: PCoA (16s example)
 </p>
@@ -964,13 +930,13 @@ Figure 15.7: PCoA (16s example)
 <ul>
 <li><strong>XMAS</strong> package</li>
 </ul>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="examples.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb463-2"><a href="examples.html#cb463-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> dada2_ps_rarefy,</span>
-<span id="cb463-3"><a href="examples.html#cb463-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb463-4"><a href="examples.html#cb463-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb463-5"><a href="examples.html#cb463-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-260"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-260-1.png" alt="Microbial composition (16s example)" width="768" />
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="examples.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb504-2"><a href="examples.html#cb504-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> dada2_ps_rarefy,</span>
+<span id="cb504-3"><a href="examples.html#cb504-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb504-4"><a href="examples.html#cb504-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb504-5"><a href="examples.html#cb504-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-285"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-285-1.png" alt="Microbial composition (16s example)" width="768" />
 <p class="caption">
 Figure 15.8: Microbial composition (16s example)
 </p>
@@ -978,12 +944,12 @@ Figure 15.8: Microbial composition (16s example)
 <ul>
 <li><strong>XVIZ</strong> package</li>
 </ul>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="examples.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(</span>
-<span id="cb464-2"><a href="examples.html#cb464-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">phyloseq =</span> dada2_ps_rarefy,</span>
-<span id="cb464-3"><a href="examples.html#cb464-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb464-4"><a href="examples.html#cb464-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-261"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-261-1.png" alt="Microbial composition (16s example) XVIZ" width="768" />
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="examples.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(</span>
+<span id="cb505-2"><a href="examples.html#cb505-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">phyloseq =</span> dada2_ps_rarefy,</span>
+<span id="cb505-3"><a href="examples.html#cb505-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb505-4"><a href="examples.html#cb505-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-286"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-286-1.png" alt="Microbial composition (16s example) XVIZ" width="768" />
 <p class="caption">
 Figure 15.9: Microbial composition (16s example) XVIZ
 </p>
@@ -994,9 +960,9 @@ Figure 15.9: Microbial composition (16s example) XVIZ
 <ul>
 <li>convert absolute abundance into relative abundance</li>
 </ul>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="examples.html#cb465-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim_rb <span class="ot">&lt;-</span> XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_rare_genus_filter_trim, </span>
-<span id="cb465-2"><a href="examples.html#cb465-2" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span>
-<span id="cb465-3"><a href="examples.html#cb465-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim_rb</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="examples.html#cb506-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim_rb <span class="ot">&lt;-</span> XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_rare_genus_filter_trim, </span>
+<span id="cb506-2"><a href="examples.html#cb506-2" aria-hidden="true" tabindex="-1"></a>                                                       <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span>
+<span id="cb506-3"><a href="examples.html#cb506-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_rare_genus_filter_trim_rb</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 100 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -1004,20 +970,20 @@ Figure 15.9: Microbial composition (16s example) XVIZ
 <ul>
 <li>visualization</li>
 </ul>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="examples.html#cb467-1" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
-<span id="cb467-2"><a href="examples.html#cb467-2" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(<span class="fl">0.2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
-<span id="cb467-3"><a href="examples.html#cb467-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-4"><a href="examples.html#cb467-4" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rare_genus_filter_trim_rb, </span>
-<span id="cb467-5"><a href="examples.html#cb467-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
-<span id="cb467-6"><a href="examples.html#cb467-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">gray</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">5</span>)),</span>
-<span id="cb467-7"><a href="examples.html#cb467-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
-<span id="cb467-8"><a href="examples.html#cb467-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
-<span id="cb467-9"><a href="examples.html#cb467-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb467-10"><a href="examples.html#cb467-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>)</span>
-<span id="cb467-11"><a href="examples.html#cb467-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-12"><a href="examples.html#cb467-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-263"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-263-1.png" alt="Core taxa (16s example)" width="768" />
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="examples.html#cb508-1" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
+<span id="cb508-2"><a href="examples.html#cb508-2" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(<span class="fl">0.2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb508-3"><a href="examples.html#cb508-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb508-4"><a href="examples.html#cb508-4" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rare_genus_filter_trim_rb, </span>
+<span id="cb508-5"><a href="examples.html#cb508-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
+<span id="cb508-6"><a href="examples.html#cb508-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">gray</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">5</span>)),</span>
+<span id="cb508-7"><a href="examples.html#cb508-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
+<span id="cb508-8"><a href="examples.html#cb508-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
+<span id="cb508-9"><a href="examples.html#cb508-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb508-10"><a href="examples.html#cb508-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>)</span>
+<span id="cb508-11"><a href="examples.html#cb508-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb508-12"><a href="examples.html#cb508-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-288"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-288-1.png" alt="Core taxa (16s example)" width="768" />
 <p class="caption">
 Figure 15.10: Core taxa (16s example)
 </p>
@@ -1026,8 +992,8 @@ Figure 15.10: Core taxa (16s example)
 <ul>
 <li>Use <code>core_members</code> to obtain the core taxa. detection for abundance and prevalence for occurrence.</li>
 </ul>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="examples.html#cb468-1" aria-hidden="true" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(dada2_ps_rare_genus_filter_trim_rb, <span class="at">detection =</span> <span class="fl">0.01</span>, <span class="at">prevalence =</span> <span class="fl">0.8</span>)</span>
-<span id="cb468-2"><a href="examples.html#cb468-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="examples.html#cb509-1" aria-hidden="true" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(dada2_ps_rare_genus_filter_trim_rb, <span class="at">detection =</span> <span class="fl">0.01</span>, <span class="at">prevalence =</span> <span class="fl">0.8</span>)</span>
+<span id="cb509-2"><a href="examples.html#cb509-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
 <pre><code>## [1] &quot;g__Bifidobacterium&quot; &quot;g__Blautia&quot;</code></pre>
 <p><strong>Result</strong>:</p>
 <p>Only 2 genera (g__Bifidobacterium and g__Blautia) passed the threshold of detection and prevalence which we choose.</p>
@@ -1041,13 +1007,13 @@ Figure 15.10: Core taxa (16s example)
 <ul>
 <li>Calculation</li>
 </ul>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="examples.html#cb470-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_lefse <span class="ot">&lt;-</span> <span class="fu">run_lefse</span>(</span>
-<span id="cb470-2"><a href="examples.html#cb470-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ps =</span> dada2_ps_rare_genus_filter_trim,</span>
-<span id="cb470-3"><a href="examples.html#cb470-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb470-4"><a href="examples.html#cb470-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb470-5"><a href="examples.html#cb470-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">norm =</span> <span class="st">&quot;CPM&quot;</span>,</span>
-<span id="cb470-6"><a href="examples.html#cb470-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Lda =</span> <span class="dv">2</span>)</span>
-<span id="cb470-7"><a href="examples.html#cb470-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_ps_lefse)</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="examples.html#cb511-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_lefse <span class="ot">&lt;-</span> <span class="fu">run_lefse</span>(</span>
+<span id="cb511-2"><a href="examples.html#cb511-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ps =</span> dada2_ps_rare_genus_filter_trim,</span>
+<span id="cb511-3"><a href="examples.html#cb511-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb511-4"><a href="examples.html#cb511-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb511-5"><a href="examples.html#cb511-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">norm =</span> <span class="st">&quot;CPM&quot;</span>,</span>
+<span id="cb511-6"><a href="examples.html#cb511-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Lda =</span> <span class="dv">2</span>)</span>
+<span id="cb511-7"><a href="examples.html#cb511-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_ps_lefse)</span></code></pre></div>
 <pre><code>##                           TaxaID         Block Enrichment LDA_Score EffectSize Log2FoldChange (Median)\nAA_vs_BB
 ## 1              g__Parasutterella 9_AA vs 14_BB         AA -3.662466   2.234915                          4.402050
 ## 2     g__Ruminococcaceae_UCG_004 9_AA vs 14_BB         AA -2.797983   2.137082                                NA
@@ -1079,16 +1045,16 @@ Figure 15.10: Core taxa (16s example)
 <ul>
 <li>Visualization</li>
 </ul>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="examples.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # don&#39;t run this code when you do lefse in reality</span></span>
-<span id="cb472-2"><a href="examples.html#cb472-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dada2_ps_lefse$LDA_Score &lt;- dada2_ps_lefse$LDA_Score * 1000</span></span>
-<span id="cb472-3"><a href="examples.html#cb472-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb472-4"><a href="examples.html#cb472-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lefse</span>(</span>
-<span id="cb472-5"><a href="examples.html#cb472-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">da_res =</span> dada2_ps_lefse,</span>
-<span id="cb472-6"><a href="examples.html#cb472-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
-<span id="cb472-7"><a href="examples.html#cb472-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">1</span>,</span>
-<span id="cb472-8"><a href="examples.html#cb472-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-266"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-266-1.png" alt="Lefse analysis (16s example)" width="576" />
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="examples.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # don&#39;t run this code when you do lefse in reality</span></span>
+<span id="cb513-2"><a href="examples.html#cb513-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dada2_ps_lefse$LDA_Score &lt;- dada2_ps_lefse$LDA_Score * 1000</span></span>
+<span id="cb513-3"><a href="examples.html#cb513-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb513-4"><a href="examples.html#cb513-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lefse</span>(</span>
+<span id="cb513-5"><a href="examples.html#cb513-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">da_res =</span> dada2_ps_lefse,</span>
+<span id="cb513-6"><a href="examples.html#cb513-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
+<span id="cb513-7"><a href="examples.html#cb513-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">1</span>,</span>
+<span id="cb513-8"><a href="examples.html#cb513-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-291"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-291-1.png" alt="Lefse analysis (16s example)" width="576" />
 <p class="caption">
 Figure 15.11: Lefse analysis (16s example)
 </p>
@@ -1099,12 +1065,12 @@ Figure 15.11: Lefse analysis (16s example)
 <ul>
 <li>Calculation</li>
 </ul>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="examples.html#cb473-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_wilcox <span class="ot">&lt;-</span> <span class="fu">run_wilcox</span>(</span>
-<span id="cb473-2"><a href="examples.html#cb473-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ps =</span> dada2_ps_rare_genus_filter_trim,</span>
-<span id="cb473-3"><a href="examples.html#cb473-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb473-4"><a href="examples.html#cb473-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
-<span id="cb473-5"><a href="examples.html#cb473-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb473-6"><a href="examples.html#cb473-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_ps_wilcox)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="examples.html#cb514-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_wilcox <span class="ot">&lt;-</span> <span class="fu">run_wilcox</span>(</span>
+<span id="cb514-2"><a href="examples.html#cb514-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ps =</span> dada2_ps_rare_genus_filter_trim,</span>
+<span id="cb514-3"><a href="examples.html#cb514-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb514-4"><a href="examples.html#cb514-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
+<span id="cb514-5"><a href="examples.html#cb514-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb514-6"><a href="examples.html#cb514-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dada2_ps_wilcox)</span></code></pre></div>
 <pre><code>##               TaxaID         Block Enrichment EffectSize Statistic    Pvalue AdjustedPvalue
 ## 1 g__Acidaminococcus 9_AA vs 14_BB  Nonsignif   70.56349      63.5 1.0000000      1.0000000
 ## 2     g__Actinomyces 9_AA vs 14_BB  Nonsignif   39.65079      44.5 0.2556616      0.7014746
@@ -1136,17 +1102,17 @@ Figure 15.11: Lefse analysis (16s example)
 <ul>
 <li>Volcano</li>
 </ul>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="examples.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_volcano</span>(</span>
-<span id="cb475-2"><a href="examples.html#cb475-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">da_res =</span> dada2_ps_wilcox,</span>
-<span id="cb475-3"><a href="examples.html#cb475-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb475-4"><a href="examples.html#cb475-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_index =</span> <span class="st">&quot;Log2FoldChange (Rank)</span><span class="sc">\n</span><span class="st">AA_vs_BB&quot;</span>,</span>
-<span id="cb475-5"><a href="examples.html#cb475-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_index_cutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb475-6"><a href="examples.html#cb475-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
-<span id="cb475-7"><a href="examples.html#cb475-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb475-8"><a href="examples.html#cb475-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb475-9"><a href="examples.html#cb475-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">5</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-268"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-268-1.png" alt="Wilcoxon Rank-Sum test (16s example)" width="768" />
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="examples.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_volcano</span>(</span>
+<span id="cb516-2"><a href="examples.html#cb516-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">da_res =</span> dada2_ps_wilcox,</span>
+<span id="cb516-3"><a href="examples.html#cb516-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb516-4"><a href="examples.html#cb516-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_index =</span> <span class="st">&quot;Log2FoldChange (Rank)</span><span class="sc">\n</span><span class="st">AA_vs_BB&quot;</span>,</span>
+<span id="cb516-5"><a href="examples.html#cb516-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_index_cutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb516-6"><a href="examples.html#cb516-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
+<span id="cb516-7"><a href="examples.html#cb516-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb516-8"><a href="examples.html#cb516-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb516-9"><a href="examples.html#cb516-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-293"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-293-1.png" alt="Wilcoxon Rank-Sum test (16s example)" width="768" />
 <p class="caption">
 Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 </p>
@@ -1172,35 +1138,35 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 <li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/MGS/metaphlan2_merged.tsv</p></li>
 <li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/MGS/metadata.txt</p></li>
 </ol>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="examples.html#cb476-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_res <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
-<span id="cb476-2"><a href="examples.html#cb476-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
-<span id="cb476-3"><a href="examples.html#cb476-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_merged.tsv&quot;</span>,</span>
-<span id="cb476-4"><a href="examples.html#cb476-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
-<span id="cb476-5"><a href="examples.html#cb476-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb476-6"><a href="examples.html#cb476-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb476-7"><a href="examples.html#cb476-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb476-8"><a href="examples.html#cb476-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb476-9"><a href="examples.html#cb476-9" aria-hidden="true" tabindex="-1"></a>metaphlan2_sam <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
-<span id="cb476-10"><a href="examples.html#cb476-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
-<span id="cb476-11"><a href="examples.html#cb476-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_metadata.tsv&quot;</span>,</span>
-<span id="cb476-12"><a href="examples.html#cb476-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
-<span id="cb476-13"><a href="examples.html#cb476-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb476-14"><a href="examples.html#cb476-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
-<span id="cb476-15"><a href="examples.html#cb476-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb476-16"><a href="examples.html#cb476-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb476-17"><a href="examples.html#cb476-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb476-18"><a href="examples.html#cb476-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb476-19"><a href="examples.html#cb476-19" aria-hidden="true" tabindex="-1"></a>metaphlan2_res_list <span class="ot">&lt;-</span> <span class="fu">import_metaphlan_taxa</span>(<span class="at">data_metaphlan2 =</span> metaphlan2_res, </span>
-<span id="cb476-20"><a href="examples.html#cb476-20" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb476-21"><a href="examples.html#cb476-21" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> metaphlan2_res_list<span class="sc">$</span>abu_tab</span>
-<span id="cb476-22"><a href="examples.html#cb476-22" aria-hidden="true" tabindex="-1"></a>tax_tab <span class="ot">&lt;-</span> metaphlan2_res_list<span class="sc">$</span>tax_tab</span>
-<span id="cb476-23"><a href="examples.html#cb476-23" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> metaphlan2_sam <span class="sc">%&gt;%</span> tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;SampleID&quot;</span>)</span>
-<span id="cb476-24"><a href="examples.html#cb476-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb476-25"><a href="examples.html#cb476-25" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps <span class="ot">&lt;-</span> <span class="fu">get_metaphlan_phyloseq</span>(</span>
-<span id="cb476-26"><a href="examples.html#cb476-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">otu_tab =</span> otu_tab, </span>
-<span id="cb476-27"><a href="examples.html#cb476-27" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sam_tab =</span> sam_tab,</span>
-<span id="cb476-28"><a href="examples.html#cb476-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tax_tab =</span> tax_tab)</span>
-<span id="cb476-29"><a href="examples.html#cb476-29" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps</span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="examples.html#cb517-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_res <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb517-2"><a href="examples.html#cb517-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
+<span id="cb517-3"><a href="examples.html#cb517-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_merged.tsv&quot;</span>,</span>
+<span id="cb517-4"><a href="examples.html#cb517-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
+<span id="cb517-5"><a href="examples.html#cb517-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb517-6"><a href="examples.html#cb517-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb517-7"><a href="examples.html#cb517-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb517-8"><a href="examples.html#cb517-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb517-9"><a href="examples.html#cb517-9" aria-hidden="true" tabindex="-1"></a>metaphlan2_sam <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb517-10"><a href="examples.html#cb517-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
+<span id="cb517-11"><a href="examples.html#cb517-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_metadata.tsv&quot;</span>,</span>
+<span id="cb517-12"><a href="examples.html#cb517-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
+<span id="cb517-13"><a href="examples.html#cb517-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb517-14"><a href="examples.html#cb517-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
+<span id="cb517-15"><a href="examples.html#cb517-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb517-16"><a href="examples.html#cb517-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb517-17"><a href="examples.html#cb517-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb517-18"><a href="examples.html#cb517-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb517-19"><a href="examples.html#cb517-19" aria-hidden="true" tabindex="-1"></a>metaphlan2_res_list <span class="ot">&lt;-</span> <span class="fu">import_metaphlan_taxa</span>(<span class="at">data_metaphlan2 =</span> metaphlan2_res, </span>
+<span id="cb517-20"><a href="examples.html#cb517-20" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb517-21"><a href="examples.html#cb517-21" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> metaphlan2_res_list<span class="sc">$</span>abu_tab</span>
+<span id="cb517-22"><a href="examples.html#cb517-22" aria-hidden="true" tabindex="-1"></a>tax_tab <span class="ot">&lt;-</span> metaphlan2_res_list<span class="sc">$</span>tax_tab</span>
+<span id="cb517-23"><a href="examples.html#cb517-23" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> metaphlan2_sam <span class="sc">%&gt;%</span> tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;SampleID&quot;</span>)</span>
+<span id="cb517-24"><a href="examples.html#cb517-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb517-25"><a href="examples.html#cb517-25" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps <span class="ot">&lt;-</span> <span class="fu">get_metaphlan_phyloseq</span>(</span>
+<span id="cb517-26"><a href="examples.html#cb517-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">otu_tab =</span> otu_tab, </span>
+<span id="cb517-27"><a href="examples.html#cb517-27" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sam_tab =</span> sam_tab,</span>
+<span id="cb517-28"><a href="examples.html#cb517-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tax_tab =</span> tax_tab)</span>
+<span id="cb517-29"><a href="examples.html#cb517-29" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 326 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 2 sample variables ]
@@ -1208,10 +1174,7 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 <p>Here, the phyloseq object comprises three components (<em>OTU Table</em>, <em>Sample Data</em> and <em>Taxonomy Table</em>).</p>
 <div id="summarize-phyloseq-class-object-2" class="section level4 hasAnchor" number="15.3.1.1">
 <h4><span class="header-section-number">15.3.1.1</span> Summarize phyloseq-class object<a href="examples.html#summarize-phyloseq-class-object-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="examples.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_phyloseq</span>(<span class="at">ps =</span> metaphlan2_ps)</span></code></pre></div>
-<pre><code>## Compositional = NO2</code></pre>
-<pre><code>## 1] Min. number of reads = 0.98218212] Max. number of reads = 1.00000053] Total number of reads = 22.94511414] Average number of reads = 0.9976136565217395] Median number of reads = 0.99980247] Sparsity = 0.7131234995998936] Any OTU sum to 1 or less? YES8] Number of singletons = 3239] Percent of OTUs that are singletons
-##         (i.e. exactly one read detected across all samples)010] Number of sample variables are: 2Groupphynotype2</code></pre>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="examples.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_phyloseq</span>(<span class="at">ps =</span> metaphlan2_ps)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;1] Min. number of reads = 0.9821821&quot;
 ## 
@@ -1254,9 +1217,9 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 <ul>
 <li>Extract the species level phyloseq and obtain the BRS_ID</li>
 </ul>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="examples.html#cb482-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps, </span>
-<span id="cb482-2"><a href="examples.html#cb482-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb482-3"><a href="examples.html#cb482-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species<span class="sc">@</span>sam_data</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="examples.html#cb521-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps, </span>
+<span id="cb521-2"><a href="examples.html#cb521-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb521-3"><a href="examples.html#cb521-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species<span class="sc">@</span>sam_data</span></code></pre></div>
 <pre><code>##      Group phynotype
 ## s1      BB      0.00
 ## s2      AA      2.50
@@ -1284,53 +1247,11 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 <ul>
 <li>Run <code>run_RefCheck</code></li>
 </ul>
-<div class="sourceCode" id="cb484"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb484-1"><a href="examples.html#cb484-1" aria-hidden="true" tabindex="-1"></a>run_RefCheck(</span>
-<span id="cb484-2"><a href="examples.html#cb484-2" aria-hidden="true" tabindex="-1"></a>    ps = metaphlan2_ps_species,</span>
-<span id="cb484-3"><a href="examples.html#cb484-3" aria-hidden="true" tabindex="-1"></a>    BRS_ID = &quot;refE&quot;,</span>
-<span id="cb484-4"><a href="examples.html#cb484-4" aria-hidden="true" tabindex="-1"></a>    Ref_type = &quot;MGS&quot;)</span></code></pre></div>
-<pre><code>## Noting: the Reference Matrix is for MGS
-## 
-## ############Matched baterica of the BRS sample#############
-## The number of BRS&#39; bacteria matched the Reference Matrix is [16]
-## s__Bifidobacterium_longum
-## s__Bacteroides_uniformis
-## s__Faecalibacterium_prausnitzii
-## s__Bifidobacterium_adolescentis
-## s__Bacteroides_thetaiotaomicron
-## s__Collinsella_aerofaciens
-## s__Coprococcus_comes
-## s__Dorea_formicigenerans
-## s__Streptococcus_salivarius
-## s__Bacteroides_xylanisolvens
-## s__Bacteroides_ovatus
-## s__Roseburia_hominis
-## s__Bacteroides_vulgatus
-## s__Prevotella_copri
-## s__Bifidobacterium_pseudocatenulatum
-## s__Lachnospiraceae_bacterium_5_1_63FAA
-## The number of bacteria unmatched the Reference Matrix is [9]
-## s__Lactobacillus_salivarius
-## s__Bacteroides_fragilis
-## s__Parabacteroides_goldsteinii
-## s__Escherichia_coli
-## s__Enterococcus_faecalis
-## s__Bifidobacterium_bifidum
-## s__Lactobacillus_pentosus
-## s__Bacteroides_intestinalis
-## s__Eggerthella_unclassified
-## The number of the additional bacteria compared to the Reference Matrix is [56]
-## ###########################################################
-## 
-## ##################Status of the BRS sample##################
-## Whether the BRS has the all bateria of Reference Matrix: FALSE
-## Correlation Coefficient of the BRS is: -0.06471
-## Bray Curtis of the BRS is: 0.8752
-## Impurity of the BRS is: 32.69
-## ###########################################################
-## #####Final Evaluation Results of the BRS #######
-## The BRS of sequencing dataset didn&#39;t pass the cutoff of the Reference Matrix
-## ###########################################################
-##                                         7682    7683    7684    7685     7842     7843     7844     7845     refE
+<div class="sourceCode" id="cb523"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb523-1"><a href="examples.html#cb523-1" aria-hidden="true" tabindex="-1"></a>run_RefCheck(</span>
+<span id="cb523-2"><a href="examples.html#cb523-2" aria-hidden="true" tabindex="-1"></a>    ps = metaphlan2_ps_species,</span>
+<span id="cb523-3"><a href="examples.html#cb523-3" aria-hidden="true" tabindex="-1"></a>    BRS_ID = &quot;refE&quot;,</span>
+<span id="cb523-4"><a href="examples.html#cb523-4" aria-hidden="true" tabindex="-1"></a>    Ref_type = &quot;MGS&quot;)</span></code></pre></div>
+<pre><code>##                                         7682    7683    7684    7685     7842     7843     7844     7845     refE
 ## Bifidobacterium_longum              10.31563 9.25812 9.69184 7.76031 11.03311 11.61484 12.29030 11.69019  0.01646
 ## Bacteroides_uniformis                2.24195 2.24035 1.92015 2.18435  2.43230  2.38180  2.13830  2.41437  0.21061
 ## Faecalibacterium_prausnitzii         0.65615 0.60153 0.60112 0.62079  0.54147  0.55383  0.58806  0.54655  1.61939
@@ -1349,33 +1270,33 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 ## Lachnospiraceae_bacterium_5_1_63FAA  0.22002 0.26062 0.28058 0.33329  0.07093  0.06778  0.05229  0.04781  0.06825
 ## Impurity_level                       7.33876 7.34799 7.14891 6.47250  8.88190  9.72198  9.72162 10.57600 32.69000
 ##                                            mean                                            Evaluation
-## Bifidobacterium_longum               9.29675556 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Bacteroides_uniformis                2.01824222 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Faecalibacterium_prausnitzii         0.70321000 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Bifidobacterium_adolescentis         5.05609556 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Bacteroides_thetaiotaomicron         3.11556556 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Collinsella_aerofaciens              0.55826111 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Coprococcus_comes                    1.59348889 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Dorea_formicigenerans                3.65288667 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Streptococcus_salivarius             2.86036667 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Bacteroides_xylanisolvens            1.59565111 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Bacteroides_ovatus                   2.97619667 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Roseburia_hominis                    0.03414444 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Bacteroides_vulgatus                 3.02816667 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Prevotella_copri                     8.36682333 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Bifidobacterium_pseudocatenulatum    5.88103222 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Lachnospiraceae_bacterium_5_1_63FAA  0.15573000 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).
-## Impurity_level                      11.09996222 refE didn&#39;t pass the threshold (2022-07-20 16:26:55).</code></pre>
+## Bifidobacterium_longum               9.29675556 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Bacteroides_uniformis                2.01824222 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Faecalibacterium_prausnitzii         0.70321000 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Bifidobacterium_adolescentis         5.05609556 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Bacteroides_thetaiotaomicron         3.11556556 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Collinsella_aerofaciens              0.55826111 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Coprococcus_comes                    1.59348889 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Dorea_formicigenerans                3.65288667 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Streptococcus_salivarius             2.86036667 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Bacteroides_xylanisolvens            1.59565111 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Bacteroides_ovatus                   2.97619667 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Roseburia_hominis                    0.03414444 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Bacteroides_vulgatus                 3.02816667 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Prevotella_copri                     8.36682333 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Bifidobacterium_pseudocatenulatum    5.88103222 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Lachnospiraceae_bacterium_5_1_63FAA  0.15573000 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).
+## Impurity_level                      11.09996222 refE didn&#39;t pass the threshold (2022-07-25 16:43:06).</code></pre>
 <p>The spike-in samples didn’t pass the cutoff and failed to add the the Reference Matrix.</p>
 </div>
 <div id="spike-in-samples-remove-1" class="section level4 hasAnchor" number="15.3.2.2">
 <h4><span class="header-section-number">15.3.2.2</span> Spike-in sample’s remove<a href="examples.html#spike-in-samples-remove-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="examples.html#cb486-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb486-2"><a href="examples.html#cb486-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ps =</span> metaphlan2_ps,</span>
-<span id="cb486-3"><a href="examples.html#cb486-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb486-4"><a href="examples.html#cb486-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
-<span id="cb486-5"><a href="examples.html#cb486-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb486-6"><a href="examples.html#cb486-6" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="examples.html#cb525-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb525-2"><a href="examples.html#cb525-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ps =</span> metaphlan2_ps,</span>
+<span id="cb525-3"><a href="examples.html#cb525-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb525-4"><a href="examples.html#cb525-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb525-5"><a href="examples.html#cb525-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb525-6"><a href="examples.html#cb525-6" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 326 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -1387,9 +1308,9 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 <p>This part has too may procedures and we only choose some of them. Please go to <strong>Chapter 6</strong> to see more approaches and details for being familiar with this part.</p>
 <div id="extracting-specific-taxonomic-level-1" class="section level4 hasAnchor" number="15.3.3.1">
 <h4><span class="header-section-number">15.3.3.1</span> Extracting specific taxonomic level<a href="examples.html#extracting-specific-taxonomic-level-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="examples.html#cb488-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps_remove_BRS, </span>
-<span id="cb488-2"><a href="examples.html#cb488-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb488-3"><a href="examples.html#cb488-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="examples.html#cb527-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps_remove_BRS, </span>
+<span id="cb527-2"><a href="examples.html#cb527-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb527-3"><a href="examples.html#cb527-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 325 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -1410,10 +1331,10 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 <li><p>Occurrence: 60%.</p></li>
 </ol>
 <p>Here, we use 0.01 (the 1e-4 regarded as 0.01 compared to the Referece because Metaphlan2 data had been divided 100)</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="examples.html#cb490-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_filter <span class="ot">&lt;-</span> <span class="fu">run_filter</span>(<span class="at">ps =</span> metaphlan2_ps_species, </span>
-<span id="cb490-2"><a href="examples.html#cb490-2" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">cutoff =</span> <span class="fl">1e-4</span>, </span>
-<span id="cb490-3"><a href="examples.html#cb490-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb490-4"><a href="examples.html#cb490-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_filter </span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="examples.html#cb529-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_filter <span class="ot">&lt;-</span> <span class="fu">run_filter</span>(<span class="at">ps =</span> metaphlan2_ps_species, </span>
+<span id="cb529-2"><a href="examples.html#cb529-2" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">cutoff =</span> <span class="fl">1e-4</span>, </span>
+<span id="cb529-3"><a href="examples.html#cb529-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">unclass =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb529-4"><a href="examples.html#cb529-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_filter </span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 233 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -1421,10 +1342,10 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 </div>
 <div id="trimming-the-taxa-with-low-occurrence-less-than-threshold-1" class="section level4 hasAnchor" number="15.3.3.3">
 <h4><span class="header-section-number">15.3.3.3</span> Trimming the taxa with low occurrence less than threshold<a href="examples.html#trimming-the-taxa-with-low-occurrence-less-than-threshold-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="examples.html#cb492-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_filter_trim <span class="ot">&lt;-</span> <span class="fu">run_trim</span>(<span class="at">object =</span> metaphlan2_ps_species_filter, </span>
-<span id="cb492-2"><a href="examples.html#cb492-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">cutoff =</span> <span class="fl">0.1</span>, </span>
-<span id="cb492-3"><a href="examples.html#cb492-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span>
-<span id="cb492-4"><a href="examples.html#cb492-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_filter_trim</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="examples.html#cb531-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_filter_trim <span class="ot">&lt;-</span> <span class="fu">run_trim</span>(<span class="at">object =</span> metaphlan2_ps_species_filter, </span>
+<span id="cb531-2"><a href="examples.html#cb531-2" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">cutoff =</span> <span class="fl">0.1</span>, </span>
+<span id="cb531-3"><a href="examples.html#cb531-3" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">trim =</span> <span class="st">&quot;feature&quot;</span>)</span>
+<span id="cb531-4"><a href="examples.html#cb531-4" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_filter_trim</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 179 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -1440,9 +1361,9 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 <li>Calculate the alpha diversity</li>
 </ul>
 <p><strong>Notes:</strong> choosing the measures (<em>Shannon, Simpson and InvSimpson</em>) only for relative abundance.</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="examples.html#cb494-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps =</span> metaphlan2_ps_remove_BRS, </span>
-<span id="cb494-2"><a href="examples.html#cb494-2" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Simpson&quot;</span>, <span class="st">&quot;InvSimpson&quot;</span>))</span>
-<span id="cb494-3"><a href="examples.html#cb494-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_genus_alpha)</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="examples.html#cb533-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_genus_alpha <span class="ot">&lt;-</span> <span class="fu">run_alpha_diversity</span>(<span class="at">ps =</span> metaphlan2_ps_remove_BRS, </span>
+<span id="cb533-2"><a href="examples.html#cb533-2" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">measures =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Simpson&quot;</span>, <span class="st">&quot;InvSimpson&quot;</span>))</span>
+<span id="cb533-3"><a href="examples.html#cb533-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_genus_alpha)</span></code></pre></div>
 <pre><code>##   TempRowNames Group phynotype  Shannon   Simpson InvSimpson
 ## 1           s1    BB      0.00 2.876002 0.9108857  11.221549
 ## 2           s2    AA      2.50 2.045392 0.8105742   5.279111
@@ -1453,14 +1374,14 @@ Figure 15.12: Wilcoxon Rank-Sum test (16s example)
 <ul>
 <li>visualization</li>
 </ul>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="examples.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_boxplot</span>(<span class="at">data =</span> metaphlan2_ps_genus_alpha,</span>
-<span id="cb496-2"><a href="examples.html#cb496-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Simpson&quot;</span>, <span class="st">&quot;InvSimpson&quot;</span>),</span>
-<span id="cb496-3"><a href="examples.html#cb496-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb496-4"><a href="examples.html#cb496-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb496-5"><a href="examples.html#cb496-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb496-6"><a href="examples.html#cb496-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-278"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-278-1.png" alt="Alpha diversity (MGS example)" width="576" />
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="examples.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_boxplot</span>(<span class="at">data =</span> metaphlan2_ps_genus_alpha,</span>
+<span id="cb535-2"><a href="examples.html#cb535-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y_index =</span> <span class="fu">c</span>(<span class="st">&quot;Shannon&quot;</span>, <span class="st">&quot;Simpson&quot;</span>, <span class="st">&quot;InvSimpson&quot;</span>),</span>
+<span id="cb535-3"><a href="examples.html#cb535-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb535-4"><a href="examples.html#cb535-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb535-5"><a href="examples.html#cb535-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb535-6"><a href="examples.html#cb535-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">&quot;wilcox.test&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-303"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-303-1.png" alt="Alpha diversity (MGS example)" width="576" />
 <p class="caption">
 Figure 15.13: Alpha diversity (MGS example)
 </p>
@@ -1471,9 +1392,9 @@ Figure 15.13: Alpha diversity (MGS example)
 <ul>
 <li>beta dipersion</li>
 </ul>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="examples.html#cb497-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps =</span> metaphlan2_ps_species_filter_trim, </span>
-<span id="cb497-2"><a href="examples.html#cb497-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, </span>
-<span id="cb497-3"><a href="examples.html#cb497-3" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="examples.html#cb536-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_beta <span class="ot">&lt;-</span> <span class="fu">run_beta_diversity</span>(<span class="at">ps =</span> metaphlan2_ps_species_filter_trim, </span>
+<span id="cb536-2"><a href="examples.html#cb536-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, </span>
+<span id="cb536-3"><a href="examples.html#cb536-3" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Permutation test for homogeneity of multivariate dispersions
 ## Permutation: free
@@ -1489,9 +1410,9 @@ Figure 15.13: Alpha diversity (MGS example)
 ##         AA    BB
 ## AA         0.365
 ## BB 0.38426</code></pre>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="examples.html#cb499-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_beta<span class="sc">$</span>BetaDispersion</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-279"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-279-1.png" alt="Beta diversity (MGS example)" width="480" />
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="examples.html#cb538-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_beta<span class="sc">$</span>BetaDispersion</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-304"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-304-1.png" alt="Beta diversity (MGS example)" width="480" />
 <p class="caption">
 Figure 15.14: Beta diversity (MGS example)
 </p>
@@ -1502,10 +1423,10 @@ Figure 15.14: Beta diversity (MGS example)
 <h3><span class="header-section-number">15.3.5</span> PERMANOVA + Ordination<a href="examples.html#permanova-ordination-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="permanova-1" class="section level4 hasAnchor" number="15.3.5.1">
 <h4><span class="header-section-number">15.3.5.1</span> PERMANOVA<a href="examples.html#permanova-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="examples.html#cb500-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_per <span class="ot">&lt;-</span> <span class="fu">run_permanova</span>(<span class="at">ps =</span> metaphlan2_ps_species_filter_trim, </span>
-<span id="cb500-2"><a href="examples.html#cb500-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, </span>
-<span id="cb500-3"><a href="examples.html#cb500-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">columns =</span> <span class="st">&quot;Group&quot;</span>)</span>
-<span id="cb500-4"><a href="examples.html#cb500-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_per)</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="examples.html#cb539-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_per <span class="ot">&lt;-</span> <span class="fu">run_permanova</span>(<span class="at">ps =</span> metaphlan2_ps_species_filter_trim, </span>
+<span id="cb539-2"><a href="examples.html#cb539-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, </span>
+<span id="cb539-3"><a href="examples.html#cb539-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">columns =</span> <span class="st">&quot;Group&quot;</span>)</span>
+<span id="cb539-4"><a href="examples.html#cb539-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_per)</span></code></pre></div>
 <pre><code>##       SumsOfSample Df SumsOfSqs   MeanSqs  F.Model        R2 Pr(&gt;F) AdjustedPvalue
 ## Group           22  1 0.8452127 0.8452127 2.728018 0.1200289  0.002          0.002</code></pre>
 <p>The PERMANOVA result of the Group (AdjustedPvalue &lt; 0.05) revealed that the two groups had the distinct patterns of microbial community.</p>
@@ -1513,21 +1434,21 @@ Figure 15.14: Beta diversity (MGS example)
 <div id="ordination-2" class="section level4 hasAnchor" number="15.3.5.2">
 <h4><span class="header-section-number">15.3.5.2</span> Ordination<a href="examples.html#ordination-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We performed ordination by using Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP). If you want to try other methods please go to see <strong>Chapter 8</strong> for more details.</p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="examples.html#cb502-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_ordination <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
-<span id="cb502-2"><a href="examples.html#cb502-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> metaphlan2_ps_species_filter_trim,</span>
-<span id="cb502-3"><a href="examples.html#cb502-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb502-4"><a href="examples.html#cb502-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;UMAP&quot;</span>)</span>
-<span id="cb502-5"><a href="examples.html#cb502-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb502-6"><a href="examples.html#cb502-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> metaphlan2_ps_ordination, </span>
-<span id="cb502-7"><a href="examples.html#cb502-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>, </span>
-<span id="cb502-8"><a href="examples.html#cb502-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb502-9"><a href="examples.html#cb502-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb502-10"><a href="examples.html#cb502-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb502-11"><a href="examples.html#cb502-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">sidelinechart =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb502-12"><a href="examples.html#cb502-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">circle_type =</span> <span class="st">&quot;ellipse_line&quot;</span>,</span>
-<span id="cb502-13"><a href="examples.html#cb502-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">sideboxplot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-281"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-281-1.png" alt="PCoA (MGS example)" width="480" />
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="examples.html#cb541-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_ordination <span class="ot">&lt;-</span> <span class="fu">run_ordination</span>(</span>
+<span id="cb541-2"><a href="examples.html#cb541-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ps =</span> metaphlan2_ps_species_filter_trim,</span>
+<span id="cb541-3"><a href="examples.html#cb541-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb541-4"><a href="examples.html#cb541-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">&quot;UMAP&quot;</span>)</span>
+<span id="cb541-5"><a href="examples.html#cb541-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb541-6"><a href="examples.html#cb541-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Ordination</span>(<span class="at">ResultList =</span> metaphlan2_ps_ordination, </span>
+<span id="cb541-7"><a href="examples.html#cb541-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>, </span>
+<span id="cb541-8"><a href="examples.html#cb541-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb541-9"><a href="examples.html#cb541-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb541-10"><a href="examples.html#cb541-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">sample =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb541-11"><a href="examples.html#cb541-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">sidelinechart =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb541-12"><a href="examples.html#cb541-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">circle_type =</span> <span class="st">&quot;ellipse_line&quot;</span>,</span>
+<span id="cb541-13"><a href="examples.html#cb541-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">sideboxplot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-306"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-306-1.png" alt="PCoA (MGS example)" width="480" />
 <p class="caption">
 Figure 15.15: PCoA (MGS example)
 </p>
@@ -1541,12 +1462,12 @@ Figure 15.15: PCoA (MGS example)
 <ul>
 <li><strong>XVIZ</strong> package</li>
 </ul>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="examples.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(</span>
-<span id="cb503-2"><a href="examples.html#cb503-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">phyloseq =</span> metaphlan2_ps_species,</span>
-<span id="cb503-3"><a href="examples.html#cb503-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb503-4"><a href="examples.html#cb503-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-282"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-282-1.png" alt="Microbial composition (MGS) XVIZ" width="768" />
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="examples.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(</span>
+<span id="cb542-2"><a href="examples.html#cb542-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">phyloseq =</span> metaphlan2_ps_species,</span>
+<span id="cb542-3"><a href="examples.html#cb542-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb542-4"><a href="examples.html#cb542-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">feature =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-307"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-307-1.png" alt="Microbial composition (MGS) XVIZ" width="768" />
 <p class="caption">
 Figure 15.16: Microbial composition (MGS) XVIZ
 </p>
@@ -1554,13 +1475,13 @@ Figure 15.16: Microbial composition (MGS) XVIZ
 <ul>
 <li><strong>XMAS</strong> package</li>
 </ul>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="examples.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb504-2"><a href="examples.html#cb504-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> metaphlan2_ps_species,</span>
-<span id="cb504-3"><a href="examples.html#cb504-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb504-4"><a href="examples.html#cb504-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb504-5"><a href="examples.html#cb504-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-283"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-283-1.png" alt="Microbial composition (MGS example)" width="768" />
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="examples.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb543-2"><a href="examples.html#cb543-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> metaphlan2_ps_species,</span>
+<span id="cb543-3"><a href="examples.html#cb543-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb543-4"><a href="examples.html#cb543-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb543-5"><a href="examples.html#cb543-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-308"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-308-1.png" alt="Microbial composition (MGS example)" width="768" />
 <p class="caption">
 Figure 15.17: Microbial composition (MGS example)
 </p>
@@ -1571,21 +1492,21 @@ Figure 15.17: Microbial composition (MGS example)
 <ul>
 <li>visualization</li>
 </ul>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="examples.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb505-2"><a href="examples.html#cb505-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb505-3"><a href="examples.html#cb505-3" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
-<span id="cb505-4"><a href="examples.html#cb505-4" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
-<span id="cb505-5"><a href="examples.html#cb505-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb505-6"><a href="examples.html#cb505-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_core_taxa</span>(metaphlan2_ps_species_filter_trim, </span>
-<span id="cb505-7"><a href="examples.html#cb505-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
-<span id="cb505-8"><a href="examples.html#cb505-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">&quot;Spectral&quot;</span>)),</span>
-<span id="cb505-9"><a href="examples.html#cb505-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">prevalences =</span> prevalences, </span>
-<span id="cb505-10"><a href="examples.html#cb505-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">detections =</span> detections, </span>
-<span id="cb505-11"><a href="examples.html#cb505-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb505-12"><a href="examples.html#cb505-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
-<span id="cb505-13"><a href="examples.html#cb505-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-284"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-284-1.png" alt="Core taxa (MGS example)" width="768" />
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="examples.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb544-2"><a href="examples.html#cb544-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb544-3"><a href="examples.html#cb544-3" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
+<span id="cb544-4"><a href="examples.html#cb544-4" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb544-5"><a href="examples.html#cb544-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb544-6"><a href="examples.html#cb544-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_core_taxa</span>(metaphlan2_ps_species_filter_trim, </span>
+<span id="cb544-7"><a href="examples.html#cb544-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
+<span id="cb544-8"><a href="examples.html#cb544-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">&quot;Spectral&quot;</span>)),</span>
+<span id="cb544-9"><a href="examples.html#cb544-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">prevalences =</span> prevalences, </span>
+<span id="cb544-10"><a href="examples.html#cb544-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">detections =</span> detections, </span>
+<span id="cb544-11"><a href="examples.html#cb544-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb544-12"><a href="examples.html#cb544-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
+<span id="cb544-13"><a href="examples.html#cb544-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-309"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-309-1.png" alt="Core taxa (MGS example)" width="768" />
 <p class="caption">
 Figure 15.18: Core taxa (MGS example)
 </p>
@@ -1594,10 +1515,10 @@ Figure 15.18: Core taxa (MGS example)
 <ul>
 <li>Use <code>core_members</code> to obtain the core taxa. detection for abundance and prevalence for occurrence.</li>
 </ul>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="examples.html#cb506-1" aria-hidden="true" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(metaphlan2_ps_species_filter_trim, </span>
-<span id="cb506-2"><a href="examples.html#cb506-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">detection =</span> <span class="fl">0.001</span>, </span>
-<span id="cb506-3"><a href="examples.html#cb506-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">prevalence =</span> <span class="fl">0.5</span>)</span>
-<span id="cb506-4"><a href="examples.html#cb506-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="examples.html#cb545-1" aria-hidden="true" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(metaphlan2_ps_species_filter_trim, </span>
+<span id="cb545-2"><a href="examples.html#cb545-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">detection =</span> <span class="fl">0.001</span>, </span>
+<span id="cb545-3"><a href="examples.html#cb545-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">prevalence =</span> <span class="fl">0.5</span>)</span>
+<span id="cb545-4"><a href="examples.html#cb545-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
 <pre><code>##  [1] &quot;s__Bacteroides_ovatus&quot;                &quot;s__Bacteroides_thetaiotaomicron&quot;      &quot;s__Bacteroides_uniformis&quot;            
 ##  [4] &quot;s__Bacteroides_vulgatus&quot;              &quot;s__Bifidobacterium_longum&quot;            &quot;s__Bifidobacterium_pseudocatenulatum&quot;
 ##  [7] &quot;s__Collinsella_aerofaciens&quot;           &quot;s__Escherichia_coli&quot;                  &quot;s__Eubacterium_eligens&quot;              
@@ -1616,13 +1537,13 @@ Figure 15.18: Core taxa (MGS example)
 <ul>
 <li>Calculation</li>
 </ul>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="examples.html#cb508-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_lefse <span class="ot">&lt;-</span> <span class="fu">run_lefse</span>(</span>
-<span id="cb508-2"><a href="examples.html#cb508-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ps =</span> metaphlan2_ps_species_filter_trim,</span>
-<span id="cb508-3"><a href="examples.html#cb508-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb508-4"><a href="examples.html#cb508-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb508-5"><a href="examples.html#cb508-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">norm =</span> <span class="st">&quot;CPM&quot;</span>,</span>
-<span id="cb508-6"><a href="examples.html#cb508-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Lda =</span> <span class="dv">2</span>)</span>
-<span id="cb508-7"><a href="examples.html#cb508-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_lefse)</span></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="examples.html#cb547-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_lefse <span class="ot">&lt;-</span> <span class="fu">run_lefse</span>(</span>
+<span id="cb547-2"><a href="examples.html#cb547-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ps =</span> metaphlan2_ps_species_filter_trim,</span>
+<span id="cb547-3"><a href="examples.html#cb547-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb547-4"><a href="examples.html#cb547-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb547-5"><a href="examples.html#cb547-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">norm =</span> <span class="st">&quot;CPM&quot;</span>,</span>
+<span id="cb547-6"><a href="examples.html#cb547-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Lda =</span> <span class="dv">2</span>)</span>
+<span id="cb547-7"><a href="examples.html#cb547-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_lefse)</span></code></pre></div>
 <pre><code>##                                     TaxaID         Block Enrichment LDA_Score EffectSize
 ## 1          s__Bacteroides_thetaiotaomicron 7_AA vs 15_BB         AA -4.429029 4.25590505
 ## 2                  s__Fusobacterium_varium 7_AA vs 15_BB         AA -4.016638 1.79361497
@@ -1654,16 +1575,16 @@ Figure 15.18: Core taxa (MGS example)
 <ul>
 <li>Visualization</li>
 </ul>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="examples.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # don&#39;t run this code when you do lefse in reality</span></span>
-<span id="cb510-2"><a href="examples.html#cb510-2" aria-hidden="true" tabindex="-1"></a><span class="co"># metaphlan2_ps_lefse$LDA_Score &lt;- metaphlan2_ps_lefse$LDA_Score * 100</span></span>
-<span id="cb510-3"><a href="examples.html#cb510-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb510-4"><a href="examples.html#cb510-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lefse</span>(</span>
-<span id="cb510-5"><a href="examples.html#cb510-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">da_res =</span> metaphlan2_ps_lefse,</span>
-<span id="cb510-6"><a href="examples.html#cb510-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
-<span id="cb510-7"><a href="examples.html#cb510-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">2</span>,</span>
-<span id="cb510-8"><a href="examples.html#cb510-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-287"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-287-1.png" alt="Lefse analysis (MGS example)" width="768" />
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="examples.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # don&#39;t run this code when you do lefse in reality</span></span>
+<span id="cb549-2"><a href="examples.html#cb549-2" aria-hidden="true" tabindex="-1"></a><span class="co"># metaphlan2_ps_lefse$LDA_Score &lt;- metaphlan2_ps_lefse$LDA_Score * 100</span></span>
+<span id="cb549-3"><a href="examples.html#cb549-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb549-4"><a href="examples.html#cb549-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lefse</span>(</span>
+<span id="cb549-5"><a href="examples.html#cb549-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">da_res =</span> metaphlan2_ps_lefse,</span>
+<span id="cb549-6"><a href="examples.html#cb549-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index =</span> <span class="st">&quot;LDA_Score&quot;</span>,</span>
+<span id="cb549-7"><a href="examples.html#cb549-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_index_cutoff =</span> <span class="dv">2</span>,</span>
+<span id="cb549-8"><a href="examples.html#cb549-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-312"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-312-1.png" alt="Lefse analysis (MGS example)" width="768" />
 <p class="caption">
 Figure 15.19: Lefse analysis (MGS example)
 </p>
@@ -1674,12 +1595,12 @@ Figure 15.19: Lefse analysis (MGS example)
 <ul>
 <li>Calculation</li>
 </ul>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="examples.html#cb511-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_wilcox <span class="ot">&lt;-</span> <span class="fu">run_wilcox</span>(</span>
-<span id="cb511-2"><a href="examples.html#cb511-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ps =</span> metaphlan2_ps_species_filter_trim,</span>
-<span id="cb511-3"><a href="examples.html#cb511-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb511-4"><a href="examples.html#cb511-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
-<span id="cb511-5"><a href="examples.html#cb511-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb511-6"><a href="examples.html#cb511-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_wilcox)</span></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="examples.html#cb550-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_wilcox <span class="ot">&lt;-</span> <span class="fu">run_wilcox</span>(</span>
+<span id="cb550-2"><a href="examples.html#cb550-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ps =</span> metaphlan2_ps_species_filter_trim,</span>
+<span id="cb550-3"><a href="examples.html#cb550-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb550-4"><a href="examples.html#cb550-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
+<span id="cb550-5"><a href="examples.html#cb550-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb550-6"><a href="examples.html#cb550-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan2_ps_wilcox)</span></code></pre></div>
 <pre><code>##                           TaxaID         Block Enrichment EffectSize Statistic     Pvalue AdjustedPvalue
 ## 1  s__Acidaminococcus_fermentans 7_AA vs 15_BB  Nonsignif 0.09951572      49.0 0.75333110      0.9364324
 ## 2   s__Acidaminococcus_intestini 7_AA vs 15_BB  Nonsignif 0.75222128      51.0 0.91657416      1.0000000
@@ -1711,17 +1632,17 @@ Figure 15.19: Lefse analysis (MGS example)
 <ul>
 <li>Volcano</li>
 </ul>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="examples.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_volcano</span>(</span>
-<span id="cb513-2"><a href="examples.html#cb513-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">da_res =</span> metaphlan2_ps_wilcox,</span>
-<span id="cb513-3"><a href="examples.html#cb513-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
-<span id="cb513-4"><a href="examples.html#cb513-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_index =</span> <span class="st">&quot;Log2FoldChange (Rank)</span><span class="sc">\n</span><span class="st">AA_vs_BB&quot;</span>,</span>
-<span id="cb513-5"><a href="examples.html#cb513-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_index_cutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb513-6"><a href="examples.html#cb513-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
-<span id="cb513-7"><a href="examples.html#cb513-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb513-8"><a href="examples.html#cb513-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb513-9"><a href="examples.html#cb513-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">5</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-289"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-289-1.png" alt="Wilcoxon Rank-Sum test (MGS example)" width="768" />
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="examples.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_volcano</span>(</span>
+<span id="cb552-2"><a href="examples.html#cb552-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">da_res =</span> metaphlan2_ps_wilcox,</span>
+<span id="cb552-3"><a href="examples.html#cb552-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_names =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;BB&quot;</span>),</span>
+<span id="cb552-4"><a href="examples.html#cb552-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_index =</span> <span class="st">&quot;Log2FoldChange (Rank)</span><span class="sc">\n</span><span class="st">AA_vs_BB&quot;</span>,</span>
+<span id="cb552-5"><a href="examples.html#cb552-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_index_cutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb552-6"><a href="examples.html#cb552-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
+<span id="cb552-7"><a href="examples.html#cb552-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb552-8"><a href="examples.html#cb552-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">group_color =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb552-9"><a href="examples.html#cb552-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">topN =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-314"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-314-1.png" alt="Wilcoxon Rank-Sum test (MGS example)" width="768" />
 <p class="caption">
 Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 </p>
@@ -1731,7 +1652,7 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 </div>
 <div id="systematic-information-11" class="section level2 hasAnchor" number="15.4">
 <h2><span class="header-section-number">15.4</span> Systematic Information<a href="examples.html#systematic-information-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="examples.html#cb514-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="examples.html#cb553-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>## ─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
@@ -1742,7 +1663,7 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-07-20
+##  date     2022-07-25
 ##  rstudio  2022.02.0+443 Prairie Trillium (desktop)
 ##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 ## 
@@ -1797,7 +1718,7 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 ##  DEoptimR               1.0-10   2022-01-03 [1] CRAN (R 4.1.2)
 ##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
 ##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
-##  devtools               2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
+##  devtools             * 2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  digest                 0.6.29   2021-12-01 [1] CRAN (R 4.1.0)
 ##  dplyr                * 1.0.8    2022-02-08 [1] CRAN (R 4.1.2)
 ##  DT                     0.21     2022-02-26 [1] CRAN (R 4.1.2)
@@ -1811,8 +1732,11 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 ##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
 ##  foreign                0.8-82   2022-01-13 [1] CRAN (R 4.1.2)
 ##  forestplot             2.0.1    2021-09-03 [1] CRAN (R 4.1.0)
+##  formatR                1.11     2021-06-01 [1] CRAN (R 4.1.0)
 ##  Formula                1.2-4    2020-10-16 [1] CRAN (R 4.1.0)
 ##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
+##  futile.logger        * 1.4.3    2016-07-10 [1] CRAN (R 4.1.0)
+##  futile.options         1.0.1    2018-04-20 [1] CRAN (R 4.1.0)
 ##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
 ##  geneplotter            1.72.0   2021-10-26 [1] Bioconductor
 ##  generics               0.1.2    2022-01-31 [1] CRAN (R 4.1.2)
@@ -1834,6 +1758,7 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 ##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
 ##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
 ##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
+##  hms                    1.1.1    2021-09-26 [1] CRAN (R 4.1.0)
 ##  htmlTable            * 2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
 ##  htmltools              0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
 ##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
@@ -1849,6 +1774,7 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 ##  KernSmooth             2.23-20  2021-05-03 [1] CRAN (R 4.1.2)
 ##  knitr                  1.37     2021-12-16 [1] CRAN (R 4.1.0)
 ##  labeling               0.4.2    2020-10-20 [1] CRAN (R 4.1.0)
+##  lambda.r               1.2.4    2019-09-18 [1] CRAN (R 4.1.0)
 ##  lattice              * 0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
 ##  latticeExtra           0.6-29   2019-12-19 [1] CRAN (R 4.1.0)
 ##  libcoin                1.0-9    2021-09-27 [1] CRAN (R 4.1.0)
@@ -1892,7 +1818,7 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 ##  proxy                  0.4-26   2021-06-07 [1] CRAN (R 4.1.0)
 ##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
 ##  pscl                   1.5.5    2020-03-07 [1] CRAN (R 4.1.0)
-##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
+##  purrr                * 0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
 ##  qvalue                 2.26.0   2021-10-26 [1] Bioconductor
 ##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
 ##  RAIDA                  1.0      2022-03-14 [1] local
@@ -1900,6 +1826,7 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 ##  Rcpp                 * 1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
 ##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
 ##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
+##  readr                * 2.1.2    2022-01-30 [1] CRAN (R 4.1.2)
 ##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
 ##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
 ##  reticulate             1.24     2022-01-26 [1] CRAN (R 4.1.2)
@@ -1936,22 +1863,25 @@ Figure 15.20: Wilcoxon Rank-Sum test (MGS example)
 ##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
 ##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
 ##  tibble               * 3.1.6    2021-11-07 [1] CRAN (R 4.1.0)
-##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
+##  tidyr                * 1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
 ##  truncnorm              1.0-8    2018-02-27 [1] CRAN (R 4.1.0)
+##  tzdb                   0.2.0    2021-10-27 [1] CRAN (R 4.1.0)
 ##  umap                   0.2.8.0  2022-03-23 [1] CRAN (R 4.1.2)
 ##  units                  0.8-0    2022-02-05 [1] CRAN (R 4.1.2)
-##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
+##  usethis              * 2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
 ##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
 ##  vctrs                  0.3.8    2021-04-29 [1] CRAN (R 4.1.0)
 ##  vegan                * 2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
+##  VennDiagram          * 1.7.3    2022-04-12 [1] CRAN (R 4.1.2)
 ##  viridis              * 0.6.2    2021-10-13 [1] CRAN (R 4.1.0)
 ##  viridisLite          * 0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
+##  vroom                  1.5.7    2021-11-30 [1] CRAN (R 4.1.0)
 ##  webshot                0.5.3    2022-04-14 [1] CRAN (R 4.1.2)
 ##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
 ##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
 ##  xfun                   0.30     2022-03-02 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.7    2022-07-20 [1] local
+##  XMAS2                * 2.1.7    2022-07-21 [1] local
 ##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
 ##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
