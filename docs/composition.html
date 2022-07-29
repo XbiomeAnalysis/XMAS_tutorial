@@ -24,7 +24,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-07-25" />
+<meta name="date" content="2022-07-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,6 +56,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.21/datatables.js"></script>
@@ -170,290 +172,389 @@ div.csl-indent {
 <li><a href="./">Data analysis based on XMAS 2.0 package</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites<span></span></a>
+<li><a href="index.html#prerequisites" id="toc-prerequisites"><span class="toc-section-number">1</span> Prerequisites<span></span></a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#preparing-for-the-tutorial"><i class="fa fa-check"></i><b>1.1</b> Preparing for the tutorial<span></span></a></li>
+<li><a href="index.html#preparing-for-the-tutorial" id="toc-preparing-for-the-tutorial"><span class="toc-section-number">1.1</span> Preparing for the tutorial<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction<span></span></a>
+<li><a href="introduction.html#introduction" id="toc-introduction"><span class="toc-section-number">2</span> Introduction<span></span></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#microbiome"><i class="fa fa-check"></i><b>2.1</b> Microbiome<span></span></a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#sequencing-technology"><i class="fa fa-check"></i><b>2.2</b> Sequencing technology<span></span></a>
+<li><a href="introduction.html#microbiome" id="toc-microbiome"><span class="toc-section-number">2.1</span> Microbiome<span></span></a></li>
+<li><a href="introduction.html#sequencing-technology" id="toc-sequencing-technology"><span class="toc-section-number">2.2</span> Sequencing technology<span></span></a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="introduction.html"><a href="introduction.html#amplicon-sequencing"><i class="fa fa-check"></i><b>2.2.1</b> Amplicon sequencing<span></span></a></li>
-<li class="chapter" data-level="2.2.2" data-path="introduction.html"><a href="introduction.html#whole-genome-shotgun-sequencing"><i class="fa fa-check"></i><b>2.2.2</b> Whole genome shotgun sequencing<span></span></a></li>
+<li><a href="introduction.html#amplicon-sequencing" id="toc-amplicon-sequencing"><span class="toc-section-number">2.2.1</span> Amplicon sequencing<span></span></a></li>
+<li><a href="introduction.html#whole-genome-shotgun-sequencing" id="toc-whole-genome-shotgun-sequencing"><span class="toc-section-number">2.2.2</span> Whole genome shotgun sequencing<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#the-gut-microbiome-relationships-with-disease-and-opportunities-for-therapy"><i class="fa fa-check"></i><b>2.3</b> The gut microbiome: Relationships with disease and opportunities for therapy<span></span></a></li>
-<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#data-analysis-apply-for-discovering-the-potential-microbial-biomarkers"><i class="fa fa-check"></i><b>2.4</b> Data Analysis apply for discovering the potential microbial biomarkers<span></span></a></li>
-<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#book"><i class="fa fa-check"></i><b>2.5</b> Book<span></span></a></li>
-<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#input-data"><i class="fa fa-check"></i><b>2.6</b> Input data<span></span></a></li>
-<li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#key-publications"><i class="fa fa-check"></i><b>2.7</b> Key publications<span></span></a></li>
-<li class="chapter" data-level="2.8" data-path="introduction.html"><a href="introduction.html#citation"><i class="fa fa-check"></i><b>2.8</b> Citation<span></span></a></li>
-<li class="chapter" data-level="2.9" data-path="introduction.html"><a href="introduction.html#change-log"><i class="fa fa-check"></i><b>2.9</b> Change log<span></span></a>
+<li><a href="introduction.html#the-gut-microbiome-relationships-with-disease-and-opportunities-for-therapy" id="toc-the-gut-microbiome-relationships-with-disease-and-opportunities-for-therapy"><span class="toc-section-number">2.3</span> The gut microbiome: Relationships with disease and opportunities for therapy<span></span></a></li>
+<li><a href="introduction.html#data-analysis-apply-for-discovering-the-potential-microbial-biomarkers" id="toc-data-analysis-apply-for-discovering-the-potential-microbial-biomarkers"><span class="toc-section-number">2.4</span> Data Analysis apply for discovering the potential microbial biomarkers<span></span></a></li>
+<li><a href="introduction.html#book" id="toc-book"><span class="toc-section-number">2.5</span> Book<span></span></a></li>
+<li><a href="introduction.html#input-data" id="toc-input-data"><span class="toc-section-number">2.6</span> Input data<span></span></a></li>
+<li><a href="introduction.html#key-publications" id="toc-key-publications"><span class="toc-section-number">2.7</span> Key publications<span></span></a></li>
+<li><a href="introduction.html#citation" id="toc-citation"><span class="toc-section-number">2.8</span> Citation<span></span></a></li>
+<li><a href="introduction.html#change-log" id="toc-change-log"><span class="toc-section-number">2.9</span> Change log<span></span></a>
 <ul>
-<li class="chapter" data-level="2.9.1" data-path="introduction.html"><a href="introduction.html#xmas-2.1.7"><i class="fa fa-check"></i><b>2.9.1</b> XMAS 2.1.7<span></span></a></li>
-<li class="chapter" data-level="2.9.2" data-path="introduction.html"><a href="introduction.html#xmas-2.1.6"><i class="fa fa-check"></i><b>2.9.2</b> XMAS 2.1.6<span></span></a></li>
-<li class="chapter" data-level="2.9.3" data-path="introduction.html"><a href="introduction.html#xmas-2.1.5"><i class="fa fa-check"></i><b>2.9.3</b> XMAS 2.1.5<span></span></a></li>
-<li class="chapter" data-level="2.9.4" data-path="introduction.html"><a href="introduction.html#xmas-2.1.4"><i class="fa fa-check"></i><b>2.9.4</b> XMAS 2.1.4<span></span></a></li>
-<li class="chapter" data-level="2.9.5" data-path="introduction.html"><a href="introduction.html#xmas-2.1.3"><i class="fa fa-check"></i><b>2.9.5</b> XMAS 2.1.3<span></span></a></li>
-<li class="chapter" data-level="2.9.6" data-path="introduction.html"><a href="introduction.html#xmas-2.1.2"><i class="fa fa-check"></i><b>2.9.6</b> XMAS 2.1.2<span></span></a></li>
-<li class="chapter" data-level="2.9.7" data-path="introduction.html"><a href="introduction.html#xmas-2.1.1"><i class="fa fa-check"></i><b>2.9.7</b> XMAS 2.1.1<span></span></a></li>
-<li class="chapter" data-level="2.9.8" data-path="introduction.html"><a href="introduction.html#xmas-2.1.0"><i class="fa fa-check"></i><b>2.9.8</b> XMAS 2.1.0<span></span></a></li>
-<li class="chapter" data-level="2.9.9" data-path="introduction.html"><a href="introduction.html#xmas-2.0.13"><i class="fa fa-check"></i><b>2.9.9</b> XMAS 2.0.13<span></span></a></li>
-<li class="chapter" data-level="2.9.10" data-path="introduction.html"><a href="introduction.html#xmas-2.0.12"><i class="fa fa-check"></i><b>2.9.10</b> XMAS 2.0.12<span></span></a></li>
-<li class="chapter" data-level="2.9.11" data-path="introduction.html"><a href="introduction.html#xmas-2.0.7-2022-04-12"><i class="fa fa-check"></i><b>2.9.11</b> XMAS 2.0.7 (2022-04-12)<span></span></a></li>
-<li class="chapter" data-level="2.9.12" data-path="introduction.html"><a href="introduction.html#xmas-2.0.2-2022-03-17"><i class="fa fa-check"></i><b>2.9.12</b> XMAS 2.0.2 (2022-03-17)<span></span></a></li>
-<li class="chapter" data-level="2.9.13" data-path="introduction.html"><a href="introduction.html#xmas-2.0.1-2022-03-14"><i class="fa fa-check"></i><b>2.9.13</b> XMAS 2.0.1 (2022-03-14)<span></span></a></li>
-<li class="chapter" data-level="2.9.14" data-path="introduction.html"><a href="introduction.html#xmas-1.0.0-2021-12-13"><i class="fa fa-check"></i><b>2.9.14</b> XMAS 1.0.0 (2021-12-13)<span></span></a></li>
-<li class="chapter" data-level="2.9.15" data-path="introduction.html"><a href="introduction.html#initial-repository-0.0.1-2021-07-25"><i class="fa fa-check"></i><b>2.9.15</b> Initial repository 0.0.1 (2021-07-25)<span></span></a></li>
+<li><a href="introduction.html#xmas-2.1.7" id="toc-xmas-2.1.7"><span class="toc-section-number">2.9.1</span> XMAS 2.1.7<span></span></a></li>
+<li><a href="introduction.html#xmas-2.1.6" id="toc-xmas-2.1.6"><span class="toc-section-number">2.9.2</span> XMAS 2.1.6<span></span></a></li>
+<li><a href="introduction.html#xmas-2.1.5" id="toc-xmas-2.1.5"><span class="toc-section-number">2.9.3</span> XMAS 2.1.5<span></span></a></li>
+<li><a href="introduction.html#xmas-2.1.4" id="toc-xmas-2.1.4"><span class="toc-section-number">2.9.4</span> XMAS 2.1.4<span></span></a></li>
+<li><a href="introduction.html#xmas-2.1.3" id="toc-xmas-2.1.3"><span class="toc-section-number">2.9.5</span> XMAS 2.1.3<span></span></a></li>
+<li><a href="introduction.html#xmas-2.1.2" id="toc-xmas-2.1.2"><span class="toc-section-number">2.9.6</span> XMAS 2.1.2<span></span></a></li>
+<li><a href="introduction.html#xmas-2.1.1" id="toc-xmas-2.1.1"><span class="toc-section-number">2.9.7</span> XMAS 2.1.1<span></span></a></li>
+<li><a href="introduction.html#xmas-2.1.0" id="toc-xmas-2.1.0"><span class="toc-section-number">2.9.8</span> XMAS 2.1.0<span></span></a></li>
+<li><a href="introduction.html#xmas-2.0.13" id="toc-xmas-2.0.13"><span class="toc-section-number">2.9.9</span> XMAS 2.0.13<span></span></a></li>
+<li><a href="introduction.html#xmas-2.0.12" id="toc-xmas-2.0.12"><span class="toc-section-number">2.9.10</span> XMAS 2.0.12<span></span></a></li>
+<li><a href="introduction.html#xmas-2.0.7-2022-04-12" id="toc-xmas-2.0.7-2022-04-12"><span class="toc-section-number">2.9.11</span> XMAS 2.0.7 (2022-04-12)<span></span></a></li>
+<li><a href="introduction.html#xmas-2.0.2-2022-03-17" id="toc-xmas-2.0.2-2022-03-17"><span class="toc-section-number">2.9.12</span> XMAS 2.0.2 (2022-03-17)<span></span></a></li>
+<li><a href="introduction.html#xmas-2.0.1-2022-03-14" id="toc-xmas-2.0.1-2022-03-14"><span class="toc-section-number">2.9.13</span> XMAS 2.0.1 (2022-03-14)<span></span></a></li>
+<li><a href="introduction.html#xmas-1.0.0-2021-12-13" id="toc-xmas-1.0.0-2021-12-13"><span class="toc-section-number">2.9.14</span> XMAS 1.0.0 (2021-12-13)<span></span></a></li>
+<li><a href="introduction.html#initial-repository-0.0.1-2021-07-25" id="toc-initial-repository-0.0.1-2021-07-25"><span class="toc-section-number">2.9.15</span> Initial repository 0.0.1 (2021-07-25)<span></span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html"><i class="fa fa-check"></i><b>3</b> Material in this tutorial<span></span></a>
+<li><a href="material-in-this-tutorial.html#material-in-this-tutorial" id="toc-material-in-this-tutorial"><span class="toc-section-number">3</span> Material in this tutorial<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#resources"><i class="fa fa-check"></i><b>3.1</b> Resources<span></span></a>
+<li><a href="material-in-this-tutorial.html#resources" id="toc-resources"><span class="toc-section-number">3.1</span> Resources<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#dada2"><i class="fa fa-check"></i><b>3.1.1</b> DADA2<span></span></a></li>
-<li class="chapter" data-level="3.1.2" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#metaphlan2"><i class="fa fa-check"></i><b>3.1.2</b> Metaphlan2<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#dada2" id="toc-dada2"><span class="toc-section-number">3.1.1</span> DADA2<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#metaphlan2" id="toc-metaphlan2"><span class="toc-section-number">3.1.2</span> Metaphlan2<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#overview-of-the-design-of-xmas-package"><i class="fa fa-check"></i><b>3.2</b> Overview of the design of <strong>XMAS</strong> package<span></span></a>
+<li><a href="material-in-this-tutorial.html#overview-of-the-design-of-xmas-package" id="toc-overview-of-the-design-of-xmas-package"><span class="toc-section-number">3.2</span> Overview of the design of <strong>XMAS</strong> package<span></span></a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#description"><i class="fa fa-check"></i><b>3.2.1</b> Description<span></span></a></li>
-<li class="chapter" data-level="3.2.2" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#installation-of-dependent-packages"><i class="fa fa-check"></i><b>3.2.2</b> Installation of dependent packages<span></span></a></li>
-<li class="chapter" data-level="3.2.3" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#installation"><i class="fa fa-check"></i><b>3.2.3</b> Installation<span></span></a></li>
-<li class="chapter" data-level="3.2.4" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#vignette"><i class="fa fa-check"></i><b>3.2.4</b> Vignette<span></span></a></li>
-<li class="chapter" data-level="3.2.5" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#authors"><i class="fa fa-check"></i><b>3.2.5</b> Authors<span></span></a></li>
-<li class="chapter" data-level="3.2.6" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#library-package"><i class="fa fa-check"></i><b>3.2.6</b> library package<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#description" id="toc-description"><span class="toc-section-number">3.2.1</span> Description<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#installation-of-dependent-packages" id="toc-installation-of-dependent-packages"><span class="toc-section-number">3.2.2</span> Installation of dependent packages<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#installation" id="toc-installation"><span class="toc-section-number">3.2.3</span> Installation<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#vignette" id="toc-vignette"><span class="toc-section-number">3.2.4</span> Vignette<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#authors" id="toc-authors"><span class="toc-section-number">3.2.5</span> Authors<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#library-package" id="toc-library-package"><span class="toc-section-number">3.2.6</span> library package<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#future-plan"><i class="fa fa-check"></i><b>3.3</b> Future plan<span></span></a></li>
-<li class="chapter" data-level="3.4" data-path="material-in-this-tutorial.html"><a href="material-in-this-tutorial.html#systematic-information"><i class="fa fa-check"></i><b>3.4</b> Systematic Information<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#future-plan" id="toc-future-plan"><span class="toc-section-number">3.3</span> Future plan<span></span></a></li>
+<li><a href="material-in-this-tutorial.html#systematic-information" id="toc-systematic-information"><span class="toc-section-number">3.4</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html"><i class="fa fa-check"></i><b>4</b> Convert inputdata into phyloseq object<span></span></a>
+<li><a href="convert-inputdata-into-phyloseq-object.html#convert-inputdata-into-phyloseq-object" id="toc-convert-inputdata-into-phyloseq-object"><span class="toc-section-number">4</span> Convert inputdata into phyloseq object<span></span></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#loading-packages"><i class="fa fa-check"></i><b>4.1</b> loading packages<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#dada2-1"><i class="fa fa-check"></i><b>4.2</b> DADA2<span></span></a>
+<li><a href="convert-inputdata-into-phyloseq-object.html#loading-packages" id="toc-loading-packages"><span class="toc-section-number">4.1</span> loading packages<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#dada2-1" id="toc-dada2-1"><span class="toc-section-number">4.2</span> DADA2<span></span></a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#importing-results-from-dada2-pipeline"><i class="fa fa-check"></i><b>4.2.1</b> Importing results from dada2 pipeline<span></span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#taxa-table"><i class="fa fa-check"></i><b>4.2.2</b> taxa table<span></span></a></li>
-<li class="chapter" data-level="4.2.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#otu-table"><i class="fa fa-check"></i><b>4.2.3</b> otu table<span></span></a></li>
-<li class="chapter" data-level="4.2.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metadata-table"><i class="fa fa-check"></i><b>4.2.4</b> metadata table<span></span></a></li>
-<li class="chapter" data-level="4.2.5" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object"><i class="fa fa-check"></i><b>4.2.5</b> phyloseq object<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#importing-results-from-dada2-pipeline" id="toc-importing-results-from-dada2-pipeline"><span class="toc-section-number">4.2.1</span> Importing results from dada2 pipeline<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#taxa-table" id="toc-taxa-table"><span class="toc-section-number">4.2.2</span> taxa table<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#otu-table" id="toc-otu-table"><span class="toc-section-number">4.2.3</span> otu table<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#metadata-table" id="toc-metadata-table"><span class="toc-section-number">4.2.4</span> metadata table<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object" id="toc-phyloseq-object"><span class="toc-section-number">4.2.5</span> phyloseq object<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metaphlan23"><i class="fa fa-check"></i><b>4.3</b> Metaphlan2/3<span></span></a>
+<li><a href="convert-inputdata-into-phyloseq-object.html#metaphlan23" id="toc-metaphlan23"><span class="toc-section-number">4.3</span> Metaphlan2/3<span></span></a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#importing-results"><i class="fa fa-check"></i><b>4.3.1</b> Importing results<span></span></a></li>
-<li class="chapter" data-level="4.3.2" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#taxa-table-1"><i class="fa fa-check"></i><b>4.3.2</b> taxa table<span></span></a></li>
-<li class="chapter" data-level="4.3.3" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#otu-table-1"><i class="fa fa-check"></i><b>4.3.3</b> otu table<span></span></a></li>
-<li class="chapter" data-level="4.3.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#metadata-table-1"><i class="fa fa-check"></i><b>4.3.4</b> metadata table<span></span></a></li>
-<li class="chapter" data-level="4.3.5" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object-1"><i class="fa fa-check"></i><b>4.3.5</b> phyloseq object<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#importing-results" id="toc-importing-results"><span class="toc-section-number">4.3.1</span> Importing results<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#taxa-table-1" id="toc-taxa-table-1"><span class="toc-section-number">4.3.2</span> taxa table<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#otu-table-1" id="toc-otu-table-1"><span class="toc-section-number">4.3.3</span> otu table<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#metadata-table-1" id="toc-metadata-table-1"><span class="toc-section-number">4.3.4</span> metadata table<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object-1" id="toc-phyloseq-object-1"><span class="toc-section-number">4.3.5</span> phyloseq object<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="convert-inputdata-into-phyloseq-object.html"><a href="convert-inputdata-into-phyloseq-object.html#systematic-information-1"><i class="fa fa-check"></i><b>4.4</b> Systematic Information<span></span></a></li>
+<li><a href="convert-inputdata-into-phyloseq-object.html#systematic-information-1" id="toc-systematic-information-1"><span class="toc-section-number">4.4</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="quality-evaluation.html"><a href="quality-evaluation.html"><i class="fa fa-check"></i><b>5</b> Quality Evaluation<span></span></a>
+<li><a href="quality-evaluation.html#quality-evaluation" id="toc-quality-evaluation"><span class="toc-section-number">5</span> Quality Evaluation<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#reads-track"><i class="fa fa-check"></i><b>5.1</b> Reads’ track<span></span></a></li>
-<li class="chapter" data-level="5.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#spike-in-brs-sample-assessment"><i class="fa fa-check"></i><b>5.2</b> Spike-in (BRS) sample assessment<span></span></a>
+<li><a href="quality-evaluation.html#reads-track" id="toc-reads-track"><span class="toc-section-number">5.1</span> Reads’ track<span></span></a></li>
+<li><a href="quality-evaluation.html#spike-in-brs-sample-assessment" id="toc-spike-in-brs-sample-assessment"><span class="toc-section-number">5.2</span> Spike-in (BRS) sample assessment<span></span></a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#s-data"><i class="fa fa-check"></i><b>5.2.1</b> 16s data<span></span></a></li>
-<li class="chapter" data-level="5.2.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#metagenomic-data"><i class="fa fa-check"></i><b>5.2.2</b> Metagenomic data<span></span></a></li>
+<li><a href="quality-evaluation.html#s-data" id="toc-s-data"><span class="toc-section-number">5.2.1</span> 16s data<span></span></a></li>
+<li><a href="quality-evaluation.html#metagenomic-data" id="toc-metagenomic-data"><span class="toc-section-number">5.2.2</span> Metagenomic data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="quality-evaluation.html"><a href="quality-evaluation.html#remove-brs"><i class="fa fa-check"></i><b>5.3</b> Remove BRS<span></span></a></li>
-<li class="chapter" data-level="5.4" data-path="quality-evaluation.html"><a href="quality-evaluation.html#rarefaction-curves"><i class="fa fa-check"></i><b>5.4</b> Rarefaction Curves<span></span></a></li>
-<li class="chapter" data-level="5.5" data-path="quality-evaluation.html"><a href="quality-evaluation.html#summarize-phyloseq-class-object"><i class="fa fa-check"></i><b>5.5</b> Summarize phyloseq-class object<span></span></a></li>
-<li class="chapter" data-level="5.6" data-path="quality-evaluation.html"><a href="quality-evaluation.html#variability"><i class="fa fa-check"></i><b>5.6</b> Variability<span></span></a>
+<li><a href="quality-evaluation.html#remove-brs" id="toc-remove-brs"><span class="toc-section-number">5.3</span> Remove BRS<span></span></a></li>
+<li><a href="quality-evaluation.html#rarefaction-curves" id="toc-rarefaction-curves"><span class="toc-section-number">5.4</span> Rarefaction Curves<span></span></a></li>
+<li><a href="quality-evaluation.html#summarize-phyloseq-class-object" id="toc-summarize-phyloseq-class-object"><span class="toc-section-number">5.5</span> Summarize phyloseq-class object<span></span></a></li>
+<li><a href="quality-evaluation.html#variability" id="toc-variability"><span class="toc-section-number">5.6</span> Variability<span></span></a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="quality-evaluation.html"><a href="quality-evaluation.html#coefficient-of-variation"><i class="fa fa-check"></i><b>5.6.1</b> Coefficient of variation<span></span></a></li>
-<li class="chapter" data-level="5.6.2" data-path="quality-evaluation.html"><a href="quality-evaluation.html#distribution-of-number-of-sequences"><i class="fa fa-check"></i><b>5.6.2</b> Distribution of number of sequences<span></span></a></li>
+<li><a href="quality-evaluation.html#coefficient-of-variation" id="toc-coefficient-of-variation"><span class="toc-section-number">5.6.1</span> Coefficient of variation<span></span></a></li>
+<li><a href="quality-evaluation.html#distribution-of-number-of-sequences" id="toc-distribution-of-number-of-sequences"><span class="toc-section-number">5.6.2</span> Distribution of number of sequences<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="quality-evaluation.html"><a href="quality-evaluation.html#systematic-information-2"><i class="fa fa-check"></i><b>5.7</b> Systematic Information<span></span></a></li>
+<li><a href="quality-evaluation.html#systematic-information-2" id="toc-systematic-information-2"><span class="toc-section-number">5.7</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="pre-processing.html"><a href="pre-processing.html"><i class="fa fa-check"></i><b>6</b> Pre-processing<span></span></a>
+<li><a href="pre-processing.html#pre-processing" id="toc-pre-processing"><span class="toc-section-number">6</span> Pre-processing<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="pre-processing.html"><a href="pre-processing.html#transformation"><i class="fa fa-check"></i><b>6.1</b> Transformation<span></span></a></li>
-<li class="chapter" data-level="6.2" data-path="pre-processing.html"><a href="pre-processing.html#normalization"><i class="fa fa-check"></i><b>6.2</b> Normalization<span></span></a></li>
-<li class="chapter" data-level="6.3" data-path="pre-processing.html"><a href="pre-processing.html#filtering"><i class="fa fa-check"></i><b>6.3</b> Filtering<span></span></a></li>
-<li class="chapter" data-level="6.4" data-path="pre-processing.html"><a href="pre-processing.html#trimming"><i class="fa fa-check"></i><b>6.4</b> Trimming<span></span></a></li>
-<li class="chapter" data-level="6.5" data-path="pre-processing.html"><a href="pre-processing.html#imputation"><i class="fa fa-check"></i><b>6.5</b> Imputation<span></span></a></li>
-<li class="chapter" data-level="6.6" data-path="pre-processing.html"><a href="pre-processing.html#extracting-specific-taxa-phyloseq-class-object"><i class="fa fa-check"></i><b>6.6</b> Extracting specific taxa phyloseq-class object<span></span></a></li>
-<li class="chapter" data-level="6.7" data-path="pre-processing.html"><a href="pre-processing.html#aggregating-low-relative-abundance-or-unclassified-taxa-into-others"><i class="fa fa-check"></i><b>6.7</b> Aggregating low relative abundance or unclassified taxa into others<span></span></a></li>
-<li class="chapter" data-level="6.8" data-path="pre-processing.html"><a href="pre-processing.html#transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23"><i class="fa fa-check"></i><b>6.8</b> Transform the abundance of taxa whose relative abundance under Limit Of Detection (LOD) into Zeros (only in metaphlan2/3)<span></span></a></li>
-<li class="chapter" data-level="6.9" data-path="pre-processing.html"><a href="pre-processing.html#systematic-information-3"><i class="fa fa-check"></i><b>6.9</b> Systematic Information<span></span></a></li>
+<li><a href="pre-processing.html#transformation" id="toc-transformation"><span class="toc-section-number">6.1</span> Transformation<span></span></a></li>
+<li><a href="pre-processing.html#normalization" id="toc-normalization"><span class="toc-section-number">6.2</span> Normalization<span></span></a></li>
+<li><a href="pre-processing.html#filtering" id="toc-filtering"><span class="toc-section-number">6.3</span> Filtering<span></span></a></li>
+<li><a href="pre-processing.html#trimming" id="toc-trimming"><span class="toc-section-number">6.4</span> Trimming<span></span></a></li>
+<li><a href="pre-processing.html#imputation" id="toc-imputation"><span class="toc-section-number">6.5</span> Imputation<span></span></a></li>
+<li><a href="pre-processing.html#extracting-specific-taxa-phyloseq-class-object" id="toc-extracting-specific-taxa-phyloseq-class-object"><span class="toc-section-number">6.6</span> Extracting specific taxa phyloseq-class object<span></span></a></li>
+<li><a href="pre-processing.html#aggregating-low-relative-abundance-or-unclassified-taxa-into-others" id="toc-aggregating-low-relative-abundance-or-unclassified-taxa-into-others"><span class="toc-section-number">6.7</span> Aggregating low relative abundance or unclassified taxa into others<span></span></a></li>
+<li><a href="pre-processing.html#transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23" id="toc-transform-the-abundance-of-taxa-whose-relative-abundance-under-limit-of-detection-lod-into-zeros-only-in-metaphlan23"><span class="toc-section-number">6.8</span> Transform the abundance of taxa whose relative abundance under Limit Of Detection (LOD) into Zeros (only in metaphlan2/3)<span></span></a></li>
+<li><a href="pre-processing.html#systematic-information-3" id="toc-systematic-information-3"><span class="toc-section-number">6.9</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="aplha-diversity.html"><a href="aplha-diversity.html"><i class="fa fa-check"></i><b>7</b> Aplha diversity<span></span></a>
+<li><a href="aplha-diversity.html#aplha-diversity" id="toc-aplha-diversity"><span class="toc-section-number">7</span> Aplha diversity<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#equal-sample-sums"><i class="fa fa-check"></i><b>7.1</b> Equal sample sums<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#diversities"><i class="fa fa-check"></i><b>7.2</b> Diversities<span></span></a>
+<li><a href="aplha-diversity.html#equal-sample-sums" id="toc-equal-sample-sums"><span class="toc-section-number">7.1</span> Equal sample sums<span></span></a></li>
+<li><a href="aplha-diversity.html#diversities" id="toc-diversities"><span class="toc-section-number">7.2</span> Diversities<span></span></a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="aplha-diversity.html"><a href="aplha-diversity.html#non-phylogenetic-diversities"><i class="fa fa-check"></i><b>7.2.1</b> Non-phylogenetic diversities<span></span></a></li>
-<li class="chapter" data-level="7.2.2" data-path="aplha-diversity.html"><a href="aplha-diversity.html#phylogenetic-diversity"><i class="fa fa-check"></i><b>7.2.2</b> Phylogenetic diversity<span></span></a></li>
+<li><a href="aplha-diversity.html#non-phylogenetic-diversities" id="toc-non-phylogenetic-diversities"><span class="toc-section-number">7.2.1</span> Non-phylogenetic diversities<span></span></a></li>
+<li><a href="aplha-diversity.html#phylogenetic-diversity" id="toc-phylogenetic-diversity"><span class="toc-section-number">7.2.2</span> Phylogenetic diversity<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="aplha-diversity.html"><a href="aplha-diversity.html#rank-abundance"><i class="fa fa-check"></i><b>7.3</b> Rank Abundance<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="aplha-diversity.html"><a href="aplha-diversity.html#systematic-information-4"><i class="fa fa-check"></i><b>7.4</b> Systematic Information<span></span></a></li>
+<li><a href="aplha-diversity.html#rank-abundance" id="toc-rank-abundance"><span class="toc-section-number">7.3</span> Rank Abundance<span></span></a></li>
+<li><a href="aplha-diversity.html#systematic-information-4" id="toc-systematic-information-4"><span class="toc-section-number">7.4</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="beta-diversity.html"><a href="beta-diversity.html"><i class="fa fa-check"></i><b>8</b> Beta diversity<span></span></a>
+<li><a href="beta-diversity.html#beta-diversity" id="toc-beta-diversity"><span class="toc-section-number">8</span> Beta diversity<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="beta-diversity.html"><a href="beta-diversity.html#loading-data-and-removing-brs"><i class="fa fa-check"></i><b>8.1</b> Loading data and Removing BRS<span></span></a></li>
-<li class="chapter" data-level="8.2" data-path="beta-diversity.html"><a href="beta-diversity.html#phylogenetic-beta-diversity-metrics"><i class="fa fa-check"></i><b>8.2</b> Phylogenetic beta-diversity metrics<span></span></a>
+<li><a href="beta-diversity.html#loading-data-and-removing-brs" id="toc-loading-data-and-removing-brs"><span class="toc-section-number">8.1</span> Loading data and Removing BRS<span></span></a></li>
+<li><a href="beta-diversity.html#phylogenetic-beta-diversity-metrics" id="toc-phylogenetic-beta-diversity-metrics"><span class="toc-section-number">8.2</span> Phylogenetic beta-diversity metrics<span></span></a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="beta-diversity.html"><a href="beta-diversity.html#unweighted-unifrac"><i class="fa fa-check"></i><b>8.2.1</b> Unweighted Unifrac<span></span></a></li>
-<li class="chapter" data-level="8.2.2" data-path="beta-diversity.html"><a href="beta-diversity.html#weighted-unifrac"><i class="fa fa-check"></i><b>8.2.2</b> Weighted Unifrac<span></span></a></li>
-<li class="chapter" data-level="8.2.3" data-path="beta-diversity.html"><a href="beta-diversity.html#generalized-unifrac-distance-metrics"><i class="fa fa-check"></i><b>8.2.3</b> Generalized UniFrac Distance Metrics<span></span></a></li>
+<li><a href="beta-diversity.html#unweighted-unifrac" id="toc-unweighted-unifrac"><span class="toc-section-number">8.2.1</span> Unweighted Unifrac<span></span></a></li>
+<li><a href="beta-diversity.html#weighted-unifrac" id="toc-weighted-unifrac"><span class="toc-section-number">8.2.2</span> Weighted Unifrac<span></span></a></li>
+<li><a href="beta-diversity.html#generalized-unifrac-distance-metrics" id="toc-generalized-unifrac-distance-metrics"><span class="toc-section-number">8.2.3</span> Generalized UniFrac Distance Metrics<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="beta-diversity.html"><a href="beta-diversity.html#distance-dissimilarity-coefficients-bray-curtis-index"><i class="fa fa-check"></i><b>8.3</b> Distance (Dissimilarity) Coefficients: Bray-Curtis Index<span></span></a></li>
-<li class="chapter" data-level="8.4" data-path="beta-diversity.html"><a href="beta-diversity.html#checking-the-homogeneity-condition"><i class="fa fa-check"></i><b>8.4</b> Checking the homogeneity condition<span></span></a></li>
-<li class="chapter" data-level="8.5" data-path="beta-diversity.html"><a href="beta-diversity.html#permutational-multivariate-analysis-of-variance-permanova"><i class="fa fa-check"></i><b>8.5</b> Permutational Multivariate Analysis of Variance (PERMANOVA)<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="beta-diversity.html"><a href="beta-diversity.html#mantel-test"><i class="fa fa-check"></i><b>8.6</b> Mantel Test<span></span></a></li>
-<li class="chapter" data-level="8.7" data-path="beta-diversity.html"><a href="beta-diversity.html#analysis-of-similarity-anosim"><i class="fa fa-check"></i><b>8.7</b> Analysis of Similarity (ANOSIM)<span></span></a></li>
-<li class="chapter" data-level="8.8" data-path="beta-diversity.html"><a href="beta-diversity.html#multi-response-permutation-procedures-mrpp"><i class="fa fa-check"></i><b>8.8</b> Multi-response permutation procedures (MRPP)<span></span></a></li>
-<li class="chapter" data-level="8.9" data-path="beta-diversity.html"><a href="beta-diversity.html#ordination"><i class="fa fa-check"></i><b>8.9</b> Ordination<span></span></a>
+<li><a href="beta-diversity.html#distance-dissimilarity-coefficients-bray-curtis-index" id="toc-distance-dissimilarity-coefficients-bray-curtis-index"><span class="toc-section-number">8.3</span> Distance (Dissimilarity) Coefficients: Bray-Curtis Index<span></span></a></li>
+<li><a href="beta-diversity.html#checking-the-homogeneity-condition" id="toc-checking-the-homogeneity-condition"><span class="toc-section-number">8.4</span> Checking the homogeneity condition<span></span></a></li>
+<li><a href="beta-diversity.html#permutational-multivariate-analysis-of-variance-permanova" id="toc-permutational-multivariate-analysis-of-variance-permanova"><span class="toc-section-number">8.5</span> Permutational Multivariate Analysis of Variance (PERMANOVA)<span></span></a></li>
+<li><a href="beta-diversity.html#mantel-test" id="toc-mantel-test"><span class="toc-section-number">8.6</span> Mantel Test<span></span></a></li>
+<li><a href="beta-diversity.html#analysis-of-similarity-anosim" id="toc-analysis-of-similarity-anosim"><span class="toc-section-number">8.7</span> Analysis of Similarity (ANOSIM)<span></span></a></li>
+<li><a href="beta-diversity.html#multi-response-permutation-procedures-mrpp" id="toc-multi-response-permutation-procedures-mrpp"><span class="toc-section-number">8.8</span> Multi-response permutation procedures (MRPP)<span></span></a></li>
+<li><a href="beta-diversity.html#ordination" id="toc-ordination"><span class="toc-section-number">8.9</span> Ordination<span></span></a>
 <ul>
-<li class="chapter" data-level="8.9.1" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>8.9.1</b> Principal Component Analysis (PCA)<span></span></a></li>
-<li class="chapter" data-level="8.9.2" data-path="beta-diversity.html"><a href="beta-diversity.html#principal-coordinate-analysis-pcoa"><i class="fa fa-check"></i><b>8.9.2</b> Principal Coordinate Analysis (PCoA)<span></span></a></li>
-<li class="chapter" data-level="8.9.3" data-path="beta-diversity.html"><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne"><i class="fa fa-check"></i><b>8.9.3</b> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
-<li class="chapter" data-level="8.9.4" data-path="beta-diversity.html"><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><i class="fa fa-check"></i><b>8.9.4</b> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
+<li><a href="beta-diversity.html#principal-component-analysis-pca" id="toc-principal-component-analysis-pca"><span class="toc-section-number">8.9.1</span> Principal Component Analysis (PCA)<span></span></a></li>
+<li><a href="beta-diversity.html#principal-coordinate-analysis-pcoa" id="toc-principal-coordinate-analysis-pcoa"><span class="toc-section-number">8.9.2</span> Principal Coordinate Analysis (PCoA)<span></span></a></li>
+<li><a href="beta-diversity.html#t-distributed-stochastic-neighbor-embedding-t-sne" id="toc-t-distributed-stochastic-neighbor-embedding-t-sne"><span class="toc-section-number">8.9.3</span> t-distributed stochastic neighbor embedding (t-SNE)<span></span></a></li>
+<li><a href="beta-diversity.html#uniform-manifold-approximation-and-projection-for-dimension-reduction-umap" id="toc-uniform-manifold-approximation-and-projection-for-dimension-reduction-umap"><span class="toc-section-number">8.9.4</span> Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.10" data-path="beta-diversity.html"><a href="beta-diversity.html#systematic-information-5"><i class="fa fa-check"></i><b>8.10</b> Systematic Information<span></span></a></li>
+<li><a href="beta-diversity.html#systematic-information-5" id="toc-systematic-information-5"><span class="toc-section-number">8.10</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="composition.html"><a href="composition.html"><i class="fa fa-check"></i><b>9</b> Composition<span></span></a>
+<li><a href="composition.html#composition" id="toc-composition"><span class="toc-section-number">9</span> Composition<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="composition.html"><a href="composition.html#loading-precessing-phyloseq-object"><i class="fa fa-check"></i><b>9.1</b> Loading &amp; precessing phyloseq object<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="composition.html"><a href="composition.html#xviz-plot_stacked_bar"><i class="fa fa-check"></i><b>9.2</b> XVIZ <code>plot_stacked_bar</code><span></span></a></li>
-<li class="chapter" data-level="9.3" data-path="composition.html"><a href="composition.html#stacked-barplot"><i class="fa fa-check"></i><b>9.3</b> Stacked barplot<span></span></a></li>
-<li class="chapter" data-level="9.4" data-path="composition.html"><a href="composition.html#heatmaps"><i class="fa fa-check"></i><b>9.4</b> Heatmaps<span></span></a></li>
-<li class="chapter" data-level="9.5" data-path="composition.html"><a href="composition.html#systematic-information-6"><i class="fa fa-check"></i><b>9.5</b> Systematic Information<span></span></a></li>
+<li><a href="composition.html#loading-precessing-phyloseq-object" id="toc-loading-precessing-phyloseq-object"><span class="toc-section-number">9.1</span> Loading &amp; precessing phyloseq object<span></span></a></li>
+<li><a href="composition.html#xviz-plot_stacked_bar" id="toc-xviz-plot_stacked_bar"><span class="toc-section-number">9.2</span> XVIZ <code>plot_stacked_bar</code><span></span></a></li>
+<li><a href="composition.html#stacked-barplot" id="toc-stacked-barplot"><span class="toc-section-number">9.3</span> Stacked barplot<span></span></a></li>
+<li><a href="composition.html#heatmaps" id="toc-heatmaps"><span class="toc-section-number">9.4</span> Heatmaps<span></span></a></li>
+<li><a href="composition.html#systematic-information-6" id="toc-systematic-information-6"><span class="toc-section-number">9.5</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="core-microbiota.html"><a href="core-microbiota.html"><i class="fa fa-check"></i><b>10</b> Core microbiota<span></span></a>
+<li><a href="core-microbiota.html#core-microbiota" id="toc-core-microbiota"><span class="toc-section-number">10</span> Core microbiota<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="core-microbiota.html"><a href="core-microbiota.html#core-microbiota-anlaysis"><i class="fa fa-check"></i><b>10.1</b> Core microbiota anlaysis<span></span></a></li>
-<li class="chapter" data-level="10.2" data-path="core-microbiota.html"><a href="core-microbiota.html#core-abundance-and-diversity"><i class="fa fa-check"></i><b>10.2</b> Core abundance and diversity<span></span></a></li>
-<li class="chapter" data-level="10.3" data-path="core-microbiota.html"><a href="core-microbiota.html#core-visualization"><i class="fa fa-check"></i><b>10.3</b> Core visualization<span></span></a>
+<li><a href="core-microbiota.html#core-microbiota-anlaysis" id="toc-core-microbiota-anlaysis"><span class="toc-section-number">10.1</span> Core microbiota anlaysis<span></span></a></li>
+<li><a href="core-microbiota.html#core-abundance-and-diversity" id="toc-core-abundance-and-diversity"><span class="toc-section-number">10.2</span> Core abundance and diversity<span></span></a></li>
+<li><a href="core-microbiota.html#core-visualization" id="toc-core-visualization"><span class="toc-section-number">10.3</span> Core visualization<span></span></a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="core-microbiota.html"><a href="core-microbiota.html#heatmap"><i class="fa fa-check"></i><b>10.3.1</b> heatmap<span></span></a></li>
-<li class="chapter" data-level="10.3.2" data-path="core-microbiota.html"><a href="core-microbiota.html#linechart"><i class="fa fa-check"></i><b>10.3.2</b> linechart<span></span></a></li>
+<li><a href="core-microbiota.html#heatmap" id="toc-heatmap"><span class="toc-section-number">10.3.1</span> heatmap<span></span></a></li>
+<li><a href="core-microbiota.html#linechart" id="toc-linechart"><span class="toc-section-number">10.3.2</span> linechart<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="core-microbiota.html"><a href="core-microbiota.html#systematic-information-7"><i class="fa fa-check"></i><b>10.4</b> Systematic Information<span></span></a></li>
+<li><a href="core-microbiota.html#systematic-information-7" id="toc-systematic-information-7"><span class="toc-section-number">10.4</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="differential-analysis.html"><a href="differential-analysis.html"><i class="fa fa-check"></i><b>11</b> Differential analysis<span></span></a>
+<li><a href="differential-analysis.html#differential-analysis" id="toc-differential-analysis"><span class="toc-section-number">11</span> Differential analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="differential-analysis.html"><a href="differential-analysis.html#amplicon-sequencing-microbial-data-16s"><i class="fa fa-check"></i><b>11.1</b> Amplicon sequencing microbial data (16s)<span></span></a>
+<li><a href="differential-analysis.html#amplicon-sequencing-microbial-data-16s" id="toc-amplicon-sequencing-microbial-data-16s"><span class="toc-section-number">11.1</span> Amplicon sequencing microbial data (16s)<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="differential-analysis.html"><a href="differential-analysis.html#aldex2"><i class="fa fa-check"></i><b>11.1.1</b> ALDEx2<span></span></a></li>
-<li class="chapter" data-level="11.1.2" data-path="differential-analysis.html"><a href="differential-analysis.html#limma_voom"><i class="fa fa-check"></i><b>11.1.2</b> limma_voom<span></span></a></li>
-<li class="chapter" data-level="11.1.3" data-path="differential-analysis.html"><a href="differential-analysis.html#mbzinb"><i class="fa fa-check"></i><b>11.1.3</b> mbzinb<span></span></a></li>
-<li class="chapter" data-level="11.1.4" data-path="differential-analysis.html"><a href="differential-analysis.html#omnibus"><i class="fa fa-check"></i><b>11.1.4</b> omnibus<span></span></a></li>
-<li class="chapter" data-level="11.1.5" data-path="differential-analysis.html"><a href="differential-analysis.html#raida"><i class="fa fa-check"></i><b>11.1.5</b> RAIDA<span></span></a></li>
-<li class="chapter" data-level="11.1.6" data-path="differential-analysis.html"><a href="differential-analysis.html#wilcoxon-rank-sum-and-signed-rank-tests"><i class="fa fa-check"></i><b>11.1.6</b> Wilcoxon Rank Sum and Signed Rank Tests<span></span></a></li>
-<li class="chapter" data-level="11.1.7" data-path="differential-analysis.html"><a href="differential-analysis.html#liner-discriminant-analysis-lda-effect-size-lefse"><i class="fa fa-check"></i><b>11.1.7</b> Liner discriminant analysis (LDA) effect size (LEfSe)<span></span></a></li>
-<li class="chapter" data-level="11.1.8" data-path="differential-analysis.html"><a href="differential-analysis.html#t-test"><i class="fa fa-check"></i><b>11.1.8</b> t-test<span></span></a></li>
-<li class="chapter" data-level="11.1.9" data-path="differential-analysis.html"><a href="differential-analysis.html#metagenomeseq"><i class="fa fa-check"></i><b>11.1.9</b> MetagenomeSeq<span></span></a></li>
-<li class="chapter" data-level="11.1.10" data-path="differential-analysis.html"><a href="differential-analysis.html#deseq2"><i class="fa fa-check"></i><b>11.1.10</b> DESeq2<span></span></a></li>
-<li class="chapter" data-level="11.1.11" data-path="differential-analysis.html"><a href="differential-analysis.html#edger"><i class="fa fa-check"></i><b>11.1.11</b> EdgeR<span></span></a></li>
-<li class="chapter" data-level="11.1.12" data-path="differential-analysis.html"><a href="differential-analysis.html#ancom"><i class="fa fa-check"></i><b>11.1.12</b> ANCOM<span></span></a></li>
-<li class="chapter" data-level="11.1.13" data-path="differential-analysis.html"><a href="differential-analysis.html#corncob"><i class="fa fa-check"></i><b>11.1.13</b> Corncob<span></span></a></li>
-<li class="chapter" data-level="11.1.14" data-path="differential-analysis.html"><a href="differential-analysis.html#maaslin2-microbiome-multivariable-association-with-linear-models"><i class="fa fa-check"></i><b>11.1.14</b> Maaslin2 (Microbiome Multivariable Association with Linear Models)<span></span></a></li>
+<li><a href="differential-analysis.html#aldex2" id="toc-aldex2"><span class="toc-section-number">11.1.1</span> ALDEx2<span></span></a></li>
+<li><a href="differential-analysis.html#limma_voom" id="toc-limma_voom"><span class="toc-section-number">11.1.2</span> limma_voom<span></span></a></li>
+<li><a href="differential-analysis.html#mbzinb" id="toc-mbzinb"><span class="toc-section-number">11.1.3</span> mbzinb<span></span></a></li>
+<li><a href="differential-analysis.html#omnibus" id="toc-omnibus"><span class="toc-section-number">11.1.4</span> omnibus<span></span></a></li>
+<li><a href="differential-analysis.html#raida" id="toc-raida"><span class="toc-section-number">11.1.5</span> RAIDA<span></span></a></li>
+<li><a href="differential-analysis.html#wilcoxon-rank-sum-and-signed-rank-tests" id="toc-wilcoxon-rank-sum-and-signed-rank-tests"><span class="toc-section-number">11.1.6</span> Wilcoxon Rank Sum and Signed Rank Tests<span></span></a></li>
+<li><a href="differential-analysis.html#liner-discriminant-analysis-lda-effect-size-lefse" id="toc-liner-discriminant-analysis-lda-effect-size-lefse"><span class="toc-section-number">11.1.7</span> Liner discriminant analysis (LDA) effect size (LEfSe)<span></span></a></li>
+<li><a href="differential-analysis.html#t-test" id="toc-t-test"><span class="toc-section-number">11.1.8</span> t-test<span></span></a></li>
+<li><a href="differential-analysis.html#metagenomeseq" id="toc-metagenomeseq"><span class="toc-section-number">11.1.9</span> MetagenomeSeq<span></span></a></li>
+<li><a href="differential-analysis.html#deseq2" id="toc-deseq2"><span class="toc-section-number">11.1.10</span> DESeq2<span></span></a></li>
+<li><a href="differential-analysis.html#edger" id="toc-edger"><span class="toc-section-number">11.1.11</span> EdgeR<span></span></a></li>
+<li><a href="differential-analysis.html#ancom" id="toc-ancom"><span class="toc-section-number">11.1.12</span> ANCOM<span></span></a></li>
+<li><a href="differential-analysis.html#corncob" id="toc-corncob"><span class="toc-section-number">11.1.13</span> Corncob<span></span></a></li>
+<li><a href="differential-analysis.html#maaslin2-microbiome-multivariable-association-with-linear-models" id="toc-maaslin2-microbiome-multivariable-association-with-linear-models"><span class="toc-section-number">11.1.14</span> Maaslin2 (Microbiome Multivariable Association with Linear Models)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="differential-analysis.html"><a href="differential-analysis.html#metagenomic-sequencing-microbial-data-metaphlan23"><i class="fa fa-check"></i><b>11.2</b> Metagenomic sequencing microbial data (metaphlan2/3)<span></span></a>
+<li><a href="differential-analysis.html#metagenomic-sequencing-microbial-data-metaphlan23" id="toc-metagenomic-sequencing-microbial-data-metaphlan23"><span class="toc-section-number">11.2</span> Metagenomic sequencing microbial data (metaphlan2/3)<span></span></a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="differential-analysis.html"><a href="differential-analysis.html#limma_voom-1"><i class="fa fa-check"></i><b>11.2.1</b> limma_voom<span></span></a></li>
-<li class="chapter" data-level="11.2.2" data-path="differential-analysis.html"><a href="differential-analysis.html#wilcoxon-rank-sum-and-signed-rank-tests-1"><i class="fa fa-check"></i><b>11.2.2</b> Wilcoxon Rank Sum and Signed Rank Tests<span></span></a></li>
-<li class="chapter" data-level="11.2.3" data-path="differential-analysis.html"><a href="differential-analysis.html#liner-discriminant-analysis-lda-effect-size-lefse-1"><i class="fa fa-check"></i><b>11.2.3</b> Liner discriminant analysis (LDA) effect size (LEfSe)<span></span></a></li>
-<li class="chapter" data-level="11.2.4" data-path="differential-analysis.html"><a href="differential-analysis.html#t-test-1"><i class="fa fa-check"></i><b>11.2.4</b> t-test<span></span></a></li>
-<li class="chapter" data-level="11.2.5" data-path="differential-analysis.html"><a href="differential-analysis.html#maaslin2-microbiome-multivariable-association-with-linear-models-1"><i class="fa fa-check"></i><b>11.2.5</b> Maaslin2 (Microbiome Multivariable Association with Linear Models)<span></span></a></li>
+<li><a href="differential-analysis.html#wilcoxon-rank-sum-and-signed-rank-tests-1" id="toc-wilcoxon-rank-sum-and-signed-rank-tests-1"><span class="toc-section-number">11.2.1</span> Wilcoxon Rank Sum and Signed Rank Tests<span></span></a></li>
+<li><a href="differential-analysis.html#liner-discriminant-analysis-lda-effect-size-lefse-1" id="toc-liner-discriminant-analysis-lda-effect-size-lefse-1"><span class="toc-section-number">11.2.2</span> Liner discriminant analysis (LDA) effect size (LEfSe)<span></span></a></li>
+<li><a href="differential-analysis.html#t-test-1" id="toc-t-test-1"><span class="toc-section-number">11.2.3</span> t-test<span></span></a></li>
+<li><a href="differential-analysis.html#maaslin2-microbiome-multivariable-association-with-linear-models-1" id="toc-maaslin2-microbiome-multivariable-association-with-linear-models-1"><span class="toc-section-number">11.2.4</span> Maaslin2 (Microbiome Multivariable Association with Linear Models)<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="differential-analysis.html"><a href="differential-analysis.html#visualization-4"><i class="fa fa-check"></i><b>11.3</b> Visualization<span></span></a>
+<li><a href="differential-analysis.html#visualization-4" id="toc-visualization-4"><span class="toc-section-number">11.3</span> Visualization<span></span></a>
 <ul>
-<li class="chapter" data-level="11.3.1" data-path="differential-analysis.html"><a href="differential-analysis.html#volcano-plot"><i class="fa fa-check"></i><b>11.3.1</b> Volcano plot<span></span></a></li>
-<li class="chapter" data-level="11.3.2" data-path="differential-analysis.html"><a href="differential-analysis.html#barplot-in-lefse"><i class="fa fa-check"></i><b>11.3.2</b> barplot in lefse<span></span></a></li>
+<li><a href="differential-analysis.html#volcano-plot" id="toc-volcano-plot"><span class="toc-section-number">11.3.1</span> Volcano plot<span></span></a></li>
+<li><a href="differential-analysis.html#barplot-in-lefse" id="toc-barplot-in-lefse"><span class="toc-section-number">11.3.2</span> barplot in lefse<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="differential-analysis.html"><a href="differential-analysis.html#dominant-taxa"><i class="fa fa-check"></i><b>11.4</b> Dominant taxa<span></span></a></li>
-<li class="chapter" data-level="11.5" data-path="differential-analysis.html"><a href="differential-analysis.html#multiple-differential-analysis-by-one-function"><i class="fa fa-check"></i><b>11.5</b> Multiple differential analysis by one function<span></span></a></li>
-<li class="chapter" data-level="11.6" data-path="differential-analysis.html"><a href="differential-analysis.html#comparing-outputs-from-xmas2-lefse-conda-and-lefse-galaxy-using-the-same-in-house-datasets-amplicon_pszeybel_gut"><i class="fa fa-check"></i><b>11.6</b> Comparing outputs from XMAS2, lefse-conda, and lefse-galaxy using the same in-house datasets (amplicon_ps|Zeybel_Gut)<span></span></a>
+<li><a href="differential-analysis.html#dominant-taxa" id="toc-dominant-taxa"><span class="toc-section-number">11.4</span> Dominant taxa<span></span></a></li>
+<li><a href="differential-analysis.html#multiple-differential-analysis-by-one-function" id="toc-multiple-differential-analysis-by-one-function"><span class="toc-section-number">11.5</span> Multiple differential analysis by one function<span></span></a></li>
+<li><a href="differential-analysis.html#comparing-outputs-from-xmas2-lefse-conda-and-lefse-galaxy-using-the-same-in-house-datasets-amplicon_pszeybel_gut" id="toc-comparing-outputs-from-xmas2-lefse-conda-and-lefse-galaxy-using-the-same-in-house-datasets-amplicon_pszeybel_gut"><span class="toc-section-number">11.6</span> Comparing outputs from XMAS2, lefse-conda, and lefse-galaxy using the same in-house datasets (amplicon_ps|Zeybel_Gut)<span></span></a>
 <ul>
-<li class="chapter" data-level="11.6.1" data-path="differential-analysis.html"><a href="differential-analysis.html#introduction-1"><i class="fa fa-check"></i><b>11.6.1</b> Introduction<span></span></a></li>
-<li class="chapter" data-level="11.6.2" data-path="differential-analysis.html"><a href="differential-analysis.html#dataset"><i class="fa fa-check"></i><b>11.6.2</b> Dataset<span></span></a></li>
-<li class="chapter" data-level="11.6.3" data-path="differential-analysis.html"><a href="differential-analysis.html#run-lefse-independently-with-the-three-applications-r-conda-galaxy"><i class="fa fa-check"></i><b>11.6.3</b> Run lefse independently with the three applications (R, conda, galaxy)<span></span></a></li>
-<li class="chapter" data-level="11.6.4" data-path="differential-analysis.html"><a href="differential-analysis.html#comparison-of-lefse-conda-with-xmas2"><i class="fa fa-check"></i><b>11.6.4</b> Comparison of lefse-conda with XMAS2<span></span></a></li>
+<li><a href="differential-analysis.html#introduction-1" id="toc-introduction-1"><span class="toc-section-number">11.6.1</span> Introduction<span></span></a></li>
+<li><a href="differential-analysis.html#dataset" id="toc-dataset"><span class="toc-section-number">11.6.2</span> Dataset<span></span></a></li>
+<li><a href="differential-analysis.html#run-lefse-independently-with-the-three-applications-r-conda-galaxy" id="toc-run-lefse-independently-with-the-three-applications-r-conda-galaxy"><span class="toc-section-number">11.6.3</span> Run lefse independently with the three applications (R, conda, galaxy)<span></span></a></li>
+<li><a href="differential-analysis.html#comparison-of-lefse-conda-with-xmas2" id="toc-comparison-of-lefse-conda-with-xmas2"><span class="toc-section-number">11.6.4</span> Comparison of lefse-conda with XMAS2<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11.7" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-8"><i class="fa fa-check"></i><b>11.7</b> Systematic Information<span></span></a></li>
+<li><a href="differential-analysis.html#systematic-information-8" id="toc-systematic-information-8"><span class="toc-section-number">11.7</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="visualization-5.html"><a href="visualization-5.html"><i class="fa fa-check"></i><b>12</b> Visualization<span></span></a>
+<li><a href="visualization-5.html#visualization-5" id="toc-visualization-5"><span class="toc-section-number">12</span> Visualization<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="visualization-5.html"><a href="visualization-5.html#plot_boxplot"><i class="fa fa-check"></i><b>12.1</b> plot_boxplot<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="visualization-5.html"><a href="visualization-5.html#plot_barplot"><i class="fa fa-check"></i><b>12.2</b> plot_barplot<span></span></a></li>
-<li class="chapter" data-level="12.3" data-path="visualization-5.html"><a href="visualization-5.html#plot_dotplot"><i class="fa fa-check"></i><b>12.3</b> plot_dotplot<span></span></a></li>
-<li class="chapter" data-level="12.4" data-path="visualization-5.html"><a href="visualization-5.html#plot_correlation_boxplot"><i class="fa fa-check"></i><b>12.4</b> plot_correlation_boxplot<span></span></a></li>
-<li class="chapter" data-level="12.5" data-path="visualization-5.html"><a href="visualization-5.html#plot_correlation_density"><i class="fa fa-check"></i><b>12.5</b> plot_correlation_density<span></span></a></li>
-<li class="chapter" data-level="12.6" data-path="visualization-5.html"><a href="visualization-5.html#plot_ordination"><i class="fa fa-check"></i><b>12.6</b> plot_Ordination<span></span></a></li>
-<li class="chapter" data-level="12.7" data-path="visualization-5.html"><a href="visualization-5.html#plot_ggbiplot"><i class="fa fa-check"></i><b>12.7</b> plot_ggbiplot<span></span></a></li>
-<li class="chapter" data-level="12.8" data-path="visualization-5.html"><a href="visualization-5.html#plot_corrplot"><i class="fa fa-check"></i><b>12.8</b> plot_corrplot<span></span></a></li>
-<li class="chapter" data-level="12.9" data-path="visualization-5.html"><a href="visualization-5.html#plot_2da_venn"><i class="fa fa-check"></i><b>12.9</b> plot_2DA_venn<span></span></a></li>
-<li class="chapter" data-level="12.10" data-path="visualization-5.html"><a href="visualization-5.html#plot-the-da-results-from-the-significant-taxa-by-double-barplot"><i class="fa fa-check"></i><b>12.10</b> plot the DA results from the significant taxa by double barplot<span></span></a></li>
-<li class="chapter" data-level="12.11" data-path="visualization-5.html"><a href="visualization-5.html#plot_stacked_bar_xivz"><i class="fa fa-check"></i><b>12.11</b> plot_stacked_bar_XIVZ<span></span></a></li>
-<li class="chapter" data-level="12.12" data-path="visualization-5.html"><a href="visualization-5.html#plot_stackbarplot"><i class="fa fa-check"></i><b>12.12</b> plot_StackBarPlot<span></span></a></li>
-<li class="chapter" data-level="12.13" data-path="visualization-5.html"><a href="visualization-5.html#color-palettes"><i class="fa fa-check"></i><b>12.13</b> Color Palettes<span></span></a>
+<li><a href="visualization-5.html#plot_boxplot" id="toc-plot_boxplot"><span class="toc-section-number">12.1</span> plot_boxplot<span></span></a></li>
+<li><a href="visualization-5.html#plot_barplot" id="toc-plot_barplot"><span class="toc-section-number">12.2</span> plot_barplot<span></span></a></li>
+<li><a href="visualization-5.html#plot_dotplot" id="toc-plot_dotplot"><span class="toc-section-number">12.3</span> plot_dotplot<span></span></a></li>
+<li><a href="visualization-5.html#plot_correlation_boxplot" id="toc-plot_correlation_boxplot"><span class="toc-section-number">12.4</span> plot_correlation_boxplot<span></span></a></li>
+<li><a href="visualization-5.html#plot_correlation_density" id="toc-plot_correlation_density"><span class="toc-section-number">12.5</span> plot_correlation_density<span></span></a></li>
+<li><a href="visualization-5.html#plot_ordination" id="toc-plot_ordination"><span class="toc-section-number">12.6</span> plot_Ordination<span></span></a></li>
+<li><a href="visualization-5.html#plot_ggbiplot" id="toc-plot_ggbiplot"><span class="toc-section-number">12.7</span> plot_ggbiplot<span></span></a></li>
+<li><a href="visualization-5.html#plot_corrplot" id="toc-plot_corrplot"><span class="toc-section-number">12.8</span> plot_corrplot<span></span></a></li>
+<li><a href="visualization-5.html#plot_2da_venn" id="toc-plot_2da_venn"><span class="toc-section-number">12.9</span> plot_2DA_venn<span></span></a></li>
+<li><a href="visualization-5.html#plot-the-da-results-from-the-significant-taxa-by-double-barplot" id="toc-plot-the-da-results-from-the-significant-taxa-by-double-barplot"><span class="toc-section-number">12.10</span> plot the DA results from the significant taxa by double barplot<span></span></a></li>
+<li><a href="visualization-5.html#plot_stacked_bar_xivz" id="toc-plot_stacked_bar_xivz"><span class="toc-section-number">12.11</span> plot_stacked_bar_XIVZ<span></span></a></li>
+<li><a href="visualization-5.html#plot_stackbarplot" id="toc-plot_stackbarplot"><span class="toc-section-number">12.12</span> plot_StackBarPlot<span></span></a></li>
+<li><a href="visualization-5.html#color-palettes" id="toc-color-palettes"><span class="toc-section-number">12.13</span> Color Palettes<span></span></a>
 <ul>
-<li class="chapter" data-level="12.13.1" data-path="visualization-5.html"><a href="visualization-5.html#wes-anderson-palettes"><i class="fa fa-check"></i><b>12.13.1</b> Wes Anderson Palettes<span></span></a></li>
+<li><a href="visualization-5.html#wes-anderson-palettes" id="toc-wes-anderson-palettes"><span class="toc-section-number">12.13.1</span> Wes Anderson Palettes<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12.14" data-path="visualization-5.html"><a href="visualization-5.html#systematic-information-9"><i class="fa fa-check"></i><b>12.14</b> Systematic Information<span></span></a></li>
+<li><a href="visualization-5.html#systematic-information-9" id="toc-systematic-information-9"><span class="toc-section-number">12.14</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="association-analysis.html"><a href="association-analysis.html"><i class="fa fa-check"></i><b>13</b> Association Analysis<span></span></a>
+<li><a href="association-analysis.html#association-analysis" id="toc-association-analysis"><span class="toc-section-number">13</span> Association Analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="association-analysis.html"><a href="association-analysis.html#loading-and-showing-phyloseq-object"><i class="fa fa-check"></i><b>13.1</b> Loading and showing phyloseq object<span></span></a></li>
-<li class="chapter" data-level="13.2" data-path="association-analysis.html"><a href="association-analysis.html#spearman-correlation-analysis"><i class="fa fa-check"></i><b>13.2</b> Spearman Correlation Analysis<span></span></a></li>
-<li class="chapter" data-level="13.3" data-path="association-analysis.html"><a href="association-analysis.html#partial-correlation-analysis"><i class="fa fa-check"></i><b>13.3</b> Partial Correlation Analysis<span></span></a></li>
-<li class="chapter" data-level="13.4" data-path="association-analysis.html"><a href="association-analysis.html#systematic-information-10"><i class="fa fa-check"></i><b>13.4</b> Systematic Information<span></span></a></li>
+<li><a href="association-analysis.html#loading-and-showing-phyloseq-object" id="toc-loading-and-showing-phyloseq-object"><span class="toc-section-number">13.1</span> Loading and showing phyloseq object<span></span></a></li>
+<li><a href="association-analysis.html#spearman-correlation-analysis" id="toc-spearman-correlation-analysis"><span class="toc-section-number">13.2</span> Spearman Correlation Analysis<span></span></a></li>
+<li><a href="association-analysis.html#partial-correlation-analysis" id="toc-partial-correlation-analysis"><span class="toc-section-number">13.3</span> Partial Correlation Analysis<span></span></a></li>
+<li><a href="association-analysis.html#systematic-information-10" id="toc-systematic-information-10"><span class="toc-section-number">13.4</span> Systematic Information<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html"><i class="fa fa-check"></i><b>14</b> Principals of Differential Analysis methods<span></span></a>
+<li><a href="principals-of-differential-analysis-methods.html#principals-of-differential-analysis-methods" id="toc-principals-of-differential-analysis-methods"><span class="toc-section-number">14</span> Principals of Differential Analysis methods<span></span></a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#aldex2-1"><i class="fa fa-check"></i><b>14.1</b> ALDEx2<span></span></a>
+<li><a href="principals-of-differential-analysis-methods.html#aldex2-1" id="toc-aldex2-1"><span class="toc-section-number">14.1</span> ALDEx2<span></span></a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#vignette-1"><i class="fa fa-check"></i><b>14.1.1</b> Vignette<span></span></a></li>
-<li class="chapter" data-level="14.1.2" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#input-data-type"><i class="fa fa-check"></i><b>14.1.2</b> Input Data Type<span></span></a></li>
-<li class="chapter" data-level="14.1.3" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#input-key-arguments"><i class="fa fa-check"></i><b>14.1.3</b> Input Key Arguments<span></span></a></li>
-<li class="chapter" data-level="14.1.4" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#procedures"><i class="fa fa-check"></i><b>14.1.4</b> Procedures<span></span></a></li>
-<li class="chapter" data-level="14.1.5" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#key-output"><i class="fa fa-check"></i><b>14.1.5</b> Key output<span></span></a></li>
-<li class="chapter" data-level="14.1.6" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#original-syntax"><i class="fa fa-check"></i><b>14.1.6</b> Original Syntax<span></span></a></li>
-<li class="chapter" data-level="14.1.7" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#xmas2-syntax"><i class="fa fa-check"></i><b>14.1.7</b> XMAS2 Syntax<span></span></a></li>
-<li class="chapter" data-level="14.1.8" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#notes"><i class="fa fa-check"></i><b>14.1.8</b> Notes<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-1" id="toc-vignette-1"><span class="toc-section-number">14.1.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type" id="toc-input-data-type"><span class="toc-section-number">14.1.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments" id="toc-input-key-arguments"><span class="toc-section-number">14.1.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures" id="toc-procedures"><span class="toc-section-number">14.1.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output" id="toc-key-output"><span class="toc-section-number">14.1.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax" id="toc-original-syntax"><span class="toc-section-number">14.1.6</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax" id="toc-xmas2-syntax"><span class="toc-section-number">14.1.7</span> XMAS2 Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#notes" id="toc-notes"><span class="toc-section-number">14.1.8</span> Notes<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#ancom-ii"><i class="fa fa-check"></i><b>14.2</b> ANCOM-II<span></span></a></li>
-<li class="chapter" data-level="14.3" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#corncob-1"><i class="fa fa-check"></i><b>14.3</b> corncob<span></span></a></li>
-<li class="chapter" data-level="14.4" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#deseq2-1"><i class="fa fa-check"></i><b>14.4</b> DESeq2<span></span></a></li>
-<li class="chapter" data-level="14.5" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#edger-1"><i class="fa fa-check"></i><b>14.5</b> edgeR<span></span></a></li>
-<li class="chapter" data-level="14.6" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#lefse"><i class="fa fa-check"></i><b>14.6</b> LEfSe<span></span></a></li>
-<li class="chapter" data-level="14.7" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#limma-voom"><i class="fa fa-check"></i><b>14.7</b> limma voom<span></span></a></li>
-<li class="chapter" data-level="14.8" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#maaslin2"><i class="fa fa-check"></i><b>14.8</b> MaAsLin2<span></span></a></li>
-<li class="chapter" data-level="14.9" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#metagenomeseq-1"><i class="fa fa-check"></i><b>14.9</b> metagenomeSeq<span></span></a></li>
-<li class="chapter" data-level="14.10" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#t-test-2"><i class="fa fa-check"></i><b>14.10</b> t-test<span></span></a></li>
-<li class="chapter" data-level="14.11" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#wilcoxon-test"><i class="fa fa-check"></i><b>14.11</b> Wilcoxon test<span></span></a></li>
-<li class="chapter" data-level="14.12" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#raida-1"><i class="fa fa-check"></i><b>14.12</b> RAIDA<span></span></a></li>
-<li class="chapter" data-level="14.13" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#summary"><i class="fa fa-check"></i><b>14.13</b> Summary<span></span></a></li>
-<li class="chapter" data-level="14.14" data-path="principals-of-differential-analysis-methods.html"><a href="principals-of-differential-analysis-methods.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>14.14</b> Advantages and disadvantages<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>15</b> Examples<span></span></a>
+<li><a href="principals-of-differential-analysis-methods.html#ancom-ii" id="toc-ancom-ii"><span class="toc-section-number">14.2</span> ANCOM-II<span></span></a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="examples.html"><a href="examples.html#workflow-description"><i class="fa fa-check"></i><b>15.1</b> Workflow description<span></span></a></li>
-<li class="chapter" data-level="15.2" data-path="examples.html"><a href="examples.html#amplicon-sequencing-16s"><i class="fa fa-check"></i><b>15.2</b> Amplicon sequencing (16s)<span></span></a>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-1" id="toc-input-data-type-1"><span class="toc-section-number">14.2.1</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-1" id="toc-input-key-arguments-1"><span class="toc-section-number">14.2.2</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-1" id="toc-procedures-1"><span class="toc-section-number">14.2.3</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-1" id="toc-key-output-1"><span class="toc-section-number">14.2.4</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-1" id="toc-original-syntax-1"><span class="toc-section-number">14.2.5</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-1" id="toc-xmas2-syntax-1"><span class="toc-section-number">14.2.6</span> XMAS2 Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#notes-1" id="toc-notes-1"><span class="toc-section-number">14.2.7</span> Notes<span></span></a></li>
+</ul></li>
+<li><a href="principals-of-differential-analysis-methods.html#corncob-1" id="toc-corncob-1"><span class="toc-section-number">14.3</span> corncob<span></span></a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="examples.html"><a href="examples.html#converting-inputs-into-phyloseq-class-object"><i class="fa fa-check"></i><b>15.2.1</b> Converting inputs into phyloseq-class object<span></span></a></li>
-<li class="chapter" data-level="15.2.2" data-path="examples.html"><a href="examples.html#quality-control"><i class="fa fa-check"></i><b>15.2.2</b> Quality Control<span></span></a></li>
-<li class="chapter" data-level="15.2.3" data-path="examples.html"><a href="examples.html#data-processing"><i class="fa fa-check"></i><b>15.2.3</b> Data processing<span></span></a></li>
-<li class="chapter" data-level="15.2.4" data-path="examples.html"><a href="examples.html#diversity-analysis"><i class="fa fa-check"></i><b>15.2.4</b> Diversity analysis<span></span></a></li>
-<li class="chapter" data-level="15.2.5" data-path="examples.html"><a href="examples.html#permanova-ordination"><i class="fa fa-check"></i><b>15.2.5</b> PERMANOVA + Ordination<span></span></a></li>
-<li class="chapter" data-level="15.2.6" data-path="examples.html"><a href="examples.html#microbial-composition"><i class="fa fa-check"></i><b>15.2.6</b> Microbial composition<span></span></a></li>
-<li class="chapter" data-level="15.2.7" data-path="examples.html"><a href="examples.html#differential-analysis-1"><i class="fa fa-check"></i><b>15.2.7</b> Differential Analysis<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-2" id="toc-vignette-2"><span class="toc-section-number">14.3.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-2" id="toc-input-data-type-2"><span class="toc-section-number">14.3.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-2" id="toc-input-key-arguments-2"><span class="toc-section-number">14.3.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-2" id="toc-procedures-2"><span class="toc-section-number">14.3.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-2" id="toc-key-output-2"><span class="toc-section-number">14.3.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-2" id="toc-original-syntax-2"><span class="toc-section-number">14.3.6</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-2" id="toc-xmas2-syntax-2"><span class="toc-section-number">14.3.7</span> XMAS2 Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#notes-2" id="toc-notes-2"><span class="toc-section-number">14.3.8</span> Notes<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="examples.html"><a href="examples.html#metagenomics-mgs"><i class="fa fa-check"></i><b>15.3</b> Metagenomics (MGS)<span></span></a>
+<li><a href="principals-of-differential-analysis-methods.html#deseq2-1" id="toc-deseq2-1"><span class="toc-section-number">14.4</span> DESeq2<span></span></a>
 <ul>
-<li class="chapter" data-level="15.3.1" data-path="examples.html"><a href="examples.html#converting-inputs-into-phyloseq-class-object-1"><i class="fa fa-check"></i><b>15.3.1</b> Converting inputs into phyloseq-class object<span></span></a></li>
-<li class="chapter" data-level="15.3.2" data-path="examples.html"><a href="examples.html#quality-control-1"><i class="fa fa-check"></i><b>15.3.2</b> Quality Control<span></span></a></li>
-<li class="chapter" data-level="15.3.3" data-path="examples.html"><a href="examples.html#data-processing-1"><i class="fa fa-check"></i><b>15.3.3</b> Data processing<span></span></a></li>
-<li class="chapter" data-level="15.3.4" data-path="examples.html"><a href="examples.html#diversity-analysis-1"><i class="fa fa-check"></i><b>15.3.4</b> Diversity analysis<span></span></a></li>
-<li class="chapter" data-level="15.3.5" data-path="examples.html"><a href="examples.html#permanova-ordination-1"><i class="fa fa-check"></i><b>15.3.5</b> PERMANOVA + Ordination<span></span></a></li>
-<li class="chapter" data-level="15.3.6" data-path="examples.html"><a href="examples.html#microbial-composition-1"><i class="fa fa-check"></i><b>15.3.6</b> Microbial composition<span></span></a></li>
-<li class="chapter" data-level="15.3.7" data-path="examples.html"><a href="examples.html#differential-analysis-2"><i class="fa fa-check"></i><b>15.3.7</b> Differential Analysis<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-3" id="toc-vignette-3"><span class="toc-section-number">14.4.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-3" id="toc-input-data-type-3"><span class="toc-section-number">14.4.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-3" id="toc-input-key-arguments-3"><span class="toc-section-number">14.4.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-3" id="toc-procedures-3"><span class="toc-section-number">14.4.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-3" id="toc-key-output-3"><span class="toc-section-number">14.4.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-3" id="toc-original-syntax-3"><span class="toc-section-number">14.4.6</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-3" id="toc-xmas2-syntax-3"><span class="toc-section-number">14.4.7</span> XMAS2 Syntax<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="examples.html"><a href="examples.html#systematic-information-11"><i class="fa fa-check"></i><b>15.4</b> Systematic Information<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#edger-1" id="toc-edger-1"><span class="toc-section-number">14.5</span> edgeR<span></span></a>
+<ul>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-4" id="toc-vignette-4"><span class="toc-section-number">14.5.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-4" id="toc-input-data-type-4"><span class="toc-section-number">14.5.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-4" id="toc-input-key-arguments-4"><span class="toc-section-number">14.5.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-4" id="toc-procedures-4"><span class="toc-section-number">14.5.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-4" id="toc-key-output-4"><span class="toc-section-number">14.5.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-4" id="toc-original-syntax-4"><span class="toc-section-number">14.5.6</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-4" id="toc-xmas2-syntax-4"><span class="toc-section-number">14.5.7</span> XMAS2 Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#notes-3" id="toc-notes-3"><span class="toc-section-number">14.5.8</span> Notes<span></span></a></li>
 </ul></li>
-<li><a href="references.html#references">References<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#lefse" id="toc-lefse"><span class="toc-section-number">14.6</span> LEfSe<span></span></a>
+<ul>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-5" id="toc-vignette-5"><span class="toc-section-number">14.6.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-5" id="toc-input-data-type-5"><span class="toc-section-number">14.6.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-5" id="toc-input-key-arguments-5"><span class="toc-section-number">14.6.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-5" id="toc-procedures-5"><span class="toc-section-number">14.6.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-5" id="toc-key-output-5"><span class="toc-section-number">14.6.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-5" id="toc-original-syntax-5"><span class="toc-section-number">14.6.6</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-5" id="toc-xmas2-syntax-5"><span class="toc-section-number">14.6.7</span> XMAS2 Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#notes-4" id="toc-notes-4"><span class="toc-section-number">14.6.8</span> Notes<span></span></a></li>
+</ul></li>
+<li><a href="principals-of-differential-analysis-methods.html#limma-voom" id="toc-limma-voom"><span class="toc-section-number">14.7</span> limma voom<span></span></a>
+<ul>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-6" id="toc-vignette-6"><span class="toc-section-number">14.7.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-6" id="toc-input-data-type-6"><span class="toc-section-number">14.7.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-6" id="toc-input-key-arguments-6"><span class="toc-section-number">14.7.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-6" id="toc-procedures-6"><span class="toc-section-number">14.7.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-6" id="toc-key-output-6"><span class="toc-section-number">14.7.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-6" id="toc-original-syntax-6"><span class="toc-section-number">14.7.6</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-6" id="toc-xmas2-syntax-6"><span class="toc-section-number">14.7.7</span> XMAS2 Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#notes-5" id="toc-notes-5"><span class="toc-section-number">14.7.8</span> Notes<span></span></a></li>
+</ul></li>
+<li><a href="principals-of-differential-analysis-methods.html#maaslin2" id="toc-maaslin2"><span class="toc-section-number">14.8</span> MaAsLin2<span></span></a>
+<ul>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-7" id="toc-vignette-7"><span class="toc-section-number">14.8.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-7" id="toc-input-data-type-7"><span class="toc-section-number">14.8.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-7" id="toc-input-key-arguments-7"><span class="toc-section-number">14.8.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-7" id="toc-procedures-7"><span class="toc-section-number">14.8.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-7" id="toc-key-output-7"><span class="toc-section-number">14.8.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-7" id="toc-original-syntax-7"><span class="toc-section-number">14.8.6</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-7" id="toc-xmas2-syntax-7"><span class="toc-section-number">14.8.7</span> XMAS2 Syntax<span></span></a></li>
+</ul></li>
+<li><a href="principals-of-differential-analysis-methods.html#metagenomeseq-1" id="toc-metagenomeseq-1"><span class="toc-section-number">14.9</span> metagenomeSeq<span></span></a>
+<ul>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-8" id="toc-vignette-8"><span class="toc-section-number">14.9.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-8" id="toc-input-data-type-8"><span class="toc-section-number">14.9.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-8" id="toc-input-key-arguments-8"><span class="toc-section-number">14.9.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-8" id="toc-procedures-8"><span class="toc-section-number">14.9.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-8" id="toc-key-output-8"><span class="toc-section-number">14.9.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-8" id="toc-xmas2-syntax-8"><span class="toc-section-number">14.9.6</span> XMAS2 Syntax<span></span></a></li>
+</ul></li>
+<li><a href="principals-of-differential-analysis-methods.html#t-test-2" id="toc-t-test-2"><span class="toc-section-number">14.10</span> t-test<span></span></a>
+<ul>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-9" id="toc-input-data-type-9"><span class="toc-section-number">14.10.1</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-9" id="toc-input-key-arguments-9"><span class="toc-section-number">14.10.2</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-9" id="toc-procedures-9"><span class="toc-section-number">14.10.3</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-9" id="toc-key-output-9"><span class="toc-section-number">14.10.4</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-8" id="toc-original-syntax-8"><span class="toc-section-number">14.10.5</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-9" id="toc-xmas2-syntax-9"><span class="toc-section-number">14.10.6</span> XMAS2 Syntax<span></span></a></li>
+</ul></li>
+<li><a href="principals-of-differential-analysis-methods.html#wilcoxon-test" id="toc-wilcoxon-test"><span class="toc-section-number">14.11</span> Wilcoxon test<span></span></a>
+<ul>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-10" id="toc-input-data-type-10"><span class="toc-section-number">14.11.1</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-10" id="toc-input-key-arguments-10"><span class="toc-section-number">14.11.2</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-10" id="toc-procedures-10"><span class="toc-section-number">14.11.3</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-10" id="toc-key-output-10"><span class="toc-section-number">14.11.4</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-9" id="toc-original-syntax-9"><span class="toc-section-number">14.11.5</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-10" id="toc-xmas2-syntax-10"><span class="toc-section-number">14.11.6</span> XMAS2 Syntax<span></span></a></li>
+</ul></li>
+<li><a href="principals-of-differential-analysis-methods.html#raida-1" id="toc-raida-1"><span class="toc-section-number">14.12</span> RAIDA<span></span></a>
+<ul>
+<li><a href="principals-of-differential-analysis-methods.html#vignette-9" id="toc-vignette-9"><span class="toc-section-number">14.12.1</span> Vignette<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-data-type-11" id="toc-input-data-type-11"><span class="toc-section-number">14.12.2</span> Input Data Type<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#input-key-arguments-11" id="toc-input-key-arguments-11"><span class="toc-section-number">14.12.3</span> Input Key Arguments<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#procedures-11" id="toc-procedures-11"><span class="toc-section-number">14.12.4</span> Procedures<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#key-output-11" id="toc-key-output-11"><span class="toc-section-number">14.12.5</span> Key output<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#original-syntax-10" id="toc-original-syntax-10"><span class="toc-section-number">14.12.6</span> Original Syntax<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#xmas2-syntax-11" id="toc-xmas2-syntax-11"><span class="toc-section-number">14.12.7</span> XMAS2 Syntax<span></span></a></li>
+</ul></li>
+<li><a href="principals-of-differential-analysis-methods.html#summary" id="toc-summary"><span class="toc-section-number">14.13</span> Summary<span></span></a></li>
+<li><a href="principals-of-differential-analysis-methods.html#advantages-and-disadvantages" id="toc-advantages-and-disadvantages"><span class="toc-section-number">14.14</span> Advantages and disadvantages<span></span></a></li>
+</ul></li>
+<li><a href="examples.html#examples" id="toc-examples"><span class="toc-section-number">15</span> Examples<span></span></a>
+<ul>
+<li><a href="examples.html#workflow-description" id="toc-workflow-description"><span class="toc-section-number">15.1</span> Workflow description<span></span></a></li>
+<li><a href="examples.html#amplicon-sequencing-16s" id="toc-amplicon-sequencing-16s"><span class="toc-section-number">15.2</span> Amplicon sequencing (16s)<span></span></a>
+<ul>
+<li><a href="examples.html#converting-inputs-into-phyloseq-class-object" id="toc-converting-inputs-into-phyloseq-class-object"><span class="toc-section-number">15.2.1</span> Converting inputs into phyloseq-class object<span></span></a></li>
+<li><a href="examples.html#quality-control" id="toc-quality-control"><span class="toc-section-number">15.2.2</span> Quality Control<span></span></a></li>
+<li><a href="examples.html#data-processing" id="toc-data-processing"><span class="toc-section-number">15.2.3</span> Data processing<span></span></a></li>
+<li><a href="examples.html#diversity-analysis" id="toc-diversity-analysis"><span class="toc-section-number">15.2.4</span> Diversity analysis<span></span></a></li>
+<li><a href="examples.html#permanova-ordination" id="toc-permanova-ordination"><span class="toc-section-number">15.2.5</span> PERMANOVA + Ordination<span></span></a></li>
+<li><a href="examples.html#microbial-composition" id="toc-microbial-composition"><span class="toc-section-number">15.2.6</span> Microbial composition<span></span></a></li>
+<li><a href="examples.html#differential-analysis-1" id="toc-differential-analysis-1"><span class="toc-section-number">15.2.7</span> Differential Analysis<span></span></a></li>
+</ul></li>
+<li><a href="examples.html#metagenomics-mgs" id="toc-metagenomics-mgs"><span class="toc-section-number">15.3</span> Metagenomics (MGS)<span></span></a>
+<ul>
+<li><a href="examples.html#converting-inputs-into-phyloseq-class-object-1" id="toc-converting-inputs-into-phyloseq-class-object-1"><span class="toc-section-number">15.3.1</span> Converting inputs into phyloseq-class object<span></span></a></li>
+<li><a href="examples.html#quality-control-1" id="toc-quality-control-1"><span class="toc-section-number">15.3.2</span> Quality Control<span></span></a></li>
+<li><a href="examples.html#data-processing-1" id="toc-data-processing-1"><span class="toc-section-number">15.3.3</span> Data processing<span></span></a></li>
+<li><a href="examples.html#diversity-analysis-1" id="toc-diversity-analysis-1"><span class="toc-section-number">15.3.4</span> Diversity analysis<span></span></a></li>
+<li><a href="examples.html#permanova-ordination-1" id="toc-permanova-ordination-1"><span class="toc-section-number">15.3.5</span> PERMANOVA + Ordination<span></span></a></li>
+<li><a href="examples.html#microbial-composition-1" id="toc-microbial-composition-1"><span class="toc-section-number">15.3.6</span> Microbial composition<span></span></a></li>
+<li><a href="examples.html#differential-analysis-2" id="toc-differential-analysis-2"><span class="toc-section-number">15.3.7</span> Differential Analysis<span></span></a></li>
+</ul></li>
+<li><a href="examples.html#systematic-information-11" id="toc-systematic-information-11"><span class="toc-section-number">15.4</span> Systematic Information<span></span></a></li>
+</ul></li>
+<li><a href="references.html#references" id="toc-references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -478,27 +579,27 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 9</span> Composition<a href="composition.html#composition" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Stacked barplot is often used as a visualization way to display the microbial composition per sample.</p>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="composition.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb194-2"><a href="composition.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb194-3"><a href="composition.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb194-4"><a href="composition.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb194-5"><a href="composition.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb194-6"><a href="composition.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb194-7"><a href="composition.html#cb194-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="composition.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb198-2"><a href="composition.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb198-3"><a href="composition.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb198-4"><a href="composition.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb198-5"><a href="composition.html#cb198-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb198-6"><a href="composition.html#cb198-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb198-7"><a href="composition.html#cb198-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span></code></pre></div>
 <div id="loading-precessing-phyloseq-object" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Loading &amp; precessing phyloseq object<a href="composition.html#loading-precessing-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Using <code>get_GroupPhyloseq</code> to remove some samples. For instance, removing the spike-in sample QC in Group column.</p></li>
 <li><p>Rarefying counts</p></li>
 </ul>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="composition.html#cb195-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb195-2"><a href="composition.html#cb195-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb195-3"><a href="composition.html#cb195-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb195-4"><a href="composition.html#cb195-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
-<span id="cb195-5"><a href="composition.html#cb195-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb195-6"><a href="composition.html#cb195-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(<span class="at">object =</span> dada2_ps_remove_BRS, </span>
-<span id="cb195-7"><a href="composition.html#cb195-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">51181</span>)</span>
-<span id="cb195-8"><a href="composition.html#cb195-8" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="composition.html#cb199-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb199-2"><a href="composition.html#cb199-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb199-3"><a href="composition.html#cb199-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb199-4"><a href="composition.html#cb199-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb199-5"><a href="composition.html#cb199-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb199-6"><a href="composition.html#cb199-6" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(<span class="at">object =</span> dada2_ps_remove_BRS, </span>
+<span id="cb199-7"><a href="composition.html#cb199-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">51181</span>)</span>
+<span id="cb199-8"><a href="composition.html#cb199-8" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 891 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -509,8 +610,8 @@ div.csl-indent {
 <div id="xviz-plot_stacked_bar" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> XVIZ <code>plot_stacked_bar</code><a href="composition.html#xviz-plot_stacked_bar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>plot_stacked_bar_XIVZ</code> from XVIZ.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="composition.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, </span>
-<span id="cb197-2"><a href="composition.html#cb197-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="composition.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_stacked_bar_XIVZ</span>(<span class="at">phyloseq =</span> dada2_ps_rarefy, </span>
+<span id="cb201-2"><a href="composition.html#cb201-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">level =</span> <span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-108"></span>
 <img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-108-1.png" alt="Stacked barplot XVIZ" width="768" />
 <p class="caption">
@@ -521,8 +622,8 @@ Figure 9.1: Stacked barplot XVIZ
 <div id="stacked-barplot" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Stacked barplot<a href="composition.html#stacked-barplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>plot_StackBarPlot</code> provides too many parameters for users to display the Stacked barplot of microbial composition by using ggplot2 format. Here is the ordinary pattern. More details to see <code>help(plot_StackBarPlot)</code>.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="composition.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
-<span id="cb198-2"><a href="composition.html#cb198-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="composition.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
+<span id="cb202-2"><a href="composition.html#cb202-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">taxa_level=</span><span class="st">&quot;Phylum&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-109"></span>
 <img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-109-1.png" alt="Stacked barplot Ordinary pattern" width="576" />
 <p class="caption">
@@ -534,15 +635,15 @@ Figure 9.2: Stacked barplot Ordinary pattern
 <summary>
 <strong>genus level in stacked barplot</strong>
 </summary>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="composition.html#cb199-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
-<span id="cb199-2"><a href="composition.html#cb199-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb199-3"><a href="composition.html#cb199-3" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(dada2_ps_rarefy_genus)</span>
-<span id="cb199-4"><a href="composition.html#cb199-4" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(dada2_ps_rarefy_genus)</span>
-<span id="cb199-5"><a href="composition.html#cb199-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb199-6"><a href="composition.html#cb199-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_otu =</span> otu_tab,</span>
-<span id="cb199-7"><a href="composition.html#cb199-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_sam =</span> sam_tab,</span>
-<span id="cb199-8"><a href="composition.html#cb199-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">cutoff =</span> <span class="fl">0.01</span>,</span>
-<span id="cb199-9"><a href="composition.html#cb199-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="composition.html#cb203-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
+<span id="cb203-2"><a href="composition.html#cb203-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb203-3"><a href="composition.html#cb203-3" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">otu_table</span>(dada2_ps_rarefy_genus)</span>
+<span id="cb203-4"><a href="composition.html#cb203-4" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">sample_data</span>(dada2_ps_rarefy_genus)</span>
+<span id="cb203-5"><a href="composition.html#cb203-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb203-6"><a href="composition.html#cb203-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_otu =</span> otu_tab,</span>
+<span id="cb203-7"><a href="composition.html#cb203-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">data_sam =</span> sam_tab,</span>
+<span id="cb203-8"><a href="composition.html#cb203-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">cutoff =</span> <span class="fl">0.01</span>,</span>
+<span id="cb203-9"><a href="composition.html#cb203-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-110"></span>
 <img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-110-1.png" alt="Stacked barplot otu_tab and sample_table as input" width="672" />
 <p class="caption">
@@ -554,10 +655,10 @@ Figure 9.3: Stacked barplot otu_tab and sample_table as input
 <summary>
 <strong>Metadata with <code>Group</code> phenotype</strong>
 </summary>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="composition.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb200-2"><a href="composition.html#cb200-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> dada2_ps_rarefy,</span>
-<span id="cb200-3"><a href="composition.html#cb200-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb200-4"><a href="composition.html#cb200-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="composition.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb204-2"><a href="composition.html#cb204-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> dada2_ps_rarefy,</span>
+<span id="cb204-3"><a href="composition.html#cb204-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb204-4"><a href="composition.html#cb204-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-111"></span>
 <img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-111-1.png" alt="Stacked barplot Metadata with group" width="624" />
 <p class="caption">
@@ -569,11 +670,11 @@ Figure 9.4: Stacked barplot Metadata with group
 <summary>
 <strong>Metadata with <code>Group</code> phenotype in cluster mode</strong>
 </summary>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="composition.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb201-2"><a href="composition.html#cb201-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> dada2_ps_rarefy,</span>
-<span id="cb201-3"><a href="composition.html#cb201-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb201-4"><a href="composition.html#cb201-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb201-5"><a href="composition.html#cb201-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="composition.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb205-2"><a href="composition.html#cb205-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> dada2_ps_rarefy,</span>
+<span id="cb205-3"><a href="composition.html#cb205-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb205-4"><a href="composition.html#cb205-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb205-5"><a href="composition.html#cb205-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">cluster =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-112"></span>
 <img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-112-1.png" alt="Stacked barplot Metadata with group in cluster mode" width="624" />
 <p class="caption">
@@ -585,11 +686,11 @@ Figure 9.5: Stacked barplot Metadata with group in cluster mode
 <summary>
 <strong>Metadata with <code>Group</code> phenotype in facet</strong>
 </summary>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="composition.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
-<span id="cb202-2"><a href="composition.html#cb202-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> dada2_ps_rarefy,</span>
-<span id="cb202-3"><a href="composition.html#cb202-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
-<span id="cb202-4"><a href="composition.html#cb202-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb202-5"><a href="composition.html#cb202-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">facet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="composition.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_StackBarPlot</span>(</span>
+<span id="cb206-2"><a href="composition.html#cb206-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ps =</span> dada2_ps_rarefy,</span>
+<span id="cb206-3"><a href="composition.html#cb206-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>,</span>
+<span id="cb206-4"><a href="composition.html#cb206-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb206-5"><a href="composition.html#cb206-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">facet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-113"></span>
 <img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-113-1.png" alt="Stacked barplot Metadata with group in facet" width="672" />
 <p class="caption">
@@ -600,10 +701,10 @@ Figure 9.6: Stacked barplot Metadata with group in facet
 </div>
 <div id="heatmaps" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Heatmaps<a href="composition.html#heatmaps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="composition.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_taxa_heatmap</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
-<span id="cb203-2"><a href="composition.html#cb203-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>, </span>
-<span id="cb203-3"><a href="composition.html#cb203-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">cutoff =</span> <span class="fl">1e-4</span>, </span>
-<span id="cb203-4"><a href="composition.html#cb203-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="composition.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_taxa_heatmap</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
+<span id="cb207-2"><a href="composition.html#cb207-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">taxa_level =</span> <span class="st">&quot;Phylum&quot;</span>, </span>
+<span id="cb207-3"><a href="composition.html#cb207-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">cutoff =</span> <span class="fl">1e-4</span>, </span>
+<span id="cb207-4"><a href="composition.html#cb207-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-114"></span>
 <img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-114-1.png" alt="Heatmaps" width="672" />
 <p class="caption">
@@ -613,8 +714,8 @@ Figure 9.7: Heatmaps
 </div>
 <div id="systematic-information-6" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Systematic Information<a href="composition.html#systematic-information-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="composition.html#cb204-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
-<pre><code>## ─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="composition.html#cb208-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
 ##  os       macOS Monterey 12.2.1
@@ -624,15 +725,14 @@ Figure 9.7: Heatmaps
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-07-25
-##  rstudio  2022.02.0+443 Prairie Trillium (desktop)
-##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
+##  date     2022-07-29
+##  rstudio  2022.07.1+554 Spotted Wakerobin (desktop)
+##  pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
 ## 
-## ─ Packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ─ Packages ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package              * version  date (UTC) lib source
 ##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
 ##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
-##  ALDEx2                 1.26.0   2021-10-26 [1] Bioconductor
 ##  annotate               1.72.0   2021-10-26 [1] Bioconductor
 ##  AnnotationDbi          1.56.2   2021-11-09 [1] Bioconductor
 ##  ape                  * 5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
@@ -640,7 +740,6 @@ Figure 9.7: Heatmaps
 ##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
 ##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
 ##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
-##  bayesm                 3.1-4    2019-10-15 [1] CRAN (R 4.1.0)
 ##  Biobase              * 2.54.0   2021-10-26 [1] Bioconductor
 ##  BiocGenerics         * 0.40.0   2021-10-26 [1] Bioconductor
 ##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
@@ -665,7 +764,6 @@ Figure 9.7: Heatmaps
 ##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
 ##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
 ##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
-##  compositions           2.0-4    2022-01-05 [1] CRAN (R 4.1.2)
 ##  conflicted           * 1.1.0    2021-11-26 [1] CRAN (R 4.1.0)
 ##  corrplot               0.92     2021-11-18 [1] CRAN (R 4.1.0)
 ##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
@@ -674,10 +772,9 @@ Figure 9.7: Heatmaps
 ##  data.table             1.14.2   2021-09-27 [1] CRAN (R 4.1.0)
 ##  DBI                    1.1.2    2021-12-20 [1] CRAN (R 4.1.0)
 ##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
-##  DEoptimR               1.0-10   2022-01-03 [1] CRAN (R 4.1.2)
 ##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
 ##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
-##  devtools             * 2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
+##  devtools               2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  digest                 0.6.29   2021-12-01 [1] CRAN (R 4.1.0)
 ##  dplyr                * 1.0.8    2022-02-08 [1] CRAN (R 4.1.2)
 ##  DT                     0.21     2022-02-26 [1] CRAN (R 4.1.2)
@@ -689,12 +786,8 @@ Figure 9.7: Heatmaps
 ##  fastmap                1.1.0    2021-01-25 [1] CRAN (R 4.1.0)
 ##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
 ##  foreign                0.8-82   2022-01-13 [1] CRAN (R 4.1.2)
-##  forestplot             2.0.1    2021-09-03 [1] CRAN (R 4.1.0)
-##  formatR                1.11     2021-06-01 [1] CRAN (R 4.1.0)
 ##  Formula                1.2-4    2020-10-16 [1] CRAN (R 4.1.0)
 ##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
-##  futile.logger        * 1.4.3    2016-07-10 [1] CRAN (R 4.1.0)
-##  futile.options         1.0.1    2018-04-20 [1] CRAN (R 4.1.0)
 ##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
 ##  geneplotter            1.72.0   2021-10-26 [1] Bioconductor
 ##  generics               0.1.2    2022-01-31 [1] CRAN (R 4.1.2)
@@ -708,14 +801,12 @@ Figure 9.7: Heatmaps
 ##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
 ##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
 ##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
-##  Gmisc                  3.0.0    2022-01-03 [1] CRAN (R 4.1.2)
 ##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
 ##  gridExtra              2.3      2017-09-09 [1] CRAN (R 4.1.0)
 ##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
 ##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
 ##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
 ##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
-##  hms                    1.1.1    2021-09-26 [1] CRAN (R 4.1.0)
 ##  htmlTable              2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
 ##  htmltools              0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
 ##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
@@ -731,20 +822,17 @@ Figure 9.7: Heatmaps
 ##  KernSmooth             2.23-20  2021-05-03 [1] CRAN (R 4.1.2)
 ##  knitr                  1.37     2021-12-16 [1] CRAN (R 4.1.0)
 ##  labeling               0.4.2    2020-10-20 [1] CRAN (R 4.1.0)
-##  lambda.r               1.2.4    2019-09-18 [1] CRAN (R 4.1.0)
 ##  lattice              * 0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
 ##  latticeExtra           0.6-29   2019-12-19 [1] CRAN (R 4.1.0)
 ##  libcoin                1.0-9    2021-09-27 [1] CRAN (R 4.1.0)
 ##  lifecycle              1.0.1    2021-09-24 [1] CRAN (R 4.1.0)
 ##  limma                  3.50.1   2022-02-17 [1] Bioconductor
 ##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
-##  lubridate              1.8.0    2021-10-07 [1] CRAN (R 4.1.0)
-##  magrittr             * 2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
+##  magrittr               2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
 ##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
 ##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
 ##  MatrixGenerics       * 1.6.0    2021-10-26 [1] Bioconductor
 ##  matrixStats          * 0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
-##  mbzinb                 0.2      2022-03-16 [1] local
 ##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
 ##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
 ##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
@@ -754,12 +842,10 @@ Figure 9.7: Heatmaps
 ##  multtest               2.50.0   2021-10-26 [1] Bioconductor
 ##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
 ##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
-##  NADA                   1.6-1.1  2020-03-22 [1] CRAN (R 4.1.0)
 ##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
 ##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
 ##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
 ##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
-##  pheatmap               1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
 ##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
 ##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
 ##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
@@ -770,28 +856,20 @@ Figure 9.7: Heatmaps
 ##  png                    0.1-7    2013-12-03 [1] CRAN (R 4.1.0)
 ##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
 ##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
-##  protoclust             1.6.3    2019-01-31 [1] CRAN (R 4.1.0)
 ##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
-##  pscl                   1.5.5    2020-03-07 [1] CRAN (R 4.1.0)
-##  purrr                * 0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
-##  qvalue                 2.26.0   2021-10-26 [1] Bioconductor
+##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
 ##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
-##  RAIDA                  1.0      2022-03-14 [1] local
-##  RColorBrewer         * 1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
+##  RColorBrewer           1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
 ##  Rcpp                   1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
-##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
 ##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
-##  readr                * 2.1.2    2022-01-30 [1] CRAN (R 4.1.2)
 ##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
 ##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
 ##  reticulate             1.24     2022-01-26 [1] CRAN (R 4.1.2)
-##  Rfast                  2.0.6    2022-02-16 [1] CRAN (R 4.1.2)
 ##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
 ##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
 ##  Rhdf5lib               1.16.0   2021-10-26 [1] Bioconductor
 ##  rlang                  1.0.2    2022-03-04 [1] CRAN (R 4.1.2)
 ##  rmarkdown              2.13     2022-03-10 [1] CRAN (R 4.1.2)
-##  robustbase             0.93-9   2021-09-27 [1] CRAN (R 4.1.0)
 ##  rpart                  4.1.16   2022-01-24 [1] CRAN (R 4.1.2)
 ##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
 ##  RSpectra               0.16-0   2019-12-01 [1] CRAN (R 4.1.0)
@@ -812,40 +890,33 @@ Figure 9.7: Heatmaps
 ##  survival               3.3-1    2022-03-03 [1] CRAN (R 4.1.2)
 ##  svglite                2.1.0    2022-02-03 [1] CRAN (R 4.1.2)
 ##  systemfonts            1.0.4    2022-02-11 [1] CRAN (R 4.1.2)
-##  tensorA                0.36.2   2020-11-19 [1] CRAN (R 4.1.0)
 ##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
 ##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
 ##  tibble               * 3.1.6    2021-11-07 [1] CRAN (R 4.1.0)
-##  tidyr                * 1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
+##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
-##  truncnorm              1.0-8    2018-02-27 [1] CRAN (R 4.1.0)
-##  tzdb                   0.2.0    2021-10-27 [1] CRAN (R 4.1.0)
 ##  umap                   0.2.8.0  2022-03-23 [1] CRAN (R 4.1.2)
-##  usethis              * 2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
+##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
 ##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
 ##  vctrs                  0.3.8    2021-04-29 [1] CRAN (R 4.1.0)
 ##  vegan                * 2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
-##  VennDiagram          * 1.7.3    2022-04-12 [1] CRAN (R 4.1.2)
-##  viridis              * 0.6.2    2021-10-13 [1] CRAN (R 4.1.0)
-##  viridisLite          * 0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
-##  vroom                  1.5.7    2021-11-30 [1] CRAN (R 4.1.0)
+##  viridisLite            0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
 ##  webshot                0.5.3    2022-04-14 [1] CRAN (R 4.1.2)
 ##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
 ##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
 ##  xfun                   0.30     2022-03-02 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.7    2022-07-21 [1] local
+##  XMAS2                * 2.1.7.2  2022-07-29 [1] local
 ##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
 ##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
 ##  XVector                0.34.0   2021-10-26 [1] Bioconductor
 ##  yaml                   2.3.5    2022-02-21 [1] CRAN (R 4.1.2)
-##  zCompositions          1.4.0    2022-01-13 [1] CRAN (R 4.1.2)
 ##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
 ##  zoo                    1.8-9    2021-03-09 [1] CRAN (R 4.1.0)
 ## 
 ##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
 ## 
-## ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+## ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 
 </div>
 </div>
