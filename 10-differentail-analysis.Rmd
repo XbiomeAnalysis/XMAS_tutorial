@@ -1335,32 +1335,6 @@ metaphlan2_ps_genus_filter_trim <- run_trim(object = metaphlan2_ps_genus_filter,
 metaphlan2_ps_genus_filter_trim
 ```
 
-### limma_voom
-
-**limma** package is from *voom: Precision weights unlock linear model analysis tools for RNA-seq read counts* [@law2014voom]. Firstly, transforming count data to log2-counts per million (logCPM), estimate the mean-variance relationship and use this to compute appropriate observation-level weights. Secondly, fitting multiple linear models by weighted or generalized least squares. Finally, performing empirical bayes statistics for differential expression.
-
-```{r, warning=FALSE, message=FALSE}
-DA_limma_voom_mgs <- run_limma_voom(
-                        ps = metaphlan2_ps_genus_filter_trim,
-                        group = "Group",
-                        group_names = c("AA", "BB"))
-colnames(DA_limma_voom_mgs)
-head(DA_limma_voom_mgs)
-```
-
-<details>
-<summary>**limma_voom Metagenomic sequencing in run_da**</summary>
-```{r, warning=FALSE, message=FALSE}
-if (0) {
-DA_limma_voom_mgs <- run_da(
-                        ps = metaphlan2_ps_genus_filter_trim,
-                        group = "Group",
-                        group_names = c("AA", "BB"),
-                        da_method = "limma_voom")
-}
-```
-</details>
-
 
 ### Wilcoxon Rank Sum and Signed Rank Tests
 
