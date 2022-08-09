@@ -1,6 +1,0 @@
-Package: XMAS
-Type: Book
-Title: XMAS tutorial
-Version: 0.0.1
-Imports: bookdown
-Remotes: XbiomeAnalysis/XMAS_tutorial
