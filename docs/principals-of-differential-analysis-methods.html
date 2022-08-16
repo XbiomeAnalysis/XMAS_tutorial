@@ -23,7 +23,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-08-09" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -392,6 +392,7 @@ div.csl-indent {
 <li class="chapter" data-level="12.13" data-path="visualization-5.html"><a href="visualization-5.html#color-palettes"><i class="fa fa-check"></i><b>12.13</b> Color Palettes</a>
 <ul>
 <li class="chapter" data-level="12.13.1" data-path="visualization-5.html"><a href="visualization-5.html#wes-anderson-palettes"><i class="fa fa-check"></i><b>12.13.1</b> Wes Anderson Palettes</a></li>
+<li class="chapter" data-level="12.13.2" data-path="visualization-5.html"><a href="visualization-5.html#usemycol"><i class="fa fa-check"></i><b>12.13.2</b> useMyCol</a></li>
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="visualization-5.html"><a href="visualization-5.html#ordination-plots-with-ggplot2"><i class="fa fa-check"></i><b>12.14</b> Ordination plots with ggplot2</a>
 <ul>
@@ -640,29 +641,29 @@ div.csl-indent {
 </div>
 <div id="original-syntax" class="section level3 hasAnchor" number="14.1.6">
 <h3><span class="header-section-number">14.1.6</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="principals-of-differential-analysis-methods.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aldex</span>(</span>
-<span id="cb490-2"><a href="principals-of-differential-analysis-methods.html#cb490-2" aria-hidden="true" tabindex="-1"></a>  reads,</span>
-<span id="cb490-3"><a href="principals-of-differential-analysis-methods.html#cb490-3" aria-hidden="true" tabindex="-1"></a>  conditions,</span>
-<span id="cb490-4"><a href="principals-of-differential-analysis-methods.html#cb490-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mc.samples =</span> <span class="dv">128</span>,</span>
-<span id="cb490-5"><a href="principals-of-differential-analysis-methods.html#cb490-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="st">&quot;t&quot;</span>,</span>
-<span id="cb490-6"><a href="principals-of-differential-analysis-methods.html#cb490-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb490-7"><a href="principals-of-differential-analysis-methods.html#cb490-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.sample.summary =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb490-8"><a href="principals-of-differential-analysis-methods.html#cb490-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb490-9"><a href="principals-of-differential-analysis-methods.html#cb490-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">denom =</span> <span class="st">&quot;all&quot;</span>,</span>
-<span id="cb490-10"><a href="principals-of-differential-analysis-methods.html#cb490-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">iterate =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb490-11"><a href="principals-of-differential-analysis-methods.html#cb490-11" aria-hidden="true" tabindex="-1"></a>  ...</span>
-<span id="cb490-12"><a href="principals-of-differential-analysis-methods.html#cb490-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="principals-of-differential-analysis-methods.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aldex</span>(</span>
+<span id="cb508-2"><a href="principals-of-differential-analysis-methods.html#cb508-2" aria-hidden="true" tabindex="-1"></a>  reads,</span>
+<span id="cb508-3"><a href="principals-of-differential-analysis-methods.html#cb508-3" aria-hidden="true" tabindex="-1"></a>  conditions,</span>
+<span id="cb508-4"><a href="principals-of-differential-analysis-methods.html#cb508-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mc.samples =</span> <span class="dv">128</span>,</span>
+<span id="cb508-5"><a href="principals-of-differential-analysis-methods.html#cb508-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="st">&quot;t&quot;</span>,</span>
+<span id="cb508-6"><a href="principals-of-differential-analysis-methods.html#cb508-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb508-7"><a href="principals-of-differential-analysis-methods.html#cb508-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.sample.summary =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb508-8"><a href="principals-of-differential-analysis-methods.html#cb508-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb508-9"><a href="principals-of-differential-analysis-methods.html#cb508-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">denom =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb508-10"><a href="principals-of-differential-analysis-methods.html#cb508-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">iterate =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb508-11"><a href="principals-of-differential-analysis-methods.html#cb508-11" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb508-12"><a href="principals-of-differential-analysis-methods.html#cb508-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax" class="section level3 hasAnchor" number="14.1.7">
 <h3><span class="header-section-number">14.1.7</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="principals-of-differential-analysis-methods.html#cb491-1" aria-hidden="true" tabindex="-1"></a>da_res <span class="ot">&lt;-</span> ALDEx2<span class="sc">::</span><span class="fu">aldex</span>(<span class="at">reads =</span> otu_tab,</span>
-<span id="cb491-2"><a href="principals-of-differential-analysis-methods.html#cb491-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">conditions =</span> sam_tab<span class="sc">$</span>Compvar,</span>
-<span id="cb491-3"><a href="principals-of-differential-analysis-methods.html#cb491-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">mc.samples =</span> <span class="dv">128</span>,</span>
-<span id="cb491-4"><a href="principals-of-differential-analysis-methods.html#cb491-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">test =</span> test,</span>
-<span id="cb491-5"><a href="principals-of-differential-analysis-methods.html#cb491-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">effect =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb491-6"><a href="principals-of-differential-analysis-methods.html#cb491-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">include.sample.summary =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb491-7"><a href="principals-of-differential-analysis-methods.html#cb491-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">denom =</span> <span class="st">&quot;all&quot;</span>,</span>
-<span id="cb491-8"><a href="principals-of-differential-analysis-methods.html#cb491-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="principals-of-differential-analysis-methods.html#cb509-1" aria-hidden="true" tabindex="-1"></a>da_res <span class="ot">&lt;-</span> ALDEx2<span class="sc">::</span><span class="fu">aldex</span>(<span class="at">reads =</span> otu_tab,</span>
+<span id="cb509-2"><a href="principals-of-differential-analysis-methods.html#cb509-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">conditions =</span> sam_tab<span class="sc">$</span>Compvar,</span>
+<span id="cb509-3"><a href="principals-of-differential-analysis-methods.html#cb509-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">mc.samples =</span> <span class="dv">128</span>,</span>
+<span id="cb509-4"><a href="principals-of-differential-analysis-methods.html#cb509-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">test =</span> test,</span>
+<span id="cb509-5"><a href="principals-of-differential-analysis-methods.html#cb509-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">effect =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb509-6"><a href="principals-of-differential-analysis-methods.html#cb509-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">include.sample.summary =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb509-7"><a href="principals-of-differential-analysis-methods.html#cb509-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">denom =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb509-8"><a href="principals-of-differential-analysis-methods.html#cb509-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="notes" class="section level3 hasAnchor" number="14.1.8">
 <h3><span class="header-section-number">14.1.8</span> Notes<a href="principals-of-differential-analysis-methods.html#notes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -719,49 +720,49 @@ div.csl-indent {
 </div>
 <div id="original-syntax-1" class="section level3 hasAnchor" number="14.2.5">
 <h3><span class="header-section-number">14.2.5</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="principals-of-differential-analysis-methods.html#cb492-1" aria-hidden="true" tabindex="-1"></a>preprocess_ANCOM <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb492-2"><a href="principals-of-differential-analysis-methods.html#cb492-2" aria-hidden="true" tabindex="-1"></a>          feature_table,</span>
-<span id="cb492-3"><a href="principals-of-differential-analysis-methods.html#cb492-3" aria-hidden="true" tabindex="-1"></a>          meta_data,</span>
-<span id="cb492-4"><a href="principals-of-differential-analysis-methods.html#cb492-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample_var =</span> <span class="cn">NULL</span>,</span>
-<span id="cb492-5"><a href="principals-of-differential-analysis-methods.html#cb492-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">group_var =</span> <span class="cn">NULL</span>,</span>
-<span id="cb492-6"><a href="principals-of-differential-analysis-methods.html#cb492-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">out_cut =</span> <span class="fl">0.05</span>,</span>
-<span id="cb492-7"><a href="principals-of-differential-analysis-methods.html#cb492-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">zero_cut =</span> <span class="fl">0.90</span>,</span>
-<span id="cb492-8"><a href="principals-of-differential-analysis-methods.html#cb492-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">lib_cut =</span> <span class="dv">1000</span>,</span>
-<span id="cb492-9"><a href="principals-of-differential-analysis-methods.html#cb492-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">neg_lb =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb492-10"><a href="principals-of-differential-analysis-methods.html#cb492-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb492-11"><a href="principals-of-differential-analysis-methods.html#cb492-11" aria-hidden="true" tabindex="-1"></a>main_ANCOM <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb492-12"><a href="principals-of-differential-analysis-methods.html#cb492-12" aria-hidden="true" tabindex="-1"></a>                  feature_table,</span>
-<span id="cb492-13"><a href="principals-of-differential-analysis-methods.html#cb492-13" aria-hidden="true" tabindex="-1"></a>                  meta_data,</span>
-<span id="cb492-14"><a href="principals-of-differential-analysis-methods.html#cb492-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">struc_zero =</span> <span class="cn">NULL</span>,</span>
-<span id="cb492-15"><a href="principals-of-differential-analysis-methods.html#cb492-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">group_var =</span> <span class="cn">NULL</span>,</span>
-<span id="cb492-16"><a href="principals-of-differential-analysis-methods.html#cb492-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">p_adj_method =</span> <span class="st">&quot;BH&quot;</span>,</span>
-<span id="cb492-17"><a href="principals-of-differential-analysis-methods.html#cb492-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alpha =</span> <span class="fl">0.05</span>,</span>
-<span id="cb492-18"><a href="principals-of-differential-analysis-methods.html#cb492-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">adj_formula =</span> <span class="cn">NULL</span>,</span>
-<span id="cb492-19"><a href="principals-of-differential-analysis-methods.html#cb492-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">rand_formula =</span> <span class="cn">NULL</span>,</span>
-<span id="cb492-20"><a href="principals-of-differential-analysis-methods.html#cb492-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">w_cutoff =</span> <span class="fl">0.7</span>,</span>
-<span id="cb492-21"><a href="principals-of-differential-analysis-methods.html#cb492-21" aria-hidden="true" tabindex="-1"></a>                  ...)</span></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="principals-of-differential-analysis-methods.html#cb510-1" aria-hidden="true" tabindex="-1"></a>preprocess_ANCOM <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb510-2"><a href="principals-of-differential-analysis-methods.html#cb510-2" aria-hidden="true" tabindex="-1"></a>          feature_table,</span>
+<span id="cb510-3"><a href="principals-of-differential-analysis-methods.html#cb510-3" aria-hidden="true" tabindex="-1"></a>          meta_data,</span>
+<span id="cb510-4"><a href="principals-of-differential-analysis-methods.html#cb510-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample_var =</span> <span class="cn">NULL</span>,</span>
+<span id="cb510-5"><a href="principals-of-differential-analysis-methods.html#cb510-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">group_var =</span> <span class="cn">NULL</span>,</span>
+<span id="cb510-6"><a href="principals-of-differential-analysis-methods.html#cb510-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">out_cut =</span> <span class="fl">0.05</span>,</span>
+<span id="cb510-7"><a href="principals-of-differential-analysis-methods.html#cb510-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">zero_cut =</span> <span class="fl">0.90</span>,</span>
+<span id="cb510-8"><a href="principals-of-differential-analysis-methods.html#cb510-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">lib_cut =</span> <span class="dv">1000</span>,</span>
+<span id="cb510-9"><a href="principals-of-differential-analysis-methods.html#cb510-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">neg_lb =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb510-10"><a href="principals-of-differential-analysis-methods.html#cb510-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb510-11"><a href="principals-of-differential-analysis-methods.html#cb510-11" aria-hidden="true" tabindex="-1"></a>main_ANCOM <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb510-12"><a href="principals-of-differential-analysis-methods.html#cb510-12" aria-hidden="true" tabindex="-1"></a>                  feature_table,</span>
+<span id="cb510-13"><a href="principals-of-differential-analysis-methods.html#cb510-13" aria-hidden="true" tabindex="-1"></a>                  meta_data,</span>
+<span id="cb510-14"><a href="principals-of-differential-analysis-methods.html#cb510-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">struc_zero =</span> <span class="cn">NULL</span>,</span>
+<span id="cb510-15"><a href="principals-of-differential-analysis-methods.html#cb510-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">group_var =</span> <span class="cn">NULL</span>,</span>
+<span id="cb510-16"><a href="principals-of-differential-analysis-methods.html#cb510-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">p_adj_method =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb510-17"><a href="principals-of-differential-analysis-methods.html#cb510-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alpha =</span> <span class="fl">0.05</span>,</span>
+<span id="cb510-18"><a href="principals-of-differential-analysis-methods.html#cb510-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">adj_formula =</span> <span class="cn">NULL</span>,</span>
+<span id="cb510-19"><a href="principals-of-differential-analysis-methods.html#cb510-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">rand_formula =</span> <span class="cn">NULL</span>,</span>
+<span id="cb510-20"><a href="principals-of-differential-analysis-methods.html#cb510-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">w_cutoff =</span> <span class="fl">0.7</span>,</span>
+<span id="cb510-21"><a href="principals-of-differential-analysis-methods.html#cb510-21" aria-hidden="true" tabindex="-1"></a>                  ...)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax-1" class="section level3 hasAnchor" number="14.2.6">
 <h3><span class="header-section-number">14.2.6</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="principals-of-differential-analysis-methods.html#cb493-1" aria-hidden="true" tabindex="-1"></a>prepro_res <span class="ot">&lt;-</span> <span class="fu">preprocess_ANCOM</span>(</span>
-<span id="cb493-2"><a href="principals-of-differential-analysis-methods.html#cb493-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">feature_table =</span> otu_tab,</span>
-<span id="cb493-3"><a href="principals-of-differential-analysis-methods.html#cb493-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">meta_data =</span> sam_tab <span class="sc">%&gt;%</span> tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">&quot;TempRowNames&quot;</span>),</span>
-<span id="cb493-4"><a href="principals-of-differential-analysis-methods.html#cb493-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">sample_var =</span> <span class="st">&quot;TempRowNames&quot;</span>,</span>
-<span id="cb493-5"><a href="principals-of-differential-analysis-methods.html#cb493-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">group_var =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
-<span id="cb493-6"><a href="principals-of-differential-analysis-methods.html#cb493-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">out_cut =</span> <span class="fl">0.05</span>,</span>
-<span id="cb493-7"><a href="principals-of-differential-analysis-methods.html#cb493-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">zero_cut =</span> <span class="fl">0.90</span>,</span>
-<span id="cb493-8"><a href="principals-of-differential-analysis-methods.html#cb493-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">lib_cut =</span> <span class="dv">1000</span>,</span>
-<span id="cb493-9"><a href="principals-of-differential-analysis-methods.html#cb493-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">neg_lb =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb493-10"><a href="principals-of-differential-analysis-methods.html#cb493-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb493-11"><a href="principals-of-differential-analysis-methods.html#cb493-11" aria-hidden="true" tabindex="-1"></a>da_res <span class="ot">&lt;-</span> <span class="fu">main_ANCOM</span>(</span>
-<span id="cb493-12"><a href="principals-of-differential-analysis-methods.html#cb493-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">feature_table =</span> prepro_res<span class="sc">$</span>feature_table,</span>
-<span id="cb493-13"><a href="principals-of-differential-analysis-methods.html#cb493-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">meta_data =</span> prepro_res<span class="sc">$</span>meta_data,</span>
-<span id="cb493-14"><a href="principals-of-differential-analysis-methods.html#cb493-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">struc_zero =</span> prepro_res<span class="sc">$</span>structure_zeros,</span>
-<span id="cb493-15"><a href="principals-of-differential-analysis-methods.html#cb493-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">group_var =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
-<span id="cb493-16"><a href="principals-of-differential-analysis-methods.html#cb493-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">p_adj_method =</span> p_adjust,</span>
-<span id="cb493-17"><a href="principals-of-differential-analysis-methods.html#cb493-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha =</span> pvalue_cutoff,</span>
-<span id="cb493-18"><a href="principals-of-differential-analysis-methods.html#cb493-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">rand_formula =</span> <span class="cn">NULL</span>,</span>
-<span id="cb493-19"><a href="principals-of-differential-analysis-methods.html#cb493-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">w_cutoff =</span> <span class="fl">0.7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="principals-of-differential-analysis-methods.html#cb511-1" aria-hidden="true" tabindex="-1"></a>prepro_res <span class="ot">&lt;-</span> <span class="fu">preprocess_ANCOM</span>(</span>
+<span id="cb511-2"><a href="principals-of-differential-analysis-methods.html#cb511-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">feature_table =</span> otu_tab,</span>
+<span id="cb511-3"><a href="principals-of-differential-analysis-methods.html#cb511-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">meta_data =</span> sam_tab <span class="sc">%&gt;%</span> tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">&quot;TempRowNames&quot;</span>),</span>
+<span id="cb511-4"><a href="principals-of-differential-analysis-methods.html#cb511-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">sample_var =</span> <span class="st">&quot;TempRowNames&quot;</span>,</span>
+<span id="cb511-5"><a href="principals-of-differential-analysis-methods.html#cb511-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">group_var =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
+<span id="cb511-6"><a href="principals-of-differential-analysis-methods.html#cb511-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">out_cut =</span> <span class="fl">0.05</span>,</span>
+<span id="cb511-7"><a href="principals-of-differential-analysis-methods.html#cb511-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">zero_cut =</span> <span class="fl">0.90</span>,</span>
+<span id="cb511-8"><a href="principals-of-differential-analysis-methods.html#cb511-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">lib_cut =</span> <span class="dv">1000</span>,</span>
+<span id="cb511-9"><a href="principals-of-differential-analysis-methods.html#cb511-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">neg_lb =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb511-10"><a href="principals-of-differential-analysis-methods.html#cb511-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb511-11"><a href="principals-of-differential-analysis-methods.html#cb511-11" aria-hidden="true" tabindex="-1"></a>da_res <span class="ot">&lt;-</span> <span class="fu">main_ANCOM</span>(</span>
+<span id="cb511-12"><a href="principals-of-differential-analysis-methods.html#cb511-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">feature_table =</span> prepro_res<span class="sc">$</span>feature_table,</span>
+<span id="cb511-13"><a href="principals-of-differential-analysis-methods.html#cb511-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">meta_data =</span> prepro_res<span class="sc">$</span>meta_data,</span>
+<span id="cb511-14"><a href="principals-of-differential-analysis-methods.html#cb511-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">struc_zero =</span> prepro_res<span class="sc">$</span>structure_zeros,</span>
+<span id="cb511-15"><a href="principals-of-differential-analysis-methods.html#cb511-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">group_var =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
+<span id="cb511-16"><a href="principals-of-differential-analysis-methods.html#cb511-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">p_adj_method =</span> p_adjust,</span>
+<span id="cb511-17"><a href="principals-of-differential-analysis-methods.html#cb511-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">alpha =</span> pvalue_cutoff,</span>
+<span id="cb511-18"><a href="principals-of-differential-analysis-methods.html#cb511-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">rand_formula =</span> <span class="cn">NULL</span>,</span>
+<span id="cb511-19"><a href="principals-of-differential-analysis-methods.html#cb511-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">w_cutoff =</span> <span class="fl">0.7</span>)</span></code></pre></div>
 </div>
 <div id="notes-1" class="section level3 hasAnchor" number="14.2.7">
 <h3><span class="header-section-number">14.2.7</span> Notes<a href="principals-of-differential-analysis-methods.html#notes-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -815,41 +816,41 @@ logit link functions for both the mean and overdispersion.</p></li>
 </div>
 <div id="original-syntax-2" class="section level3 hasAnchor" number="14.3.6">
 <h3><span class="header-section-number">14.3.6</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="principals-of-differential-analysis-methods.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">differentialTest</span>(</span>
-<span id="cb494-2"><a href="principals-of-differential-analysis-methods.html#cb494-2" aria-hidden="true" tabindex="-1"></a>  formula,</span>
-<span id="cb494-3"><a href="principals-of-differential-analysis-methods.html#cb494-3" aria-hidden="true" tabindex="-1"></a>  phi.formula,</span>
-<span id="cb494-4"><a href="principals-of-differential-analysis-methods.html#cb494-4" aria-hidden="true" tabindex="-1"></a>  formula_null,</span>
-<span id="cb494-5"><a href="principals-of-differential-analysis-methods.html#cb494-5" aria-hidden="true" tabindex="-1"></a>  phi.formula_null,</span>
-<span id="cb494-6"><a href="principals-of-differential-analysis-methods.html#cb494-6" aria-hidden="true" tabindex="-1"></a>  data,</span>
-<span id="cb494-7"><a href="principals-of-differential-analysis-methods.html#cb494-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">link =</span> <span class="st">&quot;logit&quot;</span>,</span>
-<span id="cb494-8"><a href="principals-of-differential-analysis-methods.html#cb494-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">phi.link =</span> <span class="st">&quot;logit&quot;</span>,</span>
-<span id="cb494-9"><a href="principals-of-differential-analysis-methods.html#cb494-9" aria-hidden="true" tabindex="-1"></a>  test,</span>
-<span id="cb494-10"><a href="principals-of-differential-analysis-methods.html#cb494-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">boot =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb494-11"><a href="principals-of-differential-analysis-methods.html#cb494-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">B =</span> <span class="dv">1000</span>,</span>
-<span id="cb494-12"><a href="principals-of-differential-analysis-methods.html#cb494-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample_data =</span> <span class="cn">NULL</span>,</span>
-<span id="cb494-13"><a href="principals-of-differential-analysis-methods.html#cb494-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">taxa_are_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb494-14"><a href="principals-of-differential-analysis-methods.html#cb494-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter_discriminant =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb494-15"><a href="principals-of-differential-analysis-methods.html#cb494-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">fdr_cutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb494-16"><a href="principals-of-differential-analysis-methods.html#cb494-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">fdr =</span> <span class="st">&quot;fdr&quot;</span>,</span>
-<span id="cb494-17"><a href="principals-of-differential-analysis-methods.html#cb494-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">full_output =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb494-18"><a href="principals-of-differential-analysis-methods.html#cb494-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">inits =</span> <span class="cn">NULL</span>,</span>
-<span id="cb494-19"><a href="principals-of-differential-analysis-methods.html#cb494-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">inits_null =</span> <span class="cn">NULL</span>,</span>
-<span id="cb494-20"><a href="principals-of-differential-analysis-methods.html#cb494-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">try_only =</span> <span class="cn">NULL</span>,</span>
-<span id="cb494-21"><a href="principals-of-differential-analysis-methods.html#cb494-21" aria-hidden="true" tabindex="-1"></a>  ...</span>
-<span id="cb494-22"><a href="principals-of-differential-analysis-methods.html#cb494-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="principals-of-differential-analysis-methods.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">differentialTest</span>(</span>
+<span id="cb512-2"><a href="principals-of-differential-analysis-methods.html#cb512-2" aria-hidden="true" tabindex="-1"></a>  formula,</span>
+<span id="cb512-3"><a href="principals-of-differential-analysis-methods.html#cb512-3" aria-hidden="true" tabindex="-1"></a>  phi.formula,</span>
+<span id="cb512-4"><a href="principals-of-differential-analysis-methods.html#cb512-4" aria-hidden="true" tabindex="-1"></a>  formula_null,</span>
+<span id="cb512-5"><a href="principals-of-differential-analysis-methods.html#cb512-5" aria-hidden="true" tabindex="-1"></a>  phi.formula_null,</span>
+<span id="cb512-6"><a href="principals-of-differential-analysis-methods.html#cb512-6" aria-hidden="true" tabindex="-1"></a>  data,</span>
+<span id="cb512-7"><a href="principals-of-differential-analysis-methods.html#cb512-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">link =</span> <span class="st">&quot;logit&quot;</span>,</span>
+<span id="cb512-8"><a href="principals-of-differential-analysis-methods.html#cb512-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">phi.link =</span> <span class="st">&quot;logit&quot;</span>,</span>
+<span id="cb512-9"><a href="principals-of-differential-analysis-methods.html#cb512-9" aria-hidden="true" tabindex="-1"></a>  test,</span>
+<span id="cb512-10"><a href="principals-of-differential-analysis-methods.html#cb512-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">boot =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb512-11"><a href="principals-of-differential-analysis-methods.html#cb512-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">B =</span> <span class="dv">1000</span>,</span>
+<span id="cb512-12"><a href="principals-of-differential-analysis-methods.html#cb512-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample_data =</span> <span class="cn">NULL</span>,</span>
+<span id="cb512-13"><a href="principals-of-differential-analysis-methods.html#cb512-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">taxa_are_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb512-14"><a href="principals-of-differential-analysis-methods.html#cb512-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter_discriminant =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb512-15"><a href="principals-of-differential-analysis-methods.html#cb512-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">fdr_cutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb512-16"><a href="principals-of-differential-analysis-methods.html#cb512-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">fdr =</span> <span class="st">&quot;fdr&quot;</span>,</span>
+<span id="cb512-17"><a href="principals-of-differential-analysis-methods.html#cb512-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">full_output =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb512-18"><a href="principals-of-differential-analysis-methods.html#cb512-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">inits =</span> <span class="cn">NULL</span>,</span>
+<span id="cb512-19"><a href="principals-of-differential-analysis-methods.html#cb512-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">inits_null =</span> <span class="cn">NULL</span>,</span>
+<span id="cb512-20"><a href="principals-of-differential-analysis-methods.html#cb512-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">try_only =</span> <span class="cn">NULL</span>,</span>
+<span id="cb512-21"><a href="principals-of-differential-analysis-methods.html#cb512-21" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb512-22"><a href="principals-of-differential-analysis-methods.html#cb512-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax-2" class="section level3 hasAnchor" number="14.3.7">
 <h3><span class="header-section-number">14.3.7</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="principals-of-differential-analysis-methods.html#cb495-1" aria-hidden="true" tabindex="-1"></a>da_res <span class="ot">&lt;-</span> corncob<span class="sc">::</span><span class="fu">differentialTest</span>(</span>
-<span id="cb495-2"><a href="principals-of-differential-analysis-methods.html#cb495-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> ps_normed_new,</span>
-<span id="cb495-3"><a href="principals-of-differential-analysis-methods.html#cb495-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">formula =</span> my_formula,</span>
-<span id="cb495-4"><a href="principals-of-differential-analysis-methods.html#cb495-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">phi.formula =</span> my_formula,</span>
-<span id="cb495-5"><a href="principals-of-differential-analysis-methods.html#cb495-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">phi.formula_null =</span> my_formula,</span>
-<span id="cb495-6"><a href="principals-of-differential-analysis-methods.html#cb495-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">formula_null =</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb495-7"><a href="principals-of-differential-analysis-methods.html#cb495-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">test =</span> method,</span>
-<span id="cb495-8"><a href="principals-of-differential-analysis-methods.html#cb495-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">boot =</span> F,</span>
-<span id="cb495-9"><a href="principals-of-differential-analysis-methods.html#cb495-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fdr_cutoff =</span> pvalue_cutoff,</span>
-<span id="cb495-10"><a href="principals-of-differential-analysis-methods.html#cb495-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fdr =</span> p_adjust)</span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="principals-of-differential-analysis-methods.html#cb513-1" aria-hidden="true" tabindex="-1"></a>da_res <span class="ot">&lt;-</span> corncob<span class="sc">::</span><span class="fu">differentialTest</span>(</span>
+<span id="cb513-2"><a href="principals-of-differential-analysis-methods.html#cb513-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> ps_normed_new,</span>
+<span id="cb513-3"><a href="principals-of-differential-analysis-methods.html#cb513-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">formula =</span> my_formula,</span>
+<span id="cb513-4"><a href="principals-of-differential-analysis-methods.html#cb513-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">phi.formula =</span> my_formula,</span>
+<span id="cb513-5"><a href="principals-of-differential-analysis-methods.html#cb513-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">phi.formula_null =</span> my_formula,</span>
+<span id="cb513-6"><a href="principals-of-differential-analysis-methods.html#cb513-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">formula_null =</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb513-7"><a href="principals-of-differential-analysis-methods.html#cb513-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">test =</span> method,</span>
+<span id="cb513-8"><a href="principals-of-differential-analysis-methods.html#cb513-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">boot =</span> F,</span>
+<span id="cb513-9"><a href="principals-of-differential-analysis-methods.html#cb513-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fdr_cutoff =</span> pvalue_cutoff,</span>
+<span id="cb513-10"><a href="principals-of-differential-analysis-methods.html#cb513-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fdr =</span> p_adjust)</span></code></pre></div>
 </div>
 <div id="notes-2" class="section level3 hasAnchor" number="14.3.8">
 <h3><span class="header-section-number">14.3.8</span> Notes<a href="principals-of-differential-analysis-methods.html#notes-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -902,26 +903,26 @@ logit link functions for both the mean and overdispersion.</p></li>
 </div>
 <div id="original-syntax-3" class="section level3 hasAnchor" number="14.4.6">
 <h3><span class="header-section-number">14.4.6</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="principals-of-differential-analysis-methods.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DESeqDataSetFromMatrix</span>(</span>
-<span id="cb496-2"><a href="principals-of-differential-analysis-methods.html#cb496-2" aria-hidden="true" tabindex="-1"></a>  countData,</span>
-<span id="cb496-3"><a href="principals-of-differential-analysis-methods.html#cb496-3" aria-hidden="true" tabindex="-1"></a>  colData,</span>
-<span id="cb496-4"><a href="principals-of-differential-analysis-methods.html#cb496-4" aria-hidden="true" tabindex="-1"></a>  design,</span>
-<span id="cb496-5"><a href="principals-of-differential-analysis-methods.html#cb496-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidy =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb496-6"><a href="principals-of-differential-analysis-methods.html#cb496-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ignoreRank =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb496-7"><a href="principals-of-differential-analysis-methods.html#cb496-7" aria-hidden="true" tabindex="-1"></a>  ...</span>
-<span id="cb496-8"><a href="principals-of-differential-analysis-methods.html#cb496-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="principals-of-differential-analysis-methods.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DESeqDataSetFromMatrix</span>(</span>
+<span id="cb514-2"><a href="principals-of-differential-analysis-methods.html#cb514-2" aria-hidden="true" tabindex="-1"></a>  countData,</span>
+<span id="cb514-3"><a href="principals-of-differential-analysis-methods.html#cb514-3" aria-hidden="true" tabindex="-1"></a>  colData,</span>
+<span id="cb514-4"><a href="principals-of-differential-analysis-methods.html#cb514-4" aria-hidden="true" tabindex="-1"></a>  design,</span>
+<span id="cb514-5"><a href="principals-of-differential-analysis-methods.html#cb514-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">tidy =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb514-6"><a href="principals-of-differential-analysis-methods.html#cb514-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ignoreRank =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb514-7"><a href="principals-of-differential-analysis-methods.html#cb514-7" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb514-8"><a href="principals-of-differential-analysis-methods.html#cb514-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax-3" class="section level3 hasAnchor" number="14.4.7">
 <h3><span class="header-section-number">14.4.7</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="principals-of-differential-analysis-methods.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="do">## build Matrix</span></span>
-<span id="cb497-2"><a href="principals-of-differential-analysis-methods.html#cb497-2" aria-hidden="true" tabindex="-1"></a>ddsm <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeqDataSetFromMatrix</span>(</span>
-<span id="cb497-3"><a href="principals-of-differential-analysis-methods.html#cb497-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">countData =</span> otu_tab,</span>
-<span id="cb497-4"><a href="principals-of-differential-analysis-methods.html#cb497-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colData =</span>  sam_tab,</span>
-<span id="cb497-5"><a href="principals-of-differential-analysis-methods.html#cb497-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">design =</span><span class="sc">~</span> Compvar)</span>
-<span id="cb497-6"><a href="principals-of-differential-analysis-methods.html#cb497-6" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeq</span>(ddsm)</span>
-<span id="cb497-7"><a href="principals-of-differential-analysis-methods.html#cb497-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb497-8"><a href="principals-of-differential-analysis-methods.html#cb497-8" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the results</span></span>
-<span id="cb497-9"><a href="principals-of-differential-analysis-methods.html#cb497-9" aria-hidden="true" tabindex="-1"></a>DESeq_res <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">results</span>(dds, <span class="at">contrast =</span> <span class="fu">c</span>(<span class="st">&quot;Compvar&quot;</span>, <span class="fu">rev</span>(group_names)))</span></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="principals-of-differential-analysis-methods.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="do">## build Matrix</span></span>
+<span id="cb515-2"><a href="principals-of-differential-analysis-methods.html#cb515-2" aria-hidden="true" tabindex="-1"></a>ddsm <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeqDataSetFromMatrix</span>(</span>
+<span id="cb515-3"><a href="principals-of-differential-analysis-methods.html#cb515-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">countData =</span> otu_tab,</span>
+<span id="cb515-4"><a href="principals-of-differential-analysis-methods.html#cb515-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colData =</span>  sam_tab,</span>
+<span id="cb515-5"><a href="principals-of-differential-analysis-methods.html#cb515-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">design =</span><span class="sc">~</span> Compvar)</span>
+<span id="cb515-6"><a href="principals-of-differential-analysis-methods.html#cb515-6" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">DESeq</span>(ddsm)</span>
+<span id="cb515-7"><a href="principals-of-differential-analysis-methods.html#cb515-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-8"><a href="principals-of-differential-analysis-methods.html#cb515-8" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the results</span></span>
+<span id="cb515-9"><a href="principals-of-differential-analysis-methods.html#cb515-9" aria-hidden="true" tabindex="-1"></a>DESeq_res <span class="ot">&lt;-</span> DESeq2<span class="sc">::</span><span class="fu">results</span>(dds, <span class="at">contrast =</span> <span class="fu">c</span>(<span class="st">&quot;Compvar&quot;</span>, <span class="fu">rev</span>(group_names)))</span></code></pre></div>
 </div>
 </div>
 <div id="edger-1" class="section level2 hasAnchor" number="14.5">
@@ -974,36 +975,36 @@ the BH method with the function <code>topTags</code>.</p></li>
 </div>
 <div id="original-syntax-4" class="section level3 hasAnchor" number="14.5.6">
 <h3><span class="header-section-number">14.5.6</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="principals-of-differential-analysis-methods.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DGEList object &amp; normalized factor</span></span>
-<span id="cb498-2"><a href="principals-of-differential-analysis-methods.html#cb498-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb498-3"><a href="principals-of-differential-analysis-methods.html#cb498-3" aria-hidden="true" tabindex="-1"></a><span class="co"># GLM estimates of dispersion</span></span>
-<span id="cb498-4"><a href="principals-of-differential-analysis-methods.html#cb498-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb498-5"><a href="principals-of-differential-analysis-methods.html#cb498-5" aria-hidden="true" tabindex="-1"></a><span class="co"># GLM testing for differential expression</span></span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="principals-of-differential-analysis-methods.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DGEList object &amp; normalized factor</span></span>
+<span id="cb516-2"><a href="principals-of-differential-analysis-methods.html#cb516-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-3"><a href="principals-of-differential-analysis-methods.html#cb516-3" aria-hidden="true" tabindex="-1"></a><span class="co"># GLM estimates of dispersion</span></span>
+<span id="cb516-4"><a href="principals-of-differential-analysis-methods.html#cb516-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-5"><a href="principals-of-differential-analysis-methods.html#cb516-5" aria-hidden="true" tabindex="-1"></a><span class="co"># GLM testing for differential expression</span></span></code></pre></div>
 </div>
 <div id="xmas2-syntax-4" class="section level3 hasAnchor" number="14.5.7">
 <h3><span class="header-section-number">14.5.7</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="principals-of-differential-analysis-methods.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data</span></span>
-<span id="cb499-2"><a href="principals-of-differential-analysis-methods.html#cb499-2" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(edgeR<span class="sc">::</span><span class="fu">cpm</span>(otu_tab) <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">&gt;=</span> <span class="dv">2</span></span>
-<span id="cb499-3"><a href="principals-of-differential-analysis-methods.html#cb499-3" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> otu_tab[keep, ]</span>
-<span id="cb499-4"><a href="principals-of-differential-analysis-methods.html#cb499-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb499-5"><a href="principals-of-differential-analysis-methods.html#cb499-5" aria-hidden="true" tabindex="-1"></a><span class="co"># DGEList object: otu_tab -&gt; colnames:Samples; rownames:Taxa</span></span>
-<span id="cb499-6"><a href="principals-of-differential-analysis-methods.html#cb499-6" aria-hidden="true" tabindex="-1"></a>dge_obj <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">DGEList</span>(<span class="at">counts =</span> otu_tab)</span>
-<span id="cb499-7"><a href="principals-of-differential-analysis-methods.html#cb499-7" aria-hidden="true" tabindex="-1"></a>dge_obj_factors <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">calcNormFactors</span>(dge_obj)</span>
-<span id="cb499-8"><a href="principals-of-differential-analysis-methods.html#cb499-8" aria-hidden="true" tabindex="-1"></a>limma<span class="sc">::</span><span class="fu">plotMDS</span>(dge_obj_factors, <span class="at">method =</span> <span class="st">&quot;bcv&quot;</span>, <span class="at">col =</span> <span class="fu">as.numeric</span>(sam_tab<span class="sc">$</span>Compvar))</span>
-<span id="cb499-9"><a href="principals-of-differential-analysis-methods.html#cb499-9" aria-hidden="true" tabindex="-1"></a>graphics<span class="sc">::</span><span class="fu">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, group_names, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">20</span>)</span>
-<span id="cb499-10"><a href="principals-of-differential-analysis-methods.html#cb499-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb499-11"><a href="principals-of-differential-analysis-methods.html#cb499-11" aria-hidden="true" tabindex="-1"></a><span class="co"># GLM estimates of dispersion</span></span>
-<span id="cb499-12"><a href="principals-of-differential-analysis-methods.html#cb499-12" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">estimateGLMCommonDisp</span>(dge_obj_factors, design)</span>
-<span id="cb499-13"><a href="principals-of-differential-analysis-methods.html#cb499-13" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">estimateGLMTrendedDisp</span>(dge, design, <span class="at">method =</span> <span class="st">&quot;power&quot;</span>)</span>
-<span id="cb499-14"><a href="principals-of-differential-analysis-methods.html#cb499-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb499-15"><a href="principals-of-differential-analysis-methods.html#cb499-15" aria-hidden="true" tabindex="-1"></a><span class="co"># You can change method to &quot;auto&quot;, &quot;bin.spline&quot;, &quot;power&quot;, &quot;spline&quot;, &quot;bin.loess&quot;.</span></span>
-<span id="cb499-16"><a href="principals-of-differential-analysis-methods.html#cb499-16" aria-hidden="true" tabindex="-1"></a><span class="co"># The default is &quot;auto&quot; which chooses &quot;bin.spline&quot; when &gt; 200 tags and &quot;power&quot; otherwise.</span></span>
-<span id="cb499-17"><a href="principals-of-differential-analysis-methods.html#cb499-17" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">estimateGLMTagwiseDisp</span>(dge, design)</span>
-<span id="cb499-18"><a href="principals-of-differential-analysis-methods.html#cb499-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb499-19"><a href="principals-of-differential-analysis-methods.html#cb499-19" aria-hidden="true" tabindex="-1"></a><span class="co"># GLM testing for differential expression:</span></span>
-<span id="cb499-20"><a href="principals-of-differential-analysis-methods.html#cb499-20" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">glmFit</span>(dge, design)</span>
-<span id="cb499-21"><a href="principals-of-differential-analysis-methods.html#cb499-21" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">glmLRT</span>(fit, <span class="at">contrast =</span> contrast) <span class="co"># Normal:-1; Tumor:1</span></span>
-<span id="cb499-22"><a href="principals-of-differential-analysis-methods.html#cb499-22" aria-hidden="true" tabindex="-1"></a>edgeR_res <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">topTags</span>(fit2, <span class="at">n =</span> <span class="fu">nrow</span>(otu_tab)) <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="principals-of-differential-analysis-methods.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data</span></span>
+<span id="cb517-2"><a href="principals-of-differential-analysis-methods.html#cb517-2" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(edgeR<span class="sc">::</span><span class="fu">cpm</span>(otu_tab) <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">&gt;=</span> <span class="dv">2</span></span>
+<span id="cb517-3"><a href="principals-of-differential-analysis-methods.html#cb517-3" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> otu_tab[keep, ]</span>
+<span id="cb517-4"><a href="principals-of-differential-analysis-methods.html#cb517-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb517-5"><a href="principals-of-differential-analysis-methods.html#cb517-5" aria-hidden="true" tabindex="-1"></a><span class="co"># DGEList object: otu_tab -&gt; colnames:Samples; rownames:Taxa</span></span>
+<span id="cb517-6"><a href="principals-of-differential-analysis-methods.html#cb517-6" aria-hidden="true" tabindex="-1"></a>dge_obj <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">DGEList</span>(<span class="at">counts =</span> otu_tab)</span>
+<span id="cb517-7"><a href="principals-of-differential-analysis-methods.html#cb517-7" aria-hidden="true" tabindex="-1"></a>dge_obj_factors <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">calcNormFactors</span>(dge_obj)</span>
+<span id="cb517-8"><a href="principals-of-differential-analysis-methods.html#cb517-8" aria-hidden="true" tabindex="-1"></a>limma<span class="sc">::</span><span class="fu">plotMDS</span>(dge_obj_factors, <span class="at">method =</span> <span class="st">&quot;bcv&quot;</span>, <span class="at">col =</span> <span class="fu">as.numeric</span>(sam_tab<span class="sc">$</span>Compvar))</span>
+<span id="cb517-9"><a href="principals-of-differential-analysis-methods.html#cb517-9" aria-hidden="true" tabindex="-1"></a>graphics<span class="sc">::</span><span class="fu">legend</span>(<span class="st">&quot;bottomleft&quot;</span>, group_names, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb517-10"><a href="principals-of-differential-analysis-methods.html#cb517-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb517-11"><a href="principals-of-differential-analysis-methods.html#cb517-11" aria-hidden="true" tabindex="-1"></a><span class="co"># GLM estimates of dispersion</span></span>
+<span id="cb517-12"><a href="principals-of-differential-analysis-methods.html#cb517-12" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">estimateGLMCommonDisp</span>(dge_obj_factors, design)</span>
+<span id="cb517-13"><a href="principals-of-differential-analysis-methods.html#cb517-13" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">estimateGLMTrendedDisp</span>(dge, design, <span class="at">method =</span> <span class="st">&quot;power&quot;</span>)</span>
+<span id="cb517-14"><a href="principals-of-differential-analysis-methods.html#cb517-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb517-15"><a href="principals-of-differential-analysis-methods.html#cb517-15" aria-hidden="true" tabindex="-1"></a><span class="co"># You can change method to &quot;auto&quot;, &quot;bin.spline&quot;, &quot;power&quot;, &quot;spline&quot;, &quot;bin.loess&quot;.</span></span>
+<span id="cb517-16"><a href="principals-of-differential-analysis-methods.html#cb517-16" aria-hidden="true" tabindex="-1"></a><span class="co"># The default is &quot;auto&quot; which chooses &quot;bin.spline&quot; when &gt; 200 tags and &quot;power&quot; otherwise.</span></span>
+<span id="cb517-17"><a href="principals-of-differential-analysis-methods.html#cb517-17" aria-hidden="true" tabindex="-1"></a>dge <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">estimateGLMTagwiseDisp</span>(dge, design)</span>
+<span id="cb517-18"><a href="principals-of-differential-analysis-methods.html#cb517-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb517-19"><a href="principals-of-differential-analysis-methods.html#cb517-19" aria-hidden="true" tabindex="-1"></a><span class="co"># GLM testing for differential expression:</span></span>
+<span id="cb517-20"><a href="principals-of-differential-analysis-methods.html#cb517-20" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">glmFit</span>(dge, design)</span>
+<span id="cb517-21"><a href="principals-of-differential-analysis-methods.html#cb517-21" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">glmLRT</span>(fit, <span class="at">contrast =</span> contrast) <span class="co"># Normal:-1; Tumor:1</span></span>
+<span id="cb517-22"><a href="principals-of-differential-analysis-methods.html#cb517-22" aria-hidden="true" tabindex="-1"></a>edgeR_res <span class="ot">&lt;-</span> edgeR<span class="sc">::</span><span class="fu">topTags</span>(fit2, <span class="at">n =</span> <span class="fu">nrow</span>(otu_tab)) <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>()</span></code></pre></div>
 </div>
 <div id="notes-3" class="section level3 hasAnchor" number="14.5.8">
 <h3><span class="header-section-number">14.5.8</span> Notes<a href="principals-of-differential-analysis-methods.html#notes-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1059,30 +1060,30 @@ were called as DA.</p></li>
 </div>
 <div id="original-syntax-5" class="section level3 hasAnchor" number="14.6.6">
 <h3><span class="header-section-number">14.6.6</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="principals-of-differential-analysis-methods.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lefser</span>(expr,</span>
-<span id="cb500-2"><a href="principals-of-differential-analysis-methods.html#cb500-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">kruskal.threshold =</span> <span class="fl">0.05</span>,</span>
-<span id="cb500-3"><a href="principals-of-differential-analysis-methods.html#cb500-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">wilcox.threshold =</span> <span class="fl">0.05</span>,</span>
-<span id="cb500-4"><a href="principals-of-differential-analysis-methods.html#cb500-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">lda.threshold =</span> <span class="fl">2.0</span>,</span>
-<span id="cb500-5"><a href="principals-of-differential-analysis-methods.html#cb500-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">groupCol =</span> <span class="st">&quot;GROUP&quot;</span>,</span>
-<span id="cb500-6"><a href="principals-of-differential-analysis-methods.html#cb500-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">blockCol =</span> <span class="cn">NULL</span>,</span>
-<span id="cb500-7"><a href="principals-of-differential-analysis-methods.html#cb500-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">assay =</span> 1L,</span>
-<span id="cb500-8"><a href="principals-of-differential-analysis-methods.html#cb500-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">trim.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="principals-of-differential-analysis-methods.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lefser</span>(expr,</span>
+<span id="cb518-2"><a href="principals-of-differential-analysis-methods.html#cb518-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">kruskal.threshold =</span> <span class="fl">0.05</span>,</span>
+<span id="cb518-3"><a href="principals-of-differential-analysis-methods.html#cb518-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">wilcox.threshold =</span> <span class="fl">0.05</span>,</span>
+<span id="cb518-4"><a href="principals-of-differential-analysis-methods.html#cb518-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">lda.threshold =</span> <span class="fl">2.0</span>,</span>
+<span id="cb518-5"><a href="principals-of-differential-analysis-methods.html#cb518-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">groupCol =</span> <span class="st">&quot;GROUP&quot;</span>,</span>
+<span id="cb518-6"><a href="principals-of-differential-analysis-methods.html#cb518-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">blockCol =</span> <span class="cn">NULL</span>,</span>
+<span id="cb518-7"><a href="principals-of-differential-analysis-methods.html#cb518-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">assay =</span> 1L,</span>
+<span id="cb518-8"><a href="principals-of-differential-analysis-methods.html#cb518-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">trim.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax-5" class="section level3 hasAnchor" number="14.6.7">
 <h3><span class="header-section-number">14.6.7</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="principals-of-differential-analysis-methods.html#cb501-1" aria-hidden="true" tabindex="-1"></a>se_object <span class="ot">&lt;-</span> SummarizedExperiment<span class="sc">::</span><span class="fu">SummarizedExperiment</span>(</span>
-<span id="cb501-2"><a href="principals-of-differential-analysis-methods.html#cb501-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">assays =</span> <span class="fu">list</span>(<span class="at">counts =</span> otu_tab),</span>
-<span id="cb501-3"><a href="principals-of-differential-analysis-methods.html#cb501-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">colData =</span> sam_tab,</span>
-<span id="cb501-4"><a href="principals-of-differential-analysis-methods.html#cb501-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">metadata =</span> <span class="st">&quot;Profile&quot;</span>)</span>
-<span id="cb501-5"><a href="principals-of-differential-analysis-methods.html#cb501-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb501-6"><a href="principals-of-differential-analysis-methods.html#cb501-6" aria-hidden="true" tabindex="-1"></a>lefse_res <span class="ot">&lt;-</span> <span class="fu">lefser</span>(se_object,</span>
-<span id="cb501-7"><a href="principals-of-differential-analysis-methods.html#cb501-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">kruskal.threshold =</span> <span class="fl">0.05</span>,</span>
-<span id="cb501-8"><a href="principals-of-differential-analysis-methods.html#cb501-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">wilcox.threshold  =</span> wl.p,</span>
-<span id="cb501-9"><a href="principals-of-differential-analysis-methods.html#cb501-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">lda.threshold     =</span> Lda,</span>
-<span id="cb501-10"><a href="principals-of-differential-analysis-methods.html#cb501-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">groupCol =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
-<span id="cb501-11"><a href="principals-of-differential-analysis-methods.html#cb501-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">blockCol =</span> <span class="cn">NULL</span>,</span>
-<span id="cb501-12"><a href="principals-of-differential-analysis-methods.html#cb501-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">assay    =</span> 1L,</span>
-<span id="cb501-13"><a href="principals-of-differential-analysis-methods.html#cb501-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">trim.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="principals-of-differential-analysis-methods.html#cb519-1" aria-hidden="true" tabindex="-1"></a>se_object <span class="ot">&lt;-</span> SummarizedExperiment<span class="sc">::</span><span class="fu">SummarizedExperiment</span>(</span>
+<span id="cb519-2"><a href="principals-of-differential-analysis-methods.html#cb519-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">assays =</span> <span class="fu">list</span>(<span class="at">counts =</span> otu_tab),</span>
+<span id="cb519-3"><a href="principals-of-differential-analysis-methods.html#cb519-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">colData =</span> sam_tab,</span>
+<span id="cb519-4"><a href="principals-of-differential-analysis-methods.html#cb519-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">metadata =</span> <span class="st">&quot;Profile&quot;</span>)</span>
+<span id="cb519-5"><a href="principals-of-differential-analysis-methods.html#cb519-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb519-6"><a href="principals-of-differential-analysis-methods.html#cb519-6" aria-hidden="true" tabindex="-1"></a>lefse_res <span class="ot">&lt;-</span> <span class="fu">lefser</span>(se_object,</span>
+<span id="cb519-7"><a href="principals-of-differential-analysis-methods.html#cb519-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">kruskal.threshold =</span> <span class="fl">0.05</span>,</span>
+<span id="cb519-8"><a href="principals-of-differential-analysis-methods.html#cb519-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">wilcox.threshold  =</span> wl.p,</span>
+<span id="cb519-9"><a href="principals-of-differential-analysis-methods.html#cb519-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">lda.threshold     =</span> Lda,</span>
+<span id="cb519-10"><a href="principals-of-differential-analysis-methods.html#cb519-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">groupCol =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
+<span id="cb519-11"><a href="principals-of-differential-analysis-methods.html#cb519-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">blockCol =</span> <span class="cn">NULL</span>,</span>
+<span id="cb519-12"><a href="principals-of-differential-analysis-methods.html#cb519-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">assay    =</span> 1L,</span>
+<span id="cb519-13"><a href="principals-of-differential-analysis-methods.html#cb519-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">trim.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="notes-4" class="section level3 hasAnchor" number="14.6.8">
 <h3><span class="header-section-number">14.6.8</span> Notes<a href="principals-of-differential-analysis-methods.html#notes-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1142,20 +1143,20 @@ weights to each observation based on the mean-variance trend;</p></li>
 </div>
 <div id="xmas2-syntax-6" class="section level3 hasAnchor" number="14.7.7">
 <h3><span class="header-section-number">14.7.7</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="principals-of-differential-analysis-methods.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="co"># voom fitting</span></span>
-<span id="cb502-2"><a href="principals-of-differential-analysis-methods.html#cb502-2" aria-hidden="true" tabindex="-1"></a>voom_out <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">voom</span>(</span>
-<span id="cb502-3"><a href="principals-of-differential-analysis-methods.html#cb502-3" aria-hidden="true" tabindex="-1"></a>    otu_tab,</span>
-<span id="cb502-4"><a href="principals-of-differential-analysis-methods.html#cb502-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> design,</span>
-<span id="cb502-5"><a href="principals-of-differential-analysis-methods.html#cb502-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">lib.size =</span> lib_size,</span>
-<span id="cb502-6"><a href="principals-of-differential-analysis-methods.html#cb502-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">span =</span> voom_span)</span>
-<span id="cb502-7"><a href="principals-of-differential-analysis-methods.html#cb502-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb502-8"><a href="principals-of-differential-analysis-methods.html#cb502-8" aria-hidden="true" tabindex="-1"></a><span class="co"># linear model</span></span>
-<span id="cb502-9"><a href="principals-of-differential-analysis-methods.html#cb502-9" aria-hidden="true" tabindex="-1"></a>fit_out <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">lmFit</span>(voom_out, <span class="at">design =</span> design)</span>
-<span id="cb502-10"><a href="principals-of-differential-analysis-methods.html#cb502-10" aria-hidden="true" tabindex="-1"></a>test_out <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">eBayes</span>(fit_out)</span>
-<span id="cb502-11"><a href="principals-of-differential-analysis-methods.html#cb502-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">topTable</span>(</span>
-<span id="cb502-12"><a href="principals-of-differential-analysis-methods.html#cb502-12" aria-hidden="true" tabindex="-1"></a>    test_out,</span>
-<span id="cb502-13"><a href="principals-of-differential-analysis-methods.html#cb502-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">number =</span> <span class="fu">nrow</span>(otu_tab),</span>
-<span id="cb502-14"><a href="principals-of-differential-analysis-methods.html#cb502-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust.method =</span> p_adjust)</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="principals-of-differential-analysis-methods.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="co"># voom fitting</span></span>
+<span id="cb520-2"><a href="principals-of-differential-analysis-methods.html#cb520-2" aria-hidden="true" tabindex="-1"></a>voom_out <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">voom</span>(</span>
+<span id="cb520-3"><a href="principals-of-differential-analysis-methods.html#cb520-3" aria-hidden="true" tabindex="-1"></a>    otu_tab,</span>
+<span id="cb520-4"><a href="principals-of-differential-analysis-methods.html#cb520-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">design =</span> design,</span>
+<span id="cb520-5"><a href="principals-of-differential-analysis-methods.html#cb520-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">lib.size =</span> lib_size,</span>
+<span id="cb520-6"><a href="principals-of-differential-analysis-methods.html#cb520-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">span =</span> voom_span)</span>
+<span id="cb520-7"><a href="principals-of-differential-analysis-methods.html#cb520-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb520-8"><a href="principals-of-differential-analysis-methods.html#cb520-8" aria-hidden="true" tabindex="-1"></a><span class="co"># linear model</span></span>
+<span id="cb520-9"><a href="principals-of-differential-analysis-methods.html#cb520-9" aria-hidden="true" tabindex="-1"></a>fit_out <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">lmFit</span>(voom_out, <span class="at">design =</span> design)</span>
+<span id="cb520-10"><a href="principals-of-differential-analysis-methods.html#cb520-10" aria-hidden="true" tabindex="-1"></a>test_out <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">eBayes</span>(fit_out)</span>
+<span id="cb520-11"><a href="principals-of-differential-analysis-methods.html#cb520-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">topTable</span>(</span>
+<span id="cb520-12"><a href="principals-of-differential-analysis-methods.html#cb520-12" aria-hidden="true" tabindex="-1"></a>    test_out,</span>
+<span id="cb520-13"><a href="principals-of-differential-analysis-methods.html#cb520-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">number =</span> <span class="fu">nrow</span>(otu_tab),</span>
+<span id="cb520-14"><a href="principals-of-differential-analysis-methods.html#cb520-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjust.method =</span> p_adjust)</span></code></pre></div>
 </div>
 <div id="notes-5" class="section level3 hasAnchor" number="14.7.8">
 <h3><span class="header-section-number">14.7.8</span> Notes<a href="principals-of-differential-analysis-methods.html#notes-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1212,43 +1213,43 @@ tested significance using a Wald test, and output BH FDR-corrected p-values;</p>
 </div>
 <div id="original-syntax-7" class="section level3 hasAnchor" number="14.8.6">
 <h3><span class="header-section-number">14.8.6</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="principals-of-differential-analysis-methods.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Maaslin2</span>(</span>
-<span id="cb503-2"><a href="principals-of-differential-analysis-methods.html#cb503-2" aria-hidden="true" tabindex="-1"></a>    input_data,</span>
-<span id="cb503-3"><a href="principals-of-differential-analysis-methods.html#cb503-3" aria-hidden="true" tabindex="-1"></a>    input_metadata,</span>
-<span id="cb503-4"><a href="principals-of-differential-analysis-methods.html#cb503-4" aria-hidden="true" tabindex="-1"></a>    output,</span>
-<span id="cb503-5"><a href="principals-of-differential-analysis-methods.html#cb503-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_abundance =</span> <span class="fl">0.0</span>,</span>
-<span id="cb503-6"><a href="principals-of-differential-analysis-methods.html#cb503-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_prevalence =</span> <span class="fl">0.1</span>,</span>
-<span id="cb503-7"><a href="principals-of-differential-analysis-methods.html#cb503-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_variance =</span> <span class="fl">0.0</span>,</span>
-<span id="cb503-8"><a href="principals-of-differential-analysis-methods.html#cb503-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">normalization =</span> <span class="st">&quot;TSS&quot;</span>,</span>
-<span id="cb503-9"><a href="principals-of-differential-analysis-methods.html#cb503-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">transform =</span> <span class="st">&quot;LOG&quot;</span>,</span>
-<span id="cb503-10"><a href="principals-of-differential-analysis-methods.html#cb503-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">analysis_method =</span> <span class="st">&quot;LM&quot;</span>,</span>
-<span id="cb503-11"><a href="principals-of-differential-analysis-methods.html#cb503-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_significance =</span> <span class="fl">0.25</span>,</span>
-<span id="cb503-12"><a href="principals-of-differential-analysis-methods.html#cb503-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">random_effects =</span> <span class="cn">NULL</span>,</span>
-<span id="cb503-13"><a href="principals-of-differential-analysis-methods.html#cb503-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed_effects =</span> <span class="cn">NULL</span>,</span>
-<span id="cb503-14"><a href="principals-of-differential-analysis-methods.html#cb503-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">correction =</span> <span class="st">&quot;BH&quot;</span>,</span>
-<span id="cb503-15"><a href="principals-of-differential-analysis-methods.html#cb503-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">standardize =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb503-16"><a href="principals-of-differential-analysis-methods.html#cb503-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">1</span>,</span>
-<span id="cb503-17"><a href="principals-of-differential-analysis-methods.html#cb503-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_heatmap =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb503-18"><a href="principals-of-differential-analysis-methods.html#cb503-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_scatter =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb503-19"><a href="principals-of-differential-analysis-methods.html#cb503-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">heatmap_first_n =</span> <span class="dv">50</span>,</span>
-<span id="cb503-20"><a href="principals-of-differential-analysis-methods.html#cb503-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">reference =</span> <span class="cn">NULL</span></span>
-<span id="cb503-21"><a href="principals-of-differential-analysis-methods.html#cb503-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="principals-of-differential-analysis-methods.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Maaslin2</span>(</span>
+<span id="cb521-2"><a href="principals-of-differential-analysis-methods.html#cb521-2" aria-hidden="true" tabindex="-1"></a>    input_data,</span>
+<span id="cb521-3"><a href="principals-of-differential-analysis-methods.html#cb521-3" aria-hidden="true" tabindex="-1"></a>    input_metadata,</span>
+<span id="cb521-4"><a href="principals-of-differential-analysis-methods.html#cb521-4" aria-hidden="true" tabindex="-1"></a>    output,</span>
+<span id="cb521-5"><a href="principals-of-differential-analysis-methods.html#cb521-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_abundance =</span> <span class="fl">0.0</span>,</span>
+<span id="cb521-6"><a href="principals-of-differential-analysis-methods.html#cb521-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_prevalence =</span> <span class="fl">0.1</span>,</span>
+<span id="cb521-7"><a href="principals-of-differential-analysis-methods.html#cb521-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_variance =</span> <span class="fl">0.0</span>,</span>
+<span id="cb521-8"><a href="principals-of-differential-analysis-methods.html#cb521-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">normalization =</span> <span class="st">&quot;TSS&quot;</span>,</span>
+<span id="cb521-9"><a href="principals-of-differential-analysis-methods.html#cb521-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">transform =</span> <span class="st">&quot;LOG&quot;</span>,</span>
+<span id="cb521-10"><a href="principals-of-differential-analysis-methods.html#cb521-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">analysis_method =</span> <span class="st">&quot;LM&quot;</span>,</span>
+<span id="cb521-11"><a href="principals-of-differential-analysis-methods.html#cb521-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_significance =</span> <span class="fl">0.25</span>,</span>
+<span id="cb521-12"><a href="principals-of-differential-analysis-methods.html#cb521-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">random_effects =</span> <span class="cn">NULL</span>,</span>
+<span id="cb521-13"><a href="principals-of-differential-analysis-methods.html#cb521-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed_effects =</span> <span class="cn">NULL</span>,</span>
+<span id="cb521-14"><a href="principals-of-differential-analysis-methods.html#cb521-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">correction =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb521-15"><a href="principals-of-differential-analysis-methods.html#cb521-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">standardize =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb521-16"><a href="principals-of-differential-analysis-methods.html#cb521-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="dv">1</span>,</span>
+<span id="cb521-17"><a href="principals-of-differential-analysis-methods.html#cb521-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_heatmap =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb521-18"><a href="principals-of-differential-analysis-methods.html#cb521-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot_scatter =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb521-19"><a href="principals-of-differential-analysis-methods.html#cb521-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">heatmap_first_n =</span> <span class="dv">50</span>,</span>
+<span id="cb521-20"><a href="principals-of-differential-analysis-methods.html#cb521-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">reference =</span> <span class="cn">NULL</span></span>
+<span id="cb521-21"><a href="principals-of-differential-analysis-methods.html#cb521-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax-7" class="section level3 hasAnchor" number="14.8.7">
 <h3><span class="header-section-number">14.8.7</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="principals-of-differential-analysis-methods.html#cb504-1" aria-hidden="true" tabindex="-1"></a>da_res <span class="ot">&lt;-</span> Maaslin2<span class="sc">::</span><span class="fu">Maaslin2</span>(</span>
-<span id="cb504-2"><a href="principals-of-differential-analysis-methods.html#cb504-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">input_data =</span> otu_tab <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>(), <span class="co"># row-&gt;smapleID; col-&gt;Taxa</span></span>
-<span id="cb504-3"><a href="principals-of-differential-analysis-methods.html#cb504-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">input_metadata =</span> sam_tab,</span>
-<span id="cb504-4"><a href="principals-of-differential-analysis-methods.html#cb504-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">output =</span> outdir,</span>
-<span id="cb504-5"><a href="principals-of-differential-analysis-methods.html#cb504-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">normalization =</span> norm,</span>
-<span id="cb504-6"><a href="principals-of-differential-analysis-methods.html#cb504-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">transform =</span> transform,</span>
-<span id="cb504-7"><a href="principals-of-differential-analysis-methods.html#cb504-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">analysis_method =</span> method,</span>
-<span id="cb504-8"><a href="principals-of-differential-analysis-methods.html#cb504-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">max_significance =</span> pvalue_cutoff,</span>
-<span id="cb504-9"><a href="principals-of-differential-analysis-methods.html#cb504-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">fixed_effects =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
-<span id="cb504-10"><a href="principals-of-differential-analysis-methods.html#cb504-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">correction =</span> p_adjust,</span>
-<span id="cb504-11"><a href="principals-of-differential-analysis-methods.html#cb504-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot_heatmap =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb504-12"><a href="principals-of-differential-analysis-methods.html#cb504-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot_scatter =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb504-13"><a href="principals-of-differential-analysis-methods.html#cb504-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">cores =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="principals-of-differential-analysis-methods.html#cb522-1" aria-hidden="true" tabindex="-1"></a>da_res <span class="ot">&lt;-</span> Maaslin2<span class="sc">::</span><span class="fu">Maaslin2</span>(</span>
+<span id="cb522-2"><a href="principals-of-differential-analysis-methods.html#cb522-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">input_data =</span> otu_tab <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>(), <span class="co"># row-&gt;smapleID; col-&gt;Taxa</span></span>
+<span id="cb522-3"><a href="principals-of-differential-analysis-methods.html#cb522-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">input_metadata =</span> sam_tab,</span>
+<span id="cb522-4"><a href="principals-of-differential-analysis-methods.html#cb522-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">output =</span> outdir,</span>
+<span id="cb522-5"><a href="principals-of-differential-analysis-methods.html#cb522-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">normalization =</span> norm,</span>
+<span id="cb522-6"><a href="principals-of-differential-analysis-methods.html#cb522-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">transform =</span> transform,</span>
+<span id="cb522-7"><a href="principals-of-differential-analysis-methods.html#cb522-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">analysis_method =</span> method,</span>
+<span id="cb522-8"><a href="principals-of-differential-analysis-methods.html#cb522-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">max_significance =</span> pvalue_cutoff,</span>
+<span id="cb522-9"><a href="principals-of-differential-analysis-methods.html#cb522-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">fixed_effects =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
+<span id="cb522-10"><a href="principals-of-differential-analysis-methods.html#cb522-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">correction =</span> p_adjust,</span>
+<span id="cb522-11"><a href="principals-of-differential-analysis-methods.html#cb522-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot_heatmap =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb522-12"><a href="principals-of-differential-analysis-methods.html#cb522-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot_scatter =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb522-13"><a href="principals-of-differential-analysis-methods.html#cb522-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">cores =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="metagenomeseq-1" class="section level2 hasAnchor" number="14.9">
@@ -1299,28 +1300,28 @@ and <code>MRfulltable</code> to obtain BH FDR-corrected p-values.</p></li>
 </div>
 <div id="xmas2-syntax-8" class="section level3 hasAnchor" number="14.9.6">
 <h3><span class="header-section-number">14.9.6</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="principals-of-differential-analysis-methods.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run DA</span></span>
-<span id="cb505-2"><a href="principals-of-differential-analysis-methods.html#cb505-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (method <span class="sc">==</span> <span class="st">&quot;ZILN&quot;</span>) {</span>
-<span id="cb505-3"><a href="principals-of-differential-analysis-methods.html#cb505-3" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> metagenomeSeq<span class="sc">::</span><span class="fu">fitFeatureModel</span>(mgs_summarized, mod)</span>
-<span id="cb505-4"><a href="principals-of-differential-analysis-methods.html#cb505-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb505-5"><a href="principals-of-differential-analysis-methods.html#cb505-5" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> metagenomeSeq<span class="sc">::</span><span class="fu">fitZig</span>(mgs_summarized, mod)</span>
-<span id="cb505-6"><a href="principals-of-differential-analysis-methods.html#cb505-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb505-7"><a href="principals-of-differential-analysis-methods.html#cb505-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb505-8"><a href="principals-of-differential-analysis-methods.html#cb505-8" aria-hidden="true" tabindex="-1"></a><span class="co"># metagenomeSeq vignette: We recommend the user remove features based on</span></span>
-<span id="cb505-9"><a href="principals-of-differential-analysis-methods.html#cb505-9" aria-hidden="true" tabindex="-1"></a><span class="co"># the number of estimated effective samples, please see</span></span>
-<span id="cb505-10"><a href="principals-of-differential-analysis-methods.html#cb505-10" aria-hidden="true" tabindex="-1"></a><span class="co"># calculateEffectiveSamples. We recommend removing features with less</span></span>
-<span id="cb505-11"><a href="principals-of-differential-analysis-methods.html#cb505-11" aria-hidden="true" tabindex="-1"></a><span class="co"># than the average number of effective samples in all features. In</span></span>
-<span id="cb505-12"><a href="principals-of-differential-analysis-methods.html#cb505-12" aria-hidden="true" tabindex="-1"></a><span class="co"># essence, setting eff = .5 when using MRcoefs, MRfulltable, or MRtable.</span></span>
-<span id="cb505-13"><a href="principals-of-differential-analysis-methods.html#cb505-13" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> metagenomeSeq<span class="sc">::</span><span class="fu">MRcoefs</span>(</span>
-<span id="cb505-14"><a href="principals-of-differential-analysis-methods.html#cb505-14" aria-hidden="true" tabindex="-1"></a>    fit,</span>
-<span id="cb505-15"><a href="principals-of-differential-analysis-methods.html#cb505-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">number =</span> <span class="fu">ntaxa</span>(ps_normed_new),</span>
-<span id="cb505-16"><a href="principals-of-differential-analysis-methods.html#cb505-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjustMethod =</span> p_adjust,</span>
-<span id="cb505-17"><a href="principals-of-differential-analysis-methods.html#cb505-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="dv">3</span>,</span>
-<span id="cb505-18"><a href="principals-of-differential-analysis-methods.html#cb505-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">eff =</span> <span class="fl">0.5</span>)</span>
-<span id="cb505-19"><a href="principals-of-differential-analysis-methods.html#cb505-19" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
-<span id="cb505-20"><a href="principals-of-differential-analysis-methods.html#cb505-20" aria-hidden="true" tabindex="-1"></a>    res,</span>
-<span id="cb505-21"><a href="principals-of-differential-analysis-methods.html#cb505-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pvalue =</span> .data<span class="sc">$</span>pvalues,</span>
-<span id="cb505-22"><a href="principals-of-differential-analysis-methods.html#cb505-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">AdjustedPvalue =</span> .data<span class="sc">$</span>adjPvalues)</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="principals-of-differential-analysis-methods.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run DA</span></span>
+<span id="cb523-2"><a href="principals-of-differential-analysis-methods.html#cb523-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (method <span class="sc">==</span> <span class="st">&quot;ZILN&quot;</span>) {</span>
+<span id="cb523-3"><a href="principals-of-differential-analysis-methods.html#cb523-3" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> metagenomeSeq<span class="sc">::</span><span class="fu">fitFeatureModel</span>(mgs_summarized, mod)</span>
+<span id="cb523-4"><a href="principals-of-differential-analysis-methods.html#cb523-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb523-5"><a href="principals-of-differential-analysis-methods.html#cb523-5" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> metagenomeSeq<span class="sc">::</span><span class="fu">fitZig</span>(mgs_summarized, mod)</span>
+<span id="cb523-6"><a href="principals-of-differential-analysis-methods.html#cb523-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb523-7"><a href="principals-of-differential-analysis-methods.html#cb523-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb523-8"><a href="principals-of-differential-analysis-methods.html#cb523-8" aria-hidden="true" tabindex="-1"></a><span class="co"># metagenomeSeq vignette: We recommend the user remove features based on</span></span>
+<span id="cb523-9"><a href="principals-of-differential-analysis-methods.html#cb523-9" aria-hidden="true" tabindex="-1"></a><span class="co"># the number of estimated effective samples, please see</span></span>
+<span id="cb523-10"><a href="principals-of-differential-analysis-methods.html#cb523-10" aria-hidden="true" tabindex="-1"></a><span class="co"># calculateEffectiveSamples. We recommend removing features with less</span></span>
+<span id="cb523-11"><a href="principals-of-differential-analysis-methods.html#cb523-11" aria-hidden="true" tabindex="-1"></a><span class="co"># than the average number of effective samples in all features. In</span></span>
+<span id="cb523-12"><a href="principals-of-differential-analysis-methods.html#cb523-12" aria-hidden="true" tabindex="-1"></a><span class="co"># essence, setting eff = .5 when using MRcoefs, MRfulltable, or MRtable.</span></span>
+<span id="cb523-13"><a href="principals-of-differential-analysis-methods.html#cb523-13" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> metagenomeSeq<span class="sc">::</span><span class="fu">MRcoefs</span>(</span>
+<span id="cb523-14"><a href="principals-of-differential-analysis-methods.html#cb523-14" aria-hidden="true" tabindex="-1"></a>    fit,</span>
+<span id="cb523-15"><a href="principals-of-differential-analysis-methods.html#cb523-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">number =</span> <span class="fu">ntaxa</span>(ps_normed_new),</span>
+<span id="cb523-16"><a href="principals-of-differential-analysis-methods.html#cb523-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjustMethod =</span> p_adjust,</span>
+<span id="cb523-17"><a href="principals-of-differential-analysis-methods.html#cb523-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="dv">3</span>,</span>
+<span id="cb523-18"><a href="principals-of-differential-analysis-methods.html#cb523-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">eff =</span> <span class="fl">0.5</span>)</span>
+<span id="cb523-19"><a href="principals-of-differential-analysis-methods.html#cb523-19" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb523-20"><a href="principals-of-differential-analysis-methods.html#cb523-20" aria-hidden="true" tabindex="-1"></a>    res,</span>
+<span id="cb523-21"><a href="principals-of-differential-analysis-methods.html#cb523-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pvalue =</span> .data<span class="sc">$</span>pvalues,</span>
+<span id="cb523-22"><a href="principals-of-differential-analysis-methods.html#cb523-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">AdjustedPvalue =</span> .data<span class="sc">$</span>adjPvalues)</span></code></pre></div>
 </div>
 </div>
 <div id="t-test-2" class="section level2 hasAnchor" number="14.10">
@@ -1359,39 +1360,39 @@ and <code>MRfulltable</code> to obtain BH FDR-corrected p-values.</p></li>
 </div>
 <div id="original-syntax-8" class="section level3 hasAnchor" number="14.10.5">
 <h3><span class="header-section-number">14.10.5</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="principals-of-differential-analysis-methods.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb506-2"><a href="principals-of-differential-analysis-methods.html#cb506-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
-<span id="cb506-3"><a href="principals-of-differential-analysis-methods.html#cb506-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb506-4"><a href="principals-of-differential-analysis-methods.html#cb506-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="principals-of-differential-analysis-methods.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb524-2"><a href="principals-of-differential-analysis-methods.html#cb524-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
+<span id="cb524-3"><a href="principals-of-differential-analysis-methods.html#cb524-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb524-4"><a href="principals-of-differential-analysis-methods.html#cb524-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>, ...)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax-9" class="section level3 hasAnchor" number="14.10.6">
 <h3><span class="header-section-number">14.10.6</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="principals-of-differential-analysis-methods.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run wilcox rank sum test</span></span>
-<span id="cb507-2"><a href="principals-of-differential-analysis-methods.html#cb507-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (paired) {</span>
-<span id="cb507-3"><a href="principals-of-differential-analysis-methods.html#cb507-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(paired_column)) {</span>
-<span id="cb507-4"><a href="principals-of-differential-analysis-methods.html#cb507-4" aria-hidden="true" tabindex="-1"></a>      res <span class="ot">&lt;-</span> <span class="fu">paired_t</span>(<span class="at">x =</span> otu_tab,</span>
-<span id="cb507-5"><a href="principals-of-differential-analysis-methods.html#cb507-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> sam_tab,</span>
-<span id="cb507-6"><a href="principals-of-differential-analysis-methods.html#cb507-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
-<span id="cb507-7"><a href="principals-of-differential-analysis-methods.html#cb507-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">gnames =</span> group_names,</span>
-<span id="cb507-8"><a href="principals-of-differential-analysis-methods.html#cb507-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">paired =</span> paired,</span>
-<span id="cb507-9"><a href="principals-of-differential-analysis-methods.html#cb507-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">PID =</span> paired_column,</span>
-<span id="cb507-10"><a href="principals-of-differential-analysis-methods.html#cb507-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">p_ad =</span> p_adjust)</span>
-<span id="cb507-11"><a href="principals-of-differential-analysis-methods.html#cb507-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb507-12"><a href="principals-of-differential-analysis-methods.html#cb507-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">&quot;Please provide the paired column for paired test&quot;</span>)</span>
-<span id="cb507-13"><a href="principals-of-differential-analysis-methods.html#cb507-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb507-14"><a href="principals-of-differential-analysis-methods.html#cb507-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb507-15"><a href="principals-of-differential-analysis-methods.html#cb507-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb507-16"><a href="principals-of-differential-analysis-methods.html#cb507-16" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">apply</span>(otu_tab, <span class="dv">1</span>, <span class="cf">function</span>(x, y) {</span>
-<span id="cb507-17"><a href="principals-of-differential-analysis-methods.html#cb507-17" aria-hidden="true" tabindex="-1"></a>      dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(x), <span class="at">group =</span> y)</span>
-<span id="cb507-18"><a href="principals-of-differential-analysis-methods.html#cb507-18" aria-hidden="true" tabindex="-1"></a>      rest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">data =</span> dat, value <span class="sc">~</span> group)</span>
-<span id="cb507-19"><a href="principals-of-differential-analysis-methods.html#cb507-19" aria-hidden="true" tabindex="-1"></a>      res <span class="ot">&lt;-</span> <span class="fu">c</span>(rest<span class="sc">$</span>statistic, rest<span class="sc">$</span>p.value)</span>
-<span id="cb507-20"><a href="principals-of-differential-analysis-methods.html#cb507-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(res)</span>
-<span id="cb507-21"><a href="principals-of-differential-analysis-methods.html#cb507-21" aria-hidden="true" tabindex="-1"></a>    }, sam_tab<span class="sc">$</span>Compvar) <span class="sc">%&gt;%</span></span>
-<span id="cb507-22"><a href="principals-of-differential-analysis-methods.html#cb507-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb507-23"><a href="principals-of-differential-analysis-methods.html#cb507-23" aria-hidden="true" tabindex="-1"></a>      stats<span class="sc">::</span><span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;Statistic&quot;</span>, <span class="st">&quot;Pvalue&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb507-24"><a href="principals-of-differential-analysis-methods.html#cb507-24" aria-hidden="true" tabindex="-1"></a>      tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">&quot;TaxaID&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb507-25"><a href="principals-of-differential-analysis-methods.html#cb507-25" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">AdjustedPvalue =</span> <span class="fu">p.adjust</span>(<span class="fu">as.numeric</span>(Pvalue), <span class="at">method =</span> p_adjust))</span>
-<span id="cb507-26"><a href="principals-of-differential-analysis-methods.html#cb507-26" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="principals-of-differential-analysis-methods.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run wilcox rank sum test</span></span>
+<span id="cb525-2"><a href="principals-of-differential-analysis-methods.html#cb525-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (paired) {</span>
+<span id="cb525-3"><a href="principals-of-differential-analysis-methods.html#cb525-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(paired_column)) {</span>
+<span id="cb525-4"><a href="principals-of-differential-analysis-methods.html#cb525-4" aria-hidden="true" tabindex="-1"></a>      res <span class="ot">&lt;-</span> <span class="fu">paired_t</span>(<span class="at">x =</span> otu_tab,</span>
+<span id="cb525-5"><a href="principals-of-differential-analysis-methods.html#cb525-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> sam_tab,</span>
+<span id="cb525-6"><a href="principals-of-differential-analysis-methods.html#cb525-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
+<span id="cb525-7"><a href="principals-of-differential-analysis-methods.html#cb525-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">gnames =</span> group_names,</span>
+<span id="cb525-8"><a href="principals-of-differential-analysis-methods.html#cb525-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">paired =</span> paired,</span>
+<span id="cb525-9"><a href="principals-of-differential-analysis-methods.html#cb525-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">PID =</span> paired_column,</span>
+<span id="cb525-10"><a href="principals-of-differential-analysis-methods.html#cb525-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">p_ad =</span> p_adjust)</span>
+<span id="cb525-11"><a href="principals-of-differential-analysis-methods.html#cb525-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb525-12"><a href="principals-of-differential-analysis-methods.html#cb525-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">&quot;Please provide the paired column for paired test&quot;</span>)</span>
+<span id="cb525-13"><a href="principals-of-differential-analysis-methods.html#cb525-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb525-14"><a href="principals-of-differential-analysis-methods.html#cb525-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb525-15"><a href="principals-of-differential-analysis-methods.html#cb525-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb525-16"><a href="principals-of-differential-analysis-methods.html#cb525-16" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">apply</span>(otu_tab, <span class="dv">1</span>, <span class="cf">function</span>(x, y) {</span>
+<span id="cb525-17"><a href="principals-of-differential-analysis-methods.html#cb525-17" aria-hidden="true" tabindex="-1"></a>      dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(x), <span class="at">group =</span> y)</span>
+<span id="cb525-18"><a href="principals-of-differential-analysis-methods.html#cb525-18" aria-hidden="true" tabindex="-1"></a>      rest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(<span class="at">data =</span> dat, value <span class="sc">~</span> group)</span>
+<span id="cb525-19"><a href="principals-of-differential-analysis-methods.html#cb525-19" aria-hidden="true" tabindex="-1"></a>      res <span class="ot">&lt;-</span> <span class="fu">c</span>(rest<span class="sc">$</span>statistic, rest<span class="sc">$</span>p.value)</span>
+<span id="cb525-20"><a href="principals-of-differential-analysis-methods.html#cb525-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(res)</span>
+<span id="cb525-21"><a href="principals-of-differential-analysis-methods.html#cb525-21" aria-hidden="true" tabindex="-1"></a>    }, sam_tab<span class="sc">$</span>Compvar) <span class="sc">%&gt;%</span></span>
+<span id="cb525-22"><a href="principals-of-differential-analysis-methods.html#cb525-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb525-23"><a href="principals-of-differential-analysis-methods.html#cb525-23" aria-hidden="true" tabindex="-1"></a>      stats<span class="sc">::</span><span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;Statistic&quot;</span>, <span class="st">&quot;Pvalue&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb525-24"><a href="principals-of-differential-analysis-methods.html#cb525-24" aria-hidden="true" tabindex="-1"></a>      tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">&quot;TaxaID&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb525-25"><a href="principals-of-differential-analysis-methods.html#cb525-25" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">AdjustedPvalue =</span> <span class="fu">p.adjust</span>(<span class="fu">as.numeric</span>(Pvalue), <span class="at">method =</span> p_adjust))</span>
+<span id="cb525-26"><a href="principals-of-differential-analysis-methods.html#cb525-26" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 </div>
 <div id="wilcoxon-test" class="section level2 hasAnchor" number="14.11">
@@ -1430,40 +1431,40 @@ and <code>MRfulltable</code> to obtain BH FDR-corrected p-values.</p></li>
 </div>
 <div id="original-syntax-9" class="section level3 hasAnchor" number="14.11.5">
 <h3><span class="header-section-number">14.11.5</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="principals-of-differential-analysis-methods.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(x, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb508-2"><a href="principals-of-differential-analysis-methods.html#cb508-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
-<span id="cb508-3"><a href="principals-of-differential-analysis-methods.html#cb508-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">exact =</span> <span class="cn">NULL</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb508-4"><a href="principals-of-differential-analysis-methods.html#cb508-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
-<span id="cb508-5"><a href="principals-of-differential-analysis-methods.html#cb508-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">tol.root =</span> <span class="fl">1e-4</span>, <span class="at">digits.rank =</span> <span class="cn">Inf</span>, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="principals-of-differential-analysis-methods.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(x, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb526-2"><a href="principals-of-differential-analysis-methods.html#cb526-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;less&quot;</span>, <span class="st">&quot;greater&quot;</span>),</span>
+<span id="cb526-3"><a href="principals-of-differential-analysis-methods.html#cb526-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">exact =</span> <span class="cn">NULL</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb526-4"><a href="principals-of-differential-analysis-methods.html#cb526-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.int =</span> <span class="cn">FALSE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb526-5"><a href="principals-of-differential-analysis-methods.html#cb526-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">tol.root =</span> <span class="fl">1e-4</span>, <span class="at">digits.rank =</span> <span class="cn">Inf</span>, ...)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax-10" class="section level3 hasAnchor" number="14.11.6">
 <h3><span class="header-section-number">14.11.6</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="principals-of-differential-analysis-methods.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run wilcox rank sum test</span></span>
-<span id="cb509-2"><a href="principals-of-differential-analysis-methods.html#cb509-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (paired) {</span>
-<span id="cb509-3"><a href="principals-of-differential-analysis-methods.html#cb509-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(paired_column)) {</span>
-<span id="cb509-4"><a href="principals-of-differential-analysis-methods.html#cb509-4" aria-hidden="true" tabindex="-1"></a>      res <span class="ot">&lt;-</span> <span class="fu">paired_wilcox</span>(<span class="at">x =</span> otu_tab,</span>
-<span id="cb509-5"><a href="principals-of-differential-analysis-methods.html#cb509-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> sam_tab,</span>
-<span id="cb509-6"><a href="principals-of-differential-analysis-methods.html#cb509-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
-<span id="cb509-7"><a href="principals-of-differential-analysis-methods.html#cb509-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">gnames =</span> group_names,</span>
-<span id="cb509-8"><a href="principals-of-differential-analysis-methods.html#cb509-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">paired =</span> paired,</span>
-<span id="cb509-9"><a href="principals-of-differential-analysis-methods.html#cb509-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">PID =</span> paired_column,</span>
-<span id="cb509-10"><a href="principals-of-differential-analysis-methods.html#cb509-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">p_ad =</span> p_adjust)</span>
-<span id="cb509-11"><a href="principals-of-differential-analysis-methods.html#cb509-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb509-12"><a href="principals-of-differential-analysis-methods.html#cb509-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">&quot;Please provide the paired column for paired test&quot;</span>)</span>
-<span id="cb509-13"><a href="principals-of-differential-analysis-methods.html#cb509-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb509-14"><a href="principals-of-differential-analysis-methods.html#cb509-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb509-15"><a href="principals-of-differential-analysis-methods.html#cb509-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb509-16"><a href="principals-of-differential-analysis-methods.html#cb509-16" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">apply</span>(otu_tab, <span class="dv">1</span>, <span class="cf">function</span>(x, y) {</span>
-<span id="cb509-17"><a href="principals-of-differential-analysis-methods.html#cb509-17" aria-hidden="true" tabindex="-1"></a>      dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(x), <span class="at">group =</span> y)</span>
-<span id="cb509-18"><a href="principals-of-differential-analysis-methods.html#cb509-18" aria-hidden="true" tabindex="-1"></a>      rest <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(<span class="at">data =</span> dat, value <span class="sc">~</span> group)</span>
-<span id="cb509-19"><a href="principals-of-differential-analysis-methods.html#cb509-19" aria-hidden="true" tabindex="-1"></a>      res <span class="ot">&lt;-</span> <span class="fu">c</span>(rest<span class="sc">$</span>statistic, rest<span class="sc">$</span>p.value)</span>
-<span id="cb509-20"><a href="principals-of-differential-analysis-methods.html#cb509-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(res)</span>
-<span id="cb509-21"><a href="principals-of-differential-analysis-methods.html#cb509-21" aria-hidden="true" tabindex="-1"></a>    }, sam_tab<span class="sc">$</span>Compvar) <span class="sc">%&gt;%</span></span>
-<span id="cb509-22"><a href="principals-of-differential-analysis-methods.html#cb509-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb509-23"><a href="principals-of-differential-analysis-methods.html#cb509-23" aria-hidden="true" tabindex="-1"></a>    stats<span class="sc">::</span><span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;Statistic&quot;</span>, <span class="st">&quot;Pvalue&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb509-24"><a href="principals-of-differential-analysis-methods.html#cb509-24" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">&quot;TaxaID&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb509-25"><a href="principals-of-differential-analysis-methods.html#cb509-25" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">AdjustedPvalue =</span> <span class="fu">p.adjust</span>(<span class="fu">as.numeric</span>(Pvalue), <span class="at">method =</span> p_adjust))</span>
-<span id="cb509-26"><a href="principals-of-differential-analysis-methods.html#cb509-26" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="principals-of-differential-analysis-methods.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run wilcox rank sum test</span></span>
+<span id="cb527-2"><a href="principals-of-differential-analysis-methods.html#cb527-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (paired) {</span>
+<span id="cb527-3"><a href="principals-of-differential-analysis-methods.html#cb527-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(paired_column)) {</span>
+<span id="cb527-4"><a href="principals-of-differential-analysis-methods.html#cb527-4" aria-hidden="true" tabindex="-1"></a>      res <span class="ot">&lt;-</span> <span class="fu">paired_wilcox</span>(<span class="at">x =</span> otu_tab,</span>
+<span id="cb527-5"><a href="principals-of-differential-analysis-methods.html#cb527-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> sam_tab,</span>
+<span id="cb527-6"><a href="principals-of-differential-analysis-methods.html#cb527-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">group =</span> <span class="st">&quot;Compvar&quot;</span>,</span>
+<span id="cb527-7"><a href="principals-of-differential-analysis-methods.html#cb527-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">gnames =</span> group_names,</span>
+<span id="cb527-8"><a href="principals-of-differential-analysis-methods.html#cb527-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">paired =</span> paired,</span>
+<span id="cb527-9"><a href="principals-of-differential-analysis-methods.html#cb527-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">PID =</span> paired_column,</span>
+<span id="cb527-10"><a href="principals-of-differential-analysis-methods.html#cb527-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">p_ad =</span> p_adjust)</span>
+<span id="cb527-11"><a href="principals-of-differential-analysis-methods.html#cb527-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb527-12"><a href="principals-of-differential-analysis-methods.html#cb527-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">&quot;Please provide the paired column for paired test&quot;</span>)</span>
+<span id="cb527-13"><a href="principals-of-differential-analysis-methods.html#cb527-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb527-14"><a href="principals-of-differential-analysis-methods.html#cb527-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-15"><a href="principals-of-differential-analysis-methods.html#cb527-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb527-16"><a href="principals-of-differential-analysis-methods.html#cb527-16" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">apply</span>(otu_tab, <span class="dv">1</span>, <span class="cf">function</span>(x, y) {</span>
+<span id="cb527-17"><a href="principals-of-differential-analysis-methods.html#cb527-17" aria-hidden="true" tabindex="-1"></a>      dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> <span class="fu">as.numeric</span>(x), <span class="at">group =</span> y)</span>
+<span id="cb527-18"><a href="principals-of-differential-analysis-methods.html#cb527-18" aria-hidden="true" tabindex="-1"></a>      rest <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(<span class="at">data =</span> dat, value <span class="sc">~</span> group)</span>
+<span id="cb527-19"><a href="principals-of-differential-analysis-methods.html#cb527-19" aria-hidden="true" tabindex="-1"></a>      res <span class="ot">&lt;-</span> <span class="fu">c</span>(rest<span class="sc">$</span>statistic, rest<span class="sc">$</span>p.value)</span>
+<span id="cb527-20"><a href="principals-of-differential-analysis-methods.html#cb527-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(res)</span>
+<span id="cb527-21"><a href="principals-of-differential-analysis-methods.html#cb527-21" aria-hidden="true" tabindex="-1"></a>    }, sam_tab<span class="sc">$</span>Compvar) <span class="sc">%&gt;%</span></span>
+<span id="cb527-22"><a href="principals-of-differential-analysis-methods.html#cb527-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb527-23"><a href="principals-of-differential-analysis-methods.html#cb527-23" aria-hidden="true" tabindex="-1"></a>    stats<span class="sc">::</span><span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;Statistic&quot;</span>, <span class="st">&quot;Pvalue&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb527-24"><a href="principals-of-differential-analysis-methods.html#cb527-24" aria-hidden="true" tabindex="-1"></a>    tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="st">&quot;TaxaID&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb527-25"><a href="principals-of-differential-analysis-methods.html#cb527-25" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">AdjustedPvalue =</span> <span class="fu">p.adjust</span>(<span class="fu">as.numeric</span>(Pvalue), <span class="at">method =</span> p_adjust))</span>
+<span id="cb527-26"><a href="principals-of-differential-analysis-methods.html#cb527-26" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 </div>
 <div id="raida-1" class="section level2 hasAnchor" number="14.12">
@@ -1509,17 +1510,17 @@ and <code>MRfulltable</code> to obtain BH FDR-corrected p-values.</p></li>
 </div>
 <div id="original-syntax-10" class="section level3 hasAnchor" number="14.12.6">
 <h3><span class="header-section-number">14.12.6</span> Original Syntax<a href="principals-of-differential-analysis-methods.html#original-syntax-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="principals-of-differential-analysis-methods.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">raida</span>(c.data, </span>
-<span id="cb510-2"><a href="principals-of-differential-analysis-methods.html#cb510-2" aria-hidden="true" tabindex="-1"></a>      n.lib, </span>
-<span id="cb510-3"><a href="principals-of-differential-analysis-methods.html#cb510-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">show.ref.features =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb510-4"><a href="principals-of-differential-analysis-methods.html#cb510-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">show.all.features =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb510-5"><a href="principals-of-differential-analysis-methods.html#cb510-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">mtcm =</span> <span class="st">&quot;BH&quot;</span>, </span>
-<span id="cb510-6"><a href="principals-of-differential-analysis-methods.html#cb510-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">zsc =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="principals-of-differential-analysis-methods.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">raida</span>(c.data, </span>
+<span id="cb528-2"><a href="principals-of-differential-analysis-methods.html#cb528-2" aria-hidden="true" tabindex="-1"></a>      n.lib, </span>
+<span id="cb528-3"><a href="principals-of-differential-analysis-methods.html#cb528-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">show.ref.features =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb528-4"><a href="principals-of-differential-analysis-methods.html#cb528-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">show.all.features =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb528-5"><a href="principals-of-differential-analysis-methods.html#cb528-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">mtcm =</span> <span class="st">&quot;BH&quot;</span>, </span>
+<span id="cb528-6"><a href="principals-of-differential-analysis-methods.html#cb528-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">zsc =</span> <span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div id="xmas2-syntax-11" class="section level3 hasAnchor" number="14.12.7">
 <h3><span class="header-section-number">14.12.7</span> XMAS2 Syntax<a href="principals-of-differential-analysis-methods.html#xmas2-syntax-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="principals-of-differential-analysis-methods.html#cb511-1" aria-hidden="true" tabindex="-1"></a>raida_res <span class="ot">&lt;-</span> RAIDA<span class="sc">::</span><span class="fu">raida</span>(<span class="at">c.data =</span> otu_tab_reorder,</span>
-<span id="cb511-2"><a href="principals-of-differential-analysis-methods.html#cb511-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">n.lib =</span> n.samples)</span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="principals-of-differential-analysis-methods.html#cb529-1" aria-hidden="true" tabindex="-1"></a>raida_res <span class="ot">&lt;-</span> RAIDA<span class="sc">::</span><span class="fu">raida</span>(<span class="at">c.data =</span> otu_tab_reorder,</span>
+<span id="cb529-2"><a href="principals-of-differential-analysis-methods.html#cb529-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">n.lib =</span> n.samples)</span></code></pre></div>
 </div>
 </div>
 <div id="summary" class="section level2 hasAnchor" number="14.13">

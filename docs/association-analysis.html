@@ -23,7 +23,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-08-09" />
+<meta name="date" content="2022-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -392,6 +392,7 @@ div.csl-indent {
 <li class="chapter" data-level="12.13" data-path="visualization-5.html"><a href="visualization-5.html#color-palettes"><i class="fa fa-check"></i><b>12.13</b> Color Palettes</a>
 <ul>
 <li class="chapter" data-level="12.13.1" data-path="visualization-5.html"><a href="visualization-5.html#wes-anderson-palettes"><i class="fa fa-check"></i><b>12.13.1</b> Wes Anderson Palettes</a></li>
+<li class="chapter" data-level="12.13.2" data-path="visualization-5.html"><a href="visualization-5.html#usemycol"><i class="fa fa-check"></i><b>12.13.2</b> useMyCol</a></li>
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="visualization-5.html"><a href="visualization-5.html#ordination-plots-with-ggplot2"><i class="fa fa-check"></i><b>12.14</b> Ordination plots with ggplot2</a>
 <ul>
@@ -584,72 +585,63 @@ div.csl-indent {
 <div id="association-analysis" class="section level1 hasAnchor" number="13">
 <h1><span class="header-section-number">Chapter 13</span> Association Analysis<a href="association-analysis.html#association-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><strong>Loading packages</strong></p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="association-analysis.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb474-2"><a href="association-analysis.html#cb474-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb474-3"><a href="association-analysis.html#cb474-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb474-4"><a href="association-analysis.html#cb474-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb474-5"><a href="association-analysis.html#cb474-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="association-analysis.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb492-2"><a href="association-analysis.html#cb492-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb492-3"><a href="association-analysis.html#cb492-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb492-4"><a href="association-analysis.html#cb492-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb492-5"><a href="association-analysis.html#cb492-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span></code></pre></div>
 <div id="loading-and-showing-phyloseq-object" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Loading and showing phyloseq object<a href="association-analysis.html#loading-and-showing-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <strong>Zeybel_Gut</strong> is from <span class="citation">(<a href="#ref-zeybel2022multiomics" role="doc-biblioref">Zeybel et al. 2022</a>)</span>, containing gut and oral microbiota.</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="association-analysis.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Zeybel_Gut&quot;</span>)</span>
-<span id="cb475-2"><a href="association-analysis.html#cb475-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb475-3"><a href="association-analysis.html#cb475-3" aria-hidden="true" tabindex="-1"></a>Zeybel_Gut_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> Zeybel_Gut,</span>
-<span id="cb475-4"><a href="association-analysis.html#cb475-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="association-analysis.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Zeybel_Gut&quot;</span>)</span>
+<span id="cb493-2"><a href="association-analysis.html#cb493-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb493-3"><a href="association-analysis.html#cb493-3" aria-hidden="true" tabindex="-1"></a>Zeybel_Gut_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> Zeybel_Gut,</span>
+<span id="cb493-4"><a href="association-analysis.html#cb493-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
 <ul>
 <li>sample data in Zeybel_Gut object</li>
 </ul>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="association-analysis.html#cb476-1" aria-hidden="true" tabindex="-1"></a>zeybel_metadata <span class="ot">&lt;-</span> <span class="fu">sample_data</span>(Zeybel_Gut_genus) <span class="sc">%&gt;%</span> </span>
-<span id="cb476-2"><a href="association-analysis.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
-<span id="cb476-3"><a href="association-analysis.html#cb476-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb476-4"><a href="association-analysis.html#cb476-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zeybel_metadata)</span></code></pre></div>
-<pre><code>##          Stage Metabolomics Proteomics GutMetagenomics OralMetagenomics LiverFatClass Gender AlcoholConsumption Smoker Age
-## P101042 Before         Send       Send            Send             Send          Mild   Male                 No     No  33
-## P101076 Before         Send       Send            Send             Send      Moderate   Male                 No     No  40
-## P101095 Before         Send       Send            Send    Failed Sample      Moderate   Male                 No     No  29
-## P101084 Before         Send       Send            Send             Send        Severe   Male                 No     No  45
-## P101038 Before         Send       Send            Send             Send      Moderate Female                 No     No  43
-## P101071 Before         Send       Send            Send             Send      Moderate   Male                 No    Yes  48
-##               LF Sodium Potassium Creatinine Urea  UA ALT AST GGT  AP   TB Albumin  CK  TC HDL LDL Triglycerides Glucose
-## P101042  6.45000    142       4.6       0.96   17 7.2  26  17  29 103 0.25    5.00  85 255  40 181           164      93
-## P101076  9.30000    146       4.9       1.05   22 5.6  28  16  56  81 0.34    5.00 123 193  48 133           115     111
-## P101095  9.90000    140       4.1       1.13   14 9.1  39  28  32  78 1.46    5.14 300 152  38 103            98      88
-## P101084 18.15000    143       5.1       1.15   12 8.8  57  33  55  67 0.34    4.72 336 195  47 128           124      99
-## P101038 15.93333    142       4.1       0.91    9 7.2  15  16  17  72 1.24    4.70 108 235  55 165           141     114
-## P101071  8.10000    144       4.4       1.04   19 6.0  21  13  21  70 0.34    4.60  77 228  39 146           279     104
-##         Insulin Weight  BMI  HR SBP DBP  WC  HC  TFM TFFM TTBW LAFM LAFFM LATBW RAFM RAFFM RATBW LLFM LLFFM LLTBW RLFM RLFFM
-## P101042    11.4   84.5 31.0 101 120  70 100 109 13.9 32.0 44.8  1.3   3.6  44.8  1.2   3.6  44.8  3.4  10.9  44.8  3.4  11.1
-## P101076    14.7   83.0 28.4  73 120  70  95 100 11.4 34.4 46.4  1.0   3.9  46.4  1.0   3.8  46.4  3.1  10.6  46.4  3.3  10.6
-## P101095    10.3  123.1 38.9  73 110  70 118 128 23.8 43.2 61.5  2.7   5.0  61.5  2.3   5.1  61.5  4.8  15.5  61.5  5.5  15.2
-## P101084    36.3  108.0 33.7  74 130  80 115 120 21.3 38.7 53.4  2.0   4.4  53.4  1.8   4.4  53.4  5.1  12.7  53.4  5.0  12.8
-## P101038    24.6   98.6 37.6  85 130  80 100 124 23.4 28.9 52.0  3.1   2.9  52.0  2.9   2.8  52.0  8.6   8.7  52.0  8.7   8.7
-## P101071    12.5  105.8 36.6  78 110  70 115 115 20.6 37.2 51.7  1.9   4.4  51.7  1.7   4.4  51.7  5.4  12.3  51.7  5.6  12.2
-##         RLTBW
-## P101042  44.8
-## P101076  46.4
-## P101095  61.5
-## P101084  53.4
-## P101038  52.0
-## P101071  51.7</code></pre>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="association-analysis.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(zeybel_metadata)</span></code></pre></div>
-<pre><code>##  [1] &quot;Stage&quot;              &quot;Metabolomics&quot;       &quot;Proteomics&quot;         &quot;GutMetagenomics&quot;    &quot;OralMetagenomics&quot;  
-##  [6] &quot;LiverFatClass&quot;      &quot;Gender&quot;             &quot;AlcoholConsumption&quot; &quot;Smoker&quot;             &quot;Age&quot;               
-## [11] &quot;LF&quot;                 &quot;Sodium&quot;             &quot;Potassium&quot;          &quot;Creatinine&quot;         &quot;Urea&quot;              
-## [16] &quot;UA&quot;                 &quot;ALT&quot;                &quot;AST&quot;                &quot;GGT&quot;                &quot;AP&quot;                
-## [21] &quot;TB&quot;                 &quot;Albumin&quot;            &quot;CK&quot;                 &quot;TC&quot;                 &quot;HDL&quot;               
-## [26] &quot;LDL&quot;                &quot;Triglycerides&quot;      &quot;Glucose&quot;            &quot;Insulin&quot;            &quot;Weight&quot;            
-## [31] &quot;BMI&quot;                &quot;HR&quot;                 &quot;SBP&quot;                &quot;DBP&quot;                &quot;WC&quot;                
-## [36] &quot;HC&quot;                 &quot;TFM&quot;                &quot;TFFM&quot;               &quot;TTBW&quot;               &quot;LAFM&quot;              
-## [41] &quot;LAFFM&quot;              &quot;LATBW&quot;              &quot;RAFM&quot;               &quot;RAFFM&quot;              &quot;RATBW&quot;             
-## [46] &quot;LLFM&quot;               &quot;LLFFM&quot;              &quot;LLTBW&quot;              &quot;RLFM&quot;               &quot;RLFFM&quot;             
-## [51] &quot;RLTBW&quot;</code></pre>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="association-analysis.html#cb494-1" aria-hidden="true" tabindex="-1"></a>zeybel_metadata <span class="ot">&lt;-</span> <span class="fu">sample_data</span>(Zeybel_Gut_genus) <span class="sc">%&gt;%</span> </span>
+<span id="cb494-2"><a href="association-analysis.html#cb494-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb494-3"><a href="association-analysis.html#cb494-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb494-4"><a href="association-analysis.html#cb494-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zeybel_metadata)</span></code></pre></div>
+<pre><code>##          Stage Metabolomics Proteomics GutMetagenomics OralMetagenomics LiverFatClass Gender AlcoholConsumption Smoker Age       LF
+## P101042 Before         Send       Send            Send             Send          Mild   Male                 No     No  33  6.45000
+## P101076 Before         Send       Send            Send             Send      Moderate   Male                 No     No  40  9.30000
+## P101095 Before         Send       Send            Send    Failed Sample      Moderate   Male                 No     No  29  9.90000
+## P101084 Before         Send       Send            Send             Send        Severe   Male                 No     No  45 18.15000
+## P101038 Before         Send       Send            Send             Send      Moderate Female                 No     No  43 15.93333
+## P101071 Before         Send       Send            Send             Send      Moderate   Male                 No    Yes  48  8.10000
+##         Sodium Potassium Creatinine Urea  UA ALT AST GGT  AP   TB Albumin  CK  TC HDL LDL Triglycerides Glucose Insulin Weight  BMI
+## P101042    142       4.6       0.96   17 7.2  26  17  29 103 0.25    5.00  85 255  40 181           164      93    11.4   84.5 31.0
+## P101076    146       4.9       1.05   22 5.6  28  16  56  81 0.34    5.00 123 193  48 133           115     111    14.7   83.0 28.4
+## P101095    140       4.1       1.13   14 9.1  39  28  32  78 1.46    5.14 300 152  38 103            98      88    10.3  123.1 38.9
+## P101084    143       5.1       1.15   12 8.8  57  33  55  67 0.34    4.72 336 195  47 128           124      99    36.3  108.0 33.7
+## P101038    142       4.1       0.91    9 7.2  15  16  17  72 1.24    4.70 108 235  55 165           141     114    24.6   98.6 37.6
+## P101071    144       4.4       1.04   19 6.0  21  13  21  70 0.34    4.60  77 228  39 146           279     104    12.5  105.8 36.6
+##          HR SBP DBP  WC  HC  TFM TFFM TTBW LAFM LAFFM LATBW RAFM RAFFM RATBW LLFM LLFFM LLTBW RLFM RLFFM RLTBW
+## P101042 101 120  70 100 109 13.9 32.0 44.8  1.3   3.6  44.8  1.2   3.6  44.8  3.4  10.9  44.8  3.4  11.1  44.8
+## P101076  73 120  70  95 100 11.4 34.4 46.4  1.0   3.9  46.4  1.0   3.8  46.4  3.1  10.6  46.4  3.3  10.6  46.4
+## P101095  73 110  70 118 128 23.8 43.2 61.5  2.7   5.0  61.5  2.3   5.1  61.5  4.8  15.5  61.5  5.5  15.2  61.5
+## P101084  74 130  80 115 120 21.3 38.7 53.4  2.0   4.4  53.4  1.8   4.4  53.4  5.1  12.7  53.4  5.0  12.8  53.4
+## P101038  85 130  80 100 124 23.4 28.9 52.0  3.1   2.9  52.0  2.9   2.8  52.0  8.6   8.7  52.0  8.7   8.7  52.0
+## P101071  78 110  70 115 115 20.6 37.2 51.7  1.9   4.4  51.7  1.7   4.4  51.7  5.4  12.3  51.7  5.6  12.2  51.7</code></pre>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="association-analysis.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(zeybel_metadata)</span></code></pre></div>
+<pre><code>##  [1] &quot;Stage&quot;              &quot;Metabolomics&quot;       &quot;Proteomics&quot;         &quot;GutMetagenomics&quot;    &quot;OralMetagenomics&quot;   &quot;LiverFatClass&quot;     
+##  [7] &quot;Gender&quot;             &quot;AlcoholConsumption&quot; &quot;Smoker&quot;             &quot;Age&quot;                &quot;LF&quot;                 &quot;Sodium&quot;            
+## [13] &quot;Potassium&quot;          &quot;Creatinine&quot;         &quot;Urea&quot;               &quot;UA&quot;                 &quot;ALT&quot;                &quot;AST&quot;               
+## [19] &quot;GGT&quot;                &quot;AP&quot;                 &quot;TB&quot;                 &quot;Albumin&quot;            &quot;CK&quot;                 &quot;TC&quot;                
+## [25] &quot;HDL&quot;                &quot;LDL&quot;                &quot;Triglycerides&quot;      &quot;Glucose&quot;            &quot;Insulin&quot;            &quot;Weight&quot;            
+## [31] &quot;BMI&quot;                &quot;HR&quot;                 &quot;SBP&quot;                &quot;DBP&quot;                &quot;WC&quot;                 &quot;HC&quot;                
+## [37] &quot;TFM&quot;                &quot;TFFM&quot;               &quot;TTBW&quot;               &quot;LAFM&quot;               &quot;LAFFM&quot;              &quot;LATBW&quot;             
+## [43] &quot;RAFM&quot;               &quot;RAFFM&quot;              &quot;RATBW&quot;              &quot;LLFM&quot;               &quot;LLFFM&quot;              &quot;LLTBW&quot;             
+## [49] &quot;RLFM&quot;               &quot;RLFFM&quot;              &quot;RLTBW&quot;</code></pre>
 <ul>
 <li>otu table profile in Zeybel_Gut object</li>
 </ul>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="association-analysis.html#cb480-1" aria-hidden="true" tabindex="-1"></a>zeybel_otu <span class="ot">&lt;-</span> <span class="fu">otu_table</span>(Zeybel_Gut_genus) <span class="sc">%&gt;%</span> </span>
-<span id="cb480-2"><a href="association-analysis.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
-<span id="cb480-3"><a href="association-analysis.html#cb480-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb480-4"><a href="association-analysis.html#cb480-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zeybel_otu)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="association-analysis.html#cb498-1" aria-hidden="true" tabindex="-1"></a>zeybel_otu <span class="ot">&lt;-</span> <span class="fu">otu_table</span>(Zeybel_Gut_genus) <span class="sc">%&gt;%</span> </span>
+<span id="cb498-2"><a href="association-analysis.html#cb498-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb498-3"><a href="association-analysis.html#cb498-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb498-4"><a href="association-analysis.html#cb498-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zeybel_otu)</span></code></pre></div>
 <pre><code>##                      P101042   P101076  P101095   P101084   P101038   P101071   P101047   P101012  P101027   P101024   P101057
 ## g__Absiella        0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000
 ## g__Acidaminococcus 0.0000000 0.0012421 0.00e+00 0.0114403 0.0000000 0.0017583 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000
@@ -657,27 +649,27 @@ div.csl-indent {
 ## g__Adlercreutzia   0.0000000 0.0000000 0.00e+00 0.0002282 0.0000137 0.0000000 0.0000792 0.0003161 4.06e-05 0.0001708 0.0000000
 ## g__Agathobaculum   0.0004688 0.0000000 1.84e-04 0.0006843 0.0001106 0.0000364 0.0006443 0.0000074 9.73e-05 0.0028784 0.0002393
 ## g__Aggregatibacter 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000
-##                      P101067   P101094   P101007   P101054   P101031   P101003   P101018   P101025  P101010   P101069
-## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0002135 0.00e+00 0.0000000
-## g__Acidaminococcus 0.0132178 0.0000000 0.0159577 0.0012000 0.0000000 0.0000000 0.0000000 0.0009027 0.00e+00 0.0001482
-## g__Actinomyces     0.0002071 0.0000000 0.0002216 0.0000024 0.0313157 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000401
-## g__Adlercreutzia   0.0000000 0.0001777 0.0000000 0.0000245 0.0000000 0.0000000 0.0008641 0.0000000 0.00e+00 0.0000158
-## g__Agathobaculum   0.0000000 0.0020933 0.0001628 0.0007184 0.0000000 0.0002355 0.0000000 0.0061141 1.29e-05 0.0002268
-## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0000000 0.0152900 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000
-##                      P101077   P101065   P101096   P101085   P101021  P101052   P101030   P101041   P101078   P101051  P101068
-## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00
-## g__Acidaminococcus 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0002144 0.0000000 0.0000000 0.00e+00
-## g__Actinomyces     0.0002101 0.0001259 0.0000000 0.0000000 0.0000000 1.44e-05 0.0000000 0.0000000 0.0000940 0.0000000 1.99e-05
-## g__Adlercreutzia   0.0001580 0.0000000 0.0004234 0.0000000 0.0000000 0.00e+00 0.0003256 0.0000000 0.0000802 0.0000000 0.00e+00
-## g__Agathobaculum   0.0007352 0.0004899 0.0007549 0.0020973 0.0001715 0.00e+00 0.0021537 0.0000000 0.0006245 0.0001612 2.74e-05
-## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00
-##                     P101056   P101079   P101022   P101074   P101059 P101050   P101088   P101061   P101082   P101064
-## g__Absiella        0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000       0 0.0000000 0.0000000 0.0000000 0.0000000
-## g__Acidaminococcus 0.00e+00 0.0000000 0.0000000 0.0141640 0.0029344       0 0.0000000 0.0000000 0.0030215 0.0000000
-## g__Actinomyces     0.00e+00 0.0000000 0.0001212 0.0000113 0.0000000       0 0.0000000 0.0000299 0.0000174 0.0000093
-## g__Adlercreutzia   0.00e+00 0.0000000 0.0000000 0.0004728 0.0000379       0 0.0002421 0.0000383 0.0000397 0.0000200
-## g__Agathobaculum   2.83e-05 0.0008838 0.0005000 0.0000000 0.0025444       0 0.0022848 0.0005402 0.0013902 0.0011816
-## g__Aggregatibacter 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000       0 0.0000000 0.0000000 0.0000000 0.0000000</code></pre>
+##                      P101067   P101094   P101007   P101054   P101031   P101003   P101018   P101025  P101010   P101069   P101077
+## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0002135 0.00e+00 0.0000000 0.0000000
+## g__Acidaminococcus 0.0132178 0.0000000 0.0159577 0.0012000 0.0000000 0.0000000 0.0000000 0.0009027 0.00e+00 0.0001482 0.0000000
+## g__Actinomyces     0.0002071 0.0000000 0.0002216 0.0000024 0.0313157 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000401 0.0002101
+## g__Adlercreutzia   0.0000000 0.0001777 0.0000000 0.0000245 0.0000000 0.0000000 0.0008641 0.0000000 0.00e+00 0.0000158 0.0001580
+## g__Agathobaculum   0.0000000 0.0020933 0.0001628 0.0007184 0.0000000 0.0002355 0.0000000 0.0061141 1.29e-05 0.0002268 0.0007352
+## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0000000 0.0152900 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000
+##                      P101065   P101096   P101085   P101021  P101052   P101030   P101041   P101078   P101051  P101068  P101056
+## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.00e+00
+## g__Acidaminococcus 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0002144 0.0000000 0.0000000 0.00e+00 0.00e+00
+## g__Actinomyces     0.0001259 0.0000000 0.0000000 0.0000000 1.44e-05 0.0000000 0.0000000 0.0000940 0.0000000 1.99e-05 0.00e+00
+## g__Adlercreutzia   0.0000000 0.0004234 0.0000000 0.0000000 0.00e+00 0.0003256 0.0000000 0.0000802 0.0000000 0.00e+00 0.00e+00
+## g__Agathobaculum   0.0004899 0.0007549 0.0020973 0.0001715 0.00e+00 0.0021537 0.0000000 0.0006245 0.0001612 2.74e-05 2.83e-05
+## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.00e+00
+##                      P101079   P101022   P101074   P101059 P101050   P101088   P101061   P101082   P101064
+## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000       0 0.0000000 0.0000000 0.0000000 0.0000000
+## g__Acidaminococcus 0.0000000 0.0000000 0.0141640 0.0029344       0 0.0000000 0.0000000 0.0030215 0.0000000
+## g__Actinomyces     0.0000000 0.0001212 0.0000113 0.0000000       0 0.0000000 0.0000299 0.0000174 0.0000093
+## g__Adlercreutzia   0.0000000 0.0000000 0.0004728 0.0000379       0 0.0002421 0.0000383 0.0000397 0.0000200
+## g__Agathobaculum   0.0008838 0.0005000 0.0000000 0.0025444       0 0.0022848 0.0005402 0.0013902 0.0011816
+## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0000000       0 0.0000000 0.0000000 0.0000000 0.0000000</code></pre>
 <p>Results:</p>
 <ol style="list-style-type: decimal">
 <li>metadata has 42 continuous variables</li>
@@ -689,11 +681,11 @@ div.csl-indent {
 <ul>
 <li>Calculation</li>
 </ul>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="association-analysis.html#cb482-1" aria-hidden="true" tabindex="-1"></a>dat_cor <span class="ot">&lt;-</span> <span class="fu">run_cor</span>(<span class="at">ps =</span> Zeybel_Gut_genus,</span>
-<span id="cb482-2"><a href="association-analysis.html#cb482-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;LF&quot;</span>, <span class="st">&quot;Sodium&quot;</span>, <span class="st">&quot;Potassium&quot;</span>, <span class="st">&quot;Creatinine&quot;</span>, <span class="st">&quot;Urea&quot;</span>, <span class="st">&quot;RLTBW&quot;</span>),</span>
-<span id="cb482-3"><a href="association-analysis.html#cb482-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
-<span id="cb482-4"><a href="association-analysis.html#cb482-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb482-5"><a href="association-analysis.html#cb482-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_cor)</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="association-analysis.html#cb500-1" aria-hidden="true" tabindex="-1"></a>dat_cor <span class="ot">&lt;-</span> <span class="fu">run_cor</span>(<span class="at">ps =</span> Zeybel_Gut_genus,</span>
+<span id="cb500-2"><a href="association-analysis.html#cb500-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;LF&quot;</span>, <span class="st">&quot;Sodium&quot;</span>, <span class="st">&quot;Potassium&quot;</span>, <span class="st">&quot;Creatinine&quot;</span>, <span class="st">&quot;Urea&quot;</span>, <span class="st">&quot;RLTBW&quot;</span>),</span>
+<span id="cb500-3"><a href="association-analysis.html#cb500-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb500-4"><a href="association-analysis.html#cb500-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb500-5"><a href="association-analysis.html#cb500-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_cor)</span></code></pre></div>
 <pre><code>##   Phenotype             TaxaID Statistic         Rho    Pvalue AdjustedPvalue
 ## 1        LF        g__Absiella  12102.49  0.01932697 0.9033074      0.9808251
 ## 2        LF g__Acidaminococcus  11509.50  0.06737739 0.6715949      0.9297863
@@ -704,17 +696,17 @@ div.csl-indent {
 <ul>
 <li>visualization</li>
 </ul>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="association-analysis.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_correlation_heatmap</span>(</span>
-<span id="cb484-2"><a href="association-analysis.html#cb484-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> dat_cor,</span>
-<span id="cb484-3"><a href="association-analysis.html#cb484-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index =</span> <span class="st">&quot;Rho&quot;</span>,</span>
-<span id="cb484-4"><a href="association-analysis.html#cb484-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
-<span id="cb484-5"><a href="association-analysis.html#cb484-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
-<span id="cb484-6"><a href="association-analysis.html#cb484-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb484-7"><a href="association-analysis.html#cb484-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellwidth =</span> <span class="dv">35</span>,</span>
-<span id="cb484-8"><a href="association-analysis.html#cb484-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellheight =</span> <span class="dv">10</span>,</span>
-<span id="cb484-9"><a href="association-analysis.html#cb484-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">fontsize_number =</span> <span class="dv">15</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-278"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-278-1.png" alt="Spearman Correlation Coefficient" width="768" />
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="association-analysis.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_correlation_heatmap</span>(</span>
+<span id="cb502-2"><a href="association-analysis.html#cb502-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> dat_cor,</span>
+<span id="cb502-3"><a href="association-analysis.html#cb502-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index =</span> <span class="st">&quot;Rho&quot;</span>,</span>
+<span id="cb502-4"><a href="association-analysis.html#cb502-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
+<span id="cb502-5"><a href="association-analysis.html#cb502-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
+<span id="cb502-6"><a href="association-analysis.html#cb502-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb502-7"><a href="association-analysis.html#cb502-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellwidth =</span> <span class="dv">35</span>,</span>
+<span id="cb502-8"><a href="association-analysis.html#cb502-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellheight =</span> <span class="dv">10</span>,</span>
+<span id="cb502-9"><a href="association-analysis.html#cb502-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">fontsize_number =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-300"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-300-1.png" alt="Spearman Correlation Coefficient" width="768" />
 <p class="caption">
 Figure 13.1: Spearman Correlation Coefficient
 </p>
@@ -742,14 +734,14 @@ Figure 13.1: Spearman Correlation Coefficient
 <ul>
 <li>Calculation</li>
 </ul>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="association-analysis.html#cb485-1" aria-hidden="true" tabindex="-1"></a>dat_cor_partial <span class="ot">&lt;-</span> <span class="fu">run_partial_cor</span>(<span class="at">ps =</span> Zeybel_Gut_genus,</span>
-<span id="cb485-2"><a href="association-analysis.html#cb485-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;LF&quot;</span>, <span class="st">&quot;Sodium&quot;</span>, <span class="st">&quot;Potassium&quot;</span>, <span class="st">&quot;Creatinine&quot;</span>, <span class="st">&quot;Urea&quot;</span>, <span class="st">&quot;RLTBW&quot;</span>),</span>
-<span id="cb485-3"><a href="association-analysis.html#cb485-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">AdjVars =</span> <span class="fu">c</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Smoker&quot;</span>),</span>
-<span id="cb485-4"><a href="association-analysis.html#cb485-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_t =</span> <span class="st">&quot;pcor&quot;</span>,</span>
-<span id="cb485-5"><a href="association-analysis.html#cb485-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>,</span>
-<span id="cb485-6"><a href="association-analysis.html#cb485-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_adjust =</span> <span class="st">&quot;BH&quot;</span>)</span>
-<span id="cb485-7"><a href="association-analysis.html#cb485-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-8"><a href="association-analysis.html#cb485-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_cor_partial)</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="association-analysis.html#cb503-1" aria-hidden="true" tabindex="-1"></a>dat_cor_partial <span class="ot">&lt;-</span> <span class="fu">run_partial_cor</span>(<span class="at">ps =</span> Zeybel_Gut_genus,</span>
+<span id="cb503-2"><a href="association-analysis.html#cb503-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;LF&quot;</span>, <span class="st">&quot;Sodium&quot;</span>, <span class="st">&quot;Potassium&quot;</span>, <span class="st">&quot;Creatinine&quot;</span>, <span class="st">&quot;Urea&quot;</span>, <span class="st">&quot;RLTBW&quot;</span>),</span>
+<span id="cb503-3"><a href="association-analysis.html#cb503-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">AdjVars =</span> <span class="fu">c</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Smoker&quot;</span>),</span>
+<span id="cb503-4"><a href="association-analysis.html#cb503-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_t =</span> <span class="st">&quot;pcor&quot;</span>,</span>
+<span id="cb503-5"><a href="association-analysis.html#cb503-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>,</span>
+<span id="cb503-6"><a href="association-analysis.html#cb503-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_adjust =</span> <span class="st">&quot;BH&quot;</span>)</span>
+<span id="cb503-7"><a href="association-analysis.html#cb503-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb503-8"><a href="association-analysis.html#cb503-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_cor_partial)</span></code></pre></div>
 <pre><code>##   Phenotype             TaxaID   Statistic         Rho    Pvalue AdjustedPvalue
 ## 1        LF        g__Absiella  0.07849237  0.01290299 0.9378594      0.9942613
 ## 2        LF g__Acidaminococcus  0.41767935  0.06850475 0.6785956      0.9738542
@@ -760,17 +752,17 @@ Figure 13.1: Spearman Correlation Coefficient
 <ul>
 <li>visualization</li>
 </ul>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="association-analysis.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_correlation_heatmap</span>(</span>
-<span id="cb487-2"><a href="association-analysis.html#cb487-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> dat_cor_partial,</span>
-<span id="cb487-3"><a href="association-analysis.html#cb487-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index =</span> <span class="st">&quot;Rho&quot;</span>,</span>
-<span id="cb487-4"><a href="association-analysis.html#cb487-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
-<span id="cb487-5"><a href="association-analysis.html#cb487-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
-<span id="cb487-6"><a href="association-analysis.html#cb487-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb487-7"><a href="association-analysis.html#cb487-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellwidth =</span> <span class="dv">35</span>,</span>
-<span id="cb487-8"><a href="association-analysis.html#cb487-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellheight =</span> <span class="dv">10</span>,</span>
-<span id="cb487-9"><a href="association-analysis.html#cb487-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">fontsize_number =</span> <span class="dv">15</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-280"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-280-1.png" alt="Partial Correlation Coefficient" width="768" />
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="association-analysis.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_correlation_heatmap</span>(</span>
+<span id="cb505-2"><a href="association-analysis.html#cb505-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> dat_cor_partial,</span>
+<span id="cb505-3"><a href="association-analysis.html#cb505-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index =</span> <span class="st">&quot;Rho&quot;</span>,</span>
+<span id="cb505-4"><a href="association-analysis.html#cb505-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
+<span id="cb505-5"><a href="association-analysis.html#cb505-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
+<span id="cb505-6"><a href="association-analysis.html#cb505-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb505-7"><a href="association-analysis.html#cb505-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellwidth =</span> <span class="dv">35</span>,</span>
+<span id="cb505-8"><a href="association-analysis.html#cb505-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellheight =</span> <span class="dv">10</span>,</span>
+<span id="cb505-9"><a href="association-analysis.html#cb505-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">fontsize_number =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-302"></span>
+<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-302-1.png" alt="Partial Correlation Coefficient" width="768" />
 <p class="caption">
 Figure 13.2: Partial Correlation Coefficient
 </p>
@@ -793,8 +785,8 @@ Figure 13.2: Partial Correlation Coefficient
 </div>
 <div id="systematic-information-10" class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">13.4</span> Systematic Information<a href="association-analysis.html#systematic-information-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="association-analysis.html#cb488-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
-<pre><code>## ─ Session info ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="association-analysis.html#cb506-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
 ##  os       macOS Monterey 12.2.1
@@ -804,11 +796,11 @@ Figure 13.2: Partial Correlation Coefficient
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-08-09
+##  date     2022-08-16
 ##  rstudio  2022.07.1+554 Spotted Wakerobin (desktop)
 ##  pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
 ## 
-## ─ Packages ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package              * version  date (UTC) lib source
 ##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
 ##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
@@ -885,6 +877,8 @@ Figure 13.2: Partial Correlation Coefficient
 ##  GenomeInfoDb         * 1.30.1   2022-01-30 [1] Bioconductor
 ##  GenomeInfoDbData       1.2.7    2022-03-09 [1] Bioconductor
 ##  GenomicRanges        * 1.46.1   2021-11-18 [1] Bioconductor
+##  ggiraph                0.8.2    2022-02-22 [1] CRAN (R 4.1.2)
+##  ggiraphExtra           0.3.0    2020-10-06 [1] CRAN (R 4.1.2)
 ##  ggplot2              * 3.3.5    2021-06-25 [1] CRAN (R 4.1.0)
 ##  ggpubr               * 0.4.0    2020-06-27 [1] CRAN (R 4.1.0)
 ##  ggrepel                0.9.1    2021-01-15 [1] CRAN (R 4.1.0)
@@ -905,6 +899,7 @@ Figure 13.2: Partial Correlation Coefficient
 ##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
 ##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
 ##  igraph                 1.2.11   2022-01-04 [1] CRAN (R 4.1.2)
+##  insight                0.17.0   2022-03-29 [1] CRAN (R 4.1.2)
 ##  IRanges              * 2.28.0   2021-10-26 [1] Bioconductor
 ##  iterators              1.0.14   2022-02-05 [1] CRAN (R 4.1.2)
 ##  jpeg                   0.1-9    2021-07-24 [1] CRAN (R 4.1.0)
@@ -939,6 +934,7 @@ Figure 13.2: Partial Correlation Coefficient
 ##  multtest               2.50.0   2021-10-26 [1] Bioconductor
 ##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
 ##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
+##  mycor                  0.1.1    2018-04-10 [1] CRAN (R 4.1.0)
 ##  NADA                   1.6-1.1  2020-03-22 [1] CRAN (R 4.1.0)
 ##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
 ##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
@@ -996,6 +992,8 @@ Figure 13.2: Partial Correlation Coefficient
 ##  sessioninfo            1.2.2    2021-12-06 [1] CRAN (R 4.1.0)
 ##  sf                     1.0-7    2022-03-07 [1] CRAN (R 4.1.2)
 ##  shape                  1.4.6    2021-05-19 [1] CRAN (R 4.1.0)
+##  sjlabelled             1.2.0    2022-04-10 [1] CRAN (R 4.1.2)
+##  sjmisc                 2.8.9    2021-12-03 [1] CRAN (R 4.1.0)
 ##  stringi                1.7.6    2021-11-29 [1] CRAN (R 4.1.0)
 ##  stringr                1.4.0    2019-02-10 [1] CRAN (R 4.1.0)
 ##  SummarizedExperiment * 1.24.0   2021-10-26 [1] Bioconductor
@@ -1014,6 +1012,7 @@ Figure 13.2: Partial Correlation Coefficient
 ##  units                  0.8-0    2022-02-05 [1] CRAN (R 4.1.2)
 ##  usethis              * 2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
 ##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
+##  uuid                   1.0-3    2021-11-01 [1] CRAN (R 4.1.0)
 ##  vctrs                  0.3.8    2021-04-29 [1] CRAN (R 4.1.0)
 ##  vegan                * 2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
 ##  VennDiagram          * 1.7.3    2022-04-12 [1] CRAN (R 4.1.2)
@@ -1024,7 +1023,7 @@ Figure 13.2: Partial Correlation Coefficient
 ##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
 ##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
 ##  xfun                   0.30     2022-03-02 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.7.4  2022-08-09 [1] local
+##  XMAS2                * 2.1.7.5  2022-08-16 [1] local
 ##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
 ##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
@@ -1036,7 +1035,7 @@ Figure 13.2: Partial Correlation Coefficient
 ## 
 ##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
 ## 
-## ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 
 </div>
 </div>
