@@ -23,7 +23,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-09-08" />
+<meta name="date" content="2022-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Data analysis based on XMAS 2.0 package</a></li>
+<li><a href="./">XMAS 2.0 Tutorial</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
@@ -658,8 +658,8 @@ div.csl-indent {
 <span id="cb235-3"><a href="core-microbiota.html#cb235-3" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">prevalence =</span> <span class="fl">0.8</span>))</span>
 <span id="cb235-4"><a href="core-microbiota.html#cb235-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb235-5"><a href="core-microbiota.html#cb235-5" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">data.frame</span>(core_abundance))</span></code></pre></div>
-<div id="htmlwidget-96a4f33ad5412cebf13f" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-96a4f33ad5412cebf13f">{"x":{"filter":"none","vertical":false,"data":[["S6030","S6032","S6033","S6035","S6036","S6037","S6040","S6043","S6045","S6046","S6048","S6049","S6050","S6054","S6055","S6058","S6059","S6060","S6061","S6063","S6065","S6066","S6068"],[0.426505929934937,0.542506008088939,0.298782751411657,0.640178972665638,0.168109259295442,0.689591840722143,0.425880697915242,0.348508235478009,0.269963463003849,0.413512827025654,0.458822609952912,0.204568101443895,0.517340419296223,0.24825618882007,0.56954729294074,0.517105957288838,0.199663937789414,0.70213555811727,0.127430101014048,0.752662120708857,0.368925968621168,0.431468709091264,0.635489732517927]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>core_abundance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1db3aab27570815a600d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1db3aab27570815a600d">{"x":{"filter":"none","vertical":false,"data":[["S6030","S6032","S6033","S6035","S6036","S6037","S6040","S6043","S6045","S6046","S6048","S6049","S6050","S6054","S6055","S6058","S6059","S6060","S6061","S6063","S6065","S6066","S6068"],[0.426505929934937,0.542506008088939,0.298782751411657,0.640178972665638,0.168109259295442,0.689591840722143,0.425880697915242,0.348508235478009,0.269963463003849,0.413512827025654,0.458822609952912,0.204568101443895,0.517340419296223,0.24825618882007,0.56954729294074,0.517105957288838,0.199663937789414,0.70213555811727,0.127430101014048,0.752662120708857,0.368925968621168,0.431468709091264,0.635489732517927]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>core_abundance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="visualizing-core-taxa" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Visualizing core taxa<a href="core-microbiota.html#visualizing-core-taxa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -682,7 +682,7 @@ div.csl-indent {
 <span id="cb236-11"><a href="core-microbiota.html#cb236-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb236-12"><a href="core-microbiota.html#cb236-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-131"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-131-1.png" alt="Core with composition in Heatmap" width="576" />
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-131-1.png" alt="Core with composition in Heatmap" width="576" />
 <p class="caption">
 Figure 9.1: Core with composition in Heatmap
 </p>
@@ -694,7 +694,7 @@ Figure 9.1: Core with composition in Heatmap
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="core-microbiota.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
 <span id="cb237-2"><a href="core-microbiota.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pl_core <span class="sc">+</span> <span class="fu">scale_fill_viridis</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-132"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-132-1.png" alt="Core with composition in Heatmap (viridis)" width="576" />
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-132-1.png" alt="Core with composition in Heatmap (viridis)" width="576" />
 <p class="caption">
 Figure 9.2: Core with composition in Heatmap (viridis)
 </p>
@@ -718,7 +718,7 @@ Figure 9.2: Core with composition in Heatmap (viridis)
 <span id="cb238-14"><a href="core-microbiota.html#cb238-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb238-15"><a href="core-microbiota.html#cb238-15" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-133"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-133-1.png" alt="Core with composition in Heatmap (RColorBrewer)" width="576" />
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-133-1.png" alt="Core with composition in Heatmap (RColorBrewer)" width="576" />
 <p class="caption">
 Figure 9.3: Core with composition in Heatmap (RColorBrewer)
 </p>
@@ -740,7 +740,7 @@ Figure 9.3: Core with composition in Heatmap (RColorBrewer)
 <span id="cb239-11"><a href="core-microbiota.html#cb239-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb239-12"><a href="core-microbiota.html#cb239-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-134"></span>
-<img src="Data-analysis-based-on-XMAS-package_files/figure-html/unnamed-chunk-134-1.png" alt="Core with composition in linechart" width="480" />
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-134-1.png" alt="Core with composition in linechart" width="480" />
 <p class="caption">
 Figure 9.4: Core with composition in linechart
 </p>
@@ -761,7 +761,7 @@ Figure 9.4: Core with composition in linechart
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-09-08
+##  date     2022-09-09
 ##  rstudio  2022.07.1+554 Spotted Wakerobin (desktop)
 ##  pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
 ## 
@@ -778,7 +778,6 @@ Figure 9.4: Core with composition in linechart
 ##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
 ##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
 ##  bayesm                 3.1-4    2019-10-15 [1] CRAN (R 4.1.0)
-##  biglm                  0.9-2.1  2020-11-27 [1] CRAN (R 4.1.0)
 ##  Biobase              * 2.54.0   2021-10-26 [1] Bioconductor
 ##  BiocGenerics         * 0.40.0   2021-10-26 [1] Bioconductor
 ##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
@@ -807,7 +806,6 @@ Figure 9.4: Core with composition in linechart
 ##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
 ##  compositions           2.0-4    2022-01-05 [1] CRAN (R 4.1.2)
 ##  conflicted           * 1.1.0    2021-11-26 [1] CRAN (R 4.1.0)
-##  corncob                0.2.0    2022-03-18 [1] Github (bryandmartin/corncob@5cc85ba)
 ##  corrplot               0.92     2021-11-18 [1] CRAN (R 4.1.0)
 ##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
 ##  crayon                 1.5.0    2022-02-14 [1] CRAN (R 4.1.2)
@@ -845,7 +843,6 @@ Figure 9.4: Core with composition in linechart
 ##  GenomeInfoDb         * 1.30.1   2022-01-30 [1] Bioconductor
 ##  GenomeInfoDbData       1.2.7    2022-03-09 [1] Bioconductor
 ##  GenomicRanges        * 1.46.1   2021-11-18 [1] Bioconductor
-##  getopt                 1.20.3   2019-03-22 [1] CRAN (R 4.1.0)
 ##  ggiraph                0.8.2    2022-02-22 [1] CRAN (R 4.1.2)
 ##  ggiraphExtra           0.3.0    2020-10-06 [1] CRAN (R 4.1.2)
 ##  ggplot2              * 3.3.5    2021-06-25 [1] CRAN (R 4.1.0)
@@ -855,8 +852,8 @@ Figure 9.4: Core with composition in linechart
 ##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
 ##  ggVennDiagram          1.2.1    2022-04-13 [1] Github (gaospecial/ggVennDiagram@db6742d)
 ##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
-##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
-##  Gmisc                  3.0.0    2022-01-03 [1] CRAN (R 4.1.2)
+##  glue                 * 1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
+##  Gmisc                * 3.0.0    2022-01-03 [1] CRAN (R 4.1.2)
 ##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
 ##  gridExtra              2.3      2017-09-09 [1] CRAN (R 4.1.0)
 ##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
@@ -864,7 +861,7 @@ Figure 9.4: Core with composition in linechart
 ##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
 ##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
 ##  hms                    1.1.1    2021-09-26 [1] CRAN (R 4.1.0)
-##  htmlTable              2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
+##  htmlTable            * 2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
 ##  htmltools              0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
 ##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
 ##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
@@ -889,9 +886,7 @@ Figure 9.4: Core with composition in linechart
 ##  limma                  3.50.1   2022-02-17 [1] Bioconductor
 ##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
 ##  LOCOM                  1.1      2022-08-05 [1] Github (yijuanhu/LOCOM@c181e0f)
-##  lpsymphony             1.22.0   2021-10-26 [1] Bioconductor (R 4.1.1)
 ##  lubridate              1.8.0    2021-10-07 [1] CRAN (R 4.1.0)
-##  Maaslin2               1.8.0    2021-10-26 [1] Bioconductor
 ##  magrittr             * 2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
 ##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
 ##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
@@ -912,10 +907,8 @@ Figure 9.4: Core with composition in linechart
 ##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
 ##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
 ##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
-##  optparse               1.7.1    2021-10-08 [1] CRAN (R 4.1.0)
-##  pcaPP                  1.9-74   2021-04-23 [1] CRAN (R 4.1.0)
 ##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
-##  pheatmap               1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
+##  pheatmap             * 1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
 ##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
 ##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
 ##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
@@ -936,7 +929,7 @@ Figure 9.4: Core with composition in linechart
 ##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
 ##  RAIDA                  1.0      2022-03-14 [1] local
 ##  RColorBrewer         * 1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
-##  Rcpp                   1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
+##  Rcpp                 * 1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
 ##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
 ##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
 ##  readr                * 2.1.2    2022-01-30 [1] CRAN (R 4.1.2)
@@ -1068,7 +1061,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Data analysis based on XMAS package.pdf", "Data analysis based on XMAS package.epub"],
+"download": ["XMAS 2.0 Tutorial.pdf", "XMAS 2.0 Tutorial.epub"],
 "search": {
 "engine": "fuse",
 "options": null

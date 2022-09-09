@@ -2,7 +2,7 @@
 
 # XMAS2 Tutorial
 
-## :book: Tutorial
+## :book: Chapters
 
 This tutorial was organized according to the **XMAS 2.0** functions.
 
