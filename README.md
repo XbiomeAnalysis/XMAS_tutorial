@@ -45,6 +45,15 @@ This tutorial was organized according to the **XMAS 2.0** functions.
 
 ## :wrench: Change log
 
+### XMAS 2.1.8
+
+-   update scripts of differential analysis with alias of taxa names.
+    (2022-09-13)
+-   modify `preprocess_ps`. (2022-09-13)
+-   add `plot_metaphlanTrack`. (2022-09-15)
+-   add `run_beta_dispersion`. (2022-09-29)
+-   update `plot_metaphlanTrack`. (2022-10-08)
+
 ### XMAS 2.1.7
 
 -   add `preprocess_ps` including keep taxa in rows, filter taxa whose

@@ -23,7 +23,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2022-09-16" />
+<meta name="date" content="2022-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -628,7 +628,7 @@ div.csl-indent {
 <span id="cb39-9"><a href="quality-evaluation.html#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-10"><a href="quality-evaluation.html#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;metaphlan2_ps&quot;</span>)</span>
 <span id="cb39-11"><a href="quality-evaluation.html#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-12"><a href="quality-evaluation.html#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;metaphlan_reads_qc&quot;</span>)</span></code></pre></div>
+<span id="cb39-12"><a href="quality-evaluation.html#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;metaphlan_ReadsQC&quot;</span>)</span></code></pre></div>
 </div>
 <div id="reads-track" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Reads track<a href="quality-evaluation.html#reads-track" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -638,8 +638,8 @@ div.csl-indent {
 <li>this procedure only perform in 16s data</li>
 </ul>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="quality-evaluation.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_Dada2Track</span>(<span class="at">data =</span> dada2_res<span class="sc">$</span>reads_track)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
-<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-24-1.png" alt="Reads' track of DADA2" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-20-1.png" alt="Reads' track of DADA2" width="672" />
 <p class="caption">
 Figure 4.1: Reads’ track of DADA2
 </p>
@@ -647,13 +647,37 @@ Figure 4.1: Reads’ track of DADA2
 </div>
 <div id="plotting-metaphlan" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Plotting Metaphlan<a href="quality-evaluation.html#plotting-metaphlan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This procedure only perform in metagenomic data</p>
 <ul>
-<li>this procedure only perform in metagenomic data</li>
+<li><p>How to obtain the input data (use <code>?plot_metaphlanTrack</code> to get the details)</p>
+<ul>
+<li><p><code>/share/projects/Engineering/pipeline_output/PipelineJob_141157_20220823</code>: the pipeline output</p></li>
+<li><p><code>BJ_RoundG_ReadsQC</code>: prefix of results</p></li>
+<li><p><code>result</code>: output of directory</p></li>
+</ul></li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="quality-evaluation.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_metaphlanTrack</span>(<span class="at">data =</span> metaphlan_reads_qc)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="quality-evaluation.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> /share/projects/Analytics/IO/zouhua/Script/obtain_metaphlan_ReadsQC.py <span class="dt">\</span></span>
+<span id="cb41-2"><a href="quality-evaluation.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-f</span> /share/projects/Engineering/pipeline_output/PipelineJob_141157_20220823 <span class="dt">\</span></span>
+<span id="cb41-3"><a href="quality-evaluation.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> BJ_RoundG_ReadsQC <span class="dt">\</span></span>
+<span id="cb41-4"><a href="quality-evaluation.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> result</span></code></pre></div>
+<ul>
+<li>the results of Reads QC</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="quality-evaluation.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metaphlan_ReadsQC)</span></code></pre></div>
+<pre><code>##    SeqID Raw_read1 Raw_read2 fastp_trim1 fastp_trim2 trimmomatic_trim1 trimmomatic_trim2 kneaddata_rmhost1 kneaddata_rmhost2
+## 1: 18067  45077982  45077982    44862250    44862250          41821866          41821866          41097049          41097049
+## 2: 17849  41421167  41421167    41295206    41295206          40053357          40053357          39210455          39210455
+## 3: 18022  42814142  42814142    42610037    42610037          40187608          40187608          39552557          39552557
+## 4: 17962  42950934  42950934    42485249    42485249          40274876          40274876          39692768          39692768
+## 5: 17912  44754250  44754250    44551046    44551046          41557190          41557190          40830893          40830893
+## 6: 17909  42698262  42698262    42491213    42491213          39526119          39526119          38695718          38695718</code></pre>
+<ul>
+<li>plotting</li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="quality-evaluation.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_metaphlanTrack</span>(<span class="at">data =</span> metaphlan_ReadsQC)</span></code></pre></div>
 <pre><code>## [1] &quot;This palatte have 19 colors!&quot;</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
-<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-25-1.png" alt="Reads' track of Metaphlan2" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-22-1.png" alt="Reads' track of Metaphlan2" width="672" />
 <p class="caption">
 Figure 4.2: Reads’ track of Metaphlan2
 </p>
@@ -667,10 +691,10 @@ Figure 4.2: Reads’ track of Metaphlan2
 <div id="s-data" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> 16s data<a href="quality-evaluation.html#s-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The taxonomic levels of spike-in sample’s bacteria is genus. Firstly, using the <code>summarize_taxa</code> to get the genus level phyloseq object and get the BRS_ID.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="quality-evaluation.html#cb43-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps, </span>
-<span id="cb43-2"><a href="quality-evaluation.html#cb43-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
-<span id="cb43-3"><a href="quality-evaluation.html#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="quality-evaluation.html#cb43-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus<span class="sc">@</span>sam_data</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="quality-evaluation.html#cb46-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps, </span>
+<span id="cb46-2"><a href="quality-evaluation.html#cb46-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span>
+<span id="cb46-3"><a href="quality-evaluation.html#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="quality-evaluation.html#cb46-4" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus<span class="sc">@</span>sam_data</span></code></pre></div>
 <pre><code>##       Group
 ## S6030    BB
 ## S6032    BB
@@ -703,15 +727,15 @@ Figure 4.2: Reads’ track of Metaphlan2
 <li><p><em>Save</em>: the directory to save the latest spike-in sample matrix (default: /share/projects/Analytics/analytics/XMAS/RefCheck/).</p></li>
 </ul>
 <p>To see more details to use <code>?run_RefCheck</code>.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb45-1"><a href="quality-evaluation.html#cb45-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_brs_res &lt;- </span>
-<span id="cb45-2"><a href="quality-evaluation.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  run_RefCheck(</span>
-<span id="cb45-3"><a href="quality-evaluation.html#cb45-3" aria-hidden="true" tabindex="-1"></a>    ps = dada2_ps_genus,</span>
-<span id="cb45-4"><a href="quality-evaluation.html#cb45-4" aria-hidden="true" tabindex="-1"></a>    BRS_ID = &quot;S8005&quot;,</span>
-<span id="cb45-5"><a href="quality-evaluation.html#cb45-5" aria-hidden="true" tabindex="-1"></a>    Reference = NULL,</span>
-<span id="cb45-6"><a href="quality-evaluation.html#cb45-6" aria-hidden="true" tabindex="-1"></a>    Ref_type = &quot;16s&quot;,</span>
-<span id="cb45-7"><a href="quality-evaluation.html#cb45-7" aria-hidden="true" tabindex="-1"></a>    Save = NULL)</span>
-<span id="cb45-8"><a href="quality-evaluation.html#cb45-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-9"><a href="quality-evaluation.html#cb45-9" aria-hidden="true" tabindex="-1"></a>head(dada2_ps_genus_brs_res)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb48-1"><a href="quality-evaluation.html#cb48-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_genus_brs_res &lt;- </span>
+<span id="cb48-2"><a href="quality-evaluation.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  run_RefCheck(</span>
+<span id="cb48-3"><a href="quality-evaluation.html#cb48-3" aria-hidden="true" tabindex="-1"></a>    ps = dada2_ps_genus,</span>
+<span id="cb48-4"><a href="quality-evaluation.html#cb48-4" aria-hidden="true" tabindex="-1"></a>    BRS_ID = &quot;S8005&quot;,</span>
+<span id="cb48-5"><a href="quality-evaluation.html#cb48-5" aria-hidden="true" tabindex="-1"></a>    Reference = NULL,</span>
+<span id="cb48-6"><a href="quality-evaluation.html#cb48-6" aria-hidden="true" tabindex="-1"></a>    Ref_type = &quot;16s&quot;,</span>
+<span id="cb48-7"><a href="quality-evaluation.html#cb48-7" aria-hidden="true" tabindex="-1"></a>    Save = NULL)</span>
+<span id="cb48-8"><a href="quality-evaluation.html#cb48-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb48-9"><a href="quality-evaluation.html#cb48-9" aria-hidden="true" tabindex="-1"></a>head(dada2_ps_genus_brs_res)</span></code></pre></div>
 <pre><code>## Noting: the Reference Matrix is for 16s
 ## S8005 is in the Reference Matrix&#39;s samples and remove it to run
 ## 
@@ -773,9 +797,9 @@ Figure 4.2: Reads’ track of Metaphlan2
 <ul>
 <li>get the BRS_ID</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="quality-evaluation.html#cb47-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps, </span>
-<span id="cb47-2"><a href="quality-evaluation.html#cb47-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb47-3"><a href="quality-evaluation.html#cb47-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species<span class="sc">@</span>sam_data</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="quality-evaluation.html#cb50-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> metaphlan2_ps, </span>
+<span id="cb50-2"><a href="quality-evaluation.html#cb50-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb50-3"><a href="quality-evaluation.html#cb50-3" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species<span class="sc">@</span>sam_data</span></code></pre></div>
 <pre><code>##      Group phynotype
 ## s1      BB      0.00
 ## s2      AA      2.50
@@ -803,15 +827,15 @@ Figure 4.2: Reads’ track of Metaphlan2
 <ul>
 <li>run <code>run_RefCheck</code></li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb49-1"><a href="quality-evaluation.html#cb49-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_brs_res &lt;- </span>
-<span id="cb49-2"><a href="quality-evaluation.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  run_RefCheck(</span>
-<span id="cb49-3"><a href="quality-evaluation.html#cb49-3" aria-hidden="true" tabindex="-1"></a>          ps = metaphlan2_ps_species,</span>
-<span id="cb49-4"><a href="quality-evaluation.html#cb49-4" aria-hidden="true" tabindex="-1"></a>          BRS_ID = &quot;refE&quot;,</span>
-<span id="cb49-5"><a href="quality-evaluation.html#cb49-5" aria-hidden="true" tabindex="-1"></a>          Reference = NULL,</span>
-<span id="cb49-6"><a href="quality-evaluation.html#cb49-6" aria-hidden="true" tabindex="-1"></a>          Ref_type = &quot;MGS&quot;,</span>
-<span id="cb49-7"><a href="quality-evaluation.html#cb49-7" aria-hidden="true" tabindex="-1"></a>          Save = NULL)</span>
-<span id="cb49-8"><a href="quality-evaluation.html#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-9"><a href="quality-evaluation.html#cb49-9" aria-hidden="true" tabindex="-1"></a>head(metaphlan2_ps_species_brs_res)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb52-1"><a href="quality-evaluation.html#cb52-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_species_brs_res &lt;- </span>
+<span id="cb52-2"><a href="quality-evaluation.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  run_RefCheck(</span>
+<span id="cb52-3"><a href="quality-evaluation.html#cb52-3" aria-hidden="true" tabindex="-1"></a>          ps = metaphlan2_ps_species,</span>
+<span id="cb52-4"><a href="quality-evaluation.html#cb52-4" aria-hidden="true" tabindex="-1"></a>          BRS_ID = &quot;refE&quot;,</span>
+<span id="cb52-5"><a href="quality-evaluation.html#cb52-5" aria-hidden="true" tabindex="-1"></a>          Reference = NULL,</span>
+<span id="cb52-6"><a href="quality-evaluation.html#cb52-6" aria-hidden="true" tabindex="-1"></a>          Ref_type = &quot;MGS&quot;,</span>
+<span id="cb52-7"><a href="quality-evaluation.html#cb52-7" aria-hidden="true" tabindex="-1"></a>          Save = NULL)</span>
+<span id="cb52-8"><a href="quality-evaluation.html#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="quality-evaluation.html#cb52-9" aria-hidden="true" tabindex="-1"></a>head(metaphlan2_ps_species_brs_res)</span></code></pre></div>
 <pre><code>## Noting: the Reference Matrix is for MGS
 ## 
 ## ############Matched baterica of the BRS sample#############
@@ -862,23 +886,23 @@ Figure 4.2: Reads’ track of Metaphlan2
 ## Bacteroides_thetaiotaomicron  3.25076 3.31897 3.22418 3.43809  3.35611  3.38323  3.29098  3.30355 1.47422 3.1155656
 ## Collinsella_aerofaciens       0.56220 0.53249 0.60476 0.47934  0.65513  0.68833  0.76063  0.66896 0.07251 0.5582611
 ##                                                                         Evaluation
-## Bifidobacterium_longum       refE didn&#39;t pass the threshold (2022-09-16 10:15:53).
-## Bacteroides_uniformis        refE didn&#39;t pass the threshold (2022-09-16 10:15:53).
-## Faecalibacterium_prausnitzii refE didn&#39;t pass the threshold (2022-09-16 10:15:53).
-## Bifidobacterium_adolescentis refE didn&#39;t pass the threshold (2022-09-16 10:15:53).
-## Bacteroides_thetaiotaomicron refE didn&#39;t pass the threshold (2022-09-16 10:15:53).
-## Collinsella_aerofaciens      refE didn&#39;t pass the threshold (2022-09-16 10:15:53).</code></pre>
+## Bifidobacterium_longum       refE didn&#39;t pass the threshold (2022-10-08 15:30:36).
+## Bacteroides_uniformis        refE didn&#39;t pass the threshold (2022-10-08 15:30:36).
+## Faecalibacterium_prausnitzii refE didn&#39;t pass the threshold (2022-10-08 15:30:36).
+## Bifidobacterium_adolescentis refE didn&#39;t pass the threshold (2022-10-08 15:30:36).
+## Bacteroides_thetaiotaomicron refE didn&#39;t pass the threshold (2022-10-08 15:30:36).
+## Collinsella_aerofaciens      refE didn&#39;t pass the threshold (2022-10-08 15:30:36).</code></pre>
 </details>
 </div>
 </div>
 <div id="removing-brs" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Removing BRS<a href="quality-evaluation.html#removing-brs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>After evaluating the sequencing quality, we remove the BRS.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="quality-evaluation.html#cb51-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb51-2"><a href="quality-evaluation.html#cb51-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb51-3"><a href="quality-evaluation.html#cb51-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb51-4"><a href="quality-evaluation.html#cb51-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
-<span id="cb51-5"><a href="quality-evaluation.html#cb51-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="quality-evaluation.html#cb54-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb54-2"><a href="quality-evaluation.html#cb54-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb54-3"><a href="quality-evaluation.html#cb54-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb54-4"><a href="quality-evaluation.html#cb54-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>)</span>
+<span id="cb54-5"><a href="quality-evaluation.html#cb54-5" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 896 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -891,11 +915,11 @@ Figure 4.2: Reads’ track of Metaphlan2
 <blockquote>
 <p>Rarefaction curves are often used when calculating alpha diversity indices, because increasing numbers of sequenced taxa allow increasingly accurate estimates of total population diversity. Rarefaction curves can therefore be used to estimate the full sample richness, as compared to the observed sample richness.</p>
 </blockquote>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="quality-evaluation.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_RarefCurve</span>(<span class="at">ps =</span> dada2_ps_remove_BRS,</span>
-<span id="cb53-2"><a href="quality-evaluation.html#cb53-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">taxa_level =</span> <span class="st">&quot;OTU&quot;</span>,</span>
-<span id="cb53-3"><a href="quality-evaluation.html#cb53-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">step =</span> <span class="dv">400</span>,</span>
-<span id="cb53-4"><a href="quality-evaluation.html#cb53-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">label =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb53-5"><a href="quality-evaluation.html#cb53-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="quality-evaluation.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_RarefCurve</span>(<span class="at">ps =</span> dada2_ps_remove_BRS,</span>
+<span id="cb56-2"><a href="quality-evaluation.html#cb56-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">taxa_level =</span> <span class="st">&quot;OTU&quot;</span>,</span>
+<span id="cb56-3"><a href="quality-evaluation.html#cb56-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">step =</span> <span class="dv">400</span>,</span>
+<span id="cb56-4"><a href="quality-evaluation.html#cb56-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">label =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb56-5"><a href="quality-evaluation.html#cb56-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;Group&quot;</span>)</span></code></pre></div>
 <pre><code>## rarefying sample S6030
 ## rarefying sample S6032
 ## rarefying sample S6033
@@ -919,8 +943,8 @@ Figure 4.2: Reads’ track of Metaphlan2
 ## rarefying sample S6065
 ## rarefying sample S6066
 ## rarefying sample S6068</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
-<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-31-1.png" alt="Rarefaction Curves" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-28-1.png" alt="Rarefaction Curves" width="672" />
 <p class="caption">
 Figure 4.3: Rarefaction Curves
 </p>
@@ -930,42 +954,42 @@ Figure 4.3: Rarefaction Curves
 <div id="summarize-phyloseq-class-object" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Summarize phyloseq-class object<a href="quality-evaluation.html#summarize-phyloseq-class-object" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Summarizing the phyloseq-class object by using <code>summarize_phyloseq</code>. It displayed that briefly introduction of the object.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="quality-evaluation.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_phyloseq</span>(<span class="at">ps =</span> dada2_ps_remove_BRS)</span>
-<span id="cb55-2"><a href="quality-evaluation.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Compositional = NO2</span></span>
-<span id="cb55-3"><a href="quality-evaluation.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1] Min. number of reads = 511812] Max. number of reads = 716673] Total number of reads = 14089154] Average number of reads = 61257.17391304355] Median number of reads = 614357] Sparsity = 0.8610248447204976] Any OTU sum to 1 or less? YES8] Number of singletons = 49] Percent of OTUs that are singletons</span></span>
-<span id="cb55-4"><a href="quality-evaluation.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="do">##         (i.e. exactly one read detected across all samples)010] Number of sample variables are: 1Group2</span></span>
-<span id="cb55-5"><a href="quality-evaluation.html#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [[1]]</span></span>
-<span id="cb55-6"><a href="quality-evaluation.html#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;1] Min. number of reads = 51181&quot;</span></span>
-<span id="cb55-7"><a href="quality-evaluation.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-8"><a href="quality-evaluation.html#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [[2]]</span></span>
-<span id="cb55-9"><a href="quality-evaluation.html#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;2] Max. number of reads = 71667&quot;</span></span>
-<span id="cb55-10"><a href="quality-evaluation.html#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-11"><a href="quality-evaluation.html#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [[3]]</span></span>
-<span id="cb55-12"><a href="quality-evaluation.html#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;3] Total number of reads = 1408915&quot;</span></span>
-<span id="cb55-13"><a href="quality-evaluation.html#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-14"><a href="quality-evaluation.html#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [[4]]</span></span>
-<span id="cb55-15"><a href="quality-evaluation.html#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;4] Average number of reads = 61257.1739130435&quot;</span></span>
-<span id="cb55-16"><a href="quality-evaluation.html#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-17"><a href="quality-evaluation.html#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [[5]]</span></span>
-<span id="cb55-18"><a href="quality-evaluation.html#cb55-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;5] Median number of reads = 61435&quot;</span></span>
-<span id="cb55-19"><a href="quality-evaluation.html#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-20"><a href="quality-evaluation.html#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [[6]]</span></span>
-<span id="cb55-21"><a href="quality-evaluation.html#cb55-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;7] Sparsity = 0.861024844720497&quot;</span></span>
-<span id="cb55-22"><a href="quality-evaluation.html#cb55-22" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-23"><a href="quality-evaluation.html#cb55-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [[7]]</span></span>
-<span id="cb55-24"><a href="quality-evaluation.html#cb55-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;6] Any OTU sum to 1 or less? YES&quot;</span></span>
-<span id="cb55-25"><a href="quality-evaluation.html#cb55-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-26"><a href="quality-evaluation.html#cb55-26" aria-hidden="true" tabindex="-1"></a><span class="do">## [[8]]</span></span>
-<span id="cb55-27"><a href="quality-evaluation.html#cb55-27" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;8] Number of singletons = 4&quot;</span></span>
-<span id="cb55-28"><a href="quality-evaluation.html#cb55-28" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-29"><a href="quality-evaluation.html#cb55-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [[9]]</span></span>
-<span id="cb55-30"><a href="quality-evaluation.html#cb55-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;9] Percent of OTUs that are singletons\n        (i.e. exactly one read detected across all samples)0&quot;</span></span>
-<span id="cb55-31"><a href="quality-evaluation.html#cb55-31" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-32"><a href="quality-evaluation.html#cb55-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [[10]]</span></span>
-<span id="cb55-33"><a href="quality-evaluation.html#cb55-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;10] Number of sample variables are: 1&quot;</span></span>
-<span id="cb55-34"><a href="quality-evaluation.html#cb55-34" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb55-35"><a href="quality-evaluation.html#cb55-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [[11]]</span></span>
-<span id="cb55-36"><a href="quality-evaluation.html#cb55-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Group&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="quality-evaluation.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize_phyloseq</span>(<span class="at">ps =</span> dada2_ps_remove_BRS)</span>
+<span id="cb58-2"><a href="quality-evaluation.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Compositional = NO2</span></span>
+<span id="cb58-3"><a href="quality-evaluation.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1] Min. number of reads = 511812] Max. number of reads = 716673] Total number of reads = 14089154] Average number of reads = 61257.17391304355] Median number of reads = 614357] Sparsity = 0.8610248447204976] Any OTU sum to 1 or less? YES8] Number of singletons = 49] Percent of OTUs that are singletons</span></span>
+<span id="cb58-4"><a href="quality-evaluation.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="do">##         (i.e. exactly one read detected across all samples)010] Number of sample variables are: 1Group2</span></span>
+<span id="cb58-5"><a href="quality-evaluation.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [[1]]</span></span>
+<span id="cb58-6"><a href="quality-evaluation.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;1] Min. number of reads = 51181&quot;</span></span>
+<span id="cb58-7"><a href="quality-evaluation.html#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-8"><a href="quality-evaluation.html#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [[2]]</span></span>
+<span id="cb58-9"><a href="quality-evaluation.html#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;2] Max. number of reads = 71667&quot;</span></span>
+<span id="cb58-10"><a href="quality-evaluation.html#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-11"><a href="quality-evaluation.html#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [[3]]</span></span>
+<span id="cb58-12"><a href="quality-evaluation.html#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;3] Total number of reads = 1408915&quot;</span></span>
+<span id="cb58-13"><a href="quality-evaluation.html#cb58-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-14"><a href="quality-evaluation.html#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [[4]]</span></span>
+<span id="cb58-15"><a href="quality-evaluation.html#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;4] Average number of reads = 61257.1739130435&quot;</span></span>
+<span id="cb58-16"><a href="quality-evaluation.html#cb58-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-17"><a href="quality-evaluation.html#cb58-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [[5]]</span></span>
+<span id="cb58-18"><a href="quality-evaluation.html#cb58-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;5] Median number of reads = 61435&quot;</span></span>
+<span id="cb58-19"><a href="quality-evaluation.html#cb58-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-20"><a href="quality-evaluation.html#cb58-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [[6]]</span></span>
+<span id="cb58-21"><a href="quality-evaluation.html#cb58-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;7] Sparsity = 0.861024844720497&quot;</span></span>
+<span id="cb58-22"><a href="quality-evaluation.html#cb58-22" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-23"><a href="quality-evaluation.html#cb58-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [[7]]</span></span>
+<span id="cb58-24"><a href="quality-evaluation.html#cb58-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;6] Any OTU sum to 1 or less? YES&quot;</span></span>
+<span id="cb58-25"><a href="quality-evaluation.html#cb58-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-26"><a href="quality-evaluation.html#cb58-26" aria-hidden="true" tabindex="-1"></a><span class="do">## [[8]]</span></span>
+<span id="cb58-27"><a href="quality-evaluation.html#cb58-27" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;8] Number of singletons = 4&quot;</span></span>
+<span id="cb58-28"><a href="quality-evaluation.html#cb58-28" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-29"><a href="quality-evaluation.html#cb58-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [[9]]</span></span>
+<span id="cb58-30"><a href="quality-evaluation.html#cb58-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;9] Percent of OTUs that are singletons\n        (i.e. exactly one read detected across all samples)0&quot;</span></span>
+<span id="cb58-31"><a href="quality-evaluation.html#cb58-31" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-32"><a href="quality-evaluation.html#cb58-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [[10]]</span></span>
+<span id="cb58-33"><a href="quality-evaluation.html#cb58-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;10] Number of sample variables are: 1&quot;</span></span>
+<span id="cb58-34"><a href="quality-evaluation.html#cb58-34" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb58-35"><a href="quality-evaluation.html#cb58-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [[11]]</span></span>
+<span id="cb58-36"><a href="quality-evaluation.html#cb58-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Group&quot;</span></span></code></pre></div>
 <p>The minus account of the OTU counts is <em>51181</em> in the phyloseq object, and we can use it as the threshold to rarefy.</p>
 <p>Notice the <strong>Sparsity (0.865)</strong>, indicating the data has many zeros and pay attention to the downstream data analysis. A common property of amplicon based microbiota data generated by sequencing.</p>
 </div>
@@ -977,17 +1001,17 @@ Figure 4.3: Rarefaction Curves
 <h3><span class="header-section-number">4.8.1</span> Coefficient of variation<a href="quality-evaluation.html#coefficient-of-variation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Coefficient of variation (C.V)</strong>, i.e. sd(x)/mean(x) is a widely used approach to measure heterogeneity in OTU/ASV abundance data. The plot below shows CV-mean(relaive mean abundance) relationship in the scatter plot, where variation is calculated for each OTU/ASV across samples versus mean relative abundance.
 Now plot C.V.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="quality-evaluation.html#cb56-1" aria-hidden="true" tabindex="-1"></a>pl <span class="ot">&lt;-</span> <span class="fu">plot_taxa_cv</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
-<span id="cb56-2"><a href="quality-evaluation.html#cb56-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">plot.type =</span> <span class="st">&quot;scatter&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
-<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-33-1.png" alt="Density of the Taxa Mean abundance" width="672" />
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="quality-evaluation.html#cb59-1" aria-hidden="true" tabindex="-1"></a>pl <span class="ot">&lt;-</span> <span class="fu">plot_taxa_cv</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb59-2"><a href="quality-evaluation.html#cb59-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">plot.type =</span> <span class="st">&quot;scatter&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-30-1.png" alt="Density of the Taxa Mean abundance" width="672" />
 <p class="caption">
 Figure 4.4: Density of the Taxa Mean abundance
 </p>
 </div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="quality-evaluation.html#cb57-1" aria-hidden="true" tabindex="-1"></a>pl <span class="sc">+</span> <span class="fu">scale_x_log10</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
-<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-34-1.png" alt="Coefficient of variation" width="672" />
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="quality-evaluation.html#cb60-1" aria-hidden="true" tabindex="-1"></a>pl <span class="sc">+</span> <span class="fu">scale_x_log10</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-31-1.png" alt="Coefficient of variation" width="672" />
 <p class="caption">
 Figure 4.5: Coefficient of variation
 </p>
@@ -997,11 +1021,11 @@ Figure 4.5: Coefficient of variation
 <div id="distribution-of-number-of-sequences" class="section level3 hasAnchor" number="4.8.2">
 <h3><span class="header-section-number">4.8.2</span> Distribution of number of sequences<a href="quality-evaluation.html#distribution-of-number-of-sequences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Checking for distribution of number of sequences</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="quality-evaluation.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
-<span id="cb58-2"><a href="quality-evaluation.html#cb58-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group=</span><span class="st">&quot;Group&quot;</span>, </span>
-<span id="cb58-3"><a href="quality-evaluation.html#cb58-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">plot.type =</span> <span class="st">&quot;density&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
-<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-35-1.png" alt="Distribution of number of sequences" width="672" />
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="quality-evaluation.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(<span class="at">ps =</span> dada2_ps_remove_BRS, </span>
+<span id="cb61-2"><a href="quality-evaluation.html#cb61-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">group=</span><span class="st">&quot;Group&quot;</span>, </span>
+<span id="cb61-3"><a href="quality-evaluation.html#cb61-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">plot.type =</span> <span class="st">&quot;density&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-32-1.png" alt="Distribution of number of sequences" width="672" />
 <p class="caption">
 Figure 4.6: Distribution of number of sequences
 </p>
@@ -1011,7 +1035,7 @@ Figure 4.6: Distribution of number of sequences
 </div>
 <div id="systematic-information-1" class="section level2 hasAnchor" number="4.9">
 <h2><span class="header-section-number">4.9</span> Systematic Information<a href="quality-evaluation.html#systematic-information-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="quality-evaluation.html#cb59-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="quality-evaluation.html#cb62-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
@@ -1022,7 +1046,7 @@ Figure 4.6: Distribution of number of sequences
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2022-09-16
+##  date     2022-10-08
 ##  rstudio  2022.07.1+554 Spotted Wakerobin (desktop)
 ##  pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
 ## 
@@ -1030,14 +1054,17 @@ Figure 4.6: Distribution of number of sequences
 ##  package              * version  date (UTC) lib source
 ##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
 ##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
+##  ALDEx2                 1.26.0   2021-10-26 [1] Bioconductor
 ##  annotate               1.72.0   2021-10-26 [1] Bioconductor
 ##  AnnotationDbi          1.56.2   2021-11-09 [1] Bioconductor
-##  ape                    5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
+##  ape                  * 5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
+##  askpass                1.1      2019-01-13 [1] CRAN (R 4.1.0)
 ##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
 ##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
 ##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
-##  Biobase                2.54.0   2021-10-26 [1] Bioconductor
-##  BiocGenerics           0.40.0   2021-10-26 [1] Bioconductor
+##  bayesm                 3.1-4    2019-10-15 [1] CRAN (R 4.1.0)
+##  Biobase              * 2.54.0   2021-10-26 [1] Bioconductor
+##  BiocGenerics         * 0.40.0   2021-10-26 [1] Bioconductor
 ##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
 ##  biomformat             1.22.0   2021-10-26 [1] Bioconductor
 ##  Biostrings             2.62.0   2021-10-26 [1] Bioconductor
@@ -1055,137 +1082,207 @@ Figure 4.6: Distribution of number of sequences
 ##  carData                3.0-5    2022-01-06 [1] CRAN (R 4.1.2)
 ##  caTools                1.18.2   2021-03-28 [1] CRAN (R 4.1.0)
 ##  checkmate              2.0.0    2020-02-06 [1] CRAN (R 4.1.0)
+##  class                  7.3-20   2022-01-13 [1] CRAN (R 4.1.2)
+##  classInt               0.4-3    2020-04-07 [1] CRAN (R 4.1.0)
 ##  cli                    3.3.0    2022-04-25 [1] CRAN (R 4.1.2)
 ##  cluster                2.1.2    2021-04-17 [1] CRAN (R 4.1.2)
 ##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
 ##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
 ##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
+##  compositions           2.0-4    2022-01-05 [1] CRAN (R 4.1.2)
+##  conflicted           * 1.1.0    2021-11-26 [1] CRAN (R 4.1.0)
+##  corrplot               0.92     2021-11-18 [1] CRAN (R 4.1.0)
+##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
 ##  crayon                 1.5.0    2022-02-14 [1] CRAN (R 4.1.2)
+##  crosstalk              1.2.0    2021-11-04 [1] CRAN (R 4.1.0)
 ##  data.table             1.14.2   2021-09-27 [1] CRAN (R 4.1.0)
 ##  DBI                    1.1.2    2021-12-20 [1] CRAN (R 4.1.0)
 ##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
+##  DEoptimR               1.0-10   2022-01-03 [1] CRAN (R 4.1.2)
 ##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
 ##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
-##  devtools               2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
+##  devtools             * 2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  digest                 0.6.29   2021-12-01 [1] CRAN (R 4.1.0)
 ##  dplyr                * 1.0.8    2022-02-08 [1] CRAN (R 4.1.2)
+##  DT                     0.21     2022-02-26 [1] CRAN (R 4.1.2)
+##  e1071                  1.7-9    2021-09-16 [1] CRAN (R 4.1.0)
 ##  edgeR                  3.36.0   2021-10-26 [1] Bioconductor
 ##  ellipsis               0.3.2    2021-04-29 [1] CRAN (R 4.1.0)
 ##  evaluate               0.15     2022-02-18 [1] CRAN (R 4.1.2)
+##  FactoMineR             2.4      2020-12-11 [1] CRAN (R 4.1.0)
 ##  fansi                  1.0.2    2022-01-14 [1] CRAN (R 4.1.2)
 ##  farver                 2.1.0    2021-02-28 [1] CRAN (R 4.1.0)
 ##  fastmap                1.1.0    2021-01-25 [1] CRAN (R 4.1.0)
+##  flashClust             1.01-2   2012-08-21 [1] CRAN (R 4.1.0)
 ##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
 ##  foreign                0.8-82   2022-01-13 [1] CRAN (R 4.1.2)
+##  forestplot             2.0.1    2021-09-03 [1] CRAN (R 4.1.0)
+##  formatR                1.11     2021-06-01 [1] CRAN (R 4.1.0)
 ##  Formula                1.2-4    2020-10-16 [1] CRAN (R 4.1.0)
 ##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
+##  futile.logger        * 1.4.3    2016-07-10 [1] CRAN (R 4.1.0)
+##  futile.options         1.0.1    2018-04-20 [1] CRAN (R 4.1.0)
 ##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
 ##  geneplotter            1.72.0   2021-10-26 [1] Bioconductor
 ##  generics               0.1.2    2022-01-31 [1] CRAN (R 4.1.2)
-##  GenomeInfoDb           1.30.1   2022-01-30 [1] Bioconductor
+##  GenomeInfoDb         * 1.30.1   2022-01-30 [1] Bioconductor
 ##  GenomeInfoDbData       1.2.7    2022-03-09 [1] Bioconductor
-##  GenomicRanges          1.46.1   2021-11-18 [1] Bioconductor
+##  GenomicRanges        * 1.46.1   2021-11-18 [1] Bioconductor
+##  ggiraph                0.8.2    2022-02-22 [1] CRAN (R 4.1.2)
+##  ggiraphExtra           0.3.0    2020-10-06 [1] CRAN (R 4.1.2)
 ##  ggplot2              * 3.3.5    2021-06-25 [1] CRAN (R 4.1.0)
 ##  ggpubr               * 0.4.0    2020-06-27 [1] CRAN (R 4.1.0)
+##  ggrepel                0.9.1    2021-01-15 [1] CRAN (R 4.1.0)
+##  ggsci                  2.9      2018-05-14 [1] CRAN (R 4.1.0)
 ##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
+##  ggVennDiagram          1.2.1    2022-04-13 [1] Github (gaospecial/ggVennDiagram@db6742d)
 ##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
-##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
+##  glue                 * 1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
+##  Gmisc                * 3.0.0    2022-01-03 [1] CRAN (R 4.1.2)
 ##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
 ##  gridExtra              2.3      2017-09-09 [1] CRAN (R 4.1.0)
 ##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
 ##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
 ##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
 ##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
-##  htmlTable              2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
+##  hms                    1.1.1    2021-09-26 [1] CRAN (R 4.1.0)
+##  htmlTable            * 2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
 ##  htmltools              0.5.2    2021-08-25 [1] CRAN (R 4.1.0)
 ##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
 ##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
 ##  igraph                 1.2.11   2022-01-04 [1] CRAN (R 4.1.2)
-##  IRanges                2.28.0   2021-10-26 [1] Bioconductor
+##  insight                0.17.0   2022-03-29 [1] CRAN (R 4.1.2)
+##  IRanges              * 2.28.0   2021-10-26 [1] Bioconductor
 ##  iterators              1.0.14   2022-02-05 [1] CRAN (R 4.1.2)
 ##  jpeg                   0.1-9    2021-07-24 [1] CRAN (R 4.1.0)
 ##  jquerylib              0.1.4    2021-04-26 [1] CRAN (R 4.1.0)
 ##  jsonlite               1.8.0    2022-02-22 [1] CRAN (R 4.1.2)
+##  kableExtra             1.3.4    2021-02-20 [1] CRAN (R 4.1.2)
 ##  KEGGREST               1.34.0   2021-10-26 [1] Bioconductor
 ##  KernSmooth             2.23-20  2021-05-03 [1] CRAN (R 4.1.2)
 ##  knitr                  1.39     2022-04-26 [1] CRAN (R 4.1.2)
 ##  labeling               0.4.2    2020-10-20 [1] CRAN (R 4.1.0)
-##  lattice                0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
+##  lambda.r               1.2.4    2019-09-18 [1] CRAN (R 4.1.0)
+##  lattice              * 0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
 ##  latticeExtra           0.6-29   2019-12-19 [1] CRAN (R 4.1.0)
+##  leaps                  3.1      2020-01-16 [1] CRAN (R 4.1.0)
 ##  libcoin                1.0-9    2021-09-27 [1] CRAN (R 4.1.0)
 ##  lifecycle              1.0.1    2021-09-24 [1] CRAN (R 4.1.0)
 ##  limma                  3.50.1   2022-02-17 [1] Bioconductor
 ##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
-##  magrittr               2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
+##  LOCOM                  1.1      2022-08-05 [1] Github (yijuanhu/LOCOM@c181e0f)
+##  lubridate              1.8.0    2021-10-07 [1] CRAN (R 4.1.0)
+##  magrittr             * 2.0.2    2022-01-26 [1] CRAN (R 4.1.2)
 ##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
 ##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
-##  MatrixGenerics         1.6.0    2021-10-26 [1] Bioconductor
-##  matrixStats            0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
+##  MatrixGenerics       * 1.6.0    2021-10-26 [1] Bioconductor
+##  matrixStats          * 0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
+##  mbzinb                 0.2      2022-03-16 [1] local
 ##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
 ##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
 ##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
+##  microbiome             1.16.0   2021-10-26 [1] Bioconductor
 ##  modeltools             0.2-23   2020-03-05 [1] CRAN (R 4.1.0)
 ##  multcomp               1.4-18   2022-01-04 [1] CRAN (R 4.1.2)
 ##  multtest               2.50.0   2021-10-26 [1] Bioconductor
 ##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
 ##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
-##  nlme                   3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
+##  mycor                  0.1.1    2018-04-10 [1] CRAN (R 4.1.0)
+##  NADA                   1.6-1.1  2020-03-22 [1] CRAN (R 4.1.0)
+##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
 ##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
-##  permute                0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
+##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
+##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
+##  pheatmap             * 1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
 ##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
+##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
 ##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  pkgbuild               1.3.1    2021-12-20 [1] CRAN (R 4.1.0)
 ##  pkgconfig              2.0.3    2019-09-22 [1] CRAN (R 4.1.0)
 ##  pkgload                1.2.4    2021-11-30 [1] CRAN (R 4.1.0)
 ##  plyr                   1.8.6    2020-03-03 [1] CRAN (R 4.1.0)
 ##  png                    0.1-7    2013-12-03 [1] CRAN (R 4.1.0)
+##  ppcor                  1.1      2015-12-03 [1] CRAN (R 4.1.0)
 ##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
 ##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
+##  protoclust             1.6.3    2019-01-31 [1] CRAN (R 4.1.0)
+##  proxy                  0.4-26   2021-06-07 [1] CRAN (R 4.1.0)
 ##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
-##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
+##  pscl                   1.5.5    2020-03-07 [1] CRAN (R 4.1.0)
+##  purrr                * 0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
+##  qvalue                 2.26.0   2021-10-26 [1] Bioconductor
 ##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
-##  RColorBrewer           1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
-##  Rcpp                   1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
+##  RAIDA                  1.0      2022-03-14 [1] local
+##  RColorBrewer         * 1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
+##  Rcpp                 * 1.0.8.2  2022-03-11 [1] CRAN (R 4.1.2)
+##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
 ##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
+##  readr                * 2.1.2    2022-01-30 [1] CRAN (R 4.1.2)
 ##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
 ##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
+##  reticulate             1.24     2022-01-26 [1] CRAN (R 4.1.2)
+##  Rfast                  2.0.6    2022-02-16 [1] CRAN (R 4.1.2)
 ##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
 ##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
 ##  Rhdf5lib               1.16.0   2021-10-26 [1] Bioconductor
 ##  rlang                  1.0.2    2022-03-04 [1] CRAN (R 4.1.2)
 ##  rmarkdown              2.14     2022-04-25 [1] CRAN (R 4.1.2)
+##  robustbase             0.93-9   2021-09-27 [1] CRAN (R 4.1.0)
 ##  rpart                  4.1.16   2022-01-24 [1] CRAN (R 4.1.2)
 ##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
+##  RSpectra               0.16-0   2019-12-01 [1] CRAN (R 4.1.0)
 ##  RSQLite                2.2.10   2022-02-17 [1] CRAN (R 4.1.2)
 ##  rstatix                0.7.0    2021-02-13 [1] CRAN (R 4.1.0)
 ##  rstudioapi             0.13     2020-11-12 [1] CRAN (R 4.1.0)
-##  S4Vectors              0.32.3   2021-11-21 [1] Bioconductor
+##  Rtsne                  0.15     2018-11-10 [1] CRAN (R 4.1.0)
+##  RVenn                  1.1.0    2019-07-18 [1] CRAN (R 4.1.0)
+##  rvest                  1.0.2    2021-10-16 [1] CRAN (R 4.1.0)
+##  S4Vectors            * 0.32.3   2021-11-21 [1] Bioconductor
 ##  sandwich               3.0-1    2021-05-18 [1] CRAN (R 4.1.0)
 ##  sass                   0.4.0    2021-05-12 [1] CRAN (R 4.1.0)
 ##  scales                 1.1.1    2020-05-11 [1] CRAN (R 4.1.0)
+##  scatterplot3d          0.3-41   2018-03-14 [1] CRAN (R 4.1.0)
 ##  sessioninfo            1.2.2    2021-12-06 [1] CRAN (R 4.1.0)
+##  sf                     1.0-7    2022-03-07 [1] CRAN (R 4.1.2)
 ##  shape                  1.4.6    2021-05-19 [1] CRAN (R 4.1.0)
+##  sjlabelled             1.2.0    2022-04-10 [1] CRAN (R 4.1.2)
+##  sjmisc                 2.8.9    2021-12-03 [1] CRAN (R 4.1.0)
 ##  stringi                1.7.6    2021-11-29 [1] CRAN (R 4.1.0)
 ##  stringr                1.4.0    2019-02-10 [1] CRAN (R 4.1.0)
-##  SummarizedExperiment   1.24.0   2021-10-26 [1] Bioconductor
+##  SummarizedExperiment * 1.24.0   2021-10-26 [1] Bioconductor
 ##  survival               3.3-1    2022-03-03 [1] CRAN (R 4.1.2)
+##  svglite                2.1.0    2022-02-03 [1] CRAN (R 4.1.2)
+##  systemfonts            1.0.4    2022-02-11 [1] CRAN (R 4.1.2)
+##  tensorA                0.36.2   2020-11-19 [1] CRAN (R 4.1.0)
 ##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
 ##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
 ##  tibble               * 3.1.6    2021-11-07 [1] CRAN (R 4.1.0)
-##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
+##  tidyr                * 1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
 ##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
-##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
+##  truncnorm              1.0-8    2018-02-27 [1] CRAN (R 4.1.0)
+##  tzdb                   0.2.0    2021-10-27 [1] CRAN (R 4.1.0)
+##  umap                   0.2.8.0  2022-03-23 [1] CRAN (R 4.1.2)
+##  units                  0.8-0    2022-02-05 [1] CRAN (R 4.1.2)
+##  usethis              * 2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
 ##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
+##  uuid                   1.0-3    2021-11-01 [1] CRAN (R 4.1.0)
 ##  vctrs                  0.3.8    2021-04-29 [1] CRAN (R 4.1.0)
-##  vegan                  2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
+##  vegan                * 2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
+##  VennDiagram          * 1.7.3    2022-04-12 [1] CRAN (R 4.1.2)
+##  viridis              * 0.6.2    2021-10-13 [1] CRAN (R 4.1.0)
+##  viridisLite          * 0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
+##  vroom                  1.5.7    2021-11-30 [1] CRAN (R 4.1.0)
+##  webshot                0.5.3    2022-04-14 [1] CRAN (R 4.1.2)
 ##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
 ##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
 ##  xfun                   0.30     2022-03-02 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.8    2022-09-15 [1] local
+##  XMAS2                * 2.1.8    2022-10-08 [1] local
 ##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
+##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
 ##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
 ##  XVector                0.34.0   2021-10-26 [1] Bioconductor
 ##  yaml                   2.3.5    2022-02-21 [1] CRAN (R 4.1.2)
+##  zCompositions          1.4.0    2022-01-13 [1] CRAN (R 4.1.2)
 ##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
 ##  zoo                    1.8-9    2021-03-09 [1] CRAN (R 4.1.0)
 ## 
