@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 Association Analysis | XMAS 2.0 Tutorial</title>
   <meta name="description" content="A tutorial of XMAS 2.0 package for in-house training" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Association Analysis | XMAS 2.0 Tutorial" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2023-04-12" />
+<meta name="date" content="2023-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,12 +52,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.21/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -130,6 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -152,7 +156,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
 </head>
 
 <body>
@@ -351,14 +355,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="differential-analysis.html"><a href="differential-analysis.html#dominant-taxa"><i class="fa fa-check"></i><b>10.6</b> Dominant taxa</a></li>
 <li class="chapter" data-level="10.7" data-path="differential-analysis.html"><a href="differential-analysis.html#multiple-differential-analysis-by-one-function"><i class="fa fa-check"></i><b>10.7</b> Multiple differential analysis by one function</a></li>
-<li class="chapter" data-level="10.8" data-path="differential-analysis.html"><a href="differential-analysis.html#comparing-outputs-from-xmas2-lefse-conda-and-lefse-galaxy-using-the-same-in-house-datasets-amplicon_pszeybel_gut"><i class="fa fa-check"></i><b>10.8</b> Comparing outputs from XMAS2, lefse-conda, and lefse-galaxy using the same in-house datasets (amplicon_ps|Zeybel_Gut)</a>
-<ul>
-<li class="chapter" data-level="10.8.1" data-path="differential-analysis.html"><a href="differential-analysis.html#introduction-1"><i class="fa fa-check"></i><b>10.8.1</b> Introduction</a></li>
-<li class="chapter" data-level="10.8.2" data-path="differential-analysis.html"><a href="differential-analysis.html#dataset"><i class="fa fa-check"></i><b>10.8.2</b> Dataset</a></li>
-<li class="chapter" data-level="10.8.3" data-path="differential-analysis.html"><a href="differential-analysis.html#run-lefse-independently-with-the-three-applications-r-conda-galaxy"><i class="fa fa-check"></i><b>10.8.3</b> Run lefse independently with the three applications (R, conda, galaxy)</a></li>
-<li class="chapter" data-level="10.8.4" data-path="differential-analysis.html"><a href="differential-analysis.html#comparison-of-lefse-conda-with-xmas2"><i class="fa fa-check"></i><b>10.8.4</b> Comparison of lefse-conda with XMAS2</a></li>
-</ul></li>
-<li class="chapter" data-level="10.9" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-7"><i class="fa fa-check"></i><b>10.9</b> Systematic Information</a></li>
+<li class="chapter" data-level="10.8" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-7"><i class="fa fa-check"></i><b>10.8</b> Systematic Information</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="visualization-5.html"><a href="visualization-5.html"><i class="fa fa-check"></i><b>11</b> Visualization</a>
 <ul>
@@ -578,55 +575,55 @@ div.csl-indent {
 <p>Here, we identify the associations between them by using spearman correlation analysis.</p>
 <p>Outline of this Chapter:</p>
 <ul>
-<li><p><a href="examples.html#loading-packages-10">Loading Packages</a></p></li>
-<li><p><a href="association-analysis.html#importing-data-9">Importing Data</a></p></li>
+<li><p><a href="convert-inputdata-into-phyloseq-object.html#loading-packages">Loading Packages</a></p></li>
+<li><p><a href="convert-inputdata-into-phyloseq-object.html#importing-data">Importing Data</a></p></li>
 <li><p><a href="association-analysis.html#spearman-correlation-analysis">Spearman Correlation Analysis</a></p></li>
 <li><p><a href="association-analysis.html#partial-correlation-analysis">Partial Correlation Analysis</a></p></li>
 </ul>
 <div id="loading-packages-9" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Loading Packages<a href="association-analysis.html#loading-packages-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="association-analysis.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb513-2"><a href="association-analysis.html#cb513-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb513-3"><a href="association-analysis.html#cb513-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb513-4"><a href="association-analysis.html#cb513-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb513-5"><a href="association-analysis.html#cb513-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="association-analysis.html#cb462-1" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb462-2"><a href="association-analysis.html#cb462-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb462-3"><a href="association-analysis.html#cb462-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb462-4"><a href="association-analysis.html#cb462-4" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb462-5"><a href="association-analysis.html#cb462-5" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span></code></pre></div>
 </div>
 <div id="importing-data-9" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Importing Data<a href="association-analysis.html#importing-data-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <strong>Zeybel_Gut</strong> is from <span class="citation">(<a href="#ref-zeybel2022multiomics" role="doc-biblioref">Zeybel et al. 2022</a>)</span>, containing gut and oral microbiota.</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="association-analysis.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Zeybel_Gut&quot;</span>)</span>
-<span id="cb514-2"><a href="association-analysis.html#cb514-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb514-3"><a href="association-analysis.html#cb514-3" aria-hidden="true" tabindex="-1"></a>Zeybel_Gut_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> Zeybel_Gut,</span>
-<span id="cb514-4"><a href="association-analysis.html#cb514-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
+<p>The <strong>Zeybel_Gut</strong> is from <span class="citation">(<a href="#ref-zeybel2022multiomics">Zeybel et al. 2022</a>)</span>, containing gut and oral microbiota.</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="association-analysis.html#cb463-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;Zeybel_Gut&quot;</span>)</span>
+<span id="cb463-2"><a href="association-analysis.html#cb463-2" tabindex="-1"></a></span>
+<span id="cb463-3"><a href="association-analysis.html#cb463-3" tabindex="-1"></a>Zeybel_Gut_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> Zeybel_Gut,</span>
+<span id="cb463-4"><a href="association-analysis.html#cb463-4" tabindex="-1"></a>       <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
 <ul>
 <li>sample data in Zeybel_Gut object</li>
 </ul>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="association-analysis.html#cb515-1" aria-hidden="true" tabindex="-1"></a>zeybel_metadata <span class="ot">&lt;-</span> <span class="fu">sample_data</span>(Zeybel_Gut_genus) <span class="sc">%&gt;%</span> </span>
-<span id="cb515-2"><a href="association-analysis.html#cb515-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
-<span id="cb515-3"><a href="association-analysis.html#cb515-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb515-4"><a href="association-analysis.html#cb515-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zeybel_metadata)</span></code></pre></div>
-<pre><code>##          Stage Metabolomics Proteomics GutMetagenomics OralMetagenomics LiverFatClass Gender AlcoholConsumption Smoker Age       LF
-## P101042 Before         Send       Send            Send             Send          Mild   Male                 No     No  33  6.45000
-## P101076 Before         Send       Send            Send             Send      Moderate   Male                 No     No  40  9.30000
-## P101095 Before         Send       Send            Send    Failed Sample      Moderate   Male                 No     No  29  9.90000
-## P101084 Before         Send       Send            Send             Send        Severe   Male                 No     No  45 18.15000
-## P101038 Before         Send       Send            Send             Send      Moderate Female                 No     No  43 15.93333
-## P101071 Before         Send       Send            Send             Send      Moderate   Male                 No    Yes  48  8.10000
-##         Sodium Potassium Creatinine Urea  UA ALT AST GGT  AP   TB Albumin  CK  TC HDL LDL Triglycerides Glucose Insulin Weight  BMI
-## P101042    142       4.6       0.96   17 7.2  26  17  29 103 0.25    5.00  85 255  40 181           164      93    11.4   84.5 31.0
-## P101076    146       4.9       1.05   22 5.6  28  16  56  81 0.34    5.00 123 193  48 133           115     111    14.7   83.0 28.4
-## P101095    140       4.1       1.13   14 9.1  39  28  32  78 1.46    5.14 300 152  38 103            98      88    10.3  123.1 38.9
-## P101084    143       5.1       1.15   12 8.8  57  33  55  67 0.34    4.72 336 195  47 128           124      99    36.3  108.0 33.7
-## P101038    142       4.1       0.91    9 7.2  15  16  17  72 1.24    4.70 108 235  55 165           141     114    24.6   98.6 37.6
-## P101071    144       4.4       1.04   19 6.0  21  13  21  70 0.34    4.60  77 228  39 146           279     104    12.5  105.8 36.6
-##          HR SBP DBP  WC  HC  TFM TFFM TTBW LAFM LAFFM LATBW RAFM RAFFM RATBW LLFM LLFFM LLTBW RLFM RLFFM RLTBW
-## P101042 101 120  70 100 109 13.9 32.0 44.8  1.3   3.6  44.8  1.2   3.6  44.8  3.4  10.9  44.8  3.4  11.1  44.8
-## P101076  73 120  70  95 100 11.4 34.4 46.4  1.0   3.9  46.4  1.0   3.8  46.4  3.1  10.6  46.4  3.3  10.6  46.4
-## P101095  73 110  70 118 128 23.8 43.2 61.5  2.7   5.0  61.5  2.3   5.1  61.5  4.8  15.5  61.5  5.5  15.2  61.5
-## P101084  74 130  80 115 120 21.3 38.7 53.4  2.0   4.4  53.4  1.8   4.4  53.4  5.1  12.7  53.4  5.0  12.8  53.4
-## P101038  85 130  80 100 124 23.4 28.9 52.0  3.1   2.9  52.0  2.9   2.8  52.0  8.6   8.7  52.0  8.7   8.7  52.0
-## P101071  78 110  70 115 115 20.6 37.2 51.7  1.9   4.4  51.7  1.7   4.4  51.7  5.4  12.3  51.7  5.6  12.2  51.7</code></pre>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="association-analysis.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(zeybel_metadata)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="association-analysis.html#cb464-1" tabindex="-1"></a>zeybel_metadata <span class="ot">&lt;-</span> <span class="fu">sample_data</span>(Zeybel_Gut_genus) <span class="sc">%&gt;%</span> </span>
+<span id="cb464-2"><a href="association-analysis.html#cb464-2" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb464-3"><a href="association-analysis.html#cb464-3" tabindex="-1"></a></span>
+<span id="cb464-4"><a href="association-analysis.html#cb464-4" tabindex="-1"></a><span class="fu">head</span>(zeybel_metadata)</span></code></pre></div>
+<pre><code>##          Stage Metabolomics Proteomics GutMetagenomics OralMetagenomics LiverFatClass Gender AlcoholConsumption Smoker Age       LF Sodium
+## P101042 Before         Send       Send            Send             Send          Mild   Male                 No     No  33  6.45000    142
+## P101076 Before         Send       Send            Send             Send      Moderate   Male                 No     No  40  9.30000    146
+## P101095 Before         Send       Send            Send    Failed Sample      Moderate   Male                 No     No  29  9.90000    140
+## P101084 Before         Send       Send            Send             Send        Severe   Male                 No     No  45 18.15000    143
+## P101038 Before         Send       Send            Send             Send      Moderate Female                 No     No  43 15.93333    142
+## P101071 Before         Send       Send            Send             Send      Moderate   Male                 No    Yes  48  8.10000    144
+##         Potassium Creatinine Urea  UA ALT AST GGT  AP   TB Albumin  CK  TC HDL LDL Triglycerides Glucose Insulin Weight  BMI  HR SBP DBP  WC
+## P101042       4.6       0.96   17 7.2  26  17  29 103 0.25    5.00  85 255  40 181           164      93    11.4   84.5 31.0 101 120  70 100
+## P101076       4.9       1.05   22 5.6  28  16  56  81 0.34    5.00 123 193  48 133           115     111    14.7   83.0 28.4  73 120  70  95
+## P101095       4.1       1.13   14 9.1  39  28  32  78 1.46    5.14 300 152  38 103            98      88    10.3  123.1 38.9  73 110  70 118
+## P101084       5.1       1.15   12 8.8  57  33  55  67 0.34    4.72 336 195  47 128           124      99    36.3  108.0 33.7  74 130  80 115
+## P101038       4.1       0.91    9 7.2  15  16  17  72 1.24    4.70 108 235  55 165           141     114    24.6   98.6 37.6  85 130  80 100
+## P101071       4.4       1.04   19 6.0  21  13  21  70 0.34    4.60  77 228  39 146           279     104    12.5  105.8 36.6  78 110  70 115
+##          HC  TFM TFFM TTBW LAFM LAFFM LATBW RAFM RAFFM RATBW LLFM LLFFM LLTBW RLFM RLFFM RLTBW
+## P101042 109 13.9 32.0 44.8  1.3   3.6  44.8  1.2   3.6  44.8  3.4  10.9  44.8  3.4  11.1  44.8
+## P101076 100 11.4 34.4 46.4  1.0   3.9  46.4  1.0   3.8  46.4  3.1  10.6  46.4  3.3  10.6  46.4
+## P101095 128 23.8 43.2 61.5  2.7   5.0  61.5  2.3   5.1  61.5  4.8  15.5  61.5  5.5  15.2  61.5
+## P101084 120 21.3 38.7 53.4  2.0   4.4  53.4  1.8   4.4  53.4  5.1  12.7  53.4  5.0  12.8  53.4
+## P101038 124 23.4 28.9 52.0  3.1   2.9  52.0  2.9   2.8  52.0  8.6   8.7  52.0  8.7   8.7  52.0
+## P101071 115 20.6 37.2 51.7  1.9   4.4  51.7  1.7   4.4  51.7  5.4  12.3  51.7  5.6  12.2  51.7</code></pre>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="association-analysis.html#cb466-1" tabindex="-1"></a><span class="fu">colnames</span>(zeybel_metadata)</span></code></pre></div>
 <pre><code>##  [1] &quot;Stage&quot;              &quot;Metabolomics&quot;       &quot;Proteomics&quot;         &quot;GutMetagenomics&quot;    &quot;OralMetagenomics&quot;   &quot;LiverFatClass&quot;     
 ##  [7] &quot;Gender&quot;             &quot;AlcoholConsumption&quot; &quot;Smoker&quot;             &quot;Age&quot;                &quot;LF&quot;                 &quot;Sodium&quot;            
 ## [13] &quot;Potassium&quot;          &quot;Creatinine&quot;         &quot;Urea&quot;               &quot;UA&quot;                 &quot;ALT&quot;                &quot;AST&quot;               
@@ -639,38 +636,38 @@ div.csl-indent {
 <ul>
 <li>otu table profile in Zeybel_Gut object</li>
 </ul>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="association-analysis.html#cb519-1" aria-hidden="true" tabindex="-1"></a>zeybel_otu <span class="ot">&lt;-</span> <span class="fu">otu_table</span>(Zeybel_Gut_genus) <span class="sc">%&gt;%</span> </span>
-<span id="cb519-2"><a href="association-analysis.html#cb519-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
-<span id="cb519-3"><a href="association-analysis.html#cb519-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb519-4"><a href="association-analysis.html#cb519-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zeybel_otu)</span></code></pre></div>
-<pre><code>##                      P101042   P101076  P101095   P101084   P101038   P101071   P101047   P101012  P101027   P101024   P101057
-## g__Absiella        0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000
-## g__Acidaminococcus 0.0000000 0.0012421 0.00e+00 0.0114403 0.0000000 0.0017583 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000
-## g__Actinomyces     0.0000893 0.0003643 2.79e-05 0.0000000 0.0000000 0.0000926 0.0002638 0.0004858 0.00e+00 0.0000555 0.0006398
-## g__Adlercreutzia   0.0000000 0.0000000 0.00e+00 0.0002282 0.0000137 0.0000000 0.0000792 0.0003161 4.06e-05 0.0001708 0.0000000
-## g__Agathobaculum   0.0004688 0.0000000 1.84e-04 0.0006843 0.0001106 0.0000364 0.0006443 0.0000074 9.73e-05 0.0028784 0.0002393
-## g__Aggregatibacter 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000
-##                      P101067   P101094   P101007   P101054   P101031   P101003   P101018   P101025  P101010   P101069   P101077
-## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0002135 0.00e+00 0.0000000 0.0000000
-## g__Acidaminococcus 0.0132178 0.0000000 0.0159577 0.0012000 0.0000000 0.0000000 0.0000000 0.0009027 0.00e+00 0.0001482 0.0000000
-## g__Actinomyces     0.0002071 0.0000000 0.0002216 0.0000024 0.0313157 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000401 0.0002101
-## g__Adlercreutzia   0.0000000 0.0001777 0.0000000 0.0000245 0.0000000 0.0000000 0.0008641 0.0000000 0.00e+00 0.0000158 0.0001580
-## g__Agathobaculum   0.0000000 0.0020933 0.0001628 0.0007184 0.0000000 0.0002355 0.0000000 0.0061141 1.29e-05 0.0002268 0.0007352
-## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0000000 0.0152900 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000
-##                      P101065   P101096   P101085   P101021  P101052   P101030   P101041   P101078   P101051  P101068  P101056
-## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.00e+00
-## g__Acidaminococcus 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0002144 0.0000000 0.0000000 0.00e+00 0.00e+00
-## g__Actinomyces     0.0001259 0.0000000 0.0000000 0.0000000 1.44e-05 0.0000000 0.0000000 0.0000940 0.0000000 1.99e-05 0.00e+00
-## g__Adlercreutzia   0.0000000 0.0004234 0.0000000 0.0000000 0.00e+00 0.0003256 0.0000000 0.0000802 0.0000000 0.00e+00 0.00e+00
-## g__Agathobaculum   0.0004899 0.0007549 0.0020973 0.0001715 0.00e+00 0.0021537 0.0000000 0.0006245 0.0001612 2.74e-05 2.83e-05
-## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.00e+00
-##                      P101079   P101022   P101074   P101059 P101050   P101088   P101061   P101082   P101064
-## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000       0 0.0000000 0.0000000 0.0000000 0.0000000
-## g__Acidaminococcus 0.0000000 0.0000000 0.0141640 0.0029344       0 0.0000000 0.0000000 0.0030215 0.0000000
-## g__Actinomyces     0.0000000 0.0001212 0.0000113 0.0000000       0 0.0000000 0.0000299 0.0000174 0.0000093
-## g__Adlercreutzia   0.0000000 0.0000000 0.0004728 0.0000379       0 0.0002421 0.0000383 0.0000397 0.0000200
-## g__Agathobaculum   0.0008838 0.0005000 0.0000000 0.0025444       0 0.0022848 0.0005402 0.0013902 0.0011816
-## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0000000       0 0.0000000 0.0000000 0.0000000 0.0000000</code></pre>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="association-analysis.html#cb468-1" tabindex="-1"></a>zeybel_otu <span class="ot">&lt;-</span> <span class="fu">otu_table</span>(Zeybel_Gut_genus) <span class="sc">%&gt;%</span> </span>
+<span id="cb468-2"><a href="association-analysis.html#cb468-2" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb468-3"><a href="association-analysis.html#cb468-3" tabindex="-1"></a></span>
+<span id="cb468-4"><a href="association-analysis.html#cb468-4" tabindex="-1"></a><span class="fu">head</span>(zeybel_otu)</span></code></pre></div>
+<pre><code>##                      P101042   P101076  P101095   P101084   P101038   P101071   P101047   P101012  P101027   P101024   P101057   P101067
+## g__Absiella        0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000
+## g__Acidaminococcus 0.0000000 0.0012421 0.00e+00 0.0114403 0.0000000 0.0017583 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0132178
+## g__Actinomyces     0.0000893 0.0003643 2.79e-05 0.0000000 0.0000000 0.0000926 0.0002638 0.0004858 0.00e+00 0.0000555 0.0006398 0.0002071
+## g__Adlercreutzia   0.0000000 0.0000000 0.00e+00 0.0002282 0.0000137 0.0000000 0.0000792 0.0003161 4.06e-05 0.0001708 0.0000000 0.0000000
+## g__Agathobaculum   0.0004688 0.0000000 1.84e-04 0.0006843 0.0001106 0.0000364 0.0006443 0.0000074 9.73e-05 0.0028784 0.0002393 0.0000000
+## g__Aggregatibacter 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000
+##                      P101094   P101007   P101054   P101031   P101003   P101018   P101025  P101010   P101069   P101077   P101065   P101096
+## g__Absiella        0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0002135 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000
+## g__Acidaminococcus 0.0000000 0.0159577 0.0012000 0.0000000 0.0000000 0.0000000 0.0009027 0.00e+00 0.0001482 0.0000000 0.0000000 0.0000000
+## g__Actinomyces     0.0000000 0.0002216 0.0000024 0.0313157 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000401 0.0002101 0.0001259 0.0000000
+## g__Adlercreutzia   0.0001777 0.0000000 0.0000245 0.0000000 0.0000000 0.0008641 0.0000000 0.00e+00 0.0000158 0.0001580 0.0000000 0.0004234
+## g__Agathobaculum   0.0020933 0.0001628 0.0007184 0.0000000 0.0002355 0.0000000 0.0061141 1.29e-05 0.0002268 0.0007352 0.0004899 0.0007549
+## g__Aggregatibacter 0.0000000 0.0000000 0.0000000 0.0152900 0.0000000 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000
+##                      P101085   P101021  P101052   P101030   P101041   P101078   P101051  P101068  P101056   P101079   P101022   P101074
+## g__Absiella        0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.00e+00 0.0000000 0.0000000 0.0000000
+## g__Acidaminococcus 0.0000000 0.0000000 0.00e+00 0.0000000 0.0002144 0.0000000 0.0000000 0.00e+00 0.00e+00 0.0000000 0.0000000 0.0141640
+## g__Actinomyces     0.0000000 0.0000000 1.44e-05 0.0000000 0.0000000 0.0000940 0.0000000 1.99e-05 0.00e+00 0.0000000 0.0001212 0.0000113
+## g__Adlercreutzia   0.0000000 0.0000000 0.00e+00 0.0003256 0.0000000 0.0000802 0.0000000 0.00e+00 0.00e+00 0.0000000 0.0000000 0.0004728
+## g__Agathobaculum   0.0020973 0.0001715 0.00e+00 0.0021537 0.0000000 0.0006245 0.0001612 2.74e-05 2.83e-05 0.0008838 0.0005000 0.0000000
+## g__Aggregatibacter 0.0000000 0.0000000 0.00e+00 0.0000000 0.0000000 0.0000000 0.0000000 0.00e+00 0.00e+00 0.0000000 0.0000000 0.0000000
+##                      P101059 P101050   P101088   P101061   P101082   P101064
+## g__Absiella        0.0000000       0 0.0000000 0.0000000 0.0000000 0.0000000
+## g__Acidaminococcus 0.0029344       0 0.0000000 0.0000000 0.0030215 0.0000000
+## g__Actinomyces     0.0000000       0 0.0000000 0.0000299 0.0000174 0.0000093
+## g__Adlercreutzia   0.0000379       0 0.0002421 0.0000383 0.0000397 0.0000200
+## g__Agathobaculum   0.0025444       0 0.0022848 0.0005402 0.0013902 0.0011816
+## g__Aggregatibacter 0.0000000       0 0.0000000 0.0000000 0.0000000 0.0000000</code></pre>
 <p>Results:</p>
 <ol style="list-style-type: decimal">
 <li>metadata has 42 continuous variables</li>
@@ -682,11 +679,11 @@ div.csl-indent {
 <ul>
 <li>Calculation</li>
 </ul>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="association-analysis.html#cb521-1" aria-hidden="true" tabindex="-1"></a>dat_cor <span class="ot">&lt;-</span> <span class="fu">run_cor</span>(<span class="at">ps =</span> Zeybel_Gut_genus,</span>
-<span id="cb521-2"><a href="association-analysis.html#cb521-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;LF&quot;</span>, <span class="st">&quot;Sodium&quot;</span>, <span class="st">&quot;Potassium&quot;</span>, <span class="st">&quot;Creatinine&quot;</span>, <span class="st">&quot;Urea&quot;</span>, <span class="st">&quot;RLTBW&quot;</span>),</span>
-<span id="cb521-3"><a href="association-analysis.html#cb521-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
-<span id="cb521-4"><a href="association-analysis.html#cb521-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb521-5"><a href="association-analysis.html#cb521-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_cor)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="association-analysis.html#cb470-1" tabindex="-1"></a>dat_cor <span class="ot">&lt;-</span> <span class="fu">run_cor</span>(<span class="at">ps =</span> Zeybel_Gut_genus,</span>
+<span id="cb470-2"><a href="association-analysis.html#cb470-2" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;LF&quot;</span>, <span class="st">&quot;Sodium&quot;</span>, <span class="st">&quot;Potassium&quot;</span>, <span class="st">&quot;Creatinine&quot;</span>, <span class="st">&quot;Urea&quot;</span>, <span class="st">&quot;RLTBW&quot;</span>),</span>
+<span id="cb470-3"><a href="association-analysis.html#cb470-3" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb470-4"><a href="association-analysis.html#cb470-4" tabindex="-1"></a></span>
+<span id="cb470-5"><a href="association-analysis.html#cb470-5" tabindex="-1"></a><span class="fu">head</span>(dat_cor)</span></code></pre></div>
 <pre><code>##   Phenotype             TaxaID Statistic         Rho    Pvalue AdjustedPvalue
 ## 1        LF        g__Absiella  12102.49  0.01932697 0.9033074      0.9808251
 ## 2        LF g__Acidaminococcus  11509.50  0.06737739 0.6715949      0.9297863
@@ -697,17 +694,17 @@ div.csl-indent {
 <ul>
 <li>visualization</li>
 </ul>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="association-analysis.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_correlation_heatmap</span>(</span>
-<span id="cb523-2"><a href="association-analysis.html#cb523-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> dat_cor,</span>
-<span id="cb523-3"><a href="association-analysis.html#cb523-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index =</span> <span class="st">&quot;Rho&quot;</span>,</span>
-<span id="cb523-4"><a href="association-analysis.html#cb523-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
-<span id="cb523-5"><a href="association-analysis.html#cb523-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
-<span id="cb523-6"><a href="association-analysis.html#cb523-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb523-7"><a href="association-analysis.html#cb523-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellwidth =</span> <span class="dv">35</span>,</span>
-<span id="cb523-8"><a href="association-analysis.html#cb523-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellheight =</span> <span class="dv">10</span>,</span>
-<span id="cb523-9"><a href="association-analysis.html#cb523-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">fontsize_number =</span> <span class="dv">15</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-283"></span>
-<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-283-1.png" alt="Spearman Correlation Coefficient" width="768" />
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="association-analysis.html#cb472-1" tabindex="-1"></a><span class="fu">plot_correlation_heatmap</span>(</span>
+<span id="cb472-2"><a href="association-analysis.html#cb472-2" tabindex="-1"></a>      <span class="at">data =</span> dat_cor,</span>
+<span id="cb472-3"><a href="association-analysis.html#cb472-3" tabindex="-1"></a>      <span class="at">x_index =</span> <span class="st">&quot;Rho&quot;</span>,</span>
+<span id="cb472-4"><a href="association-analysis.html#cb472-4" tabindex="-1"></a>      <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
+<span id="cb472-5"><a href="association-analysis.html#cb472-5" tabindex="-1"></a>      <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
+<span id="cb472-6"><a href="association-analysis.html#cb472-6" tabindex="-1"></a>      <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb472-7"><a href="association-analysis.html#cb472-7" tabindex="-1"></a>      <span class="at">cellwidth =</span> <span class="dv">35</span>,</span>
+<span id="cb472-8"><a href="association-analysis.html#cb472-8" tabindex="-1"></a>      <span class="at">cellheight =</span> <span class="dv">10</span>,</span>
+<span id="cb472-9"><a href="association-analysis.html#cb472-9" tabindex="-1"></a>      <span class="at">fontsize_number =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-258"></span>
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-258-1.png" alt="Spearman Correlation Coefficient" width="768" />
 <p class="caption">
 Figure 12.1: Spearman Correlation Coefficient
 </p>
@@ -735,14 +732,14 @@ Figure 12.1: Spearman Correlation Coefficient
 <ul>
 <li>Calculation</li>
 </ul>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="association-analysis.html#cb524-1" aria-hidden="true" tabindex="-1"></a>dat_cor_partial <span class="ot">&lt;-</span> <span class="fu">run_partial_cor</span>(<span class="at">ps =</span> Zeybel_Gut_genus,</span>
-<span id="cb524-2"><a href="association-analysis.html#cb524-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;LF&quot;</span>, <span class="st">&quot;Sodium&quot;</span>, <span class="st">&quot;Potassium&quot;</span>, <span class="st">&quot;Creatinine&quot;</span>, <span class="st">&quot;Urea&quot;</span>, <span class="st">&quot;RLTBW&quot;</span>),</span>
-<span id="cb524-3"><a href="association-analysis.html#cb524-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">AdjVars =</span> <span class="fu">c</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Smoker&quot;</span>),</span>
-<span id="cb524-4"><a href="association-analysis.html#cb524-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">method_t =</span> <span class="st">&quot;pcor&quot;</span>,</span>
-<span id="cb524-5"><a href="association-analysis.html#cb524-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>,</span>
-<span id="cb524-6"><a href="association-analysis.html#cb524-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_adjust =</span> <span class="st">&quot;BH&quot;</span>)</span>
-<span id="cb524-7"><a href="association-analysis.html#cb524-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb524-8"><a href="association-analysis.html#cb524-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat_cor_partial)</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="association-analysis.html#cb473-1" tabindex="-1"></a>dat_cor_partial <span class="ot">&lt;-</span> <span class="fu">run_partial_cor</span>(<span class="at">ps =</span> Zeybel_Gut_genus,</span>
+<span id="cb473-2"><a href="association-analysis.html#cb473-2" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;LF&quot;</span>, <span class="st">&quot;Sodium&quot;</span>, <span class="st">&quot;Potassium&quot;</span>, <span class="st">&quot;Creatinine&quot;</span>, <span class="st">&quot;Urea&quot;</span>, <span class="st">&quot;RLTBW&quot;</span>),</span>
+<span id="cb473-3"><a href="association-analysis.html#cb473-3" tabindex="-1"></a>    <span class="at">AdjVars =</span> <span class="fu">c</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Smoker&quot;</span>),</span>
+<span id="cb473-4"><a href="association-analysis.html#cb473-4" tabindex="-1"></a>    <span class="at">method_t =</span> <span class="st">&quot;pcor&quot;</span>,</span>
+<span id="cb473-5"><a href="association-analysis.html#cb473-5" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>,</span>
+<span id="cb473-6"><a href="association-analysis.html#cb473-6" tabindex="-1"></a>    <span class="at">p_adjust =</span> <span class="st">&quot;BH&quot;</span>)</span>
+<span id="cb473-7"><a href="association-analysis.html#cb473-7" tabindex="-1"></a></span>
+<span id="cb473-8"><a href="association-analysis.html#cb473-8" tabindex="-1"></a><span class="fu">head</span>(dat_cor_partial)</span></code></pre></div>
 <pre><code>##   Phenotype             TaxaID   Statistic         Rho    Pvalue AdjustedPvalue
 ## 1        LF        g__Absiella  0.07849237  0.01290299 0.9378594      0.9942613
 ## 2        LF g__Acidaminococcus  0.41767935  0.06850475 0.6785956      0.9738542
@@ -753,17 +750,17 @@ Figure 12.1: Spearman Correlation Coefficient
 <ul>
 <li>visualization</li>
 </ul>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="association-analysis.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_correlation_heatmap</span>(</span>
-<span id="cb526-2"><a href="association-analysis.html#cb526-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> dat_cor_partial,</span>
-<span id="cb526-3"><a href="association-analysis.html#cb526-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index =</span> <span class="st">&quot;Rho&quot;</span>,</span>
-<span id="cb526-4"><a href="association-analysis.html#cb526-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
-<span id="cb526-5"><a href="association-analysis.html#cb526-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
-<span id="cb526-6"><a href="association-analysis.html#cb526-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb526-7"><a href="association-analysis.html#cb526-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellwidth =</span> <span class="dv">35</span>,</span>
-<span id="cb526-8"><a href="association-analysis.html#cb526-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">cellheight =</span> <span class="dv">10</span>,</span>
-<span id="cb526-9"><a href="association-analysis.html#cb526-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">fontsize_number =</span> <span class="dv">15</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-285"></span>
-<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-285-1.png" alt="Partial Correlation Coefficient" width="768" />
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="association-analysis.html#cb475-1" tabindex="-1"></a><span class="fu">plot_correlation_heatmap</span>(</span>
+<span id="cb475-2"><a href="association-analysis.html#cb475-2" tabindex="-1"></a>      <span class="at">data =</span> dat_cor_partial,</span>
+<span id="cb475-3"><a href="association-analysis.html#cb475-3" tabindex="-1"></a>      <span class="at">x_index =</span> <span class="st">&quot;Rho&quot;</span>,</span>
+<span id="cb475-4"><a href="association-analysis.html#cb475-4" tabindex="-1"></a>      <span class="at">x_index_cutoff =</span> <span class="dv">0</span>,</span>
+<span id="cb475-5"><a href="association-analysis.html#cb475-5" tabindex="-1"></a>      <span class="at">y_index =</span> <span class="st">&quot;Pvalue&quot;</span>,</span>
+<span id="cb475-6"><a href="association-analysis.html#cb475-6" tabindex="-1"></a>      <span class="at">y_index_cutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb475-7"><a href="association-analysis.html#cb475-7" tabindex="-1"></a>      <span class="at">cellwidth =</span> <span class="dv">35</span>,</span>
+<span id="cb475-8"><a href="association-analysis.html#cb475-8" tabindex="-1"></a>      <span class="at">cellheight =</span> <span class="dv">10</span>,</span>
+<span id="cb475-9"><a href="association-analysis.html#cb475-9" tabindex="-1"></a>      <span class="at">fontsize_number =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-260"></span>
+<img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-260-1.png" alt="Partial Correlation Coefficient" width="768" />
 <p class="caption">
 Figure 12.2: Partial Correlation Coefficient
 </p>
@@ -786,10 +783,10 @@ Figure 12.2: Partial Correlation Coefficient
 </div>
 <div id="systematic-information-9" class="section level2 hasAnchor" number="12.5">
 <h2><span class="header-section-number">12.5</span> Systematic Information<a href="association-analysis.html#systematic-information-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="association-analysis.html#cb527-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="association-analysis.html#cb476-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
-##  version  R version 4.1.2 (2021-11-01)
+##  version  R version 4.1.3 (2022-03-10)
 ##  os       macOS Monterey 12.2.1
 ##  system   x86_64, darwin17.0
 ##  ui       RStudio
@@ -797,246 +794,256 @@ Figure 12.2: Partial Correlation Coefficient
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2023-04-12
-##  rstudio  2022.07.2+576 Spotted Wakerobin (desktop)
-##  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
+##  date     2023-10-27
+##  rstudio  2023.09.0+463 Desert Sunflower (desktop)
+##  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 ## 
-## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  package              * version  date (UTC) lib source
-##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
-##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
-##  ALDEx2                 1.30.0   2022-11-01 [1] Bioconductor
-##  annotate               1.72.0   2021-10-26 [1] Bioconductor
-##  AnnotationDbi          1.60.2   2023-03-10 [1] Bioconductor
-##  ape                  * 5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
-##  askpass                1.1      2019-01-13 [1] CRAN (R 4.1.0)
-##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
-##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
-##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
-##  bayesm                 3.1-4    2019-10-15 [1] CRAN (R 4.1.0)
-##  Biobase                2.54.0   2021-10-26 [1] Bioconductor
-##  BiocGenerics           0.40.0   2021-10-26 [1] Bioconductor
-##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
-##  biomformat             1.22.0   2021-10-26 [1] Bioconductor
-##  Biostrings             2.62.0   2021-10-26 [1] Bioconductor
-##  bit                    4.0.4    2020-08-04 [1] CRAN (R 4.1.0)
-##  bit64                  4.0.5    2020-08-30 [1] CRAN (R 4.1.0)
-##  bitops                 1.0-7    2021-04-24 [1] CRAN (R 4.1.0)
-##  blob                   1.2.2    2021-07-23 [1] CRAN (R 4.1.0)
-##  bookdown               0.29     2022-09-12 [1] CRAN (R 4.1.2)
-##  brio                   1.1.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  broom                  1.0.1    2022-08-29 [1] CRAN (R 4.1.2)
-##  bslib                  0.4.0    2022-07-16 [1] CRAN (R 4.1.2)
-##  cachem                 1.0.6    2021-08-19 [1] CRAN (R 4.1.0)
-##  callr                  3.7.0    2021-04-20 [1] CRAN (R 4.1.0)
-##  car                    3.0-12   2021-11-06 [1] CRAN (R 4.1.0)
-##  carData                3.0-5    2022-01-06 [1] CRAN (R 4.1.2)
-##  caTools                1.18.2   2021-03-28 [1] CRAN (R 4.1.0)
-##  checkmate              2.0.0    2020-02-06 [1] CRAN (R 4.1.0)
-##  class                  7.3-20   2022-01-13 [1] CRAN (R 4.1.2)
-##  classInt               0.4-3    2020-04-07 [1] CRAN (R 4.1.0)
-##  cli                    3.4.1    2022-09-23 [1] CRAN (R 4.1.2)
-##  cluster                2.1.2    2021-04-17 [1] CRAN (R 4.1.2)
-##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
-##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
-##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
-##  compositions           2.0-4    2022-01-05 [1] CRAN (R 4.1.2)
-##  conflicted           * 1.1.0    2021-11-26 [1] CRAN (R 4.1.0)
-##  corrplot               0.92     2021-11-18 [1] CRAN (R 4.1.0)
-##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
-##  crayon                 1.5.0    2022-02-14 [1] CRAN (R 4.1.2)
-##  crosstalk              1.2.0    2021-11-04 [1] CRAN (R 4.1.0)
-##  data.table             1.14.6   2022-11-16 [1] CRAN (R 4.1.2)
-##  DBI                    1.1.2    2021-12-20 [1] CRAN (R 4.1.0)
-##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
-##  DEoptimR               1.0-10   2022-01-03 [1] CRAN (R 4.1.2)
-##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
-##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
-##  devtools             * 2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  digest                 0.6.30   2022-10-18 [1] CRAN (R 4.1.2)
-##  dplyr                * 1.0.10   2022-09-01 [1] CRAN (R 4.1.2)
-##  DT                     0.21     2022-02-26 [1] CRAN (R 4.1.2)
-##  e1071                  1.7-9    2021-09-16 [1] CRAN (R 4.1.0)
-##  edgeR                  3.36.0   2021-10-26 [1] Bioconductor
-##  ellipsis               0.3.2    2021-04-29 [1] CRAN (R 4.1.0)
-##  evaluate               0.17     2022-10-07 [1] CRAN (R 4.1.2)
-##  FactoMineR             2.4      2020-12-11 [1] CRAN (R 4.1.0)
-##  fansi                  1.0.2    2022-01-14 [1] CRAN (R 4.1.2)
-##  farver                 2.1.0    2021-02-28 [1] CRAN (R 4.1.0)
-##  fastmap                1.1.0    2021-01-25 [1] CRAN (R 4.1.0)
-##  flashClust             1.01-2   2012-08-21 [1] CRAN (R 4.1.0)
-##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
-##  foreign                0.8-82   2022-01-13 [1] CRAN (R 4.1.2)
-##  formatR                1.11     2021-06-01 [1] CRAN (R 4.1.0)
-##  Formula                1.2-4    2020-10-16 [1] CRAN (R 4.1.0)
-##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
-##  futile.logger        * 1.4.3    2016-07-10 [1] CRAN (R 4.1.0)
-##  futile.options         1.0.1    2018-04-20 [1] CRAN (R 4.1.0)
-##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
-##  geneplotter            1.72.0   2021-10-26 [1] Bioconductor
-##  generics               0.1.2    2022-01-31 [1] CRAN (R 4.1.2)
-##  GenomeInfoDb           1.30.1   2022-01-30 [1] Bioconductor
-##  GenomeInfoDbData       1.2.7    2022-03-09 [1] Bioconductor
-##  GenomicRanges          1.46.1   2021-11-18 [1] Bioconductor
-##  ggiraph                0.8.2    2022-02-22 [1] CRAN (R 4.1.2)
-##  ggiraphExtra           0.3.0    2020-10-06 [1] CRAN (R 4.1.2)
-##  ggplot2              * 3.4.0    2022-11-04 [1] CRAN (R 4.1.2)
-##  ggpubr               * 0.4.0    2020-06-27 [1] CRAN (R 4.1.0)
-##  ggrepel                0.9.1    2021-01-15 [1] CRAN (R 4.1.0)
-##  ggsci                  2.9      2018-05-14 [1] CRAN (R 4.1.0)
-##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
-##  ggVennDiagram          1.2.1    2022-04-13 [1] Github (gaospecial/ggVennDiagram@db6742d)
-##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
-##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
-##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
-##  gridExtra              2.3      2017-09-09 [1] CRAN (R 4.1.0)
-##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
-##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
-##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
-##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
-##  hms                    1.1.1    2021-09-26 [1] CRAN (R 4.1.0)
-##  htmlTable              2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
-##  htmltools              0.5.3    2022-07-18 [1] CRAN (R 4.1.2)
-##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
-##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
-##  igraph                 1.2.11   2022-01-04 [1] CRAN (R 4.1.2)
-##  insight                0.17.0   2022-03-29 [1] CRAN (R 4.1.2)
-##  IRanges                2.28.0   2021-10-26 [1] Bioconductor
-##  iterators              1.0.14   2022-02-05 [1] CRAN (R 4.1.2)
-##  jpeg                   0.1-9    2021-07-24 [1] CRAN (R 4.1.0)
-##  jquerylib              0.1.4    2021-04-26 [1] CRAN (R 4.1.0)
-##  jsonlite               1.8.3    2022-10-21 [1] CRAN (R 4.1.2)
-##  kableExtra             1.3.4    2021-02-20 [1] CRAN (R 4.1.2)
-##  KEGGREST               1.34.0   2021-10-26 [1] Bioconductor
-##  KernSmooth             2.23-20  2021-05-03 [1] CRAN (R 4.1.2)
-##  knitr                  1.40     2022-08-24 [1] CRAN (R 4.1.2)
-##  labeling               0.4.2    2020-10-20 [1] CRAN (R 4.1.0)
-##  lambda.r               1.2.4    2019-09-18 [1] CRAN (R 4.1.0)
-##  lattice              * 0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
-##  latticeExtra           0.6-29   2019-12-19 [1] CRAN (R 4.1.0)
-##  leaps                  3.1      2020-01-16 [1] CRAN (R 4.1.0)
-##  libcoin                1.0-9    2021-09-27 [1] CRAN (R 4.1.0)
-##  lifecycle              1.0.3    2022-10-07 [1] CRAN (R 4.1.2)
-##  limma                  3.50.1   2022-02-17 [1] Bioconductor
-##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
-##  LOCOM                  1.1      2022-08-05 [1] Github (yijuanhu/LOCOM@c181e0f)
-##  magrittr             * 2.0.3    2022-03-30 [1] CRAN (R 4.1.2)
-##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
-##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
-##  MatrixGenerics         1.6.0    2021-10-26 [1] Bioconductor
-##  matrixStats            0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
-##  mbzinb                 0.2      2022-03-16 [1] local
-##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
-##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
-##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
-##  microbiome             1.16.0   2021-10-26 [1] Bioconductor
-##  modeltools             0.2-23   2020-03-05 [1] CRAN (R 4.1.0)
-##  multcomp               1.4-18   2022-01-04 [1] CRAN (R 4.1.2)
-##  multtest               2.50.0   2021-10-26 [1] Bioconductor
-##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
-##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
-##  mycor                  0.1.1    2018-04-10 [1] CRAN (R 4.1.0)
-##  NADA                   1.6-1.1  2020-03-22 [1] CRAN (R 4.1.0)
-##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
-##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
-##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
-##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
-##  pheatmap             * 1.0.12   2019-01-04 [1] CRAN (R 4.1.0)
-##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
-##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
-##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
-##  pkgbuild               1.3.1    2021-12-20 [1] CRAN (R 4.1.0)
-##  pkgconfig              2.0.3    2019-09-22 [1] CRAN (R 4.1.0)
-##  pkgload                1.2.4    2021-11-30 [1] CRAN (R 4.1.0)
-##  plyr                   1.8.6    2020-03-03 [1] CRAN (R 4.1.0)
-##  png                    0.1-7    2013-12-03 [1] CRAN (R 4.1.0)
-##  ppcor                  1.1      2015-12-03 [1] CRAN (R 4.1.0)
-##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
-##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
-##  protoclust             1.6.3    2019-01-31 [1] CRAN (R 4.1.0)
-##  proxy                  0.4-26   2021-06-07 [1] CRAN (R 4.1.0)
-##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
-##  pscl                   1.5.5    2020-03-07 [1] CRAN (R 4.1.0)
-##  purrr                * 0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
-##  qvalue                 2.26.0   2021-10-26 [1] Bioconductor
-##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
-##  RAIDA                  1.0      2022-03-14 [1] local
-##  RColorBrewer         * 1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
-##  Rcpp                   1.0.10   2023-01-22 [1] CRAN (R 4.1.2)
-##  RcppZiggurat           0.1.6    2020-10-20 [1] CRAN (R 4.1.0)
-##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
-##  readr                * 2.1.2    2022-01-30 [1] CRAN (R 4.1.2)
-##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
-##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
-##  reticulate             1.24     2022-01-26 [1] CRAN (R 4.1.2)
-##  Rfast                  2.0.6    2022-02-16 [1] CRAN (R 4.1.2)
-##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
-##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
-##  Rhdf5lib               1.16.0   2021-10-26 [1] Bioconductor
-##  rlang                  1.0.6    2022-09-24 [1] CRAN (R 4.1.2)
-##  rmarkdown              2.17     2022-10-07 [1] CRAN (R 4.1.2)
-##  robustbase             0.93-9   2021-09-27 [1] CRAN (R 4.1.0)
-##  rpart                  4.1.16   2022-01-24 [1] CRAN (R 4.1.2)
-##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
-##  RSpectra               0.16-0   2019-12-01 [1] CRAN (R 4.1.0)
-##  RSQLite                2.2.10   2022-02-17 [1] CRAN (R 4.1.2)
-##  rstatix                0.7.0    2021-02-13 [1] CRAN (R 4.1.0)
-##  rstudioapi             0.13     2020-11-12 [1] CRAN (R 4.1.0)
-##  Rtsne                  0.15     2018-11-10 [1] CRAN (R 4.1.0)
-##  RVenn                  1.1.0    2019-07-18 [1] CRAN (R 4.1.0)
-##  rvest                  1.0.2    2021-10-16 [1] CRAN (R 4.1.0)
-##  S4Vectors              0.32.3   2021-11-21 [1] Bioconductor
-##  sandwich               3.0-1    2021-05-18 [1] CRAN (R 4.1.0)
-##  sass                   0.4.2    2022-07-16 [1] CRAN (R 4.1.2)
-##  scales                 1.2.1    2022-08-20 [1] CRAN (R 4.1.2)
-##  scatterplot3d          0.3-41   2018-03-14 [1] CRAN (R 4.1.0)
-##  sessioninfo            1.2.2    2021-12-06 [1] CRAN (R 4.1.0)
-##  sf                     1.0-7    2022-03-07 [1] CRAN (R 4.1.2)
-##  shape                  1.4.6    2021-05-19 [1] CRAN (R 4.1.0)
-##  sjlabelled             1.2.0    2022-04-10 [1] CRAN (R 4.1.2)
-##  sjmisc                 2.8.9    2021-12-03 [1] CRAN (R 4.1.0)
-##  stringi                1.7.8    2022-07-11 [1] CRAN (R 4.1.2)
-##  stringr                1.4.1    2022-08-20 [1] CRAN (R 4.1.2)
-##  SummarizedExperiment   1.24.0   2021-10-26 [1] Bioconductor
-##  survival               3.4-0    2022-08-09 [1] CRAN (R 4.1.2)
-##  svglite                2.1.0    2022-02-03 [1] CRAN (R 4.1.2)
-##  systemfonts            1.0.4    2022-02-11 [1] CRAN (R 4.1.2)
-##  tensorA                0.36.2   2020-11-19 [1] CRAN (R 4.1.0)
-##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
-##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
-##  tibble               * 3.1.8    2022-07-22 [1] CRAN (R 4.1.2)
-##  tidyr                * 1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
-##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
-##  truncnorm              1.0-8    2018-02-27 [1] CRAN (R 4.1.0)
-##  tzdb                   0.3.0    2022-03-28 [1] CRAN (R 4.1.2)
-##  umap                   0.2.8.0  2022-03-23 [1] CRAN (R 4.1.2)
-##  units                  0.8-0    2022-02-05 [1] CRAN (R 4.1.2)
-##  usethis              * 2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
-##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
-##  uuid                   1.0-3    2021-11-01 [1] CRAN (R 4.1.0)
-##  vctrs                  0.5.1    2022-11-16 [1] CRAN (R 4.1.2)
-##  vegan                * 2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
-##  VennDiagram          * 1.7.3    2022-04-12 [1] CRAN (R 4.1.2)
-##  viridis              * 0.6.2    2021-10-13 [1] CRAN (R 4.1.0)
-##  viridisLite          * 0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
-##  vroom                  1.5.7    2021-11-30 [1] CRAN (R 4.1.0)
-##  webshot                0.5.3    2022-04-14 [1] CRAN (R 4.1.2)
-##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
-##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
-##  xfun                   0.34     2022-10-18 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.8.7  2023-01-06 [1] local
-##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
-##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
-##  XVector                0.34.0   2021-10-26 [1] Bioconductor
-##  yaml                   2.3.6    2022-10-18 [1] CRAN (R 4.1.2)
-##  zCompositions          1.4.0    2022-01-13 [1] CRAN (R 4.1.2)
-##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
-##  zoo                    1.8-9    2021-03-09 [1] CRAN (R 4.1.0)
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+##  package              * version   date (UTC) lib source
+##  abind                  1.4-5     2016-07-21 [2] CRAN (R 4.1.0)
+##  ade4                   1.7-22    2023-02-06 [2] CRAN (R 4.1.2)
+##  ALDEx2                 1.30.0    2022-11-01 [2] Bioconductor
+##  annotate               1.72.0    2021-10-26 [2] Bioconductor
+##  AnnotationDbi          1.60.2    2023-03-10 [2] Bioconductor
+##  ape                  * 5.7-1     2023-03-13 [2] CRAN (R 4.1.2)
+##  askpass                1.1       2019-01-13 [2] CRAN (R 4.1.0)
+##  backports              1.4.1     2021-12-13 [2] CRAN (R 4.1.0)
+##  base64enc              0.1-3     2015-07-28 [2] CRAN (R 4.1.0)
+##  bayesm                 3.1-5     2022-12-02 [2] CRAN (R 4.1.2)
+##  Biobase              * 2.54.0    2021-10-26 [2] Bioconductor
+##  BiocGenerics         * 0.40.0    2021-10-26 [2] Bioconductor
+##  BiocParallel           1.28.3    2021-12-09 [2] Bioconductor
+##  biomformat             1.22.0    2021-10-26 [2] Bioconductor
+##  Biostrings             2.62.0    2021-10-26 [2] Bioconductor
+##  bit                    4.0.5     2022-11-15 [2] CRAN (R 4.1.2)
+##  bit64                  4.0.5     2020-08-30 [2] CRAN (R 4.1.0)
+##  bitops                 1.0-7     2021-04-24 [2] CRAN (R 4.1.0)
+##  blob                   1.2.4     2023-03-17 [2] CRAN (R 4.1.2)
+##  bookdown               0.34      2023-05-09 [2] CRAN (R 4.1.2)
+##  broom                  1.0.5     2023-06-09 [2] CRAN (R 4.1.3)
+##  bslib                  0.5.0     2023-06-09 [2] CRAN (R 4.1.3)
+##  cachem                 1.0.8     2023-05-01 [2] CRAN (R 4.1.2)
+##  callr                  3.7.3     2022-11-02 [2] CRAN (R 4.1.2)
+##  car                    3.1-2     2023-03-30 [2] CRAN (R 4.1.2)
+##  carData                3.0-5     2022-01-06 [2] CRAN (R 4.1.2)
+##  caTools                1.18.2    2021-03-28 [2] CRAN (R 4.1.0)
+##  checkmate              2.2.0     2023-04-27 [2] CRAN (R 4.1.2)
+##  class                  7.3-22    2023-05-03 [2] CRAN (R 4.1.2)
+##  classInt               0.4-9     2023-02-28 [2] CRAN (R 4.1.2)
+##  cli                    3.6.1     2023-03-23 [2] CRAN (R 4.1.2)
+##  cluster                2.1.4     2022-08-22 [2] CRAN (R 4.1.2)
+##  coda                   0.19-4    2020-09-30 [2] CRAN (R 4.1.0)
+##  codetools              0.2-19    2023-02-01 [2] CRAN (R 4.1.2)
+##  coin                   1.4-2     2021-10-08 [2] CRAN (R 4.1.0)
+##  colorspace             2.1-0     2023-01-23 [2] CRAN (R 4.1.2)
+##  compositions           2.0-6     2023-04-13 [2] CRAN (R 4.1.2)
+##  conflicted           * 1.2.0     2023-02-01 [2] CRAN (R 4.1.2)
+##  corrplot               0.92      2021-11-18 [2] CRAN (R 4.1.0)
+##  cowplot                1.1.1     2020-12-30 [2] CRAN (R 4.1.0)
+##  crayon                 1.5.2     2022-09-29 [2] CRAN (R 4.1.2)
+##  crosstalk              1.2.0     2021-11-04 [2] CRAN (R 4.1.0)
+##  data.table             1.14.8    2023-02-17 [2] CRAN (R 4.1.2)
+##  DBI                    1.1.3     2022-06-18 [2] CRAN (R 4.1.2)
+##  DelayedArray           0.20.0    2021-10-26 [2] Bioconductor
+##  DEoptimR               1.0-14    2023-06-09 [2] CRAN (R 4.1.3)
+##  DESeq2                 1.34.0    2021-10-26 [2] Bioconductor
+##  devtools             * 2.4.5     2022-10-11 [2] CRAN (R 4.1.2)
+##  digest                 0.6.33    2023-07-07 [1] CRAN (R 4.1.3)
+##  dplyr                * 1.1.2     2023-04-20 [2] CRAN (R 4.1.2)
+##  DT                     0.28      2023-05-18 [2] CRAN (R 4.1.3)
+##  e1071                  1.7-13    2023-02-01 [2] CRAN (R 4.1.2)
+##  edgeR                  3.36.0    2021-10-26 [2] Bioconductor
+##  ellipsis               0.3.2     2021-04-29 [2] CRAN (R 4.1.0)
+##  emmeans                1.8.7     2023-06-23 [1] CRAN (R 4.1.3)
+##  estimability           1.4.1     2022-08-05 [2] CRAN (R 4.1.2)
+##  evaluate               0.21      2023-05-05 [2] CRAN (R 4.1.2)
+##  FactoMineR             2.8       2023-03-27 [2] CRAN (R 4.1.2)
+##  fansi                  1.0.4     2023-01-22 [2] CRAN (R 4.1.2)
+##  farver                 2.1.1     2022-07-06 [2] CRAN (R 4.1.2)
+##  fastmap                1.1.1     2023-02-24 [2] CRAN (R 4.1.2)
+##  flashClust             1.01-2    2012-08-21 [2] CRAN (R 4.1.0)
+##  foreach                1.5.2     2022-02-02 [2] CRAN (R 4.1.2)
+##  foreign                0.8-84    2022-12-06 [2] CRAN (R 4.1.2)
+##  forestplot             3.1.1     2022-12-06 [2] CRAN (R 4.1.2)
+##  formatR                1.14      2023-01-17 [2] CRAN (R 4.1.2)
+##  Formula                1.2-5     2023-02-24 [2] CRAN (R 4.1.2)
+##  fs                     1.6.2     2023-04-25 [2] CRAN (R 4.1.2)
+##  futile.logger        * 1.4.3     2016-07-10 [2] CRAN (R 4.1.0)
+##  futile.options         1.0.1     2018-04-20 [2] CRAN (R 4.1.0)
+##  genefilter             1.76.0    2021-10-26 [2] Bioconductor
+##  geneplotter            1.72.0    2021-10-26 [2] Bioconductor
+##  generics               0.1.3     2022-07-05 [2] CRAN (R 4.1.2)
+##  GenomeInfoDb         * 1.30.1    2022-01-30 [2] Bioconductor
+##  GenomeInfoDbData       1.2.7     2022-03-09 [2] Bioconductor
+##  GenomicRanges        * 1.46.1    2021-11-18 [2] Bioconductor
+##  ggiraph                0.8.7     2023-03-17 [2] CRAN (R 4.1.2)
+##  ggiraphExtra           0.3.0     2020-10-06 [2] CRAN (R 4.1.2)
+##  ggplot2              * 3.4.2     2023-04-03 [2] CRAN (R 4.1.2)
+##  ggpubr               * 0.6.0     2023-02-10 [2] CRAN (R 4.1.2)
+##  ggrepel                0.9.3     2023-02-03 [2] CRAN (R 4.1.2)
+##  ggsci                  3.0.0     2023-03-08 [2] CRAN (R 4.1.2)
+##  ggsignif               0.6.4     2022-10-13 [2] CRAN (R 4.1.2)
+##  ggVennDiagram          1.2.2     2022-09-08 [2] CRAN (R 4.1.2)
+##  glmnet                 4.1-7     2023-03-23 [2] CRAN (R 4.1.2)
+##  glue                 * 1.6.2     2022-02-24 [2] CRAN (R 4.1.2)
+##  Gmisc                * 3.0.2     2023-03-13 [2] CRAN (R 4.1.2)
+##  gplots                 3.1.3     2022-04-25 [2] CRAN (R 4.1.2)
+##  gridExtra              2.3       2017-09-09 [2] CRAN (R 4.1.0)
+##  gtable                 0.3.3     2023-03-21 [2] CRAN (R 4.1.2)
+##  gtools                 3.9.4     2022-11-27 [2] CRAN (R 4.1.2)
+##  highr                  0.10      2022-12-22 [2] CRAN (R 4.1.2)
+##  Hmisc                  5.1-0     2023-05-08 [2] CRAN (R 4.1.2)
+##  hms                    1.1.3     2023-03-21 [2] CRAN (R 4.1.2)
+##  htmlTable            * 2.4.1     2022-07-07 [2] CRAN (R 4.1.2)
+##  htmltools              0.5.5     2023-03-23 [2] CRAN (R 4.1.2)
+##  htmlwidgets            1.6.2     2023-03-17 [2] CRAN (R 4.1.2)
+##  httpuv                 1.6.11    2023-05-11 [2] CRAN (R 4.1.3)
+##  httr                   1.4.6     2023-05-08 [2] CRAN (R 4.1.2)
+##  igraph                 1.5.0     2023-06-16 [1] CRAN (R 4.1.3)
+##  insight                0.19.3    2023-06-29 [2] CRAN (R 4.1.3)
+##  IRanges              * 2.28.0    2021-10-26 [2] Bioconductor
+##  iterators              1.0.14    2022-02-05 [2] CRAN (R 4.1.2)
+##  jquerylib              0.1.4     2021-04-26 [2] CRAN (R 4.1.0)
+##  jsonlite               1.8.7     2023-06-29 [2] CRAN (R 4.1.3)
+##  kableExtra             1.3.4     2021-02-20 [2] CRAN (R 4.1.2)
+##  KEGGREST               1.34.0    2021-10-26 [2] Bioconductor
+##  KernSmooth             2.23-22   2023-07-10 [2] CRAN (R 4.1.3)
+##  knitr                  1.43      2023-05-25 [2] CRAN (R 4.1.3)
+##  labeling               0.4.2     2020-10-20 [2] CRAN (R 4.1.0)
+##  lambda.r               1.2.4     2019-09-18 [2] CRAN (R 4.1.0)
+##  later                  1.3.1     2023-05-02 [2] CRAN (R 4.1.2)
+##  lattice              * 0.21-8    2023-04-05 [2] CRAN (R 4.1.2)
+##  leaps                  3.1       2020-01-16 [2] CRAN (R 4.1.0)
+##  libcoin                1.0-9     2021-09-27 [2] CRAN (R 4.1.0)
+##  lifecycle              1.0.3     2022-10-07 [2] CRAN (R 4.1.2)
+##  limma                  3.50.3    2022-04-07 [2] Bioconductor
+##  locfit                 1.5-9.8   2023-06-11 [2] CRAN (R 4.1.3)
+##  LOCOM                  1.1       2022-08-05 [2] Github (yijuanhu/LOCOM@c181e0f)
+##  lubridate              1.9.2     2023-02-10 [2] CRAN (R 4.1.2)
+##  magrittr             * 2.0.3     2022-03-30 [2] CRAN (R 4.1.2)
+##  MASS                   7.3-60    2023-05-04 [2] CRAN (R 4.1.2)
+##  Matrix                 1.6-0     2023-07-08 [2] CRAN (R 4.1.3)
+##  MatrixGenerics       * 1.6.0     2021-10-26 [2] Bioconductor
+##  matrixStats          * 1.0.0     2023-06-02 [2] CRAN (R 4.1.3)
+##  mbzinb                 0.2       2022-03-16 [2] local
+##  memoise                2.0.1     2021-11-26 [2] CRAN (R 4.1.0)
+##  metagenomeSeq          1.36.0    2021-10-26 [2] Bioconductor
+##  mgcv                   1.8-42    2023-03-02 [2] CRAN (R 4.1.2)
+##  microbiome             1.16.0    2021-10-26 [2] Bioconductor
+##  mime                   0.12      2021-09-28 [2] CRAN (R 4.1.0)
+##  miniUI                 0.1.1.1   2018-05-18 [2] CRAN (R 4.1.0)
+##  modeltools             0.2-23    2020-03-05 [2] CRAN (R 4.1.0)
+##  multcomp               1.4-25    2023-06-20 [2] CRAN (R 4.1.3)
+##  multcompView           0.1-9     2023-04-09 [2] CRAN (R 4.1.2)
+##  multtest               2.50.0    2021-10-26 [2] Bioconductor
+##  munsell                0.5.0     2018-06-12 [2] CRAN (R 4.1.0)
+##  mvtnorm                1.2-2     2023-06-08 [2] CRAN (R 4.1.3)
+##  mycor                  0.1.1     2018-04-10 [2] CRAN (R 4.1.0)
+##  NADA                   1.6-1.1   2020-03-22 [2] CRAN (R 4.1.0)
+##  nlme                 * 3.1-162   2023-01-31 [2] CRAN (R 4.1.2)
+##  nnet                   7.3-19    2023-05-03 [2] CRAN (R 4.1.2)
+##  openssl                2.0.6     2023-03-09 [2] CRAN (R 4.1.2)
+##  permute              * 0.9-7     2022-01-27 [2] CRAN (R 4.1.2)
+##  pheatmap             * 1.0.12    2019-01-04 [2] CRAN (R 4.1.0)
+##  phyloseq             * 1.38.0    2021-10-26 [2] Bioconductor
+##  picante              * 1.8.2     2020-06-10 [2] CRAN (R 4.1.0)
+##  pillar                 1.9.0     2023-03-22 [2] CRAN (R 4.1.2)
+##  pkgbuild               1.4.2     2023-06-26 [2] CRAN (R 4.1.3)
+##  pkgconfig              2.0.3     2019-09-22 [2] CRAN (R 4.1.0)
+##  pkgload                1.3.2.1   2023-07-08 [2] CRAN (R 4.1.3)
+##  plyr                   1.8.8     2022-11-11 [2] CRAN (R 4.1.2)
+##  png                    0.1-8     2022-11-29 [2] CRAN (R 4.1.2)
+##  ppcor                  1.1       2015-12-03 [2] CRAN (R 4.1.0)
+##  prettyunits            1.1.1     2020-01-24 [2] CRAN (R 4.1.0)
+##  processx               3.8.2     2023-06-30 [2] CRAN (R 4.1.3)
+##  profvis                0.3.8     2023-05-02 [2] CRAN (R 4.1.2)
+##  promises               1.2.0.1   2021-02-11 [2] CRAN (R 4.1.0)
+##  protoclust             1.6.4     2022-04-01 [2] CRAN (R 4.1.2)
+##  proxy                  0.4-27    2022-06-09 [2] CRAN (R 4.1.2)
+##  ps                     1.7.5     2023-04-18 [2] CRAN (R 4.1.2)
+##  pscl                   1.5.5.1   2023-05-10 [2] CRAN (R 4.1.2)
+##  purrr                * 1.0.1     2023-01-10 [2] CRAN (R 4.1.2)
+##  qvalue                 2.26.0    2021-10-26 [2] Bioconductor
+##  R6                     2.5.1     2021-08-19 [2] CRAN (R 4.1.0)
+##  RAIDA                  1.0       2022-03-14 [2] local
+##  RColorBrewer         * 1.1-3     2022-04-03 [2] CRAN (R 4.1.2)
+##  Rcpp                 * 1.0.11    2023-07-06 [1] CRAN (R 4.1.3)
+##  RcppZiggurat           0.1.6     2020-10-20 [2] CRAN (R 4.1.0)
+##  RCurl                  1.98-1.12 2023-03-27 [2] CRAN (R 4.1.2)
+##  readr                * 2.1.4     2023-02-10 [2] CRAN (R 4.1.2)
+##  remotes                2.4.2     2021-11-30 [2] CRAN (R 4.1.0)
+##  reshape2               1.4.4     2020-04-09 [2] CRAN (R 4.1.0)
+##  reticulate             1.30      2023-06-09 [2] CRAN (R 4.1.3)
+##  Rfast                  2.0.8     2023-07-03 [2] CRAN (R 4.1.3)
+##  rhdf5                  2.38.1    2022-03-10 [2] Bioconductor
+##  rhdf5filters           1.6.0     2021-10-26 [2] Bioconductor
+##  Rhdf5lib               1.16.0    2021-10-26 [2] Bioconductor
+##  rlang                  1.1.1     2023-04-28 [1] CRAN (R 4.1.2)
+##  rmarkdown              2.23      2023-07-01 [2] CRAN (R 4.1.3)
+##  robustbase             0.99-0    2023-06-16 [2] CRAN (R 4.1.3)
+##  rpart                  4.1.19    2022-10-21 [2] CRAN (R 4.1.2)
+##  RSpectra               0.16-1    2022-04-24 [2] CRAN (R 4.1.2)
+##  RSQLite                2.3.1     2023-04-03 [2] CRAN (R 4.1.2)
+##  rstatix                0.7.2     2023-02-01 [2] CRAN (R 4.1.2)
+##  rstudioapi             0.15.0    2023-07-07 [2] CRAN (R 4.1.3)
+##  Rtsne                  0.16      2022-04-17 [2] CRAN (R 4.1.2)
+##  RVenn                  1.1.0     2019-07-18 [2] CRAN (R 4.1.0)
+##  rvest                  1.0.3     2022-08-19 [2] CRAN (R 4.1.2)
+##  S4Vectors            * 0.32.4    2022-03-29 [2] Bioconductor
+##  sandwich               3.0-2     2022-06-15 [2] CRAN (R 4.1.2)
+##  sass                   0.4.6     2023-05-03 [2] CRAN (R 4.1.2)
+##  scales                 1.2.1     2022-08-20 [2] CRAN (R 4.1.2)
+##  scatterplot3d          0.3-44    2023-05-05 [2] CRAN (R 4.1.2)
+##  sessioninfo            1.2.2     2021-12-06 [2] CRAN (R 4.1.0)
+##  sf                     1.0-7     2022-03-07 [2] CRAN (R 4.1.2)
+##  shape                  1.4.6     2021-05-19 [2] CRAN (R 4.1.0)
+##  shiny                  1.7.4.1   2023-07-06 [2] CRAN (R 4.1.3)
+##  sjlabelled             1.2.0     2022-04-10 [2] CRAN (R 4.1.2)
+##  sjmisc                 2.8.9     2021-12-03 [2] CRAN (R 4.1.0)
+##  stringi                1.7.12    2023-01-11 [2] CRAN (R 4.1.2)
+##  stringr                1.5.0     2022-12-02 [2] CRAN (R 4.1.2)
+##  SummarizedExperiment * 1.24.0    2021-10-26 [2] Bioconductor
+##  survival               3.5-5     2023-03-12 [2] CRAN (R 4.1.2)
+##  svglite                2.1.1     2023-01-10 [2] CRAN (R 4.1.2)
+##  systemfonts            1.0.4     2022-02-11 [2] CRAN (R 4.1.2)
+##  tensorA                0.36.2    2020-11-19 [2] CRAN (R 4.1.0)
+##  TH.data                1.1-2     2023-04-17 [2] CRAN (R 4.1.2)
+##  tibble               * 3.2.1     2023-03-20 [2] CRAN (R 4.1.2)
+##  tidyr                * 1.3.0     2023-01-24 [2] CRAN (R 4.1.2)
+##  tidyselect             1.2.0     2022-10-10 [2] CRAN (R 4.1.2)
+##  timechange             0.2.0     2023-01-11 [2] CRAN (R 4.1.2)
+##  truncnorm              1.0-9     2023-03-20 [2] CRAN (R 4.1.2)
+##  tzdb                   0.4.0     2023-05-12 [2] CRAN (R 4.1.3)
+##  umap                   0.2.10.0  2023-02-01 [2] CRAN (R 4.1.2)
+##  units                  0.8-2     2023-04-27 [2] CRAN (R 4.1.2)
+##  urlchecker             1.0.1     2021-11-30 [2] CRAN (R 4.1.0)
+##  usethis              * 2.2.2     2023-07-06 [2] CRAN (R 4.1.3)
+##  utf8                   1.2.3     2023-01-31 [2] CRAN (R 4.1.2)
+##  uuid                   1.1-0     2022-04-19 [2] CRAN (R 4.1.2)
+##  vctrs                  0.6.3     2023-06-14 [1] CRAN (R 4.1.3)
+##  vegan                * 2.6-4     2022-10-11 [2] CRAN (R 4.1.2)
+##  VennDiagram          * 1.7.3     2022-04-12 [2] CRAN (R 4.1.2)
+##  viridis              * 0.6.3     2023-05-03 [2] CRAN (R 4.1.2)
+##  viridisLite          * 0.4.2     2023-05-02 [2] CRAN (R 4.1.2)
+##  vroom                  1.6.3     2023-04-28 [2] CRAN (R 4.1.2)
+##  webshot                0.5.5     2023-06-26 [2] CRAN (R 4.1.3)
+##  withr                  2.5.0     2022-03-03 [2] CRAN (R 4.1.2)
+##  Wrench                 1.12.0    2021-10-26 [2] Bioconductor
+##  xfun                   0.40      2023-08-09 [1] CRAN (R 4.1.3)
+##  XMAS2                * 2.2.0     2023-10-27 [1] local
+##  XML                    3.99-0.14 2023-03-19 [2] CRAN (R 4.1.2)
+##  xml2                   1.3.5     2023-07-06 [2] CRAN (R 4.1.3)
+##  xtable                 1.8-4     2019-04-21 [2] CRAN (R 4.1.0)
+##  XVector                0.34.0    2021-10-26 [2] Bioconductor
+##  yaml                   2.3.7     2023-01-23 [2] CRAN (R 4.1.2)
+##  zCompositions          1.4.0-1   2022-03-26 [2] CRAN (R 4.1.2)
+##  zlibbioc               1.40.0    2021-10-26 [2] Bioconductor
+##  zoo                    1.8-12    2023-04-13 [2] CRAN (R 4.1.2)
 ## 
-##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+##  [1] /Users/zouhua/Library/R/x86_64/4.1/library
+##  [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
 ## 
-## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 
 </div>
 </div>
@@ -1100,7 +1107,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "subsection",
+"collapse": "section",
 "scroll_highlight": true,
 "toc_depth": 3
 }

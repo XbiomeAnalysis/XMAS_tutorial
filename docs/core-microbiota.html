@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Core microbiota | XMAS 2.0 Tutorial</title>
   <meta name="description" content="A tutorial of XMAS 2.0 package for in-house training" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Core microbiota | XMAS 2.0 Tutorial" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2023-04-12" />
+<meta name="date" content="2023-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,12 +52,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.21/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -130,6 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -152,7 +156,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
 </head>
 
 <body>
@@ -351,14 +355,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="differential-analysis.html"><a href="differential-analysis.html#dominant-taxa"><i class="fa fa-check"></i><b>10.6</b> Dominant taxa</a></li>
 <li class="chapter" data-level="10.7" data-path="differential-analysis.html"><a href="differential-analysis.html#multiple-differential-analysis-by-one-function"><i class="fa fa-check"></i><b>10.7</b> Multiple differential analysis by one function</a></li>
-<li class="chapter" data-level="10.8" data-path="differential-analysis.html"><a href="differential-analysis.html#comparing-outputs-from-xmas2-lefse-conda-and-lefse-galaxy-using-the-same-in-house-datasets-amplicon_pszeybel_gut"><i class="fa fa-check"></i><b>10.8</b> Comparing outputs from XMAS2, lefse-conda, and lefse-galaxy using the same in-house datasets (amplicon_ps|Zeybel_Gut)</a>
-<ul>
-<li class="chapter" data-level="10.8.1" data-path="differential-analysis.html"><a href="differential-analysis.html#introduction-1"><i class="fa fa-check"></i><b>10.8.1</b> Introduction</a></li>
-<li class="chapter" data-level="10.8.2" data-path="differential-analysis.html"><a href="differential-analysis.html#dataset"><i class="fa fa-check"></i><b>10.8.2</b> Dataset</a></li>
-<li class="chapter" data-level="10.8.3" data-path="differential-analysis.html"><a href="differential-analysis.html#run-lefse-independently-with-the-three-applications-r-conda-galaxy"><i class="fa fa-check"></i><b>10.8.3</b> Run lefse independently with the three applications (R, conda, galaxy)</a></li>
-<li class="chapter" data-level="10.8.4" data-path="differential-analysis.html"><a href="differential-analysis.html#comparison-of-lefse-conda-with-xmas2"><i class="fa fa-check"></i><b>10.8.4</b> Comparison of lefse-conda with XMAS2</a></li>
-</ul></li>
-<li class="chapter" data-level="10.9" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-7"><i class="fa fa-check"></i><b>10.9</b> Systematic Information</a></li>
+<li class="chapter" data-level="10.8" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-7"><i class="fa fa-check"></i><b>10.8</b> Systematic Information</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="visualization-5.html"><a href="visualization-5.html"><i class="fa fa-check"></i><b>11</b> Visualization</a>
 <ul>
@@ -574,24 +571,24 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="core-microbiota" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Core microbiota<a href="core-microbiota.html#core-microbiota" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>These functions in this chapter are from <span class="citation">(<a href="#ref-microbiome" role="doc-biblioref">Leo Lahti 2018</a>)</span> package. The core microbiota are passed the parameters’ cutoff (eg. prevalence, abundance).</p>
+<p>These functions in this chapter are from <span class="citation">(<a href="#ref-microbiome">Leo Lahti 2018</a>)</span> package. The core microbiota are passed the parameters’ cutoff (eg. prevalence, abundance).</p>
 <p>Core microbiota, playing an important role on the interaction between host and environment is the dominant taxa in the community. Here, we identify them by using prevalence across samples and the limit of detection of abundance.</p>
 <p>Outline of this Chapter:</p>
 <ul>
-<li><p><a href="examples.html#loading-packages-10">Loading Packages</a></p></li>
-<li><p><a href="association-analysis.html#importing-data-9">Importing Data</a></p></li>
+<li><p><a href="convert-inputdata-into-phyloseq-object.html#loading-packages">Loading Packages</a></p></li>
+<li><p><a href="convert-inputdata-into-phyloseq-object.html#importing-data">Importing Data</a></p></li>
 <li><p><a href="core-microbiota.html#obtaining-core-microbiota">Obtaining core microbiota</a></p></li>
 <li><p><a href="core-microbiota.html#showing-core-abundance-and-diversity">Showing core abundance and diversity</a></p></li>
 <li><p><a href="core-microbiota.html#visualizing-core-taxa">Visualizing core taxa</a></p></li>
 </ul>
 <div id="loading-packages-6" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Loading Packages<a href="core-microbiota.html#loading-packages-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="core-microbiota.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb233-2"><a href="core-microbiota.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb233-3"><a href="core-microbiota.html#cb233-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb233-4"><a href="core-microbiota.html#cb233-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
-<span id="cb233-5"><a href="core-microbiota.html#cb233-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb233-6"><a href="core-microbiota.html#cb233-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="core-microbiota.html#cb233-1" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb233-2"><a href="core-microbiota.html#cb233-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb233-3"><a href="core-microbiota.html#cb233-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb233-4"><a href="core-microbiota.html#cb233-4" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span>
+<span id="cb233-5"><a href="core-microbiota.html#cb233-5" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb233-6"><a href="core-microbiota.html#cb233-6" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
 </div>
 <div id="importing-data-6" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Importing Data<a href="core-microbiota.html#importing-data-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -600,31 +597,31 @@ div.csl-indent {
 <li><p>Rarefying counts</p></li>
 <li><p>Extracting genus level phyloseq</p></li>
 </ul>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="core-microbiota.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dada2_ps&quot;</span>)</span>
-<span id="cb234-2"><a href="core-microbiota.html#cb234-2" aria-hidden="true" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb234-3"><a href="core-microbiota.html#cb234-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ps =</span> dada2_ps,</span>
-<span id="cb234-4"><a href="core-microbiota.html#cb234-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb234-5"><a href="core-microbiota.html#cb234-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
-<span id="cb234-6"><a href="core-microbiota.html#cb234-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb234-7"><a href="core-microbiota.html#cb234-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb234-8"><a href="core-microbiota.html#cb234-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Rarefying counts</span></span>
-<span id="cb234-9"><a href="core-microbiota.html#cb234-9" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(<span class="at">object =</span> dada2_ps_remove_BRS, </span>
-<span id="cb234-10"><a href="core-microbiota.html#cb234-10" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">51181</span>)</span>
-<span id="cb234-11"><a href="core-microbiota.html#cb234-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb234-12"><a href="core-microbiota.html#cb234-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Genus level</span></span>
-<span id="cb234-13"><a href="core-microbiota.html#cb234-13" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
-<span id="cb234-14"><a href="core-microbiota.html#cb234-14" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="core-microbiota.html#cb234-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;dada2_ps&quot;</span>)</span>
+<span id="cb234-2"><a href="core-microbiota.html#cb234-2" tabindex="-1"></a>dada2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb234-3"><a href="core-microbiota.html#cb234-3" tabindex="-1"></a>                         <span class="at">ps =</span> dada2_ps,</span>
+<span id="cb234-4"><a href="core-microbiota.html#cb234-4" tabindex="-1"></a>                         <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb234-5"><a href="core-microbiota.html#cb234-5" tabindex="-1"></a>                         <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb234-6"><a href="core-microbiota.html#cb234-6" tabindex="-1"></a>                         <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb234-7"><a href="core-microbiota.html#cb234-7" tabindex="-1"></a></span>
+<span id="cb234-8"><a href="core-microbiota.html#cb234-8" tabindex="-1"></a><span class="co"># Rarefying counts</span></span>
+<span id="cb234-9"><a href="core-microbiota.html#cb234-9" tabindex="-1"></a>dada2_ps_rarefy <span class="ot">&lt;-</span> <span class="fu">norm_rarefy</span>(<span class="at">object =</span> dada2_ps_remove_BRS, </span>
+<span id="cb234-10"><a href="core-microbiota.html#cb234-10" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">51181</span>)</span>
+<span id="cb234-11"><a href="core-microbiota.html#cb234-11" tabindex="-1"></a></span>
+<span id="cb234-12"><a href="core-microbiota.html#cb234-12" tabindex="-1"></a><span class="co"># Genus level</span></span>
+<span id="cb234-13"><a href="core-microbiota.html#cb234-13" tabindex="-1"></a>dada2_ps_rarefy_genus <span class="ot">&lt;-</span> <span class="fu">summarize_taxa</span>(<span class="at">ps =</span> dada2_ps_rarefy, </span>
+<span id="cb234-14"><a href="core-microbiota.html#cb234-14" tabindex="-1"></a>                                        <span class="at">taxa_level =</span> <span class="st">&quot;Genus&quot;</span>)</span></code></pre></div>
 <details>
 <summary>
 <strong>MGS dataset</strong>
 </summary>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="core-microbiota.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;metaphlan2_ps&quot;</span>)</span>
-<span id="cb235-2"><a href="core-microbiota.html#cb235-2" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
-<span id="cb235-3"><a href="core-microbiota.html#cb235-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">ps =</span> metaphlan2_ps,</span>
-<span id="cb235-4"><a href="core-microbiota.html#cb235-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
-<span id="cb235-5"><a href="core-microbiota.html#cb235-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
-<span id="cb235-6"><a href="core-microbiota.html#cb235-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb235-7"><a href="core-microbiota.html#cb235-7" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps_remove_BRS</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="core-microbiota.html#cb235-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;metaphlan2_ps&quot;</span>)</span>
+<span id="cb235-2"><a href="core-microbiota.html#cb235-2" tabindex="-1"></a>metaphlan2_ps_remove_BRS <span class="ot">&lt;-</span> <span class="fu">get_GroupPhyloseq</span>(</span>
+<span id="cb235-3"><a href="core-microbiota.html#cb235-3" tabindex="-1"></a>                               <span class="at">ps =</span> metaphlan2_ps,</span>
+<span id="cb235-4"><a href="core-microbiota.html#cb235-4" tabindex="-1"></a>                               <span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,</span>
+<span id="cb235-5"><a href="core-microbiota.html#cb235-5" tabindex="-1"></a>                               <span class="at">group_names =</span> <span class="st">&quot;QC&quot;</span>,</span>
+<span id="cb235-6"><a href="core-microbiota.html#cb235-6" tabindex="-1"></a>                               <span class="at">discard =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb235-7"><a href="core-microbiota.html#cb235-7" tabindex="-1"></a>metaphlan2_ps_remove_BRS</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 326 taxa and 22 samples ]
 ## sample_data() Sample Data:       [ 22 samples by 2 sample variables ]
@@ -635,9 +632,9 @@ div.csl-indent {
 <ul>
 <li>Normalization: See the Chapter 6 Pre-processing</li>
 </ul>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="core-microbiota.html#cb237-1" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus_rb <span class="ot">&lt;-</span> XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_rarefy_genus, </span>
-<span id="cb237-2"><a href="core-microbiota.html#cb237-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span>
-<span id="cb237-3"><a href="core-microbiota.html#cb237-3" aria-hidden="true" tabindex="-1"></a>dada2_ps_rarefy_genus_rb</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="core-microbiota.html#cb237-1" tabindex="-1"></a>dada2_ps_rarefy_genus_rb <span class="ot">&lt;-</span> XMAS2<span class="sc">::</span><span class="fu">normalize</span>(<span class="at">object =</span> dada2_ps_rarefy_genus, </span>
+<span id="cb237-2"><a href="core-microbiota.html#cb237-2" tabindex="-1"></a>                                             <span class="at">method =</span> <span class="st">&quot;TSS&quot;</span>)</span>
+<span id="cb237-3"><a href="core-microbiota.html#cb237-3" tabindex="-1"></a>dada2_ps_rarefy_genus_rb</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 198 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 1 sample variables ]
@@ -646,10 +643,10 @@ div.csl-indent {
 <li>Check for the core ASVs</li>
 </ul>
 <p>Use <code>core_members</code> to obtain the core taxa. <em>detection</em> for abundance and <em>prevalence</em> for occurrence.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="core-microbiota.html#cb239-1" aria-hidden="true" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(dada2_ps_rarefy_genus_rb, </span>
-<span id="cb239-2"><a href="core-microbiota.html#cb239-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">detection =</span> <span class="fl">0.01</span>, </span>
-<span id="cb239-3"><a href="core-microbiota.html#cb239-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">prevalence =</span> <span class="fl">0.8</span>)</span>
-<span id="cb239-4"><a href="core-microbiota.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="core-microbiota.html#cb239-1" tabindex="-1"></a>core_taxa_name <span class="ot">&lt;-</span> <span class="fu">core_members</span>(dada2_ps_rarefy_genus_rb, </span>
+<span id="cb239-2"><a href="core-microbiota.html#cb239-2" tabindex="-1"></a>                               <span class="at">detection =</span> <span class="fl">0.01</span>, </span>
+<span id="cb239-3"><a href="core-microbiota.html#cb239-3" tabindex="-1"></a>                               <span class="at">prevalence =</span> <span class="fl">0.8</span>)</span>
+<span id="cb239-4"><a href="core-microbiota.html#cb239-4" tabindex="-1"></a><span class="fu">print</span>(core_taxa_name)</span></code></pre></div>
 <pre><code>## [1] &quot;g__Bifidobacterium&quot;              &quot;g__Blautia&quot;                      &quot;g__Lachnospiraceae_unclassified&quot;</code></pre>
 <p><strong>Result:</strong></p>
 <p>Only <strong>three</strong> genera (g__Bifidobacterium, g__Blautia and g__Lachnospiraceae_unclassified) passed the threshold of detection and prevalence which we choose.</p>
@@ -657,13 +654,13 @@ div.csl-indent {
 <div id="showing-core-abundance-and-diversity" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Showing core abundance and diversity<a href="core-microbiota.html#showing-core-abundance-and-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Total core abundance in each sample (sum of abundances of the core members):</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="core-microbiota.html#cb241-1" aria-hidden="true" tabindex="-1"></a>core_abundance <span class="ot">&lt;-</span> <span class="fu">sample_sums</span>(<span class="fu">phyloseq_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
-<span id="cb241-2"><a href="core-microbiota.html#cb241-2" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">detection =</span> <span class="fl">0.01</span>, </span>
-<span id="cb241-3"><a href="core-microbiota.html#cb241-3" aria-hidden="true" tabindex="-1"></a>                                                 <span class="at">prevalence =</span> <span class="fl">0.8</span>))</span>
-<span id="cb241-4"><a href="core-microbiota.html#cb241-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-5"><a href="core-microbiota.html#cb241-5" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">data.frame</span>(core_abundance))</span></code></pre></div>
-<div id="htmlwidget-8c4257597e79a0f2ad52" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8c4257597e79a0f2ad52">{"x":{"filter":"none","vertical":false,"data":[["S6030","S6032","S6033","S6035","S6036","S6037","S6040","S6043","S6045","S6046","S6048","S6049","S6050","S6054","S6055","S6058","S6059","S6060","S6061","S6063","S6065","S6066","S6068"],[0.426505929934937,0.542506008088939,0.298782751411657,0.640178972665638,0.168109259295442,0.689591840722143,0.425880697915242,0.348508235478009,0.269963463003849,0.413512827025654,0.458822609952912,0.204568101443895,0.517340419296223,0.24825618882007,0.56954729294074,0.517105957288838,0.199663937789414,0.70213555811727,0.127430101014048,0.752662120708857,0.368925968621168,0.431468709091264,0.635489732517927]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>core_abundance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="core-microbiota.html#cb241-1" tabindex="-1"></a>core_abundance <span class="ot">&lt;-</span> <span class="fu">sample_sums</span>(<span class="fu">phyloseq_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
+<span id="cb241-2"><a href="core-microbiota.html#cb241-2" tabindex="-1"></a>                                                 <span class="at">detection =</span> <span class="fl">0.01</span>, </span>
+<span id="cb241-3"><a href="core-microbiota.html#cb241-3" tabindex="-1"></a>                                                 <span class="at">prevalence =</span> <span class="fl">0.8</span>))</span>
+<span id="cb241-4"><a href="core-microbiota.html#cb241-4" tabindex="-1"></a></span>
+<span id="cb241-5"><a href="core-microbiota.html#cb241-5" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="fu">data.frame</span>(core_abundance))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7986e3432963471569c3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7986e3432963471569c3">{"x":{"filter":"none","vertical":false,"data":[["S6030","S6032","S6033","S6035","S6036","S6037","S6040","S6043","S6045","S6046","S6048","S6049","S6050","S6054","S6055","S6058","S6059","S6060","S6061","S6063","S6065","S6066","S6068"],[0.4265059299349367,0.5425060080889392,0.2987827514116567,0.6401789726656377,0.1681092592954417,0.689591840722143,0.425880697915242,0.3485082354780094,0.2699634630038491,0.4135128270256541,0.4588226099529122,0.2045681014438952,0.5173404192962232,0.2482561888200699,0.5695472929407397,0.5171059572888377,0.199663937789414,0.70213555811727,0.1274301010140482,0.7526621207088569,0.368925968621168,0.4314687090912643,0.6354897325179265]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>core_abundance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="visualizing-core-taxa" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Visualizing core taxa<a href="core-microbiota.html#visualizing-core-taxa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -673,18 +670,18 @@ div.csl-indent {
 <ul>
 <li>Core with composition</li>
 </ul>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="core-microbiota.html#cb242-1" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
-<span id="cb242-2"><a href="core-microbiota.html#cb242-2" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
-<span id="cb242-3"><a href="core-microbiota.html#cb242-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-4"><a href="core-microbiota.html#cb242-4" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
-<span id="cb242-5"><a href="core-microbiota.html#cb242-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
-<span id="cb242-6"><a href="core-microbiota.html#cb242-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">gray</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">5</span>)),</span>
-<span id="cb242-7"><a href="core-microbiota.html#cb242-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
-<span id="cb242-8"><a href="core-microbiota.html#cb242-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
-<span id="cb242-9"><a href="core-microbiota.html#cb242-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb242-10"><a href="core-microbiota.html#cb242-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>)</span>
-<span id="cb242-11"><a href="core-microbiota.html#cb242-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb242-12"><a href="core-microbiota.html#cb242-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="core-microbiota.html#cb242-1" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
+<span id="cb242-2"><a href="core-microbiota.html#cb242-2" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb242-3"><a href="core-microbiota.html#cb242-3" tabindex="-1"></a></span>
+<span id="cb242-4"><a href="core-microbiota.html#cb242-4" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
+<span id="cb242-5"><a href="core-microbiota.html#cb242-5" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
+<span id="cb242-6"><a href="core-microbiota.html#cb242-6" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">gray</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length=</span><span class="dv">5</span>)),</span>
+<span id="cb242-7"><a href="core-microbiota.html#cb242-7" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
+<span id="cb242-8"><a href="core-microbiota.html#cb242-8" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
+<span id="cb242-9"><a href="core-microbiota.html#cb242-9" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb242-10"><a href="core-microbiota.html#cb242-10" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>)</span>
+<span id="cb242-11"><a href="core-microbiota.html#cb242-11" tabindex="-1"></a></span>
+<span id="cb242-12"><a href="core-microbiota.html#cb242-12" tabindex="-1"></a>pl_core</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-134"></span>
 <img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-134-1.png" alt="Core with composition in Heatmap" width="576" />
 <p class="caption">
@@ -695,8 +692,8 @@ Figure 9.1: Core with composition in Heatmap
 <ul>
 <li>other colors: viridis</li>
 </ul>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="core-microbiota.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb243-2"><a href="core-microbiota.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pl_core <span class="sc">+</span> <span class="fu">scale_fill_viridis</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="core-microbiota.html#cb243-1" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb243-2"><a href="core-microbiota.html#cb243-2" tabindex="-1"></a><span class="fu">print</span>(pl_core <span class="sc">+</span> <span class="fu">scale_fill_viridis</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-135"></span>
 <img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-135-1.png" alt="Core with composition in Heatmap (viridis)" width="576" />
 <p class="caption">
@@ -706,21 +703,21 @@ Figure 9.2: Core with composition in Heatmap (viridis)
 <ul>
 <li>change color</li>
 </ul>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="core-microbiota.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb244-2"><a href="core-microbiota.html#cb244-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb244-3"><a href="core-microbiota.html#cb244-3" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
-<span id="cb244-4"><a href="core-microbiota.html#cb244-4" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
-<span id="cb244-5"><a href="core-microbiota.html#cb244-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb244-6"><a href="core-microbiota.html#cb244-6" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
-<span id="cb244-7"><a href="core-microbiota.html#cb244-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
-<span id="cb244-8"><a href="core-microbiota.html#cb244-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">&quot;Spectral&quot;</span>)),</span>
-<span id="cb244-9"><a href="core-microbiota.html#cb244-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
-<span id="cb244-10"><a href="core-microbiota.html#cb244-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
-<span id="cb244-11"><a href="core-microbiota.html#cb244-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb244-12"><a href="core-microbiota.html#cb244-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
-<span id="cb244-13"><a href="core-microbiota.html#cb244-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span>
-<span id="cb244-14"><a href="core-microbiota.html#cb244-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb244-15"><a href="core-microbiota.html#cb244-15" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="core-microbiota.html#cb244-1" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb244-2"><a href="core-microbiota.html#cb244-2" tabindex="-1"></a></span>
+<span id="cb244-3"><a href="core-microbiota.html#cb244-3" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
+<span id="cb244-4"><a href="core-microbiota.html#cb244-4" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb244-5"><a href="core-microbiota.html#cb244-5" tabindex="-1"></a></span>
+<span id="cb244-6"><a href="core-microbiota.html#cb244-6" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
+<span id="cb244-7"><a href="core-microbiota.html#cb244-7" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>, </span>
+<span id="cb244-8"><a href="core-microbiota.html#cb244-8" tabindex="-1"></a>                    <span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">&quot;Spectral&quot;</span>)),</span>
+<span id="cb244-9"><a href="core-microbiota.html#cb244-9" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
+<span id="cb244-10"><a href="core-microbiota.html#cb244-10" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
+<span id="cb244-11"><a href="core-microbiota.html#cb244-11" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb244-12"><a href="core-microbiota.html#cb244-12" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
+<span id="cb244-13"><a href="core-microbiota.html#cb244-13" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span>
+<span id="cb244-14"><a href="core-microbiota.html#cb244-14" tabindex="-1"></a></span>
+<span id="cb244-15"><a href="core-microbiota.html#cb244-15" tabindex="-1"></a>pl_core</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-136"></span>
 <img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-136-1.png" alt="Core with composition in Heatmap (RColorBrewer)" width="576" />
 <p class="caption">
@@ -731,18 +728,18 @@ Figure 9.3: Core with composition in Heatmap (RColorBrewer)
 <div id="linechart" class="section level3 hasAnchor" number="9.5.2">
 <h3><span class="header-section-number">9.5.2</span> linechart<a href="core-microbiota.html#linechart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This plot show the relationship between Detection and Prevalence in a linear model.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="core-microbiota.html#cb245-1" aria-hidden="true" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
-<span id="cb245-2"><a href="core-microbiota.html#cb245-2" aria-hidden="true" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
-<span id="cb245-3"><a href="core-microbiota.html#cb245-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb245-4"><a href="core-microbiota.html#cb245-4" aria-hidden="true" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
-<span id="cb245-5"><a href="core-microbiota.html#cb245-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;lineplot&quot;</span>, </span>
-<span id="cb245-6"><a href="core-microbiota.html#cb245-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
-<span id="cb245-7"><a href="core-microbiota.html#cb245-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
-<span id="cb245-8"><a href="core-microbiota.html#cb245-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
-<span id="cb245-9"><a href="core-microbiota.html#cb245-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
-<span id="cb245-10"><a href="core-microbiota.html#cb245-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span>
-<span id="cb245-11"><a href="core-microbiota.html#cb245-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb245-12"><a href="core-microbiota.html#cb245-12" aria-hidden="true" tabindex="-1"></a>pl_core</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="core-microbiota.html#cb245-1" tabindex="-1"></a>prevalences <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="dv">1</span>, <span class="fl">0.05</span>)</span>
+<span id="cb245-2"><a href="core-microbiota.html#cb245-2" tabindex="-1"></a>detections <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="fu">log10</span>(<span class="fl">1e-3</span>), <span class="fu">log10</span>(.<span class="dv">2</span>), <span class="at">length =</span> <span class="dv">10</span>)</span>
+<span id="cb245-3"><a href="core-microbiota.html#cb245-3" tabindex="-1"></a></span>
+<span id="cb245-4"><a href="core-microbiota.html#cb245-4" tabindex="-1"></a>pl_core <span class="ot">&lt;-</span> <span class="fu">plot_core_taxa</span>(dada2_ps_rarefy_genus_rb, </span>
+<span id="cb245-5"><a href="core-microbiota.html#cb245-5" tabindex="-1"></a>                    <span class="at">plot.type =</span> <span class="st">&quot;lineplot&quot;</span>, </span>
+<span id="cb245-6"><a href="core-microbiota.html#cb245-6" tabindex="-1"></a>                    <span class="at">prevalences =</span> prevalences, </span>
+<span id="cb245-7"><a href="core-microbiota.html#cb245-7" tabindex="-1"></a>                    <span class="at">detections =</span> detections, </span>
+<span id="cb245-8"><a href="core-microbiota.html#cb245-8" tabindex="-1"></a>                    <span class="at">min.prevalence =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb245-9"><a href="core-microbiota.html#cb245-9" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Detection Threshold (Relative Abundance (%))&quot;</span>) <span class="sc">+</span></span>
+<span id="cb245-10"><a href="core-microbiota.html#cb245-10" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;italic&quot;</span>))</span>
+<span id="cb245-11"><a href="core-microbiota.html#cb245-11" tabindex="-1"></a></span>
+<span id="cb245-12"><a href="core-microbiota.html#cb245-12" tabindex="-1"></a>pl_core</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-137"></span>
 <img src="XMAS-2.0-Tutorial_files/figure-html/unnamed-chunk-137-1.png" alt="Core with composition in linechart" width="480" />
 <p class="caption">
@@ -754,10 +751,10 @@ Figure 9.4: Core with composition in linechart
 </div>
 <div id="systematic-information-6" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Systematic Information<a href="core-microbiota.html#systematic-information-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="core-microbiota.html#cb246-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="core-microbiota.html#cb246-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
-##  version  R version 4.1.2 (2021-11-01)
+##  version  R version 4.1.3 (2022-03-10)
 ##  os       macOS Monterey 12.2.1
 ##  system   x86_64, darwin17.0
 ##  ui       RStudio
@@ -765,214 +762,256 @@ Figure 9.4: Core with composition in linechart
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2023-04-12
-##  rstudio  2022.07.2+576 Spotted Wakerobin (desktop)
-##  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
+##  date     2023-10-27
+##  rstudio  2023.09.0+463 Desert Sunflower (desktop)
+##  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 ## 
-## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  package              * version  date (UTC) lib source
-##  abind                  1.4-5    2016-07-21 [1] CRAN (R 4.1.0)
-##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
-##  annotate               1.72.0   2021-10-26 [1] Bioconductor
-##  AnnotationDbi          1.60.2   2023-03-10 [1] Bioconductor
-##  ape                  * 5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
-##  askpass                1.1      2019-01-13 [1] CRAN (R 4.1.0)
-##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
-##  backports              1.4.1    2021-12-13 [1] CRAN (R 4.1.0)
-##  base64enc              0.1-3    2015-07-28 [1] CRAN (R 4.1.0)
-##  Biobase                2.54.0   2021-10-26 [1] Bioconductor
-##  BiocGenerics           0.40.0   2021-10-26 [1] Bioconductor
-##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
-##  biomformat             1.22.0   2021-10-26 [1] Bioconductor
-##  Biostrings             2.62.0   2021-10-26 [1] Bioconductor
-##  bit                    4.0.4    2020-08-04 [1] CRAN (R 4.1.0)
-##  bit64                  4.0.5    2020-08-30 [1] CRAN (R 4.1.0)
-##  bitops                 1.0-7    2021-04-24 [1] CRAN (R 4.1.0)
-##  blob                   1.2.2    2021-07-23 [1] CRAN (R 4.1.0)
-##  bookdown               0.29     2022-09-12 [1] CRAN (R 4.1.2)
-##  brio                   1.1.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  broom                  1.0.1    2022-08-29 [1] CRAN (R 4.1.2)
-##  bslib                  0.4.0    2022-07-16 [1] CRAN (R 4.1.2)
-##  cachem                 1.0.6    2021-08-19 [1] CRAN (R 4.1.0)
-##  callr                  3.7.0    2021-04-20 [1] CRAN (R 4.1.0)
-##  car                    3.0-12   2021-11-06 [1] CRAN (R 4.1.0)
-##  carData                3.0-5    2022-01-06 [1] CRAN (R 4.1.2)
-##  caTools                1.18.2   2021-03-28 [1] CRAN (R 4.1.0)
-##  checkmate              2.0.0    2020-02-06 [1] CRAN (R 4.1.0)
-##  cli                    3.4.1    2022-09-23 [1] CRAN (R 4.1.2)
-##  cluster                2.1.2    2021-04-17 [1] CRAN (R 4.1.2)
-##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
-##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
-##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
-##  conflicted           * 1.1.0    2021-11-26 [1] CRAN (R 4.1.0)
-##  corrplot               0.92     2021-11-18 [1] CRAN (R 4.1.0)
-##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
-##  crayon                 1.5.0    2022-02-14 [1] CRAN (R 4.1.2)
-##  crosstalk              1.2.0    2021-11-04 [1] CRAN (R 4.1.0)
-##  data.table             1.14.6   2022-11-16 [1] CRAN (R 4.1.2)
-##  DBI                    1.1.2    2021-12-20 [1] CRAN (R 4.1.0)
-##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
-##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
-##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
-##  devtools               2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  digest                 0.6.30   2022-10-18 [1] CRAN (R 4.1.2)
-##  dplyr                * 1.0.10   2022-09-01 [1] CRAN (R 4.1.2)
-##  DT                     0.21     2022-02-26 [1] CRAN (R 4.1.2)
-##  edgeR                  3.36.0   2021-10-26 [1] Bioconductor
-##  ellipsis               0.3.2    2021-04-29 [1] CRAN (R 4.1.0)
-##  evaluate               0.17     2022-10-07 [1] CRAN (R 4.1.2)
-##  FactoMineR             2.4      2020-12-11 [1] CRAN (R 4.1.0)
-##  fansi                  1.0.2    2022-01-14 [1] CRAN (R 4.1.2)
-##  farver                 2.1.0    2021-02-28 [1] CRAN (R 4.1.0)
-##  fastmap                1.1.0    2021-01-25 [1] CRAN (R 4.1.0)
-##  flashClust             1.01-2   2012-08-21 [1] CRAN (R 4.1.0)
-##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
-##  foreign                0.8-82   2022-01-13 [1] CRAN (R 4.1.2)
-##  Formula                1.2-4    2020-10-16 [1] CRAN (R 4.1.0)
-##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
-##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
-##  geneplotter            1.72.0   2021-10-26 [1] Bioconductor
-##  generics               0.1.2    2022-01-31 [1] CRAN (R 4.1.2)
-##  GenomeInfoDb           1.30.1   2022-01-30 [1] Bioconductor
-##  GenomeInfoDbData       1.2.7    2022-03-09 [1] Bioconductor
-##  GenomicRanges          1.46.1   2021-11-18 [1] Bioconductor
-##  ggiraph                0.8.2    2022-02-22 [1] CRAN (R 4.1.2)
-##  ggiraphExtra           0.3.0    2020-10-06 [1] CRAN (R 4.1.2)
-##  ggplot2              * 3.4.0    2022-11-04 [1] CRAN (R 4.1.2)
-##  ggpubr               * 0.4.0    2020-06-27 [1] CRAN (R 4.1.0)
-##  ggrepel                0.9.1    2021-01-15 [1] CRAN (R 4.1.0)
-##  ggsci                  2.9      2018-05-14 [1] CRAN (R 4.1.0)
-##  ggsignif               0.6.3    2021-09-09 [1] CRAN (R 4.1.0)
-##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
-##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
-##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
-##  gridExtra              2.3      2017-09-09 [1] CRAN (R 4.1.0)
-##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
-##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
-##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
-##  Hmisc                  4.6-0    2021-10-07 [1] CRAN (R 4.1.0)
-##  hms                    1.1.1    2021-09-26 [1] CRAN (R 4.1.0)
-##  htmlTable              2.4.0    2022-01-04 [1] CRAN (R 4.1.2)
-##  htmltools              0.5.3    2022-07-18 [1] CRAN (R 4.1.2)
-##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
-##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
-##  igraph                 1.2.11   2022-01-04 [1] CRAN (R 4.1.2)
-##  insight                0.17.0   2022-03-29 [1] CRAN (R 4.1.2)
-##  IRanges                2.28.0   2021-10-26 [1] Bioconductor
-##  iterators              1.0.14   2022-02-05 [1] CRAN (R 4.1.2)
-##  jpeg                   0.1-9    2021-07-24 [1] CRAN (R 4.1.0)
-##  jquerylib              0.1.4    2021-04-26 [1] CRAN (R 4.1.0)
-##  jsonlite               1.8.3    2022-10-21 [1] CRAN (R 4.1.2)
-##  kableExtra             1.3.4    2021-02-20 [1] CRAN (R 4.1.2)
-##  KEGGREST               1.34.0   2021-10-26 [1] Bioconductor
-##  KernSmooth             2.23-20  2021-05-03 [1] CRAN (R 4.1.2)
-##  knitr                  1.40     2022-08-24 [1] CRAN (R 4.1.2)
-##  labeling               0.4.2    2020-10-20 [1] CRAN (R 4.1.0)
-##  lattice              * 0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
-##  latticeExtra           0.6-29   2019-12-19 [1] CRAN (R 4.1.0)
-##  leaps                  3.1      2020-01-16 [1] CRAN (R 4.1.0)
-##  libcoin                1.0-9    2021-09-27 [1] CRAN (R 4.1.0)
-##  lifecycle              1.0.3    2022-10-07 [1] CRAN (R 4.1.2)
-##  limma                  3.50.1   2022-02-17 [1] Bioconductor
-##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
-##  magrittr               2.0.3    2022-03-30 [1] CRAN (R 4.1.2)
-##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
-##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
-##  MatrixGenerics         1.6.0    2021-10-26 [1] Bioconductor
-##  matrixStats            0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
-##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
-##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
-##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
-##  microbiome             1.16.0   2021-10-26 [1] Bioconductor
-##  modeltools             0.2-23   2020-03-05 [1] CRAN (R 4.1.0)
-##  multcomp               1.4-18   2022-01-04 [1] CRAN (R 4.1.2)
-##  multtest               2.50.0   2021-10-26 [1] Bioconductor
-##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
-##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
-##  mycor                  0.1.1    2018-04-10 [1] CRAN (R 4.1.0)
-##  nlme                 * 3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
-##  nnet                   7.3-17   2022-01-13 [1] CRAN (R 4.1.2)
-##  openssl                2.0.0    2022-03-02 [1] CRAN (R 4.1.2)
-##  permute              * 0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
-##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
-##  picante              * 1.8.2    2020-06-10 [1] CRAN (R 4.1.0)
-##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
-##  pkgbuild               1.3.1    2021-12-20 [1] CRAN (R 4.1.0)
-##  pkgconfig              2.0.3    2019-09-22 [1] CRAN (R 4.1.0)
-##  pkgload                1.2.4    2021-11-30 [1] CRAN (R 4.1.0)
-##  plyr                   1.8.6    2020-03-03 [1] CRAN (R 4.1.0)
-##  png                    0.1-7    2013-12-03 [1] CRAN (R 4.1.0)
-##  ppcor                  1.1      2015-12-03 [1] CRAN (R 4.1.0)
-##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
-##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
-##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
-##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
-##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
-##  RColorBrewer         * 1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
-##  Rcpp                   1.0.10   2023-01-22 [1] CRAN (R 4.1.2)
-##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
-##  readr                  2.1.2    2022-01-30 [1] CRAN (R 4.1.2)
-##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
-##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
-##  reticulate             1.24     2022-01-26 [1] CRAN (R 4.1.2)
-##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
-##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
-##  Rhdf5lib               1.16.0   2021-10-26 [1] Bioconductor
-##  rlang                  1.0.6    2022-09-24 [1] CRAN (R 4.1.2)
-##  rmarkdown              2.17     2022-10-07 [1] CRAN (R 4.1.2)
-##  rpart                  4.1.16   2022-01-24 [1] CRAN (R 4.1.2)
-##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
-##  RSpectra               0.16-0   2019-12-01 [1] CRAN (R 4.1.0)
-##  RSQLite                2.2.10   2022-02-17 [1] CRAN (R 4.1.2)
-##  rstatix                0.7.0    2021-02-13 [1] CRAN (R 4.1.0)
-##  rstudioapi             0.13     2020-11-12 [1] CRAN (R 4.1.0)
-##  Rtsne                  0.15     2018-11-10 [1] CRAN (R 4.1.0)
-##  rvest                  1.0.2    2021-10-16 [1] CRAN (R 4.1.0)
-##  S4Vectors              0.32.3   2021-11-21 [1] Bioconductor
-##  sandwich               3.0-1    2021-05-18 [1] CRAN (R 4.1.0)
-##  sass                   0.4.2    2022-07-16 [1] CRAN (R 4.1.2)
-##  scales                 1.2.1    2022-08-20 [1] CRAN (R 4.1.2)
-##  scatterplot3d          0.3-41   2018-03-14 [1] CRAN (R 4.1.0)
-##  sessioninfo            1.2.2    2021-12-06 [1] CRAN (R 4.1.0)
-##  shape                  1.4.6    2021-05-19 [1] CRAN (R 4.1.0)
-##  sjlabelled             1.2.0    2022-04-10 [1] CRAN (R 4.1.2)
-##  sjmisc                 2.8.9    2021-12-03 [1] CRAN (R 4.1.0)
-##  stringi                1.7.8    2022-07-11 [1] CRAN (R 4.1.2)
-##  stringr                1.4.1    2022-08-20 [1] CRAN (R 4.1.2)
-##  SummarizedExperiment   1.24.0   2021-10-26 [1] Bioconductor
-##  survival               3.4-0    2022-08-09 [1] CRAN (R 4.1.2)
-##  svglite                2.1.0    2022-02-03 [1] CRAN (R 4.1.2)
-##  systemfonts            1.0.4    2022-02-11 [1] CRAN (R 4.1.2)
-##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
-##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
-##  tibble               * 3.1.8    2022-07-22 [1] CRAN (R 4.1.2)
-##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
-##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
-##  tzdb                   0.3.0    2022-03-28 [1] CRAN (R 4.1.2)
-##  umap                   0.2.8.0  2022-03-23 [1] CRAN (R 4.1.2)
-##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
-##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
-##  uuid                   1.0-3    2021-11-01 [1] CRAN (R 4.1.0)
-##  vctrs                  0.5.1    2022-11-16 [1] CRAN (R 4.1.2)
-##  vegan                * 2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
-##  viridis              * 0.6.2    2021-10-13 [1] CRAN (R 4.1.0)
-##  viridisLite          * 0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
-##  webshot                0.5.3    2022-04-14 [1] CRAN (R 4.1.2)
-##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
-##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
-##  xfun                   0.34     2022-10-18 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.8.7  2023-01-06 [1] local
-##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
-##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
-##  XVector                0.34.0   2021-10-26 [1] Bioconductor
-##  yaml                   2.3.6    2022-10-18 [1] CRAN (R 4.1.2)
-##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
-##  zoo                    1.8-9    2021-03-09 [1] CRAN (R 4.1.0)
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+##  package              * version   date (UTC) lib source
+##  abind                  1.4-5     2016-07-21 [2] CRAN (R 4.1.0)
+##  ade4                   1.7-22    2023-02-06 [2] CRAN (R 4.1.2)
+##  ALDEx2                 1.30.0    2022-11-01 [2] Bioconductor
+##  annotate               1.72.0    2021-10-26 [2] Bioconductor
+##  AnnotationDbi          1.60.2    2023-03-10 [2] Bioconductor
+##  ape                  * 5.7-1     2023-03-13 [2] CRAN (R 4.1.2)
+##  askpass                1.1       2019-01-13 [2] CRAN (R 4.1.0)
+##  backports              1.4.1     2021-12-13 [2] CRAN (R 4.1.0)
+##  base64enc              0.1-3     2015-07-28 [2] CRAN (R 4.1.0)
+##  bayesm                 3.1-5     2022-12-02 [2] CRAN (R 4.1.2)
+##  Biobase              * 2.54.0    2021-10-26 [2] Bioconductor
+##  BiocGenerics         * 0.40.0    2021-10-26 [2] Bioconductor
+##  BiocParallel           1.28.3    2021-12-09 [2] Bioconductor
+##  biomformat             1.22.0    2021-10-26 [2] Bioconductor
+##  Biostrings             2.62.0    2021-10-26 [2] Bioconductor
+##  bit                    4.0.5     2022-11-15 [2] CRAN (R 4.1.2)
+##  bit64                  4.0.5     2020-08-30 [2] CRAN (R 4.1.0)
+##  bitops                 1.0-7     2021-04-24 [2] CRAN (R 4.1.0)
+##  blob                   1.2.4     2023-03-17 [2] CRAN (R 4.1.2)
+##  bookdown               0.34      2023-05-09 [2] CRAN (R 4.1.2)
+##  broom                  1.0.5     2023-06-09 [2] CRAN (R 4.1.3)
+##  bslib                  0.5.0     2023-06-09 [2] CRAN (R 4.1.3)
+##  cachem                 1.0.8     2023-05-01 [2] CRAN (R 4.1.2)
+##  callr                  3.7.3     2022-11-02 [2] CRAN (R 4.1.2)
+##  car                    3.1-2     2023-03-30 [2] CRAN (R 4.1.2)
+##  carData                3.0-5     2022-01-06 [2] CRAN (R 4.1.2)
+##  caTools                1.18.2    2021-03-28 [2] CRAN (R 4.1.0)
+##  checkmate              2.2.0     2023-04-27 [2] CRAN (R 4.1.2)
+##  class                  7.3-22    2023-05-03 [2] CRAN (R 4.1.2)
+##  classInt               0.4-9     2023-02-28 [2] CRAN (R 4.1.2)
+##  cli                    3.6.1     2023-03-23 [2] CRAN (R 4.1.2)
+##  cluster                2.1.4     2022-08-22 [2] CRAN (R 4.1.2)
+##  coda                   0.19-4    2020-09-30 [2] CRAN (R 4.1.0)
+##  codetools              0.2-19    2023-02-01 [2] CRAN (R 4.1.2)
+##  coin                   1.4-2     2021-10-08 [2] CRAN (R 4.1.0)
+##  colorspace             2.1-0     2023-01-23 [2] CRAN (R 4.1.2)
+##  compositions           2.0-6     2023-04-13 [2] CRAN (R 4.1.2)
+##  conflicted           * 1.2.0     2023-02-01 [2] CRAN (R 4.1.2)
+##  corrplot               0.92      2021-11-18 [2] CRAN (R 4.1.0)
+##  cowplot                1.1.1     2020-12-30 [2] CRAN (R 4.1.0)
+##  crayon                 1.5.2     2022-09-29 [2] CRAN (R 4.1.2)
+##  crosstalk              1.2.0     2021-11-04 [2] CRAN (R 4.1.0)
+##  data.table             1.14.8    2023-02-17 [2] CRAN (R 4.1.2)
+##  DBI                    1.1.3     2022-06-18 [2] CRAN (R 4.1.2)
+##  DelayedArray           0.20.0    2021-10-26 [2] Bioconductor
+##  DEoptimR               1.0-14    2023-06-09 [2] CRAN (R 4.1.3)
+##  DESeq2                 1.34.0    2021-10-26 [2] Bioconductor
+##  devtools             * 2.4.5     2022-10-11 [2] CRAN (R 4.1.2)
+##  digest                 0.6.33    2023-07-07 [1] CRAN (R 4.1.3)
+##  dplyr                * 1.1.2     2023-04-20 [2] CRAN (R 4.1.2)
+##  DT                     0.28      2023-05-18 [2] CRAN (R 4.1.3)
+##  e1071                  1.7-13    2023-02-01 [2] CRAN (R 4.1.2)
+##  edgeR                  3.36.0    2021-10-26 [2] Bioconductor
+##  ellipsis               0.3.2     2021-04-29 [2] CRAN (R 4.1.0)
+##  emmeans                1.8.7     2023-06-23 [1] CRAN (R 4.1.3)
+##  estimability           1.4.1     2022-08-05 [2] CRAN (R 4.1.2)
+##  evaluate               0.21      2023-05-05 [2] CRAN (R 4.1.2)
+##  FactoMineR             2.8       2023-03-27 [2] CRAN (R 4.1.2)
+##  fansi                  1.0.4     2023-01-22 [2] CRAN (R 4.1.2)
+##  farver                 2.1.1     2022-07-06 [2] CRAN (R 4.1.2)
+##  fastmap                1.1.1     2023-02-24 [2] CRAN (R 4.1.2)
+##  flashClust             1.01-2    2012-08-21 [2] CRAN (R 4.1.0)
+##  foreach                1.5.2     2022-02-02 [2] CRAN (R 4.1.2)
+##  foreign                0.8-84    2022-12-06 [2] CRAN (R 4.1.2)
+##  forestplot             3.1.1     2022-12-06 [2] CRAN (R 4.1.2)
+##  formatR                1.14      2023-01-17 [2] CRAN (R 4.1.2)
+##  Formula                1.2-5     2023-02-24 [2] CRAN (R 4.1.2)
+##  fs                     1.6.2     2023-04-25 [2] CRAN (R 4.1.2)
+##  futile.logger        * 1.4.3     2016-07-10 [2] CRAN (R 4.1.0)
+##  futile.options         1.0.1     2018-04-20 [2] CRAN (R 4.1.0)
+##  genefilter             1.76.0    2021-10-26 [2] Bioconductor
+##  geneplotter            1.72.0    2021-10-26 [2] Bioconductor
+##  generics               0.1.3     2022-07-05 [2] CRAN (R 4.1.2)
+##  GenomeInfoDb         * 1.30.1    2022-01-30 [2] Bioconductor
+##  GenomeInfoDbData       1.2.7     2022-03-09 [2] Bioconductor
+##  GenomicRanges        * 1.46.1    2021-11-18 [2] Bioconductor
+##  ggiraph                0.8.7     2023-03-17 [2] CRAN (R 4.1.2)
+##  ggiraphExtra           0.3.0     2020-10-06 [2] CRAN (R 4.1.2)
+##  ggplot2              * 3.4.2     2023-04-03 [2] CRAN (R 4.1.2)
+##  ggpubr               * 0.6.0     2023-02-10 [2] CRAN (R 4.1.2)
+##  ggrepel                0.9.3     2023-02-03 [2] CRAN (R 4.1.2)
+##  ggsci                  3.0.0     2023-03-08 [2] CRAN (R 4.1.2)
+##  ggsignif               0.6.4     2022-10-13 [2] CRAN (R 4.1.2)
+##  ggVennDiagram          1.2.2     2022-09-08 [2] CRAN (R 4.1.2)
+##  glmnet                 4.1-7     2023-03-23 [2] CRAN (R 4.1.2)
+##  glue                 * 1.6.2     2022-02-24 [2] CRAN (R 4.1.2)
+##  Gmisc                * 3.0.2     2023-03-13 [2] CRAN (R 4.1.2)
+##  gplots                 3.1.3     2022-04-25 [2] CRAN (R 4.1.2)
+##  gridExtra              2.3       2017-09-09 [2] CRAN (R 4.1.0)
+##  gtable                 0.3.3     2023-03-21 [2] CRAN (R 4.1.2)
+##  gtools                 3.9.4     2022-11-27 [2] CRAN (R 4.1.2)
+##  highr                  0.10      2022-12-22 [2] CRAN (R 4.1.2)
+##  Hmisc                  5.1-0     2023-05-08 [2] CRAN (R 4.1.2)
+##  hms                    1.1.3     2023-03-21 [2] CRAN (R 4.1.2)
+##  htmlTable            * 2.4.1     2022-07-07 [2] CRAN (R 4.1.2)
+##  htmltools              0.5.5     2023-03-23 [2] CRAN (R 4.1.2)
+##  htmlwidgets            1.6.2     2023-03-17 [2] CRAN (R 4.1.2)
+##  httpuv                 1.6.11    2023-05-11 [2] CRAN (R 4.1.3)
+##  httr                   1.4.6     2023-05-08 [2] CRAN (R 4.1.2)
+##  igraph                 1.5.0     2023-06-16 [1] CRAN (R 4.1.3)
+##  insight                0.19.3    2023-06-29 [2] CRAN (R 4.1.3)
+##  IRanges              * 2.28.0    2021-10-26 [2] Bioconductor
+##  iterators              1.0.14    2022-02-05 [2] CRAN (R 4.1.2)
+##  jquerylib              0.1.4     2021-04-26 [2] CRAN (R 4.1.0)
+##  jsonlite               1.8.7     2023-06-29 [2] CRAN (R 4.1.3)
+##  kableExtra             1.3.4     2021-02-20 [2] CRAN (R 4.1.2)
+##  KEGGREST               1.34.0    2021-10-26 [2] Bioconductor
+##  KernSmooth             2.23-22   2023-07-10 [2] CRAN (R 4.1.3)
+##  knitr                  1.43      2023-05-25 [2] CRAN (R 4.1.3)
+##  labeling               0.4.2     2020-10-20 [2] CRAN (R 4.1.0)
+##  lambda.r               1.2.4     2019-09-18 [2] CRAN (R 4.1.0)
+##  later                  1.3.1     2023-05-02 [2] CRAN (R 4.1.2)
+##  lattice              * 0.21-8    2023-04-05 [2] CRAN (R 4.1.2)
+##  leaps                  3.1       2020-01-16 [2] CRAN (R 4.1.0)
+##  libcoin                1.0-9     2021-09-27 [2] CRAN (R 4.1.0)
+##  lifecycle              1.0.3     2022-10-07 [2] CRAN (R 4.1.2)
+##  limma                  3.50.3    2022-04-07 [2] Bioconductor
+##  locfit                 1.5-9.8   2023-06-11 [2] CRAN (R 4.1.3)
+##  LOCOM                  1.1       2022-08-05 [2] Github (yijuanhu/LOCOM@c181e0f)
+##  lubridate              1.9.2     2023-02-10 [2] CRAN (R 4.1.2)
+##  magrittr             * 2.0.3     2022-03-30 [2] CRAN (R 4.1.2)
+##  MASS                   7.3-60    2023-05-04 [2] CRAN (R 4.1.2)
+##  Matrix                 1.6-0     2023-07-08 [2] CRAN (R 4.1.3)
+##  MatrixGenerics       * 1.6.0     2021-10-26 [2] Bioconductor
+##  matrixStats          * 1.0.0     2023-06-02 [2] CRAN (R 4.1.3)
+##  mbzinb                 0.2       2022-03-16 [2] local
+##  memoise                2.0.1     2021-11-26 [2] CRAN (R 4.1.0)
+##  metagenomeSeq          1.36.0    2021-10-26 [2] Bioconductor
+##  mgcv                   1.8-42    2023-03-02 [2] CRAN (R 4.1.2)
+##  microbiome             1.16.0    2021-10-26 [2] Bioconductor
+##  mime                   0.12      2021-09-28 [2] CRAN (R 4.1.0)
+##  miniUI                 0.1.1.1   2018-05-18 [2] CRAN (R 4.1.0)
+##  modeltools             0.2-23    2020-03-05 [2] CRAN (R 4.1.0)
+##  multcomp               1.4-25    2023-06-20 [2] CRAN (R 4.1.3)
+##  multcompView           0.1-9     2023-04-09 [2] CRAN (R 4.1.2)
+##  multtest               2.50.0    2021-10-26 [2] Bioconductor
+##  munsell                0.5.0     2018-06-12 [2] CRAN (R 4.1.0)
+##  mvtnorm                1.2-2     2023-06-08 [2] CRAN (R 4.1.3)
+##  mycor                  0.1.1     2018-04-10 [2] CRAN (R 4.1.0)
+##  NADA                   1.6-1.1   2020-03-22 [2] CRAN (R 4.1.0)
+##  nlme                 * 3.1-162   2023-01-31 [2] CRAN (R 4.1.2)
+##  nnet                   7.3-19    2023-05-03 [2] CRAN (R 4.1.2)
+##  openssl                2.0.6     2023-03-09 [2] CRAN (R 4.1.2)
+##  permute              * 0.9-7     2022-01-27 [2] CRAN (R 4.1.2)
+##  pheatmap             * 1.0.12    2019-01-04 [2] CRAN (R 4.1.0)
+##  phyloseq             * 1.38.0    2021-10-26 [2] Bioconductor
+##  picante              * 1.8.2     2020-06-10 [2] CRAN (R 4.1.0)
+##  pillar                 1.9.0     2023-03-22 [2] CRAN (R 4.1.2)
+##  pkgbuild               1.4.2     2023-06-26 [2] CRAN (R 4.1.3)
+##  pkgconfig              2.0.3     2019-09-22 [2] CRAN (R 4.1.0)
+##  pkgload                1.3.2.1   2023-07-08 [2] CRAN (R 4.1.3)
+##  plyr                   1.8.8     2022-11-11 [2] CRAN (R 4.1.2)
+##  png                    0.1-8     2022-11-29 [2] CRAN (R 4.1.2)
+##  ppcor                  1.1       2015-12-03 [2] CRAN (R 4.1.0)
+##  prettyunits            1.1.1     2020-01-24 [2] CRAN (R 4.1.0)
+##  processx               3.8.2     2023-06-30 [2] CRAN (R 4.1.3)
+##  profvis                0.3.8     2023-05-02 [2] CRAN (R 4.1.2)
+##  promises               1.2.0.1   2021-02-11 [2] CRAN (R 4.1.0)
+##  protoclust             1.6.4     2022-04-01 [2] CRAN (R 4.1.2)
+##  proxy                  0.4-27    2022-06-09 [2] CRAN (R 4.1.2)
+##  ps                     1.7.5     2023-04-18 [2] CRAN (R 4.1.2)
+##  pscl                   1.5.5.1   2023-05-10 [2] CRAN (R 4.1.2)
+##  purrr                * 1.0.1     2023-01-10 [2] CRAN (R 4.1.2)
+##  qvalue                 2.26.0    2021-10-26 [2] Bioconductor
+##  R6                     2.5.1     2021-08-19 [2] CRAN (R 4.1.0)
+##  RAIDA                  1.0       2022-03-14 [2] local
+##  RColorBrewer         * 1.1-3     2022-04-03 [2] CRAN (R 4.1.2)
+##  Rcpp                 * 1.0.11    2023-07-06 [1] CRAN (R 4.1.3)
+##  RcppZiggurat           0.1.6     2020-10-20 [2] CRAN (R 4.1.0)
+##  RCurl                  1.98-1.12 2023-03-27 [2] CRAN (R 4.1.2)
+##  readr                * 2.1.4     2023-02-10 [2] CRAN (R 4.1.2)
+##  remotes                2.4.2     2021-11-30 [2] CRAN (R 4.1.0)
+##  reshape2               1.4.4     2020-04-09 [2] CRAN (R 4.1.0)
+##  reticulate             1.30      2023-06-09 [2] CRAN (R 4.1.3)
+##  Rfast                  2.0.8     2023-07-03 [2] CRAN (R 4.1.3)
+##  rhdf5                  2.38.1    2022-03-10 [2] Bioconductor
+##  rhdf5filters           1.6.0     2021-10-26 [2] Bioconductor
+##  Rhdf5lib               1.16.0    2021-10-26 [2] Bioconductor
+##  rlang                  1.1.1     2023-04-28 [1] CRAN (R 4.1.2)
+##  rmarkdown              2.23      2023-07-01 [2] CRAN (R 4.1.3)
+##  robustbase             0.99-0    2023-06-16 [2] CRAN (R 4.1.3)
+##  rpart                  4.1.19    2022-10-21 [2] CRAN (R 4.1.2)
+##  RSpectra               0.16-1    2022-04-24 [2] CRAN (R 4.1.2)
+##  RSQLite                2.3.1     2023-04-03 [2] CRAN (R 4.1.2)
+##  rstatix                0.7.2     2023-02-01 [2] CRAN (R 4.1.2)
+##  rstudioapi             0.15.0    2023-07-07 [2] CRAN (R 4.1.3)
+##  Rtsne                  0.16      2022-04-17 [2] CRAN (R 4.1.2)
+##  RVenn                  1.1.0     2019-07-18 [2] CRAN (R 4.1.0)
+##  rvest                  1.0.3     2022-08-19 [2] CRAN (R 4.1.2)
+##  S4Vectors            * 0.32.4    2022-03-29 [2] Bioconductor
+##  sandwich               3.0-2     2022-06-15 [2] CRAN (R 4.1.2)
+##  sass                   0.4.6     2023-05-03 [2] CRAN (R 4.1.2)
+##  scales                 1.2.1     2022-08-20 [2] CRAN (R 4.1.2)
+##  scatterplot3d          0.3-44    2023-05-05 [2] CRAN (R 4.1.2)
+##  sessioninfo            1.2.2     2021-12-06 [2] CRAN (R 4.1.0)
+##  sf                     1.0-7     2022-03-07 [2] CRAN (R 4.1.2)
+##  shape                  1.4.6     2021-05-19 [2] CRAN (R 4.1.0)
+##  shiny                  1.7.4.1   2023-07-06 [2] CRAN (R 4.1.3)
+##  sjlabelled             1.2.0     2022-04-10 [2] CRAN (R 4.1.2)
+##  sjmisc                 2.8.9     2021-12-03 [2] CRAN (R 4.1.0)
+##  stringi                1.7.12    2023-01-11 [2] CRAN (R 4.1.2)
+##  stringr                1.5.0     2022-12-02 [2] CRAN (R 4.1.2)
+##  SummarizedExperiment * 1.24.0    2021-10-26 [2] Bioconductor
+##  survival               3.5-5     2023-03-12 [2] CRAN (R 4.1.2)
+##  svglite                2.1.1     2023-01-10 [2] CRAN (R 4.1.2)
+##  systemfonts            1.0.4     2022-02-11 [2] CRAN (R 4.1.2)
+##  tensorA                0.36.2    2020-11-19 [2] CRAN (R 4.1.0)
+##  TH.data                1.1-2     2023-04-17 [2] CRAN (R 4.1.2)
+##  tibble               * 3.2.1     2023-03-20 [2] CRAN (R 4.1.2)
+##  tidyr                * 1.3.0     2023-01-24 [2] CRAN (R 4.1.2)
+##  tidyselect             1.2.0     2022-10-10 [2] CRAN (R 4.1.2)
+##  timechange             0.2.0     2023-01-11 [2] CRAN (R 4.1.2)
+##  truncnorm              1.0-9     2023-03-20 [2] CRAN (R 4.1.2)
+##  tzdb                   0.4.0     2023-05-12 [2] CRAN (R 4.1.3)
+##  umap                   0.2.10.0  2023-02-01 [2] CRAN (R 4.1.2)
+##  units                  0.8-2     2023-04-27 [2] CRAN (R 4.1.2)
+##  urlchecker             1.0.1     2021-11-30 [2] CRAN (R 4.1.0)
+##  usethis              * 2.2.2     2023-07-06 [2] CRAN (R 4.1.3)
+##  utf8                   1.2.3     2023-01-31 [2] CRAN (R 4.1.2)
+##  uuid                   1.1-0     2022-04-19 [2] CRAN (R 4.1.2)
+##  vctrs                  0.6.3     2023-06-14 [1] CRAN (R 4.1.3)
+##  vegan                * 2.6-4     2022-10-11 [2] CRAN (R 4.1.2)
+##  VennDiagram          * 1.7.3     2022-04-12 [2] CRAN (R 4.1.2)
+##  viridis              * 0.6.3     2023-05-03 [2] CRAN (R 4.1.2)
+##  viridisLite          * 0.4.2     2023-05-02 [2] CRAN (R 4.1.2)
+##  vroom                  1.6.3     2023-04-28 [2] CRAN (R 4.1.2)
+##  webshot                0.5.5     2023-06-26 [2] CRAN (R 4.1.3)
+##  withr                  2.5.0     2022-03-03 [2] CRAN (R 4.1.2)
+##  Wrench                 1.12.0    2021-10-26 [2] Bioconductor
+##  xfun                   0.40      2023-08-09 [1] CRAN (R 4.1.3)
+##  XMAS2                * 2.2.0     2023-10-27 [1] local
+##  XML                    3.99-0.14 2023-03-19 [2] CRAN (R 4.1.2)
+##  xml2                   1.3.5     2023-07-06 [2] CRAN (R 4.1.3)
+##  xtable                 1.8-4     2019-04-21 [2] CRAN (R 4.1.0)
+##  XVector                0.34.0    2021-10-26 [2] Bioconductor
+##  yaml                   2.3.7     2023-01-23 [2] CRAN (R 4.1.2)
+##  zCompositions          1.4.0-1   2022-03-26 [2] CRAN (R 4.1.2)
+##  zlibbioc               1.40.0    2021-10-26 [2] Bioconductor
+##  zoo                    1.8-12    2023-04-13 [2] CRAN (R 4.1.2)
 ## 
-##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+##  [1] /Users/zouhua/Library/R/x86_64/4.1/library
+##  [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
 ## 
-## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 
 </div>
 </div>
@@ -1036,7 +1075,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "subsection",
+"collapse": "section",
 "scroll_highlight": true,
 "toc_depth": 3
 }

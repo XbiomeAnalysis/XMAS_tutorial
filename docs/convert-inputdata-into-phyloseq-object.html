@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Convert inputdata into phyloseq object | XMAS 2.0 Tutorial</title>
   <meta name="description" content="A tutorial of XMAS 2.0 package for in-house training" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Convert inputdata into phyloseq object | XMAS 2.0 Tutorial" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2023-04-12" />
+<meta name="date" content="2023-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,12 +52,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.21/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -130,6 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -152,7 +156,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
 </head>
 
 <body>
@@ -351,14 +355,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="differential-analysis.html"><a href="differential-analysis.html#dominant-taxa"><i class="fa fa-check"></i><b>10.6</b> Dominant taxa</a></li>
 <li class="chapter" data-level="10.7" data-path="differential-analysis.html"><a href="differential-analysis.html#multiple-differential-analysis-by-one-function"><i class="fa fa-check"></i><b>10.7</b> Multiple differential analysis by one function</a></li>
-<li class="chapter" data-level="10.8" data-path="differential-analysis.html"><a href="differential-analysis.html#comparing-outputs-from-xmas2-lefse-conda-and-lefse-galaxy-using-the-same-in-house-datasets-amplicon_pszeybel_gut"><i class="fa fa-check"></i><b>10.8</b> Comparing outputs from XMAS2, lefse-conda, and lefse-galaxy using the same in-house datasets (amplicon_ps|Zeybel_Gut)</a>
-<ul>
-<li class="chapter" data-level="10.8.1" data-path="differential-analysis.html"><a href="differential-analysis.html#introduction-1"><i class="fa fa-check"></i><b>10.8.1</b> Introduction</a></li>
-<li class="chapter" data-level="10.8.2" data-path="differential-analysis.html"><a href="differential-analysis.html#dataset"><i class="fa fa-check"></i><b>10.8.2</b> Dataset</a></li>
-<li class="chapter" data-level="10.8.3" data-path="differential-analysis.html"><a href="differential-analysis.html#run-lefse-independently-with-the-three-applications-r-conda-galaxy"><i class="fa fa-check"></i><b>10.8.3</b> Run lefse independently with the three applications (R, conda, galaxy)</a></li>
-<li class="chapter" data-level="10.8.4" data-path="differential-analysis.html"><a href="differential-analysis.html#comparison-of-lefse-conda-with-xmas2"><i class="fa fa-check"></i><b>10.8.4</b> Comparison of lefse-conda with XMAS2</a></li>
-</ul></li>
-<li class="chapter" data-level="10.9" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-7"><i class="fa fa-check"></i><b>10.9</b> Systematic Information</a></li>
+<li class="chapter" data-level="10.8" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-7"><i class="fa fa-check"></i><b>10.8</b> Systematic Information</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="visualization-5.html"><a href="visualization-5.html"><i class="fa fa-check"></i><b>11</b> Visualization</a>
 <ul>
@@ -574,12 +571,12 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="convert-inputdata-into-phyloseq-object" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Convert inputdata into phyloseq object<a href="convert-inputdata-into-phyloseq-object.html#convert-inputdata-into-phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><em>r Biocpkg(“phyloseq”)</em> <span class="citation">(<a href="#ref-mcmurdie2013phyloseq" role="doc-biblioref">McMurdie and Holmes 2013</a>)</span> is the most popular <a href="https://bioconductor.org/">Biocondcutor</a> package used by the microbiome research field, and <code>phyloseq-class</code> objects are a great data-standard for microbiota data in R. Therefore, the core functions in <code>XMAS</code> take <code>phyloseq-class</code> object as input. In the phyloseq object, information on OTU abundances, taxonomy of OTUs, the phylogenetic tree and metadata is stored.</p>
+<p><em>r Biocpkg(“phyloseq”)</em> <span class="citation">(<a href="#ref-mcmurdie2013phyloseq">McMurdie and Holmes 2013</a>)</span> is the most popular <a href="https://bioconductor.org/">Biocondcutor</a> package used by the microbiome research field, and <code>phyloseq-class</code> objects are a great data-standard for microbiota data in R. Therefore, the core functions in <code>XMAS</code> take <code>phyloseq-class</code> object as input. In the phyloseq object, information on OTU abundances, taxonomy of OTUs, the phylogenetic tree and metadata is stored.</p>
 <p>This tutorial will introduce you the basic steps to convert results from the in-house pipeline into <em>phyloseq-class object</em>. More importantly on how to look at your data and filter appropriately. We will use the inputs from <strong>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/</strong>.</p>
 <p>Outline of this Chapter:</p>
 <ul>
-<li><p><a href="examples.html#loading-packages-10">Loading Packages</a></p></li>
-<li><p><a href="association-analysis.html#importing-data-9">Importing Data</a></p>
+<li><p><a href="convert-inputdata-into-phyloseq-object.html#loading-packages">Loading Packages</a></p></li>
+<li><p><a href="convert-inputdata-into-phyloseq-object.html#importing-data">Importing Data</a></p>
 <ul>
 <li><p><a href="convert-inputdata-into-phyloseq-object.html#result-from-dada2">Result from dada2</a></p></li>
 <li><p><a href="convert-inputdata-into-phyloseq-object.html#result-from-metaphlan">Result from Metaphlan</a></p></li>
@@ -587,10 +584,10 @@ div.csl-indent {
 </ul>
 <div id="loading-packages" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Loading Packages<a href="convert-inputdata-into-phyloseq-object.html#loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="convert-inputdata-into-phyloseq-object.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
-<span id="cb11-2"><a href="convert-inputdata-into-phyloseq-object.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb11-3"><a href="convert-inputdata-into-phyloseq-object.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb11-4"><a href="convert-inputdata-into-phyloseq-object.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="convert-inputdata-into-phyloseq-object.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(XMAS2)</span>
+<span id="cb11-2"><a href="convert-inputdata-into-phyloseq-object.html#cb11-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb11-3"><a href="convert-inputdata-into-phyloseq-object.html#cb11-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb11-4"><a href="convert-inputdata-into-phyloseq-object.html#cb11-4" tabindex="-1"></a><span class="fu">library</span>(phyloseq)</span></code></pre></div>
 </div>
 <div id="importing-data" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Importing Data<a href="convert-inputdata-into-phyloseq-object.html#importing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -602,35 +599,35 @@ div.csl-indent {
 <li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/process/fasta2tree/tree.nwk</p></li>
 <li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/16S/metadata.txt</p></li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="convert-inputdata-into-phyloseq-object.html#cb12-1" aria-hidden="true" tabindex="-1"></a>dada2_res <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
-<span id="cb12-2"><a href="convert-inputdata-into-phyloseq-object.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
-<span id="cb12-3"><a href="convert-inputdata-into-phyloseq-object.html#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_res.rds&quot;</span>,</span>
-<span id="cb12-4"><a href="convert-inputdata-into-phyloseq-object.html#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
-<span id="cb12-5"><a href="convert-inputdata-into-phyloseq-object.html#cb12-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-6"><a href="convert-inputdata-into-phyloseq-object.html#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-7"><a href="convert-inputdata-into-phyloseq-object.html#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="convert-inputdata-into-phyloseq-object.html#cb12-8" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
-<span id="cb12-9"><a href="convert-inputdata-into-phyloseq-object.html#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
-<span id="cb12-10"><a href="convert-inputdata-into-phyloseq-object.html#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_metadata.tsv&quot;</span>,</span>
-<span id="cb12-11"><a href="convert-inputdata-into-phyloseq-object.html#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
-<span id="cb12-12"><a href="convert-inputdata-into-phyloseq-object.html#cb12-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-13"><a href="convert-inputdata-into-phyloseq-object.html#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
-<span id="cb12-14"><a href="convert-inputdata-into-phyloseq-object.html#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-15"><a href="convert-inputdata-into-phyloseq-object.html#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb12-16"><a href="convert-inputdata-into-phyloseq-object.html#cb12-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-17"><a href="convert-inputdata-into-phyloseq-object.html#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="convert-inputdata-into-phyloseq-object.html#cb12-18" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">read_tree</span>(</span>
-<span id="cb12-19"><a href="convert-inputdata-into-phyloseq-object.html#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
-<span id="cb12-20"><a href="convert-inputdata-into-phyloseq-object.html#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;tree.nwk&quot;</span>,</span>
-<span id="cb12-21"><a href="convert-inputdata-into-phyloseq-object.html#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
-<span id="cb12-22"><a href="convert-inputdata-into-phyloseq-object.html#cb12-22" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-23"><a href="convert-inputdata-into-phyloseq-object.html#cb12-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="convert-inputdata-into-phyloseq-object.html#cb12-1" tabindex="-1"></a>dada2_res <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
+<span id="cb12-2"><a href="convert-inputdata-into-phyloseq-object.html#cb12-2" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
+<span id="cb12-3"><a href="convert-inputdata-into-phyloseq-object.html#cb12-3" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_res.rds&quot;</span>,</span>
+<span id="cb12-4"><a href="convert-inputdata-into-phyloseq-object.html#cb12-4" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
+<span id="cb12-5"><a href="convert-inputdata-into-phyloseq-object.html#cb12-5" tabindex="-1"></a>    )</span>
+<span id="cb12-6"><a href="convert-inputdata-into-phyloseq-object.html#cb12-6" tabindex="-1"></a>)</span>
+<span id="cb12-7"><a href="convert-inputdata-into-phyloseq-object.html#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="convert-inputdata-into-phyloseq-object.html#cb12-8" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb12-9"><a href="convert-inputdata-into-phyloseq-object.html#cb12-9" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
+<span id="cb12-10"><a href="convert-inputdata-into-phyloseq-object.html#cb12-10" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;dada2_metadata.tsv&quot;</span>,</span>
+<span id="cb12-11"><a href="convert-inputdata-into-phyloseq-object.html#cb12-11" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
+<span id="cb12-12"><a href="convert-inputdata-into-phyloseq-object.html#cb12-12" tabindex="-1"></a>    ),</span>
+<span id="cb12-13"><a href="convert-inputdata-into-phyloseq-object.html#cb12-13" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
+<span id="cb12-14"><a href="convert-inputdata-into-phyloseq-object.html#cb12-14" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-15"><a href="convert-inputdata-into-phyloseq-object.html#cb12-15" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb12-16"><a href="convert-inputdata-into-phyloseq-object.html#cb12-16" tabindex="-1"></a>)</span>
+<span id="cb12-17"><a href="convert-inputdata-into-phyloseq-object.html#cb12-17" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="convert-inputdata-into-phyloseq-object.html#cb12-18" tabindex="-1"></a>tree <span class="ot">&lt;-</span> phyloseq<span class="sc">::</span><span class="fu">read_tree</span>(</span>
+<span id="cb12-19"><a href="convert-inputdata-into-phyloseq-object.html#cb12-19" tabindex="-1"></a>  <span class="fu">system.file</span>(</span>
+<span id="cb12-20"><a href="convert-inputdata-into-phyloseq-object.html#cb12-20" tabindex="-1"></a>    <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;tree.nwk&quot;</span>,</span>
+<span id="cb12-21"><a href="convert-inputdata-into-phyloseq-object.html#cb12-21" tabindex="-1"></a>    <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span>    </span>
+<span id="cb12-22"><a href="convert-inputdata-into-phyloseq-object.html#cb12-22" tabindex="-1"></a>    )</span>
+<span id="cb12-23"><a href="convert-inputdata-into-phyloseq-object.html#cb12-23" tabindex="-1"></a>)</span></code></pre></div>
 <div id="taxa-table" class="section level4 hasAnchor" number="3.2.1.1">
 <h4><span class="header-section-number">3.2.1.1</span> taxa table<a href="convert-inputdata-into-phyloseq-object.html#taxa-table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We use <code>import_dada2_taxa</code> to convert dada2_res$tax_tab into our own taxa table</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="convert-inputdata-into-phyloseq-object.html#cb13-1" aria-hidden="true" tabindex="-1"></a>tax_tab <span class="ot">&lt;-</span> <span class="fu">import_dada2_taxa</span>(<span class="at">dada2_taxa =</span> dada2_res<span class="sc">$</span>tax_tab)</span>
-<span id="cb13-2"><a href="convert-inputdata-into-phyloseq-object.html#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="convert-inputdata-into-phyloseq-object.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tax_tab, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="convert-inputdata-into-phyloseq-object.html#cb13-1" tabindex="-1"></a>tax_tab <span class="ot">&lt;-</span> <span class="fu">import_dada2_taxa</span>(<span class="at">dada2_taxa =</span> dada2_res<span class="sc">$</span>tax_tab)</span>
+<span id="cb13-2"><a href="convert-inputdata-into-phyloseq-object.html#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="convert-inputdata-into-phyloseq-object.html#cb13-3" tabindex="-1"></a><span class="fu">head</span>(tax_tab, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##                                                                                                                                                                                                                                                                  Kingdom      
 ## TAATACGTAGGGGGCAAGCGTTATCCGGATTTACTGGGTGTAAAGGGAGCGTAGACGGTGTGGCAAGTCTGATGTGAAAGGCATGGGCTCAACCTGTGGACTGCATTGGAAACTGTCATACTTGAGTGCCGGAGGGGTAAGCGGAATTCCTAGTGTAGCGGTGAAATGCGTAGATATTAGGAGGAACACCAGTGGCGAAGGCGGCTTACTGGACGGTAACTGACGTTGAGGCTCGAAAGCGTGGGGAGCAAACAGG &quot;k__Bacteria&quot;
 ##                                                                                                                                                                                                                                                                  Phylum         
@@ -648,11 +645,11 @@ div.csl-indent {
 </div>
 <div id="otu-table" class="section level4 hasAnchor" number="3.2.1.2">
 <h4><span class="header-section-number">3.2.1.2</span> otu table<a href="convert-inputdata-into-phyloseq-object.html#otu-table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="convert-inputdata-into-phyloseq-object.html#cb15-1" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> dada2_res<span class="sc">$</span>seq_tab</span>
-<span id="cb15-2"><a href="convert-inputdata-into-phyloseq-object.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Shouldn&#39;t use the Total Number as SampleID (wrong: 123456; right: X123456)</span></span>
-<span id="cb15-3"><a href="convert-inputdata-into-phyloseq-object.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(otu_tab) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;S&quot;</span>, <span class="fu">rownames</span>(otu_tab))</span>
-<span id="cb15-4"><a href="convert-inputdata-into-phyloseq-object.html#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="convert-inputdata-into-phyloseq-object.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(otu_tab[, <span class="dv">1</span>, F])</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="convert-inputdata-into-phyloseq-object.html#cb15-1" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> dada2_res<span class="sc">$</span>seq_tab</span>
+<span id="cb15-2"><a href="convert-inputdata-into-phyloseq-object.html#cb15-2" tabindex="-1"></a><span class="co"># Shouldn&#39;t use the Total Number as SampleID (wrong: 123456; right: X123456)</span></span>
+<span id="cb15-3"><a href="convert-inputdata-into-phyloseq-object.html#cb15-3" tabindex="-1"></a><span class="fu">rownames</span>(otu_tab) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;S&quot;</span>, <span class="fu">rownames</span>(otu_tab))</span>
+<span id="cb15-4"><a href="convert-inputdata-into-phyloseq-object.html#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="convert-inputdata-into-phyloseq-object.html#cb15-5" tabindex="-1"></a><span class="fu">head</span>(otu_tab[, <span class="dv">1</span>, F])</span></code></pre></div>
 <pre><code>##       TAATACGTAGGGGGCAAGCGTTATCCGGATTTACTGGGTGTAAAGGGAGCGTAGACGGTGTGGCAAGTCTGATGTGAAAGGCATGGGCTCAACCTGTGGACTGCATTGGAAACTGTCATACTTGAGTGCCGGAGGGGTAAGCGGAATTCCTAGTGTAGCGGTGAAATGCGTAGATATTAGGAGGAACACCAGTGGCGAAGGCGGCTTACTGGACGGTAACTGACGTTGAGGCTCGAAAGCGTGGGGAGCAAACAGG
 ## S6030                                                                                                                                                                                                                                                             1253
 ## S6032                                                                                                                                                                                                                                                            14677
@@ -663,12 +660,12 @@ div.csl-indent {
 </div>
 <div id="metadata-table" class="section level4 hasAnchor" number="3.2.1.3">
 <h4><span class="header-section-number">3.2.1.3</span> metadata table<a href="convert-inputdata-into-phyloseq-object.html#metadata-table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="convert-inputdata-into-phyloseq-object.html#cb17-1" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> sam_tab <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="convert-inputdata-into-phyloseq-object.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;seqID&quot;</span>)</span>
-<span id="cb17-3"><a href="convert-inputdata-into-phyloseq-object.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Shouldn&#39;t use the Total Number as SampleID (wrong: 123456; right: X123456)</span></span>
-<span id="cb17-4"><a href="convert-inputdata-into-phyloseq-object.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sam_tab) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;S&quot;</span>, <span class="fu">rownames</span>(sam_tab))</span>
-<span id="cb17-5"><a href="convert-inputdata-into-phyloseq-object.html#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="convert-inputdata-into-phyloseq-object.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sam_tab)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="convert-inputdata-into-phyloseq-object.html#cb17-1" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> sam_tab <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="convert-inputdata-into-phyloseq-object.html#cb17-2" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;seqID&quot;</span>)</span>
+<span id="cb17-3"><a href="convert-inputdata-into-phyloseq-object.html#cb17-3" tabindex="-1"></a><span class="co"># Shouldn&#39;t use the Total Number as SampleID (wrong: 123456; right: X123456)</span></span>
+<span id="cb17-4"><a href="convert-inputdata-into-phyloseq-object.html#cb17-4" tabindex="-1"></a><span class="fu">rownames</span>(sam_tab) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;S&quot;</span>, <span class="fu">rownames</span>(sam_tab))</span>
+<span id="cb17-5"><a href="convert-inputdata-into-phyloseq-object.html#cb17-5" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="convert-inputdata-into-phyloseq-object.html#cb17-6" tabindex="-1"></a><span class="fu">head</span>(sam_tab)</span></code></pre></div>
 <pre><code>##       Group
 ## S6065    AA
 ## S6049    AA
@@ -679,12 +676,12 @@ div.csl-indent {
 </div>
 <div id="phyloseq-object" class="section level4 hasAnchor" number="3.2.1.4">
 <h4><span class="header-section-number">3.2.1.4</span> phyloseq object<a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="convert-inputdata-into-phyloseq-object.html#cb19-1" aria-hidden="true" tabindex="-1"></a>dada2_ps <span class="ot">&lt;-</span> <span class="fu">get_dada2_phyloseq</span>(</span>
-<span id="cb19-2"><a href="convert-inputdata-into-phyloseq-object.html#cb19-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">seq_tab =</span> otu_tab, </span>
-<span id="cb19-3"><a href="convert-inputdata-into-phyloseq-object.html#cb19-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">tax_tab =</span> tax_tab, </span>
-<span id="cb19-4"><a href="convert-inputdata-into-phyloseq-object.html#cb19-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sam_tab =</span> sam_tab, </span>
-<span id="cb19-5"><a href="convert-inputdata-into-phyloseq-object.html#cb19-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">phy_tree =</span> tree)</span>
-<span id="cb19-6"><a href="convert-inputdata-into-phyloseq-object.html#cb19-6" aria-hidden="true" tabindex="-1"></a>dada2_ps</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="convert-inputdata-into-phyloseq-object.html#cb19-1" tabindex="-1"></a>dada2_ps <span class="ot">&lt;-</span> <span class="fu">get_dada2_phyloseq</span>(</span>
+<span id="cb19-2"><a href="convert-inputdata-into-phyloseq-object.html#cb19-2" tabindex="-1"></a>                  <span class="at">seq_tab =</span> otu_tab, </span>
+<span id="cb19-3"><a href="convert-inputdata-into-phyloseq-object.html#cb19-3" tabindex="-1"></a>                  <span class="at">tax_tab =</span> tax_tab, </span>
+<span id="cb19-4"><a href="convert-inputdata-into-phyloseq-object.html#cb19-4" tabindex="-1"></a>                  <span class="at">sam_tab =</span> sam_tab, </span>
+<span id="cb19-5"><a href="convert-inputdata-into-phyloseq-object.html#cb19-5" tabindex="-1"></a>                  <span class="at">phy_tree =</span> tree)</span>
+<span id="cb19-6"><a href="convert-inputdata-into-phyloseq-object.html#cb19-6" tabindex="-1"></a>dada2_ps</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 896 taxa and 24 samples ]
 ## sample_data() Sample Data:       [ 24 samples by 1 sample variables ]
@@ -695,27 +692,27 @@ div.csl-indent {
 <ul>
 <li>otu_table</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="convert-inputdata-into-phyloseq-object.html#cb21-1" aria-hidden="true" tabindex="-1"></a>dada2_ps<span class="sc">@</span>otu_table <span class="sc">%&gt;%</span> </span>
-<span id="cb21-2"><a href="convert-inputdata-into-phyloseq-object.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>##       S6030 S6032 S6033 S6035 S6036 S6037 S6040 S6043 S6045 S6046 S6048 S6049 S6050 S6054 S6055 S6058 S6059 S6060 S6061 S6063 S6065
-## ASV_1  1253 14677  2929     0  3548  8484 11727  5218  4942  7347  3503  3803 14593  4275  2812     0  6847 17893  2956  3328  6302
-## ASV_2  2810  1558  1839 11885     0  5632   631  7326  1809  4781  3476   108  3100    39  3879  6389   298  4995   196 45061   542
-## ASV_3  7107  2915  2200     0  1232 19675     0  1617   839  9362  4815     0     0  1121 13472     0  1421     0     0     0  9694
-## ASV_4     0  2280    94 13775     0  4456   937   746  3730   273    85    64   562   448    18   611    96  5976     0   837     0
-## ASV_5  6983 15963  1172   256 12140   874  1722   120   210     0   111   802   994  1971    18   517   808   443    48   109     7
-## ASV_6   489     0   199     0   836     0  8565     0     0  1257     0  5998     0  3093  2091     0 10572     0  8495     0  2703
-##       S6066 S6068 S8005
-## ASV_1  8414     0     0
-## ASV_2   357 10870  7325
-## ASV_3  4387     0 14797
-## ASV_4   706 17977     0
-## ASV_5   122   546  2516
-## ASV_6     0     0   974</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="convert-inputdata-into-phyloseq-object.html#cb21-1" tabindex="-1"></a>dada2_ps<span class="sc">@</span>otu_table <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="convert-inputdata-into-phyloseq-object.html#cb21-2" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##       S6030 S6032 S6033 S6035 S6036 S6037 S6040 S6043 S6045 S6046 S6048 S6049 S6050 S6054 S6055 S6058 S6059 S6060 S6061 S6063 S6065 S6066 S6068
+## ASV_1  1253 14677  2929     0  3548  8484 11727  5218  4942  7347  3503  3803 14593  4275  2812     0  6847 17893  2956  3328  6302  8414     0
+## ASV_2  2810  1558  1839 11885     0  5632   631  7326  1809  4781  3476   108  3100    39  3879  6389   298  4995   196 45061   542   357 10870
+## ASV_3  7107  2915  2200     0  1232 19675     0  1617   839  9362  4815     0     0  1121 13472     0  1421     0     0     0  9694  4387     0
+## ASV_4     0  2280    94 13775     0  4456   937   746  3730   273    85    64   562   448    18   611    96  5976     0   837     0   706 17977
+## ASV_5  6983 15963  1172   256 12140   874  1722   120   210     0   111   802   994  1971    18   517   808   443    48   109     7   122   546
+## ASV_6   489     0   199     0   836     0  8565     0     0  1257     0  5998     0  3093  2091     0 10572     0  8495     0  2703     0     0
+##       S8005
+## ASV_1     0
+## ASV_2  7325
+## ASV_3 14797
+## ASV_4     0
+## ASV_5  2516
+## ASV_6   974</code></pre>
 <ul>
 <li>tax_table</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="convert-inputdata-into-phyloseq-object.html#cb23-1" aria-hidden="true" tabindex="-1"></a>dada2_ps<span class="sc">@</span>tax_table <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="convert-inputdata-into-phyloseq-object.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="convert-inputdata-into-phyloseq-object.html#cb23-1" tabindex="-1"></a>dada2_ps<span class="sc">@</span>tax_table <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="convert-inputdata-into-phyloseq-object.html#cb23-2" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##           Kingdom            Phylum             Class                Order                Family                           Genus
 ## ASV_1 k__Bacteria     p__Firmicutes     c__Clostridia     o__Clostridiales    f__Lachnospiraceae                      g__Blautia
 ## ASV_2 k__Bacteria p__Actinobacteria c__Actinobacteria o__Bifidobacteriales f__Bifidobacteriaceae              g__Bifidobacterium
@@ -733,8 +730,8 @@ div.csl-indent {
 <ul>
 <li>sample_table</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="convert-inputdata-into-phyloseq-object.html#cb25-1" aria-hidden="true" tabindex="-1"></a>dada2_ps<span class="sc">@</span>sam_data <span class="sc">%&gt;%</span> </span>
-<span id="cb25-2"><a href="convert-inputdata-into-phyloseq-object.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="convert-inputdata-into-phyloseq-object.html#cb25-1" tabindex="-1"></a>dada2_ps<span class="sc">@</span>sam_data <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="convert-inputdata-into-phyloseq-object.html#cb25-2" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>##       Group
 ## S6030    BB
 ## S6032    BB
@@ -751,31 +748,31 @@ div.csl-indent {
 <li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/MGS/metaphlan2_merged.tsv</p></li>
 <li><p>/home/xuxiaomin/project/standardized_analytics_workflow_R_function/demo_data/MGS/metadata.txt</p></li>
 </ol>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="convert-inputdata-into-phyloseq-object.html#cb27-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_res <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
-<span id="cb27-2"><a href="convert-inputdata-into-phyloseq-object.html#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
-<span id="cb27-3"><a href="convert-inputdata-into-phyloseq-object.html#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_merged.tsv&quot;</span>,</span>
-<span id="cb27-4"><a href="convert-inputdata-into-phyloseq-object.html#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
-<span id="cb27-5"><a href="convert-inputdata-into-phyloseq-object.html#cb27-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb27-6"><a href="convert-inputdata-into-phyloseq-object.html#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb27-7"><a href="convert-inputdata-into-phyloseq-object.html#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb27-8"><a href="convert-inputdata-into-phyloseq-object.html#cb27-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-9"><a href="convert-inputdata-into-phyloseq-object.html#cb27-9" aria-hidden="true" tabindex="-1"></a>metaphlan2_sam <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
-<span id="cb27-10"><a href="convert-inputdata-into-phyloseq-object.html#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
-<span id="cb27-11"><a href="convert-inputdata-into-phyloseq-object.html#cb27-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_metadata.tsv&quot;</span>,</span>
-<span id="cb27-12"><a href="convert-inputdata-into-phyloseq-object.html#cb27-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
-<span id="cb27-13"><a href="convert-inputdata-into-phyloseq-object.html#cb27-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb27-14"><a href="convert-inputdata-into-phyloseq-object.html#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
-<span id="cb27-15"><a href="convert-inputdata-into-phyloseq-object.html#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb27-16"><a href="convert-inputdata-into-phyloseq-object.html#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb27-17"><a href="convert-inputdata-into-phyloseq-object.html#cb27-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="convert-inputdata-into-phyloseq-object.html#cb27-1" tabindex="-1"></a>metaphlan2_res <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb27-2"><a href="convert-inputdata-into-phyloseq-object.html#cb27-2" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
+<span id="cb27-3"><a href="convert-inputdata-into-phyloseq-object.html#cb27-3" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_merged.tsv&quot;</span>,</span>
+<span id="cb27-4"><a href="convert-inputdata-into-phyloseq-object.html#cb27-4" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
+<span id="cb27-5"><a href="convert-inputdata-into-phyloseq-object.html#cb27-5" tabindex="-1"></a>    ),</span>
+<span id="cb27-6"><a href="convert-inputdata-into-phyloseq-object.html#cb27-6" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb27-7"><a href="convert-inputdata-into-phyloseq-object.html#cb27-7" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb27-8"><a href="convert-inputdata-into-phyloseq-object.html#cb27-8" tabindex="-1"></a>)</span>
+<span id="cb27-9"><a href="convert-inputdata-into-phyloseq-object.html#cb27-9" tabindex="-1"></a>metaphlan2_sam <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb27-10"><a href="convert-inputdata-into-phyloseq-object.html#cb27-10" tabindex="-1"></a>    <span class="fu">system.file</span>(</span>
+<span id="cb27-11"><a href="convert-inputdata-into-phyloseq-object.html#cb27-11" tabindex="-1"></a>        <span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metaphlan2_metadata.tsv&quot;</span>,</span>
+<span id="cb27-12"><a href="convert-inputdata-into-phyloseq-object.html#cb27-12" tabindex="-1"></a>        <span class="at">package =</span> <span class="st">&quot;XMAS2&quot;</span></span>
+<span id="cb27-13"><a href="convert-inputdata-into-phyloseq-object.html#cb27-13" tabindex="-1"></a>    ),</span>
+<span id="cb27-14"><a href="convert-inputdata-into-phyloseq-object.html#cb27-14" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>,</span>
+<span id="cb27-15"><a href="convert-inputdata-into-phyloseq-object.html#cb27-15" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-16"><a href="convert-inputdata-into-phyloseq-object.html#cb27-16" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb27-17"><a href="convert-inputdata-into-phyloseq-object.html#cb27-17" tabindex="-1"></a>)</span></code></pre></div>
 <div id="taxa-table-1" class="section level4 hasAnchor" number="3.2.2.1">
 <h4><span class="header-section-number">3.2.2.1</span> taxa table<a href="convert-inputdata-into-phyloseq-object.html#taxa-table-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="convert-inputdata-into-phyloseq-object.html#cb28-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_res_list <span class="ot">&lt;-</span> <span class="fu">import_metaphlan_taxa</span>(</span>
-<span id="cb28-2"><a href="convert-inputdata-into-phyloseq-object.html#cb28-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">object =</span> metaphlan2_res, </span>
-<span id="cb28-3"><a href="convert-inputdata-into-phyloseq-object.html#cb28-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>,</span>
-<span id="cb28-4"><a href="convert-inputdata-into-phyloseq-object.html#cb28-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">trim =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb28-5"><a href="convert-inputdata-into-phyloseq-object.html#cb28-5" aria-hidden="true" tabindex="-1"></a>tax_tab <span class="ot">&lt;-</span> metaphlan2_res_list<span class="sc">$</span>tax_tab</span>
-<span id="cb28-6"><a href="convert-inputdata-into-phyloseq-object.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tax_tab)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="convert-inputdata-into-phyloseq-object.html#cb28-1" tabindex="-1"></a>metaphlan2_res_list <span class="ot">&lt;-</span> <span class="fu">import_metaphlan_taxa</span>(</span>
+<span id="cb28-2"><a href="convert-inputdata-into-phyloseq-object.html#cb28-2" tabindex="-1"></a>                          <span class="at">object =</span> metaphlan2_res, </span>
+<span id="cb28-3"><a href="convert-inputdata-into-phyloseq-object.html#cb28-3" tabindex="-1"></a>                          <span class="at">taxa_level =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb28-4"><a href="convert-inputdata-into-phyloseq-object.html#cb28-4" tabindex="-1"></a>                          <span class="at">trim =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-5"><a href="convert-inputdata-into-phyloseq-object.html#cb28-5" tabindex="-1"></a>tax_tab <span class="ot">&lt;-</span> metaphlan2_res_list<span class="sc">$</span>tax_tab</span>
+<span id="cb28-6"><a href="convert-inputdata-into-phyloseq-object.html#cb28-6" tabindex="-1"></a><span class="fu">head</span>(tax_tab)</span></code></pre></div>
 <pre><code>##                                  Kingdom            Phylum             Class              Order              Family          Genus
 ## s__Actinomyces_graevenitzii  k__Bacteria p__Actinobacteria c__Actinobacteria o__Actinomycetales f__Actinomycetaceae g__Actinomyces
 ## s__Actinomyces_johnsonii     k__Bacteria p__Actinobacteria c__Actinobacteria o__Actinomycetales f__Actinomycetaceae g__Actinomyces
@@ -793,28 +790,28 @@ div.csl-indent {
 </div>
 <div id="otu-table-1" class="section level4 hasAnchor" number="3.2.2.2">
 <h4><span class="header-section-number">3.2.2.2</span> otu table<a href="convert-inputdata-into-phyloseq-object.html#otu-table-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="convert-inputdata-into-phyloseq-object.html#cb30-1" aria-hidden="true" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> metaphlan2_res_list<span class="sc">$</span>abu_tab</span>
-<span id="cb30-2"><a href="convert-inputdata-into-phyloseq-object.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(otu_tab)</span></code></pre></div>
-<pre><code>##                                    s1 s2      s3 s4 s5 s6       s7      s8        s9 s10      s11   s12      s13     s14 s15 s16
-## s__Actinomyces_graevenitzii  3.58e-05  0 0.0e+00  0  0  0 7.20e-06 0.0e+00 0.0000000   0 1.40e-05 0e+00 0.00e+00 0.0e+00   0   0
-## s__Actinomyces_johnsonii     0.00e+00  0 0.0e+00  0  0  0 0.00e+00 0.0e+00 0.0000000   0 0.00e+00 0e+00 1.15e-05 0.0e+00   0   0
-## s__Actinomyces_massiliensis  0.00e+00  0 0.0e+00  0  0  0 2.95e-05 0.0e+00 0.0000000   0 0.00e+00 0e+00 0.00e+00 0.0e+00   0   0
-## s__Actinomyces_odontolyticus 7.70e-05  0 1.7e-06  0  0  0 2.47e-05 5.8e-06 0.0001175   0 6.16e-05 0e+00 1.66e-05 3.9e-06   0   0
-## s__Actinomyces_oris          0.00e+00  0 0.0e+00  0  0  0 2.81e-05 0.0e+00 0.0000135   0 0.00e+00 0e+00 0.00e+00 0.0e+00   0   0
-## s__Actinomyces_viscosus      4.60e-06  0 0.0e+00  0  0  0 0.00e+00 0.0e+00 0.0000039   0 6.20e-06 7e-06 1.10e-06 0.0e+00   0   0
-##                              s17     s18      s19 s20 s21      s22 refE
-## s__Actinomyces_graevenitzii    0 6.1e-06 1.60e-06   0   0 0.00e+00    0
-## s__Actinomyces_johnsonii       0 0.0e+00 0.00e+00   0   0 0.00e+00    0
-## s__Actinomyces_massiliensis    0 0.0e+00 0.00e+00   0   0 2.52e-05    0
-## s__Actinomyces_odontolyticus   0 0.0e+00 4.19e-05   0   0 0.00e+00    0
-## s__Actinomyces_oris            0 0.0e+00 0.00e+00   0   0 7.40e-06    0
-## s__Actinomyces_viscosus        0 0.0e+00 0.00e+00   0   0 7.28e-05    0</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="convert-inputdata-into-phyloseq-object.html#cb30-1" tabindex="-1"></a>otu_tab <span class="ot">&lt;-</span> metaphlan2_res_list<span class="sc">$</span>abu_tab</span>
+<span id="cb30-2"><a href="convert-inputdata-into-phyloseq-object.html#cb30-2" tabindex="-1"></a><span class="fu">head</span>(otu_tab)</span></code></pre></div>
+<pre><code>##                                    s1 s2      s3 s4 s5 s6       s7      s8        s9 s10      s11   s12      s13     s14 s15 s16 s17     s18
+## s__Actinomyces_graevenitzii  3.58e-05  0 0.0e+00  0  0  0 7.20e-06 0.0e+00 0.0000000   0 1.40e-05 0e+00 0.00e+00 0.0e+00   0   0   0 6.1e-06
+## s__Actinomyces_johnsonii     0.00e+00  0 0.0e+00  0  0  0 0.00e+00 0.0e+00 0.0000000   0 0.00e+00 0e+00 1.15e-05 0.0e+00   0   0   0 0.0e+00
+## s__Actinomyces_massiliensis  0.00e+00  0 0.0e+00  0  0  0 2.95e-05 0.0e+00 0.0000000   0 0.00e+00 0e+00 0.00e+00 0.0e+00   0   0   0 0.0e+00
+## s__Actinomyces_odontolyticus 7.70e-05  0 1.7e-06  0  0  0 2.47e-05 5.8e-06 0.0001175   0 6.16e-05 0e+00 1.66e-05 3.9e-06   0   0   0 0.0e+00
+## s__Actinomyces_oris          0.00e+00  0 0.0e+00  0  0  0 2.81e-05 0.0e+00 0.0000135   0 0.00e+00 0e+00 0.00e+00 0.0e+00   0   0   0 0.0e+00
+## s__Actinomyces_viscosus      4.60e-06  0 0.0e+00  0  0  0 0.00e+00 0.0e+00 0.0000039   0 6.20e-06 7e-06 1.10e-06 0.0e+00   0   0   0 0.0e+00
+##                                   s19 s20 s21      s22 refE
+## s__Actinomyces_graevenitzii  1.60e-06   0   0 0.00e+00    0
+## s__Actinomyces_johnsonii     0.00e+00   0   0 0.00e+00    0
+## s__Actinomyces_massiliensis  0.00e+00   0   0 2.52e-05    0
+## s__Actinomyces_odontolyticus 4.19e-05   0   0 0.00e+00    0
+## s__Actinomyces_oris          0.00e+00   0   0 7.40e-06    0
+## s__Actinomyces_viscosus      0.00e+00   0   0 7.28e-05    0</code></pre>
 </div>
 <div id="metadata-table-1" class="section level4 hasAnchor" number="3.2.2.3">
 <h4><span class="header-section-number">3.2.2.3</span> metadata table<a href="convert-inputdata-into-phyloseq-object.html#metadata-table-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="convert-inputdata-into-phyloseq-object.html#cb32-1" aria-hidden="true" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> metaphlan2_sam <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="convert-inputdata-into-phyloseq-object.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;SampleID&quot;</span>)</span>
-<span id="cb32-3"><a href="convert-inputdata-into-phyloseq-object.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sam_tab)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="convert-inputdata-into-phyloseq-object.html#cb32-1" tabindex="-1"></a>sam_tab <span class="ot">&lt;-</span> metaphlan2_sam <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="convert-inputdata-into-phyloseq-object.html#cb32-2" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;SampleID&quot;</span>)</span>
+<span id="cb32-3"><a href="convert-inputdata-into-phyloseq-object.html#cb32-3" tabindex="-1"></a><span class="fu">head</span>(sam_tab)</span></code></pre></div>
 <pre><code>##    Group phynotype
 ## s1    BB      0.00
 ## s2    AA      2.50
@@ -825,11 +822,11 @@ div.csl-indent {
 </div>
 <div id="phyloseq-object-1" class="section level4 hasAnchor" number="3.2.2.4">
 <h4><span class="header-section-number">3.2.2.4</span> phyloseq object<a href="convert-inputdata-into-phyloseq-object.html#phyloseq-object-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="convert-inputdata-into-phyloseq-object.html#cb34-1" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps <span class="ot">&lt;-</span> <span class="fu">get_metaphlan_phyloseq</span>(</span>
-<span id="cb34-2"><a href="convert-inputdata-into-phyloseq-object.html#cb34-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">otu_tab =</span> otu_tab, </span>
-<span id="cb34-3"><a href="convert-inputdata-into-phyloseq-object.html#cb34-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sam_tab =</span> sam_tab,</span>
-<span id="cb34-4"><a href="convert-inputdata-into-phyloseq-object.html#cb34-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">tax_tab =</span> tax_tab)</span>
-<span id="cb34-5"><a href="convert-inputdata-into-phyloseq-object.html#cb34-5" aria-hidden="true" tabindex="-1"></a>metaphlan2_ps</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="convert-inputdata-into-phyloseq-object.html#cb34-1" tabindex="-1"></a>metaphlan2_ps <span class="ot">&lt;-</span> <span class="fu">get_metaphlan_phyloseq</span>(</span>
+<span id="cb34-2"><a href="convert-inputdata-into-phyloseq-object.html#cb34-2" tabindex="-1"></a>                    <span class="at">otu_tab =</span> otu_tab, </span>
+<span id="cb34-3"><a href="convert-inputdata-into-phyloseq-object.html#cb34-3" tabindex="-1"></a>                    <span class="at">sam_tab =</span> sam_tab,</span>
+<span id="cb34-4"><a href="convert-inputdata-into-phyloseq-object.html#cb34-4" tabindex="-1"></a>                    <span class="at">tax_tab =</span> tax_tab)</span>
+<span id="cb34-5"><a href="convert-inputdata-into-phyloseq-object.html#cb34-5" tabindex="-1"></a>metaphlan2_ps</span></code></pre></div>
 <pre><code>## phyloseq-class experiment-level object
 ## otu_table()   OTU Table:         [ 322 taxa and 23 samples ]
 ## sample_data() Sample Data:       [ 23 samples by 2 sample variables ]
@@ -839,10 +836,10 @@ div.csl-indent {
 </div>
 <div id="systematic-information" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Systematic Information<a href="convert-inputdata-into-phyloseq-object.html#systematic-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="convert-inputdata-into-phyloseq-object.html#cb36-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="convert-inputdata-into-phyloseq-object.html#cb36-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
-##  version  R version 4.1.2 (2021-11-01)
+##  version  R version 4.1.3 (2022-03-10)
 ##  os       macOS Monterey 12.2.1
 ##  system   x86_64, darwin17.0
 ##  ui       RStudio
@@ -850,174 +847,256 @@ div.csl-indent {
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Asia/Shanghai
-##  date     2023-04-12
-##  rstudio  2022.07.2+576 Spotted Wakerobin (desktop)
-##  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
+##  date     2023-10-27
+##  rstudio  2023.09.0+463 Desert Sunflower (desktop)
+##  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 ## 
-## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  package              * version  date (UTC) lib source
-##  ade4                   1.7-18   2021-09-16 [1] CRAN (R 4.1.0)
-##  annotate               1.72.0   2021-10-26 [1] Bioconductor
-##  AnnotationDbi          1.60.2   2023-03-10 [1] Bioconductor
-##  ape                    5.6-2    2022-03-02 [1] CRAN (R 4.1.2)
-##  assertthat             0.2.1    2019-03-21 [1] CRAN (R 4.1.0)
-##  Biobase                2.54.0   2021-10-26 [1] Bioconductor
-##  BiocGenerics           0.40.0   2021-10-26 [1] Bioconductor
-##  BiocParallel           1.28.3   2021-12-09 [1] Bioconductor
-##  biomformat             1.22.0   2021-10-26 [1] Bioconductor
-##  Biostrings             2.62.0   2021-10-26 [1] Bioconductor
-##  bit                    4.0.4    2020-08-04 [1] CRAN (R 4.1.0)
-##  bit64                  4.0.5    2020-08-30 [1] CRAN (R 4.1.0)
-##  bitops                 1.0-7    2021-04-24 [1] CRAN (R 4.1.0)
-##  blob                   1.2.2    2021-07-23 [1] CRAN (R 4.1.0)
-##  bookdown               0.29     2022-09-12 [1] CRAN (R 4.1.2)
-##  brio                   1.1.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  bslib                  0.4.0    2022-07-16 [1] CRAN (R 4.1.2)
-##  cachem                 1.0.6    2021-08-19 [1] CRAN (R 4.1.0)
-##  callr                  3.7.0    2021-04-20 [1] CRAN (R 4.1.0)
-##  caTools                1.18.2   2021-03-28 [1] CRAN (R 4.1.0)
-##  cli                    3.4.1    2022-09-23 [1] CRAN (R 4.1.2)
-##  cluster                2.1.2    2021-04-17 [1] CRAN (R 4.1.2)
-##  codetools              0.2-18   2020-11-04 [1] CRAN (R 4.1.2)
-##  coin                   1.4-2    2021-10-08 [1] CRAN (R 4.1.0)
-##  colorspace             2.0-3    2022-02-21 [1] CRAN (R 4.1.2)
-##  cowplot                1.1.1    2020-12-30 [1] CRAN (R 4.1.0)
-##  crayon                 1.5.0    2022-02-14 [1] CRAN (R 4.1.2)
-##  data.table             1.14.6   2022-11-16 [1] CRAN (R 4.1.2)
-##  DBI                    1.1.2    2021-12-20 [1] CRAN (R 4.1.0)
-##  DelayedArray           0.20.0   2021-10-26 [1] Bioconductor
-##  desc                   1.4.1    2022-03-06 [1] CRAN (R 4.1.2)
-##  DESeq2                 1.34.0   2021-10-26 [1] Bioconductor
-##  devtools               2.4.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  digest                 0.6.30   2022-10-18 [1] CRAN (R 4.1.2)
-##  dplyr                * 1.0.10   2022-09-01 [1] CRAN (R 4.1.2)
-##  DT                     0.21     2022-02-26 [1] CRAN (R 4.1.2)
-##  edgeR                  3.36.0   2021-10-26 [1] Bioconductor
-##  ellipsis               0.3.2    2021-04-29 [1] CRAN (R 4.1.0)
-##  evaluate               0.17     2022-10-07 [1] CRAN (R 4.1.2)
-##  FactoMineR             2.4      2020-12-11 [1] CRAN (R 4.1.0)
-##  fansi                  1.0.2    2022-01-14 [1] CRAN (R 4.1.2)
-##  fastmap                1.1.0    2021-01-25 [1] CRAN (R 4.1.0)
-##  flashClust             1.01-2   2012-08-21 [1] CRAN (R 4.1.0)
-##  foreach                1.5.2    2022-02-02 [1] CRAN (R 4.1.2)
-##  fs                     1.5.2    2021-12-08 [1] CRAN (R 4.1.0)
-##  genefilter             1.76.0   2021-10-26 [1] Bioconductor
-##  geneplotter            1.72.0   2021-10-26 [1] Bioconductor
-##  generics               0.1.2    2022-01-31 [1] CRAN (R 4.1.2)
-##  GenomeInfoDb           1.30.1   2022-01-30 [1] Bioconductor
-##  GenomeInfoDbData       1.2.7    2022-03-09 [1] Bioconductor
-##  GenomicRanges          1.46.1   2021-11-18 [1] Bioconductor
-##  ggplot2                3.4.0    2022-11-04 [1] CRAN (R 4.1.2)
-##  ggrepel                0.9.1    2021-01-15 [1] CRAN (R 4.1.0)
-##  glmnet                 4.1-3    2021-11-02 [1] CRAN (R 4.1.0)
-##  glue                   1.6.2    2022-02-24 [1] CRAN (R 4.1.2)
-##  gplots                 3.1.1    2020-11-28 [1] CRAN (R 4.1.0)
-##  gtable                 0.3.0    2019-03-25 [1] CRAN (R 4.1.0)
-##  gtools                 3.9.2    2021-06-06 [1] CRAN (R 4.1.0)
-##  highr                  0.9      2021-04-16 [1] CRAN (R 4.1.0)
-##  hms                    1.1.1    2021-09-26 [1] CRAN (R 4.1.0)
-##  htmltools              0.5.3    2022-07-18 [1] CRAN (R 4.1.2)
-##  htmlwidgets            1.5.4    2021-09-08 [1] CRAN (R 4.1.0)
-##  httr                   1.4.2    2020-07-20 [1] CRAN (R 4.1.0)
-##  igraph                 1.2.11   2022-01-04 [1] CRAN (R 4.1.2)
-##  IRanges                2.28.0   2021-10-26 [1] Bioconductor
-##  iterators              1.0.14   2022-02-05 [1] CRAN (R 4.1.2)
-##  jquerylib              0.1.4    2021-04-26 [1] CRAN (R 4.1.0)
-##  jsonlite               1.8.3    2022-10-21 [1] CRAN (R 4.1.2)
-##  kableExtra             1.3.4    2021-02-20 [1] CRAN (R 4.1.2)
-##  KEGGREST               1.34.0   2021-10-26 [1] Bioconductor
-##  KernSmooth             2.23-20  2021-05-03 [1] CRAN (R 4.1.2)
-##  knitr                  1.40     2022-08-24 [1] CRAN (R 4.1.2)
-##  lattice                0.20-45  2021-09-22 [1] CRAN (R 4.1.2)
-##  leaps                  3.1      2020-01-16 [1] CRAN (R 4.1.0)
-##  libcoin                1.0-9    2021-09-27 [1] CRAN (R 4.1.0)
-##  lifecycle              1.0.3    2022-10-07 [1] CRAN (R 4.1.2)
-##  limma                  3.50.1   2022-02-17 [1] Bioconductor
-##  locfit                 1.5-9.5  2022-03-03 [1] CRAN (R 4.1.2)
-##  magrittr               2.0.3    2022-03-30 [1] CRAN (R 4.1.2)
-##  MASS                   7.3-55   2022-01-13 [1] CRAN (R 4.1.2)
-##  Matrix                 1.4-0    2021-12-08 [1] CRAN (R 4.1.0)
-##  MatrixGenerics         1.6.0    2021-10-26 [1] Bioconductor
-##  matrixStats            0.61.0   2021-09-17 [1] CRAN (R 4.1.0)
-##  memoise                2.0.1    2021-11-26 [1] CRAN (R 4.1.0)
-##  metagenomeSeq          1.36.0   2021-10-26 [1] Bioconductor
-##  mgcv                   1.8-39   2022-02-24 [1] CRAN (R 4.1.2)
-##  microbiome             1.16.0   2021-10-26 [1] Bioconductor
-##  modeltools             0.2-23   2020-03-05 [1] CRAN (R 4.1.0)
-##  multcomp               1.4-18   2022-01-04 [1] CRAN (R 4.1.2)
-##  multtest               2.50.0   2021-10-26 [1] Bioconductor
-##  munsell                0.5.0    2018-06-12 [1] CRAN (R 4.1.0)
-##  mvtnorm                1.1-3    2021-10-08 [1] CRAN (R 4.1.0)
-##  nlme                   3.1-155  2022-01-13 [1] CRAN (R 4.1.2)
-##  permute                0.9-7    2022-01-27 [1] CRAN (R 4.1.2)
-##  phyloseq             * 1.38.0   2021-10-26 [1] Bioconductor
-##  pillar                 1.7.0    2022-02-01 [1] CRAN (R 4.1.2)
-##  pkgbuild               1.3.1    2021-12-20 [1] CRAN (R 4.1.0)
-##  pkgconfig              2.0.3    2019-09-22 [1] CRAN (R 4.1.0)
-##  pkgload                1.2.4    2021-11-30 [1] CRAN (R 4.1.0)
-##  plyr                   1.8.6    2020-03-03 [1] CRAN (R 4.1.0)
-##  png                    0.1-7    2013-12-03 [1] CRAN (R 4.1.0)
-##  prettyunits            1.1.1    2020-01-24 [1] CRAN (R 4.1.0)
-##  processx               3.5.2    2021-04-30 [1] CRAN (R 4.1.0)
-##  ps                     1.6.0    2021-02-28 [1] CRAN (R 4.1.0)
-##  purrr                  0.3.4    2020-04-17 [1] CRAN (R 4.1.0)
-##  R6                     2.5.1    2021-08-19 [1] CRAN (R 4.1.0)
-##  RColorBrewer           1.1-2    2014-12-07 [1] CRAN (R 4.1.0)
-##  Rcpp                   1.0.10   2023-01-22 [1] CRAN (R 4.1.2)
-##  RCurl                  1.98-1.6 2022-02-08 [1] CRAN (R 4.1.2)
-##  readr                  2.1.2    2022-01-30 [1] CRAN (R 4.1.2)
-##  remotes                2.4.2    2021-11-30 [1] CRAN (R 4.1.0)
-##  reshape2               1.4.4    2020-04-09 [1] CRAN (R 4.1.0)
-##  rhdf5                  2.38.1   2022-03-10 [1] Bioconductor
-##  rhdf5filters           1.6.0    2021-10-26 [1] Bioconductor
-##  Rhdf5lib               1.16.0   2021-10-26 [1] Bioconductor
-##  rlang                  1.0.6    2022-09-24 [1] CRAN (R 4.1.2)
-##  rmarkdown              2.17     2022-10-07 [1] CRAN (R 4.1.2)
-##  rprojroot              2.0.2    2020-11-15 [1] CRAN (R 4.1.0)
-##  RSQLite                2.2.10   2022-02-17 [1] CRAN (R 4.1.2)
-##  rstudioapi             0.13     2020-11-12 [1] CRAN (R 4.1.0)
-##  Rtsne                  0.15     2018-11-10 [1] CRAN (R 4.1.0)
-##  rvest                  1.0.2    2021-10-16 [1] CRAN (R 4.1.0)
-##  S4Vectors              0.32.3   2021-11-21 [1] Bioconductor
-##  sandwich               3.0-1    2021-05-18 [1] CRAN (R 4.1.0)
-##  sass                   0.4.2    2022-07-16 [1] CRAN (R 4.1.2)
-##  scales                 1.2.1    2022-08-20 [1] CRAN (R 4.1.2)
-##  scatterplot3d          0.3-41   2018-03-14 [1] CRAN (R 4.1.0)
-##  sessioninfo            1.2.2    2021-12-06 [1] CRAN (R 4.1.0)
-##  shape                  1.4.6    2021-05-19 [1] CRAN (R 4.1.0)
-##  stringi                1.7.8    2022-07-11 [1] CRAN (R 4.1.2)
-##  stringr                1.4.1    2022-08-20 [1] CRAN (R 4.1.2)
-##  SummarizedExperiment   1.24.0   2021-10-26 [1] Bioconductor
-##  survival               3.4-0    2022-08-09 [1] CRAN (R 4.1.2)
-##  svglite                2.1.0    2022-02-03 [1] CRAN (R 4.1.2)
-##  systemfonts            1.0.4    2022-02-11 [1] CRAN (R 4.1.2)
-##  testthat               3.1.2    2022-01-20 [1] CRAN (R 4.1.2)
-##  TH.data                1.1-0    2021-09-27 [1] CRAN (R 4.1.0)
-##  tibble               * 3.1.8    2022-07-22 [1] CRAN (R 4.1.2)
-##  tidyr                  1.2.0    2022-02-01 [1] CRAN (R 4.1.2)
-##  tidyselect             1.1.2    2022-02-21 [1] CRAN (R 4.1.2)
-##  tzdb                   0.3.0    2022-03-28 [1] CRAN (R 4.1.2)
-##  usethis                2.1.5    2021-12-09 [1] CRAN (R 4.1.0)
-##  utf8                   1.2.2    2021-07-24 [1] CRAN (R 4.1.0)
-##  vctrs                  0.5.1    2022-11-16 [1] CRAN (R 4.1.2)
-##  vegan                  2.5-7    2020-11-28 [1] CRAN (R 4.1.0)
-##  viridisLite            0.4.0    2021-04-13 [1] CRAN (R 4.1.0)
-##  webshot                0.5.3    2022-04-14 [1] CRAN (R 4.1.2)
-##  withr                  2.5.0    2022-03-03 [1] CRAN (R 4.1.2)
-##  Wrench                 1.12.0   2021-10-26 [1] Bioconductor
-##  xfun                   0.34     2022-10-18 [1] CRAN (R 4.1.2)
-##  XMAS2                * 2.1.8.7  2023-01-06 [1] local
-##  XML                    3.99-0.9 2022-02-24 [1] CRAN (R 4.1.2)
-##  xml2                   1.3.3    2021-11-30 [1] CRAN (R 4.1.0)
-##  xtable                 1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
-##  XVector                0.34.0   2021-10-26 [1] Bioconductor
-##  yaml                   2.3.6    2022-10-18 [1] CRAN (R 4.1.2)
-##  zlibbioc               1.40.0   2021-10-26 [1] Bioconductor
-##  zoo                    1.8-9    2021-03-09 [1] CRAN (R 4.1.0)
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+##  package              * version   date (UTC) lib source
+##  abind                  1.4-5     2016-07-21 [2] CRAN (R 4.1.0)
+##  ade4                   1.7-22    2023-02-06 [2] CRAN (R 4.1.2)
+##  ALDEx2                 1.30.0    2022-11-01 [2] Bioconductor
+##  annotate               1.72.0    2021-10-26 [2] Bioconductor
+##  AnnotationDbi          1.60.2    2023-03-10 [2] Bioconductor
+##  ape                  * 5.7-1     2023-03-13 [2] CRAN (R 4.1.2)
+##  askpass                1.1       2019-01-13 [2] CRAN (R 4.1.0)
+##  backports              1.4.1     2021-12-13 [2] CRAN (R 4.1.0)
+##  base64enc              0.1-3     2015-07-28 [2] CRAN (R 4.1.0)
+##  bayesm                 3.1-5     2022-12-02 [2] CRAN (R 4.1.2)
+##  Biobase              * 2.54.0    2021-10-26 [2] Bioconductor
+##  BiocGenerics         * 0.40.0    2021-10-26 [2] Bioconductor
+##  BiocParallel           1.28.3    2021-12-09 [2] Bioconductor
+##  biomformat             1.22.0    2021-10-26 [2] Bioconductor
+##  Biostrings             2.62.0    2021-10-26 [2] Bioconductor
+##  bit                    4.0.5     2022-11-15 [2] CRAN (R 4.1.2)
+##  bit64                  4.0.5     2020-08-30 [2] CRAN (R 4.1.0)
+##  bitops                 1.0-7     2021-04-24 [2] CRAN (R 4.1.0)
+##  blob                   1.2.4     2023-03-17 [2] CRAN (R 4.1.2)
+##  bookdown               0.34      2023-05-09 [2] CRAN (R 4.1.2)
+##  broom                  1.0.5     2023-06-09 [2] CRAN (R 4.1.3)
+##  bslib                  0.5.0     2023-06-09 [2] CRAN (R 4.1.3)
+##  cachem                 1.0.8     2023-05-01 [2] CRAN (R 4.1.2)
+##  callr                  3.7.3     2022-11-02 [2] CRAN (R 4.1.2)
+##  car                    3.1-2     2023-03-30 [2] CRAN (R 4.1.2)
+##  carData                3.0-5     2022-01-06 [2] CRAN (R 4.1.2)
+##  caTools                1.18.2    2021-03-28 [2] CRAN (R 4.1.0)
+##  checkmate              2.2.0     2023-04-27 [2] CRAN (R 4.1.2)
+##  class                  7.3-22    2023-05-03 [2] CRAN (R 4.1.2)
+##  classInt               0.4-9     2023-02-28 [2] CRAN (R 4.1.2)
+##  cli                    3.6.1     2023-03-23 [2] CRAN (R 4.1.2)
+##  cluster                2.1.4     2022-08-22 [2] CRAN (R 4.1.2)
+##  coda                   0.19-4    2020-09-30 [2] CRAN (R 4.1.0)
+##  codetools              0.2-19    2023-02-01 [2] CRAN (R 4.1.2)
+##  coin                   1.4-2     2021-10-08 [2] CRAN (R 4.1.0)
+##  colorspace             2.1-0     2023-01-23 [2] CRAN (R 4.1.2)
+##  compositions           2.0-6     2023-04-13 [2] CRAN (R 4.1.2)
+##  conflicted           * 1.2.0     2023-02-01 [2] CRAN (R 4.1.2)
+##  corrplot               0.92      2021-11-18 [2] CRAN (R 4.1.0)
+##  cowplot                1.1.1     2020-12-30 [2] CRAN (R 4.1.0)
+##  crayon                 1.5.2     2022-09-29 [2] CRAN (R 4.1.2)
+##  crosstalk              1.2.0     2021-11-04 [2] CRAN (R 4.1.0)
+##  data.table             1.14.8    2023-02-17 [2] CRAN (R 4.1.2)
+##  DBI                    1.1.3     2022-06-18 [2] CRAN (R 4.1.2)
+##  DelayedArray           0.20.0    2021-10-26 [2] Bioconductor
+##  DEoptimR               1.0-14    2023-06-09 [2] CRAN (R 4.1.3)
+##  DESeq2                 1.34.0    2021-10-26 [2] Bioconductor
+##  devtools             * 2.4.5     2022-10-11 [2] CRAN (R 4.1.2)
+##  digest                 0.6.33    2023-07-07 [1] CRAN (R 4.1.3)
+##  dplyr                * 1.1.2     2023-04-20 [2] CRAN (R 4.1.2)
+##  DT                     0.28      2023-05-18 [2] CRAN (R 4.1.3)
+##  e1071                  1.7-13    2023-02-01 [2] CRAN (R 4.1.2)
+##  edgeR                  3.36.0    2021-10-26 [2] Bioconductor
+##  ellipsis               0.3.2     2021-04-29 [2] CRAN (R 4.1.0)
+##  emmeans                1.8.7     2023-06-23 [1] CRAN (R 4.1.3)
+##  estimability           1.4.1     2022-08-05 [2] CRAN (R 4.1.2)
+##  evaluate               0.21      2023-05-05 [2] CRAN (R 4.1.2)
+##  FactoMineR             2.8       2023-03-27 [2] CRAN (R 4.1.2)
+##  fansi                  1.0.4     2023-01-22 [2] CRAN (R 4.1.2)
+##  farver                 2.1.1     2022-07-06 [2] CRAN (R 4.1.2)
+##  fastmap                1.1.1     2023-02-24 [2] CRAN (R 4.1.2)
+##  flashClust             1.01-2    2012-08-21 [2] CRAN (R 4.1.0)
+##  foreach                1.5.2     2022-02-02 [2] CRAN (R 4.1.2)
+##  foreign                0.8-84    2022-12-06 [2] CRAN (R 4.1.2)
+##  forestplot             3.1.1     2022-12-06 [2] CRAN (R 4.1.2)
+##  formatR                1.14      2023-01-17 [2] CRAN (R 4.1.2)
+##  Formula                1.2-5     2023-02-24 [2] CRAN (R 4.1.2)
+##  fs                     1.6.2     2023-04-25 [2] CRAN (R 4.1.2)
+##  futile.logger        * 1.4.3     2016-07-10 [2] CRAN (R 4.1.0)
+##  futile.options         1.0.1     2018-04-20 [2] CRAN (R 4.1.0)
+##  genefilter             1.76.0    2021-10-26 [2] Bioconductor
+##  geneplotter            1.72.0    2021-10-26 [2] Bioconductor
+##  generics               0.1.3     2022-07-05 [2] CRAN (R 4.1.2)
+##  GenomeInfoDb         * 1.30.1    2022-01-30 [2] Bioconductor
+##  GenomeInfoDbData       1.2.7     2022-03-09 [2] Bioconductor
+##  GenomicRanges        * 1.46.1    2021-11-18 [2] Bioconductor
+##  ggiraph                0.8.7     2023-03-17 [2] CRAN (R 4.1.2)
+##  ggiraphExtra           0.3.0     2020-10-06 [2] CRAN (R 4.1.2)
+##  ggplot2              * 3.4.2     2023-04-03 [2] CRAN (R 4.1.2)
+##  ggpubr               * 0.6.0     2023-02-10 [2] CRAN (R 4.1.2)
+##  ggrepel                0.9.3     2023-02-03 [2] CRAN (R 4.1.2)
+##  ggsci                  3.0.0     2023-03-08 [2] CRAN (R 4.1.2)
+##  ggsignif               0.6.4     2022-10-13 [2] CRAN (R 4.1.2)
+##  ggVennDiagram          1.2.2     2022-09-08 [2] CRAN (R 4.1.2)
+##  glmnet                 4.1-7     2023-03-23 [2] CRAN (R 4.1.2)
+##  glue                 * 1.6.2     2022-02-24 [2] CRAN (R 4.1.2)
+##  Gmisc                * 3.0.2     2023-03-13 [2] CRAN (R 4.1.2)
+##  gplots                 3.1.3     2022-04-25 [2] CRAN (R 4.1.2)
+##  gridExtra              2.3       2017-09-09 [2] CRAN (R 4.1.0)
+##  gtable                 0.3.3     2023-03-21 [2] CRAN (R 4.1.2)
+##  gtools                 3.9.4     2022-11-27 [2] CRAN (R 4.1.2)
+##  highr                  0.10      2022-12-22 [2] CRAN (R 4.1.2)
+##  Hmisc                  5.1-0     2023-05-08 [2] CRAN (R 4.1.2)
+##  hms                    1.1.3     2023-03-21 [2] CRAN (R 4.1.2)
+##  htmlTable            * 2.4.1     2022-07-07 [2] CRAN (R 4.1.2)
+##  htmltools              0.5.5     2023-03-23 [2] CRAN (R 4.1.2)
+##  htmlwidgets            1.6.2     2023-03-17 [2] CRAN (R 4.1.2)
+##  httpuv                 1.6.11    2023-05-11 [2] CRAN (R 4.1.3)
+##  httr                   1.4.6     2023-05-08 [2] CRAN (R 4.1.2)
+##  igraph                 1.5.0     2023-06-16 [1] CRAN (R 4.1.3)
+##  insight                0.19.3    2023-06-29 [2] CRAN (R 4.1.3)
+##  IRanges              * 2.28.0    2021-10-26 [2] Bioconductor
+##  iterators              1.0.14    2022-02-05 [2] CRAN (R 4.1.2)
+##  jquerylib              0.1.4     2021-04-26 [2] CRAN (R 4.1.0)
+##  jsonlite               1.8.7     2023-06-29 [2] CRAN (R 4.1.3)
+##  kableExtra             1.3.4     2021-02-20 [2] CRAN (R 4.1.2)
+##  KEGGREST               1.34.0    2021-10-26 [2] Bioconductor
+##  KernSmooth             2.23-22   2023-07-10 [2] CRAN (R 4.1.3)
+##  knitr                  1.43      2023-05-25 [2] CRAN (R 4.1.3)
+##  labeling               0.4.2     2020-10-20 [2] CRAN (R 4.1.0)
+##  lambda.r               1.2.4     2019-09-18 [2] CRAN (R 4.1.0)
+##  later                  1.3.1     2023-05-02 [2] CRAN (R 4.1.2)
+##  lattice              * 0.21-8    2023-04-05 [2] CRAN (R 4.1.2)
+##  leaps                  3.1       2020-01-16 [2] CRAN (R 4.1.0)
+##  libcoin                1.0-9     2021-09-27 [2] CRAN (R 4.1.0)
+##  lifecycle              1.0.3     2022-10-07 [2] CRAN (R 4.1.2)
+##  limma                  3.50.3    2022-04-07 [2] Bioconductor
+##  locfit                 1.5-9.8   2023-06-11 [2] CRAN (R 4.1.3)
+##  LOCOM                  1.1       2022-08-05 [2] Github (yijuanhu/LOCOM@c181e0f)
+##  lubridate              1.9.2     2023-02-10 [2] CRAN (R 4.1.2)
+##  magrittr             * 2.0.3     2022-03-30 [2] CRAN (R 4.1.2)
+##  MASS                   7.3-60    2023-05-04 [2] CRAN (R 4.1.2)
+##  Matrix                 1.6-0     2023-07-08 [2] CRAN (R 4.1.3)
+##  MatrixGenerics       * 1.6.0     2021-10-26 [2] Bioconductor
+##  matrixStats          * 1.0.0     2023-06-02 [2] CRAN (R 4.1.3)
+##  mbzinb                 0.2       2022-03-16 [2] local
+##  memoise                2.0.1     2021-11-26 [2] CRAN (R 4.1.0)
+##  metagenomeSeq          1.36.0    2021-10-26 [2] Bioconductor
+##  mgcv                   1.8-42    2023-03-02 [2] CRAN (R 4.1.2)
+##  microbiome             1.16.0    2021-10-26 [2] Bioconductor
+##  mime                   0.12      2021-09-28 [2] CRAN (R 4.1.0)
+##  miniUI                 0.1.1.1   2018-05-18 [2] CRAN (R 4.1.0)
+##  modeltools             0.2-23    2020-03-05 [2] CRAN (R 4.1.0)
+##  multcomp               1.4-25    2023-06-20 [2] CRAN (R 4.1.3)
+##  multcompView           0.1-9     2023-04-09 [2] CRAN (R 4.1.2)
+##  multtest               2.50.0    2021-10-26 [2] Bioconductor
+##  munsell                0.5.0     2018-06-12 [2] CRAN (R 4.1.0)
+##  mvtnorm                1.2-2     2023-06-08 [2] CRAN (R 4.1.3)
+##  mycor                  0.1.1     2018-04-10 [2] CRAN (R 4.1.0)
+##  NADA                   1.6-1.1   2020-03-22 [2] CRAN (R 4.1.0)
+##  nlme                 * 3.1-162   2023-01-31 [2] CRAN (R 4.1.2)
+##  nnet                   7.3-19    2023-05-03 [2] CRAN (R 4.1.2)
+##  openssl                2.0.6     2023-03-09 [2] CRAN (R 4.1.2)
+##  permute              * 0.9-7     2022-01-27 [2] CRAN (R 4.1.2)
+##  pheatmap             * 1.0.12    2019-01-04 [2] CRAN (R 4.1.0)
+##  phyloseq             * 1.38.0    2021-10-26 [2] Bioconductor
+##  picante              * 1.8.2     2020-06-10 [2] CRAN (R 4.1.0)
+##  pillar                 1.9.0     2023-03-22 [2] CRAN (R 4.1.2)
+##  pkgbuild               1.4.2     2023-06-26 [2] CRAN (R 4.1.3)
+##  pkgconfig              2.0.3     2019-09-22 [2] CRAN (R 4.1.0)
+##  pkgload                1.3.2.1   2023-07-08 [2] CRAN (R 4.1.3)
+##  plyr                   1.8.8     2022-11-11 [2] CRAN (R 4.1.2)
+##  png                    0.1-8     2022-11-29 [2] CRAN (R 4.1.2)
+##  ppcor                  1.1       2015-12-03 [2] CRAN (R 4.1.0)
+##  prettyunits            1.1.1     2020-01-24 [2] CRAN (R 4.1.0)
+##  processx               3.8.2     2023-06-30 [2] CRAN (R 4.1.3)
+##  profvis                0.3.8     2023-05-02 [2] CRAN (R 4.1.2)
+##  promises               1.2.0.1   2021-02-11 [2] CRAN (R 4.1.0)
+##  protoclust             1.6.4     2022-04-01 [2] CRAN (R 4.1.2)
+##  proxy                  0.4-27    2022-06-09 [2] CRAN (R 4.1.2)
+##  ps                     1.7.5     2023-04-18 [2] CRAN (R 4.1.2)
+##  pscl                   1.5.5.1   2023-05-10 [2] CRAN (R 4.1.2)
+##  purrr                * 1.0.1     2023-01-10 [2] CRAN (R 4.1.2)
+##  qvalue                 2.26.0    2021-10-26 [2] Bioconductor
+##  R6                     2.5.1     2021-08-19 [2] CRAN (R 4.1.0)
+##  RAIDA                  1.0       2022-03-14 [2] local
+##  RColorBrewer         * 1.1-3     2022-04-03 [2] CRAN (R 4.1.2)
+##  Rcpp                 * 1.0.11    2023-07-06 [1] CRAN (R 4.1.3)
+##  RcppZiggurat           0.1.6     2020-10-20 [2] CRAN (R 4.1.0)
+##  RCurl                  1.98-1.12 2023-03-27 [2] CRAN (R 4.1.2)
+##  readr                * 2.1.4     2023-02-10 [2] CRAN (R 4.1.2)
+##  remotes                2.4.2     2021-11-30 [2] CRAN (R 4.1.0)
+##  reshape2               1.4.4     2020-04-09 [2] CRAN (R 4.1.0)
+##  reticulate             1.30      2023-06-09 [2] CRAN (R 4.1.3)
+##  Rfast                  2.0.8     2023-07-03 [2] CRAN (R 4.1.3)
+##  rhdf5                  2.38.1    2022-03-10 [2] Bioconductor
+##  rhdf5filters           1.6.0     2021-10-26 [2] Bioconductor
+##  Rhdf5lib               1.16.0    2021-10-26 [2] Bioconductor
+##  rlang                  1.1.1     2023-04-28 [1] CRAN (R 4.1.2)
+##  rmarkdown              2.23      2023-07-01 [2] CRAN (R 4.1.3)
+##  robustbase             0.99-0    2023-06-16 [2] CRAN (R 4.1.3)
+##  rpart                  4.1.19    2022-10-21 [2] CRAN (R 4.1.2)
+##  RSpectra               0.16-1    2022-04-24 [2] CRAN (R 4.1.2)
+##  RSQLite                2.3.1     2023-04-03 [2] CRAN (R 4.1.2)
+##  rstatix                0.7.2     2023-02-01 [2] CRAN (R 4.1.2)
+##  rstudioapi             0.15.0    2023-07-07 [2] CRAN (R 4.1.3)
+##  Rtsne                  0.16      2022-04-17 [2] CRAN (R 4.1.2)
+##  RVenn                  1.1.0     2019-07-18 [2] CRAN (R 4.1.0)
+##  rvest                  1.0.3     2022-08-19 [2] CRAN (R 4.1.2)
+##  S4Vectors            * 0.32.4    2022-03-29 [2] Bioconductor
+##  sandwich               3.0-2     2022-06-15 [2] CRAN (R 4.1.2)
+##  sass                   0.4.6     2023-05-03 [2] CRAN (R 4.1.2)
+##  scales                 1.2.1     2022-08-20 [2] CRAN (R 4.1.2)
+##  scatterplot3d          0.3-44    2023-05-05 [2] CRAN (R 4.1.2)
+##  sessioninfo            1.2.2     2021-12-06 [2] CRAN (R 4.1.0)
+##  sf                     1.0-7     2022-03-07 [2] CRAN (R 4.1.2)
+##  shape                  1.4.6     2021-05-19 [2] CRAN (R 4.1.0)
+##  shiny                  1.7.4.1   2023-07-06 [2] CRAN (R 4.1.3)
+##  sjlabelled             1.2.0     2022-04-10 [2] CRAN (R 4.1.2)
+##  sjmisc                 2.8.9     2021-12-03 [2] CRAN (R 4.1.0)
+##  stringi                1.7.12    2023-01-11 [2] CRAN (R 4.1.2)
+##  stringr                1.5.0     2022-12-02 [2] CRAN (R 4.1.2)
+##  SummarizedExperiment * 1.24.0    2021-10-26 [2] Bioconductor
+##  survival               3.5-5     2023-03-12 [2] CRAN (R 4.1.2)
+##  svglite                2.1.1     2023-01-10 [2] CRAN (R 4.1.2)
+##  systemfonts            1.0.4     2022-02-11 [2] CRAN (R 4.1.2)
+##  tensorA                0.36.2    2020-11-19 [2] CRAN (R 4.1.0)
+##  TH.data                1.1-2     2023-04-17 [2] CRAN (R 4.1.2)
+##  tibble               * 3.2.1     2023-03-20 [2] CRAN (R 4.1.2)
+##  tidyr                * 1.3.0     2023-01-24 [2] CRAN (R 4.1.2)
+##  tidyselect             1.2.0     2022-10-10 [2] CRAN (R 4.1.2)
+##  timechange             0.2.0     2023-01-11 [2] CRAN (R 4.1.2)
+##  truncnorm              1.0-9     2023-03-20 [2] CRAN (R 4.1.2)
+##  tzdb                   0.4.0     2023-05-12 [2] CRAN (R 4.1.3)
+##  umap                   0.2.10.0  2023-02-01 [2] CRAN (R 4.1.2)
+##  units                  0.8-2     2023-04-27 [2] CRAN (R 4.1.2)
+##  urlchecker             1.0.1     2021-11-30 [2] CRAN (R 4.1.0)
+##  usethis              * 2.2.2     2023-07-06 [2] CRAN (R 4.1.3)
+##  utf8                   1.2.3     2023-01-31 [2] CRAN (R 4.1.2)
+##  uuid                   1.1-0     2022-04-19 [2] CRAN (R 4.1.2)
+##  vctrs                  0.6.3     2023-06-14 [1] CRAN (R 4.1.3)
+##  vegan                * 2.6-4     2022-10-11 [2] CRAN (R 4.1.2)
+##  VennDiagram          * 1.7.3     2022-04-12 [2] CRAN (R 4.1.2)
+##  viridis              * 0.6.3     2023-05-03 [2] CRAN (R 4.1.2)
+##  viridisLite          * 0.4.2     2023-05-02 [2] CRAN (R 4.1.2)
+##  vroom                  1.6.3     2023-04-28 [2] CRAN (R 4.1.2)
+##  webshot                0.5.5     2023-06-26 [2] CRAN (R 4.1.3)
+##  withr                  2.5.0     2022-03-03 [2] CRAN (R 4.1.2)
+##  Wrench                 1.12.0    2021-10-26 [2] Bioconductor
+##  xfun                   0.40      2023-08-09 [1] CRAN (R 4.1.3)
+##  XMAS2                * 2.2.0     2023-10-27 [1] local
+##  XML                    3.99-0.14 2023-03-19 [2] CRAN (R 4.1.2)
+##  xml2                   1.3.5     2023-07-06 [2] CRAN (R 4.1.3)
+##  xtable                 1.8-4     2019-04-21 [2] CRAN (R 4.1.0)
+##  XVector                0.34.0    2021-10-26 [2] Bioconductor
+##  yaml                   2.3.7     2023-01-23 [2] CRAN (R 4.1.2)
+##  zCompositions          1.4.0-1   2022-03-26 [2] CRAN (R 4.1.2)
+##  zlibbioc               1.40.0    2021-10-26 [2] Bioconductor
+##  zoo                    1.8-12    2023-04-13 [2] CRAN (R 4.1.2)
 ## 
-##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+##  [1] /Users/zouhua/Library/R/x86_64/4.1/library
+##  [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
 ## 
-## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
+## ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</code></pre>
 
 </div>
 </div>
@@ -1081,7 +1160,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "subsection",
+"collapse": "section",
 "scroll_highlight": true,
 "toc_depth": 3
 }

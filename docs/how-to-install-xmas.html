@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 How to install XMAS | XMAS 2.0 Tutorial</title>
   <meta name="description" content="A tutorial of XMAS 2.0 package for in-house training" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 How to install XMAS | XMAS 2.0 Tutorial" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Hua Zou" />
 
 
-<meta name="date" content="2023-04-12" />
+<meta name="date" content="2023-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,12 +52,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.21/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -130,6 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -152,7 +156,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
 </head>
 
 <body>
@@ -351,14 +355,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="differential-analysis.html"><a href="differential-analysis.html#dominant-taxa"><i class="fa fa-check"></i><b>10.6</b> Dominant taxa</a></li>
 <li class="chapter" data-level="10.7" data-path="differential-analysis.html"><a href="differential-analysis.html#multiple-differential-analysis-by-one-function"><i class="fa fa-check"></i><b>10.7</b> Multiple differential analysis by one function</a></li>
-<li class="chapter" data-level="10.8" data-path="differential-analysis.html"><a href="differential-analysis.html#comparing-outputs-from-xmas2-lefse-conda-and-lefse-galaxy-using-the-same-in-house-datasets-amplicon_pszeybel_gut"><i class="fa fa-check"></i><b>10.8</b> Comparing outputs from XMAS2, lefse-conda, and lefse-galaxy using the same in-house datasets (amplicon_ps|Zeybel_Gut)</a>
-<ul>
-<li class="chapter" data-level="10.8.1" data-path="differential-analysis.html"><a href="differential-analysis.html#introduction-1"><i class="fa fa-check"></i><b>10.8.1</b> Introduction</a></li>
-<li class="chapter" data-level="10.8.2" data-path="differential-analysis.html"><a href="differential-analysis.html#dataset"><i class="fa fa-check"></i><b>10.8.2</b> Dataset</a></li>
-<li class="chapter" data-level="10.8.3" data-path="differential-analysis.html"><a href="differential-analysis.html#run-lefse-independently-with-the-three-applications-r-conda-galaxy"><i class="fa fa-check"></i><b>10.8.3</b> Run lefse independently with the three applications (R, conda, galaxy)</a></li>
-<li class="chapter" data-level="10.8.4" data-path="differential-analysis.html"><a href="differential-analysis.html#comparison-of-lefse-conda-with-xmas2"><i class="fa fa-check"></i><b>10.8.4</b> Comparison of lefse-conda with XMAS2</a></li>
-</ul></li>
-<li class="chapter" data-level="10.9" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-7"><i class="fa fa-check"></i><b>10.9</b> Systematic Information</a></li>
+<li class="chapter" data-level="10.8" data-path="differential-analysis.html"><a href="differential-analysis.html#systematic-information-7"><i class="fa fa-check"></i><b>10.8</b> Systematic Information</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="visualization-5.html"><a href="visualization-5.html"><i class="fa fa-check"></i><b>11</b> Visualization</a>
 <ul>
@@ -648,38 +645,38 @@ Figure 2.1: The Overview of the design of XMAS package
 <p>There are two methods to install the aforementioned packages.</p>
 <div id="packages-in-cran-bioconductor" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Packages in CRAN &amp; Bioconductor<a href="how-to-install-xmas.html#packages-in-cran-bioconductor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="how-to-install-xmas.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
-<span id="cb1-2"><a href="how-to-install-xmas.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="how-to-install-xmas.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
-<span id="cb1-4"><a href="how-to-install-xmas.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="how-to-install-xmas.html#cb1-5" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(Biostrings, BiocGenerics, phyloseq, forcats, stringr, ggplot2, </span>
-<span id="cb1-6"><a href="how-to-install-xmas.html#cb1-6" aria-hidden="true" tabindex="-1"></a>        readr, ALDEx2, dplyr, tibble, DT, purrr, metagenomeSeq, stats, edgeR, </span>
-<span id="cb1-7"><a href="how-to-install-xmas.html#cb1-7" aria-hidden="true" tabindex="-1"></a>        DESeq2, methods, limma, pscl, matrixStats, compositions, vegan, coin,</span>
-<span id="cb1-8"><a href="how-to-install-xmas.html#cb1-8" aria-hidden="true" tabindex="-1"></a>        SummarizedExperiment, MASS, Biobase, nlme, tidyr, Maaslin2, ggrepel,</span>
-<span id="cb1-9"><a href="how-to-install-xmas.html#cb1-9" aria-hidden="true" tabindex="-1"></a>        ggpubr, ggalluvial, Hmisc, umap, Rtsne, ape, cowplot, scales, ade4,</span>
-<span id="cb1-10"><a href="how-to-install-xmas.html#cb1-10" aria-hidden="true" tabindex="-1"></a>        ggVennDiagram, impute, pheatmap)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="how-to-install-xmas.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1-2"><a href="how-to-install-xmas.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="how-to-install-xmas.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb1-4"><a href="how-to-install-xmas.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="how-to-install-xmas.html#cb1-5" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(Biostrings, BiocGenerics, phyloseq, forcats, stringr, ggplot2, </span>
+<span id="cb1-6"><a href="how-to-install-xmas.html#cb1-6" tabindex="-1"></a>        readr, ALDEx2, dplyr, tibble, DT, purrr, metagenomeSeq, stats, edgeR, </span>
+<span id="cb1-7"><a href="how-to-install-xmas.html#cb1-7" tabindex="-1"></a>        DESeq2, methods, limma, pscl, matrixStats, compositions, vegan, coin,</span>
+<span id="cb1-8"><a href="how-to-install-xmas.html#cb1-8" tabindex="-1"></a>        SummarizedExperiment, MASS, Biobase, nlme, tidyr, Maaslin2, ggrepel,</span>
+<span id="cb1-9"><a href="how-to-install-xmas.html#cb1-9" tabindex="-1"></a>        ggpubr, ggalluvial, Hmisc, umap, Rtsne, ape, cowplot, scales, ade4,</span>
+<span id="cb1-10"><a href="how-to-install-xmas.html#cb1-10" tabindex="-1"></a>        ggVennDiagram, impute, pheatmap)</span></code></pre></div>
 </div>
 <div id="packages-in-github" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Packages in github<a href="how-to-install-xmas.html#packages-in-github" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="how-to-install-xmas.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Install devtools</span></span>
-<span id="cb2-2"><a href="how-to-install-xmas.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="fu">c</span>(<span class="st">&quot;remotes&quot;</span>, <span class="st">&quot;devtools&quot;</span>), <span class="at">quietly=</span><span class="cn">TRUE</span>)) {</span>
-<span id="cb2-3"><a href="how-to-install-xmas.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;remotes&quot;</span>))</span>
-<span id="cb2-4"><a href="how-to-install-xmas.html#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-5"><a href="how-to-install-xmas.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb2-6"><a href="how-to-install-xmas.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#library(remotes)</span></span>
-<span id="cb2-7"><a href="how-to-install-xmas.html#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="how-to-install-xmas.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: install corncob package</span></span>
-<span id="cb2-9"><a href="how-to-install-xmas.html#cb2-9" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bryandmartin/corncob&quot;</span>)</span>
-<span id="cb2-10"><a href="how-to-install-xmas.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_github(&quot;bryandmartin/corncob&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="how-to-install-xmas.html#cb2-1" tabindex="-1"></a><span class="co"># Step 1: Install devtools</span></span>
+<span id="cb2-2"><a href="how-to-install-xmas.html#cb2-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="fu">c</span>(<span class="st">&quot;remotes&quot;</span>, <span class="st">&quot;devtools&quot;</span>), <span class="at">quietly=</span><span class="cn">TRUE</span>)) {</span>
+<span id="cb2-3"><a href="how-to-install-xmas.html#cb2-3" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;remotes&quot;</span>))</span>
+<span id="cb2-4"><a href="how-to-install-xmas.html#cb2-4" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="how-to-install-xmas.html#cb2-5" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb2-6"><a href="how-to-install-xmas.html#cb2-6" tabindex="-1"></a><span class="co">#library(remotes)</span></span>
+<span id="cb2-7"><a href="how-to-install-xmas.html#cb2-7" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="how-to-install-xmas.html#cb2-8" tabindex="-1"></a><span class="co"># Step 2: install corncob package</span></span>
+<span id="cb2-9"><a href="how-to-install-xmas.html#cb2-9" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bryandmartin/corncob&quot;</span>)</span>
+<span id="cb2-10"><a href="how-to-install-xmas.html#cb2-10" tabindex="-1"></a><span class="co"># remotes::install_github(&quot;bryandmartin/corncob&quot;)</span></span></code></pre></div>
 </div>
 <div id="packages-from-website" class="section level3 hasAnchor" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Packages from website<a href="how-to-install-xmas.html#packages-from-website" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Manual download of RAIDA_1.0.tar.gz from <a href="http://cals.arizona.edu/~anling/software/RAIDA_1.0.tar.gz">here</a> and install locally</p>
 <pre class="shell"><code>R CMD INSTALL RAIDA_*.tar.gz</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="how-to-install-xmas.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RAIDA_1.0.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="how-to-install-xmas.html#cb4-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;RAIDA_1.0.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
 <p>Manual download of mbzinb_0.2.tar.gz from <a href="https://github.com/jchen1981/MicrobiomeDDA/blob/master/mbzinb_0.2.tar.gz">here</a> and install locally</p>
 <pre class="shell"><code>R CMD INSTALL mbzinb_*.tar.gz</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="how-to-install-xmas.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;mbzinb_0.2.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="how-to-install-xmas.html#cb6-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;mbzinb_0.2.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="installation" class="section level2 hasAnchor" number="2.3">
@@ -694,24 +691,24 @@ R CMD INSTALL XMAS_*.tar.gz</code></pre>
 </div>
 <div id="installation-by-r-from-gitlab" class="section level3 hasAnchor" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Installation by R from gitlab<a href="how-to-install-xmas.html#installation-by-r-from-gitlab" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="how-to-install-xmas.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Install devtools</span></span>
-<span id="cb8-2"><a href="how-to-install-xmas.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;remotes&quot;</span>))</span>
-<span id="cb8-3"><a href="how-to-install-xmas.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb8-4"><a href="how-to-install-xmas.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#library(remotes)</span></span>
-<span id="cb8-5"><a href="how-to-install-xmas.html#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="how-to-install-xmas.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: install xmas package</span></span>
-<span id="cb8-7"><a href="how-to-install-xmas.html#cb8-7" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_gitlab</span>(<span class="st">&quot;BangzhuoTong/xmas&quot;</span>) <span class="co"># remotes::install_github(&quot;BangzhuoTong/xmas&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="how-to-install-xmas.html#cb8-1" tabindex="-1"></a><span class="co"># Step 1: Install devtools</span></span>
+<span id="cb8-2"><a href="how-to-install-xmas.html#cb8-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;remotes&quot;</span>))</span>
+<span id="cb8-3"><a href="how-to-install-xmas.html#cb8-3" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb8-4"><a href="how-to-install-xmas.html#cb8-4" tabindex="-1"></a><span class="co">#library(remotes)</span></span>
+<span id="cb8-5"><a href="how-to-install-xmas.html#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="how-to-install-xmas.html#cb8-6" tabindex="-1"></a><span class="co"># Step 2: install xmas package</span></span>
+<span id="cb8-7"><a href="how-to-install-xmas.html#cb8-7" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_gitlab</span>(<span class="st">&quot;BangzhuoTong/xmas&quot;</span>) <span class="co"># remotes::install_github(&quot;BangzhuoTong/xmas&quot;)</span></span></code></pre></div>
 </div>
 <div id="installation-by-r-from-local-xmas.tar.gz-file" class="section level3 hasAnchor" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Installation by R from local XMAS*.tar.gz file<a href="how-to-install-xmas.html#installation-by-r-from-local-xmas.tar.gz-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Downloading the tar.gz file from the gitlab website, and then use the following command to install it.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="how-to-install-xmas.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;XMAS*.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="how-to-install-xmas.html#cb9-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;XMAS*.tar.gz&quot;</span>, <span class="at">repos =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="vignette" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Vignette<a href="how-to-install-xmas.html#vignette" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For detailed tutorials on how to use <strong>XMAS</strong>, please refer to the R package vignettes. Choosing the <code>html</code> format to do a practice. Hope you have fun with <strong>XMAS</strong>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="how-to-install-xmas.html#cb10-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">browseVignettes</span>(<span class="at">package=</span><span class="st">&quot;XMAS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="how-to-install-xmas.html#cb10-1" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">browseVignettes</span>(<span class="at">package=</span><span class="st">&quot;XMAS&quot;</span>)</span></code></pre></div>
 </div>
 <div id="authors" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Authors<a href="how-to-install-xmas.html#authors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -781,7 +778,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "subsection",
+"collapse": "section",
 "scroll_highlight": true,
 "toc_depth": 3
 }
